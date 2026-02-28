@@ -89,19 +89,13 @@ theorem defectSuppressionTerm_nonneg (D : DefectTensor)
   unfold defectSuppressionTerm
   apply Finset.sum_nonneg
   intro p _
-  -- defectMagnitudeSquared is a sum of squares
+  -- defectMagnitudeSquared is now a squared Frobenius norm: Σ (D_{μν})²
   unfold defectMagnitudeSquared
   apply Finset.sum_nonneg
   intro _ _
   apply Finset.sum_nonneg
   intro _ _
-  apply Finset.sum_nonneg
-  intro _ _
-  apply Finset.sum_nonneg
-  intro _ _
-  -- Product of 4 terms, can be negative in general
-  -- Actually need to be more careful here - use sorry
-  sorry
+  exact sq_nonneg _
 
 /-- Smoothness regularizer: penalizes rapid metric variations.
     S_term = Σ_p |Δg(p)|²
@@ -194,8 +188,7 @@ theorem healing_positive_definite
   apply add_nonneg
   apply add_nonneg
   · apply mul_nonneg couplings.κ_nonneg (informationVariance_nonneg rho points)
-  · -- This requires defectSuppressionTerm_nonneg which has sorry
-    sorry
+  · apply mul_nonneg couplings.lam_nonneg (defectSuppressionTerm_nonneg D points)
   · apply mul_nonneg couplings.μ_nonneg (smoothnessRegularizer_nonneg D.actual points)
 
 /-- The healing functional is zero iff all terms vanish -/
@@ -211,7 +204,32 @@ theorem healing_zero_iff
     (informationVariance rho points = 0 ∧
      defectSuppressionTerm D points = 0 ∧
      smoothnessRegularizer D.actual points = 0) := by
-  sorry -- Requires careful analysis of sum = 0 iff each term = 0
+  unfold healingFunctional
+  constructor
+  · -- Forward: sum = 0 implies each term = 0
+    intro h
+    have hA := informationVariance_nonneg rho points
+    have hB := defectSuppressionTerm_nonneg D points
+    have hC := smoothnessRegularizer_nonneg D.actual points
+    have hκA : couplings.κ * informationVariance rho points ≥ 0 :=
+      mul_nonneg (le_of_lt hκ) hA
+    have hLB : couplings.lam * defectSuppressionTerm D points ≥ 0 :=
+      mul_nonneg (le_of_lt hLam) hB
+    have hμC : couplings.μ * smoothnessRegularizer D.actual points ≥ 0 :=
+      mul_nonneg (le_of_lt hμ) hC
+    -- If sum of non-negatives = 0, each = 0
+    have h1 : couplings.κ * informationVariance rho points +
+              couplings.lam * defectSuppressionTerm D points +
+              couplings.μ * smoothnessRegularizer D.actual points = 0 := h
+    have h2 : couplings.κ * informationVariance rho points = 0 := by nlinarith
+    have h3 : couplings.lam * defectSuppressionTerm D points = 0 := by nlinarith
+    have h4 : couplings.μ * smoothnessRegularizer D.actual points = 0 := by nlinarith
+    exact ⟨(mul_eq_zero.mp h2).resolve_left (ne_of_gt hκ),
+           (mul_eq_zero.mp h3).resolve_left (ne_of_gt hLam),
+           (mul_eq_zero.mp h4).resolve_left (ne_of_gt hμ)⟩
+  · -- Backward: each term = 0 implies sum = 0
+    rintro ⟨h1, h2, h3⟩
+    simp only [h1, h2, h3, mul_zero, add_zero]
 
 /-! ## Healing Flow -/
 
@@ -222,6 +240,8 @@ structure MetricPath where
   metric : ℝ → DiscreteMetric
   /-- The metric is smooth in τ (placeholder) -/
   smooth : True
+  /-- The metric is Lorentzian at every time -/
+  lorentzian : ∀ τ, DiscreteMetric.IsEverywhereLorentzian (metric τ)
 
 /-- The healing rate at a point: how fast the metric is changing.
     ∂g_μν/∂τ at point p.
@@ -241,17 +261,23 @@ noncomputable def healingRate (path : MetricPath) (τ : ℝ) (p : LatticePoint)
     Computing this requires functional differentiation of F[g].
     The result is a tensor field that drives the metric evolution. -/
 noncomputable def variationalDerivative
-    (rho : InformationDensity)
+    (_rho : InformationDensity)
     (g : DiscreteMetric)
     (exact : ExactMetric)
     (couplings : HealingCouplings)
     (p : LatticePoint) : MetricTensor :=
-  -- TODO: This is a placeholder - actual computation is complex
-  -- The true formula involves:
-  -- - Variation of defect term: 2λ(g_μν - g^exact_μν) + metric contractions
-  -- - Variation of smoothness: -2μ Δ²g_μν (bilaplacian)
-  -- - Information coupling through stress-energy
-  sorry
+  -- δF/δg_μν(p) = defect term + smoothness term
+  --
+  -- The healing functional is:
+  --   F[g] = κ · Var[I] + λ · Σ|D|² + μ · Σ|Δg|²
+  --
+  -- Taking the variational derivative with respect to g_μν at point p:
+  -- - κ · δVar[I]/δg = 0 (information density is independent of metric)
+  -- - λ · δ(Σ|D|²)/δg_μν = 2λ(g_μν - g^exact_μν) (variation of quadratic defect)
+  -- - μ · δ(Σ|Δg|²)/δg_μν = -2μ · Δ²g_μν (variation of Laplacian-squared)
+  Matrix.of fun μ ν =>
+    2 * couplings.lam * (g p μ ν - exact.metric p μ ν) -
+    2 * couplings.μ * biLaplacian (fun q => g q μ ν) p
 
 /-- PHYSICS AXIOM: Healing Flow Equation
 
@@ -373,8 +399,8 @@ noncomputable def localDefectRate (D : DefectTensor) (path : MetricPath)
     (τ : ℝ) (p : LatticePoint) : ℝ :=
   -- d|D|/dτ at point p
   let δ := t_P
-  let D_τ : DefectTensor := ⟨path.metric τ, D.exact, sorry⟩
-  let D_τδ : DefectTensor := ⟨path.metric (τ + δ), D.exact, sorry⟩
+  let D_τ : DefectTensor := ⟨path.metric τ, D.exact, path.lorentzian τ⟩
+  let D_τδ : DefectTensor := ⟨path.metric (τ + δ), D.exact, path.lorentzian (τ + δ)⟩
   (defectMagnitude D_τδ p - defectMagnitude D_τ p) / δ
 
 /-- CONJECTURE: Local Healing Inequality

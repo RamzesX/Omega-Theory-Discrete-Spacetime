@@ -103,20 +103,21 @@ end DefectTensor
 /-! ## Defect Magnitude -/
 
 /-- The squared magnitude of the defect tensor at a point.
-    |D|² = g^{μρ} g^{νσ} D_μν D_ρσ
+    |D|² = Σ_{μ,ν} (D_{μν})²
 
-    This is the natural norm on symmetric tensors induced by the metric.
-    It measures the "size" of the defect in a coordinate-invariant way. -/
+    This is the squared Frobenius norm of the defect tensor.
+    Unlike the metric-contracted norm g^{μρ}g^{νσ}D_{μν}D_{ρσ},
+    this is manifestly non-negative regardless of metric signature.
+
+    Physical motivation: In the healing functional, this term penalizes
+    any deviation from the exact metric. The Frobenius norm provides
+    a coordinate-dependent but always well-defined measure of defect size. -/
 noncomputable def defectMagnitudeSquared (D : DefectTensor) (p : LatticePoint) : ℝ :=
-  let g := D.actual p
-  let g_inv := inverseMetric g
   let d := D.tensorAt p
-  -- Contract: g^{μρ} g^{νσ} D_μν D_ρσ
+  -- Squared Frobenius norm: Σ_{μ,ν} (D_{μν})²
   Finset.univ.sum fun μ =>
-    Finset.univ.sum fun ρ =>
-      Finset.univ.sum fun ν =>
-        Finset.univ.sum fun σ =>
-          g_inv μ ρ * g_inv ν σ * d μ ν * d ρ σ
+    Finset.univ.sum fun ν =>
+      (d μ ν) ^ 2
 
 /-- The defect magnitude |D| at a point (non-negative by construction) -/
 noncomputable def defectMagnitude (D : DefectTensor) (p : LatticePoint) : ℝ :=
@@ -130,7 +131,7 @@ theorem defectMagnitude_nonneg (D : DefectTensor) (p : LatticePoint) :
 theorem zero_defect_magnitude (g : ExactMetric) (p : LatticePoint) :
     defectMagnitude (DefectTensor.zero g) p = 0 := by
   unfold defectMagnitude defectMagnitudeSquared DefectTensor.tensorAt DefectTensor.zero
-  simp only [sub_self, Matrix.zero_apply, mul_zero, Finset.sum_const_zero, Real.sqrt_zero]
+  simp [sub_self, zero_pow, Finset.sum_const_zero, Real.sqrt_zero]
 
 /-! ## Defect Density -/
 

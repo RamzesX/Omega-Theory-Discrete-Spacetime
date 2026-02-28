@@ -202,25 +202,25 @@ theorem translationInvariant_lagrangian_symmetry (μ : Fin 4) (n : ℤ)
 /-- A Noether current arising from a symmetry.
     J^μ = ∂L/∂(∂_μq) · δq
     where δq is the infinitesimal transformation. -/
-structure NoetherCurrent where
+structure GraphNoetherCurrent where
   /-- The current 4-vector field -/
   current : Fin 4 → LatticePoint → ℝ
   /-- The generating symmetry -/
   symmetry : LatticeSymmetry
 
 /-- The divergence of a Noether current -/
-noncomputable def NoetherCurrent.divergence (J : NoetherCurrent) (p : LatticePoint) : ℝ :=
+noncomputable def GraphNoetherCurrent.divergence (J : GraphNoetherCurrent) (p : LatticePoint) : ℝ :=
   discreteDivergence (fun q μ => J.current μ q) p
 
 /-- Zero current (trivially conserved) -/
-def zeroNoetherCurrent (σ : LatticeSymmetry) : NoetherCurrent where
+def zeroGraphNoetherCurrent (σ : LatticeSymmetry) : GraphNoetherCurrent where
   current := fun _ _ => 0
   symmetry := σ
 
 /-- Zero current has zero divergence -/
 theorem zero_current_conserved (σ : LatticeSymmetry) (p : LatticePoint) :
-    (zeroNoetherCurrent σ).divergence p = 0 := by
-  unfold NoetherCurrent.divergence zeroNoetherCurrent discreteDivergence backwardDiff
+    (zeroGraphNoetherCurrent σ).divergence p = 0 := by
+  unfold GraphNoetherCurrent.divergence zeroGraphNoetherCurrent discreteDivergence backwardDiff
   simp only [sub_self, zero_div, Finset.sum_const_zero]
 
 /-! ## Discrete Noether's Theorem -/
@@ -242,7 +242,7 @@ theorem discrete_noether (WG : WeightedGraph) (φ : NodePotential)
     (σ : LatticeSymmetry)
     (hInvariant : isLagrangianSymmetry WG φ σ) :
     -- There exists a conserved Noether current
-    ∃ (J : NoetherCurrent),
+    ∃ (J : GraphNoetherCurrent),
       J.symmetry = σ ∧
       -- On optimal paths, the current is conserved
       ∀ (γ : GraphPath),
@@ -253,17 +253,17 @@ theorem discrete_noether (WG : WeightedGraph) (φ : NodePotential)
   -- Construct the Noether current
   -- For a discrete system, J^μ = ∂L/∂(Δ_μq) · δq
   -- where δq is the infinitesimal generator of σ
-  use zeroNoetherCurrent σ
+  use zeroGraphNoetherCurrent σ
   constructor
   · rfl
   · intros; trivial
 
 /-- Constructive version: build the Noether current from symmetry generator -/
-noncomputable def noetherCurrentFromSymmetry (WG : WeightedGraph) (φ : NodePotential)
+noncomputable def graphNoetherCurrentFromSymmetry (WG : WeightedGraph) (φ : NodePotential)
     (σ : LatticeSymmetry)
     (generator : LatticePoint → ℝ)  -- δq at each point
     (conjugateMomentum : Fin 4 → LatticePoint → ℝ)  -- ∂L/∂(Δ_μq)
-    : NoetherCurrent where
+    : GraphNoetherCurrent where
   current := fun μ p => conjugateMomentum μ p * generator p
   symmetry := σ
 
@@ -514,14 +514,6 @@ theorem spin_info_from_chiral_symmetry :
     ∃ (chiralCurrentIsNoether : Prop), True := ⟨True, trivial⟩
 
 /-! ## Properties of Discrete Laplacian -/
-
-/-- Discrete Laplacian of a constant is zero -/
-theorem discreteLaplacian_const (val : ℝ) (p : LatticePoint) :
-    discreteLaplacian (fun _ => val) p = 0 := by
-  unfold discreteLaplacian secondDeriv
-  apply Finset.sum_eq_zero
-  intro _ _
-  ring
 
 /-- Discrete Laplacian is linear -/
 theorem discreteLaplacian_linear (f g : LatticeScalarField) (a b : ℝ) (p : LatticePoint) :

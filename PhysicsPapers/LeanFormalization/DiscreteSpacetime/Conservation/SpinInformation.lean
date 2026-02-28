@@ -39,6 +39,7 @@ import DiscreteSpacetime.Basic.Operators
 import DiscreteSpacetime.Conservation.FourthLaw
 import DiscreteSpacetime.Axioms.Information
 import DiscreteSpacetime.Geometry.Torsion
+import DiscreteSpacetime.Torsion.SpinTorsion
 
 namespace DiscreteSpacetime.Conservation
 
@@ -46,20 +47,7 @@ open DiscreteSpacetime.Basic
 open DiscreteSpacetime.Axioms
 open DiscreteSpacetime.Geometry
 open DiscreteSpacetime.Dynamics
-
-/-! ## Positivity Aliases
-
-    These aliases provide convenient names for the positivity theorems
-    from Constants.lean, matching the notation used in physics. -/
-
-/-- Alias: ℏ > 0 -/
-theorem hbar_pos : ℏ > 0 := ReducedPlanck_pos
-
-/-- Alias: c > 0 -/
-theorem c_pos : c > 0 := SpeedOfLight_pos
-
-/-- Alias: G > 0 -/
-theorem G_pos : G > 0 := GravitationalConstant_pos
+open DiscreteSpacetime.Torsion
 
 /-! ## Spin Current and Axial Anomaly -/
 
@@ -89,23 +77,12 @@ noncomputable def axialAnomalyDensity
 
 /-! ## Spin as Information Source -/
 
-/-- The spin-information coupling constant.
+/-- Alias for spin-info coupling from SpinTorsion. -/
+noncomputable abbrev spinInfoCouplingConstant := spinInfoCoupling
 
-    α = ℏ / (2 m_P c)
-
-    This constant relates the spin current divergence to the
-    information source term. -/
-noncomputable def spinInfoCouplingConstant : ℝ := ℏ / (2 * m_P * c)
-
-/-- Spin-info coupling is positive. -/
-theorem spinInfoCouplingConstant_pos : spinInfoCouplingConstant > 0 := by
-  unfold spinInfoCouplingConstant
-  apply div_pos hbar_pos
-  apply mul_pos
-  · apply mul_pos
-    · norm_num
-    · exact PlanckMass_pos
-  · exact c_pos
+/-- Spin-info coupling is positive (delegates to SpinTorsion). -/
+theorem spinInfoCouplingConstant_pos : spinInfoCouplingConstant > 0 :=
+  spinInfoCoupling_pos
 
 /-- Spin Sources Information Current structure. -/
 structure SpinInformationSource where
@@ -137,16 +114,6 @@ def isInfoEquilibrium (cons : ModifiedInfoConservation) : Prop :=
   ∀ p, cons.spinSource p + cons.gravitonSource p = 0
 
 /-! ## Torsion-Information Correspondence -/
-
-/-- The torsion-information coupling constant. β = ℓ_P³ / (ℏ c) -/
-noncomputable def torsionInfoCoupling : ℝ := ℓ_P^3 / (ℏ * c)
-
-/-- Torsion-info coupling is positive. -/
-theorem torsionInfoCoupling_pos : torsionInfoCoupling > 0 := by
-  unfold torsionInfoCoupling
-  apply div_pos
-  · exact pow_pos PlanckLength_pos 3
-  · exact mul_pos hbar_pos c_pos
 
 /-- Torsion-Information Correspondence axiom. -/
 axiom torsion_info_correspondence :

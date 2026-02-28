@@ -122,10 +122,6 @@ theorem equilibrium_condition (rho : InformationDensity)
 
 /-! ## Main Theorem: Einstein Equations Emerge -/
 
-/-- Einstein coupling constant κ = 8πG/c⁴ -/
-noncomputable def einsteinCouplingConstant : ℝ :=
-  8 * Real.pi * GravitationalConstant / (SpeedOfLight ^ 4)
-
 /-- MAIN THEOREM: Einstein Equations Emerge from Healing Equilibrium. -/
 theorem healing_equilibrium_is_einstein (rho : InformationDensity)
     (g _exact : DiscreteMetric)
@@ -136,19 +132,16 @@ theorem healing_equilibrium_is_einstein (rho : InformationDensity)
     (mu nu : Fin 4) (p : LatticePoint) :
     ∃ (error : ℝ), |error| ≤ ℓ_P ∧
     einsteinTensor g mu nu p =
-    einsteinCouplingConstant * informationStressEnergyTensor rho g mu nu p + error := by
+    einsteinCoupling * informationStressEnergyTensor rho g mu nu p + error := by
   sorry
-
-/-- Vacuum information (zero everywhere) -/
-def vacuumInfo : InformationDensity := fun _ => 0
 
 /-- Corollary: In vacuum (no information gradients), spacetime is Ricci-flat -/
 theorem vacuum_ricci_flat (g exact : DiscreteMetric)
     (_hSym : DiscreteMetric.IsEverywhereSymmetric g)
     (_hNd : DiscreteMetric.IsEverywhereNondegenerate g)
     (couplings : HealingCouplings)
-    (_h_vacuum : ∀ p, discreteGradient vacuumInfo p = fun _ => 0)
-    (_h_equilibrium : ∀ p mu nu, healingVariationalDerivative vacuumInfo g exact couplings mu nu p = 0)
+    (_h_vacuum : ∀ p, discreteGradient vacuumInformation p = fun _ => 0)
+    (_h_equilibrium : ∀ p mu nu, healingVariationalDerivative vacuumInformation g exact couplings mu nu p = 0)
     (mu nu : Fin 4) (p : LatticePoint) :
     ∃ (error : ℝ), |error| ≤ ℓ_P ∧
     ricciTensor g mu nu p = error := by

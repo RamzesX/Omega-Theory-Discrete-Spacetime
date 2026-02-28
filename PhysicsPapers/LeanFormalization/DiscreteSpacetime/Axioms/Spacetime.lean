@@ -452,41 +452,27 @@ axiom kretschmann_nonneg :
 
 /-! ### Axiom M6: Planck Granularity -/
 
-/-- PHYSICS AXIOM M6: Planck Granularity (Single Point Resolution)
+/-- Two real values that represent the same geometric quantity at a single
+    lattice point, computed via different (but equivalent) methods.
+    The Planck granularity axiom applies only to such equivalent computations,
+    not to arbitrary pairs of real numbers.
 
-    At a single lattice point, ANY computation of equivalent geometric
-    quantities differs by at most ℓ_P, regardless of computational complexity.
-
-    Physical justification:
-    - Each lattice point is a single "cell" of spacetime with size ℓ_P
-    - There is NO sub-Planckian structure within a cell
-    - The cell has intrinsic resolution ℓ_P - this is fundamental, not computational
-    - Whether you do 1 operation or 1000 operations at this point,
-      the result is "smeared" to resolution ℓ_P
-
-    Key insight (from Norbert):
-    This applies to SINGLE POINT, not to paths/curves:
-    - Single point, single operation: diff ≤ ℓ_P
-    - Single point, many compositions: diff ≤ ℓ_P (still same point!)
-    - Multiple points forming a curve: errors can accumulate along the path
-      (but that's a different situation - you have more spatial structure)
-
-    Analogy: A pixel on a screen has resolution 1 pixel. Whether you compute
-    the color with 1 shader operation or 1000, the output is still 1 pixel.
-    The pixel doesn't gain sub-pixel resolution from more computation.
-
-    This is why ℓ_P is the QUANTUM of space - it's the indivisible unit.
-
-    Falsifiable prediction:
-    Detection of sub-Planckian structure at a single spacetime event
-    would falsify this axiom.
--/
-axiom planck_granularity :
-  ∀ (x y : ℝ),
-    -- If x and y represent the same geometric quantity at ONE point,
-    -- computed via different (but equivalent) methods
-    True →  -- Placeholder for "x and y are equivalent at same point"
-    |x - y| ≤ ℓ_P
+    The previous version used `True` as a guard, which made the axiom claim
+    that ALL pairs of real numbers differ by at most l_P — proving False. -/
+structure EquivalentGeometricValues where
+  /-- First computation result -/
+  val₁ : ℝ
+  /-- Second computation result -/
+  val₂ : ℝ
+  /-- The lattice point where both values are computed -/
+  point : LatticePoint
+  /-- The metric used for both computations -/
+  metric : DiscreteMetric
+  /-- PHYSICS AXIOM: Planck Granularity
+      Two equivalent geometric computations at a single spacetime point
+      can differ by at most one Planck length. This reflects the fundamental
+      discreteness of spacetime at the Planck scale. -/
+  granularity : |val₁ - val₂| ≤ ℓ_P
 
 /-- Specific instance: Scalar curvature definitions differ by at most ℓ_P -/
 axiom scalar_curvature_granularity :

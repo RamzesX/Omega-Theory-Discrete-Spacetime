@@ -315,10 +315,27 @@ theorem least_action_complexity_bound (S : ℝ) (_K : ℕ) (hS : S ≥ 0) :
 
 /-! ## Part VI: Holographic Bound -/
 
-/-- PHYSICS AXIOM: Bekenstein Bound (Holographic Principle) -/
-axiom holographic_bound :
-  ∀ (I : ℝ) (A : ℝ),
-    A > 0 → I ≥ 0 → I ≤ A / (4 * ℓ_P ^ 2)
+/-- A bounded physical region with its information content and surface area.
+    The holographic bound applies to a specific physical system, not to
+    arbitrary pairs of real numbers. -/
+structure HolographicRegion where
+  /-- Total information content of the region -/
+  information : ℝ
+  /-- Surface area of the bounding surface -/
+  area : ℝ
+  /-- Area is positive -/
+  area_pos : area > 0
+  /-- Information is non-negative -/
+  info_nonneg : information ≥ 0
+  /-- PHYSICS AXIOM: Bekenstein Bound (Holographic Principle)
+      The information content of any bounded region cannot exceed its
+      surface area in Planck units: I ≤ A / (4 l_P²).
+
+      The previous version was: `axiom holographic_bound : ∀ (I : ℝ) (A : ℝ),
+      A > 0 → I ≥ 0 → I ≤ A / (4 * ℓ_P ^ 2)`. This was inconsistent because
+      taking A → 0 forces I = 0 for all I ≥ 0. The bound only applies to
+      (I, A) pairs that represent the same physical region. -/
+  holographic_bound : information ≤ area / (4 * ℓ_P ^ 2)
 
 /-- The Bekenstein-Hawking entropy of a black hole -/
 noncomputable def bekensteinHawkingEntropy (A : ℝ) : ℝ :=

@@ -53,23 +53,84 @@ notation "G[" μ "," ν "]" => einsteinTensor · μ ν
     Continuous: G_{μν} = G_{νμ}
     Discrete: |G_{μν} - G_{νμ}| ≤ ℓ_P -/
 theorem einstein_symmetric_discrete (g : DiscreteMetric)
-    (_hSym : DiscreteMetric.IsEverywhereSymmetric g)
-    (_hNd : DiscreteMetric.IsEverywhereNondegenerate g)
+    (hSym : DiscreteMetric.IsEverywhereSymmetric g)
+    (hNd : DiscreteMetric.IsEverywhereNondegenerate g)
     (μ ν : Fin 4) (p : LatticePoint) :
     |einsteinTensor g μ ν p - einsteinTensor g ν μ p| ≤ ℓ_P := by
-  sorry
+  -- G_{μν} - G_{νμ} = (R_{μν} - 1/2 g_{μν} R) - (R_{νμ} - 1/2 g_{νμ} R)
+  -- = (R_{μν} - R_{νμ}) - 1/2 R (g_{μν} - g_{νμ}) = 0
+  unfold einsteinTensor
+  have h_ricci : ricciTensor g μ ν p = ricciTensor g ν μ p :=
+    ricci_symmetric g hSym hNd μ ν p
+  have h_metric : (g p) μ ν = (g p) ν μ := by
+    have := hSym p
+    unfold IsSymmetric at this
+    have := congrFun (congrFun this ν) μ
+    simp only [Matrix.transpose_apply] at this
+    exact this
+  have h_eq : ricciTensor g μ ν p - 1 / 2 * (g p) μ ν * scalarCurvature g p -
+              (ricciTensor g ν μ p - 1 / 2 * (g p) ν μ * scalarCurvature g p) = 0 := by
+    rw [h_ricci, h_metric]; ring
+  rw [h_eq, abs_zero]
+  exact le_of_lt PlanckLength_pos
 
 /-- Trace of Einstein tensor.
     Continuous: g^{μν} G_{μν} = -R
     Discrete: |g^{μν} G_{μν} + R| ≤ ℓ_P -/
 theorem einstein_trace_discrete (g : DiscreteMetric)
-    (_hSym : DiscreteMetric.IsEverywhereSymmetric g)
-    (_hNd : DiscreteMetric.IsEverywhereNondegenerate g)
+    (hSym : DiscreteMetric.IsEverywhereSymmetric g)
+    (hNd : DiscreteMetric.IsEverywhereNondegenerate g)
     (p : LatticePoint) :
     |(Finset.univ.sum fun μ =>
       Finset.univ.sum fun ν =>
         (inverseMetric (g p)) μ ν * einsteinTensor g μ ν p) + scalarCurvature g p| ≤ ℓ_P := by
-  sorry
+  -- G_{μν} = R_{μν} - 1/2 g_{μν} R, so g^{μν} G_{μν} + R = 0
+  -- Strategy: show the whole expression equals 0, then |0| ≤ l_P
+  suffices h : (Finset.univ.sum fun μ => Finset.univ.sum fun ν =>
+      (inverseMetric (g p)) μ ν * einsteinTensor g μ ν p) + scalarCurvature g p = 0 by
+    rw [h, abs_zero]; exact le_of_lt PlanckLength_pos
+  -- Expand einsteinTensor
+  unfold einsteinTensor
+  -- Use metric symmetry for trace computation
+  have h_gsym : ∀ μ ν : Fin 4, (g p) μ ν = (g p) ν μ := by
+    intros μ ν
+    have := hSym p
+    unfold IsSymmetric at this
+    have := congrFun (congrFun this ν) μ
+    simp only [Matrix.transpose_apply] at this; exact this
+  -- Compute tr(g^{-1} g) = 4
+  have h_trace4 : Finset.univ.sum (fun μ => Finset.univ.sum (fun ν =>
+      (inverseMetric (g p)) μ ν * (g p) μ ν)) = 4 := by
+    conv_lhs =>
+      arg 2; ext μ; arg 2; ext ν
+      rw [h_gsym μ ν]
+    have h_prod : ∀ μ : Fin 4, Finset.univ.sum (fun ν =>
+        (inverseMetric (g p)) μ ν * (g p) ν μ) = (inverseMetric (g p) * (g p)) μ μ := by
+      intro μ; simp [Matrix.mul_apply]
+    simp_rw [h_prod]
+    rw [inverse_mul_metric (g p) (hNd p)]
+    simp [Matrix.one_apply, Fin.sum_univ_four]
+  -- Rewrite each summand: g^{μν} * (R_{μν} - 1/2 g_{μν} R)
+  --   = g^{μν} R_{μν} - 1/2 R * g^{μν} g_{μν}
+  -- So the double sum = Σ g^{μν} R_{μν} - 1/2 R Σ g^{μν} g_{μν} = R - 1/2 R * 4 = -R
+  -- Therefore the expression = -R + R = 0
+
+  -- Step 1: rewrite each term as difference
+  conv_lhs =>
+    arg 1; arg 2; ext μ; arg 2; ext ν
+    rw [show (inverseMetric (g p)) μ ν * (ricciTensor g μ ν p - 1 / 2 * (g p) μ ν * scalarCurvature g p) =
+        (inverseMetric (g p)) μ ν * ricciTensor g μ ν p -
+        1 / 2 * scalarCurvature g p * ((inverseMetric (g p)) μ ν * (g p) μ ν) from by ring]
+  -- Step 2: split double sum into difference of double sums
+  simp_rw [Finset.sum_sub_distrib]
+  -- Now have: (Σ g^R - Σ 1/2 R g^g) + R
+  -- First sum = scalarCurvature by definition
+  -- Factor out constant from second sum
+  simp_rw [← Finset.mul_sum (1 / 2 * scalarCurvature g p)]
+  rw [← Finset.mul_sum (1 / 2 * scalarCurvature g p)]
+  -- Now we have scalarCurvature g p - 1/2 * R * (Σ g^{μν} g_{μν}) + R
+  rw [h_trace4]
+  ring
 
 /-- For flat spacetime, Einstein tensor vanishes exactly.
     This is a special case - flat metric has no discretization errors. -/
@@ -261,11 +322,25 @@ noncomputable def perfectFluidTensor (g : DiscreteMetric) (ρ P : LatticePoint �
     Continuous: T_{μν} = T_{νμ}
     Discrete: |T_{μν} - T_{νμ}| ≤ ℓ_P -/
 theorem perfectFluid_symmetric_discrete (g : DiscreteMetric)
-    (_hSym : DiscreteMetric.IsEverywhereSymmetric g)
+    (hSym : DiscreteMetric.IsEverywhereSymmetric g)
     (ρ P : LatticePoint → ℝ) (u : LatticePoint → Fin 4 → ℝ)
     (p : LatticePoint) (μ ν : Fin 4) :
     |perfectFluidTensor g ρ P u p μ ν - perfectFluidTensor g ρ P u p ν μ| ≤ ℓ_P := by
-  sorry
+  -- perfectFluidTensor g ρ P u p μ ν = (ρ p + P p) * u p μ * u p ν + P p * (g p) μ ν
+  -- The difference is: P p * ((g p) μ ν - (g p) ν μ)
+  -- Since g is symmetric, (g p) μ ν = (g p) ν μ, so the difference is 0
+  unfold perfectFluidTensor
+  have h_sym : (g p) μ ν = (g p) ν μ := by
+    have := hSym p
+    unfold IsSymmetric at this
+    have := congrFun (congrFun this ν) μ
+    simp only [Matrix.transpose_apply] at this
+    exact this
+  have h_eq : (ρ p + P p) * u p μ * u p ν + P p * (g p) μ ν -
+              ((ρ p + P p) * u p ν * u p μ + P p * (g p) ν μ) = 0 := by
+    rw [h_sym]; ring
+  rw [h_eq, abs_zero]
+  exact le_of_lt PlanckLength_pos
 
 /-! ## De Sitter and Anti-de Sitter Spacetimes -/
 

@@ -254,7 +254,8 @@ theorem interpolation_error_bound (_f : LatticeScalarField)
 /-- The continuum limit metric -/
 structure ContinuumLimitMetric where
   discrete_limit : DiscreteMetric
-  is_equilibrium : ∀ p mu nu, healingRate ⟨fun _ => discrete_limit, trivial⟩ 0 p mu nu = 0
+  limit_lorentzian : DiscreteMetric.IsEverywhereLorentzian discrete_limit
+  is_equilibrium : ∀ p mu nu, healingRate ⟨fun _ => discrete_limit, trivial, fun _ => limit_lorentzian⟩ 0 p mu nu = 0
 
 /-- Existence of Continuum Limit.
     For any solution to the healing flow with finite initial energy,

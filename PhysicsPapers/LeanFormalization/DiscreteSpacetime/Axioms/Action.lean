@@ -94,31 +94,25 @@ def ThresholdCrossing.isDownward (tc : ThresholdCrossing) : Prop :=
 
 /-! ## Action Monotonicity Axiom -/
 
-/-- PHYSICS AXIOM: Action Monotonicity
+/-- A physical system where the Lagrangian is the action rate (dS/dt = L)
+    for that specific system. Not every (E, L) pair satisfies monotonicity —
+    only the Lagrangian that actually governs the system's evolution.
 
-    For systems with positive total energy E > 0, action increases
-    monotonically with time: dS/dt = L >= 0.
-
-    More precisely:
-    - For E > 0: The Lagrangian L is non-negative, so action grows
-    - For E = 0: The system is static, action remains constant
-    - For E < 0 (bound states): Action can oscillate but with bounded magnitude
-
-    This provides a thermodynamic arrow of time at the microscopic level.
-
-    This cannot be proven mathematically; it is a physical postulate.
-
-    Falsifiable prediction:
-    - Decay processes should always increase total action
-    - Time-reversed processes would require action decrease (forbidden)
-    - Perpetual motion would require cyclic action (impossible for E > 0)
--/
-axiom action_monotonic :
-  -- For positive energy systems, dS/dt >= 0
-  ∀ (E : Energy) (L : Lagrangian),
-    (E : ℝ) > 0 →
-    -- The Lagrangian is non-negative
-    (L : ℝ) ≥ 0
+    The previous version was: `axiom action_monotonic : ∀ (E : Energy) (L : Lagrangian),
+    E > 0 → L ≥ 0`. Since `Energy` and `Lagrangian` are both `ℝ`, this claimed
+    that ALL real numbers L are non-negative whenever ANY positive real E exists.
+    This is physically false (L = T - V can be negative) and logically overpowered. -/
+structure MonotonicActionSystem where
+  /-- Total energy of the system -/
+  energy : Energy
+  /-- The Lagrangian governing the system's evolution -/
+  lagrangian : Lagrangian
+  /-- Energy is positive -/
+  energy_pos : (energy : ℝ) > 0
+  /-- PHYSICS AXIOM: For this system, the Lagrangian (= dS/dt) is non-negative,
+      meaning action increases monotonically. This provides a thermodynamic
+      arrow of time at the microscopic level. -/
+  action_monotonic : (lagrangian : ℝ) ≥ 0
 
 /-- The action rate (Lagrangian) for a system with given energy and configuration -/
 noncomputable def actionRate (E : Energy) (kinetic potential : ℝ) : Lagrangian :=

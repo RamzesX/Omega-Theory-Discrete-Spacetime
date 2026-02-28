@@ -423,8 +423,8 @@ theorem predictions_consistent : predictions.alpha * predictions.action_quantum 
 theorem predictions_scaling :
     predictions.alpha = k_B / (2 * ℏ * PlanckFrequency) := by
   unfold predictions fidelityTemperatureConstant PlanckFrequency
-  simp only [one_div]
-  ring_nf
-  sorry -- Requires careful manipulation of t_P = 1/f_P relationship
+  have ht : t_P ≠ 0 := ne_of_gt PlanckTime_pos
+  have hh : ℏ ≠ 0 := ne_of_gt ReducedPlanck_pos
+  field_simp [ht, hh]
 
 end DiscreteSpacetime.Emergence

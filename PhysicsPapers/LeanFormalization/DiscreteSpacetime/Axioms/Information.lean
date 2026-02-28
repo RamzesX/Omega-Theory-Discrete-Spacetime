@@ -55,33 +55,26 @@ def Information4Current.toVectorField {p : LatticePoint} (J : Information4Curren
 
 /-! ## Information Conservation Axiom (Fourth Noether Law) -/
 
-/-- PHYSICS AXIOM: Information Conservation (Fourth Noether Law)
+/-- A physically realizable information current (satisfies conservation).
+    Not every vector field is a physical information current —
+    only those arising from actual information flow satisfy div J = 0. -/
+structure ConservedInformationCurrent where
+  /-- The underlying vector field -/
+  current : InformationCurrent
+  /-- Conservation law holds for this current -/
+  conserved : ∀ (p : LatticePoint), discreteDivergence current p = 0
 
-    Information satisfies a local conservation law:
-    partial_mu J^mu_I = 0
+/-- The conservation law for physical information currents.
+    Note: This applies only to `ConservedInformationCurrent`, not to arbitrary
+    vector fields. The previous version universally quantified over all
+    `InformationCurrent` (= LatticeVectorField = LatticePoint → Fin 4 → ℝ),
+    which made ALL vector fields divergence-free — a mathematical absurdity.
 
-    In components: d(rho_I)/dt + div(j_I) = 0
-
-    This is the discrete version on the lattice:
-    Delta_t rho_I + Sum_i Delta_i j^i_I = 0
-
-    Implications:
-    - Information cannot be created or destroyed
-    - Information can only flow from point to point
-    - Black holes must preserve information (resolved via holography)
-
-    This cannot be proven mathematically; it is a physical postulate.
-
-    Falsifiable prediction:
-    - Any process that erases information without radiation would falsify this
-    - Black hole information must emerge in Hawking radiation
-    - Quantum decoherence must preserve total information
--/
-axiom info_conservation :
-  -- Continuity equation: partial_mu J^mu_I = 0
-  ∀ (J : InformationCurrent) (p : LatticePoint),
-    -- Discrete divergence vanishes
-    discreteDivergence J p = 0
+    The conservation law is now built into the `ConservedInformationCurrent`
+    structure as a constraint, which is the standard Lean 4 pattern for
+    restricting axioms to physically meaningful subtypes. -/
+theorem info_conservation (J : ConservedInformationCurrent) (p : LatticePoint) :
+  discreteDivergence J.current p = 0 := J.conserved p
 
 /-- Alternative statement: divergence of information current vanishes everywhere -/
 def informationConserved (J : InformationCurrent) : Prop :=
@@ -114,9 +107,18 @@ axiom total_info_constant :
 noncomputable def totalInformation (rho : InformationDensity) (points : Finset LatticePoint) : ℝ :=
   points.sum fun p => rho p
 
-/-! ## Information Positivity Axiom -/
+/-! ## Information Positivity -/
 
-/-- PHYSICS AXIOM: Information Non-Negativity
+/-- A physically valid information density field.
+    Not every scalar field is a physical information density —
+    only non-negative ones represent actual information content. -/
+structure PhysicalInformationDensity where
+  /-- The underlying scalar field -/
+  field : InformationDensity
+  /-- Non-negativity constraint -/
+  nonneg : ∀ p, field p ≥ 0
+
+/-- Information non-negativity for physical information densities.
 
     Information density is non-negative everywhere:
     rho_I(p) >= 0 for all lattice points p.
@@ -126,23 +128,15 @@ noncomputable def totalInformation (rho : InformationDensity) (points : Finset L
     - Negative information has no physical meaning
     - Minimum information is zero (vacuum state)
 
-    This cannot be proven mathematically; it is a physical postulate.
+    Note: The previous version was an `axiom` universally quantified over all
+    `InformationDensity` (= LatticeScalarField = LatticePoint → ℝ),
+    which claimed ALL functions from lattice points to reals are non-negative.
+    That is inconsistent (take f(p) = -1).
 
-    Falsifiable prediction:
-    - Any measurement yielding negative information content would falsify this
-    - Vacuum fluctuations should have rho_I >= 0
--/
-axiom info_positive :
-  -- Information density is non-negative
-  ∀ (rho : InformationDensity) (p : LatticePoint),
-    rho p ≥ 0
-
-/-- A physically valid information density field -/
-structure PhysicalInformationDensity where
-  /-- The underlying scalar field -/
-  field : InformationDensity
-  /-- Non-negativity constraint -/
-  nonneg : ∀ p, field p ≥ 0
+    Now this is a theorem that extracts the `.nonneg` field from
+    `PhysicalInformationDensity`, restricting the claim to physical fields. -/
+theorem info_positive (rho : PhysicalInformationDensity) (p : LatticePoint) :
+  rho.field p ≥ 0 := rho.nonneg p
 
 /-! ## Information Bounds -/
 

@@ -72,20 +72,50 @@ theorem weyl_tracefree_discrete (g : DiscreteMetric)
     Continuous: C_{ρσμν} = -C_{ρσνμ}
     Discrete: |C_{ρσμν} + C_{ρσνμ}| ≤ ℓ_P -/
 theorem weyl_antisym_34_discrete (g : DiscreteMetric)
-    (_hSym : DiscreteMetric.IsEverywhereSymmetric g)
+    (hSym : DiscreteMetric.IsEverywhereSymmetric g)
     (ρ σ μ ν : Fin 4) (p : LatticePoint) :
     |weylTensor g ρ σ μ ν p + weylTensor g ρ σ ν μ p| ≤ ℓ_P := by
-  sorry
+  -- The sum is exactly 0: all terms cancel by symmetry
+  have h : weylTensor g ρ σ μ ν p + weylTensor g ρ σ ν μ p = 0 := by
+    simp only [weylTensor]
+    have hR := riemann_lower_antisym_34 g hSym ρ σ μ ν p
+    linarith
+  rw [h, abs_of_nonneg (le_refl 0)]
+  exact le_of_lt PlanckLength_pos
 
 /-- Weyl antisymmetry in first two indices.
     Continuous: C_{ρσμν} = -C_{σρμν}
     Discrete: |C_{ρσμν} + C_{σρμν}| ≤ ℓ_P -/
 theorem weyl_antisym_12_discrete (g : DiscreteMetric)
-    (_hSym : DiscreteMetric.IsEverywhereSymmetric g)
-    (_hNd : DiscreteMetric.IsEverywhereNondegenerate g)
+    (hSym : DiscreteMetric.IsEverywhereSymmetric g)
+    (hNd : DiscreteMetric.IsEverywhereNondegenerate g)
     (ρ σ μ ν : Fin 4) (p : LatticePoint) :
     |weylTensor g ρ σ μ ν p + weylTensor g σ ρ μ ν p| ≤ ℓ_P := by
-  sorry
+  have h : weylTensor g ρ σ μ ν p + weylTensor g σ ρ μ ν p = 0 := by
+    simp only [weylTensor]
+    have hR := riemann_lower_antisym_12 g hSym hNd ρ σ μ ν p
+    -- Use metric symmetry
+    have hg : ∀ i j : Fin 4, (g p) i j = (g p) j i :=
+      fun i j => DiscreteSpacetime.Axioms.Metric.metric_symmetry g p i j
+    -- Name the key products to help nlinarith
+    set a := (g p) ρ μ
+    set b := (g p) ρ ν
+    set c := (g p) σ μ
+    set d := (g p) σ ν
+    set R1 := ricciTensor g ν σ p
+    set R2 := ricciTensor g μ σ p
+    set R3 := ricciTensor g ν ρ p
+    set R4 := ricciTensor g μ ρ p
+    set S := scalarCurvature g p
+    -- After metric symmetry, (g p) μ σ = c, (g p) ν ρ = b, etc.
+    have h1 : (g p) μ σ = c := (hg σ μ).symm ▸ rfl
+    have h2 : (g p) ν ρ = b := (hg ρ ν).symm ▸ rfl
+    have h3 : (g p) ν σ = d := (hg σ ν).symm ▸ rfl
+    have h4 : (g p) μ ρ = a := (hg ρ μ).symm ▸ rfl
+    rw [h1, h2, h3, h4]
+    nlinarith
+  rw [h, abs_of_nonneg (le_refl 0)]
+  exact le_of_lt PlanckLength_pos
 
 /-- Weyl pair swap symmetry.
     Continuous: C_{ρσμν} = C_{μνρσ}

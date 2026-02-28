@@ -63,11 +63,11 @@ noncomputable def healingLyapunov (rho : InformationDensity)
     (exact : ExactMetric) (couplings : HealingCouplings)
     (points : Finset LatticePoint) : LyapunovFunctional :=
   { functional := fun path tau =>
-      let D : DefectTensor := ⟨path.metric tau, exact, sorry⟩
+      let D : DefectTensor := ⟨path.metric tau, exact, path.lorentzian tau⟩
       healingFunctional rho D couplings points
-    nonneg := fun path tau => by
+    nonneg := fun _path _tau => by
       -- healingFunctional is positive semi-definite
-      sorry
+      exact healing_positive_definite _ _ _ _
     decreasing := fun path t1 t2 ht => by
       -- Under the healing flow, F decreases
       sorry
@@ -87,8 +87,8 @@ noncomputable def healingFunctionalDerivative (path : MetricPath)
     (tau : ℝ) : ℝ :=
   -- Numerical derivative: [F(tau + delta) - F(tau)] / delta
   let delta := t_P
-  let D_tau : DefectTensor := ⟨path.metric tau, exact, sorry⟩
-  let D_tau_delta : DefectTensor := ⟨path.metric (tau + delta), exact, sorry⟩
+  let D_tau : DefectTensor := ⟨path.metric tau, exact, path.lorentzian tau⟩
+  let D_tau_delta : DefectTensor := ⟨path.metric (tau + delta), exact, path.lorentzian (tau + delta)⟩
   (healingFunctional rho D_tau_delta couplings points -
    healingFunctional rho D_tau couplings points) / delta
 
@@ -119,8 +119,25 @@ theorem equilibrium_stationary (path : MetricPath)
     (tau : ℝ)
     (hEquil : ∀ p mu nu, healingRate path tau p mu nu = 0) :
     healingFunctionalDerivative path rho exact couplings points tau = 0 := by
-  sorry
-  -- If dg/dt = 0, then dF/dt = -||dg/dt||^2 = 0
+  -- If dg/dt = 0, then the metric doesn't change, so dF/dt = 0
+  unfold healingFunctionalDerivative
+  simp only
+  -- The healing rate being 0 means path.metric (tau + t_P) = path.metric tau (pointwise)
+  have hEq : ∀ p mu nu, path.metric (tau + t_P) p mu nu = path.metric tau p mu nu := by
+    intro p mu nu
+    have h := hEquil p mu nu
+    unfold healingRate at h
+    rw [div_eq_zero_iff] at h
+    rcases h with h | h
+    · linarith [h]
+    · exact absurd h (ne_of_gt PlanckTime_pos)
+  -- Since the metric is the same, the functional values are the same
+  have hFEq : healingFunctional rho ⟨path.metric (tau + t_P), exact, path.lorentzian (tau + t_P)⟩ couplings points =
+              healingFunctional rho ⟨path.metric tau, exact, path.lorentzian tau⟩ couplings points := by
+    congr 1
+    ext p mu nu
+    exact hEq p mu nu
+  rw [hFEq, sub_self, zero_div]
 
 /-! ## Global Convergence
 
@@ -201,7 +218,7 @@ theorem exponential_decay (path : MetricPath)
     (tau : ℝ) (htau : tau ≥ 0) :
     -- Defect magnitude decays exponentially
     ∃ (D0 : ℝ), D0 > 0 ∧
-    ∀ p, defectMagnitude ⟨path.metric tau, exact, sorry⟩ p ≤
+    ∀ p, defectMagnitude ⟨path.metric tau, exact, path.lorentzian tau⟩ p ≤
          D0 * exp (-couplings.lam * tau / ℓ_P) := by
   sorry
 
@@ -267,8 +284,8 @@ noncomputable def totalDissipation (path : MetricPath)
     (rho : InformationDensity) (exact : ExactMetric)
     (couplings : HealingCouplings) (points : Finset LatticePoint)
     (T : ℝ) (hT : T ≥ 0) : ℝ :=
-  let D_0 : DefectTensor := ⟨path.metric 0, exact, sorry⟩
-  let D_T : DefectTensor := ⟨path.metric T, exact, sorry⟩
+  let D_0 : DefectTensor := ⟨path.metric 0, exact, path.lorentzian 0⟩
+  let D_T : DefectTensor := ⟨path.metric T, exact, path.lorentzian T⟩
   healingFunctional rho D_0 couplings points -
   healingFunctional rho D_T couplings points
 
@@ -287,8 +304,10 @@ theorem totalDissipation_bounded (path : MetricPath)
     (couplings : HealingCouplings) (points : Finset LatticePoint)
     (T : ℝ) (hT : T ≥ 0) (hFlow : True) :
     totalDissipation path rho exact couplings points T hT ≤
-    healingFunctional rho ⟨path.metric 0, exact, sorry⟩ couplings points := by
-  sorry
+    healingFunctional rho ⟨path.metric 0, exact, path.lorentzian 0⟩ couplings points := by
   -- F(0) - F(T) <= F(0) since F(T) >= 0
+  unfold totalDissipation
+  simp only
+  linarith [healing_positive_definite rho ⟨path.metric T, exact, path.lorentzian T⟩ couplings points]
 
 end DiscreteSpacetime.Dynamics

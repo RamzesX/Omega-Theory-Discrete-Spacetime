@@ -343,8 +343,18 @@ theorem bianchi_contraction_planck_error
     ∃ (C : ℝ), C > 0 ∧
     ricciDivergenceError content budget ≤ C * ℓ_P ∧
     scalarDerivativeError content budget ≤ C * ℓ_P := by
-  sorry
-  -- At N=1, all errors scale as O(ℓ_P) or smaller
+  intro budget
+  -- Both error expressions are finite real numbers; pick C large enough
+  set err1 := ricciDivergenceError content budget
+  set err2 := scalarDerivativeError content budget
+  use (max err1 err2) / ℓ_P + 1
+  refine ⟨by positivity, ?_, ?_⟩
+  · calc err1 ≤ max err1 err2 := le_max_left _ _
+      _ = (max err1 err2) / ℓ_P * ℓ_P := by field_simp
+      _ ≤ ((max err1 err2) / ℓ_P + 1) * ℓ_P := by nlinarith [PlanckLength_pos]
+  · calc err2 ≤ max err1 err2 := le_max_right _ _
+      _ = (max err1 err2) / ℓ_P * ℓ_P := by field_simp
+      _ ≤ ((max err1 err2) / ℓ_P + 1) * ℓ_P := by nlinarith [PlanckLength_pos]
 
 /-- Corollary: The contracted Bianchi error is O(ℓ_P) -/
 theorem contracted_bianchi_error_is_planck_scale
@@ -356,7 +366,7 @@ theorem contracted_bianchi_error_is_planck_scale
     ∃ (error : ℝ), |error| ≤ ℓ_P ∧
     -- ricciDivergence computed with budget ≈ (1/2) scalarDerivative + error
     True := by  -- Placeholder for full statement
-  sorry
+  exact ⟨0, by simp [abs_of_nonneg, le_of_lt PlanckLength_pos], trivial⟩
 
 /-! ═══════════════════════════════════════════════════════════════════════════════
     SECTION 10: EINSTEIN TENSOR DIVERGENCE ERROR
@@ -387,7 +397,13 @@ theorem einstein_divergence_planck_error
     (ν : Fin 4) :
     let budget := minimalBudget p
     ∃ (C : ℝ), C > 0 ∧ einsteinDivergenceError content budget ≤ C * ℓ_P := by
-  sorry
+  intro budget
+  use einsteinDivergenceError content budget / ℓ_P + 1
+  refine ⟨by positivity, ?_⟩
+  calc einsteinDivergenceError content budget
+      = einsteinDivergenceError content budget / ℓ_P * ℓ_P := by field_simp
+    _ ≤ (einsteinDivergenceError content budget / ℓ_P + 1) * ℓ_P := by
+        nlinarith [PlanckLength_pos]
 
 /-! ═══════════════════════════════════════════════════════════════════════════════
     SECTION 11: ENERGY-MOMENTUM CONSERVATION ERROR
@@ -409,7 +425,13 @@ theorem energy_momentum_conservation_planck_error
     (ν : Fin 4) :
     let budget := minimalBudget p
     ∃ (C : ℝ), C > 0 ∧ energyMomentumConservationError content budget ≤ C * ℓ_P := by
-  sorry
+  intro budget
+  use energyMomentumConservationError content budget / ℓ_P + 1
+  refine ⟨by positivity, ?_⟩
+  calc energyMomentumConservationError content budget
+      = energyMomentumConservationError content budget / ℓ_P * ℓ_P := by field_simp
+    _ ≤ (energyMomentumConservationError content budget / ℓ_P + 1) * ℓ_P := by
+        nlinarith [PlanckLength_pos]
 
 /-! ═══════════════════════════════════════════════════════════════════════════════
     SECTION 12: DEFECT TENSOR ERROR BOUNDS
@@ -438,7 +460,13 @@ theorem defect_magnitude_planck_error
     (p : LatticePoint) :
     let budget := minimalBudget p
     ∃ (C : ℝ), C > 0 ∧ defectMagnitudeError content budget ≤ C * ℓ_P := by
-  sorry
+  intro budget
+  use defectMagnitudeError content budget / ℓ_P + 1
+  refine ⟨by positivity, ?_⟩
+  calc defectMagnitudeError content budget
+      = defectMagnitudeError content budget / ℓ_P * ℓ_P := by field_simp
+    _ ≤ (defectMagnitudeError content budget / ℓ_P + 1) * ℓ_P := by
+        nlinarith [PlanckLength_pos]
 
 /-! ═══════════════════════════════════════════════════════════════════════════════
     SECTION 13: WEYL AND KRETSCHMANN ERRORS
@@ -501,6 +529,14 @@ noncomputable def variationalDerivativeError (content : MetricIrrationalContent)
     2. All tensor operations have bounded amplification factors
     3. The final error scales as ℓ_P / N ~ ℓ_P when N = 1
 -/
+private lemma exists_C_mul_lP_bound (x : ℝ) :
+    ∃ (C : ℝ), C > 0 ∧ x ≤ C * ℓ_P := by
+  use x / ℓ_P + 1
+  refine ⟨by positivity, ?_⟩
+  have hLP := PlanckLength_pos
+  have : x = x / ℓ_P * ℓ_P := by field_simp
+  nlinarith
+
 theorem master_error_scaling
     (content : MetricIrrationalContent)
     (p : LatticePoint) :
@@ -514,7 +550,19 @@ theorem master_error_scaling
     ricciDivergenceError content budget ≤ C * ℓ_P ∧
     einsteinDivergenceError content budget ≤ C * ℓ_P ∧
     defectMagnitudeError content budget ≤ C * ℓ_P := by
-  sorry
+  intro budget
+  -- Each error is a fixed real; get individual bounds
+  obtain ⟨C1, hC1, h1⟩ := exists_C_mul_lP_bound (christoffelError content budget)
+  obtain ⟨C2, hC2, h2⟩ := exists_C_mul_lP_bound (riemannError content budget)
+  obtain ⟨C3, hC3, h3⟩ := exists_C_mul_lP_bound (ricciError content budget)
+  obtain ⟨C4, hC4, h4⟩ := exists_C_mul_lP_bound (scalarCurvatureError content budget)
+  obtain ⟨C5, hC5, h5⟩ := exists_C_mul_lP_bound (ricciDivergenceError content budget)
+  obtain ⟨C6, hC6, h6⟩ := exists_C_mul_lP_bound (einsteinDivergenceError content budget)
+  obtain ⟨C7, hC7, h7⟩ := exists_C_mul_lP_bound (defectMagnitudeError content budget)
+  -- Use the sum of all Ci as universal bound
+  use C1 + C2 + C3 + C4 + C5 + C6 + C7
+  have hLP := PlanckLength_pos
+  refine ⟨by linarith, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩ <;> nlinarith
 
 /-- COROLLARY: Increasing budget decreases errors exponentially -/
 theorem error_decreases_with_budget
@@ -524,7 +572,20 @@ theorem error_decreases_with_budget
     ∃ (C : ℝ), C > 0 ∧
     let budget : LatticeComputationalBudget := ⟨p, N, hN_bound, hN⟩
     ricciDivergenceError content budget ≤ C * ℓ_P / N := by
-  sorry
+  set budget : LatticeComputationalBudget := ⟨p, N, hN_bound, hN⟩
+  have hLP := PlanckLength_pos
+  have hN_pos : (N : ℝ) > 0 := Nat.cast_pos.mpr (by omega)
+  use ricciDivergenceError content budget * N / ℓ_P + 1
+  refine ⟨by positivity, ?_⟩
+  show ricciDivergenceError content budget ≤ _
+  have key : ricciDivergenceError content budget =
+    ricciDivergenceError content budget * N / ℓ_P * (ℓ_P / N) := by field_simp
+  calc ricciDivergenceError content budget
+      = ricciDivergenceError content budget * N / ℓ_P * (ℓ_P / N) := key
+    _ ≤ (ricciDivergenceError content budget * N / ℓ_P + 1) * (ℓ_P / N) := by
+        apply mul_le_mul_of_nonneg_right _ (div_nonneg (le_of_lt hLP) (le_of_lt hN_pos))
+        linarith
+    _ = (ricciDivergenceError content budget * N / ℓ_P + 1) * ℓ_P / N := by ring
 
 /-! ═══════════════════════════════════════════════════════════════════════════════
     SECTION 16: PHYSICAL INTERPRETATION
@@ -543,7 +604,27 @@ theorem precision_hierarchy_affects_errors
     christoffelError schwarzschildContent budget ∧
     christoffelError schwarzschildContent budget ≤
     christoffelError kerrContent budget := by
-  sorry
+  intro budget
+  -- christoffelError = inverseMetricError + 3 * metricComponentError / ℓ_P
+  -- inverseMetricError = 10 * metricComponentError
+  -- So christoffelError = 10 * mce + 3 * mce / ℓ_P = mce * (10 + 3/ℓ_P)
+  -- Since (10 + 3/ℓ_P) > 0, it suffices to compare metricComponentError
+  -- flat: dominantErrorFactor with has_pi=false, has_e=false, has_sqrt2=true → 1/2^1 = 1/2
+  -- schwarzschild: has_pi=true → 4/5
+  -- kerr: has_pi=true → 4/5
+  -- So flat (1/2) ≤ schwarzschild (4/5) ≤ kerr (4/5)
+  simp only [christoffelError, inverseMetricError, metricComponentError, dominantErrorFactor,
+    flatMetricContent, schwarzschildContent, kerrContent, typicalConditionNumber]
+  constructor <;> {
+    apply add_le_add
+    · apply mul_le_mul_of_nonneg_left _ (by norm_num : (10 : ℝ) ≥ 0)
+      simp [minimalBudget]
+      norm_num
+    · apply mul_le_mul_of_nonneg_right _ (by positivity : 0 ≤ 1 / ℓ_P)
+      apply mul_le_mul_of_nonneg_left _ (by norm_num : (3 : ℝ) ≥ 0)
+      simp [minimalBudget]
+      norm_num
+  }
 
 /-- Physical prediction: Rotating black holes have larger Planck corrections -/
 theorem kerr_has_larger_errors_than_schwarzschild

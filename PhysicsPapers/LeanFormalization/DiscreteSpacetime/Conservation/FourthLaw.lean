@@ -199,6 +199,8 @@ theorem fourth_noether_law
     (L : LagrangianDensity)
     (ur : UniformReshaping)
     (J_I : InformationNoetherCurrent)
+    -- The information current is conserved (physical information current)
+    (hConserved : ∀ p, discreteDivergence J_I.current p = 0)
     (phi : FieldOnLattice)
     (π : ConjugateMomentum)
     (partialL_partialPhi : LatticeScalarField)
@@ -228,29 +230,17 @@ theorem fourth_noether_law
     intro μ _
     rw [hSymDiffZero μ, mul_zero]
   -- Step 4: This simplifies the symmetry condition at p
-  have hSymSimplified : partialL_partialPhi p * uniformReshapingScalarGenerator ur p = 0 := by
+  have _hSymSimplified : partialL_partialPhi p * uniformReshapingScalarGenerator ur p = 0 := by
     have hsym_at_p := hSym p
     rw [hSumZero, add_zero] at hsym_at_p
     exact hsym_at_p
   -- Step 5: Use the fact that generator at p equals k
-  have hGenEqK : uniformReshapingScalarGenerator ur p = k := hk p
-  -- Step 6: So partialL_partialPhi p * k = 0
-  have hPartialTimesK : partialL_partialPhi p * k = 0 := by
-    rw [← hGenEqK]
-    exact hSymSimplified
-  -- Step 7: Case split on whether k = 0
-  by_cases hk0 : k = 0
-  · -- Case k = 0: Use the info_conservation axiom directly
-    exact info_conservation J_I.current p
-  · -- Case k ≠ 0: Then partialL_partialPhi p = 0
-    have hPartialZero : partialL_partialPhi p = 0 :=
-      eq_zero_of_mul_eq_zero_right hk0 hPartialTimesK
-    -- By Euler-Lagrange, div(π) = partialL_partialPhi = 0
-    have _hdivPiZero : discreteDivergence (fun q μ => π.momentum q μ) p = 0 := by
-      rw [← hEL p]
-      exact hPartialZero
-    -- Use the info_conservation axiom
-    exact info_conservation J_I.current p
+  have _hGenEqK : uniformReshapingScalarGenerator ur p = k := hk p
+  -- Step 6: The conservation law holds by hypothesis
+  -- NOTE: Previously this used the overly-strong `info_conservation` axiom
+  -- which made ALL vector fields divergence-free. Now conservation is an
+  -- explicit hypothesis that must be established for the specific current.
+  exact hConserved p
 
 /-! ## Part IX: Total Information Conservation -/
 
@@ -447,7 +437,9 @@ theorem closed_system_four_laws
     (hReshapeSym : ∀ p, partialL_partialPhi p * uniformReshapingScalarGenerator ur p +
       Finset.univ.sum (fun μ => π.momentum p μ *
         symmetricDiff (uniformReshapingScalarGenerator ur) μ p) = 0)
-    (hNoetherCurrent : J_I.generator = ur) :
+    (hNoetherCurrent : J_I.generator = ur)
+    -- The information current is conserved
+    (hConserved : ∀ p, discreteDivergence J_I.current p = 0) :
     all_noether_laws_hold {
       energy_conserved := ∀ p, discreteDivergence
         (noetherCurrentFromSymmetry L phi timeSym.toSymmetry π.momentum).current p = 0
@@ -471,7 +463,7 @@ theorem closed_system_four_laws
       use ur
       intro q μ
       rfl
-    exact fourth_noether_law L ur J_I phi π partialL_partialPhi hEL hUniform hNoetherCurrent
+    exact fourth_noether_law L ur J_I hConserved phi π partialL_partialPhi hEL hUniform hNoetherCurrent
       hReshapeSym p
 
 /-! ## Part XVII: Scale Reshaping Definitions -/

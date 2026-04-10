@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__filesystem__list_directory_with_sizes",
+      "mcp__lean-lsp__lean_file_outline",
+      "WebFetch(domain:decodeclaude.com)",
+      "WebFetch(domain:claudefa.st)",
+      "Bash(wsl.exe bash:*)",
+      "mcp__lean-lsp__lean_leansearch",
+      "mcp__lean-lsp__lean_loogle",
+      "mcp__lean-lsp__lean_local_search",
+      "mcp__lean-lsp__lean_run_code",
+      "mcp__lean-lsp__lean_diagnostic_messages",
+      "Bash(~/.elan/bin/lean:*)",
+      "WebSearch",
+      "Bash(mkdir -p LeanFormalizationV2)",
+      "Bash(~/.elan/bin/lake init:*)",
+      "Bash(~/.elan/bin/lake exe:*)",
+      "Bash(~/.elan/bin/lake update:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(~/.elan/bin/lake build:*)"
+    ]
+  },
+  "prefersReducedMotion": true
+}

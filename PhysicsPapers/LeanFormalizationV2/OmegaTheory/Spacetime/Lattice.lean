@@ -22,7 +22,7 @@ inductive Direction : Type where
   | x : Direction  -- spatial x
   | y : Direction  -- spatial y
   | z : Direction  -- spatial z
-deriving DecidableEq, Repr
+deriving DecidableEq, Repr, Fintype
 
 /-- Convert direction to Fin 4 index. -/
 def Direction.toFin : Direction → Fin 4
@@ -60,6 +60,21 @@ theorem shiftBack_shift (n : LatticePoint) (μ : Direction) :
   ext i
   simp [shift, shiftBack, unitVec]
 
+/-- Shifts in different directions commute. -/
+theorem shift_comm (n : LatticePoint) (μ ν : Direction) :
+    shift (shift n μ) ν = shift (shift n ν) μ := by
+  ext i; simp [shift, unitVec]; ring
+
+/-- Backward shifts in different directions commute. -/
+theorem shiftBack_comm (n : LatticePoint) (μ ν : Direction) :
+    shiftBack (shiftBack n μ) ν = shiftBack (shiftBack n ν) μ := by
+  ext i; simp [shiftBack, unitVec]; ring
+
+/-- Shifting backward in ν then forward in μ commutes with the reverse order. -/
+theorem shiftBack_shift_comm (n : LatticePoint) (μ ν : Direction) :
+    shift (shiftBack n ν) μ = shiftBack (shift n μ) ν := by
+  ext i; simp [shift, shiftBack, unitVec]; ring
+
 /-- The coordination number of Z^4: each point has 8 nearest neighbors
     (±1 in each of 4 directions). -/
 def coordinationNumber : ℕ := 8
@@ -77,13 +92,13 @@ theorem isNeighbor_symm {n m : LatticePoint} (h : isNeighbor n m) : isNeighbor m
     (fun h => Or.inl (by rw [h, shiftBack_shift]))⟩
 
 /-- A lattice field assigns a value to each lattice point. -/
-def LatticeField (α : Type*) := LatticePoint → α
+abbrev LatticeField (α : Type*) := LatticePoint → α
 
 /-- A lattice tensor field of type (p,q) at each point.
     p = number of contravariant (upper) indices
     q = number of covariant (lower) indices
     Each index ranges over Fin 4 (the 4 spacetime directions). -/
-def LatticeTensorField (p q : ℕ) :=
+abbrev LatticeTensorField (p q : ℕ) :=
   LatticePoint → (Fin p → Fin 4) → (Fin q → Fin 4) → ℝ
 
 /-- A scalar field is a (0,0) tensor field. -/

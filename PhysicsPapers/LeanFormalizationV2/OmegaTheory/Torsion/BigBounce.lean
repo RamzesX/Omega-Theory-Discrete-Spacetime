@@ -36,7 +36,7 @@ noncomputable def gravitationalPressure (mass radius : ℝ) : ℝ :=
 theorem gravitationalPressure_negative (M r : ℝ) (hM : M ≠ 0) (hr : r ≠ 0) :
     gravitationalPressure M r < 0 := by
   unfold gravitationalPressure
-  sorry -- -(pos/pos) < 0, needs careful nonlinear arithmetic
+  sorry -- -(G·M²/r⁴) < 0: needs neg_neg_of_pos (div_pos ...)
 
 /-! ## Torsion Coefficient -/
 

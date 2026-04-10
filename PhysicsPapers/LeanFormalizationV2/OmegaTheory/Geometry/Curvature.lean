@@ -129,4 +129,53 @@ def satisfiesVacuumEinstein (g : DiscreteMetric) : Prop :=
 theorem flat_satisfies_vacuum : satisfiesVacuumEinstein DiscreteMetric.flat :=
   fun μ ν p => einstein_flat μ ν p
 
+/-! ## First (Algebraic) Bianchi Identity
+
+R^ρ_{σμν} + R^ρ_{μνσ} + R^ρ_{νσμ} = 0
+
+EXACT — no approximation needed. Proof uses only Christoffel symmetry
+(which requires metric symmetry) and algebraic cancellation. -/
+
+/-- First Bianchi identity: cyclic sum of Riemann vanishes.
+    Proof: derivative terms cancel via christoffelDerivative_symm,
+    product terms cancel by index relabeling + christoffel_symmetry. -/
+theorem first_bianchi (g : DiscreteMetric) (hsym : g.IsEverywhereSymmetric)
+    (ρ σ μ ν : Fin 4) (p : LatticePoint) :
+    riemannTensor g ρ σ μ ν p + riemannTensor g ρ μ ν σ p +
+    riemannTensor g ρ ν σ μ p = 0 := by
+  unfold riemannTensor
+  -- Derivative equalities from Christoffel symmetry
+  have hD1 := christoffelDerivative_symm g hsym ρ ν σ μ p  -- ∂_μΓ^ρ_{νσ} = ∂_μΓ^ρ_{σν}
+  have hD2 := christoffelDerivative_symm g hsym ρ μ σ ν p  -- ∂_νΓ^ρ_{μσ} = ∂_νΓ^ρ_{σμ}
+  have hD3 := christoffelDerivative_symm g hsym ρ ν μ σ p  -- ∂_σΓ^ρ_{νμ} = ∂_σΓ^ρ_{μν}
+  -- Product equalities from Christoffel symmetry in second factor
+  have hP1 : ∀ l, christoffelSymbol g l ν σ p = christoffelSymbol g l σ ν p :=
+    fun l => christoffel_symmetry g hsym l ν σ p
+  have hP2 : ∀ l, christoffelSymbol g l μ σ p = christoffelSymbol g l σ μ p :=
+    fun l => christoffel_symmetry g hsym l μ σ p
+  have hP3 : ∀ l, christoffelSymbol g l ν μ p = christoffelSymbol g l μ ν p :=
+    fun l => christoffel_symmetry g hsym l ν μ p
+  -- Rewrite all product sums using symmetry
+  simp_rw [hP1, hP2, hP3, hD1, hD2, hD3]
+  ring
+
+/-- First Bianchi for the lowered tensor:
+    R_{ρσμν} + R_{ρμνσ} + R_{ρνσμ} = 0.
+    Follows from first_bianchi by linearity of metric contraction. -/
+theorem first_bianchi_lower (g : DiscreteMetric) (hsym : g.IsEverywhereSymmetric)
+    (ρ σ μ ν : Fin 4) (p : LatticePoint) :
+    riemannLower g ρ σ μ ν p + riemannLower g ρ μ ν σ p +
+    riemannLower g ρ ν σ μ p = 0 := by
+  unfold riemannLower
+  rw [← Finset.sum_add_distrib, ← Finset.sum_add_distrib]
+  apply Finset.sum_eq_zero
+  intro l _
+  have h := first_bianchi g hsym l σ μ ν p
+  have : (g p) ρ l * riemannTensor g l σ μ ν p +
+    (g p) ρ l * riemannTensor g l μ ν σ p +
+    (g p) ρ l * riemannTensor g l ν σ μ p =
+    (g p) ρ l * (riemannTensor g l σ μ ν p + riemannTensor g l μ ν σ p +
+      riemannTensor g l ν σ μ p) := by ring
+  rw [this, h, mul_zero]
+
 end OmegaTheory.Geometry

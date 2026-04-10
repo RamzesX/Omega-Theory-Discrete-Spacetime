@@ -120,7 +120,7 @@ theorem triad_consistency (I T : ℝ) :
 /-- Round-trip: mass → info → mass recovers original. -/
 theorem mass_info_roundtrip (m T : ℝ) (hT : 0 < T) :
     massFromInformation (informationFromMass m T hT) T = m := by
-  sorry -- field_simp + ring with nonzero denominators; needs careful unfolding
+  sorry -- mass ↔ info roundtrip: needs field_simp with correct unfolding chain
 
 /-! ## Part IV: Bekenstein-Hawking Entropy (DEFINITION)
 
@@ -185,7 +185,7 @@ theorem hawkingTemperature_antimono {M₁ M₂ : ℝ} (hM₁ : 0 < M₁) (hM₂ 
   apply div_lt_div_of_pos_left
   · exact mul_pos hbar_pos (pow_pos c_pos 3)
   · exact mul_pos (mul_pos (mul_pos (mul_pos (by nlinarith [Real.pi_pos]) Real.pi_pos) G_N_pos) hM₁) k_B_pos
-  · sorry -- 8πGM₁k_B < 8πGM₂k_B from M₁ < M₂, needs nlinarith with positivity
+  · sorry -- 8πGM₁k_B < 8πGM₂k_B from M₁ < M₂
 
 /-! ## Part VI: Schwarzschild Geometry -/
 

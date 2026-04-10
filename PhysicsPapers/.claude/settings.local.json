@@ -21,7 +21,9 @@
       "WebFetch(domain:github.com)",
       "Bash(~/.elan/bin/lake build:*)",
       "Bash(~/.elan/bin/lake --version)",
-      "Bash(grep -A5 \"Tactic \\\\`rewrite\\\\`\\\\|Unknown\\\\|No goals\")"
+      "Bash(grep -A5 \"Tactic \\\\`rewrite\\\\`\\\\|Unknown\\\\|No goals\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   },
   "prefersReducedMotion": true

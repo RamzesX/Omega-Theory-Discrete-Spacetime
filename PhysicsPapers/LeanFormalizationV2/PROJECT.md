@@ -16,9 +16,9 @@ the coarse-grained geometry satisfies G_μν = (8πG/c⁴)T_μν + O(l_P).
 | Lean version | v4.29.0 (stable) |
 | Mathlib version | v4.29.0 |
 | Lake version | 5.0.0 |
-| Total files | 26 |
-| Total theorems | ~280 |
-| Sorry count | 2 (both trivial arithmetic) |
+| Total files | 30 |
+| Total theorems | ~320 |
+| Sorry count | 13 (10 convergence proofs + 3 arithmetic) |
 | Axioms | 5 (4 physical constants + 1 external math theorem) |
 | Build command | `~/.elan/bin/lake build --log-level=error` |
 
@@ -106,10 +106,44 @@ G_μν = (8πG/c⁴) T^(I)_μν + O(l_P²/L²)    ← THE PRIZE
 
 ## Sorry Inventory (to be closed)
 
-| # | Location | Statement | Difficulty |
-|---|----------|-----------|------------|
-| 1 | BigBounce.lean:39 | `gravitationalPressure_negative` — `-(pos/pos) < 0` | Trivial (neg arithmetic) |
-| 2 | Uncertainty.lean:114 | `iterationBudget_decreases_with_T` — `k_B*T₁*t_P ≤ k_B*T₂*t_P` | Trivial (mul associativity) |
+### Group A: BoundsLemmas convergence proofs (10 sorry)
+All in `Irrationality/BoundsLemmas.lean`. V1 had these PROVEN — needs Mathlib v4.29 adaptation.
+
+| # | Line | Theorem | V1 Proof Strategy | Difficulty |
+|---|------|---------|-------------------|------------|
+| 1 | 48 | `pi_quarter_error_bound` | Alternating series estimation (Antitone.alternating_series_le_tendsto) | Hard (~100 lines) |
+| 2 | 66 | `e_error_positive` | Real.exp_bound from Mathlib | Medium |
+| 3 | 71 | `e_error_bound` | Real.exp_bound + factorial tail | Medium (~80 lines) |
+| 4 | 79 | `sqrt2_error_bound` | Induction with quadratic recurrence | Hard (~80 lines) |
+| 5 | 83 | `sqrt2_error_one` | norm_num with sqrt2 bounds | Easy |
+| 6 | 86 | `sqrt2_error_two` | norm_num with sqrt2 bounds | Easy |
+| 7 | 92 | `pi_error_tendsto_zero` | From leibniz_series_converges | Medium |
+| 8 | 96 | `e_error_tendsto_zero` | From factorial decay | Medium |
+| 9 | 100 | `sqrt2_error_tendsto_zero` | From super-exponential decay | Medium |
+
+### Group B: Trivial arithmetic (3 sorry)
+All need `mul_lt_mul_of_pos_right` / `neg_of_pos` chains with axiomatized constants.
+
+| # | File | Theorem | What's needed |
+|---|------|---------|---------------|
+| 10 | BigBounce.lean:39 | `gravitationalPressure_negative` | `-(G·M²/r⁴) < 0` |
+| 11 | Uncertainty.lean:114 | `iterationBudget_decreases_with_T` | `k_B*T₁*t_P ≤ k_B*T₂*t_P` |
+| 12 | Correspondence.lean:123 | `mass_info_roundtrip` | field_simp with 4 nonzero denoms |
+| 13 | Correspondence.lean:188 | `hawkingTemperature_antimono` | `8πGM₁k_B < 8πGM₂k_B` |
+
+### Attack Strategy
+
+**Session 1: Group B (trivial arithmetic, ~30 min)**
+- Pattern: `mul_lt_mul_of_pos_right h (mul_pos ... ...)` chains
+- All 4 are the same issue: nlinarith can't handle products of axiomatized positives
+- Fix: explicit `have` chains decomposing the multiplication
+
+**Session 2: BoundsLemmas Group A (convergence, 2-3 hours)**
+- Start with #5, #6 (sqrt2 specific values — norm_num, easiest)
+- Then #7, #8, #9 (tendsto_zero — from convergence + bounds)
+- Then #2, #3 (e bounds — Real.exp_bound)
+- Then #1 (pi — alternating series, hardest)
+- Then #4 (sqrt2 — induction, hard)
 
 ## Key Proven Theorems (Highlights)
 

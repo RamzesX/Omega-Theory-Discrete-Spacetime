@@ -20,7 +20,8 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:github.com)",
       "Bash(~/.elan/bin/lake build:*)",
-      "Bash(~/.elan/bin/lake --version)"
+      "Bash(~/.elan/bin/lake --version)",
+      "Bash(grep -A5 \"Tactic \\\\`rewrite\\\\`\\\\|Unknown\\\\|No goals\")"
     ]
   },
   "prefersReducedMotion": true

@@ -28,3 +28,20 @@ import OmegaTheory.Tensor.Operations
 import OmegaTheory.Geometry.Metric
 import OmegaTheory.Geometry.Connection
 import OmegaTheory.Geometry.Curvature
+
+-- Layer 5: Defects
+import OmegaTheory.Defects.DefectTensor
+
+-- Layer 6: Conservation Laws
+import OmegaTheory.Conservation.Information
+import OmegaTheory.Conservation.StressEnergy
+
+-- Layer 7: Healing Flow
+import OmegaTheory.HealingFlow.Functional
+import OmegaTheory.HealingFlow.Flow
+import OmegaTheory.HealingFlow.Lyapunov
+
+-- Layer 8: Emergence
+import OmegaTheory.Emergence.CoarseGrain
+import OmegaTheory.Emergence.LaplacianRicci
+import OmegaTheory.Emergence.EinsteinEmergence

@@ -307,4 +307,73 @@ noncomputable def DefectTensor.defect (D : DefectTensor)
     (μ ν : Fin 4) (p : LatticePoint) (dir : Fin 4) : ℝ :=
   symmetricDiff (fun q => (D.tensorAt q) μ ν) dir p
 
+/-! ## Semi-Smooth Metric
+
+An (ε,δ)-semi-smooth metric is a discrete metric where:
+- Every defect is bounded by ε
+- Defects are rare: at most fraction δ of points in any region exceed ε/2
+- The product ε·δ < ε ensures error cascades converge
+
+This is the formal definition of "not smooth but feels smooth":
+- At Planck scale: discrete and defective
+- At mesoscale: mostly smooth with exponentially rare defects
+- At macro scale: indistinguishable from smooth -/
+
+/-- An (ε,δ)-semi-smooth metric: discrete metric with bounded, sparse defects. -/
+structure SemiSmoothMetric where
+  /-- The defect tensor (packages actual + exact metrics) -/
+  defect : DefectTensor
+  /-- Maximum pointwise defect magnitude -/
+  epsilon : ℝ
+  /-- Defect site fraction bound -/
+  delta : ℝ
+  /-- ε > 0 -/
+  epsilon_pos : 0 < epsilon
+  /-- δ > 0 -/
+  delta_pos : 0 < delta
+  /-- Every defect is bounded by ε -/
+  defect_bounded : ∀ p, defectMagnitude defect p ≤ epsilon
+  /-- Defects exceeding ε/2 are sparse: at most fraction δ of any region -/
+  defect_sparse : ∀ (region : Finset LatticePoint),
+    (region.filter fun p => defectMagnitude defect p > epsilon / 2).card ≤
+    delta * region.card
+
+namespace SemiSmoothMetric
+
+/-- The actual discrete metric. -/
+def metric (ssm : SemiSmoothMetric) : DiscreteMetric := ssm.defect.actual
+
+/-- The reference (exact) metric. -/
+def exactMetric (ssm : SemiSmoothMetric) : DiscreteMetric := ssm.defect.exact.metric
+
+/-- ε is nonneg. -/
+theorem epsilon_nonneg (ssm : SemiSmoothMetric) : 0 ≤ ssm.epsilon :=
+  le_of_lt ssm.epsilon_pos
+
+/-- δ is nonneg. -/
+theorem delta_nonneg (ssm : SemiSmoothMetric) : 0 ≤ ssm.delta :=
+  le_of_lt ssm.delta_pos
+
+/-- Zero defect has zero magnitude everywhere, so any ε works. -/
+theorem zero_defect_bounded (g : ExactMetric) (p : LatticePoint) :
+    defectMagnitude (DefectTensor.zero g) p ≤ 1 := by
+  rw [zero_defect_magnitude]
+  norm_num
+
+/-- The defect energy in a region is bounded by ε · |region| · E_P. -/
+theorem defectEnergy_bounded (ssm : SemiSmoothMetric) (region : Finset LatticePoint) :
+    defectEnergy ssm.defect region ≤ ssm.epsilon * region.card * E_P := by
+  unfold defectEnergy
+  apply mul_le_mul_of_nonneg_right
+  · calc region.sum (fun p => defectMagnitude ssm.defect p)
+        ≤ region.sum (fun _ => ssm.epsilon) := by
+          apply Finset.sum_le_sum
+          intro p _
+          exact ssm.defect_bounded p
+      _ = ssm.epsilon * region.card := by
+          simp [Finset.sum_const, nsmul_eq_mul]
+  · exact le_of_lt PlanckEnergy_pos
+
+end SemiSmoothMetric
+
 end DiscreteSpacetime.Dynamics

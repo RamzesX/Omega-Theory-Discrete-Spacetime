@@ -19,7 +19,8 @@
       "Bash(~/.elan/bin/lake update:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:github.com)",
-      "Bash(~/.elan/bin/lake build:*)"
+      "Bash(~/.elan/bin/lake build:*)",
+      "Bash(~/.elan/bin/lake --version)"
     ]
   },
   "prefersReducedMotion": true

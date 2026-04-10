@@ -48,3 +48,16 @@ import OmegaTheory.Emergence.EinsteinEmergence
 
 -- Layer 10: Torsion (Einstein-Cartan)
 import OmegaTheory.Torsion.Torsion
+
+-- Layer 11: Irrationality (concrete error sources)
+import OmegaTheory.Irrationality.Approximations
+
+-- Layer 12: Variational (Erdős-Lagrangian, discrete Noether)
+import OmegaTheory.Variational.GraphAction
+import OmegaTheory.Variational.DiscreteNoether
+
+-- Extended modules
+import OmegaTheory.Torsion.SpinTorsion
+import OmegaTheory.Torsion.BigBounce
+import OmegaTheory.Irrationality.Uncertainty
+import OmegaTheory.Emergence.Predictions

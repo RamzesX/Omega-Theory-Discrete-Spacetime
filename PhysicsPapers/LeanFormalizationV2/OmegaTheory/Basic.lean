@@ -35,6 +35,7 @@ import OmegaTheory.Defects.DefectTensor
 -- Layer 6: Conservation Laws
 import OmegaTheory.Conservation.Information
 import OmegaTheory.Conservation.StressEnergy
+import OmegaTheory.Conservation.Correspondence
 
 -- Layer 7: Healing Flow
 import OmegaTheory.HealingFlow.Functional
@@ -60,4 +61,5 @@ import OmegaTheory.Variational.DiscreteNoether
 import OmegaTheory.Torsion.SpinTorsion
 import OmegaTheory.Torsion.BigBounce
 import OmegaTheory.Irrationality.Uncertainty
+import OmegaTheory.Irrationality.BoundsLemmas
 import OmegaTheory.Emergence.Predictions

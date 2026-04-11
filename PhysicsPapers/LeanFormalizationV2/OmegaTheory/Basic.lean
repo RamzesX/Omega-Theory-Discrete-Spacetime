@@ -36,6 +36,7 @@ import OmegaTheory.Defects.DefectTensor
 
 -- Layer 6: Conservation Laws
 import OmegaTheory.Conservation.Information
+import OmegaTheory.Conservation.NoetherMetaStructure
 import OmegaTheory.Conservation.StressEnergy
 import OmegaTheory.Conservation.Correspondence
 
@@ -49,6 +50,7 @@ import OmegaTheory.Emergence.CoarseGrain
 import OmegaTheory.Emergence.LaplacianRicci
 import OmegaTheory.Emergence.EinsteinEmergence
 import OmegaTheory.Emergence.Gravitons
+import OmegaTheory.Emergence.SnapshotPropagator
 
 -- Layer 10: Torsion (Einstein-Cartan)
 import OmegaTheory.Torsion.Torsion

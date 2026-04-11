@@ -113,4 +113,88 @@ theorem iterationBudget_decreases_with_T (T₁ T₂ : ℝ) (hT1 : 0 < T₁) (hT2
   · exact mul_pos (mul_pos k_B_pos hT1) t_P_pos
   · exact mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left h (le_of_lt k_B_pos)) (le_of_lt t_P_pos)
 
+/-! ## Quantum Computer Reformulation (Katz-Kotler 2026 compatibility)
+
+Katz & Kotler, "Probing the Planck scale with quantum computation"
+(arXiv:2604.06322, April 2026), argue that a quantum computer operating
+beyond the classical limit of 1 operation per Planck volume-time can
+distinguish quantum-gravity theories from classical-confinable ones.
+Their framework quantifies the test in terms of LOGICAL QUBIT COUNT
+(n_qubits) and operational rate.
+
+OmegaTheory's `computationalUncertainty` is sourced from a DIFFERENT
+mechanism (irrational truncation + action-threshold crossings) but the
+two frameworks meet at a common observable: how the quantum computer's
+effective precision floor scales with the number of participating
+degrees of freedom.
+
+Below we express `iterationBudget` and `computationalUncertainty` in
+qubit-count variables. The mapping is: each logical qubit contributes
+~1 particle worth of action density, so the iteration budget is
+`ℏ / (n_qubits · k_B · T · t_P)`, and the computational uncertainty
+grows with n_qubits at fixed T.
+
+**This is a definitional bridge**, not an independent theorem —
+it re-expresses existing primitives in variables matching a specific
+experimental proposal so the two frameworks can be compared. -/
+
+/-- Iteration budget for a quantum computer with `n_qubits` logical qubits
+    at temperature `T`. Same structure as `iterationBudget T` but with
+    the implicit N=1 particle-count replaced by `n_qubits`. -/
+noncomputable def qubitIterationBudget (n_qubits : ℝ) (T_temp : ℝ) : ℝ :=
+  hbar / (n_qubits * k_B * T_temp * t_P)
+
+/-- `qubitIterationBudget 1 T` equals the single-particle `iterationBudget T`. -/
+theorem qubitIterationBudget_single (T_temp : ℝ) :
+    qubitIterationBudget 1 T_temp = iterationBudget T_temp := by
+  unfold qubitIterationBudget iterationBudget
+  ring
+
+/-- For positive n_qubits and T, the qubit iteration budget is positive. -/
+theorem qubitIterationBudget_pos (n_qubits T_temp : ℝ)
+    (hn : 0 < n_qubits) (hT : 0 < T_temp) :
+    0 < qubitIterationBudget n_qubits T_temp := by
+  unfold qubitIterationBudget
+  exact div_pos hbar_pos
+    (mul_pos (mul_pos (mul_pos hn k_B_pos) hT) t_P_pos)
+
+/-- More qubits at fixed temperature give a smaller iteration budget —
+    each qubit consumes a share of the Planck-tick budget, so scaling
+    up n_qubits shortens the time available per operation. -/
+theorem qubitIterationBudget_decreases_with_qubits
+    (n₁ n₂ T_temp : ℝ) (hn1 : 0 < n₁) (_hn2 : 0 < n₂) (hT : 0 < T_temp)
+    (h : n₁ ≤ n₂) :
+    qubitIterationBudget n₂ T_temp ≤ qubitIterationBudget n₁ T_temp := by
+  unfold qubitIterationBudget
+  apply div_le_div_of_nonneg_left (le_of_lt hbar_pos)
+  · exact mul_pos (mul_pos (mul_pos hn1 k_B_pos) hT) t_P_pos
+  · have hkTtP : 0 ≤ k_B * T_temp * t_P :=
+      mul_nonneg (mul_nonneg k_B_pos.le hT.le) t_P_pos.le
+    calc n₁ * k_B * T_temp * t_P
+        = n₁ * (k_B * T_temp * t_P) := by ring
+      _ ≤ n₂ * (k_B * T_temp * t_P) := mul_le_mul_of_nonneg_right h hkTtP
+      _ = n₂ * k_B * T_temp * t_P := by ring
+
+/-- The Katz-Kotler classical-confinement threshold: one operation per
+    Planck volume-time. A computer operating above this rate (in their
+    framework) can distinguish quantum-gravity theories. Expressed here
+    as a reciprocal of Planck time for a single-cell computation. -/
+noncomputable def classicalityThreshold : ℝ := 1 / t_P
+
+theorem classicalityThreshold_pos : 0 < classicalityThreshold :=
+  div_pos one_pos t_P_pos
+
+/-- The bridge observation: the single-qubit iteration budget measured
+    in Planck ticks equals `hbar / (k_B · T · ℏ_time_unit)` — i.e., the
+    iteration budget is the classicality threshold scaled by `ℏ / (k_B T)`.
+    This is the same quantity Katz-Kotler use as the "classical barrier"
+    in their framework, in OmegaTheory-native units. -/
+theorem qubitIterationBudget_vs_classicality (T_temp : ℝ) (hT : 0 < T_temp) :
+    qubitIterationBudget 1 T_temp * t_P = hbar / (k_B * T_temp) := by
+  unfold qubitIterationBudget
+  have htP : t_P ≠ 0 := t_P_ne_zero
+  have hkT : k_B * T_temp ≠ 0 :=
+    mul_ne_zero (ne_of_gt k_B_pos) (ne_of_gt hT)
+  field_simp
+
 end OmegaTheory.Irrationality

@@ -1131,10 +1131,12 @@ $$E_g = 0.51 \times E_P \approx \frac{E_P}{2} \approx 10^9 \text{ J}$$
 
 ∎
 
-**Corollary 14.1** (Fixed Graviton Energy): Unlike the erroneous temperature-dependent derivation, the graviton energy is **constant**:
-- Every graviton carries the same energy: Eᵍ = Eₚ/2
-- Observable wave frequencies (e.g., 100 Hz at LIGO) describe **patterns** of gravitons, not individual graviton energies
-- For GW150914: Nᵍ = E_total/Eᵍ = 5 × 10⁴⁷ / 10⁹ ≈ 5 × 10³⁸ gravitons arranged in a 100 Hz pattern
+**Corollary 14.1** (Fixed Repair Quantum Energy): The derivation above gives the energy of a **repair quantum** — the discrete lattice repair event at the Planck scale — NOT the energy of a field graviton (the massless spin-2 Fock quantum). These are distinct objects (see Appendix G §10A disambiguation). Under this reading:
+- Every repair quantum carries the same energy: E_rq = Eₚ/2 ≈ 10⁹ J
+- The field-graviton energy `E = ℏω` remains standard and is what LIGO measures
+- For GW150914: BOTH counts coexist — ~10⁷⁹ field gravitons (Fock, E = ℏω) AND ~5 × 10³⁸ repair quanta (E_rq = Eₚ/2). They count different objects in the same event.
+
+For the Lean formalization of both objects side-by-side, see `OmegaTheory/Emergence/Gravitons.lean`.
 
 ### 14.3 Empirical Confirmation: Absence of Micro-Black Holes
 

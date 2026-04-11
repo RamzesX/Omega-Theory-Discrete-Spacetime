@@ -96,15 +96,20 @@ Full technical treatment (~50 pages):
 ---
 
 ### 6. Lean Formalization
-**Directory**: `LeanFormalization/`
 
-Machine-verified proofs in Lean 4 with Mathlib v4.13.0:
-- 36 Lean files, 10,000+ lines of verified proofs
-- Planck relations, Christoffel symmetry, metric compatibility
-- Fourth Noether Law (information conservation)
-- Newton-Raphson precision bounds for irrationals
+**Active — V2**: [`LeanFormalizationV2/`](LeanFormalizationV2/) (Mathlib v4.29.0)
+- **31 Lean files, 241 theorems, 0 sorry, 5 logical axioms**
+- Planck relations, Christoffel symmetry, Riemann antisymmetry, Einstein flat
+- `fourth_noether_law_harmonic` — **proven** from shift symmetry (was an axiom in V1)
+- `dissipationRate_nonpos` — **proven** dF/dτ ≤ 0 from gradient flow (was an axiom in V1)
+- `einstein_with_matter_emergence` — THE PRIZE: `|2μR - (λD + γ(I−Ī))| ≤ l_P`, modulo HPW 2006 (single external math axiom)
+- `pi_error_bound`, `e_error_bound`, `sqrt2_error_bound` — concrete convergence rates 4/(2N+3), 3/(N+1)!, 1/2^(2^(N−1))
+- `torsionPressure_negative`, `gravitationalPressure_negative` — Popławski bounce setup
+- `extended_gt_heisenberg`, `gateFidelity_is_powerLaw` — novel predictions
+- See [`LeanFormalizationV2/PROJECT.md`](LeanFormalizationV2/PROJECT.md) and [`LeanFormalizationV2/README.md`](LeanFormalizationV2/README.md) for details.
 
-See [LeanFormalization/README.md](LeanFormalization/README.md) for details.
+**Historical — V1**: [`LeanFormalization/`](LeanFormalization/) (Mathlib v4.13.0, superseded)
+- 45 files, ~46 sorries, ~47 axioms. Retained for historical reference only.
 
 ---
 

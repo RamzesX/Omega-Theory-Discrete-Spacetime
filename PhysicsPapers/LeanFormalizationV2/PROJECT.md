@@ -7,7 +7,9 @@ emerge from a discrete Planck-scale lattice with computational truncation
 errors and self-healing dynamics.
 
 **The central result**: For a semi-smooth metric at healing equilibrium,
-the coarse-grained geometry satisfies G_μν = (8πG/c⁴)T_μν + O(l_P).
+the coarse-grained geometry satisfies G_μν = (8πG/c⁴)T_μν + O(l_P),
+**modulo the Laplacian-Ricci correspondence** (HPW 2006, imported as
+the single external math axiom).
 
 ## Technical Details
 
@@ -16,10 +18,10 @@ the coarse-grained geometry satisfies G_μν = (8πG/c⁴)T_μν + O(l_P).
 | Lean version | v4.29.0 (stable) |
 | Mathlib version | v4.29.0 |
 | Lake version | 5.0.0 |
-| Total files | 30 |
-| Total theorems | ~320 |
-| Sorry count | 13 (10 convergence proofs + 3 arithmetic) |
-| Axioms | 5 (4 physical constants + 1 external math theorem) |
+| Total `.lean` files | 31 (30 under `OmegaTheory/` + `OmegaTheory.lean`) |
+| Top-level theorems/lemmas | 241 |
+| Sorry count | 0 |
+| Axioms | 5 logical axioms (4 physical constants + 1 external math theorem) |
 | Build command | `~/.elan/bin/lake build --log-level=error` |
 
 ## Architecture
@@ -104,46 +106,15 @@ G_μν = (8πG/c⁴) T^(I)_μν + O(l_P²/L²)    ← THE PRIZE
 | 4 | `k_B : ℝ`, `k_B_pos` | Constants.lean | Boltzmann constant exists and is positive |
 | 5 | `laplacian_ricci_correspondence` | LaplacianRicci.lean | HPW theorem (2006): graph Laplacian → Laplace-Beltrami in operator norm, O(l_P²) rate |
 
-## Sorry Inventory (to be closed)
+## Sorry Inventory
 
-### Group A: BoundsLemmas convergence proofs (10 sorry)
-All in `Irrationality/BoundsLemmas.lean`. V1 had these PROVEN — needs Mathlib v4.29 adaptation.
+**ALL RESOLVED** — 0 sorry remaining (was 13).
 
-| # | Line | Theorem | V1 Proof Strategy | Difficulty |
-|---|------|---------|-------------------|------------|
-| 1 | 48 | `pi_quarter_error_bound` | Alternating series estimation (Antitone.alternating_series_le_tendsto) | Hard (~100 lines) |
-| 2 | 66 | `e_error_positive` | Real.exp_bound from Mathlib | Medium |
-| 3 | 71 | `e_error_bound` | Real.exp_bound + factorial tail | Medium (~80 lines) |
-| 4 | 79 | `sqrt2_error_bound` | Induction with quadratic recurrence | Hard (~80 lines) |
-| 5 | 83 | `sqrt2_error_one` | norm_num with sqrt2 bounds | Easy |
-| 6 | 86 | `sqrt2_error_two` | norm_num with sqrt2 bounds | Easy |
-| 7 | 92 | `pi_error_tendsto_zero` | From leibniz_series_converges | Medium |
-| 8 | 96 | `e_error_tendsto_zero` | From factorial decay | Medium |
-| 9 | 100 | `sqrt2_error_tendsto_zero` | From super-exponential decay | Medium |
-
-### Group B: Trivial arithmetic (3 sorry)
-All need `mul_lt_mul_of_pos_right` / `neg_of_pos` chains with axiomatized constants.
-
-| # | File | Theorem | What's needed |
-|---|------|---------|---------------|
-| 10 | BigBounce.lean:39 | `gravitationalPressure_negative` | `-(G·M²/r⁴) < 0` |
-| 11 | Uncertainty.lean:114 | `iterationBudget_decreases_with_T` | `k_B*T₁*t_P ≤ k_B*T₂*t_P` |
-| 12 | Correspondence.lean:123 | `mass_info_roundtrip` | field_simp with 4 nonzero denoms |
-| 13 | Correspondence.lean:188 | `hawkingTemperature_antimono` | `8πGM₁k_B < 8πGM₂k_B` |
-
-### Attack Strategy
-
-**Session 1: Group B (trivial arithmetic, ~30 min)**
-- Pattern: `mul_lt_mul_of_pos_right h (mul_pos ... ...)` chains
-- All 4 are the same issue: nlinarith can't handle products of axiomatized positives
-- Fix: explicit `have` chains decomposing the multiplication
-
-**Session 2: BoundsLemmas Group A (convergence, 2-3 hours)**
-- Start with #5, #6 (sqrt2 specific values — norm_num, easiest)
-- Then #7, #8, #9 (tendsto_zero — from convergence + bounds)
-- Then #2, #3 (e bounds — Real.exp_bound)
-- Then #1 (pi — alternating series, hardest)
-- Then #4 (sqrt2 — induction, hard)
+All 13 sorries were closed:
+- 9 convergence proofs in BoundsLemmas.lean (π, e, √2 error bounds + tendsto zero)
+- 1 monotonicity in Uncertainty.lean (iterationBudget_decreases_with_T)
+- 1 negativity in BigBounce.lean (gravitationalPressure_negative)
+- 2 arithmetic in Correspondence.lean (mass_info_roundtrip, hawkingTemperature_antimono)
 
 ## Key Proven Theorems (Highlights)
 
@@ -189,86 +160,60 @@ All need `mul_lt_mul_of_pos_right` / `neg_of_pos` chains with axiomatized consta
 - `gateFidelity_is_powerLaw` — power-law (not Arrhenius) scaling
 - `dominantError_decreasing` — more iterations → smaller error
 
-## What Remains to Port from V1
+## Open Work (not blocking, strictly optional enrichment)
 
-### Priority 1: Convergence Proofs (BoundsLemmas)
-- **V1 file**: `Irrationality/BoundsLemmas.lean` (400 lines, 0 sorry)
-- **Content**: 40+ proven theorems for π, e, √2 error bounds
-- **Key theorems**:
-  - `pi_error_bound`: |π - truncated_π(N)| ≤ 4/(2N+3)
-  - `e_error_bound`: |e - truncated_e(N)| ≤ 3/(N+1)!
-  - `sqrt2_error_bound`: |√2 - truncated_√2(N)| ≤ 1/2^{2^(N-1)}
-  - `pi_error_tendsto_zero`, `e_error_tendsto_zero`, `sqrt2_error_tendsto_zero`
-  - `leibniz_series_converges`, `taylor_e_series_converges`, `newton_sqrt2_converges`
-- **Challenge**: Heavy Mathlib analysis imports may have changed (v4.13→v4.29)
-- **V2 integration**: These give CONCRETE values to `piErrorBound`, `eErrorBound`, `sqrt2ErrorBound`
+V2 is complete as a formalization — 0 sorry, 5 axioms, 241 theorems, full build clean.
+The items below are *enrichments* that would strengthen the correspondence to specific
+paper claims, not gaps that block any existing theorem.
 
-### Priority 2: Sqrt2Precision
-- **V1 file**: `Irrationality/Sqrt2Precision.lean` (~100 lines, 0 sorry)
-- **Content**: Newton-Raphson precision from logb bounds
-- **V2 integration**: Connects to `sqrt2ErrorBound`
+### Optional port #1: Curvature symmetry chain
+- **From V1**: `Curvature/Symmetries.lean`, `Curvature/Bianchi.lean`, `Curvature/Ricci.lean`
+- **Content**: `ricci_symmetric` via the chain antisym34 → pair_swap → antisym12; first Bianchi; contracted Bianchi O(l_P)
+- **V2 currently has**: `Geometry/CurvatureSymmetries.lean` (thinner — only the basic antisymmetries)
+- **Effort**: medium (V1 itself has 2 sorries on pair-swap/contracted Bianchi, so porting means re-deriving or axiomatizing those)
 
-### Priority 3: Conservation Correspondences
-- **V1 files**: `Conservation/Correspondence.lean` (~500 lines), `Conservation/SpinInformation.lean` (~400 lines)
-- **Content**: E = k_BT·ln2·I, m = I_bound/c², area-entropy, spin-info coupling
-- **V2 integration**: Connects to `informationEnergy` in Information.lean
-- **Sorry**: ~5 (axioms for specific correspondences)
+### Optional port #2: Explicit M1–M6 spacetime axioms (auditability win)
+- **From V1**: `Axioms/Spacetime.lean` (~600 lines, 0 sorry)
+- **Content**: Metric symmetry, nondegeneracy, Lorentzian signature, curvature derivative symmetries as *explicit, named, reviewable* axioms
+- **V2 currently has**: these constraints implicit inside structure definitions
+- **Effort**: easy (mostly copy-paste of axiom declarations)
+- **Why**: a reviewer can point at one file and see "these are exactly the geometric assumptions"
 
-### Priority 4: Curvature Symmetries
-- **V1 files**: `Curvature/Symmetries.lean`, `Curvature/Bianchi.lean`, `Curvature/Ricci.lean`
-- **Content**: Ricci symmetry chain, first Bianchi, contracted Bianchi O(l_P)
-- **Key chain**: antisym34 → pair_swap → antisym12 → ricci_symmetric
-- **Sorry**: 2 (pair swap from axiom, contracted Bianchi)
-- **V2 integration**: Strengthens Curvature.lean
+### Optional port #3: Energy/mass-information correspondences (detail)
+- **From V1**: `Conservation/Correspondence.lean` (~632 lines), `Conservation/SpinInformation.lean` (~317 lines)
+- **Content**: E = k_BT·ln2·I, m = I_bound/c², area-entropy S_BH = A/(4l_P²), spin-info coupling
+- **V2 currently has**: `Conservation/Correspondence.lean` (~200 lines with 23 theorems — the *core* roundtrips are proved, peripheral content is lighter)
+- **Effort**: medium (some V1 content is itself axiomatic; port would keep those as axioms or upgrade them)
 
-### Priority 5: Full Axiom System
-- **V1 file**: `Axioms/Spacetime.lean` (~600 lines, 0 sorry)
-- **Content**: Axioms M1-M6, B1 — metric symmetry, nondegeneracy, Lorentzian signature
-- **V2 integration**: Currently these are implicit in structure definitions
+### The big open mathematical challenge (not a port)
+**Attempt to prove `laplacian_ricci_correspondence`** instead of axiomatizing it. This is the
+single biggest rhetoric-vs-proof gap — Appendix D §2–5 calls it a derivation, Lean V2 imports
+it as an axiom citing HPW 2006. A full proof would require Mathlib-level discrete exterior
+calculus infrastructure that currently does not exist. **Effort: research-grade.**
 
-### Lower Priority (nice to have)
-- `Conservation/Noether.lean` — Full Noether machinery (V2 already has the key result)
-- `Conservation/FourthLaw.lean` — Reshaping field derivation
-- `Dynamics/Healing.lean` — More detailed healing (V2 has simplified version)
-- `Dynamics/Stability.lean` — More Lyapunov details
-- `Irrationality/TensorErrors.lean` — Superseded by V2's Valued types
-- `Irrationality/ConvergenceComparison.lean` — 4 sorry, needs Stirling
-- `Irrationality/PrecisionHierarchy.lean` — 4 sorry, open conjectures
-
-## Sorry Attack Plan (for dedicated sessions)
-
-### Session 1: Trivial Arithmetic (30 min)
-- Close `BigBounce.gravitationalPressure_negative` — neg of positive fraction
-- Close `Uncertainty.iterationBudget_decreases_with_T` — monotone multiplication
-
-### Session 2: BoundsLemmas Convergence (2-3 hours)
-- Port `pi_error_bound` (alternating series estimation, ~140 lines)
-- Port `e_error_bound` (exp_bound from Mathlib, ~80 lines)
-- Port `sqrt2_error_bound` (induction with quadratic recurrence, ~60 lines)
-
-### Session 3: Curvature Symmetries (1-2 hours)
-- Port Ricci symmetry chain
-- Port first Bianchi identity
-
-### Session 4: Conservation Details (1-2 hours)
-- Port energy-information correspondence
-- Port mass-information correspondence
+### Explicitly superseded V1 content (do NOT port)
+- `Irrationality/TensorErrors.lean` — superseded by V2's `Valued` / `ErrorTensor`
+- `Irrationality/ConvergenceComparison.lean` (5 sorry, needs Stirling)
+- `Irrationality/PrecisionHierarchy.lean` (4 sorry, open conjectures)
+- `Dynamics/Stability.lean` (6 sorry), `Dynamics/Healing.lean` (2 axioms), `Emergence/ContinuumLimit.lean` (6 sorry) — all superseded by V2's `HealingFlow/*` and `Emergence/EinsteinEmergence.lean`
+- `Axioms/Computation.lean` (6 axioms), `Axioms/Action.lean` (3 axioms) — V2 intentionally dropped this axiomatization style
 
 ## V1 vs V2 Comparison
 
 | Metric | V1 (old) | V2 (new) |
 |--------|----------|----------|
 | Lean version | v4.13.0 | v4.29.0 |
-| Files | 45 | 26 |
-| Sorry | ~49 | 2 |
-| Axioms | ~47 | 5 |
+| Files | 45 | 31 |
+| Sorry (measured) | 46 | **0** |
+| Axiom decls (measured) | 47 | **5 logical** (4 constants + HPW) |
 | Architecture | Monolithic | Layered, error-propagating |
-| Error tracking | Bolt-on (TensorErrors) | Structural (Valued types) |
-| Fourth Noether Law | Axiom | PROVEN from shift symmetry |
-| Lyapunov dF/dτ ≤ 0 | Axiom | PROVEN from gradient flow |
-| Einstein emergence | 12 sorry | PROVEN (modulo HPW) |
+| Error tracking | Bolt-on (TensorErrors) | Structural (`Valued` types) |
+| Fourth Noether Law | Axiom | **PROVEN** from shift symmetry |
+| Lyapunov dF/dτ ≤ 0 | Axiom | **PROVEN** from gradient flow |
+| Einstein emergence | 6 sorry in V1 `EinsteinEmergence.lean` | **PROVEN** modulo HPW axiom |
 | Torsion-defect link | Broken struct | Clean `emergentTorsion(ssm)` |
-| Extended uncertainty | Axiom | Defined from ErrorBound |
+| Extended uncertainty | Axiom | Defined from `ErrorBound`, proven `> ℏ/2` |
+| Concrete π/e/√2 rates | Present | Present (ported + Mathlib v4.29 adapted) |
 
 ## How to Build
 

@@ -1,4 +1,9 @@
-# Building Omega-Theory Lean Formalization
+# Building Omega-Theory Lean Formalization (V1 — HISTORICAL)
+
+> ⚠️ **SUPERSEDED.** The active formalization is **V2** at
+> [`../LeanFormalizationV2/`](../LeanFormalizationV2/). V2 uses Mathlib v4.29.0
+> (this V1 doc describes v4.13.0). For current build instructions see
+> [`../LeanFormalizationV2/README.md`](../LeanFormalizationV2/README.md).
 
 ## Prerequisites
 

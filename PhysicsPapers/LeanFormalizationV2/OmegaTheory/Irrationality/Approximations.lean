@@ -71,6 +71,9 @@ theorem truncated_sqrt2_zero : truncated_sqrt2 0 = 1 := rfl
 theorem truncated_sqrt2_one : truncated_sqrt2 1 = 3 / 2 := by
   simp [truncated_sqrt2, newton_step]; ring
 
+theorem truncated_sqrt2_two : truncated_sqrt2 2 = 17 / 12 := by
+  simp [truncated_sqrt2, newton_step]; ring
+
 /-! ## Positivity -/
 
 theorem truncated_e_pos (N : ℕ) : 0 < truncated_e N := by
@@ -86,6 +89,60 @@ theorem truncated_sqrt2_pos (N : ℕ) : 0 < truncated_sqrt2 N := by
   | succ n ih =>
     simp [truncated_sqrt2, newton_step]
     linarith [div_pos (add_pos ih (div_pos two_pos ih)) two_pos]
+
+/-! ## Newton-Raphson Helper Lemmas -/
+
+private lemma newton_product_eq_two {x : ℝ} (hx : x > 0) : x * (2 / x) = 2 := by field_simp
+
+private lemma am_ge_gm {a b : ℝ} (ha : a > 0) (hb : b > 0) :
+    (a + b) / 2 ≥ Real.sqrt (a * b) := by
+  have hsum : 0 ≤ a + b := by linarith
+  have h_sq : (a + b) ^ 2 ≥ 4 * a * b := by nlinarith [sq_nonneg (a - b)]
+  have h_sqrt : Real.sqrt ((a + b) ^ 2) ≥ Real.sqrt (4 * a * b) :=
+    Real.sqrt_le_sqrt h_sq
+  rw [Real.sqrt_sq hsum,
+    show (4 : ℝ) * a * b = (2 : ℝ) ^ 2 * (a * b) by ring] at h_sqrt
+  rw [Real.sqrt_mul (by norm_num : (0 : ℝ) ≤ 2 ^ 2),
+    Real.sqrt_sq (by norm_num : (2 : ℝ) ≥ 0)] at h_sqrt
+  linarith
+
+/-- Newton step from any positive x gives ≥ √2 (by AM-GM). -/
+theorem newton_step_ge_sqrt2 {x : ℝ} (hx : x > 0) : newton_step x ≥ Real.sqrt 2 := by
+  unfold newton_step
+  calc (x + 2 / x) / 2 ≥ Real.sqrt (x * (2 / x)) :=
+        am_ge_gm hx (div_pos (by norm_num) hx)
+    _ = Real.sqrt 2 := by rw [newton_product_eq_two hx]
+
+private lemma sq_ge_two_of_ge_sqrt2 {x : ℝ} (_ : x > 0) (hge : x ≥ Real.sqrt 2) :
+    x ^ 2 ≥ 2 := by
+  nlinarith [sq_nonneg x, sq_nonneg (Real.sqrt 2), Real.sqrt_nonneg 2,
+    Real.sq_sqrt (by norm_num : (2 : ℝ) ≥ 0)]
+
+private lemma newton_step_le {x : ℝ} (hx : x > 0) (hge : x ≥ Real.sqrt 2) :
+    newton_step x ≤ x := by
+  unfold newton_step
+  have hdiv : 2 / x ≤ x := by
+    rw [div_le_iff₀ hx]; nlinarith [sq_ge_two_of_ge_sqrt2 hx hge]
+  linarith
+
+/-- For n ≥ 1, truncated_sqrt2 n ≥ √2. -/
+theorem truncated_sqrt2_ge_target (n : ℕ) (hn : n ≥ 1) :
+    truncated_sqrt2 n ≥ sqrt2 := by
+  match n with
+  | 0 => exact (Nat.not_succ_le_zero 0 hn).elim
+  | m + 1 => exact newton_step_ge_sqrt2 (truncated_sqrt2_pos m)
+
+/-- Newton-Raphson error satisfies a quadratic recurrence:
+    e_{n+1} = e_n² / (2 · x_n) -/
+theorem sqrt2_error_recurrence (N : ℕ) (hN : N ≥ 1) :
+    truncated_sqrt2 (N + 1) - sqrt2 =
+    (truncated_sqrt2 N - sqrt2) ^ 2 / (2 * truncated_sqrt2 N) := by
+  have hx_pos : truncated_sqrt2 N > 0 := truncated_sqrt2_pos N
+  have hx_ne : truncated_sqrt2 N ≠ 0 := ne_of_gt hx_pos
+  have hsq : sqrt2 ^ 2 = 2 := Real.sq_sqrt (by norm_num : (2 : ℝ) ≥ 0)
+  simp only [truncated_sqrt2, newton_step]
+  field_simp
+  nlinarith [hsq]
 
 /-! ## Error Bound Statements
 

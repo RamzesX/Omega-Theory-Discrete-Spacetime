@@ -111,6 +111,6 @@ theorem iterationBudget_decreases_with_T (T₁ T₂ : ℝ) (hT1 : 0 < T₁) (hT2
   unfold iterationBudget
   apply div_le_div_of_nonneg_left (by linarith [hbar_pos])
   · exact mul_pos (mul_pos k_B_pos hT1) t_P_pos
-  · sorry -- k_B * T₁ * t_P ≤ k_B * T₂ * t_P: needs mul_le_mul with positivity
+  · exact mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left h (le_of_lt k_B_pos)) (le_of_lt t_P_pos)
 
 end OmegaTheory.Irrationality

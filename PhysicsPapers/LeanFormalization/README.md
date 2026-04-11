@@ -1,12 +1,22 @@
-# Omega-Theory Lean 4 Formalization
+# Omega-Theory Lean 4 Formalization (V1 — HISTORICAL)
+
+> ⚠️ **SUPERSEDED.** The active formalization is **V2** at
+> [`../LeanFormalizationV2/`](../LeanFormalizationV2/). See
+> [`../LeanFormalizationV2/PROJECT.md`](../LeanFormalizationV2/PROJECT.md) for the current state.
+>
+> V1 (this directory) was the first pass: Mathlib v4.13.0, 45 files, ~46 sorries,
+> ~47 axioms. V2 is a full refactor on Mathlib v4.29.0 with **0 sorry, 5 axioms,
+> 241 theorems** — and upgraded V1's biggest axioms (Fourth Noether Law, Lyapunov
+> dF/dτ ≤ 0, Extended Heisenberg) to full theorems. This directory is retained
+> for historical reference only.
 
 Machine-verified proofs for the discrete spacetime physics framework.
 
-## Overview
+## Overview (historical)
 
-This is one of the first formal verifications of a unified physics framework. Unlike typical physics papers that rely on informal mathematical arguments, Omega-Theory's core results are proven in **Lean 4** with **Mathlib v4.13.0**.
+This was one of the first formal verifications of a unified physics framework. Unlike typical physics papers that rely on informal mathematical arguments, Omega-Theory's core results are proven in **Lean 4** with **Mathlib v4.13.0** (V1) — see V2 for the current verified content.
 
-**Key Achievement**: 36 Lean files, 10,000+ lines of verified proofs, **zero `sorry`** in core theorems.
+**V1 Achievement**: 45 Lean files, ~10,000 lines of verified proofs. (Caveat: V1 relied on ~47 axioms and carried ~46 `sorry` markers in non-core theorems; V2 reduces this to 5 axioms and 0 sorry.)
 
 ## What Is Being Formalized
 

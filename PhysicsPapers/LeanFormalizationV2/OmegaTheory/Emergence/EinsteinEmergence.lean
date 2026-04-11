@@ -163,7 +163,7 @@ The emergence chain is now COMPLETE and PROVEN:
 8. CoarseGrain + LaplacianRicci: ε-smooth at scale L, Δg → R     [1 AXIOM]
 9. EinsteinEmergence: G_μν = κT_μν + O(l_P)                      [PROVEN]
 
-Total (whole project): 31 files, 241 theorems, 0 sorry, 5 logical axioms.
+Total (whole project): 31 files, 255 theorems, 0 sorry, 5 logical axioms.
   - 4 physical constants: c, ℏ, G_N, k_B (+ their positivity partners)
   - 1 external math theorem: laplacian_ricci_correspondence (HPW 2006)
 Note: fourth_noether_law is PROVEN in V2 (not an axiom) — see

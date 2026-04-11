@@ -74,6 +74,65 @@ theorem mul_error_bound {A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B)
   add_nonneg (add_nonneg (mul_nonneg hA ε_b.nonneg) (mul_nonneg hB ε_a.nonneg))
     (mul_nonneg ε_a.nonneg ε_b.nonneg)
 
+end ErrorBound
+
+/-! ## Discrete Product Rule with Error
+
+The fundamental lemma for chasing errors through products. Given two real
+quantities bounded in magnitude and each with a known deviation from a
+reference value, the product of the actual values differs from the product
+of the reference values by at most `A·εb + B·εa + εa·εb`.
+
+This is the workhorse lemma for deriving Christoffel-level and curvature-level
+error bounds from component-level metric defect bounds. Without this, the
+error-propagation architecture is a skeleton; with it, the structure is
+ready to chase defects through arbitrary polynomial combinations of metric
+components. -/
+
+/-- Product-rule error bound: if `|a| ≤ A`, `|b'| ≤ B`, and `|a - a'| ≤ εa`,
+    `|b - b'| ≤ εb`, then `|a·b - a'·b'| ≤ A·εb + B·εa + εa·εb`. -/
+theorem abs_mul_sub_mul_bound {a b a' b' A B εa εb : ℝ}
+    (hA : |a| ≤ A) (hB : |b'| ≤ B)
+    (ha : |a - a'| ≤ εa) (hb : |b - b'| ≤ εb) :
+    |a * b - a' * b'| ≤ A * εb + B * εa + εa * εb := by
+  have hεa : 0 ≤ εa := le_trans (abs_nonneg _) ha
+  have hεb : 0 ≤ εb := le_trans (abs_nonneg _) hb
+  have hA_nn : 0 ≤ A := le_trans (abs_nonneg _) hA
+  have hdec : a * b - a' * b' = a * (b - b') + (a - a') * b' := by ring
+  rw [hdec]
+  have h1 : |a| * |b - b'| ≤ A * εb :=
+    mul_le_mul hA hb (abs_nonneg _) hA_nn
+  have h2 : |a - a'| * |b'| ≤ εa * B :=
+    mul_le_mul ha hB (abs_nonneg _) hεa
+  calc |a * (b - b') + (a - a') * b'|
+      ≤ |a * (b - b')| + |(a - a') * b'| := abs_add_le _ _
+    _ = |a| * |b - b'| + |a - a'| * |b'| := by rw [abs_mul, abs_mul]
+    _ ≤ A * εb + εa * B := by linarith
+    _ ≤ A * εb + B * εa + εa * εb := by
+        have hq : 0 ≤ εa * εb := mul_nonneg hεa hεb
+        nlinarith
+
+/-- Weaker linear product rule: bounded by A·εb + B·εa (dropping quadratic term). -/
+theorem abs_mul_sub_mul_bound_linear {a b a' b' A B εa εb : ℝ}
+    (hA : |a| ≤ A) (hB : |b'| ≤ B)
+    (ha : |a - a'| ≤ εa) (hb : |b - b'| ≤ εb) :
+    |a * b - a' * b'| ≤ A * εb + B * εa := by
+  have hεa : 0 ≤ εa := le_trans (abs_nonneg _) ha
+  have hA_nn : 0 ≤ A := le_trans (abs_nonneg _) hA
+  have hdec : a * b - a' * b' = a * (b - b') + (a - a') * b' := by ring
+  rw [hdec]
+  have h1 : |a| * |b - b'| ≤ A * εb :=
+    mul_le_mul hA hb (abs_nonneg _) hA_nn
+  have h2 : |a - a'| * |b'| ≤ εa * B :=
+    mul_le_mul ha hB (abs_nonneg _) hεa
+  calc |a * (b - b') + (a - a') * b'|
+      ≤ |a * (b - b')| + |(a - a') * b'| := abs_add_le _ _
+    _ = |a| * |b - b'| + |a - a'| * |b'| := by rw [abs_mul, abs_mul]
+    _ ≤ A * εb + B * εa := by linarith
+
+namespace ErrorBound
+-- Reopen namespace
+
 /-- Scaling an error bound by a nonneg factor. -/
 def scale (c : ℝ) (hc : 0 ≤ c) (ε : ErrorBound) : ErrorBound :=
   ⟨c * ε.val, mul_nonneg hc ε.nonneg⟩

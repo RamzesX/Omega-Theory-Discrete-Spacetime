@@ -95,6 +95,88 @@ theorem ricci_flat (μ ν : Fin 4) (p : LatticePoint) :
     ricciTensor DiscreteMetric.flat μ ν p = 0 := by
   unfold ricciTensor; simp [riemann_flat]
 
+/-! ## Raise-Lower Bridge and Alternative Ricci Form
+
+The Ricci tensor has two equivalent definitions:
+1. `ricciTensor := Σ_ρ R^ρ_{μρν}` (trace of upper-index Riemann)
+2. `ricciTensor' := Σ_{ρ,σ} g^{ρσ} R_{ρμσν}` (metric-contracted lowered Riemann)
+
+The second form makes Ricci symmetry an algebraic consequence of pair swap
+plus inverse-metric symmetry. We build the bridge here. -/
+
+/-- Raising the first index of the lowered Riemann recovers the original.
+    R^ρ_{σμν} = Σ_λ g^{ρλ} R_{λσμν}.
+    This is definitional: `riemannLower` lowers, and contracting with `inverseMetric`
+    raises it back. Uses `inverse_mul_metric`. -/
+theorem riemann_raise_lower (g : DiscreteMetric) (hnd : ∀ p, IsNondegenerate (g p))
+    (ρ σ μ ν : Fin 4) (p : LatticePoint) :
+    riemannTensor g ρ σ μ ν p =
+    Finset.univ.sum fun lam => (inverseMetric (g p)) ρ lam *
+      riemannLower g lam σ μ ν p := by
+  unfold riemannLower
+  have h_delta : ∀ tau : Fin 4,
+      Finset.univ.sum (fun lam => (inverseMetric (g p)) ρ lam * (g p) lam tau) =
+      if ρ = tau then (1 : ℝ) else 0 := by
+    intro tau
+    have h := inverse_mul_metric (g p) (hnd p)
+    have heq := congrFun (congrFun h ρ) tau
+    simp only [Matrix.mul_apply, Matrix.one_apply] at heq
+    exact heq
+  symm
+  calc Finset.univ.sum (fun lam => (inverseMetric (g p)) ρ lam *
+          Finset.univ.sum (fun tau => (g p) lam tau * riemannTensor g tau σ μ ν p))
+      = Finset.univ.sum (fun lam => Finset.univ.sum fun tau =>
+          (inverseMetric (g p)) ρ lam * ((g p) lam tau * riemannTensor g tau σ μ ν p)) := by
+        apply Finset.sum_congr rfl; intro lam _; rw [Finset.mul_sum]
+    _ = Finset.univ.sum (fun tau => Finset.univ.sum fun lam =>
+          (inverseMetric (g p)) ρ lam * ((g p) lam tau * riemannTensor g tau σ μ ν p)) := by
+        rw [Finset.sum_comm]
+    _ = Finset.univ.sum (fun tau => Finset.univ.sum fun lam =>
+          ((inverseMetric (g p)) ρ lam * (g p) lam tau) * riemannTensor g tau σ μ ν p) := by
+        apply Finset.sum_congr rfl; intro tau _
+        apply Finset.sum_congr rfl; intro lam _; ring
+    _ = Finset.univ.sum (fun tau =>
+          (Finset.univ.sum fun lam => (inverseMetric (g p)) ρ lam * (g p) lam tau) *
+          riemannTensor g tau σ μ ν p) := by
+        apply Finset.sum_congr rfl; intro tau _; rw [← Finset.sum_mul]
+    _ = Finset.univ.sum (fun tau =>
+          (if ρ = tau then (1 : ℝ) else 0) * riemannTensor g tau σ μ ν p) := by
+        apply Finset.sum_congr rfl; intro tau _; rw [h_delta tau]
+    _ = Finset.univ.sum (fun tau =>
+          if ρ = tau then riemannTensor g tau σ μ ν p else 0) := by
+        apply Finset.sum_congr rfl; intro tau _; split_ifs <;> ring
+    _ = riemannTensor g ρ σ μ ν p := by
+        rw [Finset.sum_ite_eq]; simp
+
+/-- Alternative definition of the Ricci tensor via metric contraction:
+    R_{μν} = g^{ρσ} R_{ρμσν}.
+    This form exposes Ricci symmetry as a direct consequence of pair swap. -/
+noncomputable def ricciTensor' (g : DiscreteMetric) (μ ν : Fin 4)
+    (p : LatticePoint) : ℝ :=
+  Finset.univ.sum fun ρ =>
+    Finset.univ.sum fun σ =>
+      (inverseMetric (g p)) ρ σ * riemannLower g ρ μ σ ν p
+
+/-- Bridge: the two Ricci definitions agree.
+    Proof: unfold `ricciTensor` as `Σ_ρ R^ρ_{μρν}`, substitute `riemann_raise_lower`
+    to convert each term into `Σ_λ g^{ρλ} R_{λμρν}`, exchange sum order, and use
+    inverse-metric symmetry to match `ricciTensor'`. Requires metric symmetry and
+    nondegeneracy. -/
+theorem ricciTensor_eq_ricciTensor' (g : DiscreteMetric)
+    (hsym : g.IsEverywhereSymmetric) (hnd : ∀ p, IsNondegenerate (g p))
+    (μ ν : Fin 4) (p : LatticePoint) :
+    ricciTensor g μ ν p = ricciTensor' g μ ν p := by
+  unfold ricciTensor ricciTensor'
+  conv_lhs =>
+    congr
+    · skip
+    · ext ρ
+      rw [riemann_raise_lower g hnd ρ μ ρ ν p]
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl; intro lam _
+  apply Finset.sum_congr rfl; intro ρ _
+  rw [inverseMetric_symm (g p) (hsym p) ρ lam]
+
 /-! ## Scalar Curvature -/
 
 /-- R = g^{μν} R_{μν} (trace of Ricci with inverse metric). -/

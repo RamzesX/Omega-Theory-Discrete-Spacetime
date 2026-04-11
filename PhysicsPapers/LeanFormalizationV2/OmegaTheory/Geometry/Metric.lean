@@ -118,6 +118,20 @@ theorem inverse_mul_metric (g : MetricTensor) (hnd : IsNondegenerate g) :
   unfold inverseMetric
   exact Matrix.nonsing_inv_mul g (isUnit_det_of_nondegenerate g hnd)
 
+/-- The inverse of a symmetric nondegenerate metric is symmetric:
+    g^{ρσ} = g^{σρ}. Pure linear algebra (transpose of inverse = inverse of transpose). -/
+theorem inverseMetric_symm (g : MetricTensor) (hsym : IsSymmetric g)
+    (ρ σ : Fin 4) :
+    (inverseMetric g) ρ σ = (inverseMetric g) σ ρ := by
+  unfold inverseMetric
+  have h_inv_symm : (g⁻¹)ᵀ = g⁻¹ := by
+    rw [Matrix.transpose_nonsing_inv]
+    unfold IsSymmetric Matrix.IsSymm at hsym
+    rw [hsym]
+  have := congrFun (congrFun h_inv_symm σ) ρ
+  simp only [Matrix.transpose_apply] at this
+  exact this
+
 theorem minkowski_inverse_self : inverseMetric minkowskiMetric = minkowskiMetric := by
   unfold inverseMetric minkowskiMetric
   apply Matrix.inv_eq_left_inv

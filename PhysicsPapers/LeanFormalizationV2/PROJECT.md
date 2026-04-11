@@ -19,7 +19,7 @@ the single external math axiom).
 | Mathlib version | v4.29.0 |
 | Lake version | 5.0.0 |
 | Total `.lean` files | 31 (30 under `OmegaTheory/` + `OmegaTheory.lean`) |
-| Top-level theorems/lemmas | 241 |
+| Top-level theorems/lemmas | 255 |
 | Sorry count | 0 |
 | Axioms | 5 logical axioms (4 physical constants + 1 external math theorem) |
 | Build command | `~/.elan/bin/lake build --log-level=error` |
@@ -159,6 +159,29 @@ All 13 sorries were closed:
 - `gateFidelity_decreasing` — fidelity drops with temperature
 - `gateFidelity_is_powerLaw` — power-law (not Arrhenius) scaling
 - `dominantError_decreasing` — more iterations → smaller error
+
+### Error-Bounded Curvature Symmetries (`CurvatureSymmetries.lean`)
+The structural application of V2's error-propagation architecture to
+classical GR symmetry identities. On a `BoundedSymmetryMetric` (semi-smooth
+metric with bounded pair-swap deviation):
+- `antisym_12_bounded` — `|R_{ρσμν} + R_{σρμν}| ≤ 2 C_ps · ε`
+- `first_bianchi_exact`, `first_bianchi_lower_exact` — exact on BSM
+- `ricci_symmetric_bounded` — `|R_{μν} - R_{νμ}| ≤ 16 · M_inv · C_ps · ε`
+  (proven via metric-contracted form `ricciTensor'` + the new bridge lemmas
+  `riemann_raise_lower` and `ricciTensor_eq_ricciTensor'`)
+- `ricci_antisym_bounded_sum` — equivalent sum form of Ricci symmetry bound
+- `pair_swap_bounded_from_riemann_diff` — abstract derivation: if a reference
+  metric has exact pair swap and the Riemann tensor differs from it by Δ
+  per component, the pair-swap bound follows with 2Δ
+- `BianchiMetric` structure + `contracted_bianchi` — `|∇^μ G_{μν}| ≤ C · l_P`
+  (V2 analog of V1's `second_bianchi_axiom`: a named structure field with
+  the physical content of Appendix D Lemma 2.2)
+
+### Error-Propagation Primitives (`Foundations/ErrorAlgebra.lean`)
+- `abs_mul_sub_mul_bound` — the workhorse product rule: if `|a| ≤ A`,
+  `|b'| ≤ B`, `|a - a'| ≤ εa`, `|b - b'| ≤ εb`, then
+  `|a·b - a'·b'| ≤ A·εb + B·εa + εa·εb`
+- `abs_mul_sub_mul_bound_linear` — linear variant (drops quadratic term)
 
 ## Open Work (not blocking, strictly optional enrichment)
 

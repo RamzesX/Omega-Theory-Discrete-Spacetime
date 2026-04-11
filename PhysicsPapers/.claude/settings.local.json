@@ -24,7 +24,9 @@
       "Bash(grep -A5 \"Tactic \\\\`rewrite\\\\`\\\\|Unknown\\\\|No goals\")",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(~/.elan/bin/lake env:*)"
+      "Bash(~/.elan/bin/lake env:*)",
+      "Bash(find /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory -name \"*.lean\" -exec grep -c \"^theorem\\\\|^lemma\" {} +)",
+      "Bash(awk -F: '{total+=$2} END {print total}')"
     ]
   },
   "prefersReducedMotion": true

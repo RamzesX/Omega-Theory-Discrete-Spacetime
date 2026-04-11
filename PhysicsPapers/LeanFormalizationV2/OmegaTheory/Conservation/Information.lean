@@ -1,16 +1,88 @@
 /-
   OmegaTheory.Conservation.Information
 
-  Information density, information current, and the Fourth Noether Law.
+  Discrete Noether theorem for harmonic scalar fields + the fourth
+  Noether law as a META-STRUCTURE over classical conservation laws.
 
-  PROVEN (not axiomatized): The Fourth Noether Law follows from
-  the shift invariance of the geometric Lagrangian on the lattice.
+  ## What this module proves
 
-  Key argument (discrete Noether theorem):
-  - Define a Lagrangian L[φ] that depends on φ only through Δ_μφ (differences)
-  - L is invariant under uniform shifts: φ → φ + c
-  - Euler-Lagrange: Σ_μ Δ⁻_μ(∂L/∂(Δ⁺_μφ)) = ∂L/∂φ = 0
-  - Therefore J^μ = ∂L/∂(Δ⁺_μφ) is conserved: div J = 0
+  The single concrete lemma `harmonic_gradient_current_conserved` establishes
+  that for any scalar field φ with Δφ = 0, the gradient current
+  `J^μ = forwardDiff(φ, μ, p)` has vanishing discrete divergence. Proof:
+  `div(∇φ) = Σ_μ Δ⁻_μ(Δ⁺_μ φ) = Laplacian(φ) = 0`. This is the standard
+  discrete Noether theorem applied to the quadratic shift-symmetric
+  Lagrangian `L = ½ Σ_μ (Δ⁺_μ φ)²`.
+
+  ## What "the fourth Noether law" actually means in OmegaTheory
+
+  **Information is not a substance.** It is a pattern that manifests in
+  existing physical quantities (charge, gauge, color, spin, mass). The
+  "information current" is not a current OF information in the literal
+  sense — just as an electric charge current `J^μ_q` is not itself charge.
+
+  The **fourth Noether law** names a META-STRUCTURE: the observation that
+  ALL classical Noether currents (energy-momentum from time translation,
+  momentum from space translation, angular momentum from rotation, electric
+  charge from U(1) gauge, color from SU(3), chirality from SU(2)) share a
+  common algebraic form `∂_μJ^μ = 0`, and this shared structure has a
+  unified interpretation: each carries information about its conserved
+  quantity, and information is the abstract thing they all have in common.
+
+  ## Load-bearing passages from the papers
+
+  Appendix F §1.4 — "Ω as Higher-Dimensional Geometry":
+  > Observable 4D spacetime is a projection of Ω. The fourth Noether law
+  > operates at the level of Ω, ensuring information conservation across
+  > all its projections:
+  >   Projection to 4D geometry → Gravitational sector
+  >   Projection to D_ent → Entanglement sector
+  >   Projection to U(1) → Electromagnetic sector
+  >   Other projections → Other physics
+  > Each projection has its own manifestation of information conservation,
+  > but THE LAW ITSELF IS SINGULAR AND FUNDAMENTAL.
+
+  Appendix F §9.4 — "Force Unification Perspective":
+  > | Carrier | Information Type | Conservation |
+  > | Graviton | Geometric (g_μν) | 4th Noether   |
+  > | Photon   | Phase U(1)       | Charge conservation |
+  > | W±, Z    | Chirality SU(2)  | Weak isospin  |
+  > | Gluons   | Color SU(3)      | Color charge  |
+  > **Hypothesis**: All conservation laws arise from information flow
+  > requirements for different aspects of Ω.
+
+  Appendix F §9.5 — "Universal Law, Specific Application":
+  > The fourth Noether law (information conservation) is **universal**
+  > — it applies to all physics, just as energy conservation does.
+  > The fourth Noether law is a postulate of Ω — the algebraic foundation
+  > underlying all physics. This paper demonstrates one consequence:
+  > graviton-mediated healing of spacetime. The law itself is deeper
+  > than any single application.
+
+  Appendix F §9A.2 — "Torsion-Information Correspondence":
+  > Torsion measures the curl of information flow.
+  > **Spin is rotational information flow.**
+
+  ## What this module does NOT yet prove
+
+  The META-STRUCTURE claim requires multiple concrete instances to be
+  formalized and then unified via an abstract `NoetherCurrent` structure.
+  V2 currently has ONE instance (the harmonic scalar Goldstone case,
+  below). The full meta-unification — showing that charge, stress-energy,
+  and angular-momentum currents all instantiate the same abstract
+  continuity-equation structure — is deferred to a future increment
+  (Task #20: port V1's general Noether framework + add classical
+  sectoral instances).
+
+  ## Placement in the literature
+
+  The harmonic-scalar case proved here corresponds to the Goldstone
+  shift-current (Peskin-Schroeder §11; Weinberg Vol. II §19) and to the
+  family of Lagrangian-shift invariance arguments exemplified by
+  Padmanabhan's CosMIn framework (arXiv:1302.3226, 1603.08658,
+  1703.06144). V2's contribution is NOT claiming this specific case is
+  novel — it is claiming that the unified META-STRUCTURE interpretation
+  (§9.4 above) is what's novel, and this file provides ONE of the
+  instances that the meta-structure will eventually unify.
 -/
 
 import OmegaTheory.Spacetime.Lattice
@@ -99,14 +171,32 @@ noncomputable def gradientCurrent (φ : ScalarField) : InformationCurrent :=
 def IsHarmonic (φ : ScalarField) : Prop :=
   ∀ p, discreteLaplacian φ p = 0
 
-/-- THE FOURTH NOETHER LAW (PROVEN):
-    For any harmonic scalar field (Δφ = 0), the gradient current is conserved.
+/-- **Harmonic gradient current is conserved** (discrete Noether theorem,
+    scalar quadratic case).
 
-    This is the discrete Noether theorem applied to the quadratic Lagrangian
-    L = (1/2)Σ|Δφ|² with uniform shift symmetry φ → φ + c.
+    For any scalar field φ with `Δφ = 0`, the gradient current
+    `J^μ(p) = forwardDiff(φ, μ, p)` has vanishing discrete divergence:
 
-    The proof: div(gradφ) = Σ_μ Δ⁻_μ(Δ⁺_μφ) = Laplacian(φ) = 0.  -/
-theorem fourth_noether_law_harmonic (φ : ScalarField) (hφ : IsHarmonic φ) :
+       `div(∇φ) = Σ_μ Δ⁻_μ(Δ⁺_μ φ) = Laplacian(φ) = 0`.
+
+    This is the standard discrete Noether theorem for the quadratic
+    shift-symmetric Lagrangian `L = ½ Σ_μ (Δ⁺_μ φ)²`, and is one INSTANCE
+    of the meta-structure that OmegaTheory calls the "fourth Noether law"
+    (see module docstring for the full meta-structure claim and citations
+    to Appendix F §1.4, §9.4, §9.5).
+
+    **This lemma does NOT claim that the harmonic gradient current IS
+    information**. In OmegaTheory's framing, information is not a
+    substance; it is the abstract pattern that all classical conservation
+    laws share. This lemma formalizes ONE classical sectoral instance
+    (a harmonic scalar with shift symmetry — mathematically identical to
+    the textbook Goldstone current). Other sectoral instances (stress-
+    energy conservation, charge current conservation, angular-momentum
+    conservation) will be added as separate theorems in a future
+    increment, after which the abstract `NoetherCurrent` structure will
+    unify them under the meta-interpretation "each carries information
+    about its conserved quantity." -/
+theorem harmonic_gradient_current_conserved (φ : ScalarField) (hφ : IsHarmonic φ) :
     IsConserved (gradientCurrent φ) := by
   intro p
   unfold informationDivergence discreteDivergence gradientCurrent
@@ -123,25 +213,26 @@ theorem fourth_noether_law_harmonic (φ : ScalarField) (hφ : IsHarmonic φ) :
   rw [key]
   exact hφ p
 
-/-- THE FOURTH NOETHER LAW (general form):
-    For any discrete metric, there exists a conserved information current.
+/-- **Existence of a conserved gradient current for any discrete metric**
+    (trivial existential).
 
-    Construction: take any harmonic function on the lattice (constant functions
-    are trivially harmonic), and its gradient current is conserved.
+    For any discrete metric `g`, there exists a scalar field `I` and a
+    current `J` with `div(J) = 0`. Witnessed by the zero field.
 
-    The PHYSICAL content: the information density I[g] derived from the metric
-    satisfies a Laplace-type equation at equilibrium, making its gradient
-    current conserved. This is the discrete analog of ∇_μT^μν = 0. -/
-theorem fourth_noether_law :
+    **Caveat**: this is a vacuous existence theorem — it should NOT be
+    read as "information is always conserved on any metric." The real
+    physical content would require `I` to be an independently-defined
+    functional of `g` (e.g., the Appendix D §3.1 information functional
+    `½ log det(−g) + ½ Tr(g⁻¹g₀)`) and a convection-diffusion current
+    `J^μ_I = I u^μ + D^{μν} ∂_ν I`, with a non-trivial association theorem
+    to `harmonic_gradient_current_conserved` in the equilibrium limit.
+    That association is deferred; see the module docstring for why. -/
+theorem gradient_current_exists_for_metric :
     ∀ (g : DiscreteMetric), ∃ (I : InformationDensity) (J : InformationCurrent),
       IsConserved J := by
   intro g
-  -- Construct: I = constant field (trivially harmonic), J = gradient of I = 0
-  -- This gives a conserved (zero) current.
-  -- The non-trivial version uses I[g] = functional of g that is harmonic at equilibrium.
-  -- For the existence statement, the constant field suffices.
   refine ⟨fun _ => 0, gradientCurrent (fun _ => 0), ?_⟩
-  apply fourth_noether_law_harmonic
+  apply harmonic_gradient_current_conserved
   intro p
   exact discreteLaplacian_const 0 p
 
@@ -157,7 +248,7 @@ has fully converged and information is uniform (I = Ī everywhere). -/
 /-- At uniform information, the gradient current is exactly conserved. -/
 theorem uniform_info_conserved (I_bar : ℝ) :
     IsConserved (gradientCurrent (fun _ => I_bar)) := by
-  apply fourth_noether_law_harmonic
+  apply harmonic_gradient_current_conserved
   intro p
   exact discreteLaplacian_const I_bar p
 

@@ -166,8 +166,11 @@ The emergence chain is now COMPLETE and PROVEN:
 Total (whole project): 31 files, 255 theorems, 0 sorry, 5 logical axioms.
   - 4 physical constants: c, ℏ, G_N, k_B (+ their positivity partners)
   - 1 external math theorem: laplacian_ricci_correspondence (HPW 2006)
-Note: fourth_noether_law is PROVEN in V2 (not an axiom) — see
-      Conservation/Information.lean: fourth_noether_law_harmonic
+Note: the harmonic Goldstone-current case (one instance of what
+      OmegaTheory calls the "fourth Noether law" meta-structure) is PROVEN
+      in V2 (not an axiom) — see Conservation/Information.lean:
+      `harmonic_gradient_current_conserved`. See that module's docstring
+      for the full meta-structure claim and its literature placement.
 -/
 
 end OmegaTheory.Emergence

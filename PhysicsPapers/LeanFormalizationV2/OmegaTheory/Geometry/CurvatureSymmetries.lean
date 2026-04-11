@@ -49,6 +49,15 @@ structure BoundedSymmetryMetric extends SemiSmoothMetric where
   M_inv_nonneg : 0 ≤ M_inv
   /-- |g^{ρσ}(p)| ≤ M_inv for all points and indices. -/
   inv_metric_bounded : ∀ p ρ σ, |(inverseMetric (g p)) ρ σ| ≤ M_inv
+  /-- Uniform bound on (lowered) metric components.
+      Required for bounded Weyl pair-swap: the Ricci-bracket piece of
+      C_{ρσμν} - C_{μνρσ} has four cross-terms of shape g_{ij}·(R_{ab} - R_{ba}),
+      and bounding them needs both `ricci_symmetric_bounded` (Ricci antisymmetry)
+      and a uniform bound on the lower metric components. -/
+  M_g : ℝ
+  M_g_nonneg : 0 ≤ M_g
+  /-- |g_{ρσ}(p)| ≤ M_g for all points and indices. -/
+  metric_bounded : ∀ p ρ σ, |(g p) ρ σ| ≤ M_g
 
 namespace BoundedSymmetryMetric
 

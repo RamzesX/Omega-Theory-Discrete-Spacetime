@@ -30,6 +30,7 @@
 -/
 
 import OmegaTheory.Geometry.Curvature
+import OmegaTheory.Geometry.CurvatureSymmetries
 import Mathlib.Tactic
 
 namespace OmegaTheory.Geometry
@@ -380,5 +381,111 @@ theorem weyl_tracefree (g : DiscreteMetric)
   simp only [Finset.sum_add_distrib, Finset.sum_sub_distrib, ← Finset.mul_sum]
   rw [h_riemann, h_brk1, h_brk2, h_brk3, h_brk4, h_scal1, h_scal2]
   ring
+
+/-! ## Weyl tensor bounded symmetries on `BoundedSymmetryMetric`
+
+These complete the Weyl-row of the structure-preserving curvature-symmetry
+classification for V2's discrete lattice. `weyl_antisym_12_bounded` inherits
+from `antisym_12_bounded` via the exact reduction lemma proven above.
+`weyl_pair_swap_bounded` requires a new `M_g` field on `BoundedSymmetryMetric`
+(uniform bound on lower-index metric components) because four cross-term
+residuals of shape `g_{ij}·(R_{ab} - R_{ba})` appear when expanding the
+Ricci bracket under `(ρσ)↔(μν)`. -/
+
+namespace BoundedSymmetryMetric
+
+/-- Weyl 12-antisymmetry on `BoundedSymmetryMetric`: inherits the Riemann
+    bound via the structural reduction `C_{ρσμν} + C_{σρμν} = R_{ρσμν} + R_{σρμν}`.
+
+    `K = 2·C_pair_swap` — strictly tighter than `weyl_pair_swap_bounded`;
+    no dependence on `M_inv` or `M_g`. -/
+theorem weyl_antisym_12_bounded (bsm : BoundedSymmetryMetric)
+    (ρ σ μ ν : Fin 4) (p : LatticePoint) :
+    |weylTensor bsm.g ρ σ μ ν p + weylTensor bsm.g σ ρ μ ν p| ≤
+    2 * bsm.C_pair_swap * bsm.epsilon := by
+  rw [weyl_antisym_12_reduces_to_riemann bsm.g ρ σ μ ν p]
+  exact antisym_12_bounded bsm ρ σ μ ν p
+
+/-- Helper: `|g_{ij}·(R_{ab} - R_{ba})| ≤ M_g · (16·M_inv·C_pair_swap·ε)`.
+    Each of the four cross-terms in the Weyl pair-swap Ricci bracket has this shape. -/
+private lemma metric_ricci_antisym_bound (bsm : BoundedSymmetryMetric)
+    (i j a b : Fin 4) (p : LatticePoint) :
+    |(bsm.g p) i j * (ricciTensor bsm.g a b p - ricciTensor bsm.g b a p)| ≤
+    bsm.M_g * (16 * bsm.M_inv * bsm.C_pair_swap * bsm.epsilon) := by
+  rw [abs_mul]
+  exact mul_le_mul (bsm.metric_bounded p i j) (bsm.ricci_symmetric_bounded a b p)
+    (abs_nonneg _) bsm.M_g_nonneg
+
+/-- Weyl pair-swap bounded: `|C_{ρσμν} - C_{μνρσ}| ≤ (1 + 32·M_g·M_inv)·C_pair_swap·ε`.
+
+    Proof idea:
+      `C - C' = (R - R') - (1/2)·[four cross-term Ricci bracket diff] + 0`
+    The scalar bracket cancels exactly under metric symmetry (pure `ring`).
+    Each of the four Ricci cross terms is bounded by `metric_ricci_antisym_bound`,
+    giving `4·M_g·16·M_inv·C_ps·ε = 64·M_g·M_inv·C_ps·ε`.
+    With the Weyl coefficient `(1/2)`: `32·M_g·M_inv·C_ps·ε`.
+    Plus the Riemann pair-swap `C_ps·ε`, we get `(1 + 32·M_g·M_inv)·C_ps·ε`. -/
+theorem weyl_pair_swap_bounded (bsm : BoundedSymmetryMetric)
+    (ρ σ μ ν : Fin 4) (p : LatticePoint) :
+    |weylTensor bsm.g ρ σ μ ν p - weylTensor bsm.g μ ν ρ σ p| ≤
+    (1 + 32 * bsm.M_g * bsm.M_inv) * bsm.C_pair_swap * bsm.epsilon := by
+  -- Extract pointwise metric symmetry
+  have hg : ∀ i j, (bsm.g p) i j = (bsm.g p) j i := fun i j => by
+    have h := congrFun (congrFun (bsm.symmetric p) j) i
+    simpa [Matrix.transpose_apply] using h
+  -- Set aliases for readability
+  set A : ℝ := riemannLower bsm.g ρ σ μ ν p - riemannLower bsm.g μ ν ρ σ p with hA_def
+  set B1 : ℝ := (bsm.g p) ρ μ * (ricciTensor bsm.g σ ν p - ricciTensor bsm.g ν σ p)
+    with hB1_def
+  set B2 : ℝ := (bsm.g p) ρ ν * (ricciTensor bsm.g μ σ p - ricciTensor bsm.g σ μ p)
+    with hB2_def
+  set B3 : ℝ := (bsm.g p) σ μ * (ricciTensor bsm.g ν ρ p - ricciTensor bsm.g ρ ν p)
+    with hB3_def
+  set B4 : ℝ := (bsm.g p) σ ν * (ricciTensor bsm.g ρ μ p - ricciTensor bsm.g μ ρ p)
+    with hB4_def
+  -- Decomposition: C - C' = A - (1/2)·(B1 + B2 + B3 + B4)
+  have hdecomp : weylTensor bsm.g ρ σ μ ν p - weylTensor bsm.g μ ν ρ σ p =
+      A - (1/2 : ℝ) * (B1 + B2 + B3 + B4) := by
+    simp only [hA_def, hB1_def, hB2_def, hB3_def, hB4_def]
+    unfold weylTensor
+    rw [hg μ ρ, hg μ σ, hg ν ρ, hg ν σ]
+    ring
+  rw [hdecomp]
+  -- Bounds for each piece
+  have hA : |A| ≤ bsm.C_pair_swap * bsm.epsilon := bsm.pair_swap_bounded ρ σ μ ν p
+  have hB1 : |B1| ≤ bsm.M_g * (16 * bsm.M_inv * bsm.C_pair_swap * bsm.epsilon) :=
+    metric_ricci_antisym_bound bsm ρ μ σ ν p
+  have hB2 : |B2| ≤ bsm.M_g * (16 * bsm.M_inv * bsm.C_pair_swap * bsm.epsilon) :=
+    metric_ricci_antisym_bound bsm ρ ν μ σ p
+  have hB3 : |B3| ≤ bsm.M_g * (16 * bsm.M_inv * bsm.C_pair_swap * bsm.epsilon) :=
+    metric_ricci_antisym_bound bsm σ μ ν ρ p
+  have hB4 : |B4| ≤ bsm.M_g * (16 * bsm.M_inv * bsm.C_pair_swap * bsm.epsilon) :=
+    metric_ricci_antisym_bound bsm σ ν ρ μ p
+  -- Triangle inequality chain
+  have h_sum : |B1 + B2 + B3 + B4| ≤ |B1| + |B2| + |B3| + |B4| := by
+    calc |B1 + B2 + B3 + B4|
+        ≤ |B1 + B2 + B3| + |B4| := abs_add_le _ _
+      _ ≤ (|B1 + B2| + |B3|) + |B4| := by linarith [abs_add_le (B1 + B2) B3]
+      _ ≤ ((|B1| + |B2|) + |B3|) + |B4| := by linarith [abs_add_le B1 B2]
+      _ = |B1| + |B2| + |B3| + |B4| := by ring
+  have h_tri : |A - (1/2 : ℝ) * (B1 + B2 + B3 + B4)| ≤
+               |A| + (1/2 : ℝ) * (|B1| + |B2| + |B3| + |B4|) := by
+    have h_sub : |A - (1/2 : ℝ) * (B1 + B2 + B3 + B4)| ≤
+                 |A| + |(1/2 : ℝ) * (B1 + B2 + B3 + B4)| := by
+      rw [sub_eq_add_neg]
+      have := abs_add_le A (-((1/2 : ℝ) * (B1 + B2 + B3 + B4)))
+      rwa [abs_neg] at this
+    have h_mul : |(1/2 : ℝ) * (B1 + B2 + B3 + B4)| =
+                 (1/2 : ℝ) * |B1 + B2 + B3 + B4| := by
+      rw [abs_mul, abs_of_pos (by norm_num : (0 : ℝ) < 1/2)]
+    linarith
+  -- Arithmetic close
+  have hε := bsm.epsilon_nonneg
+  have hC := bsm.C_pair_swap_pos.le
+  have hMg := bsm.M_g_nonneg
+  have hMi := bsm.M_inv_nonneg
+  nlinarith [hA, hB1, hB2, hB3, hB4, h_tri, hε, hC, hMg, hMi]
+
+end BoundedSymmetryMetric
 
 end OmegaTheory.Geometry

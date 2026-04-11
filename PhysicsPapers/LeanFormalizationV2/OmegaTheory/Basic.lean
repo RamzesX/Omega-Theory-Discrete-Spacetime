@@ -48,6 +48,7 @@ import OmegaTheory.HealingFlow.Lyapunov
 import OmegaTheory.Emergence.CoarseGrain
 import OmegaTheory.Emergence.LaplacianRicci
 import OmegaTheory.Emergence.EinsteinEmergence
+import OmegaTheory.Emergence.Gravitons
 
 -- Layer 10: Torsion (Einstein-Cartan)
 import OmegaTheory.Torsion.Torsion

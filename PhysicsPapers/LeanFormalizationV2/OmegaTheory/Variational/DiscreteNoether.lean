@@ -2,7 +2,7 @@
   OmegaTheory.Variational.DiscreteNoether
 
   Discrete Noether theorem on graphs and the bridge to V2's
-  fourth_noether_law_harmonic.
+  harmonic_gradient_current_conserved.
 
   KEY RESULT: gauge symmetry (harmonic shift) implies conservation.
   This is a ONE-LINE bridge to the proven Fourth Noether Law.
@@ -77,17 +77,17 @@ V1 had `discrete_noether` as a placeholder (proved True).
 V2 has the REAL theorem: harmonic gauge invariance implies
 conservation of the gradient current.
 
-This is a direct consequence of fourth_noether_law_harmonic
+This is a direct consequence of harmonic_gradient_current_conserved
 from Conservation/Information.lean. -/
 
 /-- Gauge symmetry implies conservation of the associated current.
     This bridges the variational (Noether) perspective to the
     proven conservation law in Conservation/Information.lean.
 
-    The proof is ONE LINE: apply fourth_noether_law_harmonic. -/
+    The proof is ONE LINE: apply harmonic_gradient_current_conserved. -/
 theorem gauge_symmetry_implies_conservation (gauge : GaugeTransformation) :
     IsConserved (gradientCurrent gauge.Lambda) :=
-  fourth_noether_law_harmonic gauge.Lambda gauge.isHarmonic
+  harmonic_gradient_current_conserved gauge.Lambda gauge.isHarmonic
 
 /-! ## Momentum Conservation from Translation Symmetry -/
 
@@ -110,7 +110,7 @@ theorem momentum_is_gradient (φ : ScalarField) (μ : Fin 4) (p : LatticePoint) 
     This is Noether's theorem: translation symmetry → momentum conservation. -/
 theorem momentum_conservation (φ : ScalarField) (hφ : IsHarmonic φ) :
     IsConserved (gradientCurrent φ) :=
-  fourth_noether_law_harmonic φ hφ
+  harmonic_gradient_current_conserved φ hφ
 
 /-! ## Energy from Time Translation
 

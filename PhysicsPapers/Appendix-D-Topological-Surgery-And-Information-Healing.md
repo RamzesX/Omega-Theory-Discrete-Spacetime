@@ -387,49 +387,71 @@ with equality iff $g_{\mu\nu}$ satisfies:
 2. $I(n) = \bar{I}$ ∀n (uniform information)
 3. $R_{\mu\nu} = 0$ (Ricci-flat) or $R_{\mu\nu} = \Lambda g_{\mu\nu}$ (Einstein)
 
-*Proof*: We compute $d\mathcal{W}/d\tau$ term by term.
+*Proof*: The cleanest way to prove monotonicity is to work with the simpler functional
 
-**Step 1**: Information term contribution:
+$$\mathcal{F}[g] \;=\; \int_\Lambda \ell_P^4 \Big[ \tfrac{1}{2}(I-\bar{I})^2 \;+\; \tfrac{\lambda}{2}|\mathcal{D}|^2 \;+\; \tfrac{\mu}{2}|\Delta g|^2 \Big]$$
 
-$$\frac{d}{d\tau}\int (I - \bar{I})^2 = 2\int (I - \bar{I})\frac{\partial I}{\partial \tau}$$
+(i.e., the healing functional without the Perelman-style auxiliary f). Monotonicity of $\mathcal{F}$ under the gradient flow $\partial g/\partial\tau = -\delta\mathcal{F}/\delta g$ is then an immediate identity, not a sign-hunt through cross terms:
 
-Using $\partial I/\partial\tau = (\delta I/\delta g^{\mu\nu})(\partial g_{\mu\nu}/\partial\tau)$ and the flow equation:
+$$\frac{d\mathcal{F}}{d\tau} \;=\; \int \frac{\delta\mathcal{F}}{\delta g^{\mu\nu}} \cdot \frac{\partial g_{\mu\nu}}{\partial\tau} \;=\; -\int \left|\frac{\delta\mathcal{F}}{\delta g^{\mu\nu}}\right|^2 \;\leq\; 0.$$
 
-$$= -2\int (I - \bar{I})\frac{\delta I}{\delta g^{\mu\nu}} \cdot \frac{\delta \mathcal{F}}{\delta g^{\mu\nu}} \leq 0$$
+Equality holds iff $\delta\mathcal{F}/\delta g^{\mu\nu} = 0$ pointwise, which reduces to the three conditions listed above. This is the form of monotonicity that is actually formalized in `OmegaTheory/HealingFlow/Lyapunov.lean` (`dissipationRate_nonpos` + `gradient_zero_implies_balance`).
 
-by Cauchy-Schwarz.
+Monotonicity of the *full* Perelman-style functional $\mathcal{W}$ (Definition 6.1) — which includes the auxiliary f-weighted terms needed to make the argument compatible with diffeomorphism freedom — is significantly more delicate and follows Perelman's original strategy rather than admitting a one-line identity. We give the sketch term by term; the reader should treat Steps 1–4 below as indicating the structure of the estimate rather than as a stand-alone proof.
 
-**Step 2**: Defect term contribution:
+**Step 1** (information term — cleanly handled in the gradient-flow form): Under the gradient flow of $\mathcal{F}$,
+
+$$\frac{d}{d\tau}\int (I - \bar{I})^2 \;=\; 2\int (I - \bar{I})\frac{\partial I}{\partial \tau} \;=\; -2 \int \left( \frac{\delta\mathcal{F}}{\delta g^{\mu\nu}} \right)\Bigg|_{\text{info sector}} \cdot \frac{\delta \mathcal{F}}{\delta g^{\mu\nu}}$$
+
+where the restriction to the "info sector" means projecting onto the $(I-\bar{I})\delta I/\delta g$ contribution to the functional gradient. This term has no fixed sign in isolation — the key observation is that it *combines* with the other sector contributions into the manifestly non-positive `-|δF/δg|²` in the identity above, not that it is individually non-positive by Cauchy-Schwarz. Earlier drafts claimed this term was individually `≤ 0` by Cauchy-Schwarz, which was incorrect: Cauchy-Schwarz bounds `|⟨x,y⟩| ≤ ‖x‖‖y‖`, not `⟨x,y⟩ ≤ 0`, and cannot yield a sign for an inner product. We retract that earlier argument.
+
+**Step 2** (defect term contribution):
 
 $$\frac{d}{d\tau}\int |\mathcal{D}|^2 = 2\int \mathcal{D}^{\mu\nu}\frac{\partial \mathcal{D}_{\mu\nu}}{\partial \tau} = 2\int \mathcal{D}^{\mu\nu}\frac{\partial g_{\mu\nu}}{\partial \tau}$$
 
-Since g^exact is independent of τ. Substituting the flow:
+(since $g^{\text{exact}}$ is independent of τ). Substituting the flow:
 
-$$= -2\lambda \int |\mathcal{D}|^4 - 2\int \mathcal{D}^{\mu\nu}(I-\bar{I})\frac{\delta I}{\delta g^{\mu\nu}} + 2\mu \int \mathcal{D}^{\mu\nu}\Delta_{\text{lat}}g_{\mu\nu}$$
+$$= -2\lambda \int |\mathcal{D}|^4 \;-\; 2\int \mathcal{D}^{\mu\nu}(I-\bar{I})\frac{\delta I}{\delta g^{\mu\nu}} \;+\; 2\mu \int \mathcal{D}^{\mu\nu}\Delta_{\text{lat}}g_{\mu\nu}.$$
 
-The first term is manifestly negative. The cross terms are controlled by:
+The first term is manifestly negative. The cross terms are controlled by **Young's inequality** (NOT Cauchy-Schwarz — this is the specific estimate we actually need):
 
-$$|\text{cross terms}| \leq \epsilon \int |\mathcal{D}|^4 + C_\epsilon \int (I-\bar{I})^2$$
+$$2|A \cdot B| \;\leq\; \epsilon|A|^2 \;+\; \epsilon^{-1}|B|^2,$$
 
-for any ε > 0.
+applied term by term:
 
-**Step 3**: Smoothness term contribution:
+$$\left| 2\int \mathcal{D}^{\mu\nu}(I-\bar{I})\frac{\delta I}{\delta g^{\mu\nu}} \right| \;\leq\; \epsilon\int|\mathcal{D}|^4 \;+\; \epsilon^{-1}\int (I-\bar{I})^2\left|\frac{\delta I}{\delta g}\right|^2,$$
 
-$$\frac{d}{d\tau}\int |\Delta g|^2 = 2\int \Delta g^{\mu\nu} \cdot \Delta\left( \frac{\partial g_{\mu\nu}}{\partial \tau} \right)$$
+$$\left| 2\mu\int \mathcal{D}^{\mu\nu}\Delta_{\text{lat}}g_{\mu\nu} \right| \;\leq\; \epsilon'\int|\mathcal{D}|^4 \;+\; {\epsilon'}^{-1}\mu^2\int|\Delta_{\text{lat}}g|^2.$$
 
-Integration by parts (discrete):
+Choose $\epsilon, \epsilon'$ small enough (specifically, $\epsilon + \epsilon' < \lambda$) so that the net defect contribution is
 
-$$= -2\int \Delta_{\text{lat}}(\Delta g^{\mu\nu}) \cdot \frac{\partial g_{\mu\nu}}{\partial \tau}$$
+$$\leq \; -(\lambda - \epsilon - \epsilon')\int |\mathcal{D}|^4 \;+\; \epsilon^{-1}\,C_I\int (I-\bar{I})^2 \;+\; {\epsilon'}^{-1}\mu^2\int|\Delta_{\text{lat}}g|^2$$
 
-This yields:
+where $C_I := \sup |\delta I/\delta g|^2$ is a constant depending only on the geometric normalization of the information functional.
 
-$$= -2\mu \int |\Delta_{\text{lat}} g|^2 + \text{lower order}$$
+**Step 3** (smoothness term contribution): By discrete integration by parts,
 
-**Step 4**: Combining estimates:
+$$\frac{d}{d\tau}\int |\Delta g|^2 \;=\; 2\int \Delta g^{\mu\nu} \cdot \Delta\!\left(\frac{\partial g_{\mu\nu}}{\partial\tau}\right) \;=\; -2\int \Delta_{\text{lat}}(\Delta g^{\mu\nu}) \cdot \frac{\partial g_{\mu\nu}}{\partial\tau}.$$
 
-$$\frac{d\mathcal{W}}{d\tau} \leq -c_1 \int (I-\bar{I})^2 - c_2\lambda \int |\mathcal{D}|^4 - c_3\mu \int |\Delta_{\text{lat}}g|^2$$
+Substituting the flow equation and keeping the leading-order contribution:
 
-for positive constants $c_1$, $c_2$, $c_3$. Thus $d\mathcal{W}/d\tau \leq 0$. ∎
+$$= \;-2\mu \int |\Delta_{\text{lat}} g|^2 \;+\; \text{mixed terms controlled as in Step 2}.$$
+
+**Step 4** (combining estimates): Adding Steps 1–3 with the Young's inequality cross-term control, and *requiring the parameter constraint*
+
+$$\boxed{\; C_I \,\epsilon^{-1} \;<\; \tfrac{1}{2}\,\text{(info coefficient)}, \qquad \mu \,{\epsilon'}^{-1} \;<\; \tfrac{1}{2}\,\text{(smoothness coefficient)}, \qquad \epsilon + \epsilon' \;<\; \lambda \;}$$
+
+(which is satisfiable by taking $\epsilon, \epsilon'$ of order $\min(\lambda, \sqrt{\mu/C_I})$), we obtain
+
+$$\frac{d\mathcal{W}}{d\tau} \;\leq\; -c_1 \int (I-\bar{I})^2 \;-\; c_2\lambda \int |\mathcal{D}|^4 \;-\; c_3\mu \int |\Delta_{\text{lat}}g|^2$$
+
+for explicit positive constants $c_1, c_2, c_3$ depending on $\lambda, \mu, C_I, \epsilon, \epsilon'$. Thus $d\mathcal{W}/d\tau \leq 0$, with equality iff each of the three quadratic terms vanishes, which gives the three conditions claimed. ∎
+
+### 6.2a Rigor Status of Theorem 6.1
+
+The gradient-flow monotonicity for $\mathcal{F}$ (the one-line identity at the start of the proof) is clean and is exactly what the Lean formalization proves via `dissipationRate_nonpos`. The Perelman-style extension to $\mathcal{W}$ requires the parameter constraint in Step 4, which is a *condition on the healing parameters* $\lambda, \mu, C_I$ that the theory must satisfy for Lyapunov monotonicity of the Perelman functional to hold. If the healing parameters violate this constraint — for instance, if $C_I$ is large and $\mu$ is small — then the cross terms may dominate and $d\mathcal{W}/d\tau$ may not be strictly non-positive; the theorem as stated would then require weakening.
+
+**Earlier drafts incorrectly invoked Cauchy-Schwarz to derive the sign.** Cauchy-Schwarz is an absolute-value bound, not a sign bound. The correct tool is Young's inequality combined with an explicit parameter constraint, as given above. The Cauchy-Schwarz claim is retracted.
 
 ### 6.3 Convergence Theorem
 
@@ -534,31 +556,65 @@ Therefore a subsequence converges in $C^{k-2}$.
 
 ### 7.4 Identification of the Limit
 
-**Theorem 7.2** (Limit Characterization): The continuum limit $g^{(0)}_{\mu\nu}$ satisfies:
+**Theorem 7.2** (Limit Characterization): Assume the continuum limit $g^{(0)}_{\mu\nu}$ exists (Theorem 7.1) and that the healing parameters $\mu, \lambda, \gamma$ are tuned so that the Einstein-form matching condition (7.4.M) below holds. Then $g^{(0)}_{\mu\nu}$ satisfies
 
-$$R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4}T^{(I)}_{\mu\nu}$$
+$$R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4}T^{(I)}_{\mu\nu},$$
 
-where Λ is determined by information density and $T^{(I)}$ is the information stress-energy.
+where Λ is determined by the information density and $T^{(I)}$ is the information stress-energy.
 
 *Proof*:
 
-**Step 1**: In the limit, the defect term vanishes: $\mathcal{D}_{\mu\nu} \to 0$ by Lemma 4.2.
+**Step 1** (defect term vanishes): By Lemma 4.2, $\mathcal{D}_{\mu\nu} \to 0$ in the continuum limit. This kills the first term in the equilibrium balance equation.
 
-**Step 2**: The information term becomes:
+**Step 2** (information term): The information contribution becomes
 
-$$-(I - \bar{I})\frac{\delta I}{\delta g^{\mu\nu}} \to -\frac{c^4}{16\pi G}(g_{\mu\nu} - (g_0)_{\mu\nu}) \cdot \rho_I$$
+$$-(I - \bar{I})\frac{\delta I}{\delta g^{\mu\nu}} \to -\frac{c^4}{16\pi G}\,\rho_I\,(g_{\mu\nu} - (g_0)_{\mu\nu}),$$
 
-where ρᵢ is the information density variation.
+where ρᵢ is the information density variation and the proportionality constant `c⁴/(16πG)` is fixed by the matching condition (7.4.M).
 
-**Step 3**: The smoothness term becomes Ricci:
+**Step 3** (smoothness term — Ricci form, NOT Einstein form): By Theorem 5.1,
 
-$$\mu\Delta_{\text{lat}}g_{\mu\nu} \to -R_{\mu\nu} + \frac{1}{2}g_{\mu\nu}R$$
+$$\mu \Delta_{\text{lat}} g_{\mu\nu} \to -2\mu R_{\mu\nu} + \text{lower order}.$$
 
-**Step 4**: The equilibrium condition $\delta\mathcal{F}/\delta g = 0$ becomes:
+*Note*: this produces the Ricci tensor, not the Einstein tensor. The trace term `-½g_{μν}R` does NOT appear automatically from the discrete Laplacian. Earlier drafts claimed `μ Δ_lat g → -R_{μν} + ½g_{μν}R` silently, which is incorrect — it silently incorporated a trace reversal that is a separate algebraic step.
 
-$$R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = \text{(information source terms)}$$
+**Step 4** (the equilibrium equation in Ricci form): Combining Steps 1–3, the continuum equilibrium condition `δF/δg = 0` becomes
 
-Identifying constants yields Einstein's equations. ∎
+$$-2\mu R_{\mu\nu} = -\frac{c^4}{16\pi G}\,\rho_I\,(g_{\mu\nu} - (g_0)_{\mu\nu}) \cdot [\text{sign and normalization from Step 2}] + \text{lower order}.$$
+
+This is a **Ricci equation**, not yet Einstein's equation. To go further we apply the trace reversal.
+
+**Step 5** (trace reversal — the key algebraic step): Take the metric trace of both sides:
+
+$$-2\mu R = g^{\mu\nu}\left[ -\frac{c^4}{16\pi G}\rho_I (g_{\mu\nu} - (g_0)_{\mu\nu}) \right] + \text{lower order}.$$
+
+Let $T := g^{\mu\nu}T^{(I)}_{\mu\nu}$ be the trace of the information stress-energy tensor. Standard Einstein-Hilbert manipulation then gives the Einstein form
+
+$$R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = \frac{8\pi G}{c^4}\left( T^{(I)}_{\mu\nu} - \frac{1}{2}g_{\mu\nu}T^{(I)} \right) + \frac{1}{2}g_{\mu\nu}(-2\mu R),$$
+
+which simplifies under standard tensor algebra to
+
+$$R_{\mu\nu} - \frac{1}{2}g_{\mu\nu}R = \frac{8\pi G}{c^4}T^{(I)}_{\mu\nu}$$
+
+(absorbing any residual cosmological term into Λ).
+
+**Step 6** (matching condition 7.4.M — EXPLICIT): The equation above identifies constants as
+
+$$\boxed{\;2\mu = \frac{c^4}{8\pi G \cdot \rho_I}\quad\text{equivalently}\quad \mu = \frac{c^4}{16\pi G \cdot \rho_I}\;} \tag{7.4.M}$$
+
+This is the **matching condition** that fixes the healing parameter `μ` in terms of the physical constants. It is NOT a derivation of `8πG/c⁴` from first principles — it is a **constraint** that the healing parameters must satisfy for the continuum limit to reproduce Einstein's equations. If μ is chosen inconsistently with (7.4.M), the continuum limit will still produce a divergence-free symmetric-tensor equation, but the proportionality constant in front of `T^{(I)}` will not match Newton's G, and the theory will not reproduce known general relativity.
+
+### 7.4a Rigor Status and Caveats
+
+Theorem 7.2 should be read as a **consistency theorem**: *if* the Omega-Theory healing parameters satisfy (7.4.M), *then* the continuum limit matches Einstein's equations. It is NOT a derivation of `G` from information-theoretic first principles — the gravitational coupling is parametrically tuned to match, not computed.
+
+**What IS derived**: the functional *form* of the continuum equation (symmetric, divergence-free, linear in the second derivatives of the metric, sourced by `T^{(I)}`). This follows honestly from Steps 1–5.
+
+**What is NOT derived**: the specific numerical value `κ = 8πG/c⁴`. This is an input parameter relation (7.4.M), tuned so the two sides of the matching condition are consistent.
+
+**The trace reversal gap that earlier drafts skipped**: Step 5 (trace reversal) is a non-trivial algebraic step that requires contracting the Ricci equation with the inverse metric and using the standard Einstein-Hilbert trace identity. Earlier drafts of Theorem 7.2 silently incorporated this step by writing `μΔg → -R_{μν} + ½gR` directly in Step 3, which gave the false impression that the Einstein tensor emerges directly from the discrete Laplacian. It does not: the Ricci tensor emerges directly, and the Einstein tensor requires a separate trace-reversal step.
+
+**Lean formalization status**: the "prize" theorem `einstein_with_matter_emergence` in `OmegaTheory/Emergence/EinsteinEmergence.lean` currently proves the Ricci-form bound `|-2μR - (λD + γ(I-Ī))| ≤ ℓ_P` at healing equilibrium. It does NOT yet prove the Einstein-form bound `|G - κT| ≤ ℓ_P`. Bridging this gap requires either (a) formalizing Step 5 above (a real tensor algebra proof), or (b) explicitly marking the matching condition (7.4.M) as an additional `axiom` and deriving the Einstein form from it. Both routes are technically feasible; we recommend (a) for rigor. ∎
 
 ---
 

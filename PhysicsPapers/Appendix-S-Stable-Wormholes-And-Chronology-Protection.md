@@ -393,46 +393,53 @@ Standard construction for wormhole time machine:
 5. Travel through wormhole: go from B (present) to A (past)
 6. Result: closed timelike curve (CTC)
 
-### 7.2 Why This Fails: Information Conservation
+### 7.2 Two Honest Obstructions to CTCs
 
-**Theorem 7.1** (Chronology Protection from Fourth Noether Law): Closed timelike curves violate information conservation and are therefore forbidden.
+**Scope note.** Earlier drafts of this section claimed that the fourth Noether law `∂_μJ^μ_I = 0` by itself forbids closed timelike curves. That claim was circular: a conserved current on a manifold with non-trivial H¹ (including a manifold with a CTC) admits divergence-free circulations, which lie in the kernel of the discrete divergence operator (Kirchhoff's law). The argument "information exists twice at T₁" presupposes the conclusion by treating the two ends of the loop as distinct copies — which is equivalent to assuming the time ordering is already single-valued (i.e., no CTCs). In Omega Theory's gradient-current formulation `J^μ = ∇^μ I`, the current is in fact curl-free by construction (`dJ = d²I = 0`), so `∮J·dl = 0` along any cycle is automatic and provides no obstruction to the cycle itself. See §7A for a complete analysis.
 
-*Proof*:
+We replace the circular argument with two distinct, non-circular observations:
 
-**Step 1**: Consider information I traversing a CTC.
+**Observation 7.1** (Type-level single-valuedness): If the information density is modeled as a scalar field `I : Λ → ℝ`, then "I doubled on a closed loop" is forbidden *definitionally*, not dynamically. A function cannot take two different values at the same point. This is the correct formal content of the informal "information cannot exist twice" intuition — it is a constraint on the *representation* of information, not a theorem about its dynamics.
 
-**Step 2**: Information enters wormhole at time T₁, exits at T₀ < T₁.
+Observation 7.1 is a triviality once stated correctly, but it is important to state it: the type signature `InformationDensity := LatticePoint → ℝ` used throughout Omega Theory (see `OmegaTheory/Conservation/Information.lean`) already enforces single-valuedness. The multi-valued "copies" appearing in the circular argument were never representable in the formal framework.
 
-**Step 3**: Information propagates forward from T₀ to T₁ through normal spacetime.
+**Theorem 7.1** (Lyapunov obstruction to non-trivial healing-flow cycles): Let `g(τ)` be a solution of the healing flow equation `∂g/∂τ = -δF/δg` on a finite observation region Ω with healing functional `F[g] ≥ 0`. If `g(τ₀) = g(τ₁)` for some `τ₀ < τ₁`, then the entire interval `[τ₀, τ₁]` lies in the equilibrium set `{g : ∇F[g] = 0 on Ω}`. In particular, no *non-trivial* periodic orbit of the relaxation flow exists away from equilibrium.
 
-**Step 4**: At T₁, the "same" information exists twice:
-- Original copy entering wormhole
-- Copy that traveled the loop
+*Proof*: By Theorem 6.1, `F` is monotone non-increasing along the flow: `dF/dτ = -‖∇F‖² ≤ 0`. A returning path `g(τ₀) = g(τ₁)` forces `F(g(τ₀)) = F(g(τ₁))`, so `F` is constant on `[τ₀, τ₁]`, hence `‖∇F[g(τ)]‖² = 0` for all `τ ∈ [τ₀, τ₁]`. By the equilibrium characterization (Theorem 6.2, Step 5), this means the balance equation `μΔg = λD + γ(I - Ī)` holds pointwise on Ω for all such τ. ∎
 
-**Step 5**: Total information: I_total = 2I (doubled)
+**Formal verification**: see `OmegaTheory/HealingFlow/Periodic.lean` (scheduled), built on top of `dissipationRate_nonpos` and `gradient_zero_implies_balance` in `OmegaTheory/HealingFlow/Lyapunov.lean`.
 
-**Step 6**: But ∂_μJ^μ_I = 0 forbids information creation.
+**Important scope clarification.** Theorem 7.1 is about *periodic orbits of the relaxation flow `g(τ)`*, where `τ` is the healing-time gauge parameter. It is NOT a statement about closed timelike curves in the physical Lorentzian geometry `(M, g)`. The first asks "can the metric field return to its initial configuration after finite healing time?"; the second asks "can an observer travel into their own past?". These are different questions at different conceptual layers. Theorem 7.1 settles the first (it cannot, except at equilibrium); it does not settle the second.
 
-**Step 7**: Contradiction → CTCs cannot exist. ∎
+### 7.3 Chronology Protection: Honest Status
 
-### 7.3 The Lyapunov Enforcement
+Hawking's 1992 chronology protection conjecture states: the laws of physics forbid the formation of closed timelike curves. Hawking's own argument uses vacuum polarization divergence at the chronology horizon — a quantum field theoretic calculation on a background Lorentzian manifold with a specific renormalization scheme. It requires:
 
-**Theorem 7.2** (CTC Instability): Any configuration approaching a CTC has divergent Lyapunov functional:
+1. A background manifold with causal structure.
+2. Quantum field theory on that background.
+3. A renormalization scheme whose cutoff behavior diverges at the chronology horizon.
 
-$$\lim_{config \to CTC} \mathcal{W}[g] = \infty$$
+**Omega Theory currently has none of these three ingredients formalized.** The lattice Λ = ℓ_P · ℤ⁴ carries no distinguished time axis; its "Lorentzian signature" condition `det(g) < 0` is a purely algebraic constraint at each point and does not partition directions into timelike/spacelike; there is no past/future cone structure, no chronology relation, and no QFT layer.
 
-*Proof*:
+We therefore classify chronology protection in Omega Theory as an **open problem** rather than a theorem. The circumstantial evidence in its favor is:
 
-The Lyapunov functional contains information terms:
-$$\mathcal{W}[g] \supset \int (I - \bar{I})^2 d^4x$$
+1. **Type-level single-valuedness** (Observation 7.1) forbids the naive "information is multi-valued on a time loop" scenario without any dynamics.
+2. **Relaxation-flow Lyapunov stability** (Theorem 7.1) forbids non-trivial periodic orbits of the metric field *in healing time*.
+3. **Torsion-induced instability** of moving wormhole mouths (Proposition 7.1 below) suggests that the specific mechanism Morris-Thorne-Yurtsever proposed for CTC construction is obstructed in any torsion-carrying theory, Omega Theory included.
 
-Near a CTC:
-- Information loops create I → 2I → 4I → ...
-- Local information density diverges
-- (I - Ī)² → ∞
-- Therefore W → ∞
+Taken together, these three observations close off the known *construction* routes for CTCs in Omega Theory, but they do not constitute a general impossibility proof. A full Omega-Theory analog of Hawking's conjecture would require developing: (a) a causal-structure layer on the lattice (e.g., an acyclic quiver with a distinguished timelike direction, equipped with a past/future cone), (b) a discrete analog of vacuum polarization, and (c) a back-reaction argument in the continuum limit. This is future work.
 
-The healing flow dW/dτ ≤ 0 drives the system away from CTCs toward finite W configurations. ∎
+### 7.4 Finite Information Density Cannot Blow Up
+
+**Proposition 7.2** (Bounded W implies bounded I variation): Under the healing flow `∂g/∂τ = -δF/δg` with the Lyapunov functional
+$$F[g] = \int_\Lambda \ell_P^4 \left[ \tfrac{1}{2}(I - \bar{I})^2 + \tfrac{\lambda}{2}|\mathcal{D}|^2 + \tfrac{\mu}{2}|\Delta g|^2 \right],$$
+the information variance `∫(I − Ī)² d⁴x` is bounded above by `2F[g(0)]` for all `τ ≥ 0`, hence cannot diverge.
+
+*Proof*: By Theorem 6.1, `F[g(τ)] ≤ F[g(0)]` for all `τ ≥ 0`. Since `F` is a sum of three non-negative terms, each term is individually bounded by `2F[g(0)]/coefficient`. In particular,
+$$\int (I - \bar{I})^2 d^4x \leq 2 F[g(0)]$$
+for all `τ ≥ 0`. ∎
+
+**Remark** (on the earlier "W → ∞" claim). Previous drafts asserted that `W[g] → ∞` as a geometry approaches a CTC, with the justification "information loops create I → 2I → 4I → …". That justification was invalid for the reasons given in §7.2: the doubling assumes distinct copies, which presupposes well-defined time ordering. Proposition 7.2 gives the correct replacement statement: *under the healing flow*, the information variance is bounded above by its initial value. This does *not* prove that CTC-approaching geometries are unreachable by the flow (which would require a monotonicity argument coupling `F[g]` to a causal-structure measure), but it does show that the flow itself cannot produce an unbounded `(I - Ī)²`.
 
 ### 7.4 Why Moving the Mouth Fails
 
@@ -462,12 +469,33 @@ As v → c to create significant time dilation:
 
 | Mechanism | Proposed By | How It Works | Relation to Our Framework |
 |-----------|-------------|--------------|---------------------------|
-| Chronology Protection Conjecture | Hawking (1992) | Physics prevents time machines | WEAKER: No mechanism specified |
-| Vacuum Fluctuation Pileup | Thorne et al. | Energy diverges at CTC | RELATED: Special case of our W → ∞ |
-| Novikov Self-Consistency | Novikov (1980s) | Only consistent histories occur | DIFFERENT: Allows CTCs, constrains events |
-| Information Conservation | This work | CTCs violate ∂_μJ^μ_I = 0 | STRONGER: Proves CTCs impossible |
+| Chronology Protection Conjecture | Hawking (1992) | Physics prevents time machines | OPEN: the conjecture remains unresolved in both frameworks; Hawking's vacuum polarization argument has no discrete analog in Omega Theory yet. |
+| Vacuum Fluctuation Pileup | Thorne et al. | Energy diverges at CTC | DIFFERENT PHYSICS: requires QFT on a curved background; not yet formalized in Omega Theory. |
+| Novikov Self-Consistency | Novikov (1980s) | Only consistent histories occur | DIFFERENT: Allows CTCs, constrains events. Incompatible with the type-level single-valuedness observation (Observation 7.1), which forbids multi-valued information fields on a cycle. |
+| Information Single-Valuedness + Lyapunov obstruction | This work | (a) scalar field `I` cannot be multi-valued on a closed loop by definition, (b) healing flow has no non-trivial periodic orbits away from equilibrium | PARTIAL: closes off the Morris-Thorne construction and the naive "doubling" scenario, but does not provide a general impossibility proof. See §7.3 for scope. |
 
-Our framework provides the MECHANISM for Hawking's conjecture: information conservation enforced by the Lyapunov functional.
+**Honest position**: Our framework does NOT provide a MECHANISM for Hawking's conjecture — it provides circumstantial obstructions to specific CTC-construction routes. A full mechanism would require a discrete causal-structure layer plus a back-reaction argument, neither of which exist in the current formalization. Earlier drafts of this section overclaimed; we have retracted those claims. See §7A for the full critique of the earlier "doubling argument."
+
+### 7A. Formal Critique of the Earlier "Information Doubling" Argument
+
+**The circular argument.** Earlier drafts of Theorem 7.1 proceeded by: (1) suppose information `I` traverses a CTC; (2) the information enters at `T₁` and exits at `T₀ < T₁`; (3) it then propagates forward from `T₀` to `T₁`; (4) at `T₁` "the same information exists twice"; (5) `I_total = 2I`; (6) this contradicts `∂_μJ^μ_I = 0`. This argument is invalid for three independent reasons:
+
+**Reason 1 — Conservation is not a "no-duplication" law.** The continuity equation `∂_μJ^μ = 0` says the divergence of a current vanishes. On a manifold with a closed loop, a non-zero flow `J` around the loop can satisfy `div J = 0` identically — this is precisely Kirchhoff's current law, and cycle flows span the kernel of the discrete divergence operator. "Information conservation" in the sense of `∂·J = 0` does not prevent circulation; it only prevents net sources.
+
+**Reason 2 — The gradient current is automatically curl-free.** Omega Theory's information current is `J^μ = ∇^μ I` — a gradient of a scalar field. For any gradient field, `dJ = d²I = 0` identically (the discrete exterior derivative squared is zero on a well-defined simplicial structure). Therefore `∮J·dl = 0` on any cycle automatically, regardless of whether the cycle is timelike. This automatic vanishing is NOT an obstruction to the cycle existing; it is an identity compatible with any circulation pattern, including zero.
+
+**Reason 3 — The "doubling" smuggles in the conclusion.** The claim that "the same information exists twice at `T₁`" presupposes that `T₁` is a well-defined point with a single time coordinate. That is, it presupposes the very non-circularity of the time ordering that a CTC would violate. Equivalently: saying "the information at T₁ exists twice" is saying "we can distinguish the original arrival from the returning arrival", which requires a global time ordering on the worldline. But a CTC is a closed worldline — there is no global time ordering along it by definition. The argument assumes the conclusion.
+
+**What the correct observation is.** The legitimate informal content of "information cannot exist twice" is that `I : Λ → ℝ` is a *function*, and a function cannot take two different values at the same point. This is Observation 7.1 in §7.2. It is a type-level constraint on the representation of information, enforced automatically by the framework, and it has no dynamical content whatsoever. The earlier drafts conflated this type-level triviality with a dynamical derivation from `∂J = 0`, producing the circular argument.
+
+**What Omega Theory actually proves about CTCs.** Theorem 7.1 (rescued) proves that the *healing-flow dynamics* has no non-trivial periodic orbits — i.e., the metric field cannot return to its initial configuration after finite healing time without sitting at an equilibrium. This is a genuine, formally provable result, but it is about the relaxation dynamics in the auxiliary healing-time parameter `τ`, not about closed timelike curves in the physical spacetime. The two are different questions at different conceptual layers, and one does not imply the other.
+
+**Future work toward a genuine chronology-protection theorem in Omega Theory** would need:
+- A causal-structure layer on the lattice: a directed quiver with a distinguished timelike direction and a cone structure at each vertex (Mathlib's `Quiver` + `PartialOrder` provides the scaffolding).
+- A lifting of the fourth Noether law from scalar currents to *covariant* tensor currents respecting this causal structure.
+- A discrete analog of vacuum polarization back-reacting through the discrete Einstein equations as the lattice geometry approaches a CTC.
+
+None of these exist yet. We flag chronology protection in Omega Theory as an explicit open problem rather than a derived theorem.
 
 ---
 
@@ -681,25 +709,27 @@ Baby Universes (many)
 
 Information flows **forward** through this lineage, never backward—consistent with chronology protection (Section 7).
 
-### 10A.6 Enhanced Chronology Protection
+### 10A.6 Obstructions to CTC Construction from Torsion
 
-**Theorem 10A.2** (Redundant Chronology Protection): The Popławski-Omega synthesis provides **two independent** mechanisms preventing time travel:
+**Observation 10A.1** (Torsion destabilization of moving wormhole mouths): Attempting the Morris-Thorne-Yurtsever CTC construction — accelerating a spinning-matter-supported wormhole mouth to relativistic speeds — encounters torsion gradients that destabilize the wormhole before significant time dilation accumulates.
 
-1. **Information conservation** (Theorem 7.1): CTCs would duplicate information, violating ∂_μJ^μ_I = 0
+*Plausibility argument* (not a theorem):
 
-2. **Torsion destabilization**: Attempting to create CTCs by moving wormhole mouths at relativistic speeds creates torsion gradients that destabilize the wormhole before CTC formation
-
-*Proof*:
-
-For mechanism 2: Accelerated motion of spinning matter (wormhole mouth material) creates time-dependent torsion:
+Accelerated motion of spinning matter produces time-dependent torsion:
 $$\frac{\partial S^\lambda_{\mu\nu}}{\partial t} \propto \frac{da}{dt}$$
 
-This varying torsion produces geometric stress:
-$$\sigma_{\text{torsion}} = \int |\partial_t S|^2 d^3x$$
+which in turn produces geometric stress
+$$\sigma_{\text{torsion}} \sim \int |\partial_t S|^2 d^3x.$$
 
-When σ_torsion exceeds the wormhole binding energy, collapse occurs.
+When `σ_torsion` exceeds the wormhole binding energy, collapse occurs. Quantitative analysis of the timescales, using Popławski's torsion-spin coupling `S^λ_{μν} ∝ ψ̄γ^λσ_{μν}ψ`, suggests destabilization happens well before sufficient time dilation for CTC formation accumulates — but the full calculation depends on the specific wormhole geometry and matter content and has not been carried out in generality. ∎ (plausibility, not proof)
 
-**Timeline**: Torsion destabilization occurs **before** sufficient time dilation accumulates for CTC formation, providing a second line of defense beyond information conservation. ∎
+**Scope clarification**: Observation 10A.1 is an obstruction to a *specific* CTC-construction route (the Morris-Thorne-Yurtsever one). It does NOT compose with the rescued Theorem 7.1 into a "redundant chronology protection" theorem, because:
+
+1. Theorem 7.1 (rescued) is about periodic orbits of the relaxation flow in healing-time `τ`, not about CTCs in spacetime.
+2. Observation 10A.1 obstructs one specific construction and does not rule out others.
+3. Neither provides a general impossibility proof of the Hawking type.
+
+The honest statement is: *we know of no construction route for CTCs in Omega Theory that survives scrutiny, but we also lack a general theorem forbidding their existence*. Earlier drafts claimed a "redundant chronology protection theorem" with "two independent mechanisms" — this claim is retracted; see §7A for the full critique.
 
 ### 10A.7 Observational Predictions
 
@@ -729,7 +759,7 @@ We have established a comprehensive framework for wormhole stability and chronol
 
 **2. Stability Mechanism**: Natural wormholes (black holes) self-feed on mass; artificial wormholes require external energy maintenance.
 
-**3. Chronology Protection**: CTCs are forbidden by information conservation (fourth Noether law). The Lyapunov functional W → ∞ for any CTC-approaching configuration.
+**3. Chronology Protection** (honest status): CTCs remain an open problem in Omega Theory. We have established two non-circular, partial obstructions: (a) type-level single-valuedness of the information scalar field (Observation 7.1) rules out multi-valued "information-on-a-cycle" scenarios by definition, and (b) the rescued Theorem 7.1 shows that the healing-flow dynamics admits no non-trivial periodic orbits away from equilibrium. Neither obstruction is a general impossibility proof — a full Omega-Theory analog of Hawking's conjecture would require developing a discrete causal-structure layer plus a back-reaction argument, which are listed as explicit future work. The earlier "Theorem 7.1 from Fourth Noether Law" has been retracted as circular; see §7A.
 
 **4. Graceful Degradation**: Properly designed wormholes collapse safely without black hole formation when maintenance fails.
 

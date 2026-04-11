@@ -31,27 +31,33 @@ noncomputable def metricRate (path : MetricPath) (tau delta_tau : ℝ)
     (p : LatticePoint) (μ ν : Fin 4) : ℝ :=
   (path (tau + delta_tau) p μ ν - path tau p μ ν) / delta_tau
 
-/-! ## Healing Flow Equation -/
+/-! ## Healing Flow Equation
 
-/-- The healing flow: ∂g_μν/∂τ = μΔg_μν - λD_μν - γ(I-Ī)·∂I/∂g^μν.
+Discrete gradient flow with step size `delta_tau`:
 
-    For the formalization, we define this as a predicate on metric paths:
-    the path satisfies the healing flow if its rate equals the
-    negative functional derivative of F. -/
+  g(τ+δτ) = g(τ) + δτ · (μΔg − λD − γ(I−Ī))
+
+The right-hand side is −δF/δg at g(τ), so this is forward-Euler gradient
+descent on the healing functional. (The `∂I/∂g^{μν}` factor from Appendix D
+§5 is absorbed into γ — V2 treats the information field as exogenous.)
+
+Unlike the previous `∃ x, x = expr` scaffold, this structure imposes a
+genuine equation on `path` and is consumed below by bridge theorems in
+`Lyapunov.lean`. -/
+
+/-- A discrete healing flow with step size `delta_tau`. -/
 structure IsHealingFlow (params : HealingParams) (path : MetricPath)
-    (g_exact : DiscreteMetric) (I_field : ℝ → InformationDensity) (I_bar : ℝ) : Prop where
-  /-- The Laplacian term drives geometric smoothing. -/
-  laplacian_term : ∀ tau p μ ν,
-    ∃ smoothing : ℝ,
-      smoothing = params.mu * discreteLaplacian (fun q => path tau q μ ν) p
-  /-- The defect term drives D → 0. -/
-  defect_term : ∀ tau p μ ν,
-    ∃ repair : ℝ,
-      repair = -params.lambda * defectTensor (path tau) g_exact p μ ν
-  /-- The information term drives I → Ī. -/
-  info_term : ∀ tau (p : LatticePoint) (μ ν : Fin 4),
-    ∃ equalize : ℝ,
-      equalize = -params.gamma * (I_field tau p - I_bar)
+    (g_exact : DiscreteMetric) (I_field : ℝ → InformationDensity) (I_bar : ℝ)
+    (delta_tau : ℝ) : Prop where
+  /-- The time step is positive. -/
+  step_pos : 0 < delta_tau
+  /-- Forward Euler gradient descent equation. -/
+  gradient_step : ∀ tau p μ ν,
+    path (tau + delta_tau) p μ ν =
+    path tau p μ ν + delta_tau * (
+      params.mu * discreteLaplacian (fun q => path tau q μ ν) p
+      - params.lambda * defectTensor (path tau) g_exact p μ ν
+      - params.gamma * (I_field tau p - I_bar))
 
 /-! ## Equilibrium -/
 

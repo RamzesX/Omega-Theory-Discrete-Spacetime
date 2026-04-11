@@ -173,4 +173,92 @@ theorem total_dissipation_bounded (params : HealingParams)
     0 ≤ healingFunctional params g g_exact I I_bar region := by
   exact healingFunctional_nonneg params g g_exact I I_bar region
 
+/-! ## Bridge: `IsHealingFlow` ↔ `functionalGradient`
+
+These theorems discharge the structural debt noted in Flow.lean:
+the discrete `metricRate` of a healing flow equals −∇F. Before this,
+`IsHealingFlow` was a tautological scaffold and `dissipationRate` was
+a pure definition; now `dissipationRate` genuinely measures the speed
+of a healing flow. -/
+
+/-- Unfolding: the bracketed forward-Euler RHS in `IsHealingFlow` equals −∇F. -/
+theorem neg_functionalGradient_eq (params : HealingParams)
+    (g g_exact : DiscreteMetric) (I : InformationDensity) (I_bar : ℝ)
+    (p : LatticePoint) (μ ν : Fin 4) :
+    params.mu * discreteLaplacian (fun q => g q μ ν) p
+      - params.lambda * defectTensor g g_exact p μ ν
+      - params.gamma * (I p - I_bar) =
+    -functionalGradient params g g_exact I I_bar p μ ν := by
+  unfold functionalGradient
+  ring
+
+/-- For a healing flow, the discrete metric rate equals −∇F at each point. -/
+theorem metricRate_eq_neg_functionalGradient
+    (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I_field : ℝ → InformationDensity) (I_bar : ℝ)
+    (delta_tau : ℝ)
+    (hflow : IsHealingFlow params path g_exact I_field I_bar delta_tau)
+    (tau : ℝ) (p : LatticePoint) (μ ν : Fin 4) :
+    metricRate path tau delta_tau p μ ν =
+    -functionalGradient params (path tau) g_exact (I_field tau) I_bar p μ ν := by
+  unfold metricRate
+  rw [hflow.gradient_step tau p μ ν, ← neg_functionalGradient_eq]
+  have h : delta_tau ≠ 0 := ne_of_gt hflow.step_pos
+  field_simp
+  ring
+
+/-- Equilibrium is fixed under the healing flow: if `path τ` is at equilibrium
+    with respect to the same parameters and information field, then
+    `path (τ + δτ) = path τ`. This is the discrete analog of "stationary
+    points of F are fixed points of the flow". -/
+theorem healing_flow_preserves_equilibrium
+    (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I_field : ℝ → InformationDensity) (I_bar : ℝ)
+    (delta_tau : ℝ)
+    (hflow : IsHealingFlow params path g_exact I_field I_bar delta_tau)
+    (tau : ℝ)
+    (heq : IsHealingEquilibrium params (path tau) g_exact (I_field tau) I_bar)
+    (p : LatticePoint) (μ ν : Fin 4) :
+    path (tau + delta_tau) p μ ν = path tau p μ ν := by
+  rw [hflow.gradient_step tau p μ ν]
+  have h := heq.balance p μ ν
+  have hzero :
+      params.mu * discreteLaplacian (fun q => path tau q μ ν) p
+        - params.lambda * defectTensor (path tau) g_exact p μ ν
+        - params.gamma * (I_field tau p - I_bar) = 0 := by linarith
+  rw [hzero]
+  ring
+
+/-- The pointwise squared speed of a healing flow equals the squared
+    functional gradient: `(∂_τ g_{μν})² = (δF/δg^{μν})²` at every point. -/
+theorem healing_flow_rate_sq_eq
+    (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I_field : ℝ → InformationDensity) (I_bar : ℝ)
+    (delta_tau : ℝ)
+    (hflow : IsHealingFlow params path g_exact I_field I_bar delta_tau)
+    (tau : ℝ) (p : LatticePoint) (μ ν : Fin 4) :
+    metricRate path tau delta_tau p μ ν ^ 2 =
+    functionalGradient params (path tau) g_exact (I_field tau) I_bar p μ ν ^ 2 := by
+  rw [metricRate_eq_neg_functionalGradient params path g_exact I_field I_bar
+    delta_tau hflow tau p μ ν]
+  ring
+
+/-- The L² speed of a healing flow on a region equals `gradientNormSq`.
+    This is what finally justifies calling `dissipationRate` a rate:
+    on a healing-flow path, `-‖rate‖²` literally is the dissipation. -/
+theorem healing_flow_speed_sq_eq_gradientNormSq
+    (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I_field : ℝ → InformationDensity) (I_bar : ℝ)
+    (delta_tau : ℝ)
+    (hflow : IsHealingFlow params path g_exact I_field I_bar delta_tau)
+    (tau : ℝ) (region : Finset LatticePoint) :
+    (region.sum fun p => Finset.univ.sum fun μ => Finset.univ.sum fun ν =>
+        metricRate path tau delta_tau p μ ν ^ 2) =
+    gradientNormSq params (path tau) g_exact (I_field tau) I_bar region := by
+  unfold gradientNormSq
+  refine Finset.sum_congr rfl fun p _ => ?_
+  refine Finset.sum_congr rfl fun μ _ => ?_
+  refine Finset.sum_congr rfl fun ν _ => ?_
+  exact healing_flow_rate_sq_eq params path g_exact I_field I_bar delta_tau hflow tau p μ ν
+
 end OmegaTheory.HealingFlow

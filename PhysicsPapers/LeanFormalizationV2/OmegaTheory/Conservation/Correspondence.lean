@@ -201,4 +201,153 @@ noncomputable def schwarzschildRadius (M : ℝ) : ℝ := 2 * G_N * M / c ^ 2
 theorem schwarzschildRadius_pos (M : ℝ) (hM : 0 < M) : 0 < schwarzschildRadius M :=
   div_pos (mul_pos (mul_pos two_pos G_N_pos) hM) (sq_pos_of_pos c_pos)
 
+theorem schwarzschildRadius_linear (M₁ M₂ : ℝ) :
+    schwarzschildRadius (M₁ + M₂) = schwarzschildRadius M₁ + schwarzschildRadius M₂ := by
+  unfold schwarzschildRadius
+  rw [mul_add, add_div]
+
+/-- Schwarzschild horizon area: A = 4π r_s². -/
+noncomputable def schwarzschildArea (M : ℝ) : ℝ :=
+  4 * Real.pi * schwarzschildRadius M ^ 2
+
+theorem schwarzschildArea_nonneg (M : ℝ) : 0 ≤ schwarzschildArea M := by
+  unfold schwarzschildArea
+  exact mul_nonneg
+    (mul_nonneg (by norm_num : (0:ℝ) ≤ 4) (le_of_lt Real.pi_pos))
+    (sq_nonneg _)
+
+theorem schwarzschildArea_pos (M : ℝ) (hM : 0 < M) : 0 < schwarzschildArea M := by
+  unfold schwarzschildArea
+  exact mul_pos
+    (mul_pos (by norm_num : (0:ℝ) < 4) Real.pi_pos)
+    (sq_pos_of_pos (schwarzschildRadius_pos M hM))
+
+theorem schwarzschildArea_scale (M lam : ℝ) :
+    schwarzschildArea (lam * M) = lam ^ 2 * schwarzschildArea M := by
+  unfold schwarzschildArea schwarzschildRadius
+  have h : c ^ 2 ≠ 0 := pow_ne_zero 2 c_ne_zero
+  field_simp
+
+/-! ## Part VII: Extended Thermodynamic Chain (rescued from V1)
+
+The theorems below port the content of V1's `Conservation/Correspondence.lean`
+into V2's definitional framework. No new axioms — everything is a corollary of
+existing V2 definitions. -/
+
+/-- Landauer energy is strictly monotone for positive temperatures. -/
+theorem landauerEnergy_strict_mono {T₁ T₂ : ℝ} (_h₁ : 0 < T₁) (h : T₁ < T₂) :
+    landauerEnergy T₁ < landauerEnergy T₂ := by
+  unfold landauerEnergy
+  exact mul_lt_mul_of_pos_right
+    (mul_lt_mul_of_pos_left h k_B_pos) log_two_pos
+
+/-- Landauer energy vanishes exactly at zero temperature (for T ≥ 0). -/
+theorem landauerEnergy_eq_zero_iff {T : ℝ} (_hT : 0 ≤ T) :
+    landauerEnergy T = 0 ↔ T = 0 := by
+  unfold landauerEnergy
+  constructor
+  · intro h
+    rcases mul_eq_zero.mp h with h1 | hlog
+    · rcases mul_eq_zero.mp h1 with hk | ht
+      · exact absurd hk (ne_of_gt k_B_pos)
+      · exact ht
+    · exact absurd hlog log_two_ne_zero
+  · intro h; rw [h, mul_zero, zero_mul]
+
+/-- The ratio E_L(T)/T = k_B · ln 2 is a universal constant. -/
+theorem energy_per_temperature_constant {T : ℝ} (hT : 0 < T) :
+    landauerEnergy T / T = k_B * Real.log 2 := by
+  unfold landauerEnergy
+  have hT_ne : T ≠ 0 := ne_of_gt hT
+  field_simp
+
+/-- Canonical factorization: E(I,T) = E_L(T) · I. -/
+theorem energyFromInformation_eq_landauer_mul (I T : ℝ) :
+    energyFromInformation I T = landauerEnergy T * I := rfl
+
+/-- Einstein energy is nonneg for nonneg mass. -/
+theorem einsteinEnergy_nonneg (m : ℝ) (hm : 0 ≤ m) : 0 ≤ einsteinEnergy m :=
+  mul_nonneg hm (le_of_lt (sq_pos_of_pos c_pos))
+
+/-- Einstein energy is linear in mass. -/
+theorem einsteinEnergy_linear (m₁ m₂ : ℝ) :
+    einsteinEnergy (m₁ + m₂) = einsteinEnergy m₁ + einsteinEnergy m₂ := by
+  unfold einsteinEnergy; ring
+
+/-- Bekenstein-Hawking entropy is linear in area. -/
+theorem bekensteinHawkingEntropy_linear (A₁ A₂ : ℝ) :
+    bekensteinHawkingEntropy (A₁ + A₂) =
+    bekensteinHawkingEntropy A₁ + bekensteinHawkingEntropy A₂ := by
+  unfold bekensteinHawkingEntropy
+  rw [add_div]
+
+/-- Bekenstein-Hawking entropy scales with area. -/
+theorem bekensteinHawkingEntropy_scale (A lam : ℝ) :
+    bekensteinHawkingEntropy (lam * A) = lam * bekensteinHawkingEntropy A := by
+  unfold bekensteinHawkingEntropy
+  have h : 4 * l_P ^ 2 ≠ 0 :=
+    mul_ne_zero (by norm_num) (pow_ne_zero 2 l_P_ne_zero)
+  field_simp
+
+/-- Hawking temperature scales as 1/M. -/
+theorem hawkingTemperature_scale (M lam : ℝ) (hM : 0 < M) (hlam : 0 < lam) :
+    hawkingTemperature (lam * M) = hawkingTemperature M / lam := by
+  unfold hawkingTemperature
+  have hlam_ne : lam ≠ 0 := ne_of_gt hlam
+  have hM_ne : M ≠ 0 := ne_of_gt hM
+  have hpi : Real.pi ≠ 0 := ne_of_gt Real.pi_pos
+  have hG : G_N ≠ 0 := ne_of_gt G_N_pos
+  have hkB : k_B ≠ 0 := ne_of_gt k_B_pos
+  field_simp
+
+/-- Compton wavelength: λ_C = ℏ / (m c). -/
+noncomputable def comptonWavelength (m : ℝ) : ℝ := hbar / (m * c)
+
+theorem comptonWavelength_pos (m : ℝ) (hm : 0 < m) : 0 < comptonWavelength m :=
+  div_pos hbar_pos (mul_pos hm c_pos)
+
+/-- Compton wavelength is antimonotone in mass: heavier particles → shorter λ. -/
+theorem comptonWavelength_antimono {m₁ m₂ : ℝ} (hm₁ : 0 < m₁) (_hm₂ : 0 < m₂)
+    (h : m₁ < m₂) :
+    comptonWavelength m₂ < comptonWavelength m₁ := by
+  unfold comptonWavelength
+  apply div_lt_div_of_pos_left hbar_pos
+  · exact mul_pos hm₁ c_pos
+  · exact mul_lt_mul_of_pos_right h c_pos
+
+/-- Black hole mass entropy: S_M = 4π (G M)² / (ℏ c). -/
+noncomputable def blackHoleMassEntropy (M : ℝ) : ℝ :=
+  4 * Real.pi * (G_N * M) ^ 2 / (hbar * c)
+
+theorem blackHoleMassEntropy_nonneg (M : ℝ) : 0 ≤ blackHoleMassEntropy M := by
+  unfold blackHoleMassEntropy
+  apply div_nonneg
+  · exact mul_nonneg
+      (mul_nonneg (by norm_num : (0:ℝ) ≤ 4) (le_of_lt Real.pi_pos))
+      (sq_nonneg _)
+  · exact le_of_lt (mul_pos hbar_pos c_pos)
+
+theorem blackHoleMassEntropy_pos (M : ℝ) (hM : 0 < M) :
+    0 < blackHoleMassEntropy M := by
+  unfold blackHoleMassEntropy
+  apply div_pos
+  · exact mul_pos
+      (mul_pos (by norm_num : (0:ℝ) < 4) Real.pi_pos)
+      (sq_pos_of_pos (mul_pos G_N_pos hM))
+  · exact mul_pos hbar_pos c_pos
+
+theorem blackHoleMassEntropy_scale (M lam : ℝ) :
+    blackHoleMassEntropy (lam * M) = lam ^ 2 * blackHoleMassEntropy M := by
+  unfold blackHoleMassEntropy
+  have h : hbar * c ≠ 0 := mul_ne_zero hbar_ne_zero c_ne_zero
+  field_simp
+
+/-- BH entropy of a Schwarzschild horizon equals
+    the area formula 4π r_s² / (4 l_P²). -/
+theorem blackHole_entropy_area_relation (M : ℝ) :
+    bekensteinHawkingEntropy (schwarzschildArea M) =
+    4 * Real.pi * (2 * G_N * M / c ^ 2) ^ 2 / (4 * l_P ^ 2) := by
+  unfold bekensteinHawkingEntropy schwarzschildArea schwarzschildRadius
+  rfl
+
 end OmegaTheory.Conservation

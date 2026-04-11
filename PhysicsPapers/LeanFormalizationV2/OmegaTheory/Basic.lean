@@ -29,6 +29,7 @@ import OmegaTheory.Geometry.Metric
 import OmegaTheory.Geometry.Connection
 import OmegaTheory.Geometry.Curvature
 import OmegaTheory.Geometry.CurvatureSymmetries
+import OmegaTheory.Geometry.Weyl
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor

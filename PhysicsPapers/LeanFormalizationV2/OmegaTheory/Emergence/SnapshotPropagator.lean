@@ -61,6 +61,7 @@
 
 import OmegaTheory.Irrationality.Uncertainty
 import OmegaTheory.Spacetime.Constants
+import OmegaTheory.Spacetime.Lattice
 
 namespace OmegaTheory.Emergence
 

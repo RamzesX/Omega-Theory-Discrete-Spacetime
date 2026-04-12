@@ -216,6 +216,87 @@ noncomputable def zeroConservedCurrent : ConservedCurrent where
   current := zeroCurrent
   conserved := zero_is_conserved
 
+/-! ## Instance 3 — U(1) charge current (lattice link form)
+
+The conserved current associated with U(1) symmetry of a complex scalar
+field `φ = φ₁ + i·φ₂`. In continuum QFT this is `J^μ = Im(φ* ∂_μ φ)`.
+
+On the lattice, the naive product `φ₁ · ∂_μ φ₂ - φ₂ · ∂_μ φ₁` is NOT
+exactly conserved (the discrete product rule has correction terms). The
+LATTICE-ADAPTED form uses the "link current":
+
+    `J^μ(p) = (φ₁(p)·φ₂(p+μ̂) - φ₂(p)·φ₁(p+μ̂)) / l_P`
+
+whose divergence equals EXACTLY `φ₁·Δφ₂ - φ₂·Δφ₁` (by commutativity
+of ℝ multiplication — the cross terms that break the product rule cancel
+pairwise). So for two harmonic fields (Δφ₁ = 0, Δφ₂ = 0), this current
+is exactly conserved.
+
+This is a genuinely different instance from the harmonic gradient current:
+the gradient current carries information about a SINGLE scalar's spatial
+variation; the link current carries information about the RELATIVE PHASE
+between two scalars. In QFT terms, the gradient current is the Goldstone
+current; the link current is the Noether charge current. -/
+
+/-- The lattice link current for a pair of scalar fields: the U(1) charge
+    current in lattice-adapted form. `J^μ(p) = Im(φ*(p) · φ(p+μ̂)) / l_P`. -/
+noncomputable def linkCurrent (φ₁ φ₂ : ScalarField) : InformationCurrent :=
+  fun p μ => (φ₁ p * φ₂ (shiftFin p μ) - φ₂ p * φ₁ (shiftFin p μ)) / l_P
+
+/-- The divergence of the link current equals `φ₁·Δφ₂ - φ₂·Δφ₁` exactly.
+
+    This is the key identity: it says the link-current divergence
+    factorizes into the Laplacians of the component fields times
+    the OTHER component. No approximation — exact on the lattice. -/
+theorem linkCurrent_divergence (φ₁ φ₂ : ScalarField) (p : LatticePoint) :
+    informationDivergence (linkCurrent φ₁ φ₂) p =
+    φ₁ p * discreteLaplacian φ₂ p - φ₂ p * discreteLaplacian φ₁ p := by
+  unfold informationDivergence discreteDivergence linkCurrent
+  unfold discreteLaplacian secondDeriv backwardDiff
+  have hlP : l_P ≠ 0 := l_P_ne_zero
+  simp only [shiftBackFin_shiftFin, Fin.sum_univ_four]
+  field_simp
+  ring
+
+/-- For two harmonic fields, the link current is conserved.
+    This is the U(1) Noether theorem on the lattice. -/
+theorem linkCurrent_conserved (φ₁ φ₂ : ScalarField)
+    (h₁ : IsHarmonic φ₁) (h₂ : IsHarmonic φ₂) :
+    IsConserved (linkCurrent φ₁ φ₂) := by
+  intro p
+  rw [linkCurrent_divergence]
+  rw [h₁ p, h₂ p]
+  ring
+
+/-- Package the U(1) link current as a `ConservedCurrent`. -/
+noncomputable def u1ChargeConservedCurrent
+    (φ₁ φ₂ : ScalarField) (h₁ : IsHarmonic φ₁) (h₂ : IsHarmonic φ₂) :
+    ConservedCurrent where
+  current := linkCurrent φ₁ φ₂
+  conserved := linkCurrent_conserved φ₁ φ₂ h₁ h₂
+
+/-- The link current is antisymmetric: swapping φ₁ ↔ φ₂ negates the current. -/
+theorem linkCurrent_antisymm (φ₁ φ₂ : ScalarField) (p : LatticePoint) (μ : Fin 4) :
+    linkCurrent φ₁ φ₂ p μ = -linkCurrent φ₂ φ₁ p μ := by
+  unfold linkCurrent; field_simp; ring
+
+/-- The link current of a field with itself is zero (charge-neutrality). -/
+theorem linkCurrent_self (φ : ScalarField) (p : LatticePoint) (μ : Fin 4) :
+    linkCurrent φ φ p μ = 0 := by
+  unfold linkCurrent; field_simp; ring
+
+/-! ## Instance count
+
+`ConservedCurrent` now has THREE non-trivial instance families:
+1. `harmonicConservedCurrent φ hφ` — gradient current of a harmonic scalar
+2. `u1ChargeConservedCurrent φ₁ φ₂ h₁ h₂` — U(1) charge current from two harmonic scalars
+3. `addConservedCurrent` / `smulConservedCurrent` — closure under linear combination
+
+The first captures the GEOMETRIC sector (energy-like conservation from
+shift symmetry). The second captures the GAUGE sector (charge conservation
+from phase rotation). Together they demonstrate that `ConservedCurrent`
+is a genuine meta-structure, not a one-trick type. -/
+
 /-! ## Remark on the meta-structure
 
 The preceding definitions and theorems establish `ConservedCurrent` as

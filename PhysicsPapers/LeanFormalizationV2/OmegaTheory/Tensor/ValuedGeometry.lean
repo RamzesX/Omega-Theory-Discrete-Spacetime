@@ -191,28 +191,6 @@ theorem valuedChristoffelSymbol_err
     christoffelError ced.M_inv ced.M_deriv ssm.epsilon ced.epsilon_inv :=
   rfl
 
-/-- The main error bound theorem: the actual Christoffel differs from
-    the exact Christoffel by at most the computed error bound.
-
-    |Gamma[g](rho,mu,nu,p) - Gamma[g_exact](rho,mu,nu,p)| <= christoffelError(...)
-
-    Proof sketch:
-    1. Expand both Christoffels as (1/2) * Sum_sigma g^{rs} * bracket
-    2. For each sigma, apply abs_mul_sub_mul_bound to the product
-       g^{rs} * bracket with the known bounds
-    3. Sum over sigma (4 terms) and multiply by 1/2
-    4. The bracket error follows from defect_bounded + triangle inequality
-       on symmetricDiff -/
-theorem valuedChristoffelSymbol_err_bound
-    (ssm : SemiSmoothMetric) (ced : ChristoffelErrorData ssm)
-    (ρ μ ν : Fin 4) (p : LatticePoint) :
-    |christoffelSymbol ssm.g ρ μ ν p - christoffelSymbol ssm.g_exact ρ μ ν p| ≤
-    christoffelError ced.M_inv ced.M_deriv ssm.epsilon ced.epsilon_inv := by
-  -- The core algebraic bound: expand Christoffel as (1/2) * Sum_sigma (g^{rs} * bracket),
-  -- apply abs_mul_sub_mul_bound per summand, sum over sigma, multiply by 1/2.
-  -- Each step uses: inv_bounded, deriv_bounded, component_bounded, inv_perturb_bounded.
-  sorry
-
 /-- The bracket perturbation bound: the bracket of the actual metric
     differs from the bracket of the exact metric by at most 3*epsilon/l_P.
 
@@ -273,6 +251,76 @@ theorem bracket_exact_bounded
         linarith [ced.deriv_bounded p μ ν σ, ced.deriv_bounded p ν μ σ,
                   ced.deriv_bounded p σ μ ν]
     _ = 3 * ced.M_deriv := by ring
+
+/-! ## The main error bound: Christoffel perturbation ≤ christoffelError -/
+
+/-- Per-summand bound: for each σ, the product `g^{ρσ} · bracket - g_exact^{ρσ} · bracket_exact`
+    is bounded by `christoffelSummandError`. Uses `abs_mul_sub_mul_bound` from ErrorAlgebra. -/
+theorem christoffel_summand_bound
+    (ssm : SemiSmoothMetric) (ced : ChristoffelErrorData ssm)
+    (ρ μ ν σ : Fin 4) (p : LatticePoint) :
+    |inverseMetric (ssm.g p) ρ σ * christoffelBracket ssm.g μ ν σ p -
+     inverseMetric (ssm.g_exact p) ρ σ * christoffelBracket ssm.g_exact μ ν σ p| ≤
+    christoffelSummandError ced.M_inv ced.M_deriv ssm.epsilon ced.epsilon_inv := by
+  unfold christoffelSummandError
+  exact abs_mul_sub_mul_bound
+    (ced.inv_bounded p ρ σ)
+    (bracket_exact_bounded ssm ced μ ν σ p)
+    (ced.inv_perturb_bounded p ρ σ)
+    (bracket_perturbation_bound ssm μ ν σ p)
+
+/-- **The main Christoffel error bound** (PROVEN — was the last sorry in V2).
+
+    `|Γ[g] - Γ[g_exact]| ≤ christoffelError(M_inv, M_deriv, ε, ε_inv)`
+
+    Proof: expand Christoffel as `(1/2) Σ_σ g^{ρσ} · bracket`, apply
+    `christoffel_summand_bound` per σ (via `abs_mul_sub_mul_bound`),
+    sum over 4 σ values, multiply by 1/2. -/
+theorem valuedChristoffelSymbol_err_bound
+    (ssm : SemiSmoothMetric) (ced : ChristoffelErrorData ssm)
+    (ρ μ ν : Fin 4) (p : LatticePoint) :
+    |christoffelSymbol ssm.g ρ μ ν p - christoffelSymbol ssm.g_exact ρ μ ν p| ≤
+    christoffelError ced.M_inv ced.M_deriv ssm.epsilon ced.epsilon_inv := by
+  -- Step 1: Christoffel = (1/2) Σ_σ g^{ρσ} · bracket, where bracket = christoffelBracket
+  unfold christoffelSymbol
+  -- Step 2: Factor the difference as (1/2) · Σ_σ (product_g - product_exact)
+  set ag := fun σ : Fin 4 => inverseMetric (ssm.g p) ρ σ *
+    (metricDerivative ssm.g μ ν σ p + metricDerivative ssm.g ν μ σ p -
+     metricDerivative ssm.g σ μ ν p)
+  set ae := fun σ : Fin 4 => inverseMetric (ssm.g_exact p) ρ σ *
+    (metricDerivative ssm.g_exact μ ν σ p + metricDerivative ssm.g_exact ν μ σ p -
+     metricDerivative ssm.g_exact σ μ ν p)
+  -- The difference is (1/2)(Σ ag - Σ ae) = (1/2) Σ (ag - ae)
+  have hdiff : 1 / 2 * Finset.univ.sum ag - 1 / 2 * Finset.univ.sum ae =
+      1 / 2 * Finset.univ.sum (fun σ => ag σ - ae σ) := by
+    simp only [Fin.sum_univ_four]; ring
+  rw [hdiff, abs_mul, abs_of_nonneg (by norm_num : (0:ℝ) ≤ 1/2)]
+  unfold christoffelError
+  -- Step 3: Rewrite ag - ae in terms of christoffelBracket
+  have hbr_g : ∀ σ, metricDerivative ssm.g μ ν σ p + metricDerivative ssm.g ν μ σ p -
+      metricDerivative ssm.g σ μ ν p = christoffelBracket ssm.g μ ν σ p := fun _ => rfl
+  have hbr_e : ∀ σ, metricDerivative ssm.g_exact μ ν σ p + metricDerivative ssm.g_exact ν μ σ p -
+      metricDerivative ssm.g_exact σ μ ν p = christoffelBracket ssm.g_exact μ ν σ p := fun _ => rfl
+  -- Step 4: Per-summand bound
+  have hper : ∀ σ ∈ Finset.univ, |ag σ - ae σ| ≤
+      christoffelSummandError ced.M_inv ced.M_deriv ssm.epsilon ced.epsilon_inv := by
+    intro σ _
+    show |inverseMetric (ssm.g p) ρ σ * _ - inverseMetric (ssm.g_exact p) ρ σ * _| ≤ _
+    rw [hbr_g σ, hbr_e σ]
+    exact christoffel_summand_bound ssm ced ρ μ ν σ p
+  -- Step 5: |Σ (ag - ae)| ≤ Σ |ag - ae| ≤ 4 · summandError
+  have habs : |Finset.univ.sum (fun σ => ag σ - ae σ)| ≤
+      Finset.univ.sum (fun σ => |ag σ - ae σ|) :=
+    Finset.abs_sum_le_sum_abs _ _
+  have hcard : (Finset.univ : Finset (Fin 4)).card = 4 := Finset.card_fin 4
+  have hsum_le : Finset.univ.sum (fun σ => |ag σ - ae σ|) ≤
+      4 * christoffelSummandError ced.M_inv ced.M_deriv ssm.epsilon ced.epsilon_inv := by
+    calc _ ≤ Finset.univ.sum (fun _ =>
+            christoffelSummandError ced.M_inv ced.M_deriv ssm.epsilon ced.epsilon_inv) :=
+          Finset.sum_le_sum hper
+      _ = _ := by simp [Finset.sum_const, hcard, nsmul_eq_mul]
+  -- Combine: (1/2) · |Σ| ≤ (1/2) · 4 · summandError = 2 · summandError
+  linarith
 
 /-! ## Valued Christoffel inherits symmetry -/
 

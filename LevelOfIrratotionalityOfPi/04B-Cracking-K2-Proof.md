@@ -228,7 +228,7 @@ With $N = 15 \times 10^9$ known CF terms: $P_0 = 5 \times 10^9$.
 
 **Routes to closure:**
 1. **More CF data**: Increasing $N$ directly increases $P_0$. Each new CF term extends coverage.
-2. **E/G separation** (Conjecture 4A.4): Eliminates ALL remaining $p$ at once, regardless of constant values. The ADH program (2025) advances function-level E/G theory; bridging to value-level is the remaining step.
+2. **E/G separation** (Conjecture 4A.4): Eliminates ALL remaining $p$ at once, regardless of constant values. The ADH program (2025) advances function-level E/G theory; bridging to value-level is the remaining step. Note: the "different-evaluation-point" obstacle (GAP_A) — that $_1F_1(a;b;z)$ and $\arctan$ are naturally evaluated at different points — is now resolved by the same-point trick: define $h(z) = \arctan(z/\alpha)$, so $h(\alpha) = \pi/4$, placing both functions at $z = \alpha$ (see F23 in the `pi_sun` Neo4j namespace).
 3. **Irrationality measure**: Proving $\mu(\pi) > 2$ (widely expected, currently only known $\mu(\pi) \leq 7.6064$) would suffice via Bridge Theorem (b).
 4. **Lyapunov exponent boundedness**: Proving $\lambda_N(\pi) = O(1)$ (Theorem 4A.7) — i.e., that the geometric mean of $\pi$'s CF partial quotients is bounded — suffices and is strictly weaker than GK-typicality.
 5. **Better transcendence measures**: Sharper effective bounds on $|\pi - \alpha|$ for algebraic $\alpha$ of degree 2 would extend the asymptotic argument beyond the $M = 1$ case.

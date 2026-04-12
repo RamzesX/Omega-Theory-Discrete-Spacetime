@@ -2,6 +2,8 @@
 
 Every failed attempt is a theorem about what doesn't work. — Banach (paraphrased)
 
+**Neo4j namespace `pi_sun`**: 35 nodes (18 Facts, 8 AttackVectors, 4 Barriers, 2 Gaps, 2 Conjectures, 1 Target), 26 relationships. Two gaps identified: GAP_A (different-point evaluation) **RESOLVED** by F23; GAP_B (non-Siegel specialization) **OPEN** — the single missing link.
+
 ---
 
 ## Attempt 1: Brute Force Elimination (Escanor — Pride)
@@ -198,4 +200,18 @@ Each attempt narrows the space of possible proofs. After 9 attempts:
 
 **The Frobenius Product Formula**: Under hypothesis π = Möbius(R(α)), Frobenius telescoping gives Möbius(π) = ∏ s(α^{p^k}) — a Mahler function value. The equation says: a DE value (π) equals a Mahler value (Φ(α)). Hypertranscendence at function level predicts this is impossible. Value-level proof requires Conjecture 4E.1.
 
+**Attempt 10b (Frobenius Convergence, RETRACTED)**: Tried to use Frobenius partial products as ALGEBRAIC approximations to π, contradicting the irrationality measure. ERROR: the partial products are TRANSCENDENTAL (E-function ratios at algebraic points, transcendental by SS). The irrationality measure applies only to algebraic approximations. Theorem 4E.2 retracted.
+
+**Lesson from 10b**: Metric arguments (irrationality measure, height bounds) fail because the Frobenius tower produces TRANSCENDENTAL, not algebraic, approximations. The proof requires STRUCTURAL arguments (algebraic independence).
+
 **Status**: THE PROBLEM IS PRECISELY LOCATED. It sits between ADH's two programs (2019 Mahler values, 2025 E/G functions). The bridging theorem (Mahler VALUE ⊥ Fuchsian DE VALUE) is the unique remaining step. When ADH or others prove it, K₂-opacity of π follows immediately from our framework.
+
+---
+
+## Current State
+
+The `pi_sun` Neo4j namespace now contains **18 proven facts** (F1-F23, with some merged), **8 attack vectors**, **4 barriers**, **2 gaps**, **2 conjectures**, and **1 target** (35 nodes, 26 relationships).
+
+**GAP_A (different-evaluation-point) — RESOLVED**: The "same-point trick" (F23) defines $h(z) = \arctan(z/\alpha)$ so that $h(\alpha) = \pi/4$, placing both the E-function $_1F_1(a;b;\alpha)$ and the G-function $h(\alpha)$ at the same algebraic evaluation point $z = \alpha$. This eliminates the obstacle that the two function classes were naturally evaluated at different points.
+
+**GAP_B (non-Siegel specialization) — OPEN**: The single remaining gap. The Decoupling Theorem (4C.3) and Universal Siegel Barrier (4D.2) prove that ALL auxiliary-function methods are blocked. The unique surviving path is p-adic Frobenius specialization (ADH), which avoids the Siegel lemma entirely. Conjecture 4E.1 (Mahler-Differential value independence) is the precise missing theorem.

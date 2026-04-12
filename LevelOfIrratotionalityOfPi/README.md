@@ -132,7 +132,10 @@ UNIVERSAL SIEGEL BARRIER (Theorem 4D.2)              ─── PROVEN — ALL au
    └─ Siegel lemma is common bottleneck for SS, Nesterenko, Philippon
    └─ Decoupling kills linear AND nonlinear DE approaches
    └─ UNIQUE SURVIVING PATH: p-adic Frobenius (ADH)
-TIER III: LARGE PERIOD, general                     ─── REQUIRES p-adic value-level extension of ADH
+FROBENIUS CONVERGENCE (Theorem 4E.2)                 ─── RETRACTED (beta_n transcendental, not algebraic)
+   └─ Frobenius approximations are TRANSCENDENTAL    ─── irrationality measure doesn't apply
+   └─ Lesson: metric arguments fail, need structural ─── Mahler-DE independence is the true path
+TIER III: LARGE PERIOD, general                     ─── REQUIRES Mahler-Differential value independence (Conj 4E.1)
 INFORMATION DEFICIT (D(π) > 0)                      ─── CONDITIONAL on GK-typicality
 ```
 
@@ -224,7 +227,7 @@ Nine attempts proved three barrier theorems of increasing generality:
 
 **Unique surviving path**: the **p-adic Frobenius method** (ADH 2025), which avoids the Siegel lemma entirely.
 
-Nine attempts. Six new theorems. One surviving path.
+Eleven attempts. Six theorems. One surviving path. Modeled in Neo4j (`pi_sun` namespace, 35 nodes, 26 relationships). Two gaps identified — **one resolved** (same-point evaluation via h(z)=arctan(z/α)), one open (non-Siegel specialization E×G → values).
 
 **Phase 6 — The Galois Attack (Module 04C, §4C.8).** The Decoupling Theorem killed the Siegel approach. The differential Galois groups tell us WHY the conjecture is true: Kummer's group = **Borel** (solvable), Gauss/arctan = **$SL_2$** (simple), combined = **direct product** $B \times SL_2$. Function-level independence PROVEN (Prop. 4C.4). But Pila-Wilkie counting fails because Kummer graphs lack the algebraic point supply that exp and j-function have. Galois prediction is proven; specialization to values remains open.
 

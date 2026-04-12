@@ -396,7 +396,7 @@ From $P = \sum_d t^d Q_d(x,y)$: $P(u, v, \pi/4) = \sum_d (\pi/4)^d c_d$ where $c
 
 After exhaustive exploration, three genuine paths remain:
 
-**Path A: p-adic specialization (extending ADH)**. The ADH criterion avoids both the Siegel lemma and the Pila-Wilkie framework. If their p-adic methods can bridge from function independence to value independence in the mixed E/G case, the proof follows. This requires extending ADH Part II to evaluations at algebraic points — a natural continuation of their program.
+**Path A: p-adic specialization (extending ADH)**. The ADH criterion avoids both the Siegel lemma and the Pila-Wilkie framework. If their p-adic methods can bridge from function independence to value independence in the mixed E/G case, the proof follows. This requires extending ADH Part II to evaluations at algebraic points — a natural continuation of their program. **Note**: the earlier obstacle that $_1F_1(a;b;z_0)$ and $\arctan(1)$ are evaluated at different points (GAP_A) is now **resolved** by F23 (the same-point trick): define $h(z) = \arctan(z/\alpha)$, so $h(\alpha) = \pi/4$, allowing both the E-function and the G-function to be evaluated at the same algebraic point $z = \alpha$.
 
 **Path B: Modular connection for special parameters**. If specific $₁F₁$ ratios can be expressed as values of modular forms at CM points (via theta function / Bessel connections), Nesterenko-type arguments apply. This works only for SPECIFIC $(a, b, z_0)$, not generically — but proving Conjecture 4A.4 for even ONE non-trivial parameter triple would be a breakthrough.
 

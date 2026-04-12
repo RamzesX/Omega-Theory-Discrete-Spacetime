@@ -37,6 +37,7 @@ import OmegaTheory.Geometry.WeylGeneral
 import OmegaTheory.Geometry.Examples
 import OmegaTheory.Geometry.DiscreteForms
 import OmegaTheory.Geometry.WedgeProduct
+import OmegaTheory.Geometry.StructureEquation
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor

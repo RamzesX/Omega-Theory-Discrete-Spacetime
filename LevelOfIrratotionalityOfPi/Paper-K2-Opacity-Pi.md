@@ -190,6 +190,12 @@ This follows from: (1) ADH 2025 gives function-level independence, (2) the Frobe
 
 ---
 
+### 6.5 Resolution of the Different-Evaluation-Point Problem
+
+A natural objection to the E/G separation strategy is that $_1F_1(a;b;z)$ is evaluated at an algebraic point $z_0$, while $\pi/4 = \arctan(1)$ is evaluated at $z = 1$ — potentially different points, complicating any joint independence argument. This is resolved by the **same-point trick**: define $h(z) = \arctan(z/\alpha)$ for the relevant algebraic $\alpha$. Then $h(\alpha) = \arctan(1) = \pi/4$, so both the E-function $_1F_1(a;b;\alpha)$ and the G-function $h(\alpha)$ are evaluated at the same algebraic point $z = \alpha$. This eliminates the different-evaluation-point obstacle (GAP_A) and allows the specialization problem to be formulated cleanly at a single point.
+
+---
+
 ## 7. Summary
 
 | Result | Type | Theorem |

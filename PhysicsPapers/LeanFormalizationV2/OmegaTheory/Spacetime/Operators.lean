@@ -251,4 +251,15 @@ theorem backwardDiff_mul (f g : ScalarField) (μ : Fin 4) (p : LatticePoint) :
     f p * backwardDiff g μ p + backwardDiff f μ p * g (shiftBackFin p μ) := by
   unfold backwardDiff; simp only [scalarField_mul_apply]; field_simp; ring
 
+/-! ## Bridge: Forward ↔ Symmetric Difference -/
+
+/-- The forward difference equals the symmetric difference plus an O(l_P) correction:
+    Δ⁺f = δf + (l_P/2) · ∂²f.  This is the key bridge between the DEC infrastructure
+    (which uses forwardDiff) and the curvature infrastructure (which uses symmetricDiff). -/
+theorem forwardDiff_eq_symmetricDiff_add (f : ScalarField) (μ : Fin 4) (p : LatticePoint) :
+    forwardDiff f μ p = symmetricDiff f μ p + (l_P / 2) * secondDeriv f μ p := by
+  unfold forwardDiff symmetricDiff secondDeriv
+  field_simp [l_P_ne_zero]
+  ring
+
 end OmegaTheory.Spacetime

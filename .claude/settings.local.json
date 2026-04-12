@@ -75,7 +75,8 @@
       "WebFetch(domain:dlmf.nist.gov)",
       "WebFetch(domain:nanatsu-no-taizai.fandom.com)",
       "Bash(pip install:*)",
-      "Bash(pip3 install:*)"
+      "Bash(pip3 install:*)",
+      "WebFetch(domain:link.springer.com)"
     ]
   }
 }

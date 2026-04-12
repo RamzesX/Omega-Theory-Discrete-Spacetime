@@ -293,4 +293,4 @@ Extending ADH from function-level to value-level independence is the **unique re
 ---
 
 *Previous: [Module 04C — The Transcendental Siegel Lemma](04C-Transcendental-Siegel-Lemma.md)*
-*Next: [Module 05 — Information Deficit and Mixing](05-Information-Deficit-And-Mixing.md)*
+*Next: [Module 04E — The p-adic Frobenius Attack](04E-P-adic-Frobenius-Attack.md)*

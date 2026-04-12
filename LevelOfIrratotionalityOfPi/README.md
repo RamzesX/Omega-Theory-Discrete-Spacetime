@@ -78,7 +78,8 @@ with $\alpha, \beta, \gamma, \delta \in \mathbb{Q}$. By SS: $u = {}_1F_1(a;b;z_0
 | [04A](04A-Extension-K2-Predictors.md) | Extension to $\mathcal{K}_2$ Predictors | Bridge Theorem, Lyapunov Dichotomy, Euler-Perron, SS Reduction — **all PROVEN**. Landscape analysis of E/G tools. |
 | [04B](04B-Cracking-K2-Proof.md) | Cracking K₂: The Proof | Three-tier elimination: Tiers I-II **PROVEN** ($p \leq 5 \times 10^9$). Tier III conditional on Conjecture 4A.4. |
 | [04C](04C-Transcendental-Siegel-Lemma.md) | The Transcendental Siegel Lemma | Decoupling Theorem (barrier) + Galois structure ($B \times SL_2$) |
-| [04D](04D-Exponential-Riccati-Attack.md) | The Exponential-Riccati Attack | **ACTIVE FRONT** — Euler identity + nonlinear DE + Nesterenko-Philippon |
+| [04D](04D-Exponential-Riccati-Attack.md) | The Exponential-Riccati Attack | Universal Siegel Barrier (Thm 4D.2) — ALL auxiliary methods blocked |
+| [04E](04E-P-adic-Frobenius-Attack.md) | The p-adic Frobenius Attack | **ACTIVE FRONT** — unique surviving path via ADH Frobenius towers |
 
 **Part III — Conditional Extensions**
 

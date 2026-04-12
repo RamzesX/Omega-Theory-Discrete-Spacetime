@@ -422,4 +422,71 @@ theorem contracted_bianchi_zero_defect (bm : BianchiMetric)
 
 end BianchiMetric
 
+/-! ## Exact Curvature Symmetries for General Metrics
+
+Classical GR result: for any symmetric nondegenerate metric with exact pair swap,
+the full symmetry chain follows algebraically:
+
+  pair swap (hypothesis) → antisym12 → Ricci symmetry
+
+This complements the BOUNDED versions above. Smooth metrics get exact symmetry;
+lattice metrics with defects get bounded symmetry (proportional to ε).
+At ε → 0 the bounded versions reduce to these — see `pair_swap_exact_at_zero`.
+
+The pair swap hypothesis is the discrete analog of ∂_μ∂_ν = ∂_ν∂_μ
+(smooth second derivatives commute). On the lattice it must be postulated
+for the reference metric; the actual metric satisfies it only approximately. -/
+
+/-- Exact antisymmetry in first two indices: R_{ρσμν} = -R_{σρμν}.
+
+    Proof chain: pair swap + antisym34 + pair swap.
+    R_{ρσμν} = R_{μνρσ}   (pair swap)
+             = -R_{μνσρ}  (exact antisym34)
+             = -R_{σρμν}  (pair swap applied to R_{σρμν}) -/
+theorem riemann_lower_antisym_12_exact (g : DiscreteMetric)
+    (h_pair_swap : ∀ ρ σ μ ν p,
+      riemannLower g ρ σ μ ν p = riemannLower g μ ν ρ σ p)
+    (ρ σ μ ν : Fin 4) (p : LatticePoint) :
+    riemannLower g ρ σ μ ν p = -riemannLower g σ ρ μ ν p := by
+  calc riemannLower g ρ σ μ ν p
+      = riemannLower g μ ν ρ σ p := h_pair_swap ρ σ μ ν p
+    _ = -riemannLower g μ ν σ ρ p := riemannLower_antisym_34 g μ ν ρ σ p
+    _ = -riemannLower g σ ρ μ ν p := by rw [h_pair_swap σ ρ μ ν p]
+
+/-- Exact Ricci' symmetry (metric-contracted form): R'_{μν} = R'_{νμ}.
+
+    Proof: rewrite R_{ρμσν} = R_{σνρμ} via pair swap, exchange summation
+    order (ρ ↔ σ dummy relabel), apply inverse metric symmetry g^{ρσ} = g^{σρ}. -/
+theorem ricci'_symmetric_exact (g : DiscreteMetric)
+    (hsym : g.IsEverywhereSymmetric)
+    (h_pair_swap : ∀ ρ σ μ ν p,
+      riemannLower g ρ σ μ ν p = riemannLower g μ ν ρ σ p)
+    (μ ν : Fin 4) (p : LatticePoint) :
+    ricciTensor' g μ ν p = ricciTensor' g ν μ p := by
+  unfold ricciTensor'
+  -- Apply pair swap: R_{ρμσν} = R_{σνρμ}
+  simp_rw [h_pair_swap _ μ _ ν _]
+  -- Now LHS = Σ_{ρσ} g^{ρσ} R_{σνρμ}, RHS = Σ_{ρσ} g^{ρσ} R_{ρνσμ}
+  -- Exchange sum order (dummy relabel ρ ↔ σ)
+  rw [Finset.sum_comm]
+  -- Now LHS = Σ_{σρ} g^{ρσ} R_{ρνσμ} — need g^{ρσ} = g^{σρ}
+  apply Finset.sum_congr rfl; intro σ _
+  apply Finset.sum_congr rfl; intro ρ _
+  rw [inverseMetric_symm (g p) (hsym p) ρ σ]
+
+/-- Exact Ricci symmetry: R_{μν} = R_{νμ}.
+
+    Bridge through ricciTensor': both definitions agree (proven in Curvature.lean),
+    and the metric-contracted form is symmetric by the pair-swap argument above. -/
+theorem ricci_symmetric_exact (g : DiscreteMetric)
+    (hsym : g.IsEverywhereSymmetric) (hnd : ∀ p, IsNondegenerate (g p))
+    (h_pair_swap : ∀ ρ σ μ ν p,
+      riemannLower g ρ σ μ ν p = riemannLower g μ ν ρ σ p)
+    (μ ν : Fin 4) (p : LatticePoint) :
+    ricciTensor g μ ν p = ricciTensor g ν μ p := by
+  calc ricciTensor g μ ν p
+      = ricciTensor' g μ ν p := ricciTensor_eq_ricciTensor' g hsym hnd μ ν p
+    _ = ricciTensor' g ν μ p := ricci'_symmetric_exact g hsym h_pair_swap μ ν p
+    _ = ricciTensor g ν μ p := (ricciTensor_eq_ricciTensor' g hsym hnd ν μ p).symm
+
 end OmegaTheory.Geometry

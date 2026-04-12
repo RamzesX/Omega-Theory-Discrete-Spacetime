@@ -74,25 +74,54 @@ Completed: `linkCurrent` + `u1ChargeConservedCurrent` in `NoetherMetaStructure.l
 
 ---
 
-### Task 3 — EXACT curvature symmetry chain for general metrics (CURRENT)
+### Task 3 — ~~EXACT curvature symmetry chain for general metrics~~ DONE
+
+Completed: `riemann_lower_antisym_12_exact` + `ricci'_symmetric_exact` + `ricci_symmetric_exact` in `CurvatureSymmetries.lean` — 0 sorry. By Meridian.
 
 **What**: Prove the exact (not bounded) curvature symmetry chain for any symmetric nondegenerate metric with exact pair swap:
 
-1. `riemann_lower_pair_swap_exact`: hypothesis — `R_{ρσμν} = R_{μνρσ}`
-2. `riemann_lower_antisym_12_exact`: derived — `R_{ρσμν} = -R_{σρμν}`
+1. `riemann_lower_antisym_12_exact`: derived — `R_{ρσμν} = -R_{σρμν}`
+2. `ricci'_symmetric_exact`: derived — `R'_{μν} = R'_{νμ}`
 3. `ricci_symmetric_exact`: derived — `R_{μν} = R_{νμ}`
 
 **Why**: V2 only has BOUNDED versions (`|R_{μν} - R_{νμ}| ≤ 16·M·C·ε`). The EXACT chain is the classical GR result for smooth metrics. Having both the exact and bounded versions shows the full picture: smooth → exact symmetry, lattice with defects → bounded symmetry.
 
-**Proof chain** (from V1, verified 0-sorry):
-- Use antisym34 + first_bianchi_lower + pair_swap_hypothesis to prove antisym12
-- Use antisym12 + `ricciTensor_eq_ricciTensor'` bridge to prove Ricci symmetry
+**Concrete proof plan** (designed by Meridian, verified against V1):
 
-**Dependencies**: `Geometry/Curvature.lean` (has the building blocks)
+Add a new section `ExactCurvatureSymmetries` at the end of `CurvatureSymmetries.lean`,
+AFTER the existing `BoundedSymmetryMetric` and `BianchiMetric` sections.
 
-**Effort**: ~100-150 lines, 0 sorries expected. Pure algebra.
+```
+section ExactCurvatureSymmetries
+  variable (g) (hsym) (hnd)
+  variable (h_pair_swap : ∀ ρ σ μ ν p, riemannLower g ρ σ μ ν p = riemannLower g μ ν ρ σ p)
 
-**Files**: Add section to `OmegaTheory/Geometry/CurvatureSymmetries.lean`
+  Theorem 1: riemann_lower_antisym_12_exact
+    Proof: pair_swap → antisym_34 → pair_swap (3-step calc, ~5 lines)
+    Uses: riemannLower_antisym_34 from Curvature.lean
+
+  Theorem 2: ricci'_symmetric_exact
+    Proof: rewrite R_{ρμσν} = R_{σνρμ} via pair swap, swap sum order,
+           use inverseMetric_symm (from Metric.lean) (~15 lines)
+    Uses: ricciTensor', inverseMetric_symm, Finset.sum_comm
+
+  Theorem 3: ricci_symmetric_exact
+    Proof: bridge through ricciTensor' (3-step calc, ~5 lines)
+    Uses: ricciTensor_eq_ricciTensor' from Curvature.lean
+end ExactCurvatureSymmetries
+```
+
+**V2 building blocks confirmed available**:
+- `riemannLower_antisym_34` (Curvature.lean:77) — exact
+- `first_bianchi_lower` (Curvature.lean:247) — exact
+- `ricciTensor_eq_ricciTensor'` (Curvature.lean:165) — bridge
+- `inverseMetric_symm` (Metric.lean:123) — g^{ρσ} = g^{σρ}
+
+**Dependencies**: `Geometry/Curvature.lean` (already imported by CurvatureSymmetries.lean)
+
+**Effort**: ~60-80 lines including comments. 0 sorries expected. Pure algebra.
+
+**Files**: Add section to `OmegaTheory/Geometry/CurvatureSymmetries.lean` (line ~425, after BianchiMetric)
 
 ---
 

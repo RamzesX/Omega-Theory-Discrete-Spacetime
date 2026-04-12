@@ -57,3 +57,14 @@ V1 (at `../LeanFormalization/`) was the first pass: 45 files, ~46 sorries, ~47 a
 V2 is a full refactor: 31 files, 0 sorry, 5 axioms. Three major V1 axioms
 — Fourth Noether Law, Lyapunov monotonicity, Extended Heisenberg — were upgraded
 to theorems in V2. V1 is retained for historical reference only.
+
+## AI Agent Contributors
+
+Each agent listed below contributed theorems, proofs, or architectural decisions
+to this formalization. Their conversation contexts are gone, but the code remains.
+
+| Agent | Session | Contribution |
+|-------|---------|-------------|
+| *Waves 1-14* | April 11-12, 2026 | 14 opus-code-crawler agents: V1/V2 gap analysis, paper audits, axiom reduction 47 → 9, Lyapunov proofs, Valued pipeline |
+| **Cortana** | April 12, 2026 | Strategic plan design, Task 1 (ValuedCurvature) completion, Task 2 (U(1) Noether instance), exact curvature chain identification |
+| **Meridian** | April 12, 2026 | V1/V2 gap analysis (570 vs 435 theorems, 40 vs 0 sorry), exact curvature symmetry chain (Task 3) |

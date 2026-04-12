@@ -58,7 +58,10 @@
       "Bash(awk '/^axiom/{count++} END{print \"V1 axioms \\(exact\\): \" count}' /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalization/DiscreteSpacetime/**/*.lean)",
       "Bash(ls /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/.lake/packages/mathlib/Mathlib/Analysis/Calculus/Taylor*)",
       "Bash(cp PhysicsPapers/Appendix-F-Information-Flow-Conservation.md PhysicsPapers/Note-Continued-Fraction-Information-Channels.md)",
-      "Bash(cp /tmp/appendix-f-original.md PhysicsPapers/Appendix-F-Information-Flow-Conservation.md)"
+      "Bash(cp /tmp/appendix-f-original.md PhysicsPapers/Appendix-F-Information-Flow-Conservation.md)",
+      "Bash(ls ~/.elan/toolchains/*/lib/lean4/library)",
+      "Read(//root/.cache/**)",
+      "Bash(grep -rn \"^  sorry$\" OmegaTheory --include=\"*.lean\")"
     ]
   },
   "prefersReducedMotion": true

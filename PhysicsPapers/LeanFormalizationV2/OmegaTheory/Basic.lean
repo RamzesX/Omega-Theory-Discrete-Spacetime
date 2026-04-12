@@ -15,8 +15,6 @@
 -- Layer 0: Foundations
 import OmegaTheory.Foundations.ErrorAlgebra
 
--- Auditability: explicit named physical postulates (M1-M6)
-import OmegaTheory.Axioms.SpacetimePostulates
 
 -- Layer 1: Discrete Spacetime
 import OmegaTheory.Spacetime.Lattice

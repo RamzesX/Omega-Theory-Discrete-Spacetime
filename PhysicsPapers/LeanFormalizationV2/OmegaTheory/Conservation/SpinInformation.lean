@@ -124,20 +124,6 @@ structure ModifiedInfoConservation where
 def isInfoEquilibrium (cons : ModifiedInfoConservation) : Prop :=
   ∀ p, cons.spinSource p + cons.gravitonSource p = 0
 
-/-! ## Torsion-Information Correspondence
-
-    V1 carried a trivial `True`-typed axiom here as documentation that the full
-    correspondence is deferred. We keep that axiom verbatim: it serves as a
-    named anchor for future elaboration (see Appendix F §9A.2). -/
-
-/-- Torsion-Information Correspondence (placeholder axiom — see docstring). -/
-axiom torsion_info_correspondence :
-  ∀ (S : Fin 4 → Fin 4 → Fin 4 → LatticePoint → ℝ)
-    (J_I : InformationCurrent)
-    (u : LatticePoint → Fin 4 → ℝ)
-    (p : LatticePoint),
-  True
-
 /-- Curl of the information current (antisymmetrized symmetric difference). -/
 noncomputable def infoCurl (J_I : InformationCurrent) (μ ν ρ : Fin 4)
     (p : LatticePoint) : ℝ :=

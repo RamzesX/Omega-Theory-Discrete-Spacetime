@@ -12,8 +12,8 @@ Laplacian-Ricci correspondence (HPW 2006, imported as an axiom).
 | | |
 |---|---|
 | Lean / Mathlib | v4.29.0 |
-| Files | 46 (45 under `OmegaTheory/` + `OmegaTheory.lean`) |
-| Theorems + definitions | ~330 |
+| Files | 48 (47 under `OmegaTheory/` + `OmegaTheory.lean`) |
+| Theorems + definitions | ~842 |
 | Sorry | **0** |
 | Axioms | **9** (8 physical constants + 1 external math theorem HPW 2006) |
 | Build | ~3295 jobs, clean |

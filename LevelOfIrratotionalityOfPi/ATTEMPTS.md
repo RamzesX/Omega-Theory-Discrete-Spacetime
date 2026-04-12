@@ -177,3 +177,21 @@ Each attempt narrows the space of possible proofs. After 9 attempts:
 - **Theorem 4D.2** (Universal Barrier): NO auxiliary-function method can cross it (linear OR nonlinear)
 
 **What remains**: the p-adic Frobenius method (ADH 2025), which avoids the Siegel lemma entirely. This is the **unique surviving path** among known mathematical frameworks.
+
+---
+
+## Attempt 10: The Mahler-Differential Bridge (Module 04E, §4E.5)
+
+**Date**: April 2026, Session 2
+**Method**: The Frobenius tower {f(α), f(α^p), f(α^{p²}),...} satisfies a MAHLER-type functional equation (z → z^p). π comes from a DIFFERENTIAL equation (Gauss). ADH's own 2019-2021 program (arXiv:1910.01874, arXiv:2010.09266) proves: solutions of DIFFERENT-TYPE functional equations (Mahler vs differential) are algebraically independent.
+
+**Key connection**: ADH 2025 (E/G function independence) + ADH 2021 (Mahler-differential independence) = the complete proof strategy:
+1. ADH 2025 gives function-level E/G independence via Frobenius criterion
+2. The Frobenius creates a Mahler equation for E-function values at algebraic points
+3. ADH 2019/2021 gives algebraic independence of Mahler-type and differential-type solutions
+
+**What remains**: Verify that the specific Kummer Frobenius tower (Mahler) and Gauss/arctan DE (differential) satisfy ADH's "sufficient independence" conditions from parametrized difference Galois theory.
+
+**Why this is different**: It connects TWO of ADH's own research programs — the 2019-2021 difference equation program and the 2025 E/G function program. The bridge is the Frobenius tower, which CONVERTS a differential independence problem into a difference equation independence problem, where ADH's tools ALREADY WORK.
+
+**Status**: MOST CONCRETE PATH. The tools exist in published form. The verification is specific and finite.

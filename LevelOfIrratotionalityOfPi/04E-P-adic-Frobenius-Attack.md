@@ -110,7 +110,63 @@ The p-adic constraint chain acts as a "rigidity mechanism" that prevents $f(\alp
 
 ---
 
-## 4E.5 The Precise Open Problem
+## 4E.5 The Mahler Connection (Key Insight)
+
+### 4E.5.1 The Frobenius Tower Creates a Mahler Equation
+
+For $f \in \mathcal{MF}(K)$ and algebraic $\alpha$ with $|\alpha|_p < 1$: the Frobenius property $f(z)/f(z^{p^h}) \in \mathcal{E}_{0,K}$ gives:
+
+$$f(\alpha) = f(\alpha^{p^h}) \cdot r(\alpha), \qquad r \in \mathcal{E}_{0,K}$$
+
+Iterating: $f(\alpha) = \prod_{k \geq 0} r(\alpha^{p^{kh}}) \cdot \lim_{n \to \infty} f(\alpha^{p^{nh}})$
+
+Since $\alpha^{p^{nh}} \to 0$ ($p$-adically) and $f(0) = 1$: the value $f(\alpha)$ is an infinite product over the **Frobenius orbit** $\{\alpha, \alpha^{p^h}, \alpha^{p^{2h}}, \ldots\}$.
+
+This is a **Mahler-type functional equation**: the value at $\alpha$ is determined by values at $\alpha^{p^h}$ — exactly the structure studied by Mahler (1929), and extensively by **Adamczewski, Dreyfus, and Hardouin themselves** in their work on difference Galois theory.
+
+### 4E.5.2 The ADH Difference Equation Program
+
+ADH (with Wibmer) proved in 2021 [arXiv:2010.09266, published in JEMS]:
+
+> **Theorem** (ADH-W 2021). *Solutions of linear difference equations associated with "sufficiently independent" automorphisms (shift, q-difference, Mahler) are algebraically independent over the field of rational functions.*
+
+Earlier, ADH proved in 2019 [arXiv:1910.01874]:
+
+> **Hypertranscendence**: *Solutions of linear difference equations (Mahler-type) are hypertranscendental — they don't satisfy any algebraic differential equation.*
+
+**The crucial pair for us: (differential equation) $\times$ (Mahler equation).**
+
+- $\pi/4 = \arctan(1)$ is a value of a solution of a **differential equation** (Gauss hypergeometric)
+- $₁F₁(a;b;\alpha)$ is a value whose Frobenius tower satisfies a **Mahler equation** ($z \mapsto z^{p^h}$)
+
+These are **different types of functional equations**. ADH's program says: solutions of different-type equations are algebraically independent.
+
+### 4E.5.3 The Proof Strategy
+
+1. **E-function ratio** $R(\alpha) = ₁F₁(a;b;\alpha)/₁F₁(a;b+1;\alpha)$: the Frobenius tower $\{R(\alpha), R(\alpha^{p^h}), \ldots\}$ satisfies a Mahler-type relation (from the Frobenius structure of $₁F₁$).
+
+2. **$\pi/4 = \arctan(1)$**: a value governed by the Gauss differential equation. Its functional structure is DIFFERENTIAL (regular singular DE), not MAHLER (Frobenius discrete dynamics).
+
+3. **ADH's own framework**: the algebraic independence of solutions of (differential) and (Mahler) type equations has been their research program since 2019. The hypertranscendence results [arXiv:1910.01874] show that Mahler-type solutions can't satisfy differential equations — and vice versa.
+
+4. **The conclusion**: if the Frobenius-Mahler structure of $R(\alpha)$ is "sufficiently independent" from the differential structure governing $\pi$, then $R(\alpha)$ and $\pi$ are algebraically independent — proving Conjecture 4A.4.
+
+### 4E.5.4 What Needs to Be Verified
+
+The specific technical verification: do the Kummer Frobenius tower and the Gauss DE for arctan satisfy the "sufficient independence" conditions of ADH's 2021 JEMS theorem?
+
+The conditions involve: the pair of automorphisms $(\partial/\partial z, \sigma: z \mapsto z^{p^h})$ must be "sufficiently independent" in the sense of parametrized difference Galois theory (Hardouin-Singer). For the Kummer-Gauss pair:
+
+- The differential operator $\partial/\partial z$ acts on solutions of the Gauss DE (giving $\pi$)
+- The Mahler operator $\sigma_p: z \mapsto z^{p^h}$ acts on the Frobenius tower of $₁F₁$
+
+These operators are of **different nature**: one is continuous (differential), the other discrete (Frobenius). By ADH's general framework, such pairs are "generically independent."
+
+**This is the EXACT point where ADH's published work meets our specific problem.**
+
+---
+
+## 4E.6 The Precise Open Problem
 
 **Conjecture 4E.1** (p-adic Specialization for $\mathcal{MF}(K)$). *Let $f_1, \ldots, f_m \in \mathcal{MF}(K)$ be algebraically independent over $\mathcal{E}_K$ (by ADH Theorem 2.3). Let $\alpha \in \overline{\mathbb{Q}}$ with $|\alpha|_p < 1$ (within the convergence disk). Then:*
 

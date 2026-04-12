@@ -211,6 +211,95 @@ def satisfiesVacuumEinstein (g : DiscreteMetric) : Prop :=
 theorem flat_satisfies_vacuum : satisfiesVacuumEinstein DiscreteMetric.flat :=
   fun μ ν p => einstein_flat μ ν p
 
+/-! ## Einstein Trace
+
+The trace of the Einstein tensor: g^{μν} G_{μν} = -R.
+Proof: Tr(G) = Tr(Ric) - (1/2) Tr(g) R = R - (1/2)(4)R = -R.
+Uses Tr(g⁻¹g) = Tr(I) = 4. -/
+
+/-- Trace of g⁻¹g equals 4 (the spacetime dimension).
+    Σ_{μν} g^{μν} g_{νμ} = Tr(g⁻¹ · g) = Tr(I₄) = 4. -/
+theorem metric_inverse_trace (g : MetricTensor) (hnd : IsNondegenerate g) :
+    Finset.univ.sum (fun μ : Fin 4 => Finset.univ.sum (fun ν : Fin 4 =>
+      (inverseMetric g) μ ν * g ν μ)) = 4 := by
+  have h_prod := inverse_mul_metric g hnd
+  have h_diag : ∀ μ : Fin 4, Finset.univ.sum (fun ν =>
+      (inverseMetric g) μ ν * g ν μ) = 1 := by
+    intro μ
+    have := congrFun (congrFun h_prod μ) μ
+    simp only [Matrix.mul_apply, Matrix.one_apply_eq] at this
+    exact this
+  simp_rw [h_diag, Finset.sum_const, Finset.card_fin, nsmul_eq_mul, Nat.cast_ofNat]
+  norm_num
+
+/-- With metric symmetry: Σ_{μν} g^{μν} g_{μν} = 4. -/
+theorem metric_inverse_trace_sym (g : MetricTensor) (hsym : IsSymmetric g)
+    (hnd : IsNondegenerate g) :
+    Finset.univ.sum (fun μ : Fin 4 => Finset.univ.sum (fun ν : Fin 4 =>
+      (inverseMetric g) μ ν * g μ ν)) = 4 := by
+  have hsym' : ∀ μ ν : Fin 4, g μ ν = g ν μ := by
+    intros μ ν
+    have := congrFun (congrFun hsym ν) μ
+    simp only [Matrix.transpose_apply] at this; exact this
+  have hrw : (fun μ : Fin 4 => Finset.univ.sum (fun ν : Fin 4 =>
+      (inverseMetric g) μ ν * g μ ν)) =
+    (fun μ : Fin 4 => Finset.univ.sum (fun ν : Fin 4 =>
+      (inverseMetric g) μ ν * g ν μ)) := by
+    ext μ; apply Finset.sum_congr rfl; intro ν _; rw [hsym' μ ν]
+  rw [hrw]
+  exact metric_inverse_trace g hnd
+
+/-- Einstein trace: g^{μν} G_{μν} = -R.
+    The trace of the Einstein tensor equals minus the scalar curvature.
+    Proof: Tr(G) = Tr(Ric) - (1/2)·Tr(g⁻¹g)·R = R - (1/2)·4·R = -R. -/
+theorem einstein_trace (g : DiscreteMetric) (hsym : g.IsEverywhereSymmetric)
+    (hnd : ∀ p, IsNondegenerate (g p)) (p : LatticePoint) :
+    Finset.univ.sum (fun μ => Finset.univ.sum (fun ν =>
+      (inverseMetric (g p)) μ ν * einsteinTensor g μ ν p)) =
+    -scalarCurvature g p := by
+  have h4 := metric_inverse_trace_sym (g p) (hsym p) (hnd p)
+  have key : ∀ μ ν : Fin 4,
+      (inverseMetric (g p)) μ ν * einsteinTensor g μ ν p =
+      (inverseMetric (g p)) μ ν * ricciTensor g μ ν p -
+      (1 / 2) * scalarCurvature g p * ((inverseMetric (g p)) μ ν * (g p) μ ν) := by
+    intros; unfold einsteinTensor; ring
+  simp_rw [key, Finset.sum_sub_distrib, ← Finset.mul_sum, ← Finset.mul_sum, h4]
+  -- First sum is scalarCurvature by definition; second is (1/2)*R*4
+  change scalarCurvature g p - 1 / 2 * scalarCurvature g p * 4 = -scalarCurvature g p
+  ring
+
+/-! ## Kretschmann Scalar (Mixed-Index)
+
+The mixed-index Kretschmann K' = Σ_{ρσμν} (R^ρ_{σμν})² is a sum of squares,
+hence nonneg. This is a coordinate-dependent quantity that equals the standard
+Kretschmann scalar K = R_{αβγδ}R^{αβγδ} in orthonormal frames. -/
+
+/-- Mixed-index Kretschmann: K' = Σ_{ρσμν} (R^ρ_{σμν})². -/
+noncomputable def kretschmannMixed (g : DiscreteMetric) (p : LatticePoint) : ℝ :=
+  Finset.univ.sum fun ρ => Finset.univ.sum fun σ =>
+    Finset.univ.sum fun μ => Finset.univ.sum fun ν =>
+      (riemannTensor g ρ σ μ ν p) ^ 2
+
+/-- Kretschmann is nonneg (sum of squares). -/
+theorem kretschmannMixed_nonneg (g : DiscreteMetric) (p : LatticePoint) :
+    0 ≤ kretschmannMixed g p := by
+  unfold kretschmannMixed
+  apply Finset.sum_nonneg; intro ρ _
+  apply Finset.sum_nonneg; intro σ _
+  apply Finset.sum_nonneg; intro μ _
+  apply Finset.sum_nonneg; intro ν _
+  exact sq_nonneg _
+
+/-- Kretschmann vanishes for flat spacetime. -/
+theorem kretschmannMixed_flat (p : LatticePoint) :
+    kretschmannMixed DiscreteMetric.flat p = 0 := by
+  unfold kretschmannMixed
+  apply Finset.sum_eq_zero; intro ρ _
+  apply Finset.sum_eq_zero; intro σ _
+  apply Finset.sum_eq_zero; intro μ _
+  apply Finset.sum_eq_zero; intro ν _
+  rw [riemann_flat]; norm_num
+
 /-! ## First (Algebraic) Bianchi Identity
 
 R^ρ_{σμν} + R^ρ_{μνσ} + R^ρ_{νσμ} = 0

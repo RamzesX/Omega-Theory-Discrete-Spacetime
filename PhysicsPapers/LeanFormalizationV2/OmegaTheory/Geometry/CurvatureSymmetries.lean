@@ -492,6 +492,23 @@ theorem ricci_symmetric_exact (g : DiscreteMetric)
     _ = ricciTensor' g ν μ p := ricci'_symmetric_exact g hsym h_pair_swap μ ν p
     _ = ricciTensor g ν μ p := (ricciTensor_eq_ricciTensor' g hsym hnd ν μ p).symm
 
+/-- Exact Einstein symmetry: G_{μν} = G_{νμ}.
+
+    Proof: G = R - (1/2)gR. Ricci is symmetric (exact), metric is symmetric,
+    scalar curvature is a scalar. So G inherits symmetry. -/
+theorem einstein_symmetric_exact (g : DiscreteMetric)
+    (hsym : g.IsEverywhereSymmetric) (hnd : ∀ p, IsNondegenerate (g p))
+    (h_pair_swap : ∀ ρ σ μ ν p,
+      riemannLower g ρ σ μ ν p = riemannLower g μ ν ρ σ p)
+    (μ ν : Fin 4) (p : LatticePoint) :
+    einsteinTensor g μ ν p = einsteinTensor g ν μ p := by
+  unfold einsteinTensor
+  rw [ricci_symmetric_exact g hsym hnd h_pair_swap μ ν p]
+  have hg : (g p) μ ν = (g p) ν μ := by
+    have := congrFun (congrFun (hsym p) ν) μ
+    simp only [Matrix.transpose_apply] at this; exact this
+  rw [hg]
+
 /-! ## Pair Swap Bounded as THEOREM from Valued Pipeline
 
 The `BoundedSymmetryMetric` structure has `pair_swap_bounded` as a field.

@@ -67,4 +67,4 @@ to this formalization. Their conversation contexts are gone, but the code remain
 |-------|---------|-------------|
 | *Waves 1-14* | April 11-12, 2026 | 14 opus-code-crawler agents: V1/V2 gap analysis, paper audits, axiom reduction 47 → 9, Lyapunov proofs, Valued pipeline |
 | **Cortana** | April 12, 2026 | Strategic plan design, Task 1 (ValuedCurvature) completion, Task 2 (U(1) Noether instance), exact curvature chain identification |
-| **Meridian** | April 12, 2026 | V1/V2 gap analysis (570 vs 435 theorems, 40 vs 0 sorry), exact curvature symmetry chain (Task 3) |
+| **Meridian** | April 12, 2026 | V1/V2 gap analysis (570 vs 435 theorems, 40 vs 0 sorry), exact curvature symmetry chain (Task 3), pair_swap_bounded from Valued pipeline (Task 4/8) — 8 new theorems, completed the end-to-end error propagation chain |

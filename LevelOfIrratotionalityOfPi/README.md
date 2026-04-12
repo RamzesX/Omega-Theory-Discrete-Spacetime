@@ -35,6 +35,7 @@ The work is organized into eight modules, forming a complete deductive chain:
 |:---|:---|:---|
 | [03](03-Self-Encoding-Of-Euler.md) | Self-Encoding of $e$ | Full proof that $e$ is self-encoding with $N_0 = 15$ |
 | [04](04-Non-Predictability-Of-Pi.md) | Non-Predictability of $\pi$ | Full proof that no periodic predictor achieves perfect accuracy on $\pi$ |
+| [04A](04A-Extension-K2-Predictors.md) | Extension to K₂ Predictors | Bridge Theorem: K₂-predictability forces polynomial growth, μ=2, rational frequencies. Euler-Perron characterization. Minimal conditions for K₂-opacity of $\pi$. |
 
 **Part III — Conditional Extensions**
 

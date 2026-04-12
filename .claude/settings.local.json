@@ -70,7 +70,8 @@
       "WebFetch(domain:www.w3tutorials.net)",
       "Bash(done)",
       "Bash(grep:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "WebFetch(domain:www.researchgate.net)"
     ]
   }
 }

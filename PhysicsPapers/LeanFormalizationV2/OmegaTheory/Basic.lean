@@ -26,6 +26,7 @@ import OmegaTheory.Spacetime.Operators
 -- Layer 2: Error-Propagating Tensor Operations
 import OmegaTheory.Tensor.ErrorTensor
 import OmegaTheory.Tensor.Operations
+import OmegaTheory.Tensor.ValuedGeometry
 
 -- Layer 3: Discrete Differential Geometry
 import OmegaTheory.Geometry.Metric

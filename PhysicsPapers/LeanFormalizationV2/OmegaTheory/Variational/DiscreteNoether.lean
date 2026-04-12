@@ -84,7 +84,20 @@ from Conservation/Information.lean. -/
     This bridges the variational (Noether) perspective to the
     proven conservation law in Conservation/Information.lean.
 
-    The proof is ONE LINE: apply harmonic_gradient_current_conserved. -/
+    ## HONESTY NOTE
+
+    The proof is a ONE-LINE delegation to `harmonic_gradient_current_conserved`.
+    This theorem is NOT an independent Noether result — it is the same
+    scalar-harmonic identity `div(∇φ) = Δφ = 0` packaged under a different
+    name. Readers should not interpret the name as a tensor-valued Noether
+    theorem applicable to stress-energy currents; it is the *scalar
+    harmonic* Noether instance, which is the only concrete instance V2
+    currently proves.
+
+    A genuine tensor-valued Noether theorem (stress-energy conservation
+    from diffeomorphism invariance) requires machinery beyond V2's current
+    `ConservedCurrent` type, and is listed as future work in the strategic
+    plan. -/
 theorem gauge_symmetry_implies_conservation (gauge : GaugeTransformation) :
     IsConserved (gradientCurrent gauge.Lambda) :=
   harmonic_gradient_current_conserved gauge.Lambda gauge.isHarmonic
@@ -107,7 +120,18 @@ theorem momentum_is_gradient (φ : ScalarField) (μ : Fin 4) (p : LatticePoint) 
   simp [canonicalMomentum, gradientCurrent]
 
 /-- For a harmonic field, momentum is conserved (divergence-free).
-    This is Noether's theorem: translation symmetry → momentum conservation. -/
+    This is the scalar-harmonic instance of Noether's theorem:
+    translation symmetry → momentum conservation for a harmonic scalar.
+
+    ## HONESTY NOTE
+
+    Like `gauge_symmetry_implies_conservation`, this is a one-line
+    delegation to `harmonic_gradient_current_conserved` — the same
+    underlying identity renamed for the variational-principle
+    audience. It is NOT an independent theorem. Three different names
+    (`harmonic_gradient_current_conserved`, `gauge_symmetry_implies_conservation`,
+    `momentum_conservation`) export the same Laplacian identity
+    `Δφ = 0 → div(∇φ) = 0`. -/
 theorem momentum_conservation (φ : ScalarField) (hφ : IsHarmonic φ) :
     IsConserved (gradientCurrent φ) :=
   harmonic_gradient_current_conserved φ hφ

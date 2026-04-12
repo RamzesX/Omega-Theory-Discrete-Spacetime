@@ -71,10 +71,38 @@ theorem torsionPressure_quadratic (n : ℝ) :
     torsionPressure n = -torsionCoefficient * n ^ 2 := by
   unfold torsionPressure torsionCoefficient; ring
 
-/-- At the bounce, torsion pressure magnitude equals gravitational.
-    This is the core of Poplawski's singularity avoidance. -/
-theorem bounce_prevents_singularity (n : ℝ) (hn : n ≠ 0) :
+/-- **Torsion pressure sign lemma.** For non-zero fermion density, the
+    torsion-induced pressure is strictly negative (i.e., repulsive in
+    the gravitational collapse sense).
+
+    ## HONESTY NOTE
+
+    Earlier drafts exported this lemma under the name
+    `bounce_prevents_singularity`, which misleadingly suggests a
+    dynamical theorem about trajectories avoiding singularities. The
+    actual content is a *sign check* on a quadratic pressure formula —
+    specifically, it says `torsionPressure n = -(π G ℏ²/c²) · n² < 0`
+    whenever `n ≠ 0`.
+
+    A real Popławski bounce theorem would require:
+    - A Friedmann/Raychaudhuri ODE for the scale factor
+    - Existence and uniqueness of collapsing-matter trajectories
+    - Proof that the density stays ≤ 2·ρ_P after the bounce time
+    None of these are formalized in V2 or V1, and all require dynamical
+    infrastructure Mathlib lacks.
+
+    We keep the alias `bounce_prevents_singularity` for backward
+    compatibility with V1 consumers, but the primary name is now
+    `torsionPressure_sign_correct` to reflect the actual content. -/
+theorem torsionPressure_sign_correct (n : ℝ) (hn : n ≠ 0) :
     torsionPressure n < 0 := torsionPressure_negative n hn
+
+/-- Alias retained for V1 compatibility. **Do not read this name as a
+    dynamical theorem** — it is the sign check `torsionPressure_sign_correct`.
+    See the `torsionPressure_sign_correct` docstring for the honesty
+    caveat and the list of what a real bounce theorem would require. -/
+theorem bounce_prevents_singularity (n : ℝ) (hn : n ≠ 0) :
+    torsionPressure n < 0 := torsionPressure_sign_correct n hn
 
 /-! ## Baby Universe
 

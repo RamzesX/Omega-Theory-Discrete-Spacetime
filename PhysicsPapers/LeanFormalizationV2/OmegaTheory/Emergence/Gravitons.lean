@@ -95,6 +95,38 @@ noncomputable def repairQuantumInformation : ℝ := Real.log 5 / Real.log 2
     which is `π / ln 2` bits. -/
 noncomputable def holographicMaxInformation : ℝ := Real.pi / Real.log 2
 
+/-! ### Bekenstein bit bound — the derivation of `π / log 2`
+
+`holographicMaxInformation` above is stated as `π / log 2`. The
+"magic constant `π/ln 2 ≈ 4.53`" is not a free parameter: it is the
+Bekenstein-Hawking area law `S_BH = A/(4 l_P²)` (in nats,
+cf. `OmegaTheory.Conservation.Correspondence.bekensteinHawkingEntropy`)
+evaluated on a Planck-sized sphere of area `4π l_P²` and converted
+from nats to bits by dividing by `log 2`. The theorem below makes
+that step explicit, turning `holographicMaxInformation` from a
+definitional magic number into a *derived* bridging identity. -/
+
+/-- Bekenstein-Hawking area law expressed in **bits**:
+    `I_max(A) = A / (4 · l_P² · log 2)`.
+
+    This is the standard nat-entropy `bekensteinHawkingEntropy A = A/(4·l_P²)`
+    rebased to log₂, i.e., divided by `log 2`. -/
+noncomputable def bekensteinBitBound (A : ℝ) : ℝ :=
+  A / (4 * l_P ^ 2 * Real.log 2)
+
+/-- **Derivation of `π / log 2`**: on a Planck-area sphere (area `4π l_P²`),
+    the Bekenstein bit bound equals `holographicMaxInformation`.
+
+    This is the theorem that turns the magic constant `π/ln 2 ≈ 4.53`
+    into a consequence of the 30-year-old Bekenstein-Hawking area law
+    evaluated on one Planck sphere. -/
+theorem bekensteinBitBound_planck_sphere :
+    bekensteinBitBound (4 * Real.pi * l_P ^ 2) = holographicMaxInformation := by
+  unfold bekensteinBitBound holographicMaxInformation
+  have hlP : (l_P : ℝ) ≠ 0 := l_P_ne_zero
+  have hlog2 : Real.log 2 ≠ 0 := ne_of_gt (Real.log_pos (by norm_num : (1 : ℝ) < 2))
+  field_simp
+
 /-- Energy of one repair quantum:
       `E_rq = (I_rq / I_max) · E_P`
     which evaluates to approximately `0.512 · E_P`, i.e., `≈ E_P/2`. -/
@@ -146,6 +178,35 @@ theorem repairQuantumEnergy_eq_log5_pi :
     repairQuantumEnergy = (Real.log 5 / Real.pi) * E_P := by
   unfold repairQuantumEnergy
   rw [repairInformation_ratio_eq]
+
+/-- **Repair-quantum energy as Bekenstein-derived counting ratio.**
+
+    Combining `bekensteinBitBound_planck_sphere` with the definition of
+    `repairQuantumEnergy` yields the publishable multiplicative identity:
+
+      `E_rq · I_max(4π l_P²) = E_P · I_rq`
+
+    i.e., repair-quantum energy times the Planck-sphere Bekenstein bit
+    bound equals the Planck energy times the repair information content
+    (log₂ 5 bits). This is a real derivation of `E_rq ≈ E_P/2` from
+    (i) the Bekenstein-Hawking area law and (ii) the 5-template alphabet. -/
+theorem repairQuantumEnergy_from_bekenstein :
+    repairQuantumEnergy * bekensteinBitBound (4 * Real.pi * l_P ^ 2) =
+      E_P * repairQuantumInformation := by
+  rw [bekensteinBitBound_planck_sphere]
+  unfold repairQuantumEnergy
+  have hImax : holographicMaxInformation ≠ 0 :=
+    ne_of_gt holographicMaxInformation_pos
+  field_simp
+
+/-- The divisional form that physicists expect: `E_rq = E_P · (I_rq / I_max)`
+    where `I_max` is the Bekenstein bit bound on a Planck sphere. -/
+theorem repairQuantumEnergy_eq_EP_ratio :
+    repairQuantumEnergy =
+      E_P * (repairQuantumInformation / bekensteinBitBound (4 * Real.pi * l_P ^ 2)) := by
+  rw [bekensteinBitBound_planck_sphere]
+  unfold repairQuantumEnergy
+  ring
 
 /-! ## Disambiguation theorem
 

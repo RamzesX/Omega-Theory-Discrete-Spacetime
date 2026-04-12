@@ -15,6 +15,9 @@
 -- Layer 0: Foundations
 import OmegaTheory.Foundations.ErrorAlgebra
 
+-- Auditability: explicit named physical postulates (M1-M6)
+import OmegaTheory.Axioms.SpacetimePostulates
+
 -- Layer 1: Discrete Spacetime
 import OmegaTheory.Spacetime.Lattice
 import OmegaTheory.Spacetime.Constants
@@ -30,6 +33,7 @@ import OmegaTheory.Geometry.Connection
 import OmegaTheory.Geometry.Curvature
 import OmegaTheory.Geometry.CurvatureSymmetries
 import OmegaTheory.Geometry.Weyl
+import OmegaTheory.Geometry.Examples
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor
@@ -39,11 +43,13 @@ import OmegaTheory.Conservation.Information
 import OmegaTheory.Conservation.NoetherMetaStructure
 import OmegaTheory.Conservation.StressEnergy
 import OmegaTheory.Conservation.Correspondence
+import OmegaTheory.Conservation.SpinInformation
 
 -- Layer 7: Healing Flow
 import OmegaTheory.HealingFlow.Functional
 import OmegaTheory.HealingFlow.Flow
 import OmegaTheory.HealingFlow.Lyapunov
+import OmegaTheory.HealingFlow.Periodic
 
 -- Layer 8: Emergence
 import OmegaTheory.Emergence.CoarseGrain
@@ -57,6 +63,7 @@ import OmegaTheory.Torsion.Torsion
 
 -- Layer 11: Irrationality (concrete error sources)
 import OmegaTheory.Irrationality.Approximations
+import OmegaTheory.Irrationality.ActionDensity
 
 -- Layer 12: Variational (Erdős-Lagrangian, discrete Noether)
 import OmegaTheory.Variational.GraphAction

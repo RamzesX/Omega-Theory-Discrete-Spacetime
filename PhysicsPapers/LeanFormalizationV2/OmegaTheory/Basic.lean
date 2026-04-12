@@ -44,6 +44,7 @@ import OmegaTheory.Conservation.NoetherMetaStructure
 import OmegaTheory.Conservation.StressEnergy
 import OmegaTheory.Conservation.Correspondence
 import OmegaTheory.Conservation.SpinInformation
+import OmegaTheory.Conservation.InformationKL
 
 -- Layer 7: Healing Flow
 import OmegaTheory.HealingFlow.Functional

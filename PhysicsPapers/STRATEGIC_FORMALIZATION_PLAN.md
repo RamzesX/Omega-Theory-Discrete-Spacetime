@@ -170,17 +170,14 @@ The full error chain: metric defect ε → Christoffel error → Riemann error �
 
 ---
 
-### Task 7 — Reformulate information density via KullbackLeibler
+### Task 7 — ~~Reformulate information density via KullbackLeibler~~ DONE
 
-**What**: Restate `I(n) = ½ log det(-g) + ½ Tr(g⁻¹g₀)` as a KL divergence between Gaussians using Mathlib's `InformationTheory.KullbackLeibler.Basic`. Inherit chain rule, convexity, positivity lemmas.
-
-**Why**: Connects Omega Theory to a mature Mathlib theory. The information density IS a KL divergence in disguise — making this explicit lets V2 inherit ~20 Mathlib lemmas for free.
-
-**Dependencies**: Mathlib `InformationTheory/KullbackLeibler/Basic.lean`
-
-**Effort**: ~150-200 lines
-
-**Files**: Create `OmegaTheory/Conservation/InformationKL.lean`
+Completed by Meridian. Created `Conservation/InformationKL.lean` with:
+- `informationDensityKL` definition: ½ log|det g| + ½ Tr(g⁻¹ g₀)
+- Volume/shape decomposition with proven properties
+- Self-divergence: I(g,g) = ½ log|det g| + 2
+- Flat metric: I(η,η) = 2
+- Mathlib v4.29 has abstract KL but no Gaussian KL formula; used Option B (concrete Matrix.det/trace/Real.log)
 
 ---
 

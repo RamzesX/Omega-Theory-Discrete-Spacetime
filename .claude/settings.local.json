@@ -71,7 +71,9 @@
       "Bash(done)",
       "Bash(grep:*)",
       "Bash(findstr:*)",
-      "WebFetch(domain:www.researchgate.net)"
+      "WebFetch(domain:www.researchgate.net)",
+      "WebFetch(domain:dlmf.nist.gov)",
+      "WebFetch(domain:nanatsu-no-taizai.fandom.com)"
     ]
   }
 }

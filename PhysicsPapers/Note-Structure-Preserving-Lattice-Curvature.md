@@ -56,19 +56,27 @@ We classify each identity as **exact** (holds pointwise on any instance), **boun
 |---|----------|--------|--------------|-------------|
 | 1 | $R_{\rho\sigma\mu\nu} = -R_{\rho\sigma\nu\mu}$ (antisym-34) | **Exact** | — | Christoffel algebra; no metric fact needed |
 | 2 | $R_{\rho\sigma\mu\nu} = -R_{\sigma\rho\mu\nu}$ (antisym-12) | **Bounded** | $2 C_\text{ps}$ | via pair-swap twice + antisym-34 |
-| 3 | $R_{\rho\sigma\mu\nu} = R_{\mu\nu\rho\sigma}$ (pair swap) | Field | $C_\text{ps}$ | assumption |
+| 2' | $R_{\rho\sigma\mu\nu} = -R_{\sigma\rho\mu\nu}$ (antisym-12, exact) | **Exact**${}^\dagger$ | — | given exact pair swap: `riemann_lower_antisym_12_exact` |
+| 3 | $R_{\rho\sigma\mu\nu} = R_{\mu\nu\rho\sigma}$ (pair swap) | **Derived** | $2\Delta$ | `pair_swap_from_valued_pipeline`: from metric defect $\varepsilon$ through Christoffel → Riemann → lowered Riemann error chain |
 | 4 | $R^\rho{}_{\sigma\mu\nu} + R^\rho{}_{\mu\nu\sigma} + R^\rho{}_{\nu\sigma\mu} = 0$ (first Bianchi) | **Exact** | — | metric symmetry + Christoffel symmetry, pure algebra |
 | 5 | $\nabla_\lambda R_{\rho\sigma\mu\nu} + \text{(cyclic)} = 0$ (second Bianchi) | (out of scope here) | — | requires covariant derivative machinery |
 | 6 | $R_{\mu\nu} = R_{\nu\mu}$ (Ricci symmetry) | **Bounded** | $16\, M_\text{inv}\, C_\text{ps}$ | 16 index pairs contracted against pair-swap bound |
+| 6' | $R_{\mu\nu} = R_{\nu\mu}$ (Ricci symmetry, exact) | **Exact**${}^\dagger$ | — | given exact pair swap: `ricci_symmetric_exact` |
 | 7 | $\nabla_\mu G^{\mu\nu} = 0$ (contracted Bianchi) | Field | — | structure-level assumption; requires second Bianchi |
 | 8 | $\sum_{\rho\mu} g^{\rho\mu} C_{\rho\sigma\mu\nu} = 0$ (Weyl trace-free) | **Exact** | — | §5 — bypasses Ricci symmetry; counter-intuitive |
 | 9 | $C_{\rho\sigma\mu\nu} = C_{\mu\nu\rho\sigma}$ (Weyl pair-swap) | **Bounded** | $(1 + 32\, M_g\, M_\text{inv})\, C_\text{ps}$ | Riemann pair-swap + four Ricci-cross-terms |
 | 10 | $C_{\rho\sigma\mu\nu} = -C_{\rho\sigma\nu\mu}$ (Weyl antisym-34) | **Exact** | — | pointwise algebraic flip |
 | 11 | $C_{\rho\sigma\mu\nu} = -C_{\sigma\rho\mu\nu}$ (Weyl antisym-12) | **Bounded** | $2\, C_\text{ps}$ | structural reduction $C + C' = R + R'$ + Riemann antisym-12 |
+| 12 | $g^{\mu\nu} G_{\mu\nu} = -R$ (Einstein trace) | **Exact** | — | `einstein_trace`: Tr($g^{-1}g$) = 4, pure algebra |
+| 13 | $G_{\mu\nu} = G_{\nu\mu}$ (Einstein symmetry) | **Exact**${}^\dagger$ | — | given exact pair swap: Ricci symmetric + metric symmetric |
+
+${}^\dagger$ Entries marked "Exact${}^\dagger$" require a hypothesis of exact pair swap on the metric (or on a reference metric). On the lattice, pair swap holds only approximately; these identities thus hold exactly for the reference metric and approximately for the defected metric.
 
 **Key diagnostic**: identities that are *pointwise algebraic* in $\Gamma$ and $g$ become exact on the lattice; identities that require *commutativity of partial derivatives* or *antisymmetry after a summation move that was originally justified by integration-by-parts* become bounded only.
 
-The eight entries marked "Exact" or "Bounded" are derived as theorems from the five assumptions in Section 2. Entries #3 and #7 are structure-level fields because their derivation requires primitives beyond this note's scope (reference-metric regularity for pair-swap, or a covariant-derivative infrastructure for second Bianchi). Entry #5 is marked out-of-scope because the corresponding lattice tensor-index operator is a separate construction.
+**April 12, 2026 update**: Entry #3 (pair swap) has been upgraded from a structure-level field to a **derived theorem** (`pair_swap_from_valued_pipeline`). The derivation uses the error-propagating Valued pipeline: metric defect $\varepsilon$ propagates through Christoffel symbols → upper Riemann → lowered Riemann (via `abs_mul_sub_mul_bound` on the $g \cdot R$ product), combined with exact pair swap on the reference metric. The bound is $2 \cdot \text{riemannLowerError}(M_g, M_R, \text{red})$. Entries #2' and #6' (exact antisym-12 and Ricci symmetry) were also added, completing the classical GR chain for any metric with exact pair swap.
+
+The entries marked "Exact" or "Bounded" are derived as theorems from the five assumptions in Section 2. Entry #7 remains a structure-level field because its derivation requires a covariant-derivative infrastructure for second Bianchi. Entry #5 is marked out-of-scope because the corresponding lattice tensor-index operator is a separate construction.
 
 ---
 

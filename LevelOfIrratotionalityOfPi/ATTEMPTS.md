@@ -194,4 +194,8 @@ Each attempt narrows the space of possible proofs. After 9 attempts:
 
 **Why this is different**: It connects TWO of ADH's own research programs — the 2019-2021 difference equation program and the 2025 E/G function program. The bridge is the Frobenius tower, which CONVERTS a differential independence problem into a difference equation independence problem, where ADH's tools ALREADY WORK.
 
-**Status**: MOST CONCRETE PATH. The tools exist in published form. The verification is specific and finite.
+**Refined finding**: ADH 2021 covers difference×difference pairs, NOT differential×Mahler. ADH 2019 hypertranscendence is function-level, not value-level for the mixed pair. The precise gap: value-level independence of Mahler values from Fuchsian DE values. This is the natural next theorem in ADH's program.
+
+**The Frobenius Product Formula**: Under hypothesis π = Möbius(R(α)), Frobenius telescoping gives Möbius(π) = ∏ s(α^{p^k}) — a Mahler function value. The equation says: a DE value (π) equals a Mahler value (Φ(α)). Hypertranscendence at function level predicts this is impossible. Value-level proof requires Conjecture 4E.1.
+
+**Status**: THE PROBLEM IS PRECISELY LOCATED. It sits between ADH's two programs (2019 Mahler values, 2025 E/G functions). The bridging theorem (Mahler VALUE ⊥ Fuchsian DE VALUE) is the unique remaining step. When ADH or others prove it, K₂-opacity of π follows immediately from our framework.

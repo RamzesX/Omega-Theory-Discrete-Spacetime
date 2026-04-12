@@ -25,6 +25,7 @@ import OmegaTheory.Spacetime.Operators
 import OmegaTheory.Tensor.ErrorTensor
 import OmegaTheory.Tensor.Operations
 import OmegaTheory.Tensor.ValuedGeometry
+import OmegaTheory.Tensor.ValuedCurvature
 
 -- Layer 3: Discrete Differential Geometry
 import OmegaTheory.Geometry.Metric

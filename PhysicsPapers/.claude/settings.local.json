@@ -64,7 +64,8 @@
       "Bash(grep -rn \"^  sorry$\" OmegaTheory --include=\"*.lean\")",
       "Bash(grep -rn '^\\\\s*sorry\\\\b\\\\|:= sorry\\\\b\\\\|· sorry\\\\b\\\\| sorry$\\\\| sorry --\\\\|sorry\\\\s*$' /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalization/DiscreteSpacetime --include=\"*.lean\")",
       "Bash(git status:*)",
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "Bash(awk -F: '{s+=$2}END{print \"Total defs+thms: \" s}')"
     ]
   },
   "prefersReducedMotion": true

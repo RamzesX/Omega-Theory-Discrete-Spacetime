@@ -125,11 +125,13 @@ end ExactCurvatureSymmetries
 
 ---
 
-### Task 4 — Derive `pair_swap_bounded` from Valued Riemann (after Task 3)
+### Task 4 — ~~Derive `pair_swap_bounded` from Valued Riemann~~ DONE
 
-**What**: Show that `riemann_perturbation_bound` from `ValuedCurvature.lean` implies the `pair_swap_bounded` structure field — making it a THEOREM for any `SemiSmoothMetric` with a `RiemannErrorData`.
+Completed by Meridian. Two new theorems:
+- `riemannLower_perturbation_bound` in `ValuedCurvature.lean` — extends Valued pipeline to lowered Riemann via `abs_mul_sub_mul_bound` on the g·R product
+- `pair_swap_from_valued_pipeline` in `CurvatureSymmetries.lean` — combines lowered Riemann bound + exact pair swap on g_exact + `pair_swap_bounded_from_riemann_diff` → pair swap bounded as THEOREM
 
-**Files**: Add constructor to `CurvatureSymmetries.lean`
+The full error chain: metric defect ε → Christoffel error → Riemann error → lowered Riemann error → pair swap bound = 2 · riemannLowerError.
 
 ---
 
@@ -182,17 +184,9 @@ end ExactCurvatureSymmetries
 
 ---
 
-### Task 8 — Derive `pair_swap_bounded` as theorem (not structure field)
+### Task 8 — ~~Derive `pair_swap_bounded` as theorem~~ DONE (merged with Task 4)
 
-**What**: Using the completed Valued pipeline (Tasks 1), derive that any `SemiSmoothMetric` automatically satisfies the pair-swap bound — converting `BoundedSymmetryMetric.pair_swap_bounded` from a structure FIELD to a THEOREM.
-
-**Why**: This is the single most impactful structural improvement. Every curvature-symmetry bound (Ricci symmetry, Weyl pair-swap, contracted Bianchi) currently cascades from the assumed `pair_swap_bounded` field. Making it a theorem means the ENTIRE curvature-symmetry cascade follows from `SemiSmoothMetric.defect_bounded` alone.
-
-**Dependencies**: Task 1 (valuedRiemann), Task 3 (general-metric Ricci chain)
-
-**Effort**: ~100-200 lines once Task 1 is done
-
-**Files**: Modify `OmegaTheory/Geometry/CurvatureSymmetries.lean`
+Completed as part of Task 4. See `pair_swap_from_valued_pipeline` in `CurvatureSymmetries.lean`.
 
 ---
 

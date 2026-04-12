@@ -1,7 +1,7 @@
 /-
   OmegaTheory.Geometry.CurvatureSymmetries
 
-  Bounded curvature symmetries for semi-smooth metrics.
+  Curvature symmetries: both bounded and exact.
 
   Classical GR has EXACT symmetries: pair swap, Ricci symmetry, Bianchi.
   On the discrete lattice with defects, these hold APPROXIMATELY
@@ -10,10 +10,13 @@
   Classification:
   - EXACT: antisym34, first Bianchi (in Curvature.lean)
   - BOUNDED: pair swap, Ricci symmetry, contracted Bianchi (this file)
+  - EXACT (general): antisym12, Ricci symmetry given exact pair swap (this file)
+  - DERIVED: pair_swap_bounded from Valued pipeline (this file)
 -/
 
 import OmegaTheory.Geometry.Curvature
 import OmegaTheory.Defects.DefectTensor
+import OmegaTheory.Tensor.ValuedCurvature
 import Mathlib.Tactic
 
 namespace OmegaTheory.Geometry
@@ -488,5 +491,53 @@ theorem ricci_symmetric_exact (g : DiscreteMetric)
       = ricciTensor' g μ ν p := ricciTensor_eq_ricciTensor' g hsym hnd μ ν p
     _ = ricciTensor' g ν μ p := ricci'_symmetric_exact g hsym h_pair_swap μ ν p
     _ = ricciTensor g ν μ p := (ricciTensor_eq_ricciTensor' g hsym hnd ν μ p).symm
+
+/-! ## Pair Swap Bounded as THEOREM from Valued Pipeline
+
+The `BoundedSymmetryMetric` structure has `pair_swap_bounded` as a field.
+The theorem below derives it from:
+
+1. The Valued error-propagation pipeline (ValuedCurvature.lean):
+   `|R_{ρσμν}[g] - R_{ρσμν}[g_exact]| ≤ riemannLowerError`
+
+2. Exact pair swap on the reference metric g_exact:
+   `R_{ρσμν}[g_exact] = R_{μνρσ}[g_exact]`
+
+3. Triangle decomposition (`pair_swap_bounded_from_riemann_diff`):
+   exact + bounded difference → bounded pair swap
+
+This converts `pair_swap_bounded` from an assumption to a consequence
+of the metric's error structure. -/
+
+open OmegaTheory.Tensor
+
+/-- Pair swap bounded derived from the Valued pipeline.
+
+    Given a `SemiSmoothMetric` with `RiemannErrorData`, bounds on the actual
+    metric and exact Riemann, and exact pair swap on the reference metric,
+    the actual metric has bounded pair swap with bound `2 · riemannLowerError`.
+
+    This is the theorem that makes `BoundedSymmetryMetric.pair_swap_bounded`
+    derivable rather than assumed. -/
+theorem pair_swap_from_valued_pipeline
+    (ssm : SemiSmoothMetric) (red : RiemannErrorData ssm)
+    (M_g M_R : ℝ) (hMg : 0 ≤ M_g) (hMR : 0 ≤ M_R)
+    (hg_bounded : ∀ p ρ σ, |(ssm.g p) ρ σ| ≤ M_g)
+    (hR_bounded : ∀ ρ σ μ ν p,
+      |riemannTensor ssm.g_exact ρ σ μ ν p| ≤ M_R)
+    (h_exact_pair_swap : ∀ ρ σ μ ν p,
+      riemannLower ssm.g_exact ρ σ μ ν p =
+      riemannLower ssm.g_exact μ ν ρ σ p) :
+    ∀ ρ σ μ ν p,
+      |riemannLower ssm.g ρ σ μ ν p -
+       riemannLower ssm.g μ ν ρ σ p| ≤
+      2 * riemannLowerError M_g M_R red :=
+  pair_swap_bounded_from_riemann_diff ssm.g ssm.g_exact
+    h_exact_pair_swap
+    (riemannLowerError M_g M_R red)
+    (riemannLowerError_nonneg M_g M_R hMg hMR red)
+    (fun ρ σ μ ν p =>
+      riemannLower_perturbation_bound ssm red M_g M_R
+        hg_bounded hR_bounded ρ σ μ ν p)
 
 end OmegaTheory.Geometry

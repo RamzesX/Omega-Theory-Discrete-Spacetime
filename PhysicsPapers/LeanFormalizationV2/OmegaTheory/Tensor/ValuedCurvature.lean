@@ -244,4 +244,81 @@ theorem valuedRiemannTensor_err_bound
     riemannError red :=
   riemann_perturbation_bound ssm red ρ σ μ ν p
 
+/-! ## Lowered Riemann Error Bound
+
+The lowered Riemann tensor R_{ρσμν} = Σ_λ g_{ρλ} R^λ_{σμν} involves
+a metric-times-Riemann product. Its perturbation decomposes as:
+
+  R_lower[g] - R_lower[g_exact] = Σ_λ (g_{ρλ} R^λ[g] - g_exact_{ρλ} R^λ[g_exact])
+
+Each summand is bounded by `abs_mul_sub_mul_bound` with:
+- A = M_g (actual metric bound), B = M_R (exact Riemann bound)
+- εa = ε (metric error), εb = riemannError (Riemann error)
+
+Total: 4 summands × (M_g · riemannError + M_R · ε + ε · riemannError). -/
+
+/-- Per-summand error in the lowered Riemann tensor. -/
+noncomputable def riemannLowerSummandError
+    (M_g M_R : ℝ) (red : RiemannErrorData ssm) : ℝ :=
+  M_g * riemannError red + M_R * ssm.epsilon + ssm.epsilon * riemannError red
+
+/-- Total lowered Riemann error (sum over 4 values of λ). -/
+noncomputable def riemannLowerError
+    (M_g M_R : ℝ) (red : RiemannErrorData ssm) : ℝ :=
+  4 * riemannLowerSummandError M_g M_R red
+
+theorem riemannLowerError_nonneg
+    (M_g M_R : ℝ) (hMg : 0 ≤ M_g) (hMR : 0 ≤ M_R)
+    (red : RiemannErrorData ssm) :
+    0 ≤ riemannLowerError M_g M_R red := by
+  unfold riemannLowerError riemannLowerSummandError
+  have hR := riemannError_nonneg red
+  have hε := ssm.epsilon_nonneg
+  nlinarith
+
+/-- The metric component perturbation is bounded by ε.
+    Definitional unfolding of `component_bounded`. -/
+private theorem metric_component_perturbation
+    (ssm : SemiSmoothMetric) (p : LatticePoint) (ρ l : Fin 4) :
+    |(ssm.g p) ρ l - (ssm.g_exact p) ρ l| ≤ ssm.epsilon := by
+  have h := ssm.component_bounded p ρ l
+  simp only [SemiSmoothMetric.defectAt, defectTensor] at h
+  exact h
+
+/-- Lowered Riemann perturbation bound: the actual lowered Riemann tensor
+    differs from the exact by at most `riemannLowerError`.
+
+    `|R_{ρσμν}[g] - R_{ρσμν}[g_exact]| ≤ riemannLowerError M_g M_R red` -/
+theorem riemannLower_perturbation_bound
+    (ssm : SemiSmoothMetric) (red : RiemannErrorData ssm)
+    (M_g M_R : ℝ)
+    (hg_bounded : ∀ p ρ σ, |(ssm.g p) ρ σ| ≤ M_g)
+    (hR_bounded : ∀ ρ σ μ ν p,
+      |riemannTensor ssm.g_exact ρ σ μ ν p| ≤ M_R)
+    (ρ σ μ ν : Fin 4) (p : LatticePoint) :
+    |riemannLower ssm.g ρ σ μ ν p -
+     riemannLower ssm.g_exact ρ σ μ ν p| ≤
+    riemannLowerError M_g M_R red := by
+  unfold riemannLower riemannLowerError
+  -- Combine the two sums into a single sum of differences
+  rw [← Finset.sum_sub_distrib]
+  -- Apply triangle inequality
+  calc |Finset.univ.sum fun l =>
+          (ssm.g p) ρ l * riemannTensor ssm.g l σ μ ν p -
+          (ssm.g_exact p) ρ l * riemannTensor ssm.g_exact l σ μ ν p|
+      ≤ Finset.univ.sum fun l =>
+          |(ssm.g p) ρ l * riemannTensor ssm.g l σ μ ν p -
+           (ssm.g_exact p) ρ l * riemannTensor ssm.g_exact l σ μ ν p| :=
+        Finset.abs_sum_le_sum_abs _ _
+    _ ≤ Finset.univ.sum fun _ => riemannLowerSummandError M_g M_R red := by
+        apply Finset.sum_le_sum; intro l _
+        unfold riemannLowerSummandError
+        exact abs_mul_sub_mul_bound
+          (hg_bounded p ρ l)
+          (hR_bounded l σ μ ν p)
+          (metric_component_perturbation ssm p ρ l)
+          (riemann_perturbation_bound ssm red l σ μ ν p)
+    _ = 4 * riemannLowerSummandError M_g M_R red := by
+        simp [Finset.sum_const, Finset.card_fin, nsmul_eq_mul]
+
 end OmegaTheory.Tensor

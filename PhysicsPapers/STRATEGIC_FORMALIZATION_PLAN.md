@@ -62,59 +62,45 @@
 
 ## Remaining TODO (ordered by priority)
 
-### Task 1 — Extend Valued pipeline to valuedRiemann
+### Task 1 — ~~Extend Valued pipeline to valuedRiemann~~ DONE
 
-**What**: Build `Tensor/ValuedCurvature.lean` with `valuedRiemannTensor` propagating errors from `valuedChristoffelSymbol` through Christoffel differences + products.
-
-**Why**: This is the step that would let us DERIVE `BoundedSymmetryMetric.pair_swap_bounded` as a theorem instead of a structure field. Currently the curvature-symmetry cascade relies on an assumed pair-swap bound; with valued Riemann, we can compute the bound from the metric's own defect structure.
-
-**Dependencies**: `Tensor/ValuedGeometry.lean` (done — `valuedChristoffelSymbol_err_bound` is proven)
-
-**Effort**: ~200-400 lines, 0-2 sorries expected. Uses `abs_mul_sub_mul_bound` chain on Christoffel differences.
-
-**Files**: Create `OmegaTheory/Tensor/ValuedCurvature.lean`
+Completed: `Tensor/ValuedCurvature.lean` — 0 sorry, proven end-to-end.
 
 ---
 
-### Task 2 — Add U(1) charge current as second Noether instance
+### Task 2 — ~~Add U(1) charge current as second Noether instance~~ DONE
 
-**What**: Add a complex-scalar U(1) charge current to `NoetherMetaStructure.ConservedCurrent`. Currently the meta-structure has ONE non-trivial inhabitant (harmonic scalar). Adding a second makes the "fourth Noether law as meta-structure" claim earn its keep.
-
-**Why**: The strategic analysis flagged this as a key weakness: "NoetherMetaStructure has one instance; the type signature has more mathematical ambition than its population."
-
-**Dependencies**: `Conservation/Information.lean` (harmonic scalar instance exists)
-
-**Effort**: ~100-150 lines. Define a complex scalar field, U(1) gauge transformation, charge current `J^μ = Im(φ* ∂_μ φ)`, prove `div J = 0` for solutions of the discrete Klein-Gordon equation.
-
-**Files**: Modify `OmegaTheory/Conservation/NoetherMetaStructure.lean`
+Completed: `linkCurrent` + `u1ChargeConservedCurrent` in `NoetherMetaStructure.lean` — 0 sorry.
 
 ---
 
-### Task 3 — Port V1 general-metric Ricci symmetry chain
+### Task 3 — EXACT curvature symmetry chain for general metrics (CURRENT)
 
-**What**: Port V1's `Curvature/Symmetries.lean` + `Bianchi.lean` + `Ricci.lean` — full algebraic proofs of `ricci_symmetric` on ANY symmetric metric, not just `BoundedSymmetryMetric`.
+**What**: Prove the exact (not bounded) curvature symmetry chain for any symmetric nondegenerate metric with exact pair swap:
 
-**Why**: V2 currently only proves Ricci symmetry (bounded) on `BoundedSymmetryMetric`. V1 has the EXACT `ricci_symmetric` for general metrics with exact pair swap. Porting strengthens the curvature theory.
+1. `riemann_lower_pair_swap_exact`: hypothesis — `R_{ρσμν} = R_{μνρσ}`
+2. `riemann_lower_antisym_12_exact`: derived — `R_{ρσμν} = -R_{σρμν}`
+3. `ricci_symmetric_exact`: derived — `R_{μν} = R_{νμ}`
 
-**Dependencies**: `Geometry/Curvature.lean` (existing), `Geometry/CurvatureSymmetries.lean` (existing)
+**Why**: V2 only has BOUNDED versions (`|R_{μν} - R_{νμ}| ≤ 16·M·C·ε`). The EXACT chain is the classical GR result for smooth metrics. Having both the exact and bounded versions shows the full picture: smooth → exact symmetry, lattice with defects → bounded symmetry.
 
-**Effort**: ~300-500 lines. V1 has the proofs; main work is namespace adaptation.
+**Proof chain** (from V1, verified 0-sorry):
+- Use antisym34 + first_bianchi_lower + pair_swap_hypothesis to prove antisym12
+- Use antisym12 + `ricciTensor_eq_ricciTensor'` bridge to prove Ricci symmetry
 
-**Files**: Create `OmegaTheory/Geometry/CurvatureChain.lean` or add to `CurvatureSymmetries.lean`
+**Dependencies**: `Geometry/Curvature.lean` (has the building blocks)
+
+**Effort**: ~100-150 lines, 0 sorries expected. Pure algebra.
+
+**Files**: Add section to `OmegaTheory/Geometry/CurvatureSymmetries.lean`
 
 ---
 
-### Task 4 — Add Mathlib ODE bridge for healing flow
+### Task 4 — Derive `pair_swap_bounded` from Valued Riemann (after Task 3)
 
-**What**: Create `HealingFlow/MathlibBridge.lean` connecting the discrete healing flow to Mathlib's `Analysis.ODE.PicardLindelof` + `Analysis.ODE.Gronwall` + `Dynamics.OmegaLimit`. Reframe the healing flow as a legitimate ODE with existence/uniqueness.
+**What**: Show that `riemann_perturbation_bound` from `ValuedCurvature.lean` implies the `pair_swap_bounded` structure field — making it a THEOREM for any `SemiSmoothMetric` with a `RiemannErrorData`.
 
-**Why**: Currently the healing flow is a discrete forward-Euler update with no connection to continuous-time ODE theory. Mathlib has full Picard-Lindelöf, Grönwall, and ω-limit sets. Connecting them would give the healing-flow convergence theorem real analytical backing.
-
-**Dependencies**: `HealingFlow/Lyapunov.lean` (existing), Mathlib ODE modules
-
-**Effort**: ~200-300 lines. Mostly type-level bridging + applying Mathlib lemmas.
-
-**Files**: Create `OmegaTheory/HealingFlow/MathlibBridge.lean`
+**Files**: Add constructor to `CurvatureSymmetries.lean`
 
 ---
 

@@ -185,6 +185,16 @@ noncomputable def discreteDivergence (v : LatticePoint → Fin 4 → ℝ)
     (p : LatticePoint) : ℝ :=
   Finset.univ.sum fun μ : Fin 4 => backwardDiff (fun q => v q μ) μ p
 
+/-! ## Mixed Shift Commutativity -/
+
+theorem shiftFin_shiftBackFin_comm (n : LatticePoint) (μ ν : Fin 4) :
+    shiftFin (shiftBackFin n μ) ν = shiftBackFin (shiftFin n ν) μ := by
+  ext i; simp [shiftFin, shiftBackFin]; ring
+
+theorem shiftBackFin_shiftFin_comm (n : LatticePoint) (μ ν : Fin 4) :
+    shiftBackFin (shiftFin n μ) ν = shiftFin (shiftBackFin n ν) μ := by
+  ext i; simp [shiftFin, shiftBackFin]; ring
+
 /-! ## Operator Commutativity -/
 
 theorem forwardDiff_comm (f : ScalarField) (μ ν : Fin 4) (p : LatticePoint) :
@@ -204,6 +214,30 @@ theorem backwardDiff_comm (f : ScalarField) (μ ν : Fin 4) (p : LatticePoint) :
   field_simp
   rw [hcomm]
   ring
+
+/-! ## Symmetric Difference Commutativity -/
+
+theorem symmetricDiff_comm (f : ScalarField) (μ ν : Fin 4) (p : LatticePoint) :
+    symmetricDiff (fun q => symmetricDiff f ν q) μ p =
+    symmetricDiff (fun q => symmetricDiff f μ q) ν p := by
+  unfold symmetricDiff
+  have hcomm1 := shiftFin_comm p μ ν
+  have hcomm2 := shiftBackFin_comm p μ ν
+  have hcomm3 := shiftFin_shiftBackFin_comm p ν μ
+  have hcomm4 := shiftBackFin_shiftFin_comm p ν μ
+  field_simp
+  rw [hcomm1, hcomm2, hcomm3, hcomm4]
+  ring
+
+/-! ## Forward Difference Linearity Supplement -/
+
+theorem forwardDiff_sub (f g : ScalarField) (μ : Fin 4) (p : LatticePoint) :
+    forwardDiff (f - g) μ p = forwardDiff f μ p - forwardDiff g μ p := by
+  unfold forwardDiff; simp only [Pi.sub_apply]; field_simp; ring
+
+theorem forwardDiff_neg (f : ScalarField) (μ : Fin 4) (p : LatticePoint) :
+    forwardDiff (-f) μ p = -forwardDiff f μ p := by
+  unfold forwardDiff; simp only [Pi.neg_apply]; field_simp; ring
 
 /-! ## Discrete Product Rule (Leibniz) -/
 

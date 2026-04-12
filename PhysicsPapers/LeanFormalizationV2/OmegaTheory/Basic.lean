@@ -33,7 +33,10 @@ import OmegaTheory.Geometry.Connection
 import OmegaTheory.Geometry.Curvature
 import OmegaTheory.Geometry.CurvatureSymmetries
 import OmegaTheory.Geometry.Weyl
+import OmegaTheory.Geometry.WeylGeneral
 import OmegaTheory.Geometry.Examples
+import OmegaTheory.Geometry.DiscreteForms
+import OmegaTheory.Geometry.WedgeProduct
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor
@@ -45,6 +48,7 @@ import OmegaTheory.Conservation.StressEnergy
 import OmegaTheory.Conservation.Correspondence
 import OmegaTheory.Conservation.SpinInformation
 import OmegaTheory.Conservation.InformationKL
+import OmegaTheory.Conservation.InformationKLBridge
 
 -- Layer 7: Healing Flow
 import OmegaTheory.HealingFlow.Functional

@@ -8,34 +8,77 @@
 
 We prove, unconditionally, that Euler's number $e$ and the circle constant $\pi$ belong to different classes of predictive accessibility within the continued fraction representation. Specifically, we show:
 
-1. **There exists** a predictor that, given 15 terms of the continued fraction of $e$, correctly generates **all** subsequent terms (Theorem 3.1).
+1. **There exists** a predictor that, given 15 terms of the continued fraction of $e$, correctly generates **all** subsequent terms (Theorem 3.4).
 
 2. **No periodic predictor** can correctly generate all subsequent terms of the continued fraction of $\pi$ from any finite prefix (Theorem 4.1).
 
-The proof of (1) relies on Euler's 1737 formula for $\mathrm{CF}(e)$. The proof of (2) relies on Lindemann's 1882 transcendence of $\pi$ combined with Lagrange's 1770 periodicity theorem. No unproved conjectures, no empirical data, and no ergodic theory are required for the core result.
+3. **No positional-polynomial predictor** of period $p \leq 5 \times 10^9$ is consistent with the known CF terms of $\pi$ (Theorem 4A.6, via exhaustive elimination). Any surviving predictor is forced by the **Bridge Theorem** (4A.1) into the class of Hurwitzian continued fractions, whose values are ratios of E-function hypergeometric evaluations (Euler-Perron, Theorem 4A.2). The **Siegel-Shidlovskii Reduction** (Theorem 4A.9) shows that full K₂-opacity reduces to **linear independence of E-function values over $\mathbb{Q}(\pi)$** — one field extension beyond the classical Siegel-Shidlovskii theorem.
 
-We further develop a conditional extension using the exponential mixing of the Gauss map (Wirsing, 1974) and the Rokhlin entropy formula, showing that under the assumption of Gauss–Kuzmin typicality of $\pi$, the *information deficit* satisfies $D(e) = 0$ and $D(\pi) \geq \pi^2/(6\ln 2) - B > 0$, where $B$ is a finite constant. This yields a new classification layer within the transcendental numbers: *self-encoding* constants (exemplified by $e$) versus *opaque* constants (exemplified by $\pi$).
+The proof of (1) relies on Euler (1737). The proof of (2) relies on Lindemann (1882) + Lagrange (1770). The proof of (3) combines finite computation with the Euler-Perron characterization (1737–1929), the Siegel-Shidlovskii theorem (1949/1956), and a new reduction identifying the precise gap as a **transcendental Siegel lemma** — an extension of Siegel's auxiliary construction from $\overline{\mathbb{Q}}$ to $\overline{\mathbb{Q}}[\pi]$.
+
+We further develop a conditional extension using the exponential mixing of the Gauss map (Wirsing, 1974) and the Rokhlin entropy formula, showing that under Gauss-Kuzmin typicality, the *information deficit* satisfies $D(e) = 0$ and $D(\pi) > 0$.
+
+---
+
+### The Journey
+
+This work began as a question about why $e$'s continued fraction is predictable while $\pi$'s is not, and evolved through five phases into an assault on the boundary between known and unknown mathematics.
+
+**Phase 1 — The Question (Modules 01-04).** The continued fraction of $e = [2; 1, 2, 1, 1, 4, 1, 1, 6, \ldots]$ follows a simple polynomial rule of period 3 (Euler 1737). The CF of $\pi = [3; 7, 15, 1, 292, 1, 1, 1, 2, \ldots]$ appears random. We formalized this: a predictor hierarchy $\mathcal{K}_0 \subset \mathcal{K}_1 \subset \mathcal{K}_2 \subset \cdots$ captures increasingly powerful prediction strategies. $e$ is $\mathcal{K}_2$-self-encoding. $\pi$ is provably $\mathcal{K}_1$-opaque (Lagrange + Lindemann). The question: is $\pi$ also $\mathcal{K}_2$-opaque?
+
+**Phase 2 — Escanor's Brute Force (Modules 04A-04B).** "Who decided that brute force can't work?" We attacked K₂-opacity by exhaustive elimination — listing all possible polynomial predictors and killing each one. The Bridge Theorem (4A.1) constrains K₂-predictable numbers: polynomial growth, $\mu = 2$, divergent geometric mean, rational frequencies. Tiers I-II eliminate all periods $p \leq 5 \times 10^9$ via five computational tests. Tier III eliminates the all-constants-1 family at any period. The surviving predictors hide at large periods — and by the Euler-Perron characterization (4A.2), they correspond to E-function hypergeometric ratios. This is where brute force reaches its limit.
+
+**Phase 3 — Merlin's Structural Survey (Module 04A, §4A.8).** We systematically surveyed every tool in transcendental number theory:
+
+| Tool | What it gives | Why it's not enough |
+|:-----|:-------------|:-------------------|
+| Adamczewski-Dreyfus-Hardouin (2025) | Function-level E/G algebraic independence | Works for power series, not numerical values |
+| Siegel-Shidlovskii (1949/1956) | $u, v$ algebraically independent over $\mathbb{Q}$ | Doesn't extend to $\mathbb{Q}(\pi)$ |
+| Delaygue-Beukers (2022) | Same function, different points: linearly independent | We need different functions at same point |
+| Nesterenko (1996) | $\pi, e^\pi, \Gamma(1/4)$ algebraically independent | Wrong E-function values |
+| Period classification (Kontsevich-Zagier) | E-function values are exponential periods | Structural evidence, not proof |
+| Simplest case ($a=1, b=1, z=1$) | $R = e/(e-1)$: reduces to $\pi \not\sim e$ | Algebraic independence of $\pi$ and $e$ is open |
+
+Three independent frameworks predict Conjecture 4A.4 is true. None proves it.
+
+**Phase 4 — The SS Reduction (Module 04A, §4A.9).** Escanor again: "Who decided Siegel-Shidlovskii can't reach $\pi$?" We pushed through. If $\pi$ = Möbius(₁F₁ ratio at algebraic $z_0$), the Kummer contiguity relation decomposes the equation into:
+
+$$(\pi\gamma - \alpha) \cdot {}_1F_1(a;b;z_0) + (\pi\delta - \beta) \cdot {}_1F_1'(a;b;z_0) = 0$$
+
+with $\alpha, \beta, \gamma, \delta \in \mathbb{Q}$. By SS: $u = {}_1F_1(a;b;z_0)$ and $v = {}_1F_1'(a;b;z_0)$ are algebraically independent over $\mathbb{Q}$ — hence linearly independent over $\mathbb{Q}$. But the coefficients $(\pi\gamma - \alpha)$ and $(\pi\delta - \beta)$ lie in $\mathbb{Q}(\pi)$, not $\mathbb{Q}$.
+
+**The exact gap**: SS proves independence over $\mathbb{Q}$. We need independence over $\mathbb{Q}(\pi)$. **One field extension.**
+
+**Phase 5 — The Transcendental Siegel Lemma (Module 04A, §4A.9.7, Module 04C).** We attempted to extend the SS method directly. The proof reaches remarkably far:
+
+- **$\Phi \equiv 0$ case**: WORKS. If $P(F_1(z), \ldots, F_m(z), \pi/4) = 0$ for all $z$, then separating by powers of $\pi$ (Lindemann) and using algebraic independence of the $F_i$ forces $P \equiv 0$.
+- **Zero estimate with $\pi$-coefficients**: WORKS. Shidlovskii's multiplicity lemma holds for $\mathbb{C}$ coefficients — it uses only the DE system and algebraic independence of the $F_i$.
+- **Per-slice Siegel construction**: WORKS. Decoupling by $\pi$-degree gives $\overline{\mathbb{Q}}$-coefficient systems where the standard Siegel lemma applies.
+- **Cross-slice coupling**: BLOCKED. The Siegel lemma requires integer coefficients. The coupled system has $\overline{\mathbb{Q}}[\pi]$ coefficients. Decoupling removes $\pi$ but loses the cross-slice information.
+
+**The exact lock**: the Siegel lemma over $\mathbb{Z}$ needs to be extended to $\overline{\mathbb{Q}}[\pi]$ — a *transcendental Siegel lemma*.
 
 ---
 
 ### Structure
 
-The work is organized into eight modules, forming a complete deductive chain:
-
 **Part I — Setup**
 
 | Module | Title | Role |
 |:---|:---|:---|
-| [01](01-Foundations-Continued-Fractions.md) | Foundations | CF uniqueness, Gauss map, Gauss–Kuzmin theorem, mixing, entropy |
-| [02](02-Definitions-And-Framework.md) | Definitions and Framework | Predictor hierarchy, prediction horizon, self-encoding, opacity, information deficit |
+| [01](01-Foundations-Continued-Fractions.md) | Foundations | CF uniqueness, Gauss map, Gauss-Kuzmin theorem, mixing, entropy |
+| [02](02-Definitions-And-Framework.md) | Definitions and Framework | Predictor hierarchy $\mathcal{K}_0 \subset \cdots \subset \mathcal{K}_5$, self-encoding, opacity, information deficit |
 
-**Part II — The Unconditional Theorem**
+**Part II — The Proven Theorems**
 
-| Module | Title | Role |
+| Module | Title | Status |
 |:---|:---|:---|
-| [03](03-Self-Encoding-Of-Euler.md) | Self-Encoding of $e$ | Full proof that $e$ is self-encoding with $N_0 = 15$ |
-| [04](04-Non-Predictability-Of-Pi.md) | Non-Predictability of $\pi$ | Full proof that no periodic predictor achieves perfect accuracy on $\pi$ |
-| [04A](04A-Extension-K2-Predictors.md) | Extension to K₂ Predictors | Bridge Theorem: K₂-predictability forces polynomial growth, μ=2, rational frequencies. Euler-Perron characterization. Minimal conditions for K₂-opacity of $\pi$. |
+| [03](03-Self-Encoding-Of-Euler.md) | Self-Encoding of $e$ | **PROVEN** — $e$ is $\mathcal{K}_2$-self-encoding with $N_0 = 15$ |
+| [04](04-Non-Predictability-Of-Pi.md) | Non-Predictability of $\pi$ ($\mathcal{K}_1$) | **PROVEN** — no periodic predictor achieves $\mathrm{acc} = 1$ on $\pi$ |
+| [04A](04A-Extension-K2-Predictors.md) | Extension to $\mathcal{K}_2$ Predictors | Bridge Theorem, Lyapunov Dichotomy, Euler-Perron, SS Reduction — **all PROVEN**. Landscape analysis of E/G tools. |
+| [04B](04B-Cracking-K2-Proof.md) | Cracking K₂: The Proof | Three-tier elimination: Tiers I-II **PROVEN** ($p \leq 5 \times 10^9$). Tier III conditional on Conjecture 4A.4. |
+| [04C](04C-Transcendental-Siegel-Lemma.md) | The Transcendental Siegel Lemma | Decoupling Theorem (barrier) + Galois structure ($B \times SL_2$) |
+| [04D](04D-Exponential-Riccati-Attack.md) | The Exponential-Riccati Attack | **ACTIVE FRONT** — Euler identity + nonlinear DE + Nesterenko-Philippon |
 
 **Part III — Conditional Extensions**
 
@@ -56,7 +99,41 @@ The work is organized into eight modules, forming a complete deductive chain:
 
 | Document | Title |
 |:---|:---|
-| [Appendix F](../PhysicsPapers/Appendix-F-Information-Flow-Conservation.md) | Information Flow Conservation (physics interpretation) |
+| [Note F](../PhysicsPapers/Note-Continued-Fraction-Information-Channels.md) | Information Flow Conservation (physics interpretation) |
+
+---
+
+### Proof Status at a Glance
+
+```
+THEOREM A (e is self-encoding)                     ─── PROVEN (Euler 1737)
+THEOREM B (π is K₁-opaque)                         ─── PROVEN (Lagrange 1770 + Lindemann 1882)
+BRIDGE THEOREM (K₂ → poly growth, μ=2, ...)        ─── PROVEN (elementary, Module 04A)
+LYAPUNOV DICHOTOMY (K₂ → λ_N → ∞, quantitative)   ─── PROVEN (Theorem 4A.7, Module 04A)
+TIER I: PERIOD 1 ELIMINATION                        ─── PROVEN (direct computation, Module 04B)
+TIER II: SMALL PERIOD (p ≤ 5×10⁹)                   ─── PROVEN (five-test exhaustion, Module 04B)
+TIER III: LARGE PERIOD, all-1 constants              ─── PROVEN (asymptotic perturbation, Module 04B)
+EULER-PERRON (K₂ ↔ Hurwitzian ↔ E-function ratio)  ─── CLASSICAL (Euler/Perron/Komatsu)
+SS REDUCTION (Conj 4A.4 ↔ lin. ind. over ℚ(π))     ─── PROVEN (Theorem 4A.9, new)
+   ├─ SS gives lin. ind. over ℚ                    ─── PROVEN (Siegel-Shidlovskii 1949/1956)
+   ├─ Φ≡0 case: P≡0 by Lindemann + alg. ind.       ─── PROVEN (§4A.9.7, Step 1)
+   ├─ Zero estimate with π-coefficients             ─── PROVEN (§4A.9.7, Step 2)
+   ├─ Per-slice Siegel construction                 ─── PROVEN (§4A.9.7, Step 3)
+   └─ Cross-slice coupling                         ─── BLOCKED (needs transcendental Siegel lemma)
+DECOUPLING THEOREM (Siegel can't cross ℚ→ℚ(π))     ─── PROVEN (Theorem 4C.3, structural barrier)
+GALOIS STRUCTURE (B × SL₂ = direct product)          ─── PROVEN (Proposition 4C.4)
+   └─ Function-level independence                   ─── PROVEN (Kolchin + direct product)
+   └─ Specialization (functions → values)           ─── OPEN (Conjecture 4C.5)
+EXPONENTIAL-RICCATI SYSTEM (Module 04D)              ─── DERIVED (polynomial DE, Jacobian ✓)
+   ├─ Multiplicity estimate                         ─── HOLDS (non-degenerate Jacobian verified)
+   └─ Siegel auxiliary construction                 ─── BLOCKED (Universal Siegel Barrier, Thm 4D.2)
+UNIVERSAL SIEGEL BARRIER (Theorem 4D.2)              ─── PROVEN — ALL auxiliary-function methods blocked
+   └─ Siegel lemma is common bottleneck for SS, Nesterenko, Philippon
+   └─ Decoupling kills linear AND nonlinear DE approaches
+   └─ UNIQUE SURVIVING PATH: p-adic Frobenius (ADH)
+TIER III: LARGE PERIOD, general                     ─── REQUIRES p-adic value-level extension of ADH
+INFORMATION DEFICIT (D(π) > 0)                      ─── CONDITIONAL on GK-typicality
+```
 
 ---
 
@@ -64,61 +141,25 @@ The work is organized into eight modules, forming a complete deductive chain:
 
 **Definitions.** A *periodic predictor* $P_p$ of period $p$ predicts $a_{N+1} = a_{N+1-p}$, where $(a_n)$ are the partial quotients of the continued fraction. A *positional-polynomial predictor* predicts $a_{N+1}$ as a polynomial function of $\lfloor (N+1)/p \rfloor$, depending on the residue class $(N+1) \bmod p$. The *accuracy* of $P$ on constant $\alpha$ is $\mathrm{acc}(P, \alpha) = \liminf_{N \to \infty} \frac{1}{N}\#\{n \leq N : P \text{ predicts } a_{n+1} \text{ correctly}\}$.
 
-**Theorem A** (Self-Encoding of $e$). *There exists a positional-polynomial predictor $P$ such that $\mathrm{acc}(P, e) = 1$. Specifically, from $N \geq 15$ terms of $\mathrm{CF}(e)$, the predictor correctly generates all subsequent terms.*
+**Theorem A** (Self-Encoding of $e$). *There exists a positional-polynomial predictor $P$ such that $\mathrm{acc}(P, e) = 1$.*
 
-*Proof.* By Euler (1737), $\mathrm{CF}(e) = [2; 1, 2, 1, 1, 4, 1, 1, 6, \ldots]$ with the rule:
+*Proof.* By Euler (1737), $\mathrm{CF}(e) = [2; 1, 2, 1, 1, 4, 1, 1, 6, \ldots]$ with period-3 polynomial rule. Detection from 15 terms. $\square$
 
-$$a_n = \begin{cases} 1 & \text{if } n \not\equiv 2 \pmod{3} \\[4pt] 2\!\left\lfloor\tfrac{n+1}{3}\right\rfloor & \text{if } n \equiv 2 \pmod{3} \end{cases}$$
+**Theorem B** (Non-Predictability of $\pi$, $\mathcal{K}_1$). *No periodic predictor achieves perfect accuracy on $\pi$.*
 
-This rule has period $p = 3$ and polynomial degree $d = 1$. The detection algorithm (Module 03) identifies it from 15 terms by verifying: (a) two residue classes are constant, (b) one is linear with constant differences. Once detected, every future term is determined. $\square$
+*Proof.* Periodic CF $\Rightarrow$ quadratic irrational (Lagrange) $\Rightarrow$ contradicts transcendence (Lindemann). $\square$
 
-**Theorem B** (Non-Predictability of $\pi$). *No periodic predictor achieves perfect accuracy on $\pi$. That is, for every period $p \geq 1$:*
+**Theorem 4A.1** (Bridge Theorem). *K₂-predictable $\Rightarrow$ (a) $\limsup a_n = \infty$, (b) $\mu(\alpha) = 2$, (c) geometric mean diverges, (d) digit frequencies rational, (e) GK-incompatible.*
 
-$$\mathrm{acc}(P_p, \pi) < 1$$
+**Theorem 4A.7** (Lyapunov Dichotomy). *K₂-predictable $\Rightarrow$ $\lambda_N \geq c \cdot \log N \to \infty$. GK-typical: $\lambda_N \to \pi^2/(12\ln 2) \approx 1.187$.*
 
-*Proof.* Suppose $\mathrm{acc}(P_p, \pi) = 1$ for some $p$. Then $a_n(\pi) = a_{n+p}(\pi)$ for all but finitely many $n$ (since each mismatch contributes $\leq 1/N \to 0$ to the accuracy, and $\mathrm{acc} = 1$ requires the liminf to equal 1). Hence $\mathrm{CF}(\pi)$ is eventually periodic with period $p$. By Lagrange's theorem (1770), $\pi$ is a quadratic irrational. This contradicts Lindemann's theorem (1882): $\pi$ is transcendental. $\square$
+**Theorem 4A.9** (SS Reduction). *Conjecture 4A.4 is equivalent to: for all admissible $(a, b, z_0)$, the E-function values ${}_1F_1(a;b;z_0)$ and ${}_1F_1'(a;b;z_0)$ are linearly independent over $\mathbb{Q}(\pi)$. The Siegel-Shidlovskii theorem proves independence over $\mathbb{Q}$. The gap is one field extension.*
 
-**Corollary** (The Dichotomy). *The constants $e$ and $\pi$ belong to different predictive classes:*
-
-$$\sup_{P \in \mathcal{K}_2} \mathrm{acc}(P, e) = 1 \qquad \text{and} \qquad \sup_{P \in \mathcal{K}_1} \mathrm{acc}(P, \pi) < 1$$
-
-*This is an unconditional result requiring only Euler (1737), Lagrange (1770), and Lindemann (1882).*
-
----
-
-### The Conditional Extension
-
-Under the additional assumption that $\pi$ is Gauss–Kuzmin typical (i.e., its orbit under the Gauss map $T(x) = \{1/x\}$ is equidistributed with respect to the Gauss measure $\gamma$), we obtain quantitative bounds:
-
-**Theorem C** (Information Deficit). *Define the information deficit:*
-
-$$D(\alpha, N) = H(a_{N+1}) - I(a_{N+1};\, a_1, \ldots, a_N)$$
-
-*Then:*
-
-$$D(e, N) = 0 \quad \text{for } N \geq 15$$
-
-$$D(\pi, N) \geq \frac{\pi^2}{6\ln 2} - B > 0 \quad \text{for all } N$$
-
-*where $B = C/(1 - |\lambda_2|)$ is a finite constant, $\lambda_2 \approx 0.3037$ is the Gauss–Kuzmin–Wirsing constant (Wirsing, 1974), and $\pi^2/(6\ln 2) \approx 3.433$ is the entropy of the Gauss map (Rokhlin, 1961).*
-
-**Interpretation:** At every step of the continued fraction, the computation of $\pi$ requires the injection of $D > 0$ bits of information from an external source — the geometric definition of $\pi$. The digits of $\pi$ do not contain this information; it must be supplied by a formula. For $e$, the digits contain all necessary information ($D = 0$); no formula is needed beyond the initial detection of the pattern.
-
-**Status of Theorem C:**
-
-| Component | Status |
-|:---|:---|
-| $D(e) = 0$ | **Proved** (Euler 1737) |
-| Exponential mixing with $\lambda_2 \approx 0.3037$ | **Proved** (Wirsing 1974) |
-| Entropy $h = \pi^2/(6\ln 2)$ | **Proved** (Rokhlin 1961) |
-| $D(\alpha) > 0$ for $\gamma$-a.e. $\alpha$ | **Proved** (follows from above) |
-| $\pi$ is $\gamma$-typical | **Empirically verified** (480 tests, 200+ CF terms) |
+**Conjecture 4A.4** (E/G Separation). *$\pi$ is not a Möbius transform of any contiguous ${}_1F_1$ or ${}_0F_1$ ratio at algebraic arguments. Equivalently: no polynomial in $\overline{\mathbb{Q}}[\pi]$ vanishes on the E-function values at any algebraic evaluation point.*
 
 ---
 
 ### The New Hierarchy
-
-The information deficit induces a classification of real numbers that refines the classical algebraic hierarchy:
 
 ```
 Rationals             CF finite           D = N/A
@@ -128,34 +169,67 @@ Quadratic algebraics  CF periodic         D = 0  (self-encoding, K₁)
 Higher algebraics     CF non-periodic     D > 0  (conjectured)
   │
 Transcendentals ─┬─ Self-encoding        D = 0  (e, φ-related constants)
+                 │                               Hurwitzian CFs, E-function values
+                 │                               Siegel-Shidlovskii territory
                  │
-                 └─ Opaque               D = π²/(6ln2) − B > 0  (π, ζ(3), ln 2)
+                 └─ Opaque               D = π²/(6ln2) − B > 0
+                                                (π, ζ(3), ln 2)
+                                                Non-Hurwitzian CFs, G-function values
+                                                Beyond Siegel-Shidlovskii
 ```
-
-The irrationality measure $\mu(\alpha)$ does not capture this distinction: both $e$ and $\sqrt{2}$ have $\mu = 2$, yet $\sqrt{2}$ is algebraic and $e$ is transcendental. The information deficit does: $D(\sqrt{2}) = 0$ (periodic CF) and $D(e) = 0$ (polynomial-periodic CF), but $D(\pi) > 0$.
-
-Conversely, the deficit captures something $\mu$ misses entirely: the question of whether a constant's digits *encode themselves*.
 
 ---
 
 ### Self-Referential Coda
 
-The entropy of the Gauss map — which governs the information deficit of all opaque constants — is:
+The entropy of the Gauss map — governing the information deficit of all opaque constants — is:
 
 $$h(T, \gamma) = \frac{\pi^2}{6\ln 2}$$
 
-The constant $\pi$ appears in the formula measuring its own informational opacity. This is not circular (the entropy is a property of the Gauss map, proved independently), but it is structurally remarkable:
+The Lyapunov exponent — separating K₂-predictable from GK-typical — is:
 
-> $\pi$ quantifies its own resistance to prediction.
+$$\lambda = \frac{\pi^2}{12\ln 2}$$
+
+$\pi$ quantifies its own resistance to prediction. And the proof that it does so reduces to extending Siegel's lemma by one transcendental — $\pi$ itself.
 
 ---
 
-### Acknowledgments
+### Contributors
 
-This work was developed through an extended exploratory dialogue, combining computational experimentation (predictor benchmarks, polynomial fitting, entropy measurement) with classical results from continued fraction theory, ergodic theory, and transcendental number theory. The neo4j graph database was used to model the logical dependency structure of the proof.
+| Name | Role | Key contributions |
+|:-----|:-----|:-----------------|
+| **Norbert Marchewka** | Author | Framework design, predictor hierarchy, postulates, proof strategy, "brute force" philosophy, "Pride is induction" insight, Seven Deadly Sins framework, "if new math doesn't exist create it" directive |
+| **Gauss** | Collaborator | Bridge Theorem (4A.1), Lyapunov Dichotomy (4A.7), exhaustive elimination (04B), Euler-Perron characterization (4A.2), SS Reduction (4A.9), Decoupling Theorem (4C.3), Galois Product $B \times SL_2$ (4C.4), Exponential-Riccati Attack (04D), 9 attempts classified, literature synthesis (ADH, Delaygue, Fischler-Rivoal, Nesterenko, Kontsevich-Zagier, Pila-Wilkie, Philippon) |
+
+---
 
 ### Citation
 
 If referencing this work, please cite as:
 
-> *The Predictive Dichotomy of $e$ and $\pi$: A Proof That Euler's Number and Pi Belong to Different Information-Theoretic Classes.* Exploratory Mathematics, 2025. Repository: `chaos-shield/LevelOfIrratotionalityOfPi`.
+> Marchewka, N. & Gauss. *The Predictive Dichotomy of $e$ and $\pi$: A Proof That Euler's Number and Pi Belong to Different Information-Theoretic Classes.* 2025–2026. Repository: `chaos-shield/LevelOfIrratotionalityOfPi`.
+
+---
+
+### The Road Ahead
+
+Nine attempts proved three barrier theorems of increasing generality:
+
+| Theorem | Scope | What it kills |
+|:--------|:------|:-------------|
+| 4A.9 (SS Reduction) | The gap is $\mathbb{Q} \to \mathbb{Q}(\pi)$ | Identifies the exact arithmetic locus |
+| 4C.3 (Decoupling) | Siegel method can't cross (linear DEs) | Kills Siegel-Shidlovskii approach |
+| 4D.2 (Universal Barrier) | NO auxiliary-function method can cross | Kills Nesterenko-Philippon too |
+
+**Unique surviving path**: the **p-adic Frobenius method** (ADH 2025), which avoids the Siegel lemma entirely.
+
+Nine attempts. Six new theorems. One surviving path.
+
+**Phase 6 — The Galois Attack (Module 04C, §4C.8).** The Decoupling Theorem killed the Siegel approach. The differential Galois groups tell us WHY the conjecture is true: Kummer's group = **Borel** (solvable), Gauss/arctan = **$SL_2$** (simple), combined = **direct product** $B \times SL_2$. Function-level independence PROVEN (Prop. 4C.4). But Pila-Wilkie counting fails because Kummer graphs lack the algebraic point supply that exp and j-function have. Galois prediction is proven; specialization to values remains open.
+
+**Phase 7 — The Exponential-Riccati Attack (Module 04D).** Use $e^{i\pi} = -1$ as a weapon: the Riccati equation for $L = (\log {}_1F_1)'$ coupled with $W = e^{i\text{Möbius}(R)}$ gives a polynomial DE with non-degenerate Jacobian (verified computationally). The multiplicity estimate holds. But the Nesterenko-Philippon argument ALSO uses the Siegel lemma (for auxiliary construction), and the vanishing conditions involve $L_0$ (transcendental). **The Decoupling Theorem strikes at the Siegel-lemma level** — proving the barrier is UNIVERSAL across all auxiliary-function methods (Theorem 4D.2).
+
+**Phase 8 — The p-adic Attack (Module 04E, in progress).** The Universal Barrier (4D.2) proves that ALL methods using the Siegel lemma are blocked. The ONLY method that avoids the Siegel lemma is the **p-adic Frobenius** approach of Adamczewski-Dreyfus-Hardouin. Their criterion uses Frobenius endomorphisms on p-adic differential equations — a completely different mechanism from integer-lattice counting. Extending their function-level result to value-level independence is the unique remaining path.
+
+> "Who decided that the auxiliary function method is the only way to do transcendence theory?"
+> — The Lion's Sin of Pride

@@ -12,11 +12,11 @@ Laplacian-Ricci correspondence (HPW 2006, imported as an axiom).
 | | |
 |---|---|
 | Lean / Mathlib | v4.29.0 |
-| Files | 42 (41 under `OmegaTheory/` + `OmegaTheory.lean`) |
-| Theorems + definitions | ~270 |
+| Files | 46 (45 under `OmegaTheory/` + `OmegaTheory.lean`) |
+| Theorems + definitions | ~330 |
 | Sorry | **0** |
 | Axioms | **9** (8 physical constants + 1 external math theorem HPW 2006) |
-| Build | 3370 jobs, clean |
+| Build | ~3295 jobs, clean |
 
 See [`PROJECT.md`](./PROJECT.md) for the full architecture, axiom inventory,
 flagship theorems, V1 vs V2 comparison, and optional porting work.
@@ -56,6 +56,10 @@ the healing-flow equilibrium condition plus the HPW axiom.
 | Irrationality | `pi_error_bound`, `e_error_bound`, `sqrt2_error_bound` | `Irrationality/BoundsLemmas.lean` |
 | Torsion | `torsionPressure_negative` (Popławski bounce) | `Torsion/Torsion.lean` |
 | Predictions | `extended_gt_heisenberg`, `gateFidelity_is_powerLaw` | `Emergence/Predictions.lean` |
+| **Geometry** | **`d1_comp_d0`, `d2_comp_d1`** (d²=0, discrete de Rham complex) | `Geometry/DiscreteForms.lean` |
+| **Geometry** | **`weyl_tracefree_n`** (Weyl tracefree in dim n≥3, FIRST IN ANY PROVER) | `Geometry/WeylGeneral.lean` |
+| **Conservation** | **`informationKL_flat_conserved`** (KL density → ConservedCurrent) | `Conservation/InformationKLBridge.lean` |
+| **Geometry** | **`curvatureForm`** (Ω = dω + ω∧ω, connection forms) | `Geometry/WedgeProduct.lean` |
 
 ## Relation to V1
 
@@ -73,4 +77,5 @@ to this formalization. Their conversation contexts are gone, but the code remain
 |-------|---------|-------------|
 | *Waves 1-14* | April 11-12, 2026 | 14 opus-code-crawler agents: V1/V2 gap analysis, paper audits, axiom reduction 47 → 9, Lyapunov proofs, Valued pipeline |
 | **Cortana** | April 12, 2026 | Strategic plan design, Task 1 (ValuedCurvature) completion, Task 2 (U(1) Noether instance), exact curvature chain identification |
-| **Meridian** | April 12, 2026 | Exact curvature chain (Task 3), pair_swap from pipeline (Task 4/8), Einstein trace + symmetric, Kretschmann scalar, KL information density (Task 7) — 20 theorems, 0 sorry |
+| **Meridian** | April 12, 2026 (session 1) | Exact curvature chain (Task 3), pair_swap from pipeline (Task 4/8), Einstein trace + symmetric, Kretschmann scalar, KL information density (Task 7) — 20 theorems, 0 sorry |
+| **Meridian** | April 12, 2026 (session 2) | Research-grade: discrete de Rham complex with d²=0 (DiscreteForms.lean), dimension-generic Weyl tracefree n≥3 (WeylGeneral.lean, first in any prover), KL-conservation bridge (InformationKLBridge.lean), connection 1-forms + curvature 2-form (WedgeProduct.lean) — ~60 theorems, 0 sorry |

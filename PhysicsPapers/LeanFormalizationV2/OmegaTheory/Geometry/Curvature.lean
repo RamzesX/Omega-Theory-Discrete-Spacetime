@@ -258,15 +258,55 @@ theorem einstein_trace (g : DiscreteMetric) (hsym : g.IsEverywhereSymmetric)
       (inverseMetric (g p)) μ ν * einsteinTensor g μ ν p)) =
     -scalarCurvature g p := by
   have h4 := metric_inverse_trace_sym (g p) (hsym p) (hnd p)
+  -- Step 1: Expand einsteinTensor in each term
   have key : ∀ μ ν : Fin 4,
       (inverseMetric (g p)) μ ν * einsteinTensor g μ ν p =
       (inverseMetric (g p)) μ ν * ricciTensor g μ ν p -
       (1 / 2) * scalarCurvature g p * ((inverseMetric (g p)) μ ν * (g p) μ ν) := by
     intros; unfold einsteinTensor; ring
-  simp_rw [key, Finset.sum_sub_distrib, ← Finset.mul_sum, ← Finset.mul_sum, h4]
-  -- First sum is scalarCurvature by definition; second is (1/2)*R*4
-  change scalarCurvature g p - 1 / 2 * scalarCurvature g p * 4 = -scalarCurvature g p
-  ring
+  -- Step 2: Calculate via explicit chain
+  calc Finset.univ.sum (fun μ => Finset.univ.sum (fun ν =>
+        (inverseMetric (g p)) μ ν * einsteinTensor g μ ν p))
+      -- Expand each term
+      = Finset.univ.sum (fun μ => Finset.univ.sum (fun ν =>
+        ((inverseMetric (g p)) μ ν * ricciTensor g μ ν p -
+         (1 / 2) * scalarCurvature g p *
+          ((inverseMetric (g p)) μ ν * (g p) μ ν)))) := by
+        congr 1; ext μ; congr 1; ext ν; exact key μ ν
+      -- Split inner sums
+    _ = Finset.univ.sum (fun μ =>
+        Finset.univ.sum (fun ν =>
+          (inverseMetric (g p)) μ ν * ricciTensor g μ ν p) -
+        Finset.univ.sum (fun ν =>
+          (1 / 2) * scalarCurvature g p *
+          ((inverseMetric (g p)) μ ν * (g p) μ ν))) := by
+        congr 1; ext μ; rw [← Finset.sum_sub_distrib]
+      -- Factor constant from inner sum
+    _ = Finset.univ.sum (fun μ =>
+        Finset.univ.sum (fun ν =>
+          (inverseMetric (g p)) μ ν * ricciTensor g μ ν p) -
+        (1 / 2) * scalarCurvature g p *
+        Finset.univ.sum (fun ν =>
+          (inverseMetric (g p)) μ ν * (g p) μ ν)) := by
+        congr 1; ext μ; congr 1; rw [← Finset.mul_sum]
+      -- Split outer sum
+    _ = Finset.univ.sum (fun μ => Finset.univ.sum (fun ν =>
+          (inverseMetric (g p)) μ ν * ricciTensor g μ ν p)) -
+        Finset.univ.sum (fun μ =>
+          (1 / 2) * scalarCurvature g p *
+          Finset.univ.sum (fun ν =>
+            (inverseMetric (g p)) μ ν * (g p) μ ν)) := by
+        rw [← Finset.sum_sub_distrib]
+      -- Factor constant from outer sum
+    _ = scalarCurvature g p -
+        (1 / 2) * scalarCurvature g p *
+        Finset.univ.sum (fun μ => Finset.univ.sum (fun ν =>
+          (inverseMetric (g p)) μ ν * (g p) μ ν)) := by
+        congr 1; rw [← Finset.mul_sum]
+      -- Apply trace = 4
+    _ = scalarCurvature g p - (1 / 2) * scalarCurvature g p * 4 := by
+        rw [h4]
+    _ = -scalarCurvature g p := by ring
 
 /-! ## Kretschmann Scalar (Mixed-Index)
 

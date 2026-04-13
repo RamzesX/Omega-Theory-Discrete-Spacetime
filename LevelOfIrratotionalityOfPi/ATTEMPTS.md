@@ -283,7 +283,7 @@ If $P(f(z), h(z)) = 0$, then coefficient convolutions must vanish for all $N$, m
 - Additional quantitative support: FA 2025 (arXiv:2502.09999) gives Liouville-type inequalities for E and M values; FA 2026 (arXiv:2604.08208) proves M-function values aren't Liouville/U-numbers; Estienne 2026 (arXiv:2603.18832) proves tr.deg preservation for Mahler systems
 
 **New facts**: **F29** (FA specialization for E and M separately), **F30** (Estienne tr.deg preservation)
-**Status**: ALIVE — ★★ CLOSEST TO PROOF. Gap is GAP_D: a natural extension of existing published work by the same authors.
+**Status**: ~~ALIVE — ★★ CLOSEST TO PROOF~~ → **BLOCKED** by Decoupling at Siegel lemma step. See Session 5 update below.
 
 ---
 
@@ -306,7 +306,7 @@ If $P(f(z), h(z)) = 0$, then coefficient convolutions must vanish for all $N$, m
 | 12 | Carlitz-Frobenius | Function level | GAP_C: mixed spec. | F26 | ALIVE ★ |
 | 13 | Congruence incompat. | Arithmetic | ADH 2016 ext. | F27 | ALIVE |
 | 14 | Motivic period | Conditional | Grothendieck conj. | F28 | ALIVE |
-| 15 | FA Specialization | 90% of bridge | GAP_D: ou$\to$et | F29, F30 | ALIVE ★★ |
+| 15 | FA Specialization | 90% of bridge | **Decoupling barrier** | F29, F30, F44-F48 | **BLOCKED** |
 | **16** | **Beukers lifting** | **8/9 steps** | **Decoupling at Step 9** | **F31, F33** | **BLOCKED** |
 | **17** | **Direct proof** | **Wronskian $\neq 0$** | **Siegel over $\mathbb{Z}[\pi]$** | **F32 (PSLQ)** | **BLOCKED** |
 | **18** | **Hybrid HP$\times$Liouville** | **$34 > 16$ for $m=5$** | **Height barrier** | **F34-F43** | **CORRECTED** |
@@ -334,9 +334,32 @@ If $P(f(z), h(z)) = 0$, then coefficient convolutions must vanish for all $N$, m
 
 ---
 
-## Current State (Updated April 13, 2026 — Session 4)
+## Attempt 15 — Session 5 Update (April 13, 2026)
 
-**Neo4j `pi_sun`**: 70+ nodes, 43 proven facts (F1-F43), 18 attack vectors, 5 gaps, 2 conjectures, 1 target.
+**Attack 15 was executed. The ou→et extension is BLOCKED by the Decoupling Theorem.**
+
+**Critical discovery: G_Gauss ≠ SL₂**
+
+Module 04C claimed the Galois group of the Gauss/arctan DE is SL₂. This is **WRONG**. For ₂F₁(1/2, 1; 3/2; z):
+- Second solution y₂ = z^{-1/2} is **algebraic** (since ₂F₁(0, 1/2; 1/2; z) = 1)
+- Both monodromy generators are **upper triangular** in basis {y₁, y₂}
+- Beukers-Heckman reducibility: c - a - b = 0 ∈ ℤ forces reducible monodromy
+- **Correct**: G_Gauss = G_a ⋊ Z/2Z (solvable, dim 1), NOT SL₂ (simple, dim 3)
+- Combined Galois group: B × (G_a ⋊ Z/2Z), NOT B × SL₂
+- "No common quotient" **STILL HOLDS** (B connected, G_a not a quotient of B)
+- Functional independence (F15) **STILL HOLDS**
+
+**The FA obstacle**: The Siegel lemma step in the FA proof requires integer coefficients. For mixed E×G, π/4 enters as a coefficient, triggering the Decoupling Theorem. The "product specialization theorem" is **equivalent** to the algebraic independence we're trying to prove — circular.
+
+**New facts**: F44 (G_Gauss corrected), F45 (corrected no common quotient), F46 (combined system solvable), F47 (FA blocked by Decoupling), F48 (product specialization = algebraic independence)
+
+**Strategic shift**: Attack 13 (Congruence Incompatibility) rises to MOST PROMISING — it avoids ALL barriers (Siegel, Decoupling, Universal).
+
+---
+
+## Current State (Updated April 13, 2026 — Session 5)
+
+**Neo4j `pi_sun`**: 80+ nodes, 48 proven facts (F1-F48), 18 attack vectors, 5 gaps, 2 conjectures, 1 target.
 
 ### Gaps
 | Gap | Status | Description |
@@ -347,23 +370,23 @@ If $P(f(z), h(z)) = 0$, then coefficient convolutions must vanish for all $N$, m
 | GAP_D | OPEN | FA 2023 ou$\to$et (mixed E$\times$G) |
 | GAP_E | **NEW** | Explicit HP construction with controlled heights for mixed E+G |
 
-### Alive Attacks (ATTACK QUEUE — updated Session 4)
+### Alive Attacks (ATTACK QUEUE — updated Session 5)
 
 | Priority | Attempt | Name | What it needs | Module |
 |:---------|:--------|:-----|:-------------|:-------|
-| ★★ | **15** | **FA Specialization** | Extend FA ou$\to$et | 05 §5.9 |
-| ★★ | **18** | **HP$\times$Liouville (corrected)** | GAP_E: explicit HP with $\sigma = O(1)$ heights, $m \geq 9$ | 08, 09 |
-| ★ | **12** | **Carlitz-Frobenius Bridge** | Mixed Mahler$\times$Fuchsian spec. | 05 §5.3 |
-| ★ | **13** | **Congruence Incompatibility** | Extend ADH 2016 to E+G | 05 §5.4 |
-| | **14** | **Motivic Period** | Grothendieck Period Conjecture | 05 §5.5 |
+| ★★★ | **13** | **Congruence Incompatibility** | Formalize linear vs log p-adic growth | 05 §5.4 |
+| ★★ | **12** | **Carlitz-Frobenius Bridge** | Mixed Mahler$\times$Fuchsian spec. | 05 §5.3 |
+| ★★ | **18** | **HP$\times$Liouville (corrected)** | GAP_E: explicit HP, $m \geq 9$ | 08, 09 |
+| ★ | **14** | **Motivic Period** | Grothendieck Period Conjecture | 05 §5.5 |
+| BLOCKED | **15** | **FA Specialization** | Decoupling barrier at Siegel step | 05 §5.9, 10 |
 
 ### Session Plan: One Attack Per Session
 
-**Session 5**: Attack 15 — FA Specialization. The "ou $\to$ et" extension. Most promising structural attack.
+**Session 5**: Attack 15 — FA Specialization. **DONE.** Blocked by Decoupling. Discovered G_Gauss error. See Module 10.
 
-**Session 6**: Attack 12 — Carlitz-Frobenius Bridge. Extend Nishioka to mixed Mahler$\times$DE.
+**Session 6**: Attack 13 — Congruence Incompatibility. Pure arithmetic. Avoids ALL barriers. **MOST PROMISING.**
 
-**Session 7**: Attack 13 — Pure arithmetic. Extend ADH 2016 Lucas congruences to E+G coefficients.
+**Session 7**: Attack 12 — Carlitz-Frobenius Bridge. Extend Nishioka to mixed Mahler$\times$DE.
 
 **Session 8**: Attack 14 — Motivic. Connect to Zilber-Pink / Grothendieck for Kummer$\times$Gauss.
 
@@ -384,7 +407,7 @@ If $P(f(z), h(z)) = 0$, then coefficient convolutions must vanish for all $N$, m
 
 **Path A** (HP, corrected): Explicit HP with $m \geq 9$, controlled heights $\sigma \leq e^2$ $\to$ $\rho^{m-1} > \sigma^{\nu+1}$ $\to$ proof. Needs GAP_E.
 
-**Path B** (FA Specialization): Prove FA 2023 "ou $\to$ et" for mixed E$\times$G $\to$ function-level $\Rightarrow$ value-level $\to$ proof. Needs GAP_D.
+**Path B** (FA Specialization): ~~Prove FA 2023 "ou → et" for mixed E×G~~ **BLOCKED** by Decoupling at Siegel lemma step (Session 5). Needs new non-Siegel proof architecture.
 
 **Path C** (Frobenius): Deploy double-exponential against $\pi$ directly $\to$ proof. Deployment mechanism incomplete.
 

@@ -43,6 +43,7 @@ import OmegaTheory.Geometry.HodgeStar
 import OmegaTheory.Geometry.DiscreteMaxwell
 import OmegaTheory.Geometry.DiscreteStokes
 import OmegaTheory.Geometry.InnerProduct
+import OmegaTheory.Geometry.PoincareLemma
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor

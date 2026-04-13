@@ -323,9 +323,15 @@ Singularities: regular singular at $w = 0, 1, \infty$ (all three regular — **F
 - At $w = 1$: exponent difference $0$, **unipotent** (logarithmic)
 - At $w = \infty$: exponent difference $1/2$, semi-simple
 
-These generate a Zariski-dense subgroup of $SL_2$. Therefore:
+**⚠ CORRECTION (Session 5, Module 10):** The claim below is **WRONG**. The second solution $y_2 = w^{-1/2}$ is algebraic (since ${}_2F_1(0, 1/2; 1/2; w) = 1$). Both monodromy generators are upper triangular in the basis $\{y_1, y_2\}$. Beukers-Heckman reducibility: $c - a - b = 0 \in \mathbb{Z}$ forces reducible monodromy. The correct Galois group is:
 
-$$G_{\text{Gauss}} = SL_2 \quad (\text{simple, dim } 3)$$
+$$G_{\text{Gauss}} = G_a \rtimes \mathbb{Z}/2\mathbb{Z} \quad (\text{solvable, dim } 1)$$
+
+~~These generate a Zariski-dense subgroup of $SL_2$. Therefore:~~
+
+~~$G_{\text{Gauss}} = SL_2$ (simple, dim 3)~~
+
+**The "no common quotient" conclusion still holds** (Proposition 10.1 in Module 10): $B$ is connected, so its quotients are connected. The only connected quotient of $G_a \rtimes \mathbb{Z}/2\mathbb{Z}$ besides $\{e\}$ is $G_a$, which is not a quotient of $B$ (since $B/[B,B] = T$ is a torus). See Module 10 for full proof.
 
 ### 4C.8.2 The Product Structure
 

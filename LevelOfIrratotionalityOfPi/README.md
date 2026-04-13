@@ -77,7 +77,7 @@ with $\alpha, \beta, \gamma, \delta \in \mathbb{Q}$. By SS: $u = {}_1F_1(a;b;z_0
 | [04](04-Non-Predictability-Of-Pi.md) | Non-Predictability of $\pi$ ($\mathcal{K}_1$) | **PROVEN** — no periodic predictor achieves $\mathrm{acc} = 1$ on $\pi$ |
 | [04A](04A-Extension-K2-Predictors.md) | Extension to $\mathcal{K}_2$ Predictors | Bridge Theorem, Lyapunov Dichotomy, Euler-Perron, SS Reduction — **all PROVEN**. Landscape analysis of E/G tools. |
 | [04B](04B-Cracking-K2-Proof.md) | Cracking K₂: The Proof | Three-tier elimination: Tiers I-II **PROVEN** ($p \leq 5 \times 10^9$). Tier III conditional on Conjecture 4A.4. |
-| [04C](04C-Transcendental-Siegel-Lemma.md) | The Transcendental Siegel Lemma | Decoupling Theorem (barrier) + Galois structure ($B \times SL_2$) |
+| [04C](04C-Transcendental-Siegel-Lemma.md) | The Transcendental Siegel Lemma | Decoupling Theorem (barrier) + Galois structure ($B \times (G_a \rtimes \mathbb{Z}/2\mathbb{Z})$). **CORRECTED Session 5**: G_Gauss = G_a ⋊ Z/2Z not SL₂ |
 | [04D](04D-Exponential-Riccati-Attack.md) | The Exponential-Riccati Attack | Universal Siegel Barrier (Thm 4D.2) — ALL auxiliary methods blocked |
 | [04E](04E-P-adic-Frobenius-Attack.md) | The p-adic Frobenius Attack | Unique surviving path via ADH Frobenius towers |
 | [04F](04F-Final-Analysis.md) | Final Analysis | 5 approaches to GAP_B analyzed, all fail precisely. Hybrid Padé+Frobenius = unique path. |
@@ -86,6 +86,7 @@ with $\alpha, \beta, \gamma, \delta \in \mathbb{Q}$. By SS: $u = {}_1F_1(a;b;z_0
 | [07](07-Proof-Attempt-Mixed-Specialization.md) | Proof Attempt | **8 of 9 steps succeed.** Bertrand-Beukers applies. Wronskian $\neq 0$. Step 9 (Siegel auxiliary) blocked by Decoupling. |
 | [08](08-Hybrid-Pade-Liouville-Attack.md) | Hybrid HP × Liouville | **NEW MATH.** Rate comparison idea. Frobenius double-exp discovery. **CORRECTED in Session 4** — see Module 09. |
 | [09](09-Attack18-HP-Height-Barrier.md) | Attack 18: HP Height Barrier (Session 4) | Module 08 comparison was **WRONG**: need $\rho^{m-1} > \sigma^{\nu+1}$ (not $\sigma^\nu$), and $\sigma = e^2 \approx 7.4$ (not 4). Min $m = 9$. GAP_E identified. |
+| [10](10-Attack15-FA-Specialization.md) | Attack 15: FA Specialization (Session 5) | FA ou→et **BLOCKED** by Decoupling. **CRITICAL**: G_Gauss = G_a ⋊ Z/2Z (NOT SL₂). F44-F48. Attack 13 now MOST PROMISING. |
 
 **Part III — Conditional Extensions**
 
@@ -180,6 +181,18 @@ ATTACK 18: HP × LIOUVILLE (Module 09)               ─── **CORRECTED** —
    ├─ Corrected minimum: m ≥ 9 (not m ≥ 5)            ─── PROVEN (F43, (1+√2)^8 > e^6)
    └─ GAP_E: Need explicit HP with controlled heights  ─── OPEN (approximation theory)
 
+─── SESSION 5 (April 13, 2026) ──────────────────────
+ATTACK 15: FA SPECIALIZATION (Module 10)              ─── **BLOCKED** by Decoupling
+   ├─ FA ou→et needs Siegel lemma for mixed E×G       ─── BLOCKED (F47, Decoupling Thm 4C.3)
+   ├─ Product specialization = algebraic independence  ─── PROVEN (F48, circular reformulation)
+   ├─ **CRITICAL ERROR**: G_Gauss ≠ SL₂               ─── CORRECTED (F44)
+   │  ├─ Second solution z^(-1/2) is ALGEBRAIC         ─── (₂F₁(0,1/2;1/2;z) = 1)
+   │  ├─ Beukers-Heckman: c-a-b=0 ∈ Z → reducible    ─── CONFIRMED
+   │  └─ Correct: G_Gauss = G_a ⋊ Z/2Z (dim 1)       ─── NOT SL₂ (dim 3)
+   ├─ No common quotient STILL HOLDS                   ─── PROVEN (F45, B connected)
+   ├─ Combined system ENTIRELY SOLVABLE                ─── PROVEN (F46, B × (G_a⋊Z/2Z))
+   └─ Attack 13 rises to MOST PROMISING                ─── Avoids ALL barriers
+
 TIER III: LARGE PERIOD, general                     ─── REQUIRES Mahler-Differential value independence (Conj 4E.1)
 INFORMATION DEFICIT (D(π) > 0)                      ─── CONDITIONAL on GK-typicality
 ```
@@ -248,7 +261,7 @@ $\pi$ quantifies its own resistance to prediction. And the proof that it does so
 | Name | Role | Key contributions |
 |:-----|:-----|:-----------------|
 | **Norbert Marchewka** | Author | Framework design, predictor hierarchy, proof strategy, "brute force" philosophy, "Pride is induction" insight, Seven Deadly Sins framework, "if new math doesn't exist create it" directive, "context compression" insight for Galois jets |
-| **Gauss** | Collaborator (The Lion's Sin of Pride) | **Sessions 1-2**: 6 theorems (4A.1, 4A.7, 4A.9, 4C.3, 4C.4, 4D.2), 1 honest retraction, 11 attempts, 2 papers, Modules 04A-04F. **Session 3**: 8 new attacks (Attempts 11-18), FA Specialization discovery (★★), direct proof (8/9 steps), HP×Liouville framework, Frobenius double-exp, Modules 05-08. **Session 4**: CORRECTED Module 08 — HP height barrier (σ=e² not 4, comparison σ^{ν+1} not σ^ν). Same-singularity degeneracy proven. Different-singularity convergence 4.5/N measured. Exact Padé heights via PNT. Min m corrected to 9. GAP_E identified. Module 09. 43 facts, 80+ Neo4j nodes. 4 paths to proof. |
+| **Gauss** | Collaborator (The Lion's Sin of Pride) | **Sessions 1-2**: 6 theorems (4A.1, 4A.7, 4A.9, 4C.3, 4C.4, 4D.2), 1 honest retraction, 11 attempts, 2 papers, Modules 04A-04F. **Session 3**: 8 new attacks (Attempts 11-18), FA Specialization discovery, direct proof (8/9 steps), HP×Liouville framework, Frobenius double-exp, Modules 05-08. **Session 4**: CORRECTED Module 08 — HP height barrier, Module 09. **Session 5**: CORRECTED Module 04C — G_Gauss = G_a ⋊ Z/2Z (NOT SL₂), FA ou→et BLOCKED by Decoupling, Attack 13 elevated to MOST PROMISING. Module 10. 48 facts, 80+ Neo4j nodes. |
 
 ---
 

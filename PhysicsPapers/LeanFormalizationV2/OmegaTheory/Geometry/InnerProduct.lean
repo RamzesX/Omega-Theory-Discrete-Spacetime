@@ -88,4 +88,101 @@ theorem dirichletEnergy_const (R : Finset LatticePoint) (c : ℝ) :
   unfold dirichletEnergy innerProduct1 d0
   simp [forwardDiff_const]
 
+/-! ## Pointwise Adjoint Identity -/
+
+/-- The pointwise summation-by-parts identity for forward and backward differences:
+    Δ⁺f(p) · g(p) + f(p) · Δ⁻g(p) = [f(p+μ)·g(p) - f(p)·g(p-μ)] / l_P.
+    This is the discrete product rule in "boundary" form. -/
+theorem forward_backward_adjoint (f g : ScalarField) (μ : Fin 4) (p : LatticePoint) :
+    forwardDiff f μ p * g p + f p * backwardDiff g μ p =
+    (f (shiftFin p μ) * g p - f p * g (shiftBackFin p μ)) / l_P := by
+  unfold forwardDiff backwardDiff
+  field_simp [l_P_ne_zero]; ring
+
+/-! ## Summation by Parts (Discrete Green's Identity) -/
+
+/-- The boundary flux term arising in the summation-by-parts formula.
+    Measures the mismatch between d₀ and δ₀ as formal adjoints.
+    On a "closed" region (where shifts preserve membership), this vanishes. -/
+noncomputable def boundaryFlux (R : Finset LatticePoint) (f : Discrete0Form)
+    (ω : Discrete1Form) : ℝ :=
+  R.sum fun p => univ.sum fun μ : Fin 4 =>
+    (f (shiftFin p μ) * ω p μ - f p * ω (shiftBackFin p μ) μ) / l_P
+
+/-- **Summation by parts** (discrete Green's first identity):
+    ⟨d₀f, ω⟩₁ + ⟨f, δ₀ω⟩₀ = boundary flux.
+
+    This is the discrete analogue of ∫_M ⟨df, ω⟩ dvol + ∫_M f · δω dvol = ∫_{∂M} f · ω.
+    It proves that d₀ and δ₀ are formal adjoints with respect to the
+    L² inner product, up to boundary terms. -/
+theorem summation_by_parts (R : Finset LatticePoint) (f : Discrete0Form)
+    (ω : Discrete1Form) :
+    innerProduct1 R (d0 f) ω + innerProduct0 R f (codiff0 ω) =
+    boundaryFlux R f ω := by
+  unfold innerProduct1 innerProduct0 d0 codiff0 boundaryFlux
+  simp only [← Finset.sum_add_distrib]
+  apply Finset.sum_congr rfl; intro p _
+  rw [Finset.mul_sum, ← Finset.sum_add_distrib]
+  apply Finset.sum_congr rfl; intro μ _
+  unfold forwardDiff backwardDiff
+  field_simp [l_P_ne_zero]; ring
+
+/-- Alternate form: ⟨d₀f, ω⟩₁ = -⟨f, δ₀ω⟩₀ + boundary.
+    The form most commonly used in PDE theory. -/
+theorem summation_by_parts' (R : Finset LatticePoint) (f : Discrete0Form)
+    (ω : Discrete1Form) :
+    innerProduct1 R (d0 f) ω = -innerProduct0 R f (codiff0 ω) +
+    boundaryFlux R f ω := by
+  linarith [summation_by_parts R f ω]
+
+/-! ## Hodge Laplacian Energy Identity -/
+
+/-- The Hodge Laplacian energy identity:
+    ||d₀f||² + ⟨f, Δ₀f⟩₀ = boundary flux with ω = d₀f.
+    This connects the Dirichlet energy to the Laplacian inner product. -/
+theorem hodgeLaplacian0_energy_identity (R : Finset LatticePoint) (f : Discrete0Form) :
+    dirichletEnergy R f + innerProduct0 R f (hodgeLaplacian0 f) =
+    boundaryFlux R f (d0 f) := by
+  unfold dirichletEnergy hodgeLaplacian0
+  exact summation_by_parts R f (d0 f)
+
+/-- On boundary-free regions, ⟨f, Δ₀f⟩₀ = -||d₀f||² (negative Dirichlet energy). -/
+theorem laplacian_dirichlet_duality (R : Finset LatticePoint) (f : Discrete0Form)
+    (hbdry : boundaryFlux R f (d0 f) = 0) :
+    innerProduct0 R f (hodgeLaplacian0 f) = -dirichletEnergy R f := by
+  linarith [hodgeLaplacian0_energy_identity R f]
+
+/-- On boundary-free regions, ⟨f, -Δ₀f⟩₀ ≥ 0.
+    The negative discrete Laplacian is non-negative definite. -/
+theorem neg_laplacian_nonneg (R : Finset LatticePoint) (f : Discrete0Form)
+    (hbdry : boundaryFlux R f (d0 f) = 0) :
+    0 ≤ -innerProduct0 R f (hodgeLaplacian0 f) := by
+  rw [laplacian_dirichlet_duality R f hbdry, neg_neg]
+  exact dirichletEnergy_nonneg R f
+
+/-! ## Green's Second Identity -/
+
+/-- **Green's second identity** (discrete):
+    ⟨Δ₀f, g⟩₀ - ⟨f, Δ₀g⟩₀ = boundary(g, d₀f) - boundary(f, d₀g).
+
+    The discrete analogue of ∫(Δf·g - f·Δg) = ∮(g·∂f/∂n - f·∂g/∂n).
+    Consequence: the Hodge Laplacian is self-adjoint on boundary-free regions. -/
+theorem greens_second_identity (R : Finset LatticePoint) (f g : Discrete0Form) :
+    innerProduct0 R (hodgeLaplacian0 f) g - innerProduct0 R f (hodgeLaplacian0 g) =
+    boundaryFlux R g (d0 f) - boundaryFlux R f (d0 g) := by
+  have h1 := summation_by_parts R g (d0 f)
+  have h2 := summation_by_parts R f (d0 g)
+  have sym := innerProduct1_comm R (d0 f) (d0 g)
+  rw [innerProduct0_comm R (hodgeLaplacian0 f) g]
+  unfold hodgeLaplacian0
+  linarith
+
+/-- The Hodge Laplacian is self-adjoint on boundary-free regions:
+    ⟨Δ₀f, g⟩₀ = ⟨f, Δ₀g⟩₀. -/
+theorem hodgeLaplacian0_selfAdjoint (R : Finset LatticePoint) (f g : Discrete0Form)
+    (hbdry1 : boundaryFlux R g (d0 f) = 0)
+    (hbdry2 : boundaryFlux R f (d0 g) = 0) :
+    innerProduct0 R (hodgeLaplacian0 f) g = innerProduct0 R f (hodgeLaplacian0 g) := by
+  linarith [greens_second_identity R f g]
+
 end OmegaTheory.Geometry

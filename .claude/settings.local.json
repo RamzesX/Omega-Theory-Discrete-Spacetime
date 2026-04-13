@@ -79,7 +79,8 @@
       "WebFetch(domain:link.springer.com)",
       "WebFetch(domain:hal.science)",
       "Bash(python3 -m pip install mpmath)",
-      "Bash(python3 -m pip install numpy)"
+      "Bash(python3 -m pip install numpy)",
+      "WebFetch(domain:math.uchicago.edu)"
     ]
   }
 }

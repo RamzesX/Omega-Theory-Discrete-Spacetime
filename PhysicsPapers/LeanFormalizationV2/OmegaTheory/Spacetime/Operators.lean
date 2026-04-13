@@ -251,6 +251,16 @@ theorem backwardDiff_mul (f g : ScalarField) (μ : Fin 4) (p : LatticePoint) :
     f p * backwardDiff g μ p + backwardDiff f μ p * g (shiftBackFin p μ) := by
   unfold backwardDiff; simp only [scalarField_mul_apply]; field_simp; ring
 
+/-! ## Linearity over Finite Sums -/
+
+/-- Forward difference distributes over finite sums. -/
+theorem forwardDiff_finset_sum {ι : Type*} (s : Finset ι) (f : ι → ScalarField)
+    (μ : Fin 4) (p : LatticePoint) :
+    forwardDiff (fun q => s.sum (fun i => f i q)) μ p =
+    s.sum (fun i => forwardDiff (f i) μ p) := by
+  unfold forwardDiff
+  simp only [← Finset.sum_sub_distrib, Finset.sum_div]
+
 /-! ## Bridge: Forward ↔ Symmetric Difference -/
 
 /-- The forward difference equals the symmetric difference plus an O(l_P) correction:

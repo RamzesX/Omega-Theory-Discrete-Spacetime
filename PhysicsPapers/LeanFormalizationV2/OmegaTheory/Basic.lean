@@ -20,6 +20,7 @@ import OmegaTheory.Foundations.ErrorAlgebra
 import OmegaTheory.Spacetime.Lattice
 import OmegaTheory.Spacetime.Constants
 import OmegaTheory.Spacetime.Operators
+import OmegaTheory.Spacetime.CausalLattice
 
 -- Layer 2: Error-Propagating Tensor Operations
 import OmegaTheory.Tensor.ErrorTensor
@@ -38,6 +39,7 @@ import OmegaTheory.Geometry.Examples
 import OmegaTheory.Geometry.DiscreteForms
 import OmegaTheory.Geometry.WedgeProduct
 import OmegaTheory.Geometry.StructureEquation
+import OmegaTheory.Geometry.HodgeStar
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor
@@ -74,6 +76,7 @@ import OmegaTheory.Irrationality.ActionDensity
 -- Layer 12: Variational (Erdős-Lagrangian, discrete Noether)
 import OmegaTheory.Variational.GraphAction
 import OmegaTheory.Variational.DiscreteNoether
+import OmegaTheory.Variational.InformationGeodesics
 
 -- Extended modules
 import OmegaTheory.Torsion.SpinTorsion

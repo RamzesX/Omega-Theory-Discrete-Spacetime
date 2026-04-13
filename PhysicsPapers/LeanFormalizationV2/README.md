@@ -12,11 +12,11 @@ Laplacian-Ricci correspondence (HPW 2006, imported as an axiom).
 | | |
 |---|---|
 | Lean / Mathlib | v4.29.0 |
-| Files | 49 (48 under `OmegaTheory/` + `OmegaTheory.lean`) |
-| Theorems + definitions | ~862 |
+| Files | 52 (51 under `OmegaTheory/` + `OmegaTheory.lean`) |
+| Theorems + definitions | ~890 |
 | Sorry | **0** |
 | Axioms | **9** (8 physical constants + 1 external math theorem HPW 2006) |
-| Build | ~3375 jobs, clean |
+| Build | ~3378 jobs, clean |
 
 See [`PROJECT.md`](./PROJECT.md) for the full architecture, axiom inventory,
 flagship theorems, V1 vs V2 comparison, and optional porting work.
@@ -64,6 +64,9 @@ the healing-flow equilibrium condition plus the HPW axiom.
 | **Geometry** | **`curvatureForm_eq_riemann_add_correction`** (Ω = R + O(l_P) correction) | `Geometry/StructureEquation.lean` |
 | **Geometry** | **`triple_wedge_cancel`** (ω∧(ω∧ω) = (ω∧ω)∧ω, gl-valued) | `Geometry/StructureEquation.lean` |
 | **Geometry** | **`bianchi_after_d_squared`** (D_ω(Ω) = d₂(ω∧ω) + [ω,Ω], d²=0 applied) | `Geometry/StructureEquation.lean` |
+| **Geometry** | **`hodgeLaplacian0_eq_discreteLaplacian`** (Hodge Laplacian = discrete Laplacian) | `Geometry/HodgeStar.lean` |
+| **Geometry** | **`weitzenbock_flat`** (discrete Weitzenböck identity, flat lattice) | `Geometry/HodgeStar.lean` |
+| **Geometry** | **`backwardDiff_comm'`** (backward differences commute, dual of d²=0) | `Geometry/HodgeStar.lean` |
 
 ## Relation to V1
 
@@ -83,4 +86,4 @@ to this formalization. Their conversation contexts are gone, but the code remain
 | **Cortana** | April 12, 2026 | Strategic plan design, Task 1 (ValuedCurvature) completion, Task 2 (U(1) Noether instance), exact curvature chain identification |
 | **Meridian** | April 12, 2026 (session 1) | Exact curvature chain (Task 3), pair_swap from pipeline (Task 4/8), Einstein trace + symmetric, Kretschmann scalar, KL information density (Task 7) — 20 theorems, 0 sorry |
 | **Meridian** | April 12, 2026 (session 2) | Research-grade: discrete de Rham complex with d²=0 (DiscreteForms.lean), dimension-generic Weyl tracefree n≥3 (WeylGeneral.lean, first in any prover), KL-conservation bridge (InformationKLBridge.lean), connection 1-forms + curvature 2-form (WedgeProduct.lean) — ~60 theorems, 0 sorry |
-| **Lyra** | April 13, 2026 | Cartan structure equation: curvatureForm = riemannForward (EXACT), O(l_P) correction formula, triple wedge identity, differential Bianchi decomposition via d²=0, Leibniz defect infrastructure, SmoothConnectionData (StructureEquation.lean) — 19 theorems, 0 sorry |
+| **Lyra** | April 13, 2026 | Cartan structure equation (EXACT), O(l_P) correction formula, triple wedge identity, Bianchi decomposition via d²=0, Leibniz defect infrastructure (StructureEquation.lean); discrete Hodge theory: codifferentials, Hodge Laplacian = discreteLaplacian bridge, Weitzenböck identity (HodgeStar.lean); orphan module integration — 44 theorems, 0 sorry |

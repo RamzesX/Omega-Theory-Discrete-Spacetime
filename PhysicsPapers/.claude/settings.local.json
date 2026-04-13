@@ -67,7 +67,10 @@
       "Bash(git:*)",
       "Bash(awk -F: '{s+=$2}END{print \"Total defs+thms: \" s}')",
       "Bash(echo \"EXIT: $?\")",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(grep -cE '^\\\\s*\\(theorem|lemma|def|noncomputable def|noncomputable instance|axiom|abbrev|structure|class|instance\\)' /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/*.lean /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/**/*.lean)",
+      "Bash(awk -F: '{sum += $2} END {print \"Total:\", sum}')",
+      "Bash(grep -v ':0$')"
     ]
   },
   "prefersReducedMotion": true

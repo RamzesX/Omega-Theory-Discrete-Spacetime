@@ -309,13 +309,34 @@ If $P(f(z), h(z)) = 0$, then coefficient convolutions must vanish for all $N$, m
 | 15 | FA Specialization | 90% of bridge | GAP_D: ou$\to$et | F29, F30 | ALIVE ★★ |
 | **16** | **Beukers lifting** | **8/9 steps** | **Decoupling at Step 9** | **F31, F33** | **BLOCKED** |
 | **17** | **Direct proof** | **Wronskian $\neq 0$** | **Siegel over $\mathbb{Z}[\pi]$** | **F32 (PSLQ)** | **BLOCKED** |
-| **18** | **Hybrid HP$\times$Liouville** | **$34 > 16$ for $m=5$** | **5th function needed** | **F34-F37** ★★★ | **ALIVE** |
+| **18** | **Hybrid HP$\times$Liouville** | **$34 > 16$ for $m=5$** | **Height barrier** | **F34-F43** | **CORRECTED** |
 
 ---
 
-## Current State (Updated April 13, 2026 — Session 3 FINAL)
+## Attempt 18 — Session 4 Update (April 13, 2026)
 
-**Neo4j `pi_sun`**: 70+ nodes, 37 proven facts (F1-F37), 18 attack vectors, 4 gaps, 2 conjectures, 1 target.
+**Attack 18 was executed. Two critical errors found in Module 08:**
+
+1. **Wrong comparison**: Module 08 compared $\rho^{m-1}$ vs $\sigma^\nu$. Correct: $\rho^{m-1}$ vs $\sigma^{\nu+1}$. The extra $\sigma$ comes from clearing the LCD to get integer coefficients for SS.
+
+2. **Wrong $\sigma$**: Module 08 claimed $\sigma \approx 4$. The actual integer-cleared Padé height $\sigma_{\text{eff}} \to e^2 \approx 7.4$ (from PNT for lcm of odd numbers).
+
+**Three HP systems tested computationally (N=1,...,19):**
+- System A {1,f,f',g₁}: rate ≈ 2.5/N. Confirms ρ^{-3N} convergence.
+- System B {1,f,f',g₁,zg₁}: **DEGENERATE** — matrix singular. Same-singularity functions don't increase HP dimension (F38).
+- System C {1,f,f',g₁,g₂}: rate ≈ 4.5/N. Excellent convergence with different singularities (F39). **But** polynomial heights grow as e^{10N} (F40), defeating the SS comparison.
+
+**Corrected minimum $m$:** With $\sigma = e^2$, $\nu = 2$: need $(1+\sqrt{2})^{m-1} > e^6 \approx 403$. Since $(1+\sqrt{2})^7 \approx 198 < 403$ but $(1+\sqrt{2})^8 \approx 478 > 403$: **minimum $m = 9$** (F43).
+
+**New gap identified:** GAP_E — explicit HP construction with controlled heights for mixed E+G systems.
+
+**New facts:** F38-F43 (6 new). See Module 09.
+
+---
+
+## Current State (Updated April 13, 2026 — Session 4)
+
+**Neo4j `pi_sun`**: 70+ nodes, 43 proven facts (F1-F43), 18 attack vectors, 5 gaps, 2 conjectures, 1 target.
 
 ### Gaps
 | Gap | Status | Description |
@@ -324,43 +345,47 @@ If $P(f(z), h(z)) = 0$, then coefficient convolutions must vanish for all $N$, m
 | GAP_B | OPEN | Non-Siegel specialization (parent gap) |
 | GAP_C | OPEN | Mixed Mahler$\times$Fuchsian specialization |
 | GAP_D | OPEN | FA 2023 ou$\to$et (mixed E$\times$G) |
+| GAP_E | **NEW** | Explicit HP construction with controlled heights for mixed E+G |
 
-### Alive Attacks (ATTACK QUEUE for future sessions)
+### Alive Attacks (ATTACK QUEUE — updated Session 4)
 
 | Priority | Attempt | Name | What it needs | Module |
 |:---------|:--------|:-----|:-------------|:-------|
-| ★★★ | **18** | **Hybrid HP$\times$Liouville** | Construct 5-function HP system | 08 |
 | ★★ | **15** | **FA Specialization** | Extend FA ou$\to$et | 05 §5.9 |
+| ★★ | **18** | **HP$\times$Liouville (corrected)** | GAP_E: explicit HP with $\sigma = O(1)$ heights, $m \geq 9$ | 08, 09 |
 | ★ | **12** | **Carlitz-Frobenius Bridge** | Mixed Mahler$\times$Fuchsian spec. | 05 §5.3 |
 | ★ | **13** | **Congruence Incompatibility** | Extend ADH 2016 to E+G | 05 §5.4 |
 | | **14** | **Motivic Period** | Grothendieck Period Conjecture | 05 §5.5 |
 
 ### Session Plan: One Attack Per Session
 
-**Session 4**: Attack 18 — Construct the 5th function for HP system. If $\rho^4 > \sigma^2$, the proof closes.
+**Session 5**: Attack 15 — FA Specialization. The "ou $\to$ et" extension. Most promising structural attack.
 
-**Session 5**: Attack 15 — Attempt to prove FA mixed specialization directly. Write the "ou$\to$et" extension.
-
-**Session 6**: Attack 12 — Carlitz module + Frobenius. Extend Nishioka to mixed Mahler$\times$DE.
+**Session 6**: Attack 12 — Carlitz-Frobenius Bridge. Extend Nishioka to mixed Mahler$\times$DE.
 
 **Session 7**: Attack 13 — Pure arithmetic. Extend ADH 2016 Lucas congruences to E+G coefficients.
 
 **Session 8**: Attack 14 — Motivic. Connect to Zilber-Pink / Grothendieck for Kummer$\times$Gauss.
 
-### Key Computational Results (Session 3)
+### Key Computational Results (Sessions 3-4)
 
 | Result | Value | Meaning |
 |:-------|:------|:--------|
 | PSLQ deg $\leq 5$, 5 triples | NO RELATION ($|c| < 10^{15}$) | Conjecture verified computationally |
 | Mixed Wronskian $W_1$ | $\det = 0.0346 \neq 0$ | No linear relation |
 | Mixed Wronskian $W_2$ | $\det = -0.630 \neq 0$ | No quadratic relation |
-| HP $m=5$ rate | $(1+\sqrt{2})^4 = 33.97 > 16 = 4^2$ | **Numbers work for $m=5$** |
+| HP $m=5$ rate (CORRECTED) | $34 > 16$ was wrong comparison; correct: $34 < 64 = \sigma^3$ | **m=5 INSUFFICIENT** |
+| HP System C convergence | rate $\approx 4.5/N$ for $\{1,f,f',g_1,g_2\}$ | Angelesco-type convergence confirmed |
+| Pade $\sigma_{\text{eff}}$ | $\to e^2 \approx 7.4$ (not 4) | Integer-cleared height from PNT |
+| Corrected minimum $m$ | $m \geq 9$ (for $\sigma = e^2$, $\nu = 2$) | $(1+\sqrt{2})^8 \approx 478 > 403 \approx e^6$ |
 | Frobenius $p=2,M=9$ | error $= 3 \times 10^{-155}$ | Doubly exponential convergence |
 
-### The 3 Paths to Proof (any one suffices)
+### The 4 Paths to Proof (any one suffices)
 
-**Path A**: Construct 5-function HP system $\to$ rate comparison closes $\to$ proof done.
+**Path A** (HP, corrected): Explicit HP with $m \geq 9$, controlled heights $\sigma \leq e^2$ $\to$ $\rho^{m-1} > \sigma^{\nu+1}$ $\to$ proof. Needs GAP_E.
 
-**Path B**: Prove SS exponent $\nu < 1.27$ for Padé-structured coefficients $\to$ $m=4$ HP suffices $\to$ proof done.
+**Path B** (FA Specialization): Prove FA 2023 "ou $\to$ et" for mixed E$\times$G $\to$ function-level $\Rightarrow$ value-level $\to$ proof. Needs GAP_D.
 
-**Path C**: Deploy Frobenius double-exponential against $\pi$ directly $\to$ proof done.
+**Path C** (Frobenius): Deploy double-exponential against $\pi$ directly $\to$ proof. Deployment mechanism incomplete.
+
+**Path D** (Arithmetic): Extend ADH 2016 congruences to mixed E+G coefficients $\to$ direct arithmetic obstruction $\to$ proof.

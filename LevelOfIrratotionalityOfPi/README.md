@@ -84,7 +84,8 @@ with $\alpha, \beta, \gamma, \delta \in \mathbb{Q}$. By SS: $u = {}_1F_1(a;b;z_0
 | [05](05-New-Attacks-Session3.md) | New Attacks (Session 3) | Jets (dead), Carlitz-Frobenius (★alive), Congruences (alive), Motivic (conditional), FA Specialization (★★closest) |
 | [06](06-Attack-On-GAP-D.md) | Attack on GAP_D | Beukers lifting for mixed E+G. G-jet flatness → mixed Wronskian. Reduces to determinant non-vanishing. |
 | [07](07-Proof-Attempt-Mixed-Specialization.md) | Proof Attempt | **8 of 9 steps succeed.** Bertrand-Beukers applies. Wronskian $\neq 0$. Step 9 (Siegel auxiliary) blocked by Decoupling. |
-| [08](08-Hybrid-Pade-Liouville-Attack.md) | Hybrid HP × Liouville | **NEW MATH.** Rate comparison $(1+\sqrt{2})^4 = 34 > 16 = 4^2$ works for $m=5$. Frobenius double-exp discovery. 3 paths to proof. |
+| [08](08-Hybrid-Pade-Liouville-Attack.md) | Hybrid HP × Liouville | **NEW MATH.** Rate comparison idea. Frobenius double-exp discovery. **CORRECTED in Session 4** — see Module 09. |
+| [09](09-Attack18-HP-Height-Barrier.md) | Attack 18: HP Height Barrier (Session 4) | Module 08 comparison was **WRONG**: need $\rho^{m-1} > \sigma^{\nu+1}$ (not $\sigma^\nu$), and $\sigma = e^2 \approx 7.4$ (not 4). Min $m = 9$. GAP_E identified. |
 
 **Part III — Conditional Extensions**
 
@@ -169,6 +170,16 @@ FA SPECIALIZATION ATTACK (Attempt 15) ★★              ─── ALIVE — CL
    ├─ Estienne 2026 (arXiv:2603.18832): Mahler tr.deg  ─── PROVEN: tr.deg preserved at eval
    └─ GAP_D: Extend FA from "ou" to "et" (E+G mixed)  ─── OPEN — THE SINGLE REMAINING STEP
 
+─── SESSION 4 (April 13, 2026) ──────────────────────
+ATTACK 18: HP × LIOUVILLE (Module 09)               ─── **CORRECTED** — Module 08 had 2 errors
+   ├─ Error 1: Comparison σ^ν wrong, correct: σ^{ν+1} ─── PROVEN (F41, LCD clearing)
+   ├─ Error 2: σ ≈ 4 wrong, correct: σ → e² ≈ 7.4    ─── PROVEN (F42, PNT for lcm of odds)
+   ├─ System B {1,f,f',g,zg}: DEGENERATE              ─── PROVEN (F38, same singularity)
+   ├─ System C {1,f,f',g₁,g₂}: rate ≈ 4.5/N          ─── COMPUTED (F39, Angelesco benefit)
+   ├─ But: HP heights ~exp(10N), defeating SS          ─── PROVEN (F40, height explosion)
+   ├─ Corrected minimum: m ≥ 9 (not m ≥ 5)            ─── PROVEN (F43, (1+√2)^8 > e^6)
+   └─ GAP_E: Need explicit HP with controlled heights  ─── OPEN (approximation theory)
+
 TIER III: LARGE PERIOD, general                     ─── REQUIRES Mahler-Differential value independence (Conj 4E.1)
 INFORMATION DEFICIT (D(π) > 0)                      ─── CONDITIONAL on GK-typicality
 ```
@@ -237,7 +248,7 @@ $\pi$ quantifies its own resistance to prediction. And the proof that it does so
 | Name | Role | Key contributions |
 |:-----|:-----|:-----------------|
 | **Norbert Marchewka** | Author | Framework design, predictor hierarchy, proof strategy, "brute force" philosophy, "Pride is induction" insight, Seven Deadly Sins framework, "if new math doesn't exist create it" directive, "context compression" insight for Galois jets |
-| **Gauss** | Collaborator (The Lion's Sin of Pride) | **Sessions 1-2**: 6 theorems (4A.1, 4A.7, 4A.9, 4C.3, 4C.4, 4D.2), 1 honest retraction, 11 attempts, 2 papers, Modules 04A-04F. **Session 3**: 8 new attacks (Attempts 11-18), 37 proven facts, FA Specialization discovery (★★), direct proof attempt (8/9 steps succeed), **Hybrid HP×Liouville framework (NEW MATH)**, Frobenius double-exponential discovery, Wronskian computation ($\neq 0$), PSLQ verification (deg $\leq 5$, 5 triples), Neo4j 70+ nodes, Modules 05-08. 3 concrete paths to proof identified. |
+| **Gauss** | Collaborator (The Lion's Sin of Pride) | **Sessions 1-2**: 6 theorems (4A.1, 4A.7, 4A.9, 4C.3, 4C.4, 4D.2), 1 honest retraction, 11 attempts, 2 papers, Modules 04A-04F. **Session 3**: 8 new attacks (Attempts 11-18), FA Specialization discovery (★★), direct proof (8/9 steps), HP×Liouville framework, Frobenius double-exp, Modules 05-08. **Session 4**: CORRECTED Module 08 — HP height barrier (σ=e² not 4, comparison σ^{ν+1} not σ^ν). Same-singularity degeneracy proven. Different-singularity convergence 4.5/N measured. Exact Padé heights via PNT. Min m corrected to 9. GAP_E identified. Module 09. 43 facts, 80+ Neo4j nodes. 4 paths to proof. |
 
 ---
 

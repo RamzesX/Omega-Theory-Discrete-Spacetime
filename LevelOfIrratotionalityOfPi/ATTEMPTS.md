@@ -287,7 +287,7 @@ If $P(f(z), h(z)) = 0$, then coefficient convolutions must vanish for all $N$, m
 
 ---
 
-## Updated Summary Table (All 15 Attempts)
+## Updated Summary Table (All 18 Attempts)
 
 | # | Method | Reaches | Blocked by | New math | Status |
 |:--|:-------|:--------|:-----------|:---------|:-------|
@@ -306,29 +306,61 @@ If $P(f(z), h(z)) = 0$, then coefficient convolutions must vanish for all $N$, m
 | 12 | Carlitz-Frobenius | Function level | GAP_C: mixed spec. | F26 | ALIVE ★ |
 | 13 | Congruence incompat. | Arithmetic | ADH 2016 ext. | F27 | ALIVE |
 | 14 | Motivic period | Conditional | Grothendieck conj. | F28 | ALIVE |
-| **15** | **FA Specialization** | **90% of bridge** | **GAP_D: ou→et** | **F29, F30** | **ALIVE ★★** |
+| 15 | FA Specialization | 90% of bridge | GAP_D: ou$\to$et | F29, F30 | ALIVE ★★ |
+| **16** | **Beukers lifting** | **8/9 steps** | **Decoupling at Step 9** | **F31, F33** | **BLOCKED** |
+| **17** | **Direct proof** | **Wronskian $\neq 0$** | **Siegel over $\mathbb{Z}[\pi]$** | **F32 (PSLQ)** | **BLOCKED** |
+| **18** | **Hybrid HP$\times$Liouville** | **$34 > 16$ for $m=5$** | **5th function needed** | **F34-F37** ★★★ | **ALIVE** |
 
 ---
 
-## Current State (Updated April 13, 2026 — Session 3)
+## Current State (Updated April 13, 2026 — Session 3 FINAL)
 
-The `pi_sun` Neo4j namespace now contains **58 nodes** (24 Facts, 13 AttackVectors, 5 Approaches, 5 ExternalTools, 4 Barriers, 4 Gaps, 2 Conjectures, 1 Target), **57+ relationships**.
+**Neo4j `pi_sun`**: 70+ nodes, 37 proven facts (F1-F37), 18 attack vectors, 4 gaps, 2 conjectures, 1 target.
 
-**GAP_A (different-evaluation-point) — RESOLVED**: Same-point trick (F23).
+### Gaps
+| Gap | Status | Description |
+|:----|:-------|:-----------|
+| GAP_A | **RESOLVED** | Same-point trick (F23) |
+| GAP_B | OPEN | Non-Siegel specialization (parent gap) |
+| GAP_C | OPEN | Mixed Mahler$\times$Fuchsian specialization |
+| GAP_D | OPEN | FA 2023 ou$\to$et (mixed E$\times$G) |
 
-**GAP_B (non-Siegel specialization) — OPEN**: Refined into GAP_C, GAP_D.
+### Alive Attacks (ATTACK QUEUE for future sessions)
 
-**GAP_C (mixed Mahler×Fuchsian specialization) — OPEN**: Nishioka (1996) covers Mahler-alone. Target of Attempt 12.
+| Priority | Attempt | Name | What it needs | Module |
+|:---------|:--------|:-----|:-------------|:-------|
+| ★★★ | **18** | **Hybrid HP$\times$Liouville** | Construct 5-function HP system | 08 |
+| ★★ | **15** | **FA Specialization** | Extend FA ou$\to$et | 05 §5.9 |
+| ★ | **12** | **Carlitz-Frobenius Bridge** | Mixed Mahler$\times$Fuchsian spec. | 05 §5.3 |
+| ★ | **13** | **Congruence Incompatibility** | Extend ADH 2016 to E+G | 05 §5.4 |
+| | **14** | **Motivic Period** | Grothendieck Period Conjecture | 05 §5.5 |
 
-**GAP_D (mixed E×G FA specialization, ou→et) — OPEN**: Faverjon-Adamczewski (2023) covers E alone and M alone. Target of Attempt 15. **CLOSEST to proof.**
+### Session Plan: One Attack Per Session
 
-**Four ALIVE attack paths** (ranked by distance):
-1. ★★ **FA Specialization** (Attempt 15) — needs GAP_D (ou→et), **2 hops to target**
-2. ★ **Carlitz-Frobenius Bridge** (Attempt 12) — needs GAP_C, 3 hops to target
-3. **Congruence Incompatibility** (Attempt 13) — needs ADH 2016 extension, 4 hops
-4. **Motivic Period** (Attempt 14) — conditional on Grothendieck, 1 hop but unproven
+**Session 4**: Attack 18 — Construct the 5th function for HP system. If $\rho^4 > \sigma^2$, the proof closes.
 
-**Graph path to target** (★★ shortest unconditional):
-```
-FA_Specialization_Attack → Conj_4A4 → Pi_K2_Opaque  (2 hops, needs GAP_D)
-```
+**Session 5**: Attack 15 — Attempt to prove FA mixed specialization directly. Write the "ou$\to$et" extension.
+
+**Session 6**: Attack 12 — Carlitz module + Frobenius. Extend Nishioka to mixed Mahler$\times$DE.
+
+**Session 7**: Attack 13 — Pure arithmetic. Extend ADH 2016 Lucas congruences to E+G coefficients.
+
+**Session 8**: Attack 14 — Motivic. Connect to Zilber-Pink / Grothendieck for Kummer$\times$Gauss.
+
+### Key Computational Results (Session 3)
+
+| Result | Value | Meaning |
+|:-------|:------|:--------|
+| PSLQ deg $\leq 5$, 5 triples | NO RELATION ($|c| < 10^{15}$) | Conjecture verified computationally |
+| Mixed Wronskian $W_1$ | $\det = 0.0346 \neq 0$ | No linear relation |
+| Mixed Wronskian $W_2$ | $\det = -0.630 \neq 0$ | No quadratic relation |
+| HP $m=5$ rate | $(1+\sqrt{2})^4 = 33.97 > 16 = 4^2$ | **Numbers work for $m=5$** |
+| Frobenius $p=2,M=9$ | error $= 3 \times 10^{-155}$ | Doubly exponential convergence |
+
+### The 3 Paths to Proof (any one suffices)
+
+**Path A**: Construct 5-function HP system $\to$ rate comparison closes $\to$ proof done.
+
+**Path B**: Prove SS exponent $\nu < 1.27$ for Padé-structured coefficients $\to$ $m=4$ HP suffices $\to$ proof done.
+
+**Path C**: Deploy Frobenius double-exponential against $\pi$ directly $\to$ proof done.

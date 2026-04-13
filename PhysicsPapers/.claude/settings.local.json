@@ -66,7 +66,8 @@
       "Bash(git status:*)",
       "Bash(git:*)",
       "Bash(awk -F: '{s+=$2}END{print \"Total defs+thms: \" s}')",
-      "Bash(echo \"EXIT: $?\")"
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(find:*)"
     ]
   },
   "prefersReducedMotion": true

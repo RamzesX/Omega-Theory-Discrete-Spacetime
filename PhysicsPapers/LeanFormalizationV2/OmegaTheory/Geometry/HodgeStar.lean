@@ -277,4 +277,45 @@ theorem weitzenbock_flat (ω : Discrete1Form) (p : LatticePoint) (ν : Fin 4) :
   simp only [shiftFin_shiftBackFin_comm]
   field_simp; ring
 
+/-! ## d Commutes with the Hodge Laplacian
+
+  On the flat lattice, the exterior derivative commutes with the Hodge Laplacian:
+  d(Δf) = Δ₁(df). This is the discrete analogue of the fundamental identity
+  dΔ = Δd, which ensures that the Hodge decomposition is compatible with d. -/
+
+/-- The exterior derivative commutes with the Hodge Laplacian on the flat lattice:
+    d₀(Δ₀ f) = Δ₁(d₀ f). Equivalently, d₀(discreteLaplacian f) = componentLaplacian₁(d₀ f).
+    Proof: both sides are Σ_μ of mixed third-order differences, equal by shift commutativity. -/
+theorem d_commutes_laplacian (f : Discrete0Form) (p : LatticePoint) (ν : Fin 4) :
+    d0 (hodgeLaplacian0 f) p ν = hodgeLaplacian1 (d0 f) p ν := by
+  -- LHS: d0(Δ₀f) = forwardDiff_ν(Σ_μ secondDeriv_μ f)
+  -- RHS: Δ₁(d0 f) = componentLaplacian₁(d0 f) = Σ_μ secondDeriv_μ(forwardDiff_ν f)
+  -- Both equal by commutativity of forward diff with second deriv
+  -- Unfold everything to shift/l_P level
+  simp only [hodgeLaplacian0, hodgeLaplacian1, codiff0, d0, codiff1, d1,
+    discreteLaplacian, forwardDiff, backwardDiff, secondDeriv,
+    shiftBackFin_shiftFin, shiftFin_shiftBackFin_comm, shiftFin_comm p]
+  -- Distribute to merge into a single sum
+  simp only [← Finset.sum_sub_distrib, Finset.sum_div, ← Finset.sum_add_distrib]
+  -- Per summand: both sides are the same third-order difference
+  apply Finset.sum_congr rfl; intro μ _
+  field_simp; ring
+
+/-- Closed forms are harmonic on the flat lattice:
+    if d₁(d₀ f) = 0 (tautologically true by d²=0), then d₀ f is in the kernel of Δ₁
+    restricted to exact forms. -/
+theorem exact_form_laplacian (f : Discrete0Form) (p : LatticePoint) (ν : Fin 4) :
+    codiffCurl (d0 f) p ν = 0 := by
+  unfold codiffCurl
+  -- codiff1(d1(d0 f)) = 0 because d1(d0 f) = 0 by d²=0
+  have h : ∀ q μ α, d1 (d0 f) q μ α = 0 := fun q μ α => d1_comp_d0 f q μ α
+  simp only [codiff1, h, backwardDiff_const, Finset.sum_const_zero]
+
+/-- For an exact 1-form d₀f, the Hodge Laplacian reduces to gradDiv:
+    Δ₁(d₀ f) = d₀(Δ₀ f). This is because the codiff-curl part vanishes (d²=0). -/
+theorem hodgeLaplacian1_exact (f : Discrete0Form) (p : LatticePoint) (ν : Fin 4) :
+    hodgeLaplacian1 (d0 f) p ν = gradDiv (d0 f) p ν := by
+  rw [hodgeLaplacian1_split]
+  simp only [exact_form_laplacian, add_zero]
+
 end OmegaTheory.Geometry

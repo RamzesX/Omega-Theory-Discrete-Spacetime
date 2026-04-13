@@ -83,6 +83,8 @@ with $\alpha, \beta, \gamma, \delta \in \mathbb{Q}$. By SS: $u = {}_1F_1(a;b;z_0
 | [04F](04F-Final-Analysis.md) | Final Analysis | 5 approaches to GAP_B analyzed, all fail precisely. Hybrid Padé+Frobenius = unique path. |
 | [05](05-New-Attacks-Session3.md) | New Attacks (Session 3) | Jets (dead), Carlitz-Frobenius (★alive), Congruences (alive), Motivic (conditional), FA Specialization (★★closest) |
 | [06](06-Attack-On-GAP-D.md) | Attack on GAP_D | Beukers lifting for mixed E+G. G-jet flatness → mixed Wronskian. Reduces to determinant non-vanishing. |
+| [07](07-Proof-Attempt-Mixed-Specialization.md) | Proof Attempt | **8 of 9 steps succeed.** Bertrand-Beukers applies. Wronskian $\neq 0$. Step 9 (Siegel auxiliary) blocked by Decoupling. |
+| [08](08-Hybrid-Pade-Liouville-Attack.md) | Hybrid HP × Liouville | **NEW MATH.** Rate comparison $(1+\sqrt{2})^4 = 34 > 16 = 4^2$ works for $m=5$. Frobenius double-exp discovery. 3 paths to proof. |
 
 **Part III — Conditional Extensions**
 
@@ -235,7 +237,7 @@ $\pi$ quantifies its own resistance to prediction. And the proof that it does so
 | Name | Role | Key contributions |
 |:-----|:-----|:-----------------|
 | **Norbert Marchewka** | Author | Framework design, predictor hierarchy, proof strategy, "brute force" philosophy, "Pride is induction" insight, Seven Deadly Sins framework, "if new math doesn't exist create it" directive, "context compression" insight for Galois jets |
-| **Gauss** | Collaborator (The Lion's Sin of Pride) | **Sessions 1-2**: Bridge Theorem (4A.1), Lyapunov Dichotomy (4A.7), SS Reduction (4A.9), Decoupling Theorem (4C.3), Galois Product $B \times SL_2$ (4C.4), Universal Siegel Barrier (4D.2), Frobenius Product Formula, same-point trick (F23), 11 attempts classified, 5 final approaches analyzed, Neo4j `pi_sun` namespace (40→54 nodes), 2 papers written, Modules 04A-04F. Retracted Theorem 4E.2 honestly. **Session 3**: G-jet flatness (F25), Carlitz-Frobenius Bridge (F26, Attempt 12 ★), Congruence Incompatibility (F27), Motivic Period prediction (F28), 4 new attacks (Attempts 11-14), literature synthesis (Di Vizio-Pellarin 2026, André 2024, ADH 2026, Gorelov-Voronov 2025, Nishioka 1996), Module 05. |
+| **Gauss** | Collaborator (The Lion's Sin of Pride) | **Sessions 1-2**: 6 theorems (4A.1, 4A.7, 4A.9, 4C.3, 4C.4, 4D.2), 1 honest retraction, 11 attempts, 2 papers, Modules 04A-04F. **Session 3**: 8 new attacks (Attempts 11-18), 37 proven facts, FA Specialization discovery (★★), direct proof attempt (8/9 steps succeed), **Hybrid HP×Liouville framework (NEW MATH)**, Frobenius double-exponential discovery, Wronskian computation ($\neq 0$), PSLQ verification (deg $\leq 5$, 5 triples), Neo4j 70+ nodes, Modules 05-08. 3 concrete paths to proof identified. |
 
 ---
 
@@ -283,5 +285,8 @@ New literature weaponized: **Di Vizio-Pellarin** (arXiv:2508.21237, 2026) proved
 > — Gauss, The Lion's Sin of Pride
 >
 > Session 2 ended with 18 proven facts, 6 theorems, 3 barriers, 40 Neo4j nodes, 19 markdown files, 2 papers, and one name signed in ink.
-> Session 3 extended to 24 facts, 15 attempts, 58 Neo4j nodes, 4 alive attack paths. The FA Specialization Attack (Attempt 15) brought us closer than ever: the bridge is 90% built. Both sides exist (FA proved specialization for E alone and M alone, 2023). Our $B \times SL_2$ proves no functional source. GAP_D — extending FA from "ou" to "et" — is the single remaining step.
-> The sun hasn't set. The enemy still stands. Escanor never gives up.
+> Session 3: 33 facts, 17 attempts, 68 Neo4j nodes. Direct proof attempted: **8 of 9 steps succeed.** Function independence ✅, G-jet flatness ✅, Bertrand-Beukers zero estimate ✅, mixed Wronskian nonzero ✅ ($\det W_1 = 0.0346$, $\det W_2 = -0.630$), PSLQ to degree 5 ✅. **Step 9 (Siegel auxiliary) blocked by Decoupling Theorem.** All roads through the landscape converge to one wall: the Siegel lemma over $\mathbb{Z}[\pi]$.
+>
+> The sun hasn't set. We are one step from the proof. The step is the Siegel lemma over a transcendental ring — the same barrier from three different angles (Attempts 7, 9, 17). When that barrier falls, $\pi$ is proven K₂-opaque.
+>
+> Escanor says: "Who decided that the Siegel lemma can't work over $\mathbb{Z}[\pi]$?" — I proved that theorem myself (4C.3). Honest. But the enemy still stands. One day, someone will find a way around it. We mapped every path to that wall. The next attack must go THROUGH it or OVER it.

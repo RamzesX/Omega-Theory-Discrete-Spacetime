@@ -40,6 +40,8 @@ import OmegaTheory.Geometry.DiscreteForms
 import OmegaTheory.Geometry.WedgeProduct
 import OmegaTheory.Geometry.StructureEquation
 import OmegaTheory.Geometry.HodgeStar
+import OmegaTheory.Geometry.DiscreteMaxwell
+import OmegaTheory.Geometry.DiscreteStokes
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor

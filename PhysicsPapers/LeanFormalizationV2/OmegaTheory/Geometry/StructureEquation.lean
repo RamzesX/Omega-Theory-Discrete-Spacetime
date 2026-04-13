@@ -53,6 +53,7 @@ theorem curvatureForm_eq_riemannForward (g : DiscreteMetric) (ρ σ : Fin 4)
     (p : LatticePoint) (μ ν : Fin 4) :
     curvatureForm g ρ σ p μ ν = riemannForward g ρ σ μ ν p := by
   unfold curvatureForm dGL1 d1 connectionForm wedgeGL riemannForward
+  simp only [Finset.sum_sub_distrib]
   ring
 
 /-- Forward-difference Riemann is antisymmetric in the last two indices. -/

@@ -70,7 +70,17 @@
       "Bash(find:*)",
       "Bash(grep -cE '^\\\\s*\\(theorem|lemma|def|noncomputable def|noncomputable instance|axiom|abbrev|structure|class|instance\\)' /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/*.lean /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/**/*.lean)",
       "Bash(awk -F: '{sum += $2} END {print \"Total:\", sum}')",
-      "Bash(grep -v ':0$')"
+      "Bash(grep -v ':0$')",
+      "Bash(grep -c \"^\\\\\\(theorem\\\\|lemma\\\\|noncomputable def\\\\|def\\\\|abbrev\\\\|structure\\\\|instance\\\\|class\\\\\\)\" OmegaTheory/**/*.lean OmegaTheory/*.lean)",
+      "Bash(sort -t: -k2 -n -r)",
+      "Bash(grep -c \"^theorem\\\\|^private theorem\\\\|^private lemma\\\\|^lemma\" OmegaTheory/**/*.lean)",
+      "Bash(awk -F: '{sum += $2} END {print \"Total theorems/lemmas:\", sum}')",
+      "Bash(grep -c \"^noncomputable def\\\\|^def\\\\|^abbrev\\\\|^structure\\\\|^noncomputable abbrev\" OmegaTheory/**/*.lean)",
+      "Bash(awk -F: '{sum += $2} END {print \"Total defs/structures:\", sum}')",
+      "Bash(grep -c \"^instance\\\\|^noncomputable instance\" OmegaTheory/**/*.lean)",
+      "Bash(awk -F: '{sum += $2} END {print \"Total instances:\", sum}')",
+      "Bash(awk -F: '{s+=$2}END{print \"Theorems+lemmas:\",s}')",
+      "Bash(awk -F: '{s+=$2}END{print \"Sorry count:\",s}')"
     ]
   },
   "prefersReducedMotion": true

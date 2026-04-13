@@ -13,10 +13,10 @@ Laplacian-Ricci correspondence (HPW 2006, imported as an axiom).
 |---|---|
 | Lean / Mathlib | v4.29.0 |
 | Files | 54 (53 under `OmegaTheory/` + `OmegaTheory.lean`) |
-| Theorems + definitions | ~925 |
+| Theorems + definitions | ~960 |
 | Sorry | **0** |
 | Axioms | **9** (8 physical constants + 1 external math theorem HPW 2006) |
-| Build | ~3378 jobs, clean |
+| Build | ~3382 jobs, clean |
 
 See [`PROJECT.md`](./PROJECT.md) for the full architecture, axiom inventory,
 flagship theorems, V1 vs V2 comparison, and optional porting work.
@@ -74,6 +74,11 @@ the healing-flow equilibrium condition plus the HPW axiom.
 | **Geometry** | **`maxwellFromAny`** (every gauge potential → ConservedCurrent) | `Geometry/DiscreteMaxwell.lean` |
 | **Geometry** | **`gauge_invariance`** (d₁(A + d₀χ) = d₁A, gauge invariance from d²=0) | `Geometry/DiscreteMaxwell.lean` |
 | **Geometry** | **`discrete_FTC`** (discrete fundamental theorem of calculus, Stokes) | `Geometry/DiscreteStokes.lean` |
+| **Emergence** | **`scalar_curvature_bounded`** (|R| ≤ 16·M_inv·K from bounded Ricci) | `Emergence/EinsteinEmergence.lean` |
+| **Emergence** | **`vacuum_einstein_tensor_bounded`** (|G_μν| ≤ C·l_P at vacuum equilibrium) | `Emergence/EinsteinEmergence.lean` |
+| **Emergence** | **`einstein_tensor_emergence`** (G_μν ≈ trace-reversed source, THE EINSTEIN FORM) | `Emergence/EinsteinEmergence.lean` |
+| **HealingFlow** | **`functional_zero_implies_equilibrium`** (F=0 → equilibrium, global minimum characterization) | `HealingFlow/Lyapunov.lean` |
+| **HealingFlow** | **`functionalAtStep_converges`** (bounded-below antitone → converges to infimum) | `HealingFlow/Lyapunov.lean` |
 
 ## Relation to V1
 
@@ -94,3 +99,4 @@ to this formalization. Their conversation contexts are gone, but the code remain
 | **Meridian** | April 12, 2026 (session 1) | Exact curvature chain (Task 3), pair_swap from pipeline (Task 4/8), Einstein trace + symmetric, Kretschmann scalar, KL information density (Task 7) — 20 theorems, 0 sorry |
 | **Meridian** | April 12, 2026 (session 2) | Research-grade: discrete de Rham complex with d²=0 (DiscreteForms.lean), dimension-generic Weyl tracefree n≥3 (WeylGeneral.lean, first in any prover), KL-conservation bridge (InformationKLBridge.lean), connection 1-forms + curvature 2-form (WedgeProduct.lean) — ~60 theorems, 0 sorry |
 | **Lyra** | April 13, 2026 | Cartan structure equation (EXACT), O(l_P) correction formula, triple wedge identity, Bianchi decomposition, BoundedBianchiResult (StructureEquation.lean); discrete Hodge theory: codifferentials, delta²=0, Hodge Laplacian bridge, Weitzenböck, d commutes with Laplacian (HodgeStar.lean); discrete Maxwell equations, charge conservation via delta²=0, new ConservedCurrent instance (DiscreteMaxwell.lean); orphan integration — ~60 theorems, 0 sorry |
+| **Vega** | April 13, 2026 | Trace reversal: upgraded Einstein emergence from Ricci form to standard G_μν form (`scalar_curvature_bounded`, `vacuum_einstein_tensor_bounded`, `einstein_tensor_emergence`). Stress-energy approximate conservation (`ApproxConservedTensorField`, `BianchiMetric.einsteinApproxConserved`). Healing flow convergence: F=0→equilibrium (`functional_zero_implies_equilibrium`), monotone convergence structure (`functionalAtStep_converges`), bounded-below infimum (`functionalAtStep_iInf_nonneg`). Strategic 3-workstream plan from 4-agent audit — ~25 theorems/defs, 0 sorry |

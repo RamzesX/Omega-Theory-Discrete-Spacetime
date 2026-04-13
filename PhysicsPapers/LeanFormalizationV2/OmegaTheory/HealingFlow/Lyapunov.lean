@@ -261,4 +261,148 @@ theorem healing_flow_speed_sq_eq_gradientNormSq
   refine Finset.sum_congr rfl fun ν _ => ?_
   exact healing_flow_rate_sq_eq params path g_exact I_field I_bar delta_tau hflow tau p μ ν
 
+/-! ## Global Convergence Properties (Theorem 6.2 from Appendix D)
+
+The convergence structure of the healing flow: F ≥ 0, dF/dτ ≤ 0,
+so F is bounded below and non-increasing. This implies convergence.
+At the limit, ‖∇F‖² = 0, giving equilibrium.
+
+We prove the endpoint characterization: F = 0 → equilibrium.
+
+Agent: Vega (April 13, 2026) -/
+
+/-- If the information term vanishes, the information equals the mean.
+    infoTerm = (1/2)(I - Ī)² = 0 → I = Ī. -/
+theorem info_uniform_of_infoTerm_zero (I : InformationDensity) (I_bar : ℝ)
+    (p : LatticePoint) (h : infoTerm I I_bar p = 0) :
+    I p = I_bar := by
+  unfold infoTerm at h
+  have h1 : (I p - I_bar) ^ 2 = 0 := by nlinarith
+  linarith [sq_eq_zero_iff.mp h1]
+
+/-- If the defect term vanishes, every defect component is zero.
+    defectTerm = (λ/2)|D|² = 0 with λ > 0 → D_μν = 0 for all μ,ν. -/
+theorem defect_zero_of_defectTerm_zero (g g_exact : DiscreteMetric)
+    {lambda : ℝ} (hlam : 0 < lambda) (p : LatticePoint)
+    (h : defectTerm g g_exact lambda p = 0) (μ ν : Fin 4) :
+    defectTensor g g_exact p μ ν = 0 := by
+  unfold defectTerm at h
+  have h1 : defectMagnitudeSq g g_exact p = 0 := by
+    nlinarith [defectMagnitudeSq_nonneg g g_exact p]
+  unfold defectMagnitudeSq at h1
+  have h2 := Finset.sum_eq_zero_iff_of_nonneg (fun a _ =>
+    Finset.sum_nonneg fun b _ => sq_nonneg (defectTensor g g_exact p a b)) |>.mp h1 μ
+      (Finset.mem_univ μ)
+  have h3 := Finset.sum_eq_zero_iff_of_nonneg (fun b _ =>
+    sq_nonneg (defectTensor g g_exact p μ b)) |>.mp h2 ν (Finset.mem_univ ν)
+  exact pow_eq_zero_iff (by norm_num : 2 ≠ 0) |>.mp h3
+
+/-- If the smoothness term vanishes, every Laplacian component is zero.
+    smoothnessTerm = (μ/2)Σ(Δg_{ab})² = 0 with μ > 0 → Δg_{ab} = 0. -/
+theorem laplacian_zero_of_smoothnessTerm_zero (g : DiscreteMetric)
+    {mu : ℝ} (hmu : 0 < mu) (p : LatticePoint)
+    (h : smoothnessTerm g mu p = 0) (a b : Fin 4) :
+    discreteLaplacian (fun q => g q a b) p = 0 := by
+  unfold smoothnessTerm at h
+  have h1 : Finset.univ.sum (fun a => Finset.univ.sum fun b =>
+      (discreteLaplacian (fun q => g q a b) p) ^ 2) = 0 := by
+    nlinarith [Finset.sum_nonneg (fun a (_ : a ∈ Finset.univ) =>
+      Finset.sum_nonneg fun b (_ : b ∈ Finset.univ) =>
+        sq_nonneg (discreteLaplacian (fun q => g q a b) p))]
+  have h2 := Finset.sum_eq_zero_iff_of_nonneg (fun x _ =>
+    Finset.sum_nonneg fun y _ =>
+      sq_nonneg (discreteLaplacian (fun q => g q x y) p)) |>.mp h1 a (Finset.mem_univ a)
+  have h3 := Finset.sum_eq_zero_iff_of_nonneg (fun y _ =>
+    sq_nonneg (discreteLaplacian (fun q => g q a y) p)) |>.mp h2 b (Finset.mem_univ b)
+  exact pow_eq_zero_iff (by norm_num : 2 ≠ 0) |>.mp h3
+
+/-- **F = 0 implies equilibrium**: if the healing functional vanishes on a
+    region, the metric is at healing equilibrium on that region.
+
+    Proof: F = 0 → each sub-term is 0 (sum of nonneg)
+    → I = Ī, D = 0, Δg = 0
+    → μΔg = 0 = λD + γ(I-Ī)  ✓
+
+    This is the endpoint characterization from Theorem 6.2:
+    the global minimum of F is precisely the set of equilibria. -/
+theorem functional_zero_implies_equilibrium (params : HealingParams)
+    (g g_exact : DiscreteMetric) (I : InformationDensity) (I_bar : ℝ)
+    (region : Finset LatticePoint)
+    (hF : healingFunctional params g g_exact I I_bar region = 0) :
+    ∀ p ∈ region, ∀ μ ν : Fin 4,
+      params.mu * discreteLaplacian (fun q => g q μ ν) p =
+      params.lambda * defectTensor g g_exact p μ ν +
+      params.gamma * (I p - I_bar) := by
+  intro p hp μ ν
+  have ⟨h_info, h_defect, h_smooth⟩ :=
+    healingFunctional_eq_zero_iff params g g_exact I I_bar region hF p hp
+  have hI := info_uniform_of_infoTerm_zero I I_bar p h_info
+  have hD := defect_zero_of_defectTerm_zero g g_exact params.lambda_pos p h_defect μ ν
+  have hL := laplacian_zero_of_smoothnessTerm_zero g params.mu_pos p h_smooth μ ν
+  simp [hL, hD, hI]
+
+/-! ## Monotone Convergence of the Healing Functional
+
+The healing functional along a discrete flow forms a bounded-below,
+non-increasing sequence. By monotone convergence, it converges.
+At the limit, consecutive differences vanish, forcing ‖∇F‖² → 0. -/
+
+/-- The healing functional evaluated at discrete time step n. -/
+noncomputable def functionalAtStep (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I_field : ℝ → InformationDensity) (I_bar : ℝ)
+    (region : Finset LatticePoint) (delta_tau : ℝ) (n : ℕ) : ℝ :=
+  healingFunctional params (path (n * delta_tau)) g_exact
+    (I_field (n * delta_tau)) I_bar region
+
+/-- The functional at each step is non-negative (bounded below by 0). -/
+theorem functionalAtStep_nonneg (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I_field : ℝ → InformationDensity) (I_bar : ℝ)
+    (region : Finset LatticePoint) (delta_tau : ℝ) (n : ℕ) :
+    0 ≤ functionalAtStep params path g_exact I_field I_bar region delta_tau n :=
+  healingFunctional_nonneg params _ g_exact _ I_bar region
+
+/-- The functional sequence is bounded below. -/
+theorem functionalAtStep_bddBelow (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I_field : ℝ → InformationDensity) (I_bar : ℝ)
+    (region : Finset LatticePoint) (delta_tau : ℝ) :
+    BddBelow (Set.range (functionalAtStep params path g_exact I_field I_bar
+      region delta_tau)) := by
+  use 0
+  intro x ⟨n, hn⟩
+  rw [← hn]
+  exact functionalAtStep_nonneg params path g_exact I_field I_bar region delta_tau n
+
+/-- If the functional sequence is antitone (non-increasing), then it
+    converges to its infimum.
+
+    This is the monotone convergence theorem applied to the healing flow:
+    F ≥ 0 + F non-increasing → F converges.
+
+    The antitone hypothesis must be verified separately for a specific flow
+    (it follows from the gradient descent structure with sufficiently small
+    step size). -/
+theorem functionalAtStep_converges (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I_field : ℝ → InformationDensity) (I_bar : ℝ)
+    (region : Finset LatticePoint) (delta_tau : ℝ)
+    (h_anti : Antitone (functionalAtStep params path g_exact I_field I_bar
+      region delta_tau)) :
+    Filter.Tendsto
+      (functionalAtStep params path g_exact I_field I_bar region delta_tau)
+      Filter.atTop
+      (nhds (⨅ n, functionalAtStep params path g_exact I_field I_bar
+        region delta_tau n)) :=
+  tendsto_atTop_ciInf h_anti
+    (functionalAtStep_bddBelow params path g_exact I_field I_bar region delta_tau)
+
+/-- The infimum of the functional sequence is non-negative.
+    Since every F(n) ≥ 0, the limit F_∞ ≥ 0. -/
+theorem functionalAtStep_iInf_nonneg (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I_field : ℝ → InformationDensity) (I_bar : ℝ)
+    (region : Finset LatticePoint) (delta_tau : ℝ) :
+    0 ≤ ⨅ n, functionalAtStep params path g_exact I_field I_bar
+      region delta_tau n := by
+  apply le_ciInf
+  intro n
+  exact functionalAtStep_nonneg params path g_exact I_field I_bar region delta_tau n
+
 end OmegaTheory.HealingFlow

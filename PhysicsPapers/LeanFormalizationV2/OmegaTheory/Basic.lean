@@ -62,6 +62,7 @@ import OmegaTheory.HealingFlow.Functional
 import OmegaTheory.HealingFlow.Flow
 import OmegaTheory.HealingFlow.Lyapunov
 import OmegaTheory.HealingFlow.Periodic
+import OmegaTheory.HealingFlow.Convergence
 
 -- Layer 8: Emergence
 import OmegaTheory.Emergence.CoarseGrain

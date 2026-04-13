@@ -13,7 +13,7 @@ Laplacian-Ricci correspondence (HPW 2006, imported as an axiom).
 |---|---|
 | Lean / Mathlib | v4.29.0 |
 | Files | 52 (51 under `OmegaTheory/` + `OmegaTheory.lean`) |
-| Theorems + definitions | ~890 |
+| Theorems + definitions | ~896 |
 | Sorry | **0** |
 | Axioms | **9** (8 physical constants + 1 external math theorem HPW 2006) |
 | Build | ~3378 jobs, clean |
@@ -63,7 +63,8 @@ the healing-flow equilibrium condition plus the HPW axiom.
 | **Geometry** | **`curvatureForm_eq_riemannForward`** (Cartan structure equation, EXACT) | `Geometry/StructureEquation.lean` |
 | **Geometry** | **`curvatureForm_eq_riemann_add_correction`** (Ω = R + O(l_P) correction) | `Geometry/StructureEquation.lean` |
 | **Geometry** | **`triple_wedge_cancel`** (ω∧(ω∧ω) = (ω∧ω)∧ω, gl-valued) | `Geometry/StructureEquation.lean` |
-| **Geometry** | **`bianchi_after_d_squared`** (D_ω(Ω) = d₂(ω∧ω) + [ω,Ω], d²=0 applied) | `Geometry/StructureEquation.lean` |
+| **Geometry** | **`bianchi_with_dGL1_separated`** (D_ω(Ω) = d₂(ω∧ω) + [ω,dω], triple-wedge cancel) | `Geometry/StructureEquation.lean` |
+| **Geometry** | **`BoundedBianchiResult`** (D_ω(Ω) = O(l_P) framework, flat witness) | `Geometry/StructureEquation.lean` |
 | **Geometry** | **`hodgeLaplacian0_eq_discreteLaplacian`** (Hodge Laplacian = discrete Laplacian) | `Geometry/HodgeStar.lean` |
 | **Geometry** | **`weitzenbock_flat`** (discrete Weitzenböck identity, flat lattice) | `Geometry/HodgeStar.lean` |
 | **Geometry** | **`codiff0_comp_codiff1`** (delta²=0, dual of d²=0, PROVEN) | `Geometry/HodgeStar.lean` |

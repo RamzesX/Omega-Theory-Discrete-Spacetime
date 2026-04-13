@@ -277,4 +277,73 @@ theorem bianchi_after_d_squared (g : DiscreteMetric) (ρ σ : Fin 4)
   rw [bianchi_decomposition]
   simp only [d2_dGL1_zero (connectionForm g) ρ σ p μ ν α, zero_add]
 
+/-! ### Bianchi with dGL1 separated
+
+  Substituting Omega = dGL1(omega) + omega^omega into the Bianchi decomposition
+  and using triple_wedge_cancel to eliminate the cubic terms:
+  D = d2(omega^omega) + omega^12(dGL1) - dGL1^21(omega)
+
+  The omega^(omega^omega) and (omega^omega)^omega terms cancel by triple_wedge_cancel. -/
+
+/-- Bianchi identity with curvature split: the triple-wedge terms cancel,
+    leaving D_omega(Omega) = d2(omega^omega) + [omega, dGL1(omega)]. -/
+theorem bianchi_with_dGL1_separated (g : DiscreteMetric) (ρ σ : Fin 4)
+    (p : LatticePoint) (μ ν α : Fin 4) :
+    covariantExtDeriv (connectionForm g) (curvatureForm g) ρ σ p μ ν α =
+    d2 (wedgeGL (connectionForm g) (connectionForm g) ρ σ) p μ ν α +
+    wedgeGL12 (connectionForm g) (dGL1 (connectionForm g)) ρ σ p μ ν α -
+    wedgeGL21 (dGL1 (connectionForm g)) (connectionForm g) ρ σ p μ ν α := by
+  rw [bianchi_after_d_squared]
+  -- wedgeGL12 and wedgeGL21 are linear in their 2-form argument
+  have lin12 : wedgeGL12 (connectionForm g) (curvatureForm g) ρ σ p μ ν α =
+      wedgeGL12 (connectionForm g) (dGL1 (connectionForm g)) ρ σ p μ ν α +
+      wedgeGL12 (connectionForm g) (wedgeGL (connectionForm g) (connectionForm g)) ρ σ p μ ν α := by
+    unfold wedgeGL12 curvatureForm
+    simp only [mul_add, add_mul, ← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl; intro l _; ring
+  have lin21 : wedgeGL21 (curvatureForm g) (connectionForm g) ρ σ p μ ν α =
+      wedgeGL21 (dGL1 (connectionForm g)) (connectionForm g) ρ σ p μ ν α +
+      wedgeGL21 (wedgeGL (connectionForm g) (connectionForm g)) (connectionForm g) ρ σ p μ ν α := by
+    unfold wedgeGL21 curvatureForm
+    simp only [mul_add, add_mul, ← Finset.sum_add_distrib]
+    apply Finset.sum_congr rfl; intro l _; ring
+  rw [lin12, lin21]
+  -- The wedgeGL12(omega, omega^omega) - wedgeGL21(omega^omega, omega) cancel
+  linarith [triple_wedge_cancel (connectionForm g) ρ σ p μ ν α]
+
+/-! ### Bounded Differential Bianchi
+
+  After `bianchi_with_dGL1_separated`, D = d2(ω∧ω) + [ω, dω].
+  The d2(ω∧ω) term, when expanded via forwardDiff_mul, produces:
+  - A "continuum Leibniz" part that exactly cancels with [ω, dω]
+  - A "Leibniz defect" part proportional to l_P
+
+  The continuum cancellation is the discrete analogue of:
+  d(ω∧ω) = dω∧ω - ω∧dω  (graded Leibniz rule)
+
+  For the bounded Bianchi, we need `SmoothConnectionData` to bound
+  the defect terms. -/
+
+/-- The bounded differential Bianchi identity: D_ω(Ω) is O(l_P) for
+    metrics with uniformly bounded connection and derivatives.
+    This is the discrete analogue of D_ω(Ω) = 0 in the continuum. -/
+structure BoundedBianchiResult (scd : SmoothConnectionData) where
+  /-- The Bianchi constant, depending on connection bounds. -/
+  C_bianchi : ℝ
+  C_bianchi_nonneg : 0 ≤ C_bianchi
+  /-- The differential Bianchi identity holds up to O(l_P). -/
+  bianchi_bound : ∀ (ρ σ : Fin 4) (p : LatticePoint) (μ ν α : Fin 4),
+    |covariantExtDeriv (connectionForm scd.g) (curvatureForm scd.g) ρ σ p μ ν α| ≤
+    C_bianchi * l_P
+
+/-- The flat metric satisfies the differential Bianchi identity exactly (C = 0). -/
+noncomputable def BoundedBianchiResult.flat : BoundedBianchiResult SmoothConnectionData.flat where
+  C_bianchi := 0
+  C_bianchi_nonneg := le_refl 0
+  bianchi_bound := by
+    intro ρ σ p μ ν α
+    show |covariantExtDeriv (connectionForm DiscreteMetric.flat)
+      (curvatureForm DiscreteMetric.flat) ρ σ p μ ν α| ≤ 0 * l_P
+    rw [differential_bianchi_flat, abs_zero, zero_mul]
+
 end OmegaTheory.Geometry

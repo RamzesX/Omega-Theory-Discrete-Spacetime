@@ -149,6 +149,293 @@ noncomputable def mkEinsteinEmergence (params : HealingParams)
     ricci_sourced := fun p μ ν =>
       einstein_with_matter_emergence params g g_exact I I_bar heq p μ ν }
 
+/-! ## Scalar Curvature and Einstein Tensor Bounds
+
+The theorems above prove the Ricci form: -2μR_μν ≈ source.
+To upgrade to the Einstein tensor form G_μν = R_μν - (1/2)g_μν R,
+we need bounds on the scalar curvature and then on G_μν.
+
+Agent: Vega (April 13, 2026) -/
+
+/-- Scalar curvature bound from component-wise Ricci bound.
+    R = Σ_{μν} g^{μν} R_{μν}, so |R| ≤ 16 · M_inv · K
+    when each |g^{μν}| ≤ M_inv and each |R_{μν}| ≤ K. -/
+theorem scalar_curvature_bounded (g : DiscreteMetric)
+    (M_inv K : ℝ) (hM : 0 ≤ M_inv) (hK : 0 ≤ K) (p : LatticePoint)
+    (hinv : ∀ μ ν, |(inverseMetric (g p)) μ ν| ≤ M_inv)
+    (hRic : ∀ μ ν, |ricciTensor g μ ν p| ≤ K) :
+    |scalarCurvature g p| ≤ 16 * M_inv * K := by
+  unfold scalarCurvature
+  calc |Finset.univ.sum fun μ => Finset.univ.sum fun ν =>
+        (inverseMetric (g p)) μ ν * ricciTensor g μ ν p|
+      ≤ Finset.univ.sum (fun μ => |Finset.univ.sum fun ν =>
+          (inverseMetric (g p)) μ ν * ricciTensor g μ ν p|) :=
+        Finset.abs_sum_le_sum_abs _ _
+    _ ≤ Finset.univ.sum (fun μ => Finset.univ.sum fun ν =>
+          |(inverseMetric (g p)) μ ν * ricciTensor g μ ν p|) := by
+        apply Finset.sum_le_sum; intro μ _
+        exact Finset.abs_sum_le_sum_abs _ _
+    _ ≤ Finset.univ.sum (fun _ : Fin 4 => Finset.univ.sum fun _ : Fin 4 =>
+          M_inv * K) := by
+        apply Finset.sum_le_sum; intro μ _
+        apply Finset.sum_le_sum; intro ν _
+        rw [abs_mul]
+        exact mul_le_mul (hinv μ ν) (hRic μ ν) (abs_nonneg _) hM
+    _ = 16 * M_inv * K := by
+        simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin,
+          nsmul_eq_mul, Nat.cast_ofNat]
+        ring
+
+/-- Einstein tensor triangle bound: since G_μν = R_μν - (1/2)g_μν R,
+    |G_μν| ≤ |R_μν| + (1/2)|g_μν||R|. -/
+theorem einsteinTensor_triangle_bound (g : DiscreteMetric)
+    (p : LatticePoint) (μ ν : Fin 4) :
+    |einsteinTensor g μ ν p| ≤
+    |ricciTensor g μ ν p| +
+    (1 / 2) * |(g p) μ ν| * |scalarCurvature g p| := by
+  unfold einsteinTensor
+  have hsplit : ricciTensor g μ ν p - 1 / 2 * (g p) μ ν * scalarCurvature g p =
+      ricciTensor g μ ν p + (-(1 / 2 * (g p) μ ν * scalarCurvature g p)) := by ring
+  rw [hsplit]
+  calc |ricciTensor g μ ν p + (-(1 / 2 * (g p) μ ν * scalarCurvature g p))|
+      ≤ |ricciTensor g μ ν p| + |-(1 / 2 * (g p) μ ν * scalarCurvature g p)| :=
+        abs_add_le _ _
+    _ = |ricciTensor g μ ν p| + |1 / 2 * (g p) μ ν * scalarCurvature g p| := by
+        rw [abs_neg]
+    _ = |ricciTensor g μ ν p| +
+        (1 / 2) * |(g p) μ ν| * |scalarCurvature g p| := by
+        rw [abs_mul, abs_mul, abs_of_pos (by norm_num : (0 : ℝ) < 1 / 2)]
+
+/-- At vacuum equilibrium with bounded metric, the Einstein tensor is O(l_P).
+
+    This upgrades `vacuum_einstein_emergence` (which only bounds R_μν)
+    to a bound on the full Einstein tensor G_μν = R_μν - (1/2)g_μν R.
+
+    The bound: |G_μν| ≤ (1 + 8·M_g·M_inv) · l_P / (2μ). -/
+theorem vacuum_einstein_tensor_bounded (params : HealingParams)
+    (g g_exact : DiscreteMetric) (I : InformationDensity) (I_bar : ℝ)
+    (M_inv M_g : ℝ) (hM_inv : 0 ≤ M_inv) (hM_g : 0 ≤ M_g)
+    (hinv : ∀ p μ ν, |(inverseMetric (g p)) μ ν| ≤ M_inv)
+    (hmet : ∀ p μ ν, |(g p) μ ν| ≤ M_g)
+    (heq : IsHealingEquilibrium params g g_exact I I_bar)
+    (hD : ∀ p μ ν, defectTensor g g_exact p μ ν = 0)
+    (hI : ∀ p, I p = I_bar)
+    (p : LatticePoint) (μ ν : Fin 4) :
+    |einsteinTensor g μ ν p| ≤
+    (1 + 8 * M_g * M_inv) * (l_P / (2 * params.mu)) := by
+  -- Step 1: each Ricci component is bounded by l_P/(2μ)
+  have hRic : ∀ a b, |ricciTensor g a b p| ≤ l_P / (2 * params.mu) :=
+    fun a b => vacuum_einstein_emergence params g g_exact I I_bar heq hD hI p a b
+  -- Step 2: scalar curvature is bounded by 16·M_inv·l_P/(2μ)
+  have hS : |scalarCurvature g p| ≤ 16 * M_inv * (l_P / (2 * params.mu)) :=
+    scalar_curvature_bounded g M_inv (l_P / (2 * params.mu)) hM_inv
+      (div_nonneg (le_of_lt l_P_pos) (le_of_lt (mul_pos two_pos params.mu_pos)))
+      p (fun a b => hinv p a b) hRic
+  -- Step 3: combine via triangle bound
+  have hTri := einsteinTensor_triangle_bound g p μ ν
+  have hR := hRic μ ν
+  have hg := hmet p μ ν
+  -- |G| ≤ |Ric| + (1/2)|g||S| ≤ K + (1/2)·M_g·(16·M_inv·K) = (1+8·M_g·M_inv)·K
+  have h_lP_bound : l_P / (2 * params.mu) ≥ 0 :=
+    div_nonneg (le_of_lt l_P_pos) (le_of_lt (mul_pos two_pos params.mu_pos))
+  nlinarith [abs_nonneg (ricciTensor g μ ν p),
+             abs_nonneg ((g p) μ ν),
+             abs_nonneg (scalarCurvature g p)]
+
+/-! ## General Einstein Tensor Emergence with Matter
+
+At general equilibrium (defects + information gradients present),
+the Einstein tensor is sourced by the trace-reversed information content.
+
+The source tensor S_μν := λD_μν + γ(I-Ī) satisfies -2μR_μν ≈ S_μν.
+Taking the trace and performing trace reversal:
+  G_μν ≈ -(1/(2μ))·(S_μν - (1/2)·g_μν·Tr(S))
+
+where Tr(S) = g^{αβ}·S_αβ is the trace of the source.
+
+Agent: Vega (April 13, 2026) -/
+
+/-- The equilibrium source tensor: S_μν = λD_μν + γ(I-Ī).
+    This is the right-hand side of the Ricci balance equation. -/
+noncomputable def equilibriumSource (params : HealingParams)
+    (g g_exact : DiscreteMetric) (I : InformationDensity) (I_bar : ℝ)
+    (p : LatticePoint) (μ ν : Fin 4) : ℝ :=
+  params.lambda * defectTensor g g_exact p μ ν +
+  params.gamma * (I p - I_bar)
+
+/-- Trace of the source tensor: Tr(S) = Σ_{μν} g^{μν} S_μν. -/
+noncomputable def sourceTrace (params : HealingParams)
+    (g g_exact : DiscreteMetric) (I : InformationDensity) (I_bar : ℝ)
+    (p : LatticePoint) : ℝ :=
+  Finset.univ.sum fun μ =>
+    Finset.univ.sum fun ν =>
+      (inverseMetric (g p)) μ ν *
+      equilibriumSource params g g_exact I I_bar p μ ν
+
+/-- The trace-reversed Einstein source: the tensor that G_μν
+    approximates up to O(l_P).
+
+    T̃_μν = -(1/(2μ))·(S_μν - (1/2)·g_μν·Tr(S))
+
+    This equals κ·T^(I)_μν when we identify the information
+    stress-energy tensor T^(I)_μν. -/
+noncomputable def einsteinSource (params : HealingParams)
+    (g g_exact : DiscreteMetric) (I : InformationDensity) (I_bar : ℝ)
+    (p : LatticePoint) (μ ν : Fin 4) : ℝ :=
+  -(1 / (2 * params.mu)) *
+    (equilibriumSource params g g_exact I I_bar p μ ν -
+     (1 / 2) * (g p) μ ν *
+     sourceTrace params g g_exact I I_bar p)
+
+/-- At equilibrium, the Einstein tensor approximates the trace-reversed source
+    up to a metric-dependent multiple of l_P.
+
+    |G_μν - einsteinSource| ≤ (1 + 8·M_g·M_inv)·l_P/(2μ)
+
+    This is THE trace-reversed Einstein emergence theorem:
+    G_μν ≈ -(1/(2μ))·(S_μν - (1/2)gTr(S)). -/
+theorem einstein_tensor_emergence (params : HealingParams)
+    (g g_exact : DiscreteMetric) (I : InformationDensity) (I_bar : ℝ)
+    (M_inv M_g : ℝ) (hM_inv : 0 ≤ M_inv) (hM_g : 0 ≤ M_g)
+    (hinv : ∀ p μ ν, |(inverseMetric (g p)) μ ν| ≤ M_inv)
+    (hmet : ∀ p μ ν, |(g p) μ ν| ≤ M_g)
+    (heq : IsHealingEquilibrium params g g_exact I I_bar)
+    (p : LatticePoint) (μ ν : Fin 4) :
+    |einsteinTensor g μ ν p - einsteinSource params g g_exact I I_bar p μ ν| ≤
+    (1 + 8 * M_g * M_inv) * (l_P / (2 * params.mu)) := by
+  -- The core identity: G - source = ε_μν - (1/2)g_μν ε_R
+  -- where ε_μν = R_μν + S_μν/(2μ) and ε_R = R + Tr(S)/(2μ)
+  -- From the equilibrium: |-2μR_μν - S_μν| ≤ l_P, i.e., |ε_μν| ≤ l_P/(2μ)
+  -- From tracing: |ε_R| ≤ 16·M_inv·l_P/(2μ)
+  -- Step 1: show G - source = (R + S/(2μ)) - (1/2)g(R + Tr(S)/(2μ))
+  have hmu2 : (0 : ℝ) < 2 * params.mu := mul_pos two_pos params.mu_pos
+  have h_identity : einsteinTensor g μ ν p - einsteinSource params g g_exact I I_bar p μ ν =
+      (ricciTensor g μ ν p +
+        equilibriumSource params g g_exact I I_bar p μ ν / (2 * params.mu)) -
+      (1 / 2) * (g p) μ ν *
+        (scalarCurvature g p +
+         sourceTrace params g g_exact I I_bar p / (2 * params.mu)) := by
+    unfold einsteinTensor einsteinSource
+    field_simp [ne_of_gt params.mu_pos, ne_of_gt hmu2]
+    ring
+  rw [h_identity]
+  -- Step 2: define ε_μν and ε_R
+  set ε := ricciTensor g μ ν p +
+    equilibriumSource params g g_exact I I_bar p μ ν / (2 * params.mu) with hε_def
+  set ε_R := scalarCurvature g p +
+    sourceTrace params g g_exact I I_bar p / (2 * params.mu) with hε_R_def
+  -- Helper: bound each residual |R_{ab} + S_{ab}/(2μ)| ≤ l_P/(2μ)
+  have h_residual : ∀ a b : Fin 4,
+      |ricciTensor g a b p +
+       equilibriumSource params g g_exact I I_bar p a b / (2 * params.mu)| ≤
+      l_P / (2 * params.mu) := by
+    intro a b
+    have h_eq := einstein_with_matter_emergence params g g_exact I I_bar heq p a b
+    -- |2μ(R + S/(2μ))| = |2μR + S| = |-((-2μR) - S)| ≤ l_P
+    suffices h : |2 * params.mu *
+        (ricciTensor g a b p +
+         equilibriumSource params g g_exact I I_bar p a b / (2 * params.mu))| ≤ l_P by
+      rw [abs_mul, abs_of_pos hmu2, mul_comm] at h
+      exact (le_div_iff₀ hmu2).mpr h
+    -- Clear the division: 2μ * (R + S/(2μ)) = 2μR + S
+    rw [mul_add, mul_div_cancel₀ _ (ne_of_gt hmu2)]
+    -- Now: |2μR + S| = |-((-2μR) - S)| ≤ l_P
+    rw [show 2 * params.mu * ricciTensor g a b p +
+        equilibriumSource params g g_exact I I_bar p a b =
+        -((-2 * params.mu * ricciTensor g a b p) -
+         (params.lambda * defectTensor g g_exact p a b +
+          params.gamma * (I p - I_bar))) from by
+      unfold equilibriumSource; ring]
+    rw [abs_neg]; exact h_eq
+  -- Step 3: bound |ε| ≤ l_P/(2μ)
+  have hε_bound : |ε| ≤ l_P / (2 * params.mu) := by
+    rw [hε_def]; exact h_residual μ ν
+  -- Step 4: bound |ε_R| ≤ 16·M_inv·l_P/(2μ)
+  have hε_R_bound : |ε_R| ≤ 16 * M_inv * (l_P / (2 * params.mu)) := by
+    rw [hε_R_def]
+    -- Work in multiplied form: show |2μ · ε_R| ≤ 16 M_inv l_P, then divide
+    suffices h_mul : |2 * params.mu * (scalarCurvature g p +
+        sourceTrace params g g_exact I I_bar p / (2 * params.mu))| ≤
+        16 * M_inv * l_P by
+      rw [abs_mul, abs_of_pos hmu2, mul_comm] at h_mul
+      rw [show 16 * M_inv * (l_P / (2 * params.mu)) =
+          16 * M_inv * l_P / (2 * params.mu) from by ring]
+      exact (le_div_iff₀ hmu2).mpr h_mul
+    -- Clear division: 2μ(R + Tr(S)/(2μ)) = 2μR + Tr(S)
+    rw [mul_add, mul_div_cancel₀ _ (ne_of_gt hmu2)]
+    -- Express 2μR + Tr(S) as a double sum
+    have h_as_sum : 2 * params.mu * scalarCurvature g p +
+        sourceTrace params g g_exact I I_bar p =
+        Finset.univ.sum fun a => Finset.univ.sum fun b =>
+          (inverseMetric (g p)) a b *
+          (2 * params.mu * ricciTensor g a b p +
+           equilibriumSource params g g_exact I I_bar p a b) := by
+      unfold scalarCurvature sourceTrace
+      simp only [Finset.mul_sum, ← Finset.sum_add_distrib]
+      apply Finset.sum_congr rfl; intro a _
+      apply Finset.sum_congr rfl; intro b _; ring
+    rw [h_as_sum]
+    -- Each inner term: |2μR_{ab} + S_{ab}| = |-(err_{ab})| ≤ l_P
+    have h_term : ∀ a b : Fin 4,
+        |2 * params.mu * ricciTensor g a b p +
+         equilibriumSource params g g_exact I I_bar p a b| ≤ l_P := by
+      intro a b
+      rw [show 2 * params.mu * ricciTensor g a b p +
+          equilibriumSource params g g_exact I I_bar p a b =
+          -((-2 * params.mu * ricciTensor g a b p) -
+           (params.lambda * defectTensor g g_exact p a b +
+            params.gamma * (I p - I_bar))) from by
+        unfold equilibriumSource; ring]
+      rw [abs_neg]
+      exact einstein_with_matter_emergence params g g_exact I I_bar heq p a b
+    -- Triangle inequality chain: 16 terms each ≤ M_inv · l_P
+    calc |Finset.univ.sum fun a => Finset.univ.sum fun b =>
+          (inverseMetric (g p)) a b *
+          (2 * params.mu * ricciTensor g a b p +
+           equilibriumSource params g g_exact I I_bar p a b)|
+        ≤ Finset.univ.sum (fun a => |Finset.univ.sum fun b =>
+            (inverseMetric (g p)) a b *
+            (2 * params.mu * ricciTensor g a b p +
+             equilibriumSource params g g_exact I I_bar p a b)|) :=
+          Finset.abs_sum_le_sum_abs _ _
+      _ ≤ Finset.univ.sum (fun a => Finset.univ.sum fun b =>
+            |(inverseMetric (g p)) a b *
+             (2 * params.mu * ricciTensor g a b p +
+              equilibriumSource params g g_exact I I_bar p a b)|) := by
+          apply Finset.sum_le_sum; intro a _
+          exact Finset.abs_sum_le_sum_abs _ _
+      _ ≤ Finset.univ.sum (fun _ : Fin 4 => Finset.univ.sum fun _ : Fin 4 =>
+            M_inv * l_P) := by
+          apply Finset.sum_le_sum; intro a _
+          apply Finset.sum_le_sum; intro b _
+          rw [abs_mul]
+          exact mul_le_mul (hinv p a b) (h_term a b) (abs_nonneg _) hM_inv
+      _ = 16 * M_inv * l_P := by
+          simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin,
+            nsmul_eq_mul, Nat.cast_ofNat]; ring
+  -- Step 5: combine |ε - (1/2)g·ε_R| ≤ |ε| + (1/2)|g||ε_R|
+  set K := l_P / (2 * params.mu)
+  have hK_nn : (0 : ℝ) ≤ K :=
+    div_nonneg (le_of_lt l_P_pos) (le_of_lt hmu2)
+  calc |ε - 1 / 2 * (g p) μ ν * ε_R|
+      ≤ |ε| + |1 / 2 * (g p) μ ν * ε_R| := by
+        rw [show ε - 1 / 2 * (g p) μ ν * ε_R =
+          ε + -(1 / 2 * (g p) μ ν * ε_R) from by ring]
+        have h1 := abs_add_le ε (-(1 / 2 * (g p) μ ν * ε_R))
+        rw [abs_neg] at h1; exact h1
+    _ ≤ |ε| + 1 / 2 * |(g p) μ ν| * |ε_R| := by
+        have : |1 / 2 * (g p) μ ν * ε_R| = 1 / 2 * |(g p) μ ν| * |ε_R| := by
+          rw [abs_mul, abs_mul, abs_of_pos (by norm_num : (0 : ℝ) < 1 / 2)]
+        linarith
+    _ ≤ K + 1 / 2 * M_g * (16 * M_inv * K) := by
+        have h1 := hmet p μ ν
+        have h2 := abs_nonneg ((g p) μ ν)
+        have h3 := abs_nonneg ε_R
+        have h5 := mul_le_mul h1 hε_R_bound h3 hM_g
+        -- h5 : |g| * |ε_R| ≤ M_g * (16 * M_inv * K)
+        nlinarith
+    _ = (1 + 8 * M_g * M_inv) * K := by ring
+
 /-! ## Summary
 
 The emergence chain is now COMPLETE and PROVEN:

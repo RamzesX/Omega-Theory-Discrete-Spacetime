@@ -261,6 +261,14 @@ theorem forwardDiff_finset_sum {ι : Type*} (s : Finset ι) (f : ι → ScalarFi
   unfold forwardDiff
   simp only [← Finset.sum_sub_distrib, Finset.sum_div]
 
+/-- Backward difference distributes over finite sums. -/
+theorem backwardDiff_finset_sum {ι : Type*} (s : Finset ι) (f : ι → ScalarField)
+    (μ : Fin 4) (p : LatticePoint) :
+    backwardDiff (fun q => s.sum (fun i => f i q)) μ p =
+    s.sum (fun i => backwardDiff (f i) μ p) := by
+  unfold backwardDiff
+  simp only [← Finset.sum_sub_distrib, Finset.sum_div]
+
 /-! ## Bridge: Forward ↔ Symmetric Difference -/
 
 /-- The forward difference equals the symmetric difference plus an O(l_P) correction:

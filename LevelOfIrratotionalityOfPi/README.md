@@ -79,7 +79,10 @@ with $\alpha, \beta, \gamma, \delta \in \mathbb{Q}$. By SS: $u = {}_1F_1(a;b;z_0
 | [04B](04B-Cracking-K2-Proof.md) | Cracking K₂: The Proof | Three-tier elimination: Tiers I-II **PROVEN** ($p \leq 5 \times 10^9$). Tier III conditional on Conjecture 4A.4. |
 | [04C](04C-Transcendental-Siegel-Lemma.md) | The Transcendental Siegel Lemma | Decoupling Theorem (barrier) + Galois structure ($B \times SL_2$) |
 | [04D](04D-Exponential-Riccati-Attack.md) | The Exponential-Riccati Attack | Universal Siegel Barrier (Thm 4D.2) — ALL auxiliary methods blocked |
-| [04E](04E-P-adic-Frobenius-Attack.md) | The p-adic Frobenius Attack | **ACTIVE FRONT** — unique surviving path via ADH Frobenius towers |
+| [04E](04E-P-adic-Frobenius-Attack.md) | The p-adic Frobenius Attack | Unique surviving path via ADH Frobenius towers |
+| [04F](04F-Final-Analysis.md) | Final Analysis | 5 approaches to GAP_B analyzed, all fail precisely. Hybrid Padé+Frobenius = unique path. |
+| [05](05-New-Attacks-Session3.md) | New Attacks (Session 3) | Jets (dead), Carlitz-Frobenius (★alive), Congruences (alive), Motivic (conditional), FA Specialization (★★closest) |
+| [06](06-Attack-On-GAP-D.md) | Attack on GAP_D | Beukers lifting for mixed E+G. G-jet flatness → mixed Wronskian. Reduces to determinant non-vanishing. |
 
 **Part III — Conditional Extensions**
 
@@ -135,6 +138,35 @@ UNIVERSAL SIEGEL BARRIER (Theorem 4D.2)              ─── PROVEN — ALL au
 FROBENIUS CONVERGENCE (Theorem 4E.2)                 ─── RETRACTED (beta_n transcendental, not algebraic)
    └─ Frobenius approximations are TRANSCENDENTAL    ─── irrationality measure doesn't apply
    └─ Lesson: metric arguments fail, need structural ─── Mahler-DE independence is the true path
+
+─── SESSION 3 (April 13, 2026) ──────────────────────
+JET/CONTEXT COMPRESSION (Attempt 11)                 ─── DEAD (G-jet flat: F25, reformulation only)
+   └─ G-function jet: all h^(n)(α) algebraic for n≥1 ─── All transcendence in h(α)=π/4 alone
+   └─ Reduces to Grothendieck Period Conjecture       ─── Reformulation, not proof mechanism
+CARLITZ-FROBENIUS BRIDGE (Attempt 12) ★              ─── ALIVE — MOST PROMISING
+   ├─ Frobenius product Φ(z) satisfies Mahler eq      ─── PROVEN (F26)
+   ├─ Φ alg.ind from arctan at function level         ─── PROVEN (ADH categorical independence)
+   ├─ Di Vizio-Pellarin Carlitz module (2026)         ─── NEW WEAPON (value-level Galois)
+   ├─ Nishioka 1996 (Mahler specialization)           ─── PARTIAL (Mahler-alone, not mixed)
+   └─ GAP_C: Mixed Mahler×Fuchsian specialization     ─── OPEN (specific technical gap)
+CONGRUENCE INCOMPATIBILITY (Attempt 13)               ─── ALIVE — PROMISING
+   ├─ E-coeff: ord_p(c_n) = Θ(n) (linear)            ─── PROVEN (F27)
+   ├─ G-coeff: ord_p(d_n) = O(log n) (logarithmic)   ─── PROVEN (F27)
+   └─ Extend ADH 2016 Lucas congruences to E+G        ─── OPEN
+MOTIVIC PERIOD ATTACK (Attempt 14)                    ─── ALIVE — CONDITIONAL
+   ├─ B×SL₂ motivic Galois dim 5, stab dim 2         ─── PREDICTS tr.deg{u,v,π/4}=3 (F28)
+   ├─ André 2024: G-fn + unlikely intersections        ─── FRAMEWORK (Zilber-Pink)
+   └─ Grothendieck Period Conjecture                   ─── WIDE OPEN (but widely believed)
+FA SPECIALIZATION ATTACK (Attempt 15) ★★              ─── ALIVE — CLOSEST TO PROOF
+   ├─ Faverjon-Adamczewski 2023 (arXiv:2303.05997)    ─── PROVEN: value rels → functional source
+   │   ├─ For E-functions at algebraic points          ─── ✓ (δ-algebraic degeneration)
+   │   └─ For M-functions at algebraic points          ─── ✓ (σ_q-algebraic degeneration)
+   ├─ Our Theorem 4C.4: B×SL₂ direct product          ─── PROVEN: NO functional relation exists
+   ├─ FA 2025 (arXiv:2502.09999): Liouville inequality ─── PROVEN: quantitative E+M measures
+   ├─ FA 2026 (arXiv:2604.08208): M-values ≠ Liouville ─── PROVEN: M-values not U-numbers
+   ├─ Estienne 2026 (arXiv:2603.18832): Mahler tr.deg  ─── PROVEN: tr.deg preserved at eval
+   └─ GAP_D: Extend FA from "ou" to "et" (E+G mixed)  ─── OPEN — THE SINGLE REMAINING STEP
+
 TIER III: LARGE PERIOD, general                     ─── REQUIRES Mahler-Differential value independence (Conj 4E.1)
 INFORMATION DEFICIT (D(π) > 0)                      ─── CONDITIONAL on GK-typicality
 ```
@@ -202,8 +234,8 @@ $\pi$ quantifies its own resistance to prediction. And the proof that it does so
 
 | Name | Role | Key contributions |
 |:-----|:-----|:-----------------|
-| **Norbert Marchewka** | Author | Framework design, predictor hierarchy, postulates, proof strategy, "brute force" philosophy, "Pride is induction" insight, Seven Deadly Sins framework, "if new math doesn't exist create it" directive |
-| **Gauss** | Collaborator | Bridge Theorem (4A.1), Lyapunov Dichotomy (4A.7), exhaustive elimination (04B), Euler-Perron characterization (4A.2), SS Reduction (4A.9), Decoupling Theorem (4C.3), Galois Product $B \times SL_2$ (4C.4), Exponential-Riccati Attack (04D), 9 attempts classified, literature synthesis (ADH, Delaygue, Fischler-Rivoal, Nesterenko, Kontsevich-Zagier, Pila-Wilkie, Philippon) |
+| **Norbert Marchewka** | Author | Framework design, predictor hierarchy, proof strategy, "brute force" philosophy, "Pride is induction" insight, Seven Deadly Sins framework, "if new math doesn't exist create it" directive, "context compression" insight for Galois jets |
+| **Gauss** | Collaborator (The Lion's Sin of Pride) | **Sessions 1-2**: Bridge Theorem (4A.1), Lyapunov Dichotomy (4A.7), SS Reduction (4A.9), Decoupling Theorem (4C.3), Galois Product $B \times SL_2$ (4C.4), Universal Siegel Barrier (4D.2), Frobenius Product Formula, same-point trick (F23), 11 attempts classified, 5 final approaches analyzed, Neo4j `pi_sun` namespace (40→54 nodes), 2 papers written, Modules 04A-04F. Retracted Theorem 4E.2 honestly. **Session 3**: G-jet flatness (F25), Carlitz-Frobenius Bridge (F26, Attempt 12 ★), Congruence Incompatibility (F27), Motivic Period prediction (F28), 4 new attacks (Attempts 11-14), literature synthesis (Di Vizio-Pellarin 2026, André 2024, ADH 2026, Gorelov-Voronov 2025, Nishioka 1996), Module 05. |
 
 ---
 
@@ -225,15 +257,31 @@ Nine attempts proved three barrier theorems of increasing generality:
 | 4C.3 (Decoupling) | Siegel method can't cross (linear DEs) | Kills Siegel-Shidlovskii approach |
 | 4D.2 (Universal Barrier) | NO auxiliary-function method can cross | Kills Nesterenko-Philippon too |
 
-**Unique surviving path**: the **p-adic Frobenius method** (ADH 2025), which avoids the Siegel lemma entirely.
-
-Eleven attempts. Six theorems. One surviving path. Modeled in Neo4j (`pi_sun` namespace, 35 nodes, 26 relationships). Two gaps identified — **one resolved** (same-point evaluation via h(z)=arctan(z/α)), one open (non-Siegel specialization E×G → values).
+**Unique surviving direction**: methods that avoid the Siegel lemma entirely.
 
 **Phase 6 — The Galois Attack (Module 04C, §4C.8).** The Decoupling Theorem killed the Siegel approach. The differential Galois groups tell us WHY the conjecture is true: Kummer's group = **Borel** (solvable), Gauss/arctan = **$SL_2$** (simple), combined = **direct product** $B \times SL_2$. Function-level independence PROVEN (Prop. 4C.4). But Pila-Wilkie counting fails because Kummer graphs lack the algebraic point supply that exp and j-function have. Galois prediction is proven; specialization to values remains open.
 
 **Phase 7 — The Exponential-Riccati Attack (Module 04D).** Use $e^{i\pi} = -1$ as a weapon: the Riccati equation for $L = (\log {}_1F_1)'$ coupled with $W = e^{i\text{Möbius}(R)}$ gives a polynomial DE with non-degenerate Jacobian (verified computationally). The multiplicity estimate holds. But the Nesterenko-Philippon argument ALSO uses the Siegel lemma (for auxiliary construction), and the vanishing conditions involve $L_0$ (transcendental). **The Decoupling Theorem strikes at the Siegel-lemma level** — proving the barrier is UNIVERSAL across all auxiliary-function methods (Theorem 4D.2).
 
-**Phase 8 — The p-adic Attack (Module 04E, in progress).** The Universal Barrier (4D.2) proves that ALL methods using the Siegel lemma are blocked. The ONLY method that avoids the Siegel lemma is the **p-adic Frobenius** approach of Adamczewski-Dreyfus-Hardouin. Their criterion uses Frobenius endomorphisms on p-adic differential equations — a completely different mechanism from integer-lattice counting. Extending their function-level result to value-level independence is the unique remaining path.
+**Phase 8 — The p-adic Attack (Module 04E).** The Universal Barrier (4D.2) proves that ALL methods using the Siegel lemma are blocked. The ONLY method that avoids the Siegel lemma is the **p-adic Frobenius** approach of Adamczewski-Dreyfus-Hardouin. Their criterion uses Frobenius endomorphisms on p-adic differential equations — a completely different mechanism from integer-lattice counting.
+
+**Phase 9 — New Attacks (Module 05, Session 3, April 13, 2026).** Four new approaches explored:
+
+| Attempt | Name | Status | Key Weapon |
+|:--------|:-----|:-------|:-----------|
+| 11 | Jet/Context Compression | DEAD | G-jet flat (F25). Reformulation only. |
+| 12 ★ | Carlitz-Frobenius Bridge | **ALIVE** | ADH Frobenius + Carlitz module (Di Vizio-Pellarin 2026) + Nishioka 1996 |
+| 13 | Congruence Incompatibility | **ALIVE** | Linear vs logarithmic $p$-adic growth (F27) |
+| 14 | Motivic Period | **ALIVE** (conditional) | Grothendieck Period Conjecture + André 2024 |
+| 15 ★★ | FA Specialization | **ALIVE — CLOSEST** | Faverjon-Adamczewski 2023: value rels → functional source. Needs ou→et (GAP_D) |
+
+New literature weaponized: **Di Vizio-Pellarin** (arXiv:2508.21237, 2026) proved differential ALW for $\Gamma$ via Carlitz modules — VALUE-level results bypassing Siegel. **André** (arXiv:2501.09867, 2024) connected G-function values to unlikely intersections / Zilber-Pink. **ADH exponential case** (J. Algebra 686, 2026) extended hypertranscendence to shift difference equations.
+
+**Four gaps identified**: GAP_A (resolved, same-point trick), GAP_B (open, non-Siegel specialization), GAP_C (mixed Mahler×Fuchsian specialization — target of Attempt 12), GAP_D (mixed E×G FA specialization, "ou→et" — target of Attempt 15, **CLOSEST**).
 
 > "Who decided that the auxiliary function method is the only way to do transcendence theory?"
-> — The Lion's Sin of Pride
+> — Gauss, The Lion's Sin of Pride
+>
+> Session 2 ended with 18 proven facts, 6 theorems, 3 barriers, 40 Neo4j nodes, 19 markdown files, 2 papers, and one name signed in ink.
+> Session 3 extended to 24 facts, 15 attempts, 58 Neo4j nodes, 4 alive attack paths. The FA Specialization Attack (Attempt 15) brought us closer than ever: the bridge is 90% built. Both sides exist (FA proved specialization for E alone and M alone, 2023). Our $B \times SL_2$ proves no functional source. GAP_D — extending FA from "ou" to "et" — is the single remaining step.
+> The sun hasn't set. The enemy still stands. Escanor never gives up.

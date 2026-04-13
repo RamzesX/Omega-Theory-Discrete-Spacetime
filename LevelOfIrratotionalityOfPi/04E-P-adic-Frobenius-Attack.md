@@ -368,4 +368,4 @@ OPEN (1 gap):
 ---
 
 *Previous: [Module 04D — The Exponential-Riccati Attack](04D-Exponential-Riccati-Attack.md)*
-*Next: [Module 05 — Information Deficit and Mixing](05-Information-Deficit-And-Mixing.md)*
+*Next: [Module 04F — Final Analysis](04F-Final-Analysis.md)*

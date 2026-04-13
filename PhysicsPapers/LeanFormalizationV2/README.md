@@ -66,7 +66,8 @@ the healing-flow equilibrium condition plus the HPW axiom.
 | **Geometry** | **`bianchi_after_d_squared`** (D_ω(Ω) = d₂(ω∧ω) + [ω,Ω], d²=0 applied) | `Geometry/StructureEquation.lean` |
 | **Geometry** | **`hodgeLaplacian0_eq_discreteLaplacian`** (Hodge Laplacian = discrete Laplacian) | `Geometry/HodgeStar.lean` |
 | **Geometry** | **`weitzenbock_flat`** (discrete Weitzenböck identity, flat lattice) | `Geometry/HodgeStar.lean` |
-| **Geometry** | **`backwardDiff_comm'`** (backward differences commute, dual of d²=0) | `Geometry/HodgeStar.lean` |
+| **Geometry** | **`codiff0_comp_codiff1`** (delta²=0, dual of d²=0, PROVEN) | `Geometry/HodgeStar.lean` |
+| **Geometry** | **`backwardDiff_comm'`** (backward differences commute) | `Geometry/HodgeStar.lean` |
 
 ## Relation to V1
 

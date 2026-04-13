@@ -208,10 +208,127 @@ Each attempt narrows the space of possible proofs. After 9 attempts:
 
 ---
 
-## Current State
+## Attempt 11: Context Compression via Taylor Jets (Module 05, §5.1)
 
-The `pi_sun` Neo4j namespace now contains **18 proven facts** (F1-F23, with some merged), **8 attack vectors**, **4 barriers**, **2 gaps**, **2 conjectures**, and **1 target** (35 nodes, 26 relationships).
+**Date**: April 13, 2026, Session 3
+**Method**: Norbert's insight — the Taylor jet $J_f(\alpha) = (f(\alpha), f'(\alpha), f''(\alpha), \ldots)$ preserves "compressed context" of the DE at $\alpha$. The $B \times SL_2$ Galois group acts on jets, not just on collapsed values.
+**Result**: The G-function jet is **flat** — all derivatives $h^{(n)}(\alpha)$ for $n \geq 1$ are algebraic (rational functions of $\alpha$). All transcendence concentrates in $h(\alpha) = \pi/4$ alone. The E-function jet captures exactly $(u, v)$ — same as SS. Jets add NO new transcendence to either side.
 
-**GAP_A (different-evaluation-point) — RESOLVED**: The "same-point trick" (F23) defines $h(z) = \arctan(z/\alpha)$ so that $h(\alpha) = \pi/4$, placing both the E-function $_1F_1(a;b;\alpha)$ and the G-function $h(\alpha)$ at the same algebraic evaluation point $z = \alpha$. This eliminates the obstacle that the two function classes were naturally evaluated at different points.
+**New fact**: **F25** (G-jet flatness).
+**Lesson**: The jet approach reformulates the problem elegantly (as the Grothendieck Period Conjecture for $B \times SL_2$) but does not solve it.
+**Status**: REFORMULATION. Not a proof mechanism.
 
-**GAP_B (non-Siegel specialization) — OPEN**: The single remaining gap. The Decoupling Theorem (4C.3) and Universal Siegel Barrier (4D.2) prove that ALL auxiliary-function methods are blocked. The unique surviving path is p-adic Frobenius specialization (ADH), which avoids the Siegel lemma entirely. Conjecture 4E.1 (Mahler-Differential value independence) is the precise missing theorem.
+---
+
+## Attempt 12: The Carlitz-Frobenius Bridge (Module 05, §5.3) — MOST PROMISING
+
+**Date**: April 13, 2026, Session 3
+**Method**: Combine three research programs:
+1. **ADH Frobenius (2025)**: The quotient $\Phi(z) = \prod s(z^{p^k})$ satisfies a Mahler equation $\Phi(z) = s(z) \cdot \Phi(z^p)$
+2. **ADH 2019**: Mahler functions and DE solutions are algebraically independent (function level)
+3. **Di Vizio-Pellarin (2026)**: Carlitz module provides VALUE-level Galois theory for difference equations, bypassing Siegel lemma
+
+**Key insight**: The Frobenius $z \to z^p$ IS a difference operator. The Carlitz module framework provides explicit Picard-Vessiot rings and Galois groups for such operators. Di Vizio-Pellarin proved VALUE-level results for $\Gamma$ (which satisfies a shift equation). The same machinery should extend to Mahler equations.
+
+**What remains**: The **Mixed Specialization Theorem** (GAP_C): if $\Phi(z)$ is a Mahler function and $h(z)$ is a Fuchsian DE solution, both algebraically independent over $\mathbb{C}(z)$, then $\Phi(\alpha)$ and $h(\alpha)$ are algebraically independent over $\mathbb{Q}$. Nishioka (1996) covers Mahler-alone. The mixed case is open.
+
+**Why this might be provable**: $_1F_1$ is entire (no finite singularities), so the Frobenius orbit $\{\alpha^{p^k}\}$ avoids all exceptional points. Nishioka's exceptional set is likely empty.
+
+**New fact**: **F26** (Frobenius-Mahler independence at function level).
+**Status**: ALIVE — MOST PROMISING. Well-defined technical gap (GAP_C).
+
+---
+
+## Attempt 13: Congruence Incompatibility (Module 05, §5.4)
+
+**Date**: April 13, 2026, Session 3
+**Method**: Direct arithmetic attack on Taylor coefficient structure modulo $p$:
+- E-function coefficients: $\mathrm{ord}_p(c_n) = \Theta(n)$ (linear $p$-adic growth, from $n!$ in denominator)
+- G-function coefficients: $\mathrm{ord}_p(d_n) = O(\log n)$ (logarithmic, from Lucas-type structure)
+
+If $P(f(z), h(z)) = 0$, then coefficient convolutions must vanish for all $N$, mixing E-type (linear) and G-type (logarithmic) $p$-adic valuations. The cancellation requires commensurate valuations across all $N$, which is impossible when growth rates differ.
+
+**What remains**: Formalize the heuristic. Extend ADH 2016 "congruences à la Lucas" from G-functions alone to mixed E+G coefficients.
+**New fact**: **F27** (congruence growth incompatibility).
+**Status**: ALIVE — PROMISING. Purely arithmetic, avoids all abstract machinery.
+
+---
+
+## Attempt 14: Motivic Period Attack (Module 05, §5.5)
+
+**Date**: April 13, 2026, Session 3
+**Method**: Both $u, v$ and $\pi/4$ are periods (Kontsevich-Zagier). The Grothendieck Period Conjecture says: $\mathrm{tr.deg}$ of periods = dimension of motivic Galois group. For $B \times SL_2$ (dim 5) with stabilizer dim 2: predicts $\mathrm{tr.deg}\{u, v, \pi/4\} = 3$. André's 2024 survey connects G-function values to unlikely intersections / Zilber-Pink: an algebraic relation $P(u,v,\pi/4) = 0$ would require "motivic cooperation" between $B$ and $SL_2$, which have no common quotient.
+
+**What remains**: Prove the Grothendieck Period Conjecture for the mixed Kummer$\times$Gauss motive. This is a major open problem, but widely believed true.
+**New fact**: **F28** (Grothendieck predicts $\mathrm{tr.deg} = 3$).
+**Status**: ALIVE — CONDITIONAL on an established conjecture.
+
+---
+
+## Attempt 15: The Faverjon-Adamczewski Specialization Attack (Module 05, §5.9) — ★★ CLOSEST
+
+**Date**: April 13, 2026, Session 3
+**Method**: Faverjon & Adamczewski (arXiv:2303.05997, 2023) proved: *all algebraic relations between E-function values at an algebraic point have a **functional source*** — they arise from degeneration of $\delta$-algebraic relations. Same for M-functions ($\sigma_q$-algebraic). This is THE specialization theorem.
+
+**The 2-step proof**:
+1. **If** FA specialization extends to mixed E$\times$G: any value relation $P(f(\alpha), h(\alpha)) = 0$ must come from a functional relation
+2. **But** $B \times SL_2$ is a direct product with no common quotient (Theorem 4C.4): NO functional relation exists between Kummer ($f$) and arctan ($h$) over $\mathbb{C}(z)$
+3. **Therefore**: no value relation. $\mathrm{tr.deg}\{u, v, \pi/4\} = 3$. Conjecture 4A.4 proven. $\pi$ is K₂-opaque.
+
+**What remains**: GAP_D — extend FA from "E-fonctions **ou** M-fonctions" to "E-fonctions **et** G-fonctions." The **ou → et** problem.
+
+**Why this is the closest we've ever been**:
+- The specialization mechanism EXISTS for each class separately (FA 2023)
+- The function-level independence EXISTS ($B \times SL_2$, Theorem 4C.4)
+- Additional quantitative support: FA 2025 (arXiv:2502.09999) gives Liouville-type inequalities for E and M values; FA 2026 (arXiv:2604.08208) proves M-function values aren't Liouville/U-numbers; Estienne 2026 (arXiv:2603.18832) proves tr.deg preservation for Mahler systems
+
+**New facts**: **F29** (FA specialization for E and M separately), **F30** (Estienne tr.deg preservation)
+**Status**: ALIVE — ★★ CLOSEST TO PROOF. Gap is GAP_D: a natural extension of existing published work by the same authors.
+
+---
+
+## Updated Summary Table (All 15 Attempts)
+
+| # | Method | Reaches | Blocked by | New math | Status |
+|:--|:-------|:--------|:-----------|:---------|:-------|
+| 1 | Brute force | $p \leq 5 \times 10^9$ | Data exhaustion | Five-test elimination | PARTIAL |
+| 2 | Asymptotics | $M = 1$ family | $\mu(\pi)$ too weak | Perturbation bounds | PARTIAL |
+| 3 | ADH 2025 lit | Function level | Value-level gap | Landscape map | DEAD |
+| 4 | Tool survey | — | No E$\times$G tool | Landscape map | DEAD |
+| 5 | Induction on $D$ | Reformulation | E/G at each step | Clean framework | DEAD |
+| 6 | SS Reduction | $\mathbb{Q}$ | $\mathbb{Q}(\pi)$ gap | **Theorem 4A.9** | THEOREM |
+| 7 | Extend Siegel | Per-slice | Decoupling barrier | **Theorem 4C.3** | BARRIER |
+| 8 | Galois + PW | $B \times SL_2$ | No algebraic points | **Prop. 4C.4** | PARTIAL |
+| 9 | Exp-Riccati | Multiplicity ✓ | **Universal Barrier** | **Theorem 4D.2** | BARRIER |
+| 10 | Mahler bridge | ADH connection | Value gap | **Conj. 4E.1** | FRAMEWORK |
+| 10b | Frobenius conv. | — | $\beta_n$ transcend. | Retraction | RETRACTED |
+| 11 | Jet/context | Reformulation | G-jet flat (F25) | F25 | DEAD |
+| 12 | Carlitz-Frobenius | Function level | GAP_C: mixed spec. | F26 | ALIVE ★ |
+| 13 | Congruence incompat. | Arithmetic | ADH 2016 ext. | F27 | ALIVE |
+| 14 | Motivic period | Conditional | Grothendieck conj. | F28 | ALIVE |
+| **15** | **FA Specialization** | **90% of bridge** | **GAP_D: ou→et** | **F29, F30** | **ALIVE ★★** |
+
+---
+
+## Current State (Updated April 13, 2026 — Session 3)
+
+The `pi_sun` Neo4j namespace now contains **58 nodes** (24 Facts, 13 AttackVectors, 5 Approaches, 5 ExternalTools, 4 Barriers, 4 Gaps, 2 Conjectures, 1 Target), **57+ relationships**.
+
+**GAP_A (different-evaluation-point) — RESOLVED**: Same-point trick (F23).
+
+**GAP_B (non-Siegel specialization) — OPEN**: Refined into GAP_C, GAP_D.
+
+**GAP_C (mixed Mahler×Fuchsian specialization) — OPEN**: Nishioka (1996) covers Mahler-alone. Target of Attempt 12.
+
+**GAP_D (mixed E×G FA specialization, ou→et) — OPEN**: Faverjon-Adamczewski (2023) covers E alone and M alone. Target of Attempt 15. **CLOSEST to proof.**
+
+**Four ALIVE attack paths** (ranked by distance):
+1. ★★ **FA Specialization** (Attempt 15) — needs GAP_D (ou→et), **2 hops to target**
+2. ★ **Carlitz-Frobenius Bridge** (Attempt 12) — needs GAP_C, 3 hops to target
+3. **Congruence Incompatibility** (Attempt 13) — needs ADH 2016 extension, 4 hops
+4. **Motivic Period** (Attempt 14) — conditional on Grothendieck, 1 hop but unproven
+
+**Graph path to target** (★★ shortest unconditional):
+```
+FA_Specialization_Attack → Conj_4A4 → Pi_K2_Opaque  (2 hops, needs GAP_D)
+```

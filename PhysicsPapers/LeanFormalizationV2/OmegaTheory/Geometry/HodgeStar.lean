@@ -151,10 +151,52 @@ theorem backwardDiff_comm' (f : ScalarField) (μ ν : Fin 4) (p : LatticePoint) 
   have h := shiftBackFin_comm p μ ν
   field_simp; rw [h]; ring
 
--- Note: delta^2 = 0 (codiff0 ∘ codiff1 = 0 for antisymmetric forms) holds by
--- backwardDiff_comm' + sum_comm + antisymmetry, but the proof requires
--- backwardDiff_finset_sum (distributing backward diff over finite sums).
--- Infrastructure for this is in place; the full proof is future work.
+/-- delta^2 = 0: codiff0(codiff1 omega) = 0 for antisymmetric 2-forms.
+    This is the dual of d2_comp_d1 (d^2 = 0).
+
+    Proof: S = Σ_α Σ_μ D⁻_α(D⁻_μ ω(·,μ,α))
+    By backwardDiff_finset_sum: distribute outer D⁻ into sum.
+    By backwardDiff_comm': swap derivative order D⁻_α D⁻_μ = D⁻_μ D⁻_α.
+    By Finset.sum_comm: swap sum indices α ↔ μ.
+    By antisymmetry: ω(q,μ,α) = -ω(q,α,μ).
+    Hence S = -S, so S = 0. -/
+theorem codiff0_comp_codiff1 (ω : Discrete2Form) (hanti : IsAntisymmetric2 ω)
+    (p : LatticePoint) :
+    codiff0 (codiff1 ω) p = 0 := by
+  unfold codiff0 codiff1
+  simp_rw [backwardDiff_finset_sum]
+  -- S = Σ_α Σ_μ BD_α(BD_μ(ω(·,μ,α)))(p). Show S = -S, hence S = 0.
+  -- Helper: backwardDiff of negated function = negated backwardDiff
+  have bd_neg : ∀ (g : ScalarField) (d : Fin 4) (q : LatticePoint),
+      backwardDiff (fun r => -g r) d q = -backwardDiff g d q := by
+    intro g d q; unfold backwardDiff; ring
+  -- Key: each summand f(α,μ) = -f(μ,α)
+  have key : ∀ α μ : Fin 4,
+      backwardDiff (fun q => backwardDiff (fun r => ω r μ α) μ q) α p =
+      -(backwardDiff (fun q => backwardDiff (fun r => ω r α μ) α q) μ p) := by
+    intro α μ
+    -- Swap derivative order: BD_α(BD_μ f) = BD_μ(BD_α f)
+    rw [backwardDiff_comm']
+    -- Apply antisymmetry inside: ω(r,μ,α) = -ω(r,α,μ)
+    simp_rw [show ∀ r, ω r μ α = -ω r α μ from fun r => hanti r μ α]
+    -- Pull negation through two layers of backwardDiff
+    simp_rw [bd_neg]
+  -- Now S = Σ_α Σ_μ (-f(μ,α)) = -(Σ_α Σ_μ f(μ,α)) = -(Σ_μ Σ_α f(α,μ)) = -S
+  have : (Finset.univ.sum fun α =>
+    Finset.univ.sum fun μ =>
+      backwardDiff (fun q => backwardDiff (fun r => ω r μ α) μ q) α p) =
+    -(Finset.univ.sum fun α =>
+    Finset.univ.sum fun μ =>
+      backwardDiff (fun q => backwardDiff (fun r => ω r μ α) μ q) α p) := by
+    -- Rewrite each summand using key
+    conv_lhs =>
+      arg 2; ext α; arg 2; ext μ
+      rw [key α μ]
+    -- Factor out negations
+    simp only [Finset.sum_neg_distrib]
+    -- Swap sum order: Σ_α Σ_μ f(μ,α) = Σ_μ Σ_α f(α,μ) after renaming
+    rw [Finset.sum_comm]
+  linarith
 
 /-! ## Exact and Coexact Forms
 

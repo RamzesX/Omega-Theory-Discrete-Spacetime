@@ -71,12 +71,17 @@ import OmegaTheory.HealingFlow.Convergence
 import OmegaTheory.Emergence.CoarseGrain
 import OmegaTheory.Emergence.LaplacianRicci
 import OmegaTheory.Emergence.HpwHypothesis
+import OmegaTheory.Emergence.HpwMinkowski
+import OmegaTheory.Emergence.HpwLinearised
 import OmegaTheory.Emergence.SmoothInterpolant
 import OmegaTheory.Emergence.HarmonicGauge
 import OmegaTheory.Emergence.RicciComparison
+import OmegaTheory.Emergence.HpwSchwarzschild
+import OmegaTheory.Emergence.HpwElimSummary
 import OmegaTheory.Emergence.EinsteinEmergence
 import OmegaTheory.Emergence.Gravitons
 import OmegaTheory.Emergence.SnapshotPropagator
+import OmegaTheory.Emergence.PatternIdentity
 
 -- Layer 10: Torsion (Einstein-Cartan)
 import OmegaTheory.Torsion.Torsion
@@ -98,3 +103,4 @@ import OmegaTheory.Irrationality.BoundsLemmas
 import OmegaTheory.Emergence.Predictions
 import OmegaTheory.Emergence.DimensionalFlow
 import OmegaTheory.Emergence.SpecialRelativity
+import OmegaTheory.Emergence.CoarseGrainingMap

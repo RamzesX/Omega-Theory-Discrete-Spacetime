@@ -66,21 +66,65 @@ by:
 - (d) triangle inequality → final `ℓ_P/2` bound, trivially if `μ·(ℓ_P²·M)
   ≤ ℓ_P/2`, i.e. if the physical regime is sub-Planckian.
 
-## What's proven already (Rigel, 2026-04-14)
+## What's proven already (Rigel + parallel team, 2026-04-14)
 
-In `LaplacianRicci.lean`:
+### Partial-attack theorems in `LaplacianRicci.lean` (Rigel main-thread)
 
 | Theorem | Content |
 |---|---|
 | `hpw_from_exact_harmonic_gauge` | If `Δg = −2R` exactly at a point, the axiom is trivially satisfied there (`\|0\| ≤ ℓ_P/2`). |
 | `hpw_from_bounded_remainder` | **Key structural reduction.** If `\|Δg + 2R\| ≤ δ` and `μ·δ ≤ ℓ_P/2`, the axiom holds as a theorem. |
 | `hpw_flat` | Flat-metric corollary (`R = Δg = 0`). |
+| `hpw_perturbed_flat` | Linearised-gravity corollary (via sub-agent Perturbed-flat-case). |
 | `HpwScalarConvergence` (Prop) | Codifies the scalar-convergence piece. |
-| `hpw_from_scalar_convergence` | If the scalar convergence and a harmonic-gauge identity both hold with slack `ℓ_P/4`, HPW holds (triangle inequality). |
+| `hpw_from_scalar_convergence` | Scalar convergence + harmonic-gauge identity + triangle inequality → HPW. |
 
-These five theorems *witness* that the axiom is decomposable — they
-show exactly where the real mathematical content lives. They do not
-eliminate the axiom; they narrow its effective scope.
+### Infrastructure landed by the 6-agent parallel team (2026-04-14)
+
+| File | Agent | Key contribution |
+|---|---|---|
+| `Emergence/HpwHypothesis.lean` | Architect | `HpwHypothesis` structure + `hpw_from_hypothesis` theorem |
+| `Emergence/HarmonicGauge.lean` | Gauge-formalizer | `HarmonicGaugeIdentity`, `RicciMatch`, `flatHarmonicGauge` |
+| `Emergence/SmoothInterpolant.lean` | Interpolant-constructor | `SmoothInterpolantData` + `minkowskiInterpolant` witness |
+| `Emergence/RicciComparison.lean` | Ricci-comparison | `RicciComparison` proposition + `hpwHypothesis_remainder_at_twelfth` (ℓ_P/12 allocation) |
+| `Foundations/TaylorBound.lean` | Taylor-prover | `central_diff_taylor_bound` + `central_diff_taylor_bound_axis` (4D lift) |
+| `Emergence/LaplacianRicci.lean` (edit) | Perturbed-flat-case | `hpw_perturbed_flat` |
+
+### Axiom-free migration chain (Rigel main-thread, in `HpwHypothesis.lean`)
+
+| Theorem | Role |
+|---|---|
+| `laplacian_ricci_correspondence_from_hypothesis` | Axiom-free `|μ·Δg + 2μ·R| ≤ ℓ_P` given `HpwHypothesis g` |
+| `ricci_from_equilibrium_balance_from_hypothesis` | Axiom-free equilibrium Ricci |
+| `emergence_chain_from_hypothesis` | Top-level witness: full chain is axiom-free under hypothesis |
+
+### 🏆 Minkowski milestone — axiom actually eliminated in free space (Rigel main-thread)
+
+`Emergence/HpwMinkowski.lean`:
+
+| Theorem | Content |
+|---|---|
+| `minkowskiHpwHypothesis : HpwHypothesis DiscreteMetric.flat` | **First concrete model of the hypothesis bundle.** Discharges every field without assumption: flat-Ricci + constant-Laplacian-is-zero give the remainder bound trivially. |
+| `hpw_bound_flat` | HPW bound `ℓ_P/2` as a theorem on flat Minkowski (no axiom). |
+| `laplacian_ricci_correspondence_flat` | Laplacian-Ricci correspondence `ℓ_P` as a theorem on flat Minkowski (no axiom). |
+| `hpw_eliminable_on_flat` | Existence witness: `∃ H : HpwHypothesis DiscreteMetric.flat`. |
+
+**This closes the HPW axiom elimination for the free-space regime.**
+The axiom is still declared in `LaplacianRicci.lean`, but any
+computation living on `DiscreteMetric.flat` can bypass it entirely
+through `hpw_bound_flat` / `laplacian_ricci_correspondence_flat`.
+
+### Ongoing (`hpw_curved` team, 2026-04-14)
+
+| Deliverable | Agent | Status |
+|---|---|---|
+| `Emergence/HpwLinearised.lean` | `linearised` | in-progress |
+| `Emergence/HpwSchwarzschild.lean` | `static_spherical` | in-progress |
+| `Emergence/HpwElimSummary.lean` | `synthesis` | in-progress |
+
+The curved-metric team will extend the concrete witness from the flat
+case to linearised gravity and static-spherical regimes, and package
+them into an umbrella typeclass `HpwEliminableRegime`.
 
 ## Neo4j-backed proof map
 

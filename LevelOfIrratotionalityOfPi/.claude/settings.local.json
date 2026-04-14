@@ -21,7 +21,22 @@
       "Bash(nc -zv localhost 7687)",
       "Skill(update-config)",
       "mcp__neo4j-math__read_neo4j_cypher",
-      "mcp__neo4j-math__write_neo4j_cypher"
+      "mcp__neo4j-math__write_neo4j_cypher",
+      "Bash(tee target_s8_1_3_run.log)",
+      "Bash(tee target_s8f_run.log)",
+      "Bash(tee target_s8_1_4_run.log)",
+      "Bash(tee target_s8_2_5_run.log)",
+      "Bash(tee target_h_attack12_run.log)",
+      "Bash(ls /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/LevelOfIrratotionalityOfPi/*.md)",
+      "Bash(tee target_j_run.log)",
+      "Bash(tee target_s8_rigorous_1_3_run.log)",
+      "Bash(tee target_s8_q_sweep_run.log)",
+      "Bash(tee target_i2_run.log)",
+      "Bash(ls *)",
+      "Bash(tee target_s8_big_prime_run.log)",
+      "Bash(tee target_s8_bigger_prime_run.log)",
+      "Bash(tee target_k_attack20_run.log)"
     ]
-  }
+  },
+  "prefersReducedMotion": true
 }

@@ -95,7 +95,11 @@
       "Bash(docker info:*)",
       "Bash(docker pull:*)",
       "Bash(docker volume:*)",
-      "Bash(docker run:*)"
+      "Bash(docker run:*)",
+      "mcp__neo4j-math__read_neo4j_cypher",
+      "Bash(docker exec:*)",
+      "mcp__neo4j-math__write_neo4j_cypher",
+      "Skill(update-config)"
     ]
   },
   "prefersReducedMotion": true

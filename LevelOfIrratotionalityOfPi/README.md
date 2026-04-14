@@ -87,6 +87,13 @@ with $\alpha, \beta, \gamma, \delta \in \mathbb{Q}$. By SS: $u = {}_1F_1(a;b;z_0
 | [08](08-Hybrid-Pade-Liouville-Attack.md) | Hybrid HP × Liouville | **NEW MATH.** Rate comparison idea. Frobenius double-exp discovery. **CORRECTED in Session 4** — see Module 09. |
 | [09](09-Attack18-HP-Height-Barrier.md) | Attack 18: HP Height Barrier (Session 4) | Module 08 comparison was **WRONG**: need $\rho^{m-1} > \sigma^{\nu+1}$ (not $\sigma^\nu$), and $\sigma = e^2 \approx 7.4$ (not 4). Min $m = 9$. GAP_E identified. |
 | [10](10-Attack15-FA-Specialization.md) | Attack 15: FA Specialization (Session 5) | FA ou→et **BLOCKED** by Decoupling. **CRITICAL**: G_Gauss = G_a ⋊ Z/2Z (NOT SL₂). F44-F48. Attack 13 now MOST PROMISING. |
+| [11](11-Attack19-Hermite-Pade-Pre-Siegel.md) | Attack 19: Pre-Siegel Hermite-Padé (Session 6) | Pure HP over ℤ[π]. Avoids Siegel entirely. F49-F53. GAP_F identified. |
+| [12](12-Session8-Slice-Change-Rescue.md) | Slice-change rescue (Session 8) | Slice (1/3, 4/3, 1/3): **GAP_F empirically closed** (margin +8.95), F52 rescued at p=3, **new F54** slice-prime correspondence. |
+| [13](13-Session9-Lean-Phase1.md) | Lean formalisation Phase 1 (Session 9) | `Decoupling.lean` (4C.3) + `PiStratum.lean` (F53) + `F49_Existence.lean` build clean, 0 sorries, Mathlib v4.29. |
+| [14](14-Sessions11-12-Attacks-13-12.md) | Attacks 13+12 computational (Sessions 11–12) | F27 ord_p dichotomy **empirically confirmed at 7/9 primes** with Legendre slopes 1/(p−1). Attack 12 Mahler + PSLQ clean. |
+| [15](15-F54-refinement-q_sweep.md) | F54* parity law (Session 14) | Refined F54 via q-sweep: **odd q → p-signature at p; even q → diverts to p=2**. 15/15 predictive accuracy across p ∈ {7, 11, 13}. |
+| [Paper-A13](Paper-Attack13-Lucas-Extension.md) | Attack 13 technical note (Session 14) | Frames F27 as quantitative Lucas separation; defines **Conjecture GAP_L** (three tractable ingredients for E⊕G extension of ADH 2016). |
+| [Paper-A12](Paper-Attack12-Carlitz-Frobenius.md) | Attack 12 technical note (Session 14) | Carlitz-Frobenius Mahler + Fuchsian framework; **Conjecture GAP_C** (mixed Mahler × Fuchsian specialization). |
 
 **Part III — Conditional Extensions**
 
@@ -195,7 +202,45 @@ ATTACK 15: FA SPECIALIZATION (Module 10)              ─── **BLOCKED** by D
 
 TIER III: LARGE PERIOD, general                     ─── REQUIRES Mahler-Differential value independence (Conj 4E.1)
 INFORMATION DEFICIT (D(π) > 0)                      ─── CONDITIONAL on GK-typicality
+
+─── SESSIONS 7–14 (April 14, 2026, Opus 4.6 team + Rigel) ──────────
+ATTACK 19: PRE-SIEGEL HERMITE-PADÉ (Module 11)      ─── ALIVE, quantitative frontier
+   ├─ F49 HP existence (kernel ≥ 1)                 ─── PROVEN + LEAN_VERIFIED
+   ├─ F50 super-exp decay ρ^{-n}                    ─── CERTIFIED by Arb intervals @ 2048 bits
+   ├─ F51 denominator bound Δ^n                     ─── PROVEN (Pochhammer arithmetic)
+   ├─ F52 p-adic non-vanishing (p=2)                ─── PROVEN for slice (1/2,3/2,1/2)
+   ├─ F53 π-stratum separation                      ─── PROVEN + LEAN_VERIFIED
+   └─ GAP_F (ρ > Δ)                                 ─── EMPIRICALLY CLOSED (Arb-certified, +8.95 margin)
+SESSION 7: PSLQ FALSIFIABILITY OF CONJ 4A.4          ─── Conj 4A.4 SURVIVES 3 tools × 2 slices × height 10^250
+   ├─ mpmath PSLQ @ deg π=3, height 10^200           ─── NO_RELATION
+   ├─ PARI lindep × 3 precisions (500/800/1200 dps) ─── SPURIOUS_ONLY (coefs scale linearly with dps)
+   └─ mpmath PSLQ @ deg π=5, 18 entries              ─── NO_RELATION @ height 10^250
+SESSION 8: SLICE-CHANGE RESCUE (Module 12)           ─── GAP_F CLOSED at slice (1/3, 4/3, 1/3)
+   ├─ Δ = 1 (denominators trivial at this slice)    ─── EMPIRICALLY CONFIRMED
+   ├─ ρ ≈ 7713 (super-exp decay)                    ─── CONFIRMED (Arb-certified)
+   ├─ F52 rescued at p=3                             ─── ord_3(A_n) ~ 3n linear
+   └─ F54 slice-prime correspondence DISCOVERED      ─── NEW FACT (Session 8)
+SESSION 9: LEAN PHASE 1 (Module 13)                  ─── 3 theorems formalized, 0 sorries
+   ├─ Decoupling.lean (4C.3)                        ─── BUILDS (Mathlib v4.29)
+   ├─ PiStratum.lean (F53)                          ─── BUILDS (uses axiom Real.pi_transcendental)
+   └─ F49_Existence.lean                            ─── BUILDS (rank-nullity, standard axioms only)
+SESSION 11: F27 ord_p DICHOTOMY (Module 14)          ─── CONFIRMED at 7/9 primes, Legendre match
+   └─ |E-slope| ≈ 1/(p−1), |G-slope| ≈ O(log k)     ─── EMPIRICAL + quantitative
+SESSION 12: CARLITZ-FROBENIUS (Module 14)            ─── Mahler eq verified + PSLQ clean
+   └─ {π, Φ_2(1/3), arctan(1/3), ...} ℤ-lin-indep   ─── NO_RELATION @ height 10^200
+SESSION 13: TRIPLE AGENT BATCH                        ─── 3 deliverables landed
+   ├─ Target_I motivic deg-2 PSLQ (Attack 14)       ─── NO_RELATION → tr.deg=3 supported
+   ├─ 19-slice panorama (F54 argmax test)           ─── 12/15 hit expected prime
+   └─ F49_Existence.lean                             ─── PROVEN
+SESSION 14: OPUS TEAM BATCH (Module 15 + papers)     ─── Parity law + 2 technical notes
+   ├─ F54* parity refinement                        ─── odd q → p, even q → p=2 (15/15)
+   ├─ Target_S8_rigorous_1_3 (Arb 2048-bit)         ─── CERTIFIED intervals n=1..18
+   ├─ Paper-Attack13-Lucas-Extension.md             ─── NEW PAPER — defines GAP_L
+   ├─ Paper-Attack12-Carlitz-Frobenius.md           ─── NEW PAPER — defines GAP_C
+   └─ Attack 14 deg-3 motivic PSLQ                   ─── NO_RELATION → tr.deg=3 at cubic
 ```
+
+**Neo4j graph**: namespace `pi_sun` at 104 nodes / 275 edges (NavigationMaster-3-level schema). See `SETUP.md` §MCP.
 
 ---
 

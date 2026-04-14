@@ -1,7 +1,27 @@
 {
   "permissions": {
     "allow": [
-      "Bash(wsl.exe bash:*)"
+      "Bash(wsl.exe bash:*)",
+      "Read(//mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/**)",
+      "Bash(~/.elan/bin/lake build:*)",
+      "Bash(python3 -c \"import sympy, mpmath; print\\(f'sympy {sympy.__version__}, mpmath {mpmath.__version__}'\\)\")",
+      "Bash(python3 -c \"import flint; print\\(f'python-flint {flint.__version__}'\\)\")",
+      "Bash(gp --version)",
+      "Bash(sudo -S apt-get update)",
+      "Bash(sudo -S apt-get install -y pari-gp)",
+      "Bash(python3 target_f2_pari_lindep.py)",
+      "Bash(tee target_f2_run.log)",
+      "Bash(python3 target_f3_pslq_deg5.py)",
+      "Bash(tee target_f3_run.log)",
+      "Bash(python3 target_b_rigorous_arb.py)",
+      "Bash(tee target_b_rigorous_run.log)",
+      "Bash(python3:*)",
+      "Bash(tee target_f2b_run.log)",
+      "Bash(head -40 /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Irrationality/HermitePade/*.lean)",
+      "Bash(nc -zv localhost 7687)",
+      "Skill(update-config)",
+      "mcp__neo4j-math__read_neo4j_cypher",
+      "mcp__neo4j-math__write_neo4j_cypher"
     ]
   }
 }

@@ -10,8 +10,14 @@
       `|μ · Δ_lat g_{μν}(p) + 2μ · R_{μν}(p)| ≤ ℓ_P/2`
 
   This encapsulates the combined content of:
-  1. **HPW 2006** (Geometriae Dedicata 123, pp. 89–112): the graph Laplacian
-     on a geometric Planck mesh converges to the Laplace-Beltrami operator.
+  1. **HPW 2006** = Hildebrandt–Polthier–Wardetzky, "On the convergence of
+     metric and geometric properties of polyhedral surfaces", Geometriae
+     Dedicata 123, pp. 89–112.  (Citation corrected from an earlier
+     draft that mis-attributed to "Hoch–Pflaum–Weinrebe".)  The original
+     paper is for 2D polyhedral meshes in ℝ³; the V2 use here is a
+     morally-analogous claim on the Z⁴ lattice of constant spacing ℓ_P.
+     A direct proof in the V2 setting is outlined in the partial-elimination
+     theorems below and should be attempted via Mathlib's Taylor tools.
   2. **Weinberg 1972 §11.1**: in harmonic gauge, `□g_{μν} = -2 R_{μν} + Γ·Γ`.
 
   Earlier drafts split this into three axioms (`continuumBoxG` placeholder +

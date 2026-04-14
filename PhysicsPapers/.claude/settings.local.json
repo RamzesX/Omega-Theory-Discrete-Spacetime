@@ -87,7 +87,15 @@
       "Bash(echo \"/-! ## H³\\(Z⁴\\) = 0 Future Work\")",
       "Bash(echo \"The 3-form cartan homotopy infrastructure \\(closed3_d3_identity_K, cartanContract3,\")",
       "Bash(echo \"cartanContract3_K_ν, cartanContract3_ν_K, cartanContract3_shift_self,\")",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(docker --version)",
+      "Bash(systemctl status:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:7474)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:7687)",
+      "Bash(docker info:*)",
+      "Bash(docker pull:*)",
+      "Bash(docker volume:*)",
+      "Bash(docker run:*)"
     ]
   },
   "prefersReducedMotion": true

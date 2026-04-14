@@ -1143,4 +1143,438 @@ theorem closed2_vanishing_hyperplane_is_exact
   · ring
   · rw [hvanish p μ ν]; ring
 
+/-! ## B2 Full: H²(Z⁴) = 0 via 4-Direction Cartan Cascade (Orion, April 14, 2026)
+
+Generalizes the direction-0 Cartan contraction to arbitrary K : Fin 4,
+then iterates in directions 0, 1, 2, 3. Since after 4 iterations every
+index μ ∈ Fin 4 = {0,1,2,3} must equal some K ∈ {0,1,2,3}, the residual
+is forced to 0 — yielding H²(Z⁴) = 0 for any closed antisymmetric 2-form. -/
+
+/-- **Generalized projection**: zero out coordinate K of q. -/
+def projectAway (K : Fin 4) (q : LatticePoint) : LatticePoint :=
+  fun i => if i = K then 0 else q i
+
+@[simp] theorem projectAway_self (K : Fin 4) (q : LatticePoint) :
+    projectAway K q K = 0 := by simp [projectAway]
+
+theorem projectAway_other (K : Fin 4) (q : LatticePoint) (i : Fin 4) (hi : i ≠ K) :
+    projectAway K q i = q i := by simp [projectAway, hi]
+
+theorem projectAway_shiftFin_self (K : Fin 4) (q : LatticePoint) :
+    projectAway K (shiftFin q K) = projectAway K q := by
+  ext i
+  simp [projectAway, shiftFin]
+  split_ifs with h <;> omega
+
+theorem projectAway_shiftFin_ne (K : Fin 4) (q : LatticePoint) (μ : Fin 4) (hμ : μ ≠ K) :
+    projectAway K (shiftFin q μ) = shiftFin (projectAway K q) μ := by
+  ext i
+  simp [projectAway, shiftFin]
+  split_ifs with h1 h2 h2
+  · omega
+  · rfl
+  · rfl
+  · rfl
+
+theorem shiftZ_projectAway_coord (K : Fin 4) (q : LatticePoint) :
+    shiftZ (projectAway K q) K (q K) = q := by
+  ext i
+  simp [shiftZ, projectAway]
+  split_ifs with h
+  · subst h; ring
+  · ring
+
+/-- ShiftZ in direction K and shiftFin in direction μ ≠ K commute. -/
+theorem shiftZ_shiftFin_comm_ne_K (q : LatticePoint) (K μ : Fin 4) (hμ : μ ≠ K) (k : ℤ) :
+    shiftZ (shiftFin q μ) K k = shiftFin (shiftZ q K k) μ := by
+  ext i; simp [shiftZ, shiftFin]; split_ifs with h1 h2 <;> omega
+
+/-- **d₂ω=0 identity** at indices (K, μ, ν): for closed ω,
+    Δ⁺_μ ω(·, K, ν) = Δ⁺_K ω(·, μ, ν) + Δ⁺_ν ω(·, K, μ). -/
+theorem closed2_d2_identity_K (K : Fin 4) (ω : Discrete2Form) (hclosed : IsClosed2 ω)
+    (μ ν : Fin 4) (q : LatticePoint) :
+    forwardDiff (fun p => ω p K ν) μ q =
+    forwardDiff (fun p => ω p μ ν) K q + forwardDiff (fun p => ω p K μ) ν q := by
+  have h := hclosed q K μ ν
+  unfold d2 at h
+  linarith
+
+/-- **Generalized Cartan contraction** along direction K: maps 2-forms to 1-forms. -/
+noncomputable def cartanContract (K : Fin 4) (ω : Discrete2Form) : Discrete1Form :=
+  fun q ν => lineIntZ (fun p _ => ω p K ν) K (projectAway K q) (q K)
+
+/-- For antisymmetric ω, the K-component of the Cartan contraction vanishes. -/
+theorem cartanContract_K_component (K : Fin 4) (ω : Discrete2Form)
+    (hanti : IsAntisymmetric2 ω) (q : LatticePoint) : cartanContract K ω q K = 0 := by
+  unfold cartanContract
+  have hz : ∀ p : LatticePoint, ∀ _μ : Fin 4, ω p K K = 0 := fun p _ =>
+    hanti.diag_zero p K
+  have hfn : (fun p (_ : Fin 4) => ω p K K) = fun _ _ => 0 := by
+    funext p μ; exact hz p μ
+  rw [hfn]
+  cases h : q K with
+  | ofNat n =>
+    show lineIntFwd (fun _ _ => (0 : ℝ)) K (projectAway K q) n = 0
+    unfold lineIntFwd; simp
+  | negSucc n =>
+    show lineIntBwd (fun _ _ => (0 : ℝ)) K (projectAway K q) n = 0
+    unfold lineIntBwd; simp
+
+/-- Shifting in direction K increments the line integral by l_P · ω p K ν. -/
+theorem cartanContract_shift_self (K : Fin 4) (ω : Discrete2Form)
+    (p : LatticePoint) (ν : Fin 4) :
+    cartanContract K ω (shiftFin p K) ν - cartanContract K ω p ν = l_P * ω p K ν := by
+  unfold cartanContract
+  have hcoord : (shiftFin p K) K = p K + 1 := by simp [shiftFin]
+  rw [hcoord, projectAway_shiftFin_self]
+  rw [lineIntZ_succ]
+  rw [shiftZ_projectAway_coord]
+  ring
+
+/-- (K, ν)-component of the Cartan homotopy identity (for antisymmetric ω). -/
+theorem cartanContract_d1_component_K (K : Fin 4) (ω : Discrete2Form)
+    (hanti : IsAntisymmetric2 ω) (p : LatticePoint) (ν : Fin 4) :
+    d1 (cartanContract K ω) p K ν = ω p K ν := by
+  unfold d1
+  have hzero : ∀ q, cartanContract K ω q K = 0 :=
+    cartanContract_K_component K ω hanti
+  have hzero' : (fun q => cartanContract K ω q K) = fun _ => 0 := funext hzero
+  rw [hzero']
+  have h2 : forwardDiff (fun _ : LatticePoint => (0 : ℝ)) ν p = 0 :=
+    forwardDiff_const 0 ν p
+  rw [h2]
+  have h1 : forwardDiff (fun q => cartanContract K ω q ν) K p = ω p K ν := by
+    unfold forwardDiff
+    rw [show cartanContract K ω (shiftFin p K) ν - cartanContract K ω p ν =
+        l_P * ω p K ν from cartanContract_shift_self K ω p ν]
+    field_simp [l_P_ne_zero]
+  rw [h1]; ring
+
+/-- **Generalized ℕ-shift identity for 2-form line integrals in direction K.**
+    For closed ω and μ ≠ K, shifting the base by μ gives a decomposition into
+    an endpoint Δω(μ,ν) telescoping + a cross integral over direction ν. -/
+theorem lineIntFwd_shift_2form_closed_K (K : Fin 4) (ω : Discrete2Form)
+    (hclosed : IsClosed2 ω) (μ ν : Fin 4) (hμ : μ ≠ K) (base : LatticePoint) (n : ℕ) :
+    lineIntFwd (fun p' _ => ω p' K ν) K (shiftFin base μ) n -
+    lineIntFwd (fun p' _ => ω p' K ν) K base n =
+    l_P * (ω (shiftZ base K (n : ℤ)) μ ν - ω base μ ν) +
+    (lineIntFwd (fun p' _ => ω p' K μ) K (shiftFin base ν) n -
+     lineIntFwd (fun p' _ => ω p' K μ) K base n) := by
+  induction n with
+  | zero => simp [lineIntFwd]
+  | succ k ih =>
+    rw [lineIntFwd_succ, lineIntFwd_succ, lineIntFwd_succ, lineIntFwd_succ]
+    have hcomm_μ : shiftZ (shiftFin base μ) K (k : ℤ) =
+        shiftFin (shiftZ base K (k : ℤ)) μ := shiftZ_shiftFin_comm_ne_K base K μ hμ k
+    have hcomm_ν : shiftFin (shiftZ base K (k : ℤ)) ν =
+        shiftZ (shiftFin base ν) K (k : ℤ) := by
+      rcases Decidable.em (ν = K) with hν | hν
+      · subst hν
+        ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+      · exact (shiftZ_shiftFin_comm_ne_K base K ν hν k).symm
+    have hsucc_K : shiftFin (shiftZ base K (k : ℤ)) K = shiftZ base K ((k : ℤ) + 1) := by
+      ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+    have hclosed_eq := closed2_d2_identity_K K ω hclosed μ ν (shiftZ base K (k : ℤ))
+    have hstep_eq : ω (shiftFin (shiftZ base K (k : ℤ)) μ) K ν -
+        ω (shiftZ base K (k : ℤ)) K ν =
+        (ω (shiftFin (shiftZ base K (k : ℤ)) K) μ ν - ω (shiftZ base K (k : ℤ)) μ ν) +
+        (ω (shiftFin (shiftZ base K (k : ℤ)) ν) K μ - ω (shiftZ base K (k : ℤ)) K μ) := by
+      have := hclosed_eq
+      unfold forwardDiff at this
+      have hlp : l_P ≠ 0 := l_P_ne_zero
+      field_simp [hlp] at this
+      linarith
+    rw [hcomm_μ] at *
+    rw [hsucc_K, hcomm_ν] at hstep_eq
+    have hstep_eq_lP : l_P * ω (shiftFin (shiftZ base K (k : ℤ)) μ) K ν -
+        l_P * ω (shiftZ base K (k : ℤ)) K ν =
+        l_P * (ω (shiftZ base K ((k : ℤ) + 1)) μ ν - ω (shiftZ base K (k : ℤ)) μ ν) +
+        l_P * (ω (shiftZ (shiftFin base ν) K (k : ℤ)) K μ -
+               ω (shiftZ base K (k : ℤ)) K μ) := by
+      linear_combination l_P * hstep_eq
+    have coerce : (↑(k + 1) : ℤ) = (↑k : ℤ) + 1 := by push_cast; ring
+    rw [coerce]
+    linarith
+
+/-- **Generalized ℤ-shift identity for 2-form line integrals in direction K.** -/
+theorem lineIntZ_shift_2form_closed_K (K : Fin 4) (ω : Discrete2Form)
+    (hclosed : IsClosed2 ω) (μ ν : Fin 4) (hμ : μ ≠ K) (base : LatticePoint) (k : ℤ) :
+    lineIntZ (fun p' _ => ω p' K ν) K (shiftFin base μ) k -
+    lineIntZ (fun p' _ => ω p' K ν) K base k =
+    l_P * (ω (shiftZ base K k) μ ν - ω base μ ν) +
+    (lineIntZ (fun p' _ => ω p' K μ) K (shiftFin base ν) k -
+     lineIntZ (fun p' _ => ω p' K μ) K base k) := by
+  have shiftcomm_μ : ∀ j : ℤ, shiftZ (shiftFin base μ) K j = shiftFin (shiftZ base K j) μ :=
+    fun j => shiftZ_shiftFin_comm_ne_K base K μ hμ j
+  have shiftcomm_ν : ∀ j : ℤ, shiftFin (shiftZ base K j) ν = shiftZ (shiftFin base ν) K j := by
+    intro j
+    rcases Decidable.em (ν = K) with hν | hν
+    · subst hν; ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+    · exact (shiftZ_shiftFin_comm_ne_K base K ν hν j).symm
+  have shiftFin_succ_K : ∀ j : ℤ, shiftFin (shiftZ base K j) K = shiftZ base K (j + 1) := by
+    intro j; ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+  have step_eq_lP : ∀ j : ℤ,
+      l_P * ω (shiftFin (shiftZ base K j) μ) K ν -
+      l_P * ω (shiftZ base K j) K ν =
+      l_P * (ω (shiftZ base K (j + 1)) μ ν - ω (shiftZ base K j) μ ν) +
+      l_P * (ω (shiftZ (shiftFin base ν) K j) K μ -
+             ω (shiftZ base K j) K μ) := by
+    intro j
+    have hclosed_eq := closed2_d2_identity_K K ω hclosed μ ν (shiftZ base K j)
+    have hlp : l_P ≠ 0 := l_P_ne_zero
+    have hstep_eq : ω (shiftFin (shiftZ base K j) μ) K ν -
+        ω (shiftZ base K j) K ν =
+        (ω (shiftFin (shiftZ base K j) K) μ ν - ω (shiftZ base K j) μ ν) +
+        (ω (shiftFin (shiftZ base K j) ν) K μ - ω (shiftZ base K j) K μ) := by
+      have := hclosed_eq
+      unfold forwardDiff at this
+      field_simp [hlp] at this
+      linarith
+    rw [shiftFin_succ_K j, shiftcomm_ν j] at hstep_eq
+    linear_combination l_P * hstep_eq
+  cases k with
+  | ofNat n => exact lineIntFwd_shift_2form_closed_K K ω hclosed μ ν hμ base n
+  | negSucc n =>
+    induction n with
+    | zero =>
+      have hs := lineIntZ_pred (fun p' _ => ω p' K ν) K (shiftFin base μ) 0
+      have ho := lineIntZ_pred (fun p' _ => ω p' K ν) K base 0
+      have hsm := lineIntZ_pred (fun p' _ => ω p' K μ) K (shiftFin base ν) 0
+      have hom := lineIntZ_pred (fun p' _ => ω p' K μ) K base 0
+      simp only [lineIntZ_zero] at hs ho hsm hom
+      have h01 : (0 : ℤ) - 1 = Int.negSucc 0 := by omega
+      rw [h01] at hs ho hsm hom
+      rw [hs, ho, hsm, hom]
+      rw [shiftcomm_μ (Int.negSucc 0)]
+      have hstep := step_eq_lP (Int.negSucc 0)
+      rw [show Int.negSucc 0 + 1 = (0 : ℤ) from by omega, shiftZ_zero] at hstep
+      linarith
+    | succ m _ih =>
+      have hs := lineIntZ_pred (fun p' _ => ω p' K ν) K (shiftFin base μ) (Int.negSucc m)
+      have ho := lineIntZ_pred (fun p' _ => ω p' K ν) K base (Int.negSucc m)
+      have hsm := lineIntZ_pred (fun p' _ => ω p' K μ) K (shiftFin base ν) (Int.negSucc m)
+      have hom := lineIntZ_pred (fun p' _ => ω p' K μ) K base (Int.negSucc m)
+      have hk : Int.negSucc m - 1 = Int.negSucc (m + 1) := by omega
+      rw [hk] at hs ho hsm hom
+      rw [hs, ho, hsm, hom]
+      rw [shiftcomm_μ (Int.negSucc (m + 1))]
+      have hstep := step_eq_lP (Int.negSucc (m + 1))
+      rw [show Int.negSucc (m + 1) + 1 = Int.negSucc m from by omega] at hstep
+      linarith
+
+/-- **Shift identity for cartanContract K** when both μ, ν ≠ K. -/
+theorem cartanContract_shift_mu_nu_ne_K (K : Fin 4) (ω : Discrete2Form)
+    (hclosed : IsClosed2 ω) (μ ν : Fin 4) (hμ : μ ≠ K) (hν : ν ≠ K) (p : LatticePoint) :
+    cartanContract K ω (shiftFin p μ) ν - cartanContract K ω p ν =
+    l_P * (ω p μ ν - ω (projectAway K p) μ ν) +
+    (cartanContract K ω (shiftFin p ν) μ - cartanContract K ω p μ) := by
+  unfold cartanContract
+  have hcoord_μ : (shiftFin p μ) K = p K := by
+    simp only [shiftFin]
+    by_cases h : (K : Fin 4) = μ
+    · exact absurd h.symm hμ
+    · simp [h]
+  have hcoord_ν : (shiftFin p ν) K = p K := by
+    simp only [shiftFin]
+    by_cases h : (K : Fin 4) = ν
+    · exact absurd h.symm hν
+    · simp [h]
+  rw [hcoord_μ, hcoord_ν, projectAway_shiftFin_ne K p μ hμ, projectAway_shiftFin_ne K p ν hν]
+  have h := lineIntZ_shift_2form_closed_K K ω hclosed μ ν hμ (projectAway K p) (p K)
+  rw [shiftZ_projectAway_coord K p] at h
+  exact h
+
+/-- **Cartan homotopy identity at (μ, ν) with μ, ν ≠ K**: for closed antisymmetric ω,
+    d₁(cartanContract K ω)(p, μ, ν) = ω(p, μ, ν) - ω(projectAway K p, μ, ν). -/
+theorem cartanContract_d1_component_mu_nu_ne_K
+    (K : Fin 4) (ω : Discrete2Form) (hclosed : IsClosed2 ω) (hanti : IsAntisymmetric2 ω)
+    (p : LatticePoint) (μ ν : Fin 4) (hμ : μ ≠ K) (hν : ν ≠ K) :
+    d1 (cartanContract K ω) p μ ν = ω p μ ν - ω (projectAway K p) μ ν := by
+  unfold d1
+  unfold forwardDiff
+  have h := cartanContract_shift_mu_nu_ne_K K ω hclosed μ ν hμ hν p
+  have hlp : l_P ≠ 0 := l_P_ne_zero
+  field_simp [hlp]
+  linarith
+
+/-- **Full Cartan homotopy identity for direction K**: for closed antisymmetric ω,
+
+      d₁(cartanContract K ω)(p, μ, ν) = ω(p, μ, ν) - residue(p, μ, ν)
+
+    where residue(p, μ, ν) = 0 if μ = K ∨ ν = K, else ω(projectAway K p, μ, ν). -/
+theorem cartanContract_d1_identity
+    (K : Fin 4) (ω : Discrete2Form) (hclosed : IsClosed2 ω) (hanti : IsAntisymmetric2 ω)
+    (p : LatticePoint) (μ ν : Fin 4) :
+    d1 (cartanContract K ω) p μ ν =
+    ω p μ ν - (if μ = K ∨ ν = K then 0 else ω (projectAway K p) μ ν) := by
+  rcases Decidable.em (μ = K) with hμ | hμ
+  · rw [hμ, if_pos (Or.inl rfl), cartanContract_d1_component_K K ω hanti p ν]
+    ring
+  · rcases Decidable.em (ν = K) with hν | hν
+    · rw [hν, if_pos (Or.inr rfl)]
+      -- For ν = K, μ ≠ K: use d₁ antisymmetry
+      have hd1_anti : d1 (cartanContract K ω) p μ K = -d1 (cartanContract K ω) p K μ := by
+        have := d1_antisymmetric (cartanContract K ω) p μ K
+        linarith
+      rw [hd1_anti, cartanContract_d1_component_K K ω hanti p μ, hanti p μ K]
+      ring
+    · rw [if_neg (by tauto : ¬ (μ = K ∨ ν = K))]
+      exact cartanContract_d1_component_mu_nu_ne_K K ω hclosed hanti p μ ν hμ hν
+
+/-! ## Cartan Residual: The 2-Form Remaining After One Contraction
+
+After applying `cartanContract K` to a closed antisymmetric 2-form ω, the residual
+  cartanResidual K ω p μ ν := if μ = K ∨ ν = K then 0 else ω (projectAway K p) μ ν
+is also closed and antisymmetric, and satisfies
+  ω = d₁(cartanContract K ω) + cartanResidual K ω. -/
+
+/-- **The Cartan residual**: after one contraction in direction K, the remaining 2-form. -/
+noncomputable def cartanResidual (K : Fin 4) (ω : Discrete2Form) : Discrete2Form :=
+  fun p μ ν => if μ = K ∨ ν = K then 0 else ω (projectAway K p) μ ν
+
+/-- The decomposition: ω = d₁(cartanContract K ω) + cartanResidual K ω. -/
+theorem cartan_decomp (K : Fin 4) (ω : Discrete2Form)
+    (hclosed : IsClosed2 ω) (hanti : IsAntisymmetric2 ω) (p : LatticePoint) (μ ν : Fin 4) :
+    ω p μ ν = d1 (cartanContract K ω) p μ ν + cartanResidual K ω p μ ν := by
+  rw [cartanContract_d1_identity K ω hclosed hanti p μ ν]
+  unfold cartanResidual
+  ring
+
+/-- cartanResidual preserves antisymmetry. -/
+theorem cartanResidual_antisym (K : Fin 4) (ω : Discrete2Form)
+    (hanti : IsAntisymmetric2 ω) : IsAntisymmetric2 (cartanResidual K ω) := by
+  intro p μ ν
+  unfold cartanResidual
+  by_cases h : μ = K ∨ ν = K
+  · rw [if_pos h, if_pos (by tauto : ν = K ∨ μ = K)]
+    ring
+  · push_neg at h
+    rw [if_neg (by tauto : ¬ (μ = K ∨ ν = K))]
+    rw [if_neg (by tauto : ¬ (ν = K ∨ μ = K))]
+    exact hanti (projectAway K p) μ ν
+
+/-- cartanResidual preserves closedness. This is the key technical lemma.
+    Proof by case analysis on which indices equal K. -/
+theorem cartanResidual_closed (K : Fin 4) (ω : Discrete2Form) (hclosed : IsClosed2 ω) :
+    IsClosed2 (cartanResidual K ω) := by
+  intro q a b c
+  -- Helper: if form indices include K, forwardDiff of residual is 0
+  have bad_inner : ∀ μ ν γ, (μ = K ∨ ν = K) →
+      forwardDiff (fun p => cartanResidual K ω p μ ν) γ q = 0 := by
+    intros μ ν γ hbad
+    unfold forwardDiff cartanResidual
+    simp [hbad]
+  -- Helper: if form indices don't include K, forwardDiff in direction K is 0
+  have dirK_good : ∀ μ ν, μ ≠ K → ν ≠ K →
+      forwardDiff (fun p => cartanResidual K ω p μ ν) K q = 0 := by
+    intros μ ν hμ hν
+    unfold forwardDiff cartanResidual
+    simp [show ¬ (μ = K ∨ ν = K) from fun h => h.elim hμ hν, projectAway_shiftFin_self]
+  -- Helper: forwardDiff in direction γ ≠ K at good indices = forwardDiff of ω at projected point
+  have good_diff : ∀ μ ν γ, μ ≠ K → ν ≠ K → γ ≠ K →
+      forwardDiff (fun p => cartanResidual K ω p μ ν) γ q =
+      forwardDiff (fun p => ω p μ ν) γ (projectAway K q) := by
+    intros μ ν γ hμ hν hγ
+    unfold forwardDiff cartanResidual
+    simp [show ¬ (μ = K ∨ ν = K) from fun h => h.elim hμ hν,
+          projectAway_shiftFin_ne K q γ hγ]
+  show d2 (cartanResidual K ω) q a b c = 0
+  unfold d2
+  -- Case analyze on a = K, b = K, c = K
+  by_cases ha : a = K
+  · -- a = K: T2 and T3 have a as form index → bad. T1 has direction a = K.
+    rw [bad_inner a c b (Or.inl ha), bad_inner a b c (Or.inl ha)]
+    by_cases hbc : b = K ∨ c = K
+    · rw [bad_inner b c a hbc]; ring
+    · push_neg at hbc
+      rw [ha, dirK_good b c hbc.1 hbc.2]
+      ring
+  · by_cases hb : b = K
+    · -- b = K: T1 has b (bad), T3 has b (bad). T2 direction = K.
+      rw [bad_inner b c a (Or.inl hb), bad_inner a b c (Or.inr hb)]
+      by_cases hac : a = K ∨ c = K
+      · rw [bad_inner a c b hac]; ring
+      · push_neg at hac
+        rw [hb, dirK_good a c hac.1 hac.2]
+        ring
+    · by_cases hc : c = K
+      · -- c = K: T1 and T2 have c (bad). T3 direction = K.
+        rw [bad_inner b c a (Or.inr hc), bad_inner a c b (Or.inr hc)]
+        by_cases hab : a = K ∨ b = K
+        · rw [bad_inner a b c hab]; ring
+        · push_neg at hab
+          rw [hc, dirK_good a b hab.1 hab.2]
+          ring
+      · -- a, b, c all ≠ K: main case, reduces to d₂ω at projected point
+        rw [good_diff b c a hb hc ha, good_diff a c b ha hc hb, good_diff a b c ha hb hc]
+        have := hclosed (projectAway K q) a b c
+        unfold d2 at this
+        linarith
+
+/-! ## The Cascade: After 4 Iterations, Residual is 0
+
+Since μ, ν ∈ Fin 4 = {0, 1, 2, 3}, iterating cartanResidual in all 4 directions
+eventually forces every index-pair to fire at least one K-condition, yielding 0. -/
+
+/-- The 4-fold Cartan residual iteration. -/
+noncomputable def cartanResidual4 (ω : Discrete2Form) : Discrete2Form :=
+  cartanResidual 3 (cartanResidual 2 (cartanResidual 1 (cartanResidual 0 ω)))
+
+/-- After 4 iterations of Cartan residual (in directions 0, 1, 2, 3), the residual is 0.
+    Reason: for every (μ, ν) ∈ Fin 4 × Fin 4, at least one of μ ∈ {0,1,2,3} or ν ∈ {0,1,2,3}
+    matches one of the four conditions, forcing the if-then-zero branch. -/
+theorem cartanResidual4_eq_zero (ω : Discrete2Form) :
+    ∀ p μ ν, cartanResidual4 ω p μ ν = 0 := by
+  intro p μ ν
+  unfold cartanResidual4 cartanResidual
+  fin_cases μ <;> fin_cases ν <;> simp
+
+/-! ## H²(Z⁴) = 0: The Main Theorem
+
+Every closed antisymmetric 2-form on Z⁴ is exact.
+Proof: iterate cartanContract in directions 0, 1, 2, 3. After 4 iterations,
+the residual is 0 (since all indices in Fin 4 are accounted for). The
+potential is the sum of the 4 cartanContract intermediate potentials. -/
+
+/-- **H²(Z⁴) = 0**: every closed antisymmetric 2-form is exact.
+    The potential is α₀ + α₁ + α₂ + α₃ where αK = cartanContract K of the
+    Kth iterated residual. -/
+theorem closed2_is_exact (ω : Discrete2Form) (hclosed : IsClosed2 ω)
+    (hanti : IsAntisymmetric2 ω) : IsExact2 ω := by
+  -- Iterated residuals
+  let ω1 := cartanResidual 0 ω
+  let ω2 := cartanResidual 1 ω1
+  let ω3 := cartanResidual 2 ω2
+  -- Closedness and antisymmetry propagate through Cartan residuals
+  have h1_closed : IsClosed2 ω1 := cartanResidual_closed 0 ω hclosed
+  have h2_closed : IsClosed2 ω2 := cartanResidual_closed 1 ω1 h1_closed
+  have h3_closed : IsClosed2 ω3 := cartanResidual_closed 2 ω2 h2_closed
+  have h1_anti : IsAntisymmetric2 ω1 := cartanResidual_antisym 0 ω hanti
+  have h2_anti : IsAntisymmetric2 ω2 := cartanResidual_antisym 1 ω1 h1_anti
+  have h3_anti : IsAntisymmetric2 ω3 := cartanResidual_antisym 2 ω2 h2_anti
+  -- The 4 potentials
+  let α0 := cartanContract 0 ω
+  let α1 := cartanContract 1 ω1
+  let α2 := cartanContract 2 ω2
+  let α3 := cartanContract 3 ω3
+  -- The claimed potential: sum of the 4
+  refine ⟨add1Form α0 (add1Form α1 (add1Form α2 α3)), ?_⟩
+  ext p μ ν
+  -- Unfold d₁ of the sum
+  rw [d1_add, d1_add, d1_add]
+  show ω p μ ν = add2Form (d1 α0) (add2Form (d1 α1) (add2Form (d1 α2) (d1 α3))) p μ ν
+  unfold add2Form
+  -- Chain of decompositions
+  have h1 := cartan_decomp 0 ω hclosed hanti p μ ν
+  have h2 := cartan_decomp 1 ω1 h1_closed h1_anti p μ ν
+  have h3 := cartan_decomp 2 ω2 h2_closed h2_anti p μ ν
+  have h4 := cartan_decomp 3 ω3 h3_closed h3_anti p μ ν
+  have h5 : cartanResidual 3 ω3 p μ ν = 0 := by
+    show cartanResidual4 ω p μ ν = 0
+    exact cartanResidual4_eq_zero ω p μ ν
+  -- h1: ω = d₁α₀ + ω₁, h2: ω₁ = d₁α₁ + ω₂, h3: ω₂ = d₁α₂ + ω₃
+  -- h4: ω₃ = d₁α₃ + cartanResidual 3 ω₃, h5: cartanResidual 3 ω₃ = 0
+  -- Chain: ω = d₁α₀ + d₁α₁ + d₁α₂ + d₁α₃
+  linarith
+
 end OmegaTheory.Geometry

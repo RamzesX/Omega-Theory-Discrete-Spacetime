@@ -48,6 +48,7 @@ import OmegaTheory.Geometry.HodgeDecomposition
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor
+import OmegaTheory.Defects.Sparsity
 
 -- Layer 6: Conservation Laws
 import OmegaTheory.Conservation.Information

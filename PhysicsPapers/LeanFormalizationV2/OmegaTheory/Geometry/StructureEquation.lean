@@ -378,6 +378,49 @@ private theorem conn_product_defect_bound (scd : SmoothConnectionData)
     (scd.dconn_bounded ρ₂ σ₂ μ₂ dir p) (abs_nonneg _)
     (mul_nonneg l_P_nonneg scd.M_dconn_nonneg)
 
+/-! ### Key Cancellation Identity (B4b)
+
+  The graded Leibniz cancellation: d₂(ω∧ω) + wedgeGL12(ω,dω) - wedgeGL21(dω,ω)
+  equals exactly l_P · (24 defect terms), where each defect is (Δf · Δg).
+
+  This is the discrete analogue of d(ω∧ω) = dω∧ω − ω∧dω: the "unshifted Leibniz"
+  part of d₂(ω∧ω) cancels with [ω, dω]; only the discrete Leibniz defects survive.
+
+  Proof is a direct polynomial identity after unfolding everything to forwardDiff
+  level, via Fin.sum_univ_four + field_simp + ring.
+
+  Agent: Vega (April 14, 2026) -/
+
+/-- The bianchi rearrangement: D_ω(Ω) equals l_P times an explicit 24-term defect sum.
+    This is the key algebraic identity — the "discrete graded Leibniz cancellation."
+
+    After unfolding, the "unshifted Leibniz" parts of d₂(ω∧ω) exactly cancel with
+    wedgeGL12(ω,dω) - wedgeGL21(dω,ω), leaving only the l_P·Δ·Δ defects. -/
+private theorem bianchi_rearrangement (g : DiscreteMetric) (ρ σ : Fin 4)
+    (p : LatticePoint) (μ ν α : Fin 4) :
+    d2 (wedgeGL (connectionForm g) (connectionForm g) ρ σ) p μ ν α +
+    wedgeGL12 (connectionForm g) (dGL1 (connectionForm g)) ρ σ p μ ν α -
+    wedgeGL21 (dGL1 (connectionForm g)) (connectionForm g) ρ σ p μ ν α =
+    l_P * Finset.univ.sum (fun l : Fin 4 =>
+      forwardDiff (fun q => christoffelSymbol g ρ ν l q) μ p *
+        forwardDiff (fun q => christoffelSymbol g l α σ q) μ p -
+      forwardDiff (fun q => christoffelSymbol g ρ α l q) μ p *
+        forwardDiff (fun q => christoffelSymbol g l ν σ q) μ p -
+      forwardDiff (fun q => christoffelSymbol g ρ μ l q) ν p *
+        forwardDiff (fun q => christoffelSymbol g l α σ q) ν p +
+      forwardDiff (fun q => christoffelSymbol g ρ α l q) ν p *
+        forwardDiff (fun q => christoffelSymbol g l μ σ q) ν p +
+      forwardDiff (fun q => christoffelSymbol g ρ μ l q) α p *
+        forwardDiff (fun q => christoffelSymbol g l ν σ q) α p -
+      forwardDiff (fun q => christoffelSymbol g ρ ν l q) α p *
+        forwardDiff (fun q => christoffelSymbol g l μ σ q) α p) := by
+  -- Brute-force approach: unfold everything to scalar level, expand Σ_l,
+  -- clear l_P denominators, and verify polynomial identity via ring.
+  unfold d2 wedgeGL wedgeGL12 wedgeGL21 dGL1 d1 connectionForm forwardDiff
+  simp only [Fin.sum_univ_four]
+  field_simp [l_P_ne_zero]
+  ring
+
 /-- Construct a `BoundedBianchiResult` for any `SmoothConnectionData`.
     The constant C_bianchi = 24 · M_dconn² counts 24 Leibniz defect terms
     from the 3 (d₂ terms) × 4 (Fin 4 sum) × 2 (antisymmetric pairs). -/
@@ -387,38 +430,104 @@ noncomputable def SmoothConnectionData.boundedBianchi (scd : SmoothConnectionDat
   C_bianchi_nonneg := by positivity
   bianchi_bound := by
     intro ρ σ p μ ν α
-    -- Use bianchi_with_dGL1_separated to decompose D
+    -- Step 1: Use bianchi_with_dGL1_separated to decompose D_ω(Ω)
     rw [bianchi_with_dGL1_separated scd.g ρ σ p μ ν α]
-    -- D = d₂(ω∧ω) + wedgeGL12(ω, dω) - wedgeGL21(dω, ω)
-    -- All three are finite sums of products of connection components and their derivatives.
-    -- The "continuum Leibniz" part of d₂(ω∧ω) cancels with [ω, dω];
-    -- what remains are Leibniz defects bounded by l_P · M_dconn².
-    -- For now, we bound each piece by the triangle inequality,
-    -- using that the entire expression involves at most 24 defect terms.
-    -- Full expansion: unfold everything to shiftFin-level expressions,
-    -- expand Fin 4 sums, clear l_P denominators, then use Leibniz defect
-    -- bounds on each of the 24 product terms.
-    -- Step 1: unfold to concrete forwardDiff expressions
-    unfold d2 wedgeGL connectionForm wedgeGL12 dGL1 wedgeGL21 d1
-    -- Step 2: expand Fin 4 sums to explicit 4-term additions
-    simp only [Fin.sum_univ_four]
-    -- Step 3: each forwardDiff(fg) = (fg(shifted) - fg(p))/l_P
-    -- Bound each |forwardDiff(fg)| ≤ forwardDiff(f)·g(shifted) + f·forwardDiff(g)
-    -- The entire expression is a linear combination of these bounded terms.
-    -- Use the Leibniz defect: fg(shifted) - fg(p) = l_P·(f·Δg + Δf·g + l_P·Δf·Δg)
-    -- After cancellation, only l_P·Δf·Δg defect terms remain.
-    -- REMAINING WORK: The O(l_P) bound requires proving the discrete
-    -- graded Leibniz cancellation:
-    --   d₂(ω∧ω)|_unshifted + [ω, dω] = 0
-    -- After this cancellation, only Leibniz defect terms survive,
-    -- each bounded by l_P · M_dconn² via conn_product_defect_bound.
-    -- 24 such terms give C_bianchi = 24 · M_dconn².
-    --
-    -- The cancellation is a polynomial identity in ~100 christoffel
-    -- values at shifted/unshifted points. Proving it requires either:
-    -- (a) Expanding Fin.sum_univ_four + field_simp + ring (~1000 terms)
-    -- (b) A structured proof via a discrete graded Leibniz lemma
-    -- Both approaches are 200+ lines. Infrastructure is complete.
-    sorry
+    -- Step 2: Apply bianchi_rearrangement to express as l_P · (24 defect sum)
+    rw [bianchi_rearrangement scd.g ρ σ p μ ν α]
+    -- Step 3: Pull out l_P from absolute value
+    rw [abs_mul, abs_of_nonneg l_P_nonneg]
+    -- Goal: l_P * |Σ_l (6 defects)| ≤ 24 * M_dconn^2 * l_P
+    -- Rearrange RHS
+    have hrhs : (24 : ℝ) * scd.M_dconn ^ 2 * l_P = l_P * (24 * scd.M_dconn ^ 2) := by ring
+    rw [hrhs]
+    -- Goal: l_P * |Σ_l (6 defects)| ≤ l_P * (24 * M_dconn^2)
+    apply mul_le_mul_of_nonneg_left _ l_P_nonneg
+    -- Goal: |Σ_l (6 defects)| ≤ 24 * M_dconn^2
+    -- Bound via triangle inequality: |Σ_l| ≤ Σ_l |6 defects per λ| ≤ 4 · 6 · M²
+    -- Define the 6-term defect expression per λ for readability
+    set defects : Fin 4 → ℝ := fun l : Fin 4 =>
+      forwardDiff (fun q => christoffelSymbol scd.g ρ ν l q) μ p *
+        forwardDiff (fun q => christoffelSymbol scd.g l α σ q) μ p -
+      forwardDiff (fun q => christoffelSymbol scd.g ρ α l q) μ p *
+        forwardDiff (fun q => christoffelSymbol scd.g l ν σ q) μ p -
+      forwardDiff (fun q => christoffelSymbol scd.g ρ μ l q) ν p *
+        forwardDiff (fun q => christoffelSymbol scd.g l α σ q) ν p +
+      forwardDiff (fun q => christoffelSymbol scd.g ρ α l q) ν p *
+        forwardDiff (fun q => christoffelSymbol scd.g l μ σ q) ν p +
+      forwardDiff (fun q => christoffelSymbol scd.g ρ μ l q) α p *
+        forwardDiff (fun q => christoffelSymbol scd.g l ν σ q) α p -
+      forwardDiff (fun q => christoffelSymbol scd.g ρ ν l q) α p *
+        forwardDiff (fun q => christoffelSymbol scd.g l μ σ q) α p with hdefects
+    calc |Finset.univ.sum defects|
+        ≤ Finset.univ.sum (fun l : Fin 4 => |defects l|) :=
+        Finset.abs_sum_le_sum_abs _ _
+      _ ≤ Finset.univ.sum (fun _ : Fin 4 => 6 * scd.M_dconn ^ 2) := by
+          apply Finset.sum_le_sum
+          intro l _
+          -- Bound: |defects l| ≤ 6 · M² via 6-term triangle inequality
+          -- Each defect is a product of two forward differences, each bounded by M_dconn
+          set t1 := forwardDiff (fun q => christoffelSymbol scd.g ρ ν l q) μ p *
+                    forwardDiff (fun q => christoffelSymbol scd.g l α σ q) μ p
+          set t2 := forwardDiff (fun q => christoffelSymbol scd.g ρ α l q) μ p *
+                    forwardDiff (fun q => christoffelSymbol scd.g l ν σ q) μ p
+          set t3 := forwardDiff (fun q => christoffelSymbol scd.g ρ μ l q) ν p *
+                    forwardDiff (fun q => christoffelSymbol scd.g l α σ q) ν p
+          set t4 := forwardDiff (fun q => christoffelSymbol scd.g ρ α l q) ν p *
+                    forwardDiff (fun q => christoffelSymbol scd.g l μ σ q) ν p
+          set t5 := forwardDiff (fun q => christoffelSymbol scd.g ρ μ l q) α p *
+                    forwardDiff (fun q => christoffelSymbol scd.g l ν σ q) α p
+          set t6 := forwardDiff (fun q => christoffelSymbol scd.g ρ ν l q) α p *
+                    forwardDiff (fun q => christoffelSymbol scd.g l μ σ q) α p
+          -- Each |tk| ≤ M_dconn^2
+          -- Note: dconn_bounded ρ σ μ α p = |Δ_α Γ^ρ_{μ σ}| ≤ M
+          -- To bound |Δ_μ Γ^ρ_{ν l}|, call with args ρ l ν μ p
+          have hM : 0 ≤ scd.M_dconn := scd.M_dconn_nonneg
+          have hsq : scd.M_dconn * scd.M_dconn = scd.M_dconn ^ 2 := by ring
+          have b1 : |t1| ≤ scd.M_dconn ^ 2 := by
+            simp only [t1, abs_mul, ← hsq]
+            exact mul_le_mul (scd.dconn_bounded ρ l ν μ p) (scd.dconn_bounded l σ α μ p)
+                  (abs_nonneg _) hM
+          have b2 : |t2| ≤ scd.M_dconn ^ 2 := by
+            simp only [t2, abs_mul, ← hsq]
+            exact mul_le_mul (scd.dconn_bounded ρ l α μ p) (scd.dconn_bounded l σ ν μ p)
+                  (abs_nonneg _) hM
+          have b3 : |t3| ≤ scd.M_dconn ^ 2 := by
+            simp only [t3, abs_mul, ← hsq]
+            exact mul_le_mul (scd.dconn_bounded ρ l μ ν p) (scd.dconn_bounded l σ α ν p)
+                  (abs_nonneg _) hM
+          have b4 : |t4| ≤ scd.M_dconn ^ 2 := by
+            simp only [t4, abs_mul, ← hsq]
+            exact mul_le_mul (scd.dconn_bounded ρ l α ν p) (scd.dconn_bounded l σ μ ν p)
+                  (abs_nonneg _) hM
+          have b5 : |t5| ≤ scd.M_dconn ^ 2 := by
+            simp only [t5, abs_mul, ← hsq]
+            exact mul_le_mul (scd.dconn_bounded ρ l μ α p) (scd.dconn_bounded l σ ν α p)
+                  (abs_nonneg _) hM
+          have b6 : |t6| ≤ scd.M_dconn ^ 2 := by
+            simp only [t6, abs_mul, ← hsq]
+            exact mul_le_mul (scd.dconn_bounded ρ l ν α p) (scd.dconn_bounded l σ μ α p)
+                  (abs_nonneg _) hM
+          -- defects l = t1 - t2 - t3 + t4 + t5 - t6
+          have heq : defects l = t1 - t2 - t3 + t4 + t5 - t6 := by
+            simp only [hdefects, t1, t2, t3, t4, t5, t6]
+          rw [heq]
+          -- Triangle inequality: |t1 - t2 - t3 + t4 + t5 - t6| ≤ Σ|ti|
+          calc |t1 - t2 - t3 + t4 + t5 - t6|
+              ≤ |t1| + |t2| + |t3| + |t4| + |t5| + |t6| := by
+                have s1 : |t1 - t2| ≤ |t1| + |t2| := by
+                  rw [sub_eq_add_neg, ← abs_neg t2]; exact abs_add_le _ _
+                have s2 : |t1 - t2 - t3| ≤ |t1 - t2| + |t3| := by
+                  rw [sub_eq_add_neg, ← abs_neg t3]; exact abs_add_le _ _
+                have s3 : |t1 - t2 - t3 + t4| ≤ |t1 - t2 - t3| + |t4| := abs_add_le _ _
+                have s4 : |t1 - t2 - t3 + t4 + t5| ≤ |t1 - t2 - t3 + t4| + |t5| := abs_add_le _ _
+                have s5 : |t1 - t2 - t3 + t4 + t5 - t6| ≤
+                          |t1 - t2 - t3 + t4 + t5| + |t6| := by
+                  rw [sub_eq_add_neg, ← abs_neg t6]; exact abs_add_le _ _
+                linarith
+            _ ≤ 6 * scd.M_dconn ^ 2 := by linarith
+      _ = 24 * scd.M_dconn ^ 2 := by
+          rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin]
+          push_cast
+          ring
 
 end OmegaTheory.Geometry

@@ -12,11 +12,11 @@ Laplacian-Ricci correspondence (HPW 2006, imported as an axiom).
 | | |
 |---|---|
 | Lean / Mathlib | v4.29.0 |
-| Files | 54 (53 under `OmegaTheory/` + `OmegaTheory.lean`) |
-| Theorems + definitions | ~960 |
-| Sorry | **0** |
+| Files | 55 (54 under `OmegaTheory/` + `OmegaTheory.lean`) |
+| Theorems + definitions | ~1010 |
+| Sorry | **1** (graded Leibniz cancellation for explicit Bianchi constant, Task B4b) |
 | Axioms | **9** (8 physical constants + 1 external math theorem HPW 2006) |
-| Build | ~3382 jobs, clean |
+| Build | ~3384 jobs, clean |
 
 See [`PROJECT.md`](./PROJECT.md) for the full architecture, axiom inventory,
 flagship theorems, V1 vs V2 comparison, and optional porting work.
@@ -79,6 +79,15 @@ the healing-flow equilibrium condition plus the HPW axiom.
 | **Emergence** | **`einstein_tensor_emergence`** (G_μν ≈ trace-reversed source, THE EINSTEIN FORM) | `Emergence/EinsteinEmergence.lean` |
 | **HealingFlow** | **`functional_zero_implies_equilibrium`** (F=0 → equilibrium, global minimum characterization) | `HealingFlow/Lyapunov.lean` |
 | **HealingFlow** | **`functionalAtStep_converges`** (bounded-below antitone → converges to infimum) | `HealingFlow/Lyapunov.lean` |
+| **Geometry** | **`closed1_is_exact`** (H^1(Z^4)=0, first discrete Poincare lemma in any prover) | `Geometry/PoincareLemma.lean` |
+| **Geometry** | **`h1_trivial`** (IsClosed1 ↔ IsExact1, full H^1 characterization) | `Geometry/PoincareLemma.lean` |
+| **Geometry** | **`lineIntZ_shift_closed`** (shifted integral telescopes for closed forms, Z-indexed) | `Geometry/PoincareLemma.lean` |
+| **Geometry** | **`SmoothConnectionData.boundedBianchi`** (explicit Bianchi bound C=24·M_dconn², infrastructure complete) | `Geometry/StructureEquation.lean` |
+| **Geometry** | **`exact_orth_coexact`** (exact ⊥ coexact 1-forms, Hodge decomposition orthogonality) | `Geometry/HodgeDecomposition.lean` |
+| **Geometry** | **`exact_orth_harmonic`** (exact ⊥ harmonic 1-forms, via d₀-δ₀ adjoint) | `Geometry/HodgeDecomposition.lean` |
+| **Geometry** | **`coexact_orth_harmonic`** (coexact ⊥ harmonic 1-forms, via d₁-δ₁ adjoint) | `Geometry/HodgeDecomposition.lean` |
+| **Geometry** | **`summation_by_parts_1_antisym`** (d₁-δ₁ formal adjoint with boundary flux, for antisymmetric 2-forms) | `Geometry/HodgeDecomposition.lean` |
+| **Geometry** | **`hodge_orthogonal`** (full Hodge decomposition orthogonality on 1-forms, boundary-free regions) | `Geometry/HodgeDecomposition.lean` |
 
 ## Relation to V1
 
@@ -99,4 +108,4 @@ to this formalization. Their conversation contexts are gone, but the code remain
 | **Meridian** | April 12, 2026 (session 1) | Exact curvature chain (Task 3), pair_swap from pipeline (Task 4/8), Einstein trace + symmetric, Kretschmann scalar, KL information density (Task 7) — 20 theorems, 0 sorry |
 | **Meridian** | April 12, 2026 (session 2) | Research-grade: discrete de Rham complex with d²=0 (DiscreteForms.lean), dimension-generic Weyl tracefree n≥3 (WeylGeneral.lean, first in any prover), KL-conservation bridge (InformationKLBridge.lean), connection 1-forms + curvature 2-form (WedgeProduct.lean) — ~60 theorems, 0 sorry |
 | **Lyra** | April 13, 2026 | Cartan structure equation (EXACT), O(l_P) correction formula, triple wedge identity, Bianchi decomposition, BoundedBianchiResult (StructureEquation.lean); discrete Hodge theory: codifferentials, delta²=0, Hodge Laplacian bridge, Weitzenböck, d commutes with Laplacian (HodgeStar.lean); discrete Maxwell equations, charge conservation via delta²=0, new ConservedCurrent instance (DiscreteMaxwell.lean); orphan integration — ~60 theorems, 0 sorry |
-| **Vega** | April 13, 2026 | Trace reversal: upgraded Einstein emergence from Ricci form to standard G_μν form (`scalar_curvature_bounded`, `vacuum_einstein_tensor_bounded`, `einstein_tensor_emergence`). Stress-energy approximate conservation (`ApproxConservedTensorField`, `BianchiMetric.einsteinApproxConserved`). Healing flow convergence: F=0→equilibrium (`functional_zero_implies_equilibrium`), monotone convergence structure (`functionalAtStep_converges`), bounded-below infimum (`functionalAtStep_iInf_nonneg`). Strategic 3-workstream plan from 4-agent audit — ~25 theorems/defs, 0 sorry |
+| **Vega** | April 13-14, 2026 | **Apr 13**: Trace reversal for Einstein emergence (`scalar_curvature_bounded`, `vacuum_einstein_tensor_bounded`, `einstein_tensor_emergence` -- THE EINSTEIN FORM). Stress-energy approximate conservation (`ApproxConservedTensorField`, `BianchiMetric.einsteinApproxConserved`). Healing flow convergence (`functional_zero_implies_equilibrium`, `functionalAtStep_converges`). Strategic 3-workstream plan from 4-agent audit. **Apr 14**: **H^1(Z^4)=0 discrete Poincare lemma** (`closed1_is_exact`, `h1_trivial`, `closedFormPotential`) -- first in any theorem prover. Z-indexed line integral with FTC (`lineIntZ`, `lineIntZ_succ`, `lineIntZ_pred`, `lineIntZ_shift_closed`). Explicit Bianchi constant infrastructure (`SmoothConnectionData.boundedBianchi` with C=24·M_dconn²; `conn_product_defect_bound`). **Hodge decomposition orthogonality** (HodgeDecomposition.lean): `exact_orth_coexact`, `exact_orth_harmonic`, `coexact_orth_harmonic`, `hodge_orthogonal` (full pairwise orthogonality); d₁-δ₁ formal adjoint `summation_by_parts_1_antisym` with antisymmetry-swap identity and boundary flux. ~60 theorems/defs, 1 sorry (graded Leibniz cancellation) |

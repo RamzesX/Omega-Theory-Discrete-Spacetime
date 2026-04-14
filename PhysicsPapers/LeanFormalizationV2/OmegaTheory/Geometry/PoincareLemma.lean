@@ -725,4 +725,134 @@ theorem h1_trivial (ω : Discrete1Form) :
     IsClosed1 ω ↔ IsExact1 ω :=
   ⟨closed1_is_exact ω, exact1_is_closed ω⟩
 
+/-! ## Toward H^2(Z^4) = 0: Cartan Homotopy Infrastructure
+
+The Cartan contraction operator `cartanContract0 : Ω² → Ω¹` integrates a 2-form
+along the x⁰-axis, producing a 1-form. This is the first step in the Cartan
+homotopy formula for degree 2.
+
+For a closed 2-form ω, the Cartan homotopy identity reads:
+  d₁(cartanContract0 ω)(p, μ, ν) = ω(p, μ, ν) - π₀(ω)(p, μ, ν)
+where π₀ is the "projection to x⁰ = 0" plus x⁰-invariant extension.
+
+The full H^2(Z^4) = 0 theorem reduces by this identity plus induction on dimension
+(H^2(Z^3) = 0 applied to the residue, and so on). This is the Cartan cascade.
+
+Here we provide the infrastructure and prove the (0, ν)-component identity, which
+depends only on discrete FTC + antisymmetry (not closedness).
+
+Agent: Vega (April 14, 2026) -/
+
+/-- Project a lattice point to have coordinate 0 in direction 0 (x⁰ = 0 hyperplane). -/
+def projectAway0 (q : LatticePoint) : LatticePoint :=
+  fun i => if i = 0 then 0 else q i
+
+@[simp] theorem projectAway0_zero (q : LatticePoint) :
+    projectAway0 q 0 = 0 := by simp [projectAway0]
+
+theorem projectAway0_other (q : LatticePoint) (i : Fin 4) (hi : i ≠ 0) :
+    projectAway0 q i = q i := by simp [projectAway0, hi]
+
+/-- Shifting in direction 0 then projecting away direction 0: the shift is erased. -/
+theorem projectAway0_shiftFin_0 (q : LatticePoint) :
+    projectAway0 (shiftFin q 0) = projectAway0 q := by
+  ext i
+  simp [projectAway0, shiftFin]
+  split_ifs with h <;> omega
+
+/-- Shifting in direction μ ≠ 0 commutes with projectAway0. -/
+theorem projectAway0_shiftFin_ne (q : LatticePoint) (μ : Fin 4) (hμ : μ ≠ 0) :
+    projectAway0 (shiftFin q μ) = shiftFin (projectAway0 q) μ := by
+  ext i
+  simp [projectAway0, shiftFin]
+  split_ifs with h1 h2 h2
+  · omega
+  · rfl
+  · rfl
+  · rfl
+
+/-- shiftZ of projectAway0 in direction 0 by q^0 recovers q. -/
+theorem shiftZ_projectAway0_coord0 (q : LatticePoint) :
+    shiftZ (projectAway0 q) 0 (q 0) = q := by
+  ext i
+  simp [shiftZ, projectAway0]
+  split_ifs with h
+  · subst h; ring
+  · ring
+
+/-- **Cartan contraction along direction 0**: maps 2-forms to 1-forms.
+    (h₀ ω)(q, ν) = integral of ω(·, 0, ν) along x⁰-axis from (0, q̂) to q
+    where q̂ = projectAway0 q = (0, q^1, q^2, q^3). -/
+noncomputable def cartanContract0 (ω : Discrete2Form) : Discrete1Form :=
+  fun q ν => lineIntZ (fun p _ => ω p 0 ν) 0 (projectAway0 q) (q 0)
+
+/-- For antisymmetric ω, the 0-component of the Cartan contraction vanishes. -/
+theorem cartanContract0_zero_component (ω : Discrete2Form) (hanti : IsAntisymmetric2 ω)
+    (q : LatticePoint) : cartanContract0 ω q 0 = 0 := by
+  unfold cartanContract0
+  -- lineIntZ of the constant zero function along any path is zero
+  have hz : ∀ p : LatticePoint, ∀ μ : Fin 4, ω p 0 0 = 0 := fun p _ =>
+    hanti.diag_zero p 0
+  -- Rewrite the integrand to the zero function
+  have hfn : (fun p (_ : Fin 4) => ω p 0 0) = fun _ _ => 0 := by
+    funext p μ; exact hz p μ
+  rw [hfn]
+  -- Now lineIntZ of zero is zero
+  cases h : q 0 with
+  | ofNat n =>
+    show lineIntFwd (fun _ _ => (0 : ℝ)) 0 (projectAway0 q) n = 0
+    unfold lineIntFwd; simp
+  | negSucc n =>
+    show lineIntBwd (fun _ _ => (0 : ℝ)) 0 (projectAway0 q) n = 0
+    unfold lineIntBwd; simp
+
+/-- **Key discrete FTC step for Cartan contraction**: shifting q in direction 0
+    adds one step to the line integral. -/
+theorem cartanContract0_shift0 (ω : Discrete2Form)
+    (p : LatticePoint) (ν : Fin 4) :
+    cartanContract0 ω (shiftFin p 0) ν - cartanContract0 ω p ν =
+    l_P * ω p 0 ν := by
+  unfold cartanContract0
+  -- (shiftFin p 0) 0 = p 0 + 1
+  have hcoord : (shiftFin p 0) 0 = p 0 + 1 := by simp [shiftFin]
+  -- projectAway0 (shiftFin p 0) = projectAway0 p
+  rw [hcoord, projectAway0_shiftFin_0]
+  -- Now LHS = lineIntZ _ 0 (projectAway0 p) (p 0 + 1) - lineIntZ _ 0 (projectAway0 p) (p 0)
+  -- By lineIntZ_succ, this equals l_P * ω(shiftZ (projectAway0 p) 0 (p 0), 0, ν)
+  --                              = l_P * ω(p, 0, ν)  [by shiftZ_projectAway0_coord0]
+  rw [lineIntZ_succ]
+  rw [shiftZ_projectAway0_coord0]
+  ring
+
+/-- **(0, ν)-component of the Cartan homotopy identity** (antisymmetric ω).
+
+    For antisymmetric 2-form ω (not necessarily closed):
+    (d₁ (cartanContract0 ω))(p, 0, ν) = ω(p, 0, ν).
+
+    Proof: Δ⁺_0 of the contraction gives ω_{0, ν} by FTC.
+    Δ⁺_ν of the 0-component vanishes since the 0-component is zero (antisymmetry).
+    So the combined d₁ reduces to ω(p, 0, ν). -/
+theorem cartanContract0_d1_component_0 (ω : Discrete2Form) (hanti : IsAntisymmetric2 ω)
+    (p : LatticePoint) (ν : Fin 4) :
+    d1 (cartanContract0 ω) p 0 ν = ω p 0 ν := by
+  unfold d1
+  -- LHS = forwardDiff (fun q => cartanContract0 ω q ν) 0 p
+  --     - forwardDiff (fun q => cartanContract0 ω q 0) ν p
+  -- Second term vanishes because cartanContract0 ω q 0 = 0 for all q
+  have hzero : ∀ q, cartanContract0 ω q 0 = 0 :=
+    cartanContract0_zero_component ω hanti
+  have hzero' : (fun q => cartanContract0 ω q 0) = fun _ => 0 := funext hzero
+  rw [hzero']
+  -- forwardDiff of the zero function is zero
+  have h2 : forwardDiff (fun _ : LatticePoint => (0 : ℝ)) ν p = 0 :=
+    forwardDiff_const 0 ν p
+  rw [h2]
+  -- First term: forwardDiff (fun q => cartanContract0 ω q ν) 0 p = ω p 0 ν
+  have h1 : forwardDiff (fun q => cartanContract0 ω q ν) 0 p = ω p 0 ν := by
+    unfold forwardDiff
+    rw [show cartanContract0 ω (shiftFin p 0) ν - cartanContract0 ω p ν =
+        l_P * ω p 0 ν from cartanContract0_shift0 ω p ν]
+    field_simp [l_P_ne_zero]
+  rw [h1]; ring
+
 end OmegaTheory.Geometry

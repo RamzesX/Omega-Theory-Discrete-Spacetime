@@ -46,7 +46,7 @@
 
 import Mathlib.RingTheory.Algebraic.Basic
 import Mathlib.Algebra.Polynomial.AlgebraMap
-import Mathlib.Algebra.BigOperators.Group.Finset
+import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 import Mathlib.Data.Rat.Cast.Defs
 import Mathlib.Algebra.Algebra.Basic
 
@@ -113,9 +113,9 @@ theorem decoupling_scalar
     rw [Finset.sum_eq_single d]
     · simp
     · intro k _ hk
-      have : (k : ℕ) ≠ (d : ℕ) := by
-        intro heq; apply hk; exact Fin.ext heq
-      simp [this]
+      have hne : (d : ℕ) ≠ (k : ℕ) := by
+        intro heq; apply hk; exact (Fin.ext heq).symm
+      simp [hne]
     · intro hmem
       exact absurd (Finset.mem_univ d) hmem
   -- Use the fact that `p = 0` to conclude.

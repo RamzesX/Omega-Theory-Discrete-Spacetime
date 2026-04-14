@@ -855,4 +855,292 @@ theorem cartanContract0_d1_component_0 (ω : Discrete2Form) (hanti : IsAntisymme
     field_simp [l_P_ne_zero]
   rw [h1]; ring
 
+/-! ## Closedness identity for 2-forms at index 0
+
+The d₂ω = 0 identity at indices (0, μ, ν) relates three forward differences:
+  Δ⁺_0 ω_{μν} - Δ⁺_μ ω_{0ν} + Δ⁺_ν ω_{0μ} = 0
+Rearranging: Δ⁺_μ ω_{0ν} = Δ⁺_0 ω_{μν} + Δ⁺_ν ω_{0μ}.
+
+This is the closedness consequence we use to prove the 2-form shift lemma. -/
+
+/-- **d₂ω=0 identity** at indices (0, μ, ν): for closed ω,
+    Δ⁺_μ ω(·, 0, ν) = Δ⁺_0 ω(·, μ, ν) + Δ⁺_ν ω(·, 0, μ). -/
+theorem closed2_d2_identity_0 (ω : Discrete2Form) (hclosed : IsClosed2 ω)
+    (μ ν : Fin 4) (q : LatticePoint) :
+    forwardDiff (fun p => ω p 0 ν) μ q =
+    forwardDiff (fun p => ω p μ ν) 0 q + forwardDiff (fun p => ω p 0 μ) ν q := by
+  have h := hclosed q 0 μ ν
+  unfold d2 at h
+  linarith
+
+/-- ShiftZ in direction 0 and shiftFin in direction μ ≠ 0 commute. -/
+theorem shiftZ_shiftFin_comm_ne_0 (q : LatticePoint) (μ : Fin 4) (hμ : μ ≠ 0) (k : ℤ) :
+    shiftZ (shiftFin q μ) 0 k = shiftFin (shiftZ q 0 k) μ := by
+  ext i; simp [shiftZ, shiftFin]; split_ifs with h1 h2 <;> omega
+
+/-! ## Key Shift Lemma for 2-Form Line Integrals
+
+For closed ω and μ ≠ 0, shifting the base point of cartanContract0's line integral
+in direction μ produces a difference that decomposes into:
+  (a) An endpoint Δω(μν) telescoping contribution
+  (b) A cross-term involving the line integral of ω(·, 0, μ) shifted in direction ν
+
+This is the 2-form analog of `lineIntFwd_shift_closed`. -/
+
+/-- Shift identity for lineIntFwd applied to the ω(·, 0, ν) slice. For closed
+    antisymmetric ω and μ ≠ 0, the base-point shift of the line integral splits
+    into a telescoping endpoint difference and a cross integral term. -/
+theorem lineIntFwd_shift_2form_closed
+    (ω : Discrete2Form) (hclosed : IsClosed2 ω)
+    (μ ν : Fin 4) (hμ : μ ≠ 0) (base : LatticePoint) (n : ℕ) :
+    lineIntFwd (fun p' _ => ω p' 0 ν) 0 (shiftFin base μ) n -
+    lineIntFwd (fun p' _ => ω p' 0 ν) 0 base n =
+    l_P * (ω (shiftZ base 0 (n : ℤ)) μ ν - ω base μ ν) +
+    (lineIntFwd (fun p' _ => ω p' 0 μ) 0 (shiftFin base ν) n -
+     lineIntFwd (fun p' _ => ω p' 0 μ) 0 base n) := by
+  induction n with
+  | zero =>
+    simp [lineIntFwd]
+  | succ k ih =>
+    rw [lineIntFwd_succ, lineIntFwd_succ, lineIntFwd_succ, lineIntFwd_succ]
+    -- Key per-step identity (derived from d₂ ω = 0):
+    -- ω(shiftFin q μ, 0, ν) - ω(q, 0, ν) = (ω(shiftFin q 0, μ, ν) - ω(q, μ, ν)) + (ω(shiftFin q ν, 0, μ) - ω(q, 0, μ))
+    -- at q = shiftZ base 0 k. Using commutativity of shifts, this translates directly
+    -- to the per-step increment we need.
+    have hcomm_μ : shiftZ (shiftFin base μ) 0 (k : ℤ) =
+        shiftFin (shiftZ base 0 (k : ℤ)) μ := shiftZ_shiftFin_comm_ne_0 base μ hμ k
+    have hcomm_ν : shiftFin (shiftZ base 0 (k : ℤ)) ν =
+        shiftZ (shiftFin base ν) 0 (k : ℤ) := by
+      rcases Decidable.em (ν = 0) with hν | hν
+      · subst hν
+        ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+      · exact (shiftZ_shiftFin_comm_ne_0 base ν hν k).symm
+    have hsucc_0 : shiftFin (shiftZ base 0 (k : ℤ)) 0 = shiftZ base 0 ((k : ℤ) + 1) := by
+      ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+    -- d₂ ω = 0 at indices (0, μ, ν): Δ⁺_μ ω_{0ν} - Δ⁺_0 ω_{μν} + Δ⁺_ν ω_{0μ} = 0
+    -- Wait, let me recheck the sign. Actually hclosed gives
+    -- d2 ω p 0 μ ν = Δ⁺_0 ω_{μν} - Δ⁺_μ ω_{0ν} + Δ⁺_ν ω_{0μ} = 0
+    -- So Δ⁺_μ ω_{0ν} = Δ⁺_0 ω_{μν} + Δ⁺_ν ω_{0μ}
+    have hclosed_eq := closed2_d2_identity_0 ω hclosed μ ν (shiftZ base 0 (k : ℤ))
+    -- Translate hclosed_eq to the (shifted, unshifted) form, multiplying by l_P²:
+    -- ω(shiftFin q μ, 0, ν) - ω(q, 0, ν) = (ω(shiftFin q 0, μ, ν) - ω(q, μ, ν)) + (ω(shiftFin q ν, 0, μ) - ω(q, 0, μ))
+    have hstep_eq : ω (shiftFin (shiftZ base 0 (k : ℤ)) μ) 0 ν -
+        ω (shiftZ base 0 (k : ℤ)) 0 ν =
+        (ω (shiftFin (shiftZ base 0 (k : ℤ)) 0) μ ν - ω (shiftZ base 0 (k : ℤ)) μ ν) +
+        (ω (shiftFin (shiftZ base 0 (k : ℤ)) ν) 0 μ - ω (shiftZ base 0 (k : ℤ)) 0 μ) := by
+      -- forwardDiff f μ q = (f(shiftFin q μ) - f(q)) / l_P
+      -- So hclosed_eq (dividing by l_P) gives exactly what we need
+      have := hclosed_eq
+      unfold forwardDiff at this
+      -- (a - b) / l_P = c / l_P + d / l_P  iff  (a - b) = c + d  (using l_P ≠ 0)
+      have hlp : l_P ≠ 0 := l_P_ne_zero
+      field_simp [hlp] at this
+      linarith
+    -- Now apply the commutativity rewrites to hstep_eq
+    rw [hcomm_μ] at *
+    -- Replace shiftFin q 0 and shiftFin q ν in hstep_eq
+    rw [hsucc_0, hcomm_ν] at hstep_eq
+    -- Multiply hstep_eq by l_P to match the form of terms in the goal
+    have hstep_eq_lP : l_P * ω (shiftFin (shiftZ base 0 (k : ℤ)) μ) 0 ν -
+        l_P * ω (shiftZ base 0 (k : ℤ)) 0 ν =
+        l_P * (ω (shiftZ base 0 ((k : ℤ) + 1)) μ ν - ω (shiftZ base 0 (k : ℤ)) μ ν) +
+        l_P * (ω (shiftZ (shiftFin base ν) 0 (k : ℤ)) 0 μ -
+               ω (shiftZ base 0 (k : ℤ)) 0 μ) := by
+      linear_combination l_P * hstep_eq
+    -- And the target uses `↑(k+1)` which should equal `↑k + 1` as ℤ
+    have coerce : (↑(k + 1) : ℤ) = (↑k : ℤ) + 1 := by push_cast; ring
+    rw [coerce]
+    linarith
+
+/-! ## Extension to ℤ-Indexed Line Integrals -/
+
+/-- **The ℤ-indexed shift identity for 2-form line integrals.**
+    Same as `lineIntFwd_shift_2form_closed` but for arbitrary ℤ shifts,
+    handling both the non-negative (lineIntFwd) and negative (lineIntBwd) cases. -/
+theorem lineIntZ_shift_2form_closed
+    (ω : Discrete2Form) (hclosed : IsClosed2 ω)
+    (μ ν : Fin 4) (hμ : μ ≠ 0) (base : LatticePoint) (k : ℤ) :
+    lineIntZ (fun p' _ => ω p' 0 ν) 0 (shiftFin base μ) k -
+    lineIntZ (fun p' _ => ω p' 0 ν) 0 base k =
+    l_P * (ω (shiftZ base 0 k) μ ν - ω base μ ν) +
+    (lineIntZ (fun p' _ => ω p' 0 μ) 0 (shiftFin base ν) k -
+     lineIntZ (fun p' _ => ω p' 0 μ) 0 base k) := by
+  -- Helper: shifts in dir 0 commute with shift in dir μ (for μ ≠ 0)
+  have shiftcomm_μ : ∀ j : ℤ, shiftZ (shiftFin base μ) 0 j = shiftFin (shiftZ base 0 j) μ :=
+    fun j => shiftZ_shiftFin_comm_ne_0 base μ hμ j
+  -- Helper: shifts in dir 0 commute with shift in dir ν (any ν)
+  have shiftcomm_ν : ∀ j : ℤ, shiftFin (shiftZ base 0 j) ν = shiftZ (shiftFin base ν) 0 j := by
+    intro j
+    rcases Decidable.em (ν = 0) with hν | hν
+    · subst hν; ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+    · exact (shiftZ_shiftFin_comm_ne_0 base ν hν j).symm
+  -- Helper: shiftFin in dir 0 of shiftZ base 0 j = shiftZ base 0 (j+1)
+  have shiftFin_succ_0 : ∀ j : ℤ, shiftFin (shiftZ base 0 j) 0 = shiftZ base 0 (j + 1) := by
+    intro j; ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+  -- Per-step closedness identity (multiplied by l_P): the d_2 ω = 0 derivation
+  have step_eq_lP : ∀ j : ℤ,
+      l_P * ω (shiftFin (shiftZ base 0 j) μ) 0 ν -
+      l_P * ω (shiftZ base 0 j) 0 ν =
+      l_P * (ω (shiftZ base 0 (j + 1)) μ ν - ω (shiftZ base 0 j) μ ν) +
+      l_P * (ω (shiftZ (shiftFin base ν) 0 j) 0 μ -
+             ω (shiftZ base 0 j) 0 μ) := by
+    intro j
+    have hclosed_eq := closed2_d2_identity_0 ω hclosed μ ν (shiftZ base 0 j)
+    have hlp : l_P ≠ 0 := l_P_ne_zero
+    have hstep_eq : ω (shiftFin (shiftZ base 0 j) μ) 0 ν -
+        ω (shiftZ base 0 j) 0 ν =
+        (ω (shiftFin (shiftZ base 0 j) 0) μ ν - ω (shiftZ base 0 j) μ ν) +
+        (ω (shiftFin (shiftZ base 0 j) ν) 0 μ - ω (shiftZ base 0 j) 0 μ) := by
+      have := hclosed_eq
+      unfold forwardDiff at this
+      field_simp [hlp] at this
+      linarith
+    rw [shiftFin_succ_0 j, shiftcomm_ν j] at hstep_eq
+    linear_combination l_P * hstep_eq
+  cases k with
+  | ofNat n => exact lineIntFwd_shift_2form_closed ω hclosed μ ν hμ base n
+  | negSucc n =>
+    induction n with
+    | zero =>
+      -- k = -1
+      have hs := lineIntZ_pred (fun p' _ => ω p' 0 ν) 0 (shiftFin base μ) 0
+      have ho := lineIntZ_pred (fun p' _ => ω p' 0 ν) 0 base 0
+      have hsm := lineIntZ_pred (fun p' _ => ω p' 0 μ) 0 (shiftFin base ν) 0
+      have hom := lineIntZ_pred (fun p' _ => ω p' 0 μ) 0 base 0
+      simp only [lineIntZ_zero] at hs ho hsm hom
+      have h01 : (0 : ℤ) - 1 = Int.negSucc 0 := by omega
+      rw [h01] at hs ho hsm hom
+      rw [hs, ho, hsm, hom]
+      rw [shiftcomm_μ (Int.negSucc 0)]
+      -- Use step_eq_lP at j = Int.negSucc 0
+      have hstep := step_eq_lP (Int.negSucc 0)
+      rw [show Int.negSucc 0 + 1 = (0 : ℤ) from by omega, shiftZ_zero] at hstep
+      -- hstep relates the values at shiftZ base 0 (negSucc 0) to those at base
+      linarith
+    | succ m ih =>
+      -- k = Int.negSucc (m+1) = Int.negSucc m - 1
+      have hs := lineIntZ_pred (fun p' _ => ω p' 0 ν) 0 (shiftFin base μ) (Int.negSucc m)
+      have ho := lineIntZ_pred (fun p' _ => ω p' 0 ν) 0 base (Int.negSucc m)
+      have hsm := lineIntZ_pred (fun p' _ => ω p' 0 μ) 0 (shiftFin base ν) (Int.negSucc m)
+      have hom := lineIntZ_pred (fun p' _ => ω p' 0 μ) 0 base (Int.negSucc m)
+      have hk : Int.negSucc m - 1 = Int.negSucc (m + 1) := by omega
+      rw [hk] at hs ho hsm hom
+      rw [hs, ho, hsm, hom]
+      rw [shiftcomm_μ (Int.negSucc (m + 1))]
+      -- Use step_eq_lP at j = Int.negSucc (m + 1)
+      have hstep := step_eq_lP (Int.negSucc (m + 1))
+      rw [show Int.negSucc (m + 1) + 1 = Int.negSucc m from by omega] at hstep
+      linarith
+
+/-! ## Cartan Homotopy Identity for μ, ν ≠ 0 Case
+
+For μ ≠ 0 AND ν ≠ 0, the cartanContract0 shift identity reduces to the
+Cartan homotopy formula via the closedness consequence at (0, μ, ν) indices. -/
+
+/-- **Shift identity for cartanContract0** when both μ, ν ≠ 0. -/
+theorem cartanContract0_shift_mu_nu_nonzero (ω : Discrete2Form) (hclosed : IsClosed2 ω)
+    (μ ν : Fin 4) (hμ : μ ≠ 0) (hν : ν ≠ 0) (p : LatticePoint) :
+    cartanContract0 ω (shiftFin p μ) ν - cartanContract0 ω p ν =
+    l_P * (ω p μ ν - ω (projectAway0 p) μ ν) +
+    (cartanContract0 ω (shiftFin p ν) μ - cartanContract0 ω p μ) := by
+  unfold cartanContract0
+  -- (shiftFin p μ) 0 = p 0  (since μ ≠ 0)
+  have hcoord_μ : (shiftFin p μ) 0 = p 0 := by
+    simp only [shiftFin]
+    by_cases h : (0 : Fin 4) = μ
+    · exact absurd h.symm hμ
+    · simp [h]
+  have hcoord_ν : (shiftFin p ν) 0 = p 0 := by
+    simp only [shiftFin]
+    by_cases h : (0 : Fin 4) = ν
+    · exact absurd h.symm hν
+    · simp [h]
+  rw [hcoord_μ, hcoord_ν, projectAway0_shiftFin_ne p μ hμ, projectAway0_shiftFin_ne p ν hν]
+  -- Apply lineIntZ_shift_2form_closed at base = projectAway0 p, k = p 0
+  have h := lineIntZ_shift_2form_closed ω hclosed μ ν hμ (projectAway0 p) (p 0)
+  rw [shiftZ_projectAway0_coord0 p] at h
+  exact h
+
+/-- **Cartan homotopy identity at (μ, ν) with μ, ν ≠ 0**: for closed antisymmetric ω,
+    d₁(cartanContract0 ω)(p, μ, ν) = ω(p, μ, ν) - ω(projectAway0 p, μ, ν). -/
+theorem cartanContract0_d1_component_mu_nu_nonzero
+    (ω : Discrete2Form) (hclosed : IsClosed2 ω) (hanti : IsAntisymmetric2 ω)
+    (p : LatticePoint) (μ ν : Fin 4) (hμ : μ ≠ 0) (hν : ν ≠ 0) :
+    d1 (cartanContract0 ω) p μ ν =
+    ω p μ ν - ω (projectAway0 p) μ ν := by
+  unfold d1
+  unfold forwardDiff
+  -- The shift identity (when both μ, ν ≠ 0):
+  -- cartanContract0 ω (shiftFin p μ) ν - cartanContract0 ω p ν =
+  --   l_P · (ω p μ ν - ω (projectAway0 p) μ ν) +
+  --   (cartanContract0 ω (shiftFin p ν) μ - cartanContract0 ω p μ)
+  have h := cartanContract0_shift_mu_nu_nonzero ω hclosed μ ν hμ hν p
+  have hlp : l_P ≠ 0 := l_P_ne_zero
+  field_simp [hlp]
+  linarith
+
+/-! ## Full Cartan Homotopy Identity Statement -/
+
+/-- **Full Cartan homotopy identity for direction 0**: for closed antisymmetric ω,
+
+      d₁(cartanContract0 ω)(p, μ, ν) = ω(p, μ, ν) - residue(p, μ, ν)
+
+    where residue(p, μ, ν) = 0 if μ = 0 ∨ ν = 0, else ω(projectAway0 p, μ, ν).
+
+    This is the discrete Cartan homotopy formula at degree 2 in direction 0.
+    The residue is the 2-form ω restricted to the x⁰=0 hyperplane (extended
+    x⁰-invariantly), which is itself closed (by d² ∘ d¹ = 0) and lives on Z³. -/
+theorem cartanContract0_d1_identity
+    (ω : Discrete2Form) (hclosed : IsClosed2 ω) (hanti : IsAntisymmetric2 ω)
+    (p : LatticePoint) (μ ν : Fin 4) :
+    d1 (cartanContract0 ω) p μ ν =
+    ω p μ ν - (if μ = 0 ∨ ν = 0 then 0 else ω (projectAway0 p) μ ν) := by
+  rcases Decidable.em (μ = 0) with hμ | hμ
+  · subst hμ
+    rw [if_pos (Or.inl rfl)]
+    rw [cartanContract0_d1_component_0 ω hanti p ν]
+    ring
+  · rcases Decidable.em (ν = 0) with hν | hν
+    · subst hν
+      rw [if_pos (Or.inr rfl)]
+      -- For ν = 0, μ ≠ 0: use d₁ antisymmetry
+      have hd1_anti : d1 (cartanContract0 ω) p μ 0 = -d1 (cartanContract0 ω) p 0 μ := by
+        have := d1_antisymmetric (cartanContract0 ω) p μ 0
+        linarith
+      rw [hd1_anti, cartanContract0_d1_component_0 ω hanti p μ, hanti p μ 0]
+      ring
+    · rw [if_neg (by tauto : ¬ (μ = 0 ∨ ν = 0))]
+      exact cartanContract0_d1_component_mu_nu_nonzero ω hclosed hanti p μ ν hμ hν
+
+/-! ## H^2(Z^4) = 0 for 2-Forms Vanishing on x⁰=0 Hyperplane
+
+For a closed antisymmetric 2-form ω that vanishes on the x⁰=0 hyperplane
+(i.e., ω(projectAway0 p, μ, ν) = 0 for all p, μ, ν), the residue in the
+Cartan identity vanishes, so ω = d₁(cartanContract0 ω) is exact.
+
+This is a partial H^2(Z^4) = 0 result for a meaningful subclass.
+The full H^2(Z^4) = 0 requires iterating the Cartan contraction in all
+4 directions (cascade: Z⁴ → Z³ → Z² → trivial). -/
+
+/-- **Vanishing on x⁰=0 hyperplane** predicate for 2-forms. -/
+def VanishesOnX0Hyperplane (ω : Discrete2Form) : Prop :=
+  ∀ p μ ν, ω (projectAway0 p) μ ν = 0
+
+/-- **Partial H²(Z⁴) = 0**: every closed antisymmetric 2-form vanishing on the
+    x⁰=0 hyperplane is exact, with potential given by `cartanContract0 ω`.
+
+    This is the first step of the discrete Cartan cascade for H². The full
+    H²(Z⁴) = 0 reduces to H²(Z³) = 0 applied to the Cartan residue. -/
+theorem closed2_vanishing_hyperplane_is_exact
+    (ω : Discrete2Form) (hclosed : IsClosed2 ω) (hanti : IsAntisymmetric2 ω)
+    (hvanish : VanishesOnX0Hyperplane ω) :
+    IsExact2 ω := by
+  use cartanContract0 ω
+  ext p μ ν
+  rw [cartanContract0_d1_identity ω hclosed hanti p μ ν]
+  -- The residue vanishes by hypothesis
+  split_ifs with h
+  · ring
+  · rw [hvanish p μ ν]; ring
+
 end OmegaTheory.Geometry

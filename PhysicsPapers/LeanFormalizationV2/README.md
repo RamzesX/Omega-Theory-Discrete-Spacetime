@@ -13,7 +13,7 @@ Laplacian-Ricci correspondence (HPW 2006, imported as an axiom).
 |---|---|
 | Lean / Mathlib | v4.29.0 |
 | Files | 55 (54 under `OmegaTheory/` + `OmegaTheory.lean`) |
-| Theorems + definitions | ~1010 |
+| Theorems + definitions | ~1030 |
 | Sorry | **1** (graded Leibniz cancellation for explicit Bianchi constant, Task B4b) |
 | Axioms | **9** (8 physical constants + 1 external math theorem HPW 2006) |
 | Build | ~3384 jobs, clean |
@@ -88,6 +88,9 @@ the healing-flow equilibrium condition plus the HPW axiom.
 | **Geometry** | **`coexact_orth_harmonic`** (coexact ⊥ harmonic 1-forms, via d₁-δ₁ adjoint) | `Geometry/HodgeDecomposition.lean` |
 | **Geometry** | **`summation_by_parts_1_antisym`** (d₁-δ₁ formal adjoint with boundary flux, for antisymmetric 2-forms) | `Geometry/HodgeDecomposition.lean` |
 | **Geometry** | **`hodge_orthogonal`** (full Hodge decomposition orthogonality on 1-forms, boundary-free regions) | `Geometry/HodgeDecomposition.lean` |
+| **Geometry** | **`cartanContract0_d1_identity`** (Cartan homotopy identity for direction 0, degree 2) | `Geometry/PoincareLemma.lean` |
+| **Geometry** | **`closed2_vanishing_hyperplane_is_exact`** (H²(Z⁴)=0 for 2-forms vanishing on x⁰=0 hyperplane) | `Geometry/PoincareLemma.lean` |
+| **Geometry** | **`lineIntZ_shift_2form_closed`** (ℤ-indexed 2-form line integral shift identity, via d²ω=0) | `Geometry/PoincareLemma.lean` |
 
 ## Relation to V1
 

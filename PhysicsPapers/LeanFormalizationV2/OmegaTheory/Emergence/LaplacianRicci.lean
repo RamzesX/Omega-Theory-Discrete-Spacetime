@@ -229,6 +229,42 @@ theorem hpw_flat
   rw [hR, hL, mul_zero, mul_zero, add_zero, abs_zero]
   exact div_nonneg l_P_nonneg (by norm_num)
 
+/-- **Perturbed-flat-case (Apr 14 2026).**  The physically-important
+    linearised-gravity regime: a metric `g = η + ε·h` with `η` flat and
+    `h` a bounded perturbation.  If both `|Δg_{μν}(p)| ≤ ε·K` and
+    `|R_{μν}(p)| ≤ ε·K` — i.e. both tensors scale with the perturbation
+    — and `μ·(3εK) ≤ ℓ_P/2`, then the HPW bound holds.
+
+    Physical content: in weak-field gravity the axiom is a trivial
+    corollary of `hpw_from_bounded_remainder` with `δ := 3εK`, since
+    `|Δg + 2R| ≤ |Δg| + 2|R| ≤ εK + 2εK = 3εK`.  No Taylor machinery,
+    no harmonic-gauge identity — just the triangle inequality. -/
+theorem hpw_perturbed_flat
+    (g : DiscreteMetric) (mu_coeff : ℝ) (hmu : 0 < mu_coeff)
+    (p : LatticePoint) (μ ν : Fin 4)
+    {ε K : ℝ} (_hε : 0 < ε) (hK : 0 ≤ K)
+    (hLap : |discreteLaplacian (fun q => g q μ ν) p| ≤ ε * K)
+    (hR   : |ricciTensor g μ ν p| ≤ ε * K)
+    (h_scale : mu_coeff * (3 * ε * K) ≤ l_P / 2) :
+    |mu_coeff * discreteLaplacian (fun q => g q μ ν) p +
+     2 * mu_coeff * ricciTensor g μ ν p| ≤ l_P / 2 := by
+  -- Triangle inequality: |Δg + 2R| ≤ |Δg| + 2|R| ≤ εK + 2εK = 3εK.
+  have h_rem :
+      |discreteLaplacian (fun q => g q μ ν) p +
+       2 * ricciTensor g μ ν p| ≤ 3 * ε * K := by
+    calc |discreteLaplacian (fun q => g q μ ν) p +
+          2 * ricciTensor g μ ν p|
+        ≤ |discreteLaplacian (fun q => g q μ ν) p| +
+          |2 * ricciTensor g μ ν p| := abs_add_le _ _
+      _ = |discreteLaplacian (fun q => g q μ ν) p| +
+          2 * |ricciTensor g μ ν p| := by
+            rw [abs_mul]; simp [abs_of_pos (by norm_num : (0:ℝ) < 2)]
+      _ ≤ ε * K + 2 * (ε * K) :=
+            add_le_add hLap (by linarith [hR])
+      _ = 3 * ε * K := by ring
+  -- Apply the structural reducer with δ := 3εK.
+  exact hpw_from_bounded_remainder g mu_coeff hmu p μ ν h_rem h_scale
+
 /-! ## Axiom-splitting toward elimination (Scout + Tracer synthesis)
 
 Parallel-agent analysis on 2026-04-14 (Scout + Tracer) identified the

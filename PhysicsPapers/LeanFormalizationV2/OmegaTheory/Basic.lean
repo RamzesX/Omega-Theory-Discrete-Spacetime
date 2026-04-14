@@ -14,6 +14,7 @@
 
 -- Layer 0: Foundations
 import OmegaTheory.Foundations.ErrorAlgebra
+import OmegaTheory.Foundations.TaylorBound
 
 
 -- Layer 1: Discrete Spacetime
@@ -69,6 +70,10 @@ import OmegaTheory.HealingFlow.Convergence
 -- Layer 8: Emergence
 import OmegaTheory.Emergence.CoarseGrain
 import OmegaTheory.Emergence.LaplacianRicci
+import OmegaTheory.Emergence.HpwHypothesis
+import OmegaTheory.Emergence.SmoothInterpolant
+import OmegaTheory.Emergence.HarmonicGauge
+import OmegaTheory.Emergence.RicciComparison
 import OmegaTheory.Emergence.EinsteinEmergence
 import OmegaTheory.Emergence.Gravitons
 import OmegaTheory.Emergence.SnapshotPropagator

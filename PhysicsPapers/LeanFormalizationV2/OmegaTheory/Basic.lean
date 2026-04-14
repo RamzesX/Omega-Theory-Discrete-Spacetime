@@ -91,3 +91,4 @@ import OmegaTheory.Irrationality.Uncertainty
 import OmegaTheory.Irrationality.BoundsLemmas
 import OmegaTheory.Emergence.Predictions
 import OmegaTheory.Emergence.DimensionalFlow
+import OmegaTheory.Emergence.SpecialRelativity

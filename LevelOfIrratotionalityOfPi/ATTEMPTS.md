@@ -368,12 +368,14 @@ Module 04C claimed the Galois group of the Gauss/arctan DE is SL₂. This is **W
 | GAP_B | OPEN | Non-Siegel specialization (parent gap) |
 | GAP_C | OPEN | Mixed Mahler$\times$Fuchsian specialization |
 | GAP_D | OPEN | FA 2023 ou$\to$et (mixed E$\times$G) |
-| GAP_E | **NEW** | Explicit HP construction with controlled heights for mixed E+G |
+| GAP_E | OPEN | Explicit HP construction with controlled heights for mixed E+G |
+| GAP_F | **NEW (Session 6)** | Verify $\rho > \Delta$ numerically for one admissible $(a,b,z_0)$ in Attack 19 |
 
 ### Alive Attacks (ATTACK QUEUE — updated Session 5)
 
 | Priority | Attempt | Name | What it needs | Module |
 |:---------|:--------|:-----|:-------------|:-------|
+| ★★★★ | **19** | **Pure Hermite-Padé over $\mathbb{Z}[\pi]$** (Escanor) | GAP_F: verify $\rho > \Delta$ for one slice | **11** |
 | ★★★ | **13** | **Congruence Incompatibility** | Formalize linear vs log p-adic growth | 05 §5.4 |
 | ★★ | **12** | **Carlitz-Frobenius Bridge** | Mixed Mahler$\times$Fuchsian spec. | 05 §5.3 |
 | ★★ | **18** | **HP$\times$Liouville (corrected)** | GAP_E: explicit HP, $m \geq 9$ | 08, 09 |
@@ -384,11 +386,13 @@ Module 04C claimed the Galois group of the Gauss/arctan DE is SL₂. This is **W
 
 **Session 5**: Attack 15 — FA Specialization. **DONE.** Blocked by Decoupling. Discovered G_Gauss error. See Module 10.
 
-**Session 6**: Attack 13 — Congruence Incompatibility. Pure arithmetic. Avoids ALL barriers. **MOST PROMISING.**
+**Session 6 (OPENED 2026-04-14)**: Attack 19 — **Pure Hermite-Padé over $\mathbb{Z}[\pi]$** (Escanor). Pre-Siegel method (Hermite 1873). Escapes Decoupling structurally. Integrates Attack 13's p-adic certificate. Reduces whole conjecture to GAP_F = one numerical comparison $\rho > \Delta$. See Module 11.
 
-**Session 7**: Attack 12 — Carlitz-Frobenius Bridge. Extend Nishioka to mixed Mahler$\times$DE.
+**Session 7**: Attack 13 — Congruence Incompatibility. Pure arithmetic. Formalize F27 linear vs log p-adic growth into a full proof (possibly independent of Attack 19).
 
-**Session 8**: Attack 14 — Motivic. Connect to Zilber-Pink / Grothendieck for Kummer$\times$Gauss.
+**Session 8**: Attack 12 — Carlitz-Frobenius Bridge. Extend Nishioka to mixed Mahler$\times$DE.
+
+**Session 9**: Attack 14 — Motivic. Connect to Zilber-Pink / Grothendieck for Kummer$\times$Gauss.
 
 ### Key Computational Results (Sessions 3-4)
 
@@ -412,3 +416,5 @@ Module 04C claimed the Galois group of the Gauss/arctan DE is SL₂. This is **W
 **Path C** (Frobenius): Deploy double-exponential against $\pi$ directly $\to$ proof. Deployment mechanism incomplete.
 
 **Path D** (Arithmetic): Extend ADH 2016 congruences to mixed E+G coefficients $\to$ direct arithmetic obstruction $\to$ proof.
+
+**Path E (NEW, Session 6)** (Pre-Siegel Hermite-Padé, Escanor): Explicit Padé construction for $(1, {}_1F_1, {}_1F_1')$ with $\mathbb{Z}[\pi]$ coefficients; non-vanishing by p-adic congruence (borrowing Attack 13 machinery); contradiction via $\rho > \Delta$ quantitative comparison. Structurally **bypasses** Decoupling Theorem because it never invokes Siegel's lemma. Reduces to a single computable condition: GAP_F.

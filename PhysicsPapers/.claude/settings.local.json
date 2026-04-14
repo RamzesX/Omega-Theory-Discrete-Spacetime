@@ -86,7 +86,8 @@
       "Bash(echo \"\")",
       "Bash(echo \"/-! ## H³\\(Z⁴\\) = 0 Future Work\")",
       "Bash(echo \"The 3-form cartan homotopy infrastructure \\(closed3_d3_identity_K, cartanContract3,\")",
-      "Bash(echo \"cartanContract3_K_ν, cartanContract3_ν_K, cartanContract3_shift_self,\")"
+      "Bash(echo \"cartanContract3_K_ν, cartanContract3_ν_K, cartanContract3_shift_self,\")",
+      "Bash(ls:*)"
     ]
   },
   "prefersReducedMotion": true

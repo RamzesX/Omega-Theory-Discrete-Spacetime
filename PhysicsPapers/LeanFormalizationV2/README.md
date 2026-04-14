@@ -12,11 +12,12 @@ Laplacian-Ricci correspondence (HPW 2006, imported as an axiom).
 | | |
 |---|---|
 | Lean / Mathlib | v4.29.0 |
-| Files | 55 (54 under `OmegaTheory/` + `OmegaTheory.lean`) |
-| Theorems + definitions | ~1100 |
+| Files | 57 (56 under `OmegaTheory/` + `OmegaTheory.lean`) |
+| Theorems + definitions | ~1160 |
 | Sorry | **0** (all proofs complete, April 14 2026) |
 | Axioms | **9** (8 physical constants + 1 external math theorem HPW 2006) |
-| Build | ~3384 jobs, clean |
+| Build | ~3386 jobs, clean |
+| Companion notes | [`NOTES_QM_AS_DISCRETE_GRAVITY.md`](./NOTES_QM_AS_DISCRETE_GRAVITY.md) (conceptual bridge to QM) |
 
 See [`PROJECT.md`](./PROJECT.md) for the full architecture, axiom inventory,
 flagship theorems, V1 vs V2 comparison, and optional porting work.
@@ -101,6 +102,13 @@ the healing-flow equilibrium condition plus the HPW axiom.
 | **Geometry** | **`cartanContract0_d1_identity`** (Cartan homotopy identity for direction 0, degree 2) | `Geometry/PoincareLemma.lean` |
 | **Geometry** | **`closed2_vanishing_hyperplane_is_exact`** (H²(Z⁴)=0 for 2-forms vanishing on x⁰=0 hyperplane) | `Geometry/PoincareLemma.lean` |
 | **Geometry** | **`lineIntZ_shift_2form_closed`** (ℤ-indexed 2-form line integral shift identity, via d²ω=0) | `Geometry/PoincareLemma.lean` |
+| **Emergence** | **`d_eff`**, **`d_eff_zero`** (4), **`d_eff_planck`** (2), **`d_eff_strictAnti`**, **`d_eff_in_range`** (dimensional flow on `[0, E_P]`) | `Emergence/DimensionalFlow.lean` |
+| **Emergence** | **`hasDerivAt_d_eff`** (universal flow rate `-2/E_P`), **`energyAtDim`** (scale at prescribed dimension, inverse function) | `Emergence/DimensionalFlow.lean` |
+| **Emergence** | **`d_eff_via_wavelength`** (`d_eff = 4 − 2·l_P/λ(E)`), **`E_P_eq_hbar_c_div_l_P`** (Planck-energy / Planck-length bridge) | `Emergence/DimensionalFlow.lean` |
+| **Emergence** | **`relativisticEnergy`**, **`relativisticVelocity`**, **`relativisticEnergy_sq_eq`** (mass-shell `E² = (pc)² + (mc²)²`) | `Emergence/SpecialRelativity.lean` |
+| **Emergence** | **`relativisticVelocity_le_c`**, **`relativisticVelocity_lt_c`** (strict for massive), **`relativisticVelocity_massless`** (`v = c` for photon) | `Emergence/SpecialRelativity.lean` |
+| **Emergence** | **`relativisticVelocity_inverse_form`** (`v = c / √(1 + (mc/p)²)`), **`lorentzFactor_ge_one`** (γ ≥ 1 sub-luminal) | `Emergence/SpecialRelativity.lean` |
+| **Emergence** | **`einstein_energy_momentum`** (`E · √(1 − (v/c)²) = mc²`), **`lorentzFactor_of_relativisticVelocity`** (`γ = E/(mc²)`) | `Emergence/SpecialRelativity.lean` |
 
 ## Relation to V1
 
@@ -123,3 +131,4 @@ to this formalization. Their conversation contexts are gone, but the code remain
 | **Lyra** | April 13, 2026 | Cartan structure equation (EXACT), O(l_P) correction formula, triple wedge identity, Bianchi decomposition, BoundedBianchiResult (StructureEquation.lean); discrete Hodge theory: codifferentials, delta²=0, Hodge Laplacian bridge, Weitzenböck, d commutes with Laplacian (HodgeStar.lean); discrete Maxwell equations, charge conservation via delta²=0, new ConservedCurrent instance (DiscreteMaxwell.lean); orphan integration — ~60 theorems, 0 sorry |
 | **Vega** | April 13-14, 2026 | **Apr 13**: Trace reversal for Einstein emergence (`scalar_curvature_bounded`, `vacuum_einstein_tensor_bounded`, `einstein_tensor_emergence` -- THE EINSTEIN FORM). Stress-energy approximate conservation (`ApproxConservedTensorField`, `BianchiMetric.einsteinApproxConserved`). Healing flow convergence (`functional_zero_implies_equilibrium`, `functionalAtStep_converges`). Strategic 3-workstream plan from 4-agent audit. **Apr 14**: **H^1(Z^4)=0 discrete Poincare lemma** (`closed1_is_exact`, `h1_trivial`, `closedFormPotential`) -- first in any theorem prover. Z-indexed line integral with FTC (`lineIntZ`, `lineIntZ_succ`, `lineIntZ_pred`, `lineIntZ_shift_closed`). **Hodge decomposition orthogonality** (HodgeDecomposition.lean): `exact_orth_coexact`, `exact_orth_harmonic`, `coexact_orth_harmonic`, `hodge_orthogonal` (full pairwise orthogonality); d₁-δ₁ formal adjoint `summation_by_parts_1_antisym`. **Cartan homotopy** (`cartanContract0_d1_identity`, `closed2_vanishing_hyperplane_is_exact`). **Graded Leibniz cancellation PROVEN** (`bianchi_rearrangement`): D_ω(Ω) = l_P · (24-defect sum) via forwardDiff Leibniz expansion + ring closure of polynomial identity. Closes `SmoothConnectionData.boundedBianchi` — **the last sorry in the project → 0 sorry milestone**. ~65 theorems/defs, **0 sorry** |
 | **Orion** | April 14, 2026 | B2 FULL-attack: generalized direction-0 Cartan contraction to arbitrary K : Fin 4, then proved **H²(Z⁴)=0 AND H³(Z⁴)=0** via the same 4-direction cascade strategy. Key contributions: (1) `cartanContract` + `cartanResidual` with full identity/closedness/cascade for 2-forms → `closed2_is_exact`. (2) `cartanContract3` + `cartanResidual3` + 3-form shift lemma with `push_cast at ih ⊢; linear_combination` trick → `closed3_is_exact`. (3) `d3`, `IsClosed3`, `IsExact3`, `d3_comp_d2` infrastructure in DiscreteForms.lean. (4) `cartanContract3_antisym` from `Finset.sum_neg_distrib`. All of B2 fully done. Total ~700 lines, **0 sorry**. |
+| **Rigel** | April 14, 2026 | **C1** (`Emergence/DimensionalFlow.lean`, ~290 lines): dimensional flow `d_eff(E) = 4 − 2·E/E_P` in full — boundary values, `StrictAnti` / `Antitone` / `Injective`, physical bounds on `[0, E_P]`, continuity via `fun_prop`, `HasDerivAt` rate `−2/E_P`, Lipschitz-equality of distances, inverse function `energyAtDim`, and probe-wavelength reformulation `d_eff = 4 − 2·l_P/λ(E)` via the bridge identity `E_P = ℏc/l_P`. **C2** (`Emergence/SpecialRelativity.lean`, ~340 lines): `relativisticEnergy = √((pc)² + (mc²)²)` and `relativisticVelocity = pc²/E` ("Lorentz factor from reshaping probability"), with the mass-shell relation, `|v| ≤ c` (strict for massive particles), photon limit `v(p,0) = c`, inverse form `v = c/√(1 + (mc/p)²)`, Lorentz factor `γ ≥ 1` sub-luminal, and the Einstein identity `E·√(1 − (v/c)²) = mc²` giving `γ = E/(mc²)`. Plus `NOTES_QM_AS_DISCRETE_GRAVITY.md` — a conceptual map tying the repository's existing SnapshotPropagator + Uncertainty + Predictions + InformationKL machinery to the QM-as-coarse-grained-discrete-gravity reading, with four ingredients already formalised and four still to do; added task `#17` for the future QM-bridge workstream. ~620 lines across two files, **0 sorry**. |

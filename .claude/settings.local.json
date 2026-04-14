@@ -81,7 +81,8 @@
       "Bash(python3 -m pip install mpmath)",
       "Bash(python3 -m pip install numpy)",
       "WebFetch(domain:math.uchicago.edu)",
-      "Bash(wc -l \"C:/Users/Norbert/IdeaProjects/chaos-shield/LevelOfIrratotionalityOfPi/\"*.md)"
+      "Bash(wc -l \"C:/Users/Norbert/IdeaProjects/chaos-shield/LevelOfIrratotionalityOfPi/\"*.md)",
+      "Bash(wc:*)"
     ]
   }
 }

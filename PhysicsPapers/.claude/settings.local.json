@@ -80,7 +80,8 @@
       "Bash(grep -c \"^instance\\\\|^noncomputable instance\" OmegaTheory/**/*.lean)",
       "Bash(awk -F: '{sum += $2} END {print \"Total instances:\", sum}')",
       "Bash(awk -F: '{s+=$2}END{print \"Theorems+lemmas:\",s}')",
-      "Bash(awk -F: '{s+=$2}END{print \"Sorry count:\",s}')"
+      "Bash(awk -F: '{s+=$2}END{print \"Sorry count:\",s}')",
+      "Bash(tee /tmp/hd_build.log)"
     ]
   },
   "prefersReducedMotion": true

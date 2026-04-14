@@ -1577,4 +1577,475 @@ theorem closed2_is_exact (ω : Discrete2Form) (hclosed : IsClosed2 ω)
   -- Chain: ω = d₁α₀ + d₁α₁ + d₁α₂ + d₁α₃
   linarith
 
+/-! ## B2 Stretch: H³(Z⁴) = 0 via the Same Cartan Cascade
+
+For 3-forms, the cartanContract3 integrates along direction K and produces a
+2-form. The d₂ of this 2-form satisfies a Cartan homotopy identity analogous
+to the 2-form case: d₂(cartanContract3 K ω) = ω - residual₃, where residual
+is 0 when any of the three form indices = K. Iterating in all 4 directions
+gives 0 (Fin 4 exhaustion), yielding H³(Z⁴) = 0. -/
+
+/-- **d₃ω=0 closedness identity** at indices (K, μ, ν, α): for closed ω,
+    Δ⁺_μ ω(·, K, ν, α) = Δ⁺_K ω(·, μ, ν, α) + Δ⁺_ν ω(·, K, μ, α) - Δ⁺_α ω(·, K, μ, ν). -/
+theorem closed3_d3_identity_K (K : Fin 4) (ω : Discrete3Form) (hclosed : IsClosed3 ω)
+    (μ ν α : Fin 4) (q : LatticePoint) :
+    forwardDiff (fun p => ω p K ν α) μ q =
+    forwardDiff (fun p => ω p μ ν α) K q + forwardDiff (fun p => ω p K μ α) ν q -
+    forwardDiff (fun p => ω p K μ ν) α q := by
+  have h := hclosed q K μ ν α
+  unfold d3 at h
+  linarith
+
+/-- **Cartan contraction for 3-forms**: Ω³ → Ω² via integration along direction K. -/
+noncomputable def cartanContract3 (K : Fin 4) (ω : Discrete3Form) : Discrete2Form :=
+  fun q ν α => lineIntZ (fun p _ => ω p K ν α) K (projectAway K q) (q K)
+
+/-- For totally antisymmetric ω, cartanContract3 vanishes when K is a form index. -/
+theorem cartanContract3_K_ν (K : Fin 4) (ω : Discrete3Form)
+    (hanti : IsAntisymmetric3 ω) (q : LatticePoint) (α : Fin 4) :
+    cartanContract3 K ω q K α = 0 := by
+  unfold cartanContract3
+  have hz : ∀ p : LatticePoint, ω p K K α = 0 := fun p => by
+    have := hanti.1 p K K α; linarith
+  have hfn : (fun p (_ : Fin 4) => ω p K K α) = fun _ _ => 0 := by
+    funext p μ; exact hz p
+  rw [hfn]
+  cases h : q K with
+  | ofNat n =>
+    show lineIntFwd (fun _ _ => (0 : ℝ)) K (projectAway K q) n = 0
+    unfold lineIntFwd; simp
+  | negSucc n =>
+    show lineIntBwd (fun _ _ => (0 : ℝ)) K (projectAway K q) n = 0
+    unfold lineIntBwd; simp
+
+theorem cartanContract3_ν_K (K : Fin 4) (ω : Discrete3Form)
+    (hanti : IsAntisymmetric3 ω) (q : LatticePoint) (ν : Fin 4) :
+    cartanContract3 K ω q ν K = 0 := by
+  unfold cartanContract3
+  have hz : ∀ p : LatticePoint, ω p K ν K = 0 := fun p => by
+    have h1 := hanti.2 p K ν K
+    have h2 := hanti.1 p K K ν
+    linarith
+  have hfn : (fun p (_ : Fin 4) => ω p K ν K) = fun _ _ => 0 := by
+    funext p μ; exact hz p
+  rw [hfn]
+  cases h : q K with
+  | ofNat n =>
+    show lineIntFwd (fun _ _ => (0 : ℝ)) K (projectAway K q) n = 0
+    unfold lineIntFwd; simp
+  | negSucc n =>
+    show lineIntBwd (fun _ _ => (0 : ℝ)) K (projectAway K q) n = 0
+    unfold lineIntBwd; simp
+
+/-- Shifting in direction K increments the line integral by l_P · ω p K ν α. -/
+theorem cartanContract3_shift_self (K : Fin 4) (ω : Discrete3Form)
+    (p : LatticePoint) (ν α : Fin 4) :
+    cartanContract3 K ω (shiftFin p K) ν α - cartanContract3 K ω p ν α =
+    l_P * ω p K ν α := by
+  unfold cartanContract3
+  have hcoord : (shiftFin p K) K = p K + 1 := by simp [shiftFin]
+  rw [hcoord, projectAway_shiftFin_self]
+  rw [lineIntZ_succ]
+  rw [shiftZ_projectAway_coord]
+  ring
+
+/-- (K, ν, α)-component of the Cartan homotopy identity for 3-forms. -/
+theorem cartanContract3_d2_component_K (K : Fin 4) (ω : Discrete3Form)
+    (hanti : IsAntisymmetric3 ω) (p : LatticePoint) (ν α : Fin 4) :
+    d2 (cartanContract3 K ω) p K ν α = ω p K ν α := by
+  unfold d2
+  -- T1 = forwardDiff (... ν α) K p  = ω p K ν α  (by shift_self)
+  -- T2 = -forwardDiff (... K α) ν p = 0  (cartanContract3 K ω q K α = 0)
+  -- T3 = forwardDiff (... K ν) α p  = 0  (similarly)
+  have hzero_Kα : ∀ q, cartanContract3 K ω q K α = 0 :=
+    fun q => cartanContract3_K_ν K ω hanti q α
+  have hzero_Kν : ∀ q, cartanContract3 K ω q K ν = 0 :=
+    fun q => cartanContract3_K_ν K ω hanti q ν
+  have hfn_Kα : (fun q => cartanContract3 K ω q K α) = fun _ => 0 := funext hzero_Kα
+  have hfn_Kν : (fun q => cartanContract3 K ω q K ν) = fun _ => 0 := funext hzero_Kν
+  rw [hfn_Kα, hfn_Kν]
+  rw [forwardDiff_const 0 ν p, forwardDiff_const 0 α p]
+  have h1 : forwardDiff (fun q => cartanContract3 K ω q ν α) K p = ω p K ν α := by
+    unfold forwardDiff
+    rw [show cartanContract3 K ω (shiftFin p K) ν α - cartanContract3 K ω p ν α =
+        l_P * ω p K ν α from cartanContract3_shift_self K ω p ν α]
+    field_simp [l_P_ne_zero]
+  rw [h1]; ring
+
+
+/-- **ℕ-shift identity for 3-form line integrals in direction K.** -/
+theorem lineIntFwd_shift_3form_closed_K (K : Fin 4) (ω : Discrete3Form)
+    (hclosed : IsClosed3 ω) (μ ν α : Fin 4) (hμ : μ ≠ K) (base : LatticePoint) (n : ℕ) :
+    lineIntFwd (fun p' _ => ω p' K ν α) K (shiftFin base μ) n -
+    lineIntFwd (fun p' _ => ω p' K ν α) K base n =
+    l_P * (ω (shiftZ base K (n : ℤ)) μ ν α - ω base μ ν α) +
+    (lineIntFwd (fun p' _ => ω p' K μ α) K (shiftFin base ν) n -
+     lineIntFwd (fun p' _ => ω p' K μ α) K base n) -
+    (lineIntFwd (fun p' _ => ω p' K μ ν) K (shiftFin base α) n -
+     lineIntFwd (fun p' _ => ω p' K μ ν) K base n) := by
+  induction n with
+  | zero => simp [lineIntFwd]
+  | succ k ih =>
+    rw [lineIntFwd_succ, lineIntFwd_succ, lineIntFwd_succ, lineIntFwd_succ,
+        lineIntFwd_succ, lineIntFwd_succ]
+    have hcomm_μ : shiftZ (shiftFin base μ) K (k : ℤ) =
+        shiftFin (shiftZ base K (k : ℤ)) μ := shiftZ_shiftFin_comm_ne_K base K μ hμ k
+    have hcomm_ν : shiftFin (shiftZ base K (k : ℤ)) ν =
+        shiftZ (shiftFin base ν) K (k : ℤ) := by
+      rcases Decidable.em (ν = K) with hν | hν
+      · subst hν; ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+      · exact (shiftZ_shiftFin_comm_ne_K base K ν hν k).symm
+    have hcomm_α : shiftFin (shiftZ base K (k : ℤ)) α =
+        shiftZ (shiftFin base α) K (k : ℤ) := by
+      rcases Decidable.em (α = K) with hα | hα
+      · subst hα; ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+      · exact (shiftZ_shiftFin_comm_ne_K base K α hα k).symm
+    have hsucc_K : shiftFin (shiftZ base K (k : ℤ)) K = shiftZ base K ((k : ℤ) + 1) := by
+      ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+    have hclosed_eq := closed3_d3_identity_K K ω hclosed μ ν α (shiftZ base K (k : ℤ))
+    have hlp : l_P ≠ 0 := l_P_ne_zero
+    have hstep_eq : ω (shiftFin (shiftZ base K (k : ℤ)) μ) K ν α -
+        ω (shiftZ base K (k : ℤ)) K ν α =
+        (ω (shiftFin (shiftZ base K (k : ℤ)) K) μ ν α - ω (shiftZ base K (k : ℤ)) μ ν α) +
+        (ω (shiftFin (shiftZ base K (k : ℤ)) ν) K μ α - ω (shiftZ base K (k : ℤ)) K μ α) -
+        (ω (shiftFin (shiftZ base K (k : ℤ)) α) K μ ν - ω (shiftZ base K (k : ℤ)) K μ ν) := by
+      have := hclosed_eq
+      unfold forwardDiff at this
+      field_simp [hlp] at this
+      linarith
+    rw [hsucc_K, hcomm_ν, hcomm_α, ← hcomm_μ] at hstep_eq
+    -- Normalize ↑(k + 1) to ↑k + 1 throughout
+    push_cast
+    push_cast at ih
+    linear_combination ih + l_P * hstep_eq
+
+/-- **ℤ-shift identity for 3-form line integrals in direction K.** -/
+theorem lineIntZ_shift_3form_closed_K (K : Fin 4) (ω : Discrete3Form)
+    (hclosed : IsClosed3 ω) (μ ν α : Fin 4) (hμ : μ ≠ K) (base : LatticePoint) (k : ℤ) :
+    lineIntZ (fun p' _ => ω p' K ν α) K (shiftFin base μ) k -
+    lineIntZ (fun p' _ => ω p' K ν α) K base k =
+    l_P * (ω (shiftZ base K k) μ ν α - ω base μ ν α) +
+    (lineIntZ (fun p' _ => ω p' K μ α) K (shiftFin base ν) k -
+     lineIntZ (fun p' _ => ω p' K μ α) K base k) -
+    (lineIntZ (fun p' _ => ω p' K μ ν) K (shiftFin base α) k -
+     lineIntZ (fun p' _ => ω p' K μ ν) K base k) := by
+  have shiftcomm_μ : ∀ j : ℤ, shiftZ (shiftFin base μ) K j = shiftFin (shiftZ base K j) μ :=
+    fun j => shiftZ_shiftFin_comm_ne_K base K μ hμ j
+  have shiftcomm_ν : ∀ j : ℤ, shiftFin (shiftZ base K j) ν = shiftZ (shiftFin base ν) K j := by
+    intro j
+    rcases Decidable.em (ν = K) with hν | hν
+    · subst hν; ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+    · exact (shiftZ_shiftFin_comm_ne_K base K ν hν j).symm
+  have shiftcomm_α : ∀ j : ℤ, shiftFin (shiftZ base K j) α = shiftZ (shiftFin base α) K j := by
+    intro j
+    rcases Decidable.em (α = K) with hα | hα
+    · subst hα; ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+    · exact (shiftZ_shiftFin_comm_ne_K base K α hα j).symm
+  have shiftFin_succ_K : ∀ j : ℤ, shiftFin (shiftZ base K j) K = shiftZ base K (j + 1) := by
+    intro j; ext i; simp [shiftFin, shiftZ]; split_ifs with h <;> ring
+  have step_eq_lP : ∀ j : ℤ,
+      l_P * ω (shiftFin (shiftZ base K j) μ) K ν α -
+      l_P * ω (shiftZ base K j) K ν α =
+      l_P * (ω (shiftZ base K (j + 1)) μ ν α - ω (shiftZ base K j) μ ν α) +
+      l_P * (ω (shiftZ (shiftFin base ν) K j) K μ α -
+             ω (shiftZ base K j) K μ α) -
+      l_P * (ω (shiftZ (shiftFin base α) K j) K μ ν -
+             ω (shiftZ base K j) K μ ν) := by
+    intro j
+    have hclosed_eq := closed3_d3_identity_K K ω hclosed μ ν α (shiftZ base K j)
+    have hlp : l_P ≠ 0 := l_P_ne_zero
+    have hstep_eq : ω (shiftFin (shiftZ base K j) μ) K ν α -
+        ω (shiftZ base K j) K ν α =
+        (ω (shiftFin (shiftZ base K j) K) μ ν α - ω (shiftZ base K j) μ ν α) +
+        (ω (shiftFin (shiftZ base K j) ν) K μ α - ω (shiftZ base K j) K μ α) -
+        (ω (shiftFin (shiftZ base K j) α) K μ ν - ω (shiftZ base K j) K μ ν) := by
+      have := hclosed_eq
+      unfold forwardDiff at this
+      field_simp [hlp] at this
+      linarith
+    rw [shiftFin_succ_K j, shiftcomm_ν j, shiftcomm_α j] at hstep_eq
+    linear_combination l_P * hstep_eq
+  cases k with
+  | ofNat n => exact lineIntFwd_shift_3form_closed_K K ω hclosed μ ν α hμ base n
+  | negSucc n =>
+    induction n with
+    | zero =>
+      have hs := lineIntZ_pred (fun p' _ => ω p' K ν α) K (shiftFin base μ) 0
+      have ho := lineIntZ_pred (fun p' _ => ω p' K ν α) K base 0
+      have hsm1 := lineIntZ_pred (fun p' _ => ω p' K μ α) K (shiftFin base ν) 0
+      have hom1 := lineIntZ_pred (fun p' _ => ω p' K μ α) K base 0
+      have hsm2 := lineIntZ_pred (fun p' _ => ω p' K μ ν) K (shiftFin base α) 0
+      have hom2 := lineIntZ_pred (fun p' _ => ω p' K μ ν) K base 0
+      simp only [lineIntZ_zero] at hs ho hsm1 hom1 hsm2 hom2
+      have h01 : (0 : ℤ) - 1 = Int.negSucc 0 := by omega
+      rw [h01] at hs ho hsm1 hom1 hsm2 hom2
+      rw [hs, ho, hsm1, hom1, hsm2, hom2]
+      rw [shiftcomm_μ (Int.negSucc 0)]
+      have hstep := step_eq_lP (Int.negSucc 0)
+      rw [show Int.negSucc 0 + 1 = (0 : ℤ) from by omega, shiftZ_zero] at hstep
+      linarith
+    | succ m _ih =>
+      have hs := lineIntZ_pred (fun p' _ => ω p' K ν α) K (shiftFin base μ) (Int.negSucc m)
+      have ho := lineIntZ_pred (fun p' _ => ω p' K ν α) K base (Int.negSucc m)
+      have hsm1 := lineIntZ_pred (fun p' _ => ω p' K μ α) K (shiftFin base ν) (Int.negSucc m)
+      have hom1 := lineIntZ_pred (fun p' _ => ω p' K μ α) K base (Int.negSucc m)
+      have hsm2 := lineIntZ_pred (fun p' _ => ω p' K μ ν) K (shiftFin base α) (Int.negSucc m)
+      have hom2 := lineIntZ_pred (fun p' _ => ω p' K μ ν) K base (Int.negSucc m)
+      have hk : Int.negSucc m - 1 = Int.negSucc (m + 1) := by omega
+      rw [hk] at hs ho hsm1 hom1 hsm2 hom2
+      rw [hs, ho, hsm1, hom1, hsm2, hom2]
+      rw [shiftcomm_μ (Int.negSucc (m + 1))]
+      have hstep := step_eq_lP (Int.negSucc (m + 1))
+      rw [show Int.negSucc (m + 1) + 1 = Int.negSucc m from by omega] at hstep
+      linarith
+
+/-- **Shift identity for cartanContract3** when μ, ν, α all ≠ K. -/
+theorem cartanContract3_shift_mu_nu_alpha_ne_K (K : Fin 4) (ω : Discrete3Form)
+    (hclosed : IsClosed3 ω) (μ ν α : Fin 4) (hμ : μ ≠ K) (hν : ν ≠ K) (hα : α ≠ K)
+    (p : LatticePoint) :
+    cartanContract3 K ω (shiftFin p μ) ν α - cartanContract3 K ω p ν α =
+    l_P * (ω p μ ν α - ω (projectAway K p) μ ν α) +
+    (cartanContract3 K ω (shiftFin p ν) μ α - cartanContract3 K ω p μ α) -
+    (cartanContract3 K ω (shiftFin p α) μ ν - cartanContract3 K ω p μ ν) := by
+  unfold cartanContract3
+  have hcoord_μ : (shiftFin p μ) K = p K := by
+    simp only [shiftFin]; by_cases h : (K : Fin 4) = μ
+    · exact absurd h.symm hμ
+    · simp [h]
+  have hcoord_ν : (shiftFin p ν) K = p K := by
+    simp only [shiftFin]; by_cases h : (K : Fin 4) = ν
+    · exact absurd h.symm hν
+    · simp [h]
+  have hcoord_α : (shiftFin p α) K = p K := by
+    simp only [shiftFin]; by_cases h : (K : Fin 4) = α
+    · exact absurd h.symm hα
+    · simp [h]
+  rw [hcoord_μ, hcoord_ν, hcoord_α,
+      projectAway_shiftFin_ne K p μ hμ, projectAway_shiftFin_ne K p ν hν,
+      projectAway_shiftFin_ne K p α hα]
+  have h := lineIntZ_shift_3form_closed_K K ω hclosed μ ν α hμ (projectAway K p) (p K)
+  rw [shiftZ_projectAway_coord K p] at h
+  exact h
+
+/-- **Cartan homotopy identity at (μ, ν, α) with μ, ν, α ≠ K**. -/
+theorem cartanContract3_d2_component_mu_nu_alpha_ne_K
+    (K : Fin 4) (ω : Discrete3Form) (hclosed : IsClosed3 ω)
+    (p : LatticePoint) (μ ν α : Fin 4) (hμ : μ ≠ K) (hν : ν ≠ K) (hα : α ≠ K) :
+    d2 (cartanContract3 K ω) p μ ν α = ω p μ ν α - ω (projectAway K p) μ ν α := by
+  unfold d2 forwardDiff
+  have h := cartanContract3_shift_mu_nu_alpha_ne_K K ω hclosed μ ν α hμ hν hα p
+  have hlp : l_P ≠ 0 := l_P_ne_zero
+  field_simp [hlp]
+  linarith
+
+/-- cartanContract3 is antisymmetric in its (ν, α) form indices
+    (since ω is antisymmetric in its last two indices). -/
+theorem cartanContract3_antisym (K : Fin 4) (ω : Discrete3Form)
+    (hanti : IsAntisymmetric3 ω) :
+    IsAntisymmetric2 (cartanContract3 K ω) := by
+  intro q ν α
+  unfold cartanContract3
+  -- ω p K ν α = -ω p K α ν (antisymmetric in last two)
+  have hω_swap : ∀ p, ω p K ν α = -(ω p K α ν) := fun p => hanti.2 p K ν α
+  -- Therefore the line integrals negate
+  cases h : q K with
+  | ofNat n =>
+    show lineIntFwd (fun p' _ => ω p' K ν α) K (projectAway K q) n =
+         -lineIntFwd (fun p' _ => ω p' K α ν) K (projectAway K q) n
+    unfold lineIntFwd
+    rw [← Finset.sum_neg_distrib]
+    apply Finset.sum_congr rfl
+    intro j _
+    simp only [neg_mul_eq_mul_neg]
+    congr 1
+    exact hω_swap _
+  | negSucc n =>
+    show lineIntBwd (fun p' _ => ω p' K ν α) K (projectAway K q) n =
+         -lineIntBwd (fun p' _ => ω p' K α ν) K (projectAway K q) n
+    unfold lineIntBwd
+    rw [neg_neg]
+    rw [← Finset.sum_neg_distrib]
+    apply Finset.sum_congr rfl
+    intro j _
+    simp only [neg_mul_eq_mul_neg]
+    congr 1
+    linarith [hω_swap (shiftZ (projectAway K q) K (-(↑j + 1)))]
+
+/-- **Full Cartan homotopy identity for 3-forms in direction K**: for closed
+    antisymmetric ω, d₂(cartanContract3 K ω) has the Cartan decomposition. -/
+theorem cartanContract3_d2_identity
+    (K : Fin 4) (ω : Discrete3Form) (hclosed : IsClosed3 ω) (hanti : IsAntisymmetric3 ω)
+    (p : LatticePoint) (μ ν α : Fin 4) :
+    d2 (cartanContract3 K ω) p μ ν α =
+    ω p μ ν α - (if μ = K ∨ ν = K ∨ α = K then 0 else ω (projectAway K p) μ ν α) := by
+  -- Antisymmetry of d₂ output (since cartanContract3 K ω is antisymmetric)
+  have hd2_anti := d2_antisymmetric (cartanContract3 K ω)
+    (cartanContract3_antisym K ω hanti)
+  by_cases hμ : μ = K
+  · rw [hμ, if_pos (Or.inl rfl), cartanContract3_d2_component_K K ω hanti p ν α]
+    ring
+  · by_cases hν : ν = K
+    · rw [hν, if_pos (Or.inr (Or.inl rfl))]
+      -- d₂(cartanContract3) p μ K α = -d₂ p K μ α (antisym first two)
+      rw [hd2_anti.1 p μ K α, cartanContract3_d2_component_K K ω hanti p μ α]
+      have := hanti.1 p μ K α  -- ω p μ K α = -ω p K μ α
+      linarith
+    · by_cases hα : α = K
+      · rw [hα, if_pos (Or.inr (Or.inr rfl))]
+        -- d₂ p μ ν K = -d₂ p μ K ν (antisym last two) = d₂ p K μ ν (antisym first two)
+        rw [hd2_anti.2 p μ ν K, hd2_anti.1 p μ K ν,
+            cartanContract3_d2_component_K K ω hanti p μ ν]
+        have h1 := hanti.2 p μ ν K  -- ω p μ ν K = -ω p μ K ν
+        have h2 := hanti.1 p μ K ν  -- ω p μ K ν = -ω p K μ ν
+        linarith
+      · rw [if_neg (by tauto : ¬ (μ = K ∨ ν = K ∨ α = K))]
+        exact cartanContract3_d2_component_mu_nu_alpha_ne_K K ω hclosed p μ ν α hμ hν hα
+
+/-! ## H³(Z⁴) = 0: Cartan Residual, Cascade, Main Theorem -/
+
+/-- The Cartan residual for 3-forms. -/
+noncomputable def cartanResidual3 (K : Fin 4) (ω : Discrete3Form) : Discrete3Form :=
+  fun p μ ν α => if μ = K ∨ ν = K ∨ α = K then 0 else ω (projectAway K p) μ ν α
+
+/-- The decomposition: ω = d₂(cartanContract3 K ω) + cartanResidual3 K ω. -/
+theorem cartan3_decomp (K : Fin 4) (ω : Discrete3Form)
+    (hclosed : IsClosed3 ω) (hanti : IsAntisymmetric3 ω)
+    (p : LatticePoint) (μ ν α : Fin 4) :
+    ω p μ ν α = d2 (cartanContract3 K ω) p μ ν α + cartanResidual3 K ω p μ ν α := by
+  rw [cartanContract3_d2_identity K ω hclosed hanti p μ ν α]
+  unfold cartanResidual3
+  ring
+
+/-- cartanResidual3 preserves antisymmetry. -/
+theorem cartanResidual3_antisym (K : Fin 4) (ω : Discrete3Form)
+    (hanti : IsAntisymmetric3 ω) : IsAntisymmetric3 (cartanResidual3 K ω) := by
+  constructor
+  · intro p μ ν α
+    unfold cartanResidual3
+    by_cases h : μ = K ∨ ν = K ∨ α = K
+    · rw [if_pos h, if_pos (by tauto : ν = K ∨ μ = K ∨ α = K)]; ring
+    · push_neg at h
+      rw [if_neg (by tauto : ¬ (μ = K ∨ ν = K ∨ α = K))]
+      rw [if_neg (by tauto : ¬ (ν = K ∨ μ = K ∨ α = K))]
+      exact hanti.1 (projectAway K p) μ ν α
+  · intro p μ ν α
+    unfold cartanResidual3
+    by_cases h : μ = K ∨ ν = K ∨ α = K
+    · rw [if_pos h, if_pos (by tauto : μ = K ∨ α = K ∨ ν = K)]; ring
+    · push_neg at h
+      rw [if_neg (by tauto : ¬ (μ = K ∨ ν = K ∨ α = K))]
+      rw [if_neg (by tauto : ¬ (μ = K ∨ α = K ∨ ν = K))]
+      exact hanti.2 (projectAway K p) μ ν α
+
+/-- cartanResidual3 preserves closedness (analogous to cartanResidual for 2-forms). -/
+theorem cartanResidual3_closed (K : Fin 4) (ω : Discrete3Form) (hclosed : IsClosed3 ω) :
+    IsClosed3 (cartanResidual3 K ω) := by
+  intro q a b c d
+  -- d₃(cartanResidual3 K ω) q a b c d = 0
+  -- Similar case analysis as cartanResidual_closed
+  have bad_inner : ∀ μ ν α γ, (μ = K ∨ ν = K ∨ α = K) →
+      forwardDiff (fun p => cartanResidual3 K ω p μ ν α) γ q = 0 := by
+    intros μ ν α γ hbad
+    unfold forwardDiff cartanResidual3
+    simp [hbad]
+  have dirK_good : ∀ μ ν α, μ ≠ K → ν ≠ K → α ≠ K →
+      forwardDiff (fun p => cartanResidual3 K ω p μ ν α) K q = 0 := by
+    intros μ ν α hμ hν hα
+    unfold forwardDiff cartanResidual3
+    simp [show ¬ (μ = K ∨ ν = K ∨ α = K) from by tauto, projectAway_shiftFin_self]
+  have good_diff : ∀ μ ν α γ, μ ≠ K → ν ≠ K → α ≠ K → γ ≠ K →
+      forwardDiff (fun p => cartanResidual3 K ω p μ ν α) γ q =
+      forwardDiff (fun p => ω p μ ν α) γ (projectAway K q) := by
+    intros μ ν α γ hμ hν hα hγ
+    unfold forwardDiff cartanResidual3
+    simp [show ¬ (μ = K ∨ ν = K ∨ α = K) from by tauto,
+          projectAway_shiftFin_ne K q γ hγ]
+  show d3 (cartanResidual3 K ω) q a b c d = 0
+  unfold d3
+  -- d₃ has 4 forwardDiff terms. Case split on which of a, b, c, d = K.
+  by_cases ha : a = K
+  · -- a = K: T2, T3, T4 have a in form indices → bad. T1 direction = K.
+    rw [bad_inner a c d b (Or.inl ha), bad_inner a b d c (Or.inl ha),
+        bad_inner a b c d (Or.inl ha)]
+    by_cases hbcd : b = K ∨ c = K ∨ d = K
+    · rw [bad_inner b c d a hbcd]; ring
+    · push_neg at hbcd
+      rw [ha, dirK_good b c d hbcd.1 hbcd.2.1 hbcd.2.2]
+      ring
+  · by_cases hb : b = K
+    · rw [bad_inner b c d a (Or.inl hb), bad_inner a b d c (Or.inr (Or.inl hb)),
+          bad_inner a b c d (Or.inr (Or.inl hb))]
+      by_cases hacd : a = K ∨ c = K ∨ d = K
+      · rw [bad_inner a c d b hacd]; ring
+      · push_neg at hacd
+        rw [hb, dirK_good a c d hacd.1 hacd.2.1 hacd.2.2]
+        ring
+    · by_cases hc : c = K
+      · rw [bad_inner b c d a (Or.inr (Or.inl hc)), bad_inner a c d b (Or.inr (Or.inl hc)),
+            bad_inner a b c d (Or.inr (Or.inr hc))]
+        by_cases habd : a = K ∨ b = K ∨ d = K
+        · rw [bad_inner a b d c habd]; ring
+        · push_neg at habd
+          rw [hc, dirK_good a b d habd.1 habd.2.1 habd.2.2]
+          ring
+      · by_cases hd : d = K
+        · rw [bad_inner b c d a (Or.inr (Or.inr hd)), bad_inner a c d b (Or.inr (Or.inr hd)),
+              bad_inner a b d c (Or.inr (Or.inr hd))]
+          by_cases habc : a = K ∨ b = K ∨ c = K
+          · rw [bad_inner a b c d habc]; ring
+          · push_neg at habc
+            rw [hd, dirK_good a b c habc.1 habc.2.1 habc.2.2]
+            ring
+        · -- All a, b, c, d ≠ K: main case, reduces to d₃ω at projected point
+          rw [good_diff b c d a hb hc hd ha,
+              good_diff a c d b ha hc hd hb,
+              good_diff a b d c ha hb hd hc,
+              good_diff a b c d ha hb hc hd]
+          have := hclosed (projectAway K q) a b c d
+          unfold d3 at this
+          linarith
+
+/-- The 4-fold Cartan residual iteration for 3-forms. -/
+noncomputable def cartanResidual3_4 (ω : Discrete3Form) : Discrete3Form :=
+  cartanResidual3 3 (cartanResidual3 2 (cartanResidual3 1 (cartanResidual3 0 ω)))
+
+/-- After 4 iterations, the 3-form residual is 0. -/
+theorem cartanResidual3_4_eq_zero (ω : Discrete3Form) :
+    ∀ p μ ν α, cartanResidual3_4 ω p μ ν α = 0 := by
+  intro p μ ν α
+  unfold cartanResidual3_4 cartanResidual3
+  fin_cases μ <;> fin_cases ν <;> fin_cases α <;> simp
+
+/-- **H³(Z⁴) = 0**: every closed antisymmetric 3-form on Z⁴ is exact. -/
+theorem closed3_is_exact (ω : Discrete3Form) (hclosed : IsClosed3 ω)
+    (hanti : IsAntisymmetric3 ω) : IsExact3 ω := by
+  let ω1 := cartanResidual3 0 ω
+  let ω2 := cartanResidual3 1 ω1
+  let ω3 := cartanResidual3 2 ω2
+  have h1_closed : IsClosed3 ω1 := cartanResidual3_closed 0 ω hclosed
+  have h2_closed : IsClosed3 ω2 := cartanResidual3_closed 1 ω1 h1_closed
+  have h3_closed : IsClosed3 ω3 := cartanResidual3_closed 2 ω2 h2_closed
+  have h1_anti : IsAntisymmetric3 ω1 := cartanResidual3_antisym 0 ω hanti
+  have h2_anti : IsAntisymmetric3 ω2 := cartanResidual3_antisym 1 ω1 h1_anti
+  have h3_anti : IsAntisymmetric3 ω3 := cartanResidual3_antisym 2 ω2 h2_anti
+  let α0 := cartanContract3 0 ω
+  let α1 := cartanContract3 1 ω1
+  let α2 := cartanContract3 2 ω2
+  let α3 := cartanContract3 3 ω3
+  refine ⟨add2Form α0 (add2Form α1 (add2Form α2 α3)), ?_⟩
+  ext p μ ν α
+  -- Unfold d₂ of the sum
+  rw [d2_add, d2_add, d2_add]
+  show ω p μ ν α = add3Form (d2 α0) (add3Form (d2 α1) (add3Form (d2 α2) (d2 α3))) p μ ν α
+  unfold add3Form
+  -- Chain of 4 cartan3_decomp + residual3_4 = 0
+  have h1 := cartan3_decomp 0 ω hclosed hanti p μ ν α
+  have h2 := cartan3_decomp 1 ω1 h1_closed h1_anti p μ ν α
+  have h3 := cartan3_decomp 2 ω2 h2_closed h2_anti p μ ν α
+  have h4 := cartan3_decomp 3 ω3 h3_closed h3_anti p μ ν α
+  have h5 : cartanResidual3 3 ω3 p μ ν α = 0 := by
+    show cartanResidual3_4 ω p μ ν α = 0
+    exact cartanResidual3_4_eq_zero ω p μ ν α
+  linarith
+
 end OmegaTheory.Geometry

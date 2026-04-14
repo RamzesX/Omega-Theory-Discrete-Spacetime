@@ -135,6 +135,10 @@ theorem d1_add (ω₁ ω₂ : Discrete1Form) :
   simp only [d1, add1Form, add2Form, forwardDiff]
   field_simp; ring
 
+/-- Addition for 3-forms. -/
+noncomputable def add3Form (ω₁ ω₂ : Discrete3Form) : Discrete3Form :=
+  fun p μ ν α => ω₁ p μ ν α + ω₂ p μ ν α
+
 /-! ## d² = 0 at degree 0: d₁ ∘ d₀ = 0
 
   THE CROWN JEWEL. For any scalar field f:
@@ -184,6 +188,14 @@ private theorem forwardDiff_antisym_cancel (ω : Discrete2Form) (h : IsAntisymme
   have h2 := h p μ ν
   field_simp [l_P_ne_zero]
   linarith
+
+/-- d₂ is linear (additive). -/
+theorem d2_add (ω₁ ω₂ : Discrete2Form) :
+    d2 (add2Form ω₁ ω₂) = add3Form (d2 ω₁) (d2 ω₂) := by
+  funext p μ ν ρ
+  unfold d2 add2Form add3Form forwardDiff
+  field_simp
+  ring
 
 /-- d₂ of an antisymmetric 2-form is totally antisymmetric. -/
 theorem d2_antisymmetric (ω : Discrete2Form) (h : IsAntisymmetric2 ω) :
@@ -258,6 +270,48 @@ theorem exact2_is_closed (ω : Discrete2Form) (h : IsExact2 ω) : IsClosed2 ω :
   obtain ⟨α, rfl⟩ := h
   intro p μ ν ρ
   exact d2_comp_d1 α p μ ν ρ
+
+/-! ## Degree-3 Forms: d₃ and the Top of the Fin 4 Complex -/
+
+/-- A discrete 4-form: assigns a 4-tensor to each point (needed as codomain of d₃). -/
+abbrev Discrete4Form := LatticePoint → Fin 4 → Fin 4 → Fin 4 → Fin 4 → ℝ
+
+/-- Discrete exterior derivative on 3-forms: alternating sum over 4 forward diffs. -/
+noncomputable def d3 (ω : Discrete3Form) : Discrete4Form :=
+  fun p μ ν α β =>
+    forwardDiff (fun q => ω q ν α β) μ p -
+    forwardDiff (fun q => ω q μ α β) ν p +
+    forwardDiff (fun q => ω q μ ν β) α p -
+    forwardDiff (fun q => ω q μ ν α) β p
+
+/-- A 3-form is exact if it is d₂ of some 2-form. -/
+def IsExact3 (ω : Discrete3Form) : Prop :=
+  ∃ α : Discrete2Form, ω = d2 α
+
+/-- A 3-form is closed if d₃ω = 0. -/
+def IsClosed3 (ω : Discrete3Form) : Prop :=
+  ∀ p μ ν α β, d3 ω p μ ν α β = 0
+
+/-- d³ = 0 at degree 2: d₃ ∘ d₂ = 0. Expands to 12 double-forward-diffs that cancel
+    pairwise by shiftFin commutativity. -/
+theorem d3_comp_d2 (ω : Discrete2Form) (p : LatticePoint) (μ ν α β : Fin 4) :
+    d3 (d2 ω) p μ ν α β = 0 := by
+  simp only [d3, d2, forwardDiff]
+  have c1 := shiftFin_comm p μ ν
+  have c2 := shiftFin_comm p μ α
+  have c3 := shiftFin_comm p μ β
+  have c4 := shiftFin_comm p ν α
+  have c5 := shiftFin_comm p ν β
+  have c6 := shiftFin_comm p α β
+  field_simp
+  rw [c1, c2, c3, c4, c5, c6]
+  ring
+
+/-- Every exact 3-form is closed. -/
+theorem exact3_is_closed (ω : Discrete3Form) (h : IsExact3 ω) : IsClosed3 ω := by
+  obtain ⟨α, rfl⟩ := h
+  intro p μ ν α' β
+  exact d3_comp_d2 α p μ ν α' β
 
 /-! ## Connection to Existing Infrastructure -/
 

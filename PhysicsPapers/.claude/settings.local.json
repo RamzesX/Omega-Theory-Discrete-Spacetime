@@ -81,7 +81,12 @@
       "Bash(awk -F: '{sum += $2} END {print \"Total instances:\", sum}')",
       "Bash(awk -F: '{s+=$2}END{print \"Theorems+lemmas:\",s}')",
       "Bash(awk -F: '{s+=$2}END{print \"Sorry count:\",s}')",
-      "Bash(tee /tmp/hd_build.log)"
+      "Bash(tee /tmp/hd_build.log)",
+      "Bash(head -1674 /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Geometry/PoincareLemma.lean)",
+      "Bash(echo \"\")",
+      "Bash(echo \"/-! ## H³\\(Z⁴\\) = 0 Future Work\")",
+      "Bash(echo \"The 3-form cartan homotopy infrastructure \\(closed3_d3_identity_K, cartanContract3,\")",
+      "Bash(echo \"cartanContract3_K_ν, cartanContract3_ν_K, cartanContract3_shift_self,\")"
     ]
   },
   "prefersReducedMotion": true

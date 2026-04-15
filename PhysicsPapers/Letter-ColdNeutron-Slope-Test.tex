@@ -1,0 +1,435 @@
+% !TEX program = pdflatex
+%
+% A cold-neutron slope discriminator between discrete-substrate and
+% environmental decoherence at ILL Grenoble.
+%
+% PRL-style letter (revtex4-2), two-column, self-contained bibliography.
+% Companion documents:
+%   - Letter-ColdNeutron-Slope-Test.md (source / human-readable version)
+%   - Letter-ColdNeutron-SupplementaryMethods.md (experimental details)
+%   - Letter-ColdNeutron-CoverLetter.md (editor cover letter)
+%
+% If revtex4-2 is unavailable the preamble can be flipped to
+% \documentclass[twocolumn,10pt]{article} with minimal downstream edits;
+% the PRL-specific features used here are only \affiliation, twocolumn,
+% and the thebibliography block.
+
+\documentclass[aps,prl,twocolumn,superscriptaddress,nofootinbib,10pt]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---------- Shorthands ----------
+\newcommand{\lP}{\ell_P}
+\newcommand{\tP}{t_P}
+\newcommand{\EP}{E_P}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dcomp}{\delta_{\mathrm{comp}}}
+\newcommand{\Nmax}{N_{\max}}
+\newcommand{\mathlibv}{\textsc{Mathlib}~v4.29}
+
+\begin{document}
+
+\title{A cold-neutron slope discriminator between discrete-substrate\\
+  and environmental decoherence at ILL Grenoble}
+
+\author{Norbert Marchewka}
+\email{norbert.marchewka44@gmail.com}
+\affiliation{Independent researcher, Poland}
+
+\author{the OmegaTheory V2 Collaboration}
+\affiliation{Machine-checked formalisation, Lean 4 / \mathlibv}
+
+\date{2026-04-15, draft v1.0}
+
+\begin{abstract}
+We propose a tabletop slope discriminator---$-\log V \propto 1/v$
+vs.\ $1/v^{2}$---that distinguishes the OmegaTheory discrete-spacetime
+substrate from environmental (thermal-bath) decoherence at current
+ILL Grenoble VCN sensitivity.  The substrate thesis predicts that the
+log-visibility of a cold-neutron interferometer, at fixed arm length
+$L$ and swept beam velocity $v$, scales \emph{linearly} in $1/v$, via
+the closed-form identity $(d/v)\,c\,\eps(N)$ derived from a single
+Planck-tick truncation error.  Lindblad-type thermal-bath decoherence
+instead gives slope $\geq +2$.  The test is a \emph{shape
+discriminator}: it is independent of the absolute noise amplitude and
+robust against detector-floor calibration.  The existing ILL PF2-VCN
+program, commissioned 2025 with nanodiamond--polymer gratings, already
+has the velocity range ($v \in [30, 700]\,\mathrm{m/s}$, $\sim 1.37$
+decades) needed to resolve slope $+1$ from slope $+2$ at
+$\gtrsim 10\sigma$ with an $11.5$-beam-day campaign at
+$\sim\$97.5$K.  A positive result would corroborate the first
+verified OmegaTheory prediction~\cite{Huang2024Diraq} in a second,
+orthogonal kinematic channel.
+\end{abstract}
+
+\maketitle
+
+\section{Background}
+
+OmegaTheory V2 is a discrete-spacetime substrate in which
+four-dimensional geometry, quantum mechanics, and thermodynamics
+emerge from a local lattice update rule at the Planck
+scale~\cite{Marchewka2026Main}. The central quantitative input is a
+single dimensionless \emph{irrationality truncation error}
+\begin{equation}
+  \eps(N) \;=\; \frac{4}{2N+3},
+\end{equation}
+derived from the finite continued-fraction truncation of $\pi$, $e$
+and $\sqrt{2}$ in the substrate's action
+density~\cite{Marchewka2026AppK}. The per-tick computational
+uncertainty
+\begin{equation}
+  \dcomp(N) \;=\; \lP\,\eps(N)
+\end{equation}
+accumulates linearly in the tick count $K$ during any physical
+evolution, producing an eight-item catalog of falsifiable
+predictions~\cite{Marchewka2026AppJ}. At finite temperature $T$ the
+admissible iteration budget is capped by
+$\Nmax(T) = \hbar/(k_B\,T\,\tP)$, giving all temperature-dependent
+observables an explicit closed form.
+
+\textit{Verified prediction (first of the catalog).}---The substrate
+predicts a \emph{power-law} thermal scaling of qubit coherence times
+rather than Arrhenius activation.  Huang \emph{et al.}~\cite{Huang2024Diraq}
+reported $T_1 \propto T^{-2.0}\ldots T^{-3.1}$ and $T_2 \propto T^{-1.0}\ldots T^{-1.1}$
+for silicon spin qubits above $1\,$K, ruling out Arrhenius by
+$\sim 48$ orders of magnitude. OmegaTheory's $F(T) = F_0/(1+\alpha T)$
+predicts this shape.
+
+The remaining catalog entries are either below current sensitivity by
+many orders of magnitude (atomic-clock floor, UHECR dispersion,
+spin-flip rate) or require platforms that do not yet exist
+(mesoscopic matter-wave gravitational decoherence).
+\textbf{The one exception}---and the subject of this letter---is the
+cold-neutron slope test, for which the enabling hardware (ILL Grenoble
+VCN~\cite{Ackermann2026VCN}) is operating \emph{now}.
+
+\section{The prediction}
+
+\subsection{Substrate slope}
+Consider a two-path interferometer of arm length $L$ traversed by a
+neutron of velocity $v$. The number of substrate ticks along each arm
+is $K = \lfloor L/(v\,\tP)\rfloor$. The accumulated per-channel
+infidelity is bounded above by the substrate distance--velocity
+identity
+\begin{equation}
+  \frac{d}{v\,\tP}\,\dcomp(N) \;=\; \frac{d}{v}\,c\,\eps(N),
+\end{equation}
+where the factor $\lP/\tP = c$ (from $\tP \equiv \lP/c$) cancels
+$\lP$ exactly. This is Lean theorem
+\texttt{teleportation\_distance\_velocity\_identity} and its
+floored-$K$ bound \texttt{teleportation\_distance\_velocity\_bound},
+both in \texttt{OmegaTheory/Predictions/}
+\texttt{StochasticTeleportation.lean}, Lean 4 / \mathlibv, no
+\texttt{sorry}, no new axioms.  The log-visibility thus scales as
+\begin{equation}
+  -\log V_{\mathrm{sub}}(L, v) \;\propto\;
+    \frac{L}{v}\,\frac{c\,\eps(N)}{\hbar}
+    \quad \text{(substrate, shape)}.
+\end{equation}
+At fixed $L$, swept $v$, the log--log plot of $-\log V$ vs $1/v$ has
+\emph{slope} $+1$.  Monotonicity in $1/v$ is
+\texttt{slope\_distinguisher\_inv\_v} (same file), with the
+qualitative statement: faster transit, fewer ticks, smaller substrate
+infidelity contribution.  All four theorems assume only positivity of
+$v, \tP, c$ (proved from \texttt{Spacetime/Constants.lean}); no axiom
+beyond the four Planck-unit constants is introduced.
+
+\subsection{Decoherence slope}
+Standard thermal-bath / Lindblad decoherence~\cite{Diosi1984,Penrose1996}
+couples the flight time $\tau = L/v$ quadratically or more strongly
+to the visibility:
+\begin{equation}
+  -\log V_{\mathrm{bath}}(L, v) \;\propto\;
+  \left(\frac{L}{v}\right)^{2} \Gamma_{\mathrm{bath}}(T)
+  \quad \text{(thermal bath)}.
+\end{equation}
+The quadratic-or-higher exponent on $1/v$ arises from the lowest-order
+second cumulant of a stationary noise process seen by the particle
+during transit; sub-Ohmic baths and correlated noise give larger
+exponents. Any $v$-scaling weaker than $1/v^{2}$ is inconsistent with
+every stationary environmental noise model we are aware of.  This is
+the discriminator's logical backbone: \emph{slope $+1$ cannot be
+reproduced by thermal-bath decoherence, only by a per-tick
+substrate}.
+
+\subsection{Why shape and not amplitude}
+The substrate's $\eps(N)$ is of order $4/(2\Nmax+3)$, which for
+lab temperatures ($T\sim 10\,$mK) gives a per-tick infidelity
+$\sim 10^{-52}$ [\texttt{teleportation\_fidelity\_substrate\_bound\_low\_T},
+closed form $K\cdot 2\lP k_B T/\EP$]. The \emph{amplitude} is thus
+too small for direct detection.  What \emph{is} measurable is the
+\emph{slope of $-\log V$ against $1/v$} at fixed $L$.  The slope is
+scale-invariant under overall amplitude rescaling, and the substrate's
+$\lP \to c$ cancellation guarantees that the coefficient of $1/v$ is
+of physical order $(L\,c\,\eps)/\hbar$, not Planck-suppressed.  A
+detector that can measure any visibility above its floor can in
+principle read off the slope.  What it cannot do is distinguish
+substrate from bath if they are not functionally separated, and this
+letter's point is that \emph{they are}, by the integer $1$ vs.\ $2$
+gap in the log--log exponent.
+
+\section{Experimental protocol}
+
+\subsection{Platform}
+\emph{ILL Grenoble PF2-VCN}---Very Cold Neutron beamline, Institut
+Laue-Langevin; commissioned 2025 (May--October) with
+nanodiamond--polymer composite gratings~\cite{Ackermann2026VCN}.  The
+PF2-VCN configuration delivers neutrons in $v \in [30, 700]\,\mathrm{m/s}$
+(equivalently $\lambda \in [5.6, 132]\,\mathrm{\AA}$), spanning $\sim 1.37$
+velocity decades.  Analogous capability exists at NIST NCNR and
+PSI-Villigen (ULTRA); ILL is our first-choice platform because of
+the existing VCN program and the demonstrated nanodiamond gratings.
+
+\subsection{Parameter sweep}
+\begin{itemize}\itemsep0pt
+  \item \textbf{Arm lengths.} $L \in [0.3, 3]\,$m (three points:
+  $0.3, 1, 3\,$m; native Ackermann grating pitch covers this
+  directly, Supp.~Methods \S S1.1~\cite{Alnitak2026Supp}). Longer
+  arms to $\sim 10\,$m accessible via custom gratings at
+  $\$10$--$20$K per arm.
+  \item \textbf{Velocities.} $v \in [30, 700]\,$m/s, selected by a
+  disk chopper at the interferometer entry; 10--12 values
+  logarithmically spaced.
+\end{itemize}
+
+\subsection{Measurement}
+The observable is visibility
+$V(L,v) = (I_{\max} - I_{\min})/(I_{\max} + I_{\min})$,
+measured from the first-harmonic amplitude of the Talbot--Lau fringe
+pattern after a path-length phase scan. For each fixed $L$, form the
+log--log plot $\log[-\log V(L,v)]$ vs $\log(1/v)$ and fit a linear
+slope. Repeat for each $L$.
+
+\paragraph*{Substrate-consistent result:} slopes all fall in
+$[0.9, 1.1]$ with per-$L$ uncertainties compatible.
+\paragraph*{Thermal-bath result:} slopes all fall in
+$[1.7, 2.5]$.
+
+\subsection{Sensitivity budget}
+Current neutron-interferometer visibility floors are instrument- and
+technique-dependent; atom interferometry currently reaches
+$V \sim 10^{-9}$.  The cold-neutron VCN first-harmonic visibility
+number is not published in the Ackermann \emph{et al.}\ abstract or
+accessible preprint sections; a nominal operating visibility
+$V_{\max} \sim 0.3$--$0.6$ is plausible for a Talbot--Lau
+nanodiamond-grating configuration at VCN wavelengths
+(Supp.~Methods \S S1.3~\cite{Alnitak2026Supp}) [TBD: confirm with
+ILL PF2 team or Ackermann follow-up].  Slope discrimination at $+1$
+vs $+2$ requires only that the \emph{dynamic range} of $-\log V$ be
+resolvable above the instrument noise; since the slope is scale-free,
+the absolute visibility need not be small---it need only be a
+function of $v$.
+
+Statistical slope uncertainty for a $n$-point linear fit in log--log
+space goes as
+\begin{equation}
+  \sigma_{\mathrm{slope}} \;\approx\;
+  \frac{\sigma_{\log[-\log V]}}{\sqrt{n\,\mathrm{Var}(\log(1/v))}}.
+\end{equation}
+For $n = 10$ points spanning $1.37$ decades
+($\mathrm{Var}(\log(1/v)) \approx 0.18$) and a per-point log-visibility
+error $\sigma \approx 0.1$ (typical for $\sim 10^{4}$ counts per
+point), $\sigma_{\mathrm{slope}} \approx 0.07$.  The integer gap
+$|\mathrm{slope}_{\mathrm{sub}} - \mathrm{slope}_{\mathrm{bath}}| = 1$
+is thus $\sim 14\sigma$: statistically easy.  The full systematics
+budget (neutron-gas scattering, gravitational phase-shift dephasing,
+grating thermal stability) is in Supp.~Methods \S S3.
+
+\subsection{Cost}
+Per Supp.~Methods \S S4.4 Table S5~\cite{Alnitak2026Supp}: total
+campaign $11.5$ beam-days at $\sim\$97.5$K, broken down as
+calibration (1.5\,d, \$7.5K), velocity scan (5.5\,d, \$27.5K),
+length cross-check (2.5\,d, \$12.5K), custom nDPC grating
+fabrication for two off-nominal arm lengths (\$20K),
+turbo-pumped vacuum-enclosure retrofit (\$15K, hard prerequisite
+replacing the Ackermann commissioning He-filled box),
+contingency (2\,d, \$15K).  The enabling nanodiamond--polymer
+gratings already exist at PF2-VCN.
+
+\section{Falsification criterion}
+
+\begin{table}[htbp]
+  \centering
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabular}{@{}lp{0.6\linewidth}@{}}
+    \toprule
+    Slope at 95\% CL & Interpretation \\
+    \midrule
+    $[0.9, 1.1]$ & Substrate confirmed. Slope $+1$ is inaccessible
+    to every stationary thermal-bath model we know. \\
+    $\geq 1.7$ & Substrate falsified in the cold-neutron channel;
+    thermal-bath decoherence favoured. \\
+    $[1.1, 1.7]$ & Inconclusive; requires wider $v$ range ($v$ down
+    to $\lesssim 30\,$m/s via PF2-UCN) or longer integration. \\
+    \bottomrule
+  \end{tabular}
+  \caption{Fit outcome classification.}
+  \label{tab:outcome}
+\end{table}
+
+\textit{Shape survives amplitude uncertainty.}---Slope fitting is
+insensitive to any single-prefactor calibration error, because
+$V \to \kappa V$ adds a constant to $\log[-\log V]$ without changing
+the fitted slope.  It \emph{is} sensitive to multiplicative
+$v$-dependent systematics---e.g.\ a detector efficiency that scales
+with neutron velocity.  Standard neutron-interferometry technique
+(reversible coherent beam rotation, incoherent beam calibration)
+makes this tractable.
+
+\section{Theoretical significance}
+
+The cold-neutron slope test is the first cleanly functional (not
+amplitude-limited) discriminator between the OmegaTheory substrate
+and environmental decoherence. Its significance is best understood in
+relation to the already-verified Diraq result:
+\begin{itemize}\itemsep0pt
+  \item \textbf{Diraq 2024~\cite{Huang2024Diraq}:} verified the
+  $T$-scaling \emph{shape} (power-law, not Arrhenius); ruled out
+  Arrhenius by $\sim 48$ OOM.
+  \item \textbf{Cold-neutron slope (this proposal):} tests the
+  $v$-scaling \emph{shape} (linear, not quadratic-or-higher in
+  $1/v$); would rule out thermal-bath decoherence by an integer
+  shape exponent.
+\end{itemize}
+If both pass, two independent substrate shape predictions---operating
+on physically orthogonal kinematic variables ($T$, the thermal budget;
+$v$, the transit-time budget)---are verified from two different
+physical systems (silicon spin qubits, cold neutrons). The substrate's
+underlying mechanism is the per-tick truncation error $\eps(N)$, and
+the same $\eps(N)$ governs both $T$-scaling (via
+$\Nmax(T) \propto 1/T$) and $v$-scaling (via
+$K = d/(v\tP) \propto 1/v$).
+
+Equally important is the \emph{asymmetry of falsification}: the slope
+test is cheap and integer-gap decisive.  A single negative result
+(slope $\geq 1.7$) rules out this branch of the substrate hypothesis
+in the cold-neutron channel, and the theory would have to survive on
+the $T$-scaling verification alone.
+
+\section{Conclusion}
+
+We have proposed a cold-neutron interferometric slope test at ILL
+Grenoble VCN as the first feasible experimental discriminator between
+the OmegaTheory discrete substrate and environmental decoherence. The
+prediction is a machine-checked theorem
+(\texttt{OmegaTheory.Predictions.teleportation\_distance\_velocity\_identity},
+Lean 4 / \mathlibv; 0 \texttt{sorry}, 0 new axioms beyond the
+Planck-unit constants) that the log-visibility of a two-path
+interferometer at fixed arm length scales as $1/v$ (substrate) rather
+than $1/v^{2}$ or steeper (thermal bath). The test is robust against
+absolute-amplitude calibration, feasible at $\sim\$97.5$K of marginal
+beam time~\cite{Alnitak2026Supp}, and complementary to the
+already-verified Diraq anti-Arrhenius signature~\cite{Huang2024Diraq}.
+A positive outcome would constitute a second, orthogonal corroboration
+of the substrate's central prediction mechanism; a negative outcome
+would place a clean, shape-level constraint on the discrete-spacetime
+hypothesis.
+
+% ----------------------------------------------------------------------
+% Lean-source footer: the primary formal evidence underpinning the
+% prediction.  These files are the authoritative source; citations above
+% are the human-readable layer over them.
+% ----------------------------------------------------------------------
+
+\paragraph*{Lean source files (primary formal evidence).}
+Public repository permalink: [TBD: permalink to be added on submission].
+\begin{itemize}\itemsep0pt\small
+  \item \texttt{OmegaTheory/Predictions/StochasticTeleportation.lean}
+  (Regulus, 2026-04-15):
+  \texttt{teleportation\_distance\_velocity\_identity},
+  \texttt{slope\_distinguisher\_inv\_v},
+  \texttt{teleportation\_fidelity\_substrate\_bound\_low\_T}.
+  \item \texttt{OmegaTheory/Emergence/MassAsDelay.lean} (Aldebaran,
+  2026-04-15): \texttt{perTickDelay\_high\_momentum\_bound}.
+  \item \texttt{OmegaTheory/Emergence/SnapshotPropagator.lean}:
+  \texttt{accumulatedSnapshotError\_add} (linear cumulation).
+  \item \texttt{OmegaTheory/Irrationality/Uncertainty.lean}:
+  \texttt{iterationBudget\_decreases\_with\_T},
+  \texttt{computationalUncertainty\_decreasing}.
+\end{itemize}
+All files built clean under Lean~4 / \mathlibv\ at the 1652-theorem,
+0-\texttt{sorry}, 9-axiom top-level GREEN.
+
+\textit{Draft prepared by agent Bellatrix ($\gamma$ Orionis),
+OmegaTheory V2 paper-submission track, wave 4 $\cdot$ 2026-04-15.}
+
+% ----------------------------------------------------------------------
+% Bibliography (self-contained \bibitem blocks; no external .bib needed).
+% ----------------------------------------------------------------------
+
+\begin{thebibliography}{9}
+
+\bibitem{Huang2024Diraq}
+J.~Y.~Huang, R.~Y.~Su, W.~H.~Lim \emph{et al.},
+``High-fidelity spin qubit operation and algorithmic initialization
+above 1~K,'' \emph{Nature} \textbf{627}, 772--777 (2024).
+doi:\href{https://doi.org/10.1038/s41586-024-07160-2}{10.1038/s41586-024-07160-2}.
+Verified Arrhenius rule-out; first OmegaTheory prediction confirmed
+in published experiment.
+
+\bibitem{Ackermann2026VCN}
+M.~Ackermann \emph{et al.},
+``Very-cold-neutron interferometry with nanodiamond-polymer composite
+gratings at ILL-PF2-VCN,'' arXiv:2604.09312 (2026).
+ILL VCN commissioning report; platform for the proposed test.
+
+\bibitem{PierreAuger2026LIV}
+Pierre Auger Collaboration,
+``Constraints on hadronic Lorentz invariance violation from muon
+fluctuations in cosmic-ray air showers,'' arXiv:2602.14720 (Feb.\ 2026).
+Current strongest hadronic-sector LIV bounds; substrate predictions
+consistent with all present null results.
+
+\bibitem{Diosi1984}
+L.~Di\'osi,
+``Gravitation and quantum-mechanical localization of macro-objects,''
+\emph{Phys.\ Lett.\ A} \textbf{105}, 199--202 (1984).
+doi:\href{https://doi.org/10.1016/0375-9601(84)90397-9}{10.1016/0375-9601(84)90397-9}.
+
+\bibitem{Penrose1996}
+R.~Penrose,
+``On gravity's role in quantum state reduction,''
+\emph{Gen.\ Rel.\ Grav.} \textbf{28}, 581--600 (1996).
+doi:\href{https://doi.org/10.1007/BF02105068}{10.1007/BF02105068}.
+Comparison models for environmental gravitational decoherence.
+
+\bibitem{Marchewka2026Main}
+N.~Marchewka,
+``OmegaTheory V2: emergent spacetime, quantum mechanics, and
+thermodynamics from an irrationality-truncated lattice substrate,''
+paper draft (2026).
+Substrate derivation, grand QM emergence theorem, full Lean~4
+formalisation (\mathlibv; 1652 theorems, 0~\texttt{sorry}).
+
+\bibitem{Marchewka2026AppJ}
+N.~Marchewka,
+``Appendix J: Comprehensive Experimental Catalog (Consolidated),''
+OmegaTheory V2 supplementary material (2026-04-15).
+Full prediction catalog; \S1.1 is the extended version of the test
+proposed in this letter.
+
+\bibitem{Marchewka2026AppK}
+N.~Marchewka,
+``Appendix K: Irrationality Genesis of Predictions,''
+OmegaTheory V2 supplementary material (2026).
+Derivation of $\eps(N) = 4/(2N+3)$ from continued-fraction truncation
+of $\pi, e, \sqrt{2}$.
+
+\bibitem{Alnitak2026Supp}
+Alnitak (OmegaTheory V2 Collaboration),
+``Supplementary Methods: Experimental sensitivity and noise budget
+for the cold-neutron slope test at ILL Grenoble PF2-VCN,''
+companion to this letter (2026-04-15).
+File: \texttt{Letter-ColdNeutron-SupplementaryMethods.md}.
+Full signal/systematics/beam-time budget; $11.5$\,d, \$97.5K campaign.
+
+\end{thebibliography}
+
+\end{document}

@@ -129,6 +129,7 @@ import OmegaTheory.Predictions.StochasticTeleportation
 import OmegaTheory.Predictions.HermiticityDefect
 import OmegaTheory.Predictions.ChristoffelSparsity
 import OmegaTheory.Predictions.SpinFlipRate
+import OmegaTheory.Predictions.GammaRayDispersion
 
 -- Layer 11b: Irrationality → predictions bridge
 import OmegaTheory.Irrationality.PredictionsBridge

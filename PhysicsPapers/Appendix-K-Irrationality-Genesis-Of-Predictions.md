@@ -128,9 +128,16 @@ truncated_pi → dominantErrorBound → ε_metric (HpwHypothesis.h_taylor)
 
 ### §4.5 GRB time-of-flight consistency (Appendix-J §2.3)
 
-**Substrate composition**: substrate's predicted dispersion `δω/ω ~ (E/E_P)·ε(N)`.  At gamma-ray energies even with E ≈ 10 TeV and conservative ε(N) ~ 10⁻²⁰, this gives `δω/ω ~ 10⁻²⁵`, well below current Fermi-LAT / LHAASO constraints (which now reach above the Planck mass for linear dispersion).
+**Substrate composition**: substrate's predicted dispersion `δω/ω = (E/E_P)·4/(2N+3)`.  At gamma-ray energies even with E ≈ 10 TeV and conservative ε(N) ~ 10⁻²⁰, this gives `δω/ω ~ 10⁻²⁵`, well below current Fermi-LAT / LHAASO / Pierre Auger 2026 (arXiv 2602.14720) constraints (which now reach above the Planck mass for linear dispersion).
 
-Substrate is **consistent with all current null results** — a *negative* prediction.
+Substrate is **consistent with all current null results** — a *negative* prediction.  The Lean-side formalization (`Predictions/GammaRayDispersion.lean`, team-lead wave 4) proves this as `gammaRayDispersionSubstrate_below_any_positive_bound`: for any positive upper bound `B`, there exists `N₀` such that `δω/ω ≤ B` for all `N ≥ N₀`.  Pair with `substrate_vs_pure_LV_distinguisher` for the N-dependence discriminator: substrate is *decreasing* in N, pure-LV is constant.
+
+**Lean composition**:
+```
+Constants (E_P) + dominantErrorBound N
+  → gammaRayDispersionSubstrate E N
+  → gammaRayDispersionSubstrate_below_any_positive_bound (Predictions/GammaRayDispersion)
+```
 
 ### §4.6 UHECR velocity dispersion 10⁻²⁴ (Appendix-J §3.1)
 
@@ -224,5 +231,6 @@ The Diraq verification (§4.8) is one of four legs.  Three are still open.
 | `Predictions/GravDecoherenceTScaling.grav_decoherence_T_monotone` | T² scaling | §4.3 Diosi-Penrose discriminator | ✅ landed (Antares) |
 | `Predictions/UHECRDispersion.uhecr_dispersion_composite_bound` | (mc)²/p² + κ·ε²/τ² | §4.6 UHECR mass prefactor | ✅ landed (Deneb) |
 | `Predictions/SpinFlipRate.spinFlipRateSubstrate_strictly_exceeds_standard_QM` | Γ_flip(T) > 0 = Γ_QM | §4.9 spin-1/2 flip rate | ✅ landed (team-lead wave 3) |
+| `Predictions/GammaRayDispersion.gammaRayDispersionSubstrate_below_any_positive_bound` | δω/ω → 0 as N → ∞ | §4.5 GRB / Pierre Auger LIV consistency | ✅ landed (team-lead wave 4) |
 
 **Single causal chain established**: irrationality of three constants → one closed-form `δ_comp(N)` → eight distinct predictions → one verified (Diraq 2024), seven derivable in Lean (all landed as of 2026-04-15).

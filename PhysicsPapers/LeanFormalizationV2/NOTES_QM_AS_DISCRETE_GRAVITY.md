@@ -183,18 +183,32 @@ If the thesis is right, gate-fidelity measurements across a temperature
 sweep should trace the curve
 
 ```
-F(T) = F₀ / (1 + α T),   α ≈ 5.3 × 10⁻²⁵ K⁻¹
+F(T) = F₀ / (1 + α T),   α = k_B · t_P / (2ℏ) ≈ 3.5 × 10⁻³³ K⁻¹
 ```
 
-not `F₀ · exp(−E/kT)`. That is the single experimental handle on the
-reading. A high-precision decoherence experiment with one part in 10¹⁰
-sensitivity over a temperature span of a few Kelvin should be able to
-distinguish the two shapes.
+not `F₀ · exp(−E/kT)`. That is the **only** experimental handle on the
+reading, and it is a **functional-form** distinguisher, not a
+practical-precision distinguisher — honest correction by physics_scout,
+2026-04-14. At T = 1 K the fractional fidelity shift is ~10⁻³³, while
+2025-era best cryogenic gate fidelity is ~99.998% (fluxonium, MIT)
+with precision of ~10⁻⁵. **The experimental gap is ~28 orders of
+magnitude and will not close with foreseeable technology** unless the
+coupling constant turns out to have a different form than the naive
+`k_B t_P / (2ℏ)`.
 
-The standard QM reading and the discrete-gravity reading agree on every
-experiment performed to date *above* the scale at which the truncation
-error contributes a meaningful fraction of the total signal. The power
-law in `gateFidelity` is the first concrete place they come apart.
+What survives is the *theoretical* claim that the power-law form is
+structurally mandated by a computational-truncation model, whereas
+the Arrhenius form is mandated by a thermal-activation model. Any
+future experiment that sees a clear power-law at these precision
+scales (many OOM beyond today) would discriminate. In the meantime,
+this is a falsifiability-in-principle marker, not a falsifiability-
+in-practice one — and the narrative should say so.
+
+An earlier draft of this document gave α ≈ 5.3×10⁻²⁵ K⁻¹. That was
+a computation error: 8 orders of magnitude high. Corrected above.
+The Lean source of truth (`fidelityCoupling` in `Predictions.lean`)
+defines α symbolically, not numerically, so no Lean theorem was
+affected — only this narrative document was wrong.
 
 ---
 

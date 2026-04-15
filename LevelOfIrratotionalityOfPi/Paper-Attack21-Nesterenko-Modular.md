@@ -70,7 +70,7 @@ The link to `Γ(1/4)` uses the classical closed forms of Eisenstein series
 at the CM point `τ = i`:
 
     E_2(i) = 3 / π,
-    E_4(i) = 3 · Γ(1/4)^8 / (4 · π^6),
+    E_4(i) = 3 · Γ(1/4)^8 / (2π)^6,
     E_6(i) = 0.
 
 The vanishing of `E_6(i)` — a CM accident — is what makes `τ = i` special
@@ -102,7 +102,9 @@ The `q`-expansion agrees with the closed form to ~600 decimal digits for
 `target_l_attack21_output.json`, field `sanity_checks`). This confirms the
 CM vanishing and the `Γ(1/4)^8 / π^6` identity numerically, and by
 extension validates our arithmetic of the three constants
-`{π, e^π, Γ(1/4)}`.
+`{π, e^π, Γ(1/4)}`. Specifically, at 600 dps we observe
+`|E_4(i) − 3Γ(1/4)^8/(2π)^6| ≈ 8.4 · 10^{−601}` and
+`|E_6(i)| ≈ 5.6 · 10^{−601}`.
 
 ### 2.2 PSLQ verdict
 

@@ -104,3 +104,14 @@ import OmegaTheory.Emergence.Predictions
 import OmegaTheory.Emergence.DimensionalFlow
 import OmegaTheory.Emergence.SpecialRelativity
 import OmegaTheory.Emergence.CoarseGrainingMap
+import OmegaTheory.Emergence.DispersionFromLattice
+import OmegaTheory.Emergence.DispersionBridge
+import OmegaTheory.Emergence.SchrodingerFromLattice
+import OmegaTheory.Emergence.SnapshotDynamics
+import OmegaTheory.Emergence.BornRule
+import OmegaTheory.Emergence.Interference
+import OmegaTheory.Emergence.Entanglement
+import OmegaTheory.Emergence.Measurement
+import OmegaTheory.Emergence.Heisenberg
+import OmegaTheory.Emergence.QuantumMechanicsCapstone
+import OmegaTheory.Emergence.QmBridgePaper

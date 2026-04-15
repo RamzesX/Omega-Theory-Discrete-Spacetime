@@ -99,8 +99,13 @@
       "mcp__neo4j-math__read_neo4j_cypher",
       "Bash(docker exec:*)",
       "mcp__neo4j-math__write_neo4j_cypher",
-      "Skill(update-config)"
+      "Skill(update-config)",
+      "Bash(xargs -I{} echo {})",
+      "Bash(grep -n \"^theorem\\\\|^@\\\\[simp\\\\] theorem\\\\|@\\\\[simp\\\\]$\\\\|^lemma \" /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/.lake/packages/mathlib/Mathlib/Data/Complex/Basic.lean)",
+      "Bash(wait bb2aik4fm *)",
+      "Bash(wait bb5kdcpdz *)"
     ]
   },
+  "spinnerTipsEnabled": true,
   "prefersReducedMotion": true
 }

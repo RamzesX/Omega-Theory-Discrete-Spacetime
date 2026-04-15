@@ -126,9 +126,12 @@ theorem common_denom_clears_to_int
   have hden_eq_num : ((x k).den : ℚ) * x k = ((x k).num : ℚ) := by
     have hnd : ((x k).num : ℚ) / ((x k).den : ℚ) = x k := Rat.num_div_den (x k)
     have hden_ne : ((x k).den : ℚ) ≠ 0 := by exact_mod_cast (x k).den_ne_zero
-    have : ((x k).den : ℚ) * (((x k).num : ℚ) / ((x k).den : ℚ)) = ((x k).num : ℚ) := by
+    have hstep : ((x k).den : ℚ) * (((x k).num : ℚ) / ((x k).den : ℚ)) = ((x k).num : ℚ) := by
       field_simp
-    rw [← hnd]; exact this
+    -- Replace only the RHS `x k` via `← hnd`, keeping `(x k).den` and `(x k).num` intact.
+    calc ((x k).den : ℚ) * x k
+        = ((x k).den : ℚ) * (((x k).num : ℚ) / ((x k).den : ℚ)) := by rw [hnd]
+      _ = ((x k).num : ℚ) := hstep
   have hLcast : (L : ℚ) = ((x k).den : ℚ) * (m : ℚ) := by
     have := congrArg (fun n : ℕ => (n : ℚ)) hm
     simpa [Nat.cast_mul] using this
@@ -177,8 +180,8 @@ classical axioms (`propext`, `Classical.choice`, `Quot.sound`) — no
 invocation of `Real.pi_transcendental` (this file is purely ℚ-denominator
 arithmetic).
 -/
--- #print axioms common_denom_divides_finset_lcm
--- #print axioms common_denom_clears_to_int
--- #print axioms F51_Pade_denominator_bound
+#print axioms common_denom_divides_finset_lcm
+#print axioms common_denom_clears_to_int
+#print axioms F51_Pade_denominator_bound
 
 end OmegaTheory.Irrationality.HermitePade

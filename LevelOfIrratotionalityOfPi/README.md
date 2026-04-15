@@ -94,6 +94,11 @@ with $\alpha, \beta, \gamma, \delta \in \mathbb{Q}$. By SS: $u = {}_1F_1(a;b;z_0
 | [15](15-F54-refinement-q_sweep.md) | F54* parity law (Session 14) | Refined F54 via q-sweep: **odd q → p-signature at p; even q → diverts to p=2**. 15/15 predictive accuracy across p ∈ {7, 11, 13}. |
 | [Paper-A13](Paper-Attack13-Lucas-Extension.md) | Attack 13 technical note (Session 14) | Frames F27 as quantitative Lucas separation; defines **Conjecture GAP_L** (three tractable ingredients for E⊕G extension of ADH 2016). |
 | [Paper-A12](Paper-Attack12-Carlitz-Frobenius.md) | Attack 12 technical note (Session 14) | Carlitz-Frobenius Mahler + Fuchsian framework; **Conjecture GAP_C** (mixed Mahler × Fuchsian specialization). |
+| [Paper-A14](Paper-Attack14-Motivic-Periods.md) | Attack 14 technical note (Session 14) | B × SL₂ motivic Galois prediction tr.deg_ℚ{u, v, π/4} = 3; **Conjecture GAP_M** (Zilber-Pink + Grothendieck Period Conjecture). |
+| [Paper-F54](Paper-F54-Slice-Prime-Correspondence.md) | F54* parity law standalone paper (Session 14-15) | **Positive empirical result**: 79/79 slices across p ∈ {7..43} confirm parity law; partial Lean backing via `F54_SlicePrime.lean`. Recipe for rescuing F52 at any odd prime. |
+| [Paper-A20](Paper-Attack20-Hodge-Monodromy.md) | Attack 20 technical note (Session 15) | Stokes multiplier S of Kummer ₁F₁ gives closed form **3·S = 2π**; after S-elimination NO_RELATION at height 10²⁰⁰. **Conjecture GAP_H** (Sabbah-Yu irregular Hodge consistency). Bypasses Decoupling. |
+| [Paper-A21](Paper-Attack21-Nesterenko-Modular.md) | Attack 21 technical note (Session 15) | Ramanujan modular framework. tr.deg{π, e^π, Γ(1/4)} = 3 empirical. **Conjecture GAP_N** (effective multiplicity estimate on Eisenstein series). Bypasses Siegel. |
+| [Paper-A22](Paper-Attack22-Schmidt-Subspace.md) | Attack 22 technical note (Session 15) | Schmidt subspace theorem on π CF convergents. ν_Q → 1.9148 < 2 confirms ineffective bound. **Route CLOSED** pending **GAP_S** (effective Schmidt — open classical problem). |
 
 **Part III — Conditional Extensions**
 
@@ -263,6 +268,28 @@ SESSION 14: OPUS TEAM BATCH (Module 15 + papers)     ─── Parity law + 2 te
 **Theorem 4A.9** (SS Reduction). *Conjecture 4A.4 is equivalent to: for all admissible $(a, b, z_0)$, the E-function values ${}_1F_1(a;b;z_0)$ and ${}_1F_1'(a;b;z_0)$ are linearly independent over $\mathbb{Q}(\pi)$. The Siegel-Shidlovskii theorem proves independence over $\mathbb{Q}$. The gap is one field extension.*
 
 **Conjecture 4A.4** (E/G Separation). *$\pi$ is not a Möbius transform of any contiguous ${}_1F_1$ or ${}_0F_1$ ratio at algebraic arguments. Equivalently: no polynomial in $\overline{\mathbb{Q}}[\pi]$ vanishes on the E-function values at any algebraic evaluation point.*
+
+---
+
+### Session 15 state (2026-04-14, Opus 4.6 team)
+
+**Classical-angle coverage complete**: every known auxiliary-function route is now either blocked-with-barrier, ALIVE-with-gap, or route-closed-with-technical-note. No classical angle is unexplored.
+
+| Layer | Count |
+|---|---|
+| Papers (ready for review) | **9** (K2, SS, F54, Attack12/13/14/20/21/22) |
+| Lean theorems (0 sorries, Mathlib v4.29) | **6 files** (Decoupling, PiStratum, F49_Existence, F50_Decay, F54_SlicePrime, F51_Denominator) + 4 in-flight (F26 Mahler, F27 Legendre, F56 Stokes, GAP_N) |
+| Computational targets (reproducible JSON) | **25** (A, B, B-rigorous, E, F, F2, F2b, F3, G, H, I, I2, J, K, L, M, Panorama, Qsweep, BigPrime, BigPrime_p29to43, S8-slices) |
+| Named gaps | **12** (GAP_B, C, D, E, F (closed), L, M, H, N, S + historical A, F_closed) |
+| Neo4j graph (namespace `pi_sun`) | **265 nodes / 753 edges** (NavigationMaster-3-level schema with Citations, Sessions, Tools, Axioms, per-theorem sub-nodes) |
+
+**Headline discoveries (Sessions 7–15)**:
+1. **GAP_F empirically closed at slice (1/3, 4/3, 1/3)**: ρ ≈ 7713, Δ = 1 exactly, margin +8.95 log-scale (Arb-certified).
+2. **F54\* parity law** (Paper-F54): for slice `(q/p, (q+p)/p, q/p)`, odd q → E-signature at p; even q → diverts to p=2. **79/79** across p ∈ {7..43}. Partial Lean proof via `F54_SlicePrime.lean`.
+3. **F27 quantitative** (Paper-Attack13): ord_p(E-coef) slope = −1/(p−1) matches Legendre's factorial formula at 7/9 tested primes.
+4. **Attack 20 Stokes closed form**: 3·S = 2π exactly, after which PSLQ shows NO_RELATION on the Hodge-consistent tuple.
+5. **Attack 22 route closed**: Schmidt exponent ν_Q saturates at 1.9148 < 2 — formally blocked by Schmidt ineffectivity (a classical open problem).
+6. **Decoupling + PiStratum Lean-verified**: barrier theorems are machine-checked.
 
 ---
 

@@ -35,7 +35,25 @@
       "Bash(ls *)",
       "Bash(tee target_s8_big_prime_run.log)",
       "Bash(tee target_s8_bigger_prime_run.log)",
-      "Bash(tee target_k_attack20_run.log)"
+      "Bash(tee target_k_attack20_run.log)",
+      "Bash(grep -ohE \"F[0-9]+\" 0*.md 1*.md Paper-*.md)",
+      "Bash(grep -rn \"digit_sum_le\\\\|digits_sum_le\" /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/.lake/packages/mathlib/Mathlib/Data/Nat/Digits*.lean)",
+      "Bash(~/.elan/bin/lake env *)",
+      "Bash(cat)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(~/.elan/bin/lean --stdin)",
+      "Bash(LEAN_PATH=\".lake/build/lib/lean:.lake/packages/mathlib/.lake/build/lib/lean:.lake/packages/batteries/.lake/build/lib/lean:.lake/packages/aesop/.lake/build/lib/lean:.lake/packages/Qq/.lake/build/lib/lean:.lake/packages/proofwidgets/.lake/build/lib/lean:.lake/packages/importGraph/.lake/build/lib/lean:.lake/packages/LeanSearchClient/.lake/build/lib/lean:.lake/packages/plausible/.lake/build/lib/lean:.lake/packages/Cli/.lake/build/lib/lean\" ~/.elan/bin/lean --json OmegaTheory/Irrationality/HermitePade/GAP_M_Conjecture.lean)",
+      "Bash(tee target_k2_run.log)",
+      "Bash(tee target_n_run.log)",
+      "Bash(tee target_s8_bigger2_run.log)",
+      "Bash(tee target_l2_run.log)",
+      "Write(/mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/**)",
+      "Edit(/mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/**)",
+      "Bash(tee /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/**)",
+      "Read(//home/norbert/.cache/mathlib/**)",
+      "Read(//home/norbert/**)",
+      "Bash(wc -l /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Irrationality/HermitePade/*.lean)",
+      "WebSearch"
     ]
   },
   "prefersReducedMotion": true

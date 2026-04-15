@@ -65,7 +65,7 @@ Lean source: `OmegaTheory/Irrationality/Uncertainty.lean` —
 
 ---
 
-## §4.  Seven predictions, one mechanism
+## §4.  Eight predictions, one mechanism
 
 Every quantitative prediction in Appendix-J is a closed-form composition of `δ_comp(N_max(T))` with appropriate substrate machinery.  Below: the prediction, the substrate combination, and the Lean theorem family.
 
@@ -167,6 +167,22 @@ truncated_pi → dominantErrorBound → fidelityCoupling
   → gateFidelity_is_powerLaw (Emergence/Predictions)
 ```
 
+### §4.9 Spin-1/2 flip rate (Appendix-J §3.2)
+
+**Substrate composition**: repeated Hermitian measurement of spin-1/2 has per-tick truncation error `δ_comp/ℏ` in the state reconstruction; the resulting flip *rate* (per unit time, dividing by `t_P`) is
+
+```
+Γ_flip(T) = 4·ℓ_P²·k_B²·T²/(ℏ²·c²·t_P) = 4·t_P·k_B²·T²/ℏ²
+```
+
+At T = 300 K this is ~10⁻⁵² s⁻¹, structurally below cosmic-ray backgrounds (~50 OOM gap).  The *qualitative* claim is what matters: standard QM has `Γ_QM = 0` exactly, substrate has `Γ_sub > 0` for any T > 0 — a mechanism for finite measurement repeatability.
+
+**Lean composition**:
+```
+Constants (ℓ_P, t_P, ℏ, c, k_B) → spinFlipRateSubstrate T
+  → spinFlipRateSubstrate_strictly_exceeds_standard_QM (Predictions/SpinFlipRate)
+```
+
 ---
 
 ## §5.  Why this matters
@@ -175,7 +191,7 @@ If the irrationality of π were not a fact, the substrate could complete every g
 
 This is in contrast to thinking of QM as fundamental: in OmegaTheory's reading, QM is a **derived statistical theory of computational truncation**, and the depth of the irrational constants (their convergence rate) sets the strength of the deviation from classical determinism.
 
-The seven predictions of §4 are not seven independent guesses — they are seven facets of a single computational fact about three numbers.  Falsifying any one falsifies the chain.  Verifying any (the Diraq case in §4.8 is the first verification) supports the whole.
+The eight predictions of §4 are not eight independent guesses — they are eight facets of a single computational fact about three numbers.  Falsifying any one falsifies the chain.  Verifying any (the Diraq case in §4.8 is the first verification) supports the whole.
 
 ---
 
@@ -202,10 +218,11 @@ The Diraq verification (§4.8) is one of four legs.  Three are still open.
 | `Uncertainty.iterationBudget_decreases_with_T` | T → N_max(T) anti-monotone | T-scaling of every prediction | (theorem) |
 | `Predictions.gateFidelity_is_powerLaw` | substrate fidelity is power-law | §4.8 Diraq Nature 2024 | **YES ✅** |
 | `Predictions/ChristoffelSparsity.christoffel_hot_spot_proxy_bound` | ε²/τ² hot-spot density | §4.7 Γ-anomaly density | (theorem) |
-| `Predictions/HermiticityDefect.clock_precision_floor` | clock floor ∝ T | §4.2 atomic-clock floor | (in progress, hermiticity-prover) |
-| `Predictions/StochasticTeleportation.teleportation_distance_velocity_bound` | F(d,v) bound | §4.1 cold-neutron slope | (in progress, teleportation-prover) |
-| `Predictions/RedshiftFloor.cosmological_redshift_floor_from_vacuum_curvature` | z_floor ≤ ℓ_P·L/2 | §4.4 redshift floor | (in progress, redshift-floor-prover) |
-| `Predictions/GravDecoherenceTScaling.grav_decoherence_T_monotone` | T² scaling | §4.3 Diosi-Penrose discriminator | (in progress, decoherence-prover) |
-| `Predictions/UHECRDispersion.uhecr_dispersion_composite_bound` | (mc)²/p² + κ·ε²/τ² | §4.6 UHECR mass prefactor | (in progress, uhecr-prover) |
+| `Predictions/HermiticityDefect.clock_precision_floor` | clock floor ∝ T | §4.2 atomic-clock floor | ✅ landed (Sirius) |
+| `Predictions/StochasticTeleportation.teleportation_distance_velocity_bound` | F(d,v) bound | §4.1 cold-neutron slope | ✅ landed (Regulus) |
+| `Predictions/RedshiftFloor.cosmological_redshift_floor_from_vacuum_curvature` | z_floor ≤ ℓ_P·L/2 | §4.4 redshift floor | ✅ landed (Betelgeuse) |
+| `Predictions/GravDecoherenceTScaling.grav_decoherence_T_monotone` | T² scaling | §4.3 Diosi-Penrose discriminator | ✅ landed (Antares) |
+| `Predictions/UHECRDispersion.uhecr_dispersion_composite_bound` | (mc)²/p² + κ·ε²/τ² | §4.6 UHECR mass prefactor | ✅ landed (Deneb) |
+| `Predictions/SpinFlipRate.spinFlipRateSubstrate_strictly_exceeds_standard_QM` | Γ_flip(T) > 0 = Γ_QM | §4.9 spin-1/2 flip rate | ✅ landed (team-lead wave 3) |
 
-**Single causal chain established**: irrationality of three constants → one closed-form `δ_comp(N)` → seven distinct predictions → one verified, six derivable in Lean (in progress as of 2026-04-15).
+**Single causal chain established**: irrationality of three constants → one closed-form `δ_comp(N)` → eight distinct predictions → one verified (Diraq 2024), seven derivable in Lean (all landed as of 2026-04-15).

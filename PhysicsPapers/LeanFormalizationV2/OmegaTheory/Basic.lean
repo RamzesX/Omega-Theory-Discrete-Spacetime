@@ -126,3 +126,13 @@ import OmegaTheory.Predictions.GravDecoherenceTScaling
 import OmegaTheory.Predictions.UHECRDispersion
 import OmegaTheory.Predictions.RedshiftFloor
 import OmegaTheory.Predictions.StochasticTeleportation
+import OmegaTheory.Predictions.HermiticityDefect
+import OmegaTheory.Predictions.ChristoffelSparsity
+import OmegaTheory.Predictions.SpinFlipRate
+
+-- Layer 11b: Irrationality → predictions bridge
+import OmegaTheory.Irrationality.PredictionsBridge
+
+-- Layer 13: Paper-citable headline aliases (re-exports for manuscript)
+import OmegaTheory.Paper.GeometricRelativistic
+import OmegaTheory.Paper.QuantumFoundations

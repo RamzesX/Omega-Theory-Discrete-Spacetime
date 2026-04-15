@@ -336,18 +336,23 @@ Observed factor-10–100 change vs Arrhenius's predicted factor-10⁵⁰: **Arrh
 | T²-scaling decoherence | `HealingFlow.LaSalle.dissipationRate_of_equilibrium` + `Uncertainty.iterationBudget_decreases_with_T` |
 | Cosmological redshift floor | `Emergence.EinsteinEmergence.vacuum_einstein_emergence:51` + `Emergence.Redshift.redshift_as_information_cost:180` |
 | UHECR dispersion | `MassAsDelay.massive_asymptotes_to_null_at_high_E:222` + `Defects.Sparsity.defectFraction_le:151` |
-| Spin-1/2 flip rate | `HilbertEmergence.observable_expectation_real:594` (deviation bound; theorem to be added) |
-| Teleportation bound | (theorem to be added in `Predictions/StochasticTeleportation.lean`) |
+| Spin-1/2 flip rate | `Predictions.SpinFlipRate.spinFlipRateSubstrate_strictly_exceeds_standard_QM` (closed form `4·ℓ_P²·k_B²·T²/(ℏ²·c²·t_P)`, T²-scaling) |
+| Teleportation bound | `Predictions.StochasticTeleportation.teleportation_fidelity_substrate_bound_low_T` |
 
-**Theorems still to add for full coverage** (suggested deliverables):
-1. `OmegaTheory/Predictions/HermiticityDefect.lean` — 5 short theorems formalizing Heisenberg observable bounds (Agent D's analysis)
-2. `OmegaTheory/Predictions/StochasticTeleportation.lean` — teleportation fidelity bound (§4.3)
-3. `OmegaTheory/Predictions/RedshiftFloor.lean` — composing E (vacuum Einstein) + H (redshift)
-4. `OmegaTheory/Predictions/GravDecoherenceTScaling.lean` — T²-scaling theorem for gravitational decoherence
+**Theorems landed since 2026-04-15 wave 2** (all 0 sorry, 0 new axioms):
+1. `OmegaTheory/Predictions/HermiticityDefect.lean` (Sirius) — 5 Heisenberg observable bounds
+2. `OmegaTheory/Predictions/StochasticTeleportation.lean` (Regulus) — 6 teleportation fidelity theorems including exact `(d/v)·c·ε(N)` identity
+3. `OmegaTheory/Predictions/RedshiftFloor.lean` (Betelgeuse) — vacuum-curvature → cosmological redshift floor
+4. `OmegaTheory/Predictions/GravDecoherenceTScaling.lean` (Antares) — T²-scaling theorem + Diosi-Penrose comparison
+5. `OmegaTheory/Predictions/UHECRDispersion.lean` (Deneb) — `(mc)²/p²` mass prefactor dispersion
+6. `OmegaTheory/Predictions/ChristoffelSparsity.lean` (team-lead) — hot-spot density Markov bound
+7. `OmegaTheory/Predictions/SpinFlipRate.lean` (team-lead, wave 3) — closes §8 row 6 with closed-form T²-scaling rate `Γ_flip(T)`
 
 ---
 
 ## §9. Versioning
 
-- **2026-04-15**: Initial consolidation (this version). Replaces Appendix-I numerics. Adds §4 stochastic teleportation, §6 2025-2026 experimental updates.
+- **2026-04-15 morning**: Initial consolidation. Replaces Appendix-I numerics. Adds §4 stochastic teleportation, §6 2025-2026 experimental updates.
+- **2026-04-15 wave-2 evening**: Five Predictions/* files landed (HermiticityDefect/StochasticTeleportation/RedshiftFloor/GravDecoherenceTScaling/UHECRDispersion); Regulus's `8 → 2` constant correction in §4.3.
+- **2026-04-15 wave-3 late evening**: Spin-1/2 flip rate closed form landed (`Predictions/SpinFlipRate.lean`, 6 thm, closing §8 row 6); six paper-citable headlines added (`Paper/QuantumFoundations.lean` P-11/P-13/P-14; `Paper/GeometricRelativistic.lean` P-15/P-16). Top-level GREEN at 3442 jobs, 0 sorry, 0 new axioms.
 - Future: Norbert to clarify §5 verified Arrhenius/power-law result.

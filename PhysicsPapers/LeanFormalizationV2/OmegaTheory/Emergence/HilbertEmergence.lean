@@ -508,8 +508,7 @@ theorem discreteLaplacianC_hermitian (region : Finset LatticePoint)
     rw [this]
     apply Finset.sum_congr rfl
     intro p _
-    congr 2
-    exact shiftFin_shiftBackFin p μ
+    rw [shiftFin_shiftBackFin]
   -- LHS = (fwd - mid) + bwd;  RHS = (bwd-as-fwd' - mid) + (fwd-as-bwd')
   -- where bwd-as-fwd' = conj(f(p+μ))·ψ p and fwd-as-bwd' = conj(f(p-μ))·ψ p.
   -- By bwdToFwd and fwdToBwd this becomes equal.

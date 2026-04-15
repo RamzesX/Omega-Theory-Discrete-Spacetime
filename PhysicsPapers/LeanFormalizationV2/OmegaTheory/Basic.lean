@@ -120,3 +120,9 @@ import OmegaTheory.Emergence.BekensteinBound
 import OmegaTheory.Emergence.QuantumMechanicsCapstone
 import OmegaTheory.Emergence.QmBridgePaper
 import OmegaTheory.Emergence.AharonovBohm
+
+-- Layer 9: Falsifiable predictions (substrate vs alternatives)
+import OmegaTheory.Predictions.GravDecoherenceTScaling
+import OmegaTheory.Predictions.UHECRDispersion
+import OmegaTheory.Predictions.RedshiftFloor
+import OmegaTheory.Predictions.StochasticTeleportation

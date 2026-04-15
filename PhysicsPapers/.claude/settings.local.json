@@ -108,7 +108,8 @@
       "Bash(command -v pdflatex)",
       "Bash(grep -rn \"ricciTensor_flat_eq_zero\\\\|ricci_flat\\\\|ricciTensor.*flat\\\\|DiscreteMetric.flat\" /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Geometry/*.lean /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/*.lean)",
       "Bash(rm *)",
-      "Bash(wait b1qphi5yi *)"
+      "Bash(wait b1qphi5yi *)",
+      "Bash(grep -r \"import OmegaTheory.Tensor\" /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/*.lean /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/**/*.lean)"
     ]
   },
   "spinnerTipsEnabled": true,

@@ -100,6 +100,7 @@ import OmegaTheory.Emergence.Heisenberg
 import OmegaTheory.Emergence.Measurement
 import OmegaTheory.Emergence.Entanglement
 import OmegaTheory.Emergence.KleinGordon
+import OmegaTheory.Emergence.HilbertEmergence
 
 namespace OmegaTheory.Emergence
 
@@ -300,6 +301,39 @@ structure QuantumMechanicsPostulates
               d.toSnapshotSequence.reference (shiftBackFin p μ)),
       ‖kleinGordonResidue m (coarseGrain d.toSnapshotSequence) p n‖
         ≤ kleinGordonBoundConst m
+  /-- **P10 — Hilbert-space structure (headline emergence).**  The
+      region-restricted complex inner product on `ComplexScalarField`
+      satisfies the five defining axioms of a complex inner product
+      space (conjugate symmetry, self-real, self-nonneg, right-
+      additivity, right-C-linearity), **AND** the per-tick evolution
+      of the coarse-grained state is isometric (norm-preserving) on
+      every finite region in the `HasZeroFunctional` regime.  Every
+      Hilbert-space-of-QM axiom — usually taken as an input to the
+      theory — is derived here as a theorem from the discrete Z⁴
+      substrate.
+
+      This is the capstone's "eighth postulate" (beyond standard von
+      Neumann): the quantum state space *itself* is emergent, not
+      assumed.
+
+      Cites:
+      * `hilbert_space_structure` from `HilbertEmergence.lean`
+        (inner-product axioms), and
+      * `substrate_embeds_isometric` from `HilbertEmergence.lean`
+        (per-tick unitarity of the coarse-graining map).
+
+      Scope: the inner-product axioms are unconditional (any finite
+      region); the unitarity clause requires `d.HasZeroFunctional`
+      (carried by `hscope`). -/
+  hilbertStructure :
+    LatticeHilbertStructure region ∧
+      ∀ (phase : LatticePoint → ℕ → ℝ) (m : ℝ) (n : ℕ),
+        (complexInnerRegion region
+          (fun p => coarseGrainWithPhase d.toSnapshotSequence phase m p n)
+          (fun p => coarseGrainWithPhase d.toSnapshotSequence phase m p n)).re =
+        (complexInnerRegion region
+          (fun p => coarseGrainWithPhase d.toSnapshotSequence phase m p (n + 1))
+          (fun p => coarseGrainWithPhase d.toSnapshotSequence phase m p (n + 1))).re
 
 /-! ## The capstone theorem -/
 
@@ -353,6 +387,10 @@ theorem grand_qm_emergence
   entanglement := bell_inequality_entanglement_consistency
   kleinGordon := fun p n m hcenter hstencil =>
     coarseGrain_satisfies_kleinGordon_dynamic d hscope p n m hcenter hstencil
+  hilbertStructure :=
+    ⟨hilbert_space_structure region,
+      fun phase m n =>
+        substrate_embeds_isometric d hscope phase m region n⟩
 
 /-! ## Corollaries: what each conjunct says on its own -/
 

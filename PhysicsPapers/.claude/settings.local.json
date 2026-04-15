@@ -103,7 +103,12 @@
       "Bash(xargs -I{} echo {})",
       "Bash(grep -n \"^theorem\\\\|^@\\\\[simp\\\\] theorem\\\\|@\\\\[simp\\\\]$\\\\|^lemma \" /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/.lake/packages/mathlib/Mathlib/Data/Complex/Basic.lean)",
       "Bash(wait bb2aik4fm *)",
-      "Bash(wait bb5kdcpdz *)"
+      "Bash(wait bb5kdcpdz *)",
+      "Bash('/mnt/c/Program Files/Docker/Docker/resources/bin/docker.exe' ps -a --filter name=math --format 'table {{.Names}}\\\\t{{.Status}}\\\\t{{.Ports}}')",
+      "Bash(command -v pdflatex)",
+      "Bash(grep -rn \"ricciTensor_flat_eq_zero\\\\|ricci_flat\\\\|ricciTensor.*flat\\\\|DiscreteMetric.flat\" /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Geometry/*.lean /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/*.lean)",
+      "Bash(rm *)",
+      "Bash(wait b1qphi5yi *)"
     ]
   },
   "spinnerTipsEnabled": true,

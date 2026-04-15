@@ -142,16 +142,16 @@ Ingredients at a glance:
 
 | Label | Name | Status | Difficulty |
 |---|---|---|---|
-| A | `central_diff_second_order_accurate` | needs_formalising | routine |
+| A | `central_diff_second_order_accurate` | **in_repo** (`TaylorBound.lean`) | routine |
 | B | `lattice_laplacian_separates` | in_repo | trivial |
-| C | `partial_secondderiv_second_order_accurate` | needs_formalising | routine |
+| C | `partial_secondderiv_second_order_accurate` | **in_repo** (`TaylorBound.lean`; diagonal only) | routine |
 | D | `harmonic_gauge_ricci` | absorbed (via `continuumBoxG` def) | — |
 | E | `smooth_continuum_interpolant_existence` | needs_formalising | substantial |
 | F | `interpolant_c4_bound` | needs_formalising | substantial |
 | G | `continuum_ricci_box_identity` | needs_formalising | substantial |
 | H | `harmonic_gauge_assumption` | needs_formalising | substantial |
-| I | `total_truncation_bound` | needs_formalising | routine |
-| J | `v2_hypothesis_carrying_theorem` | **in progress (Architect)** | substantial |
+| I | `total_truncation_bound` | **in_repo** (`HpwTotalTruncation.lean`; aliases `hpwHypothesis_remainder_at_twelfth`) | routine |
+| J | `v2_hypothesis_carrying_theorem` | in_repo (`HpwHypothesis.lean`) | substantial |
 
 Active sub-agent work (as of Rigel's 2026-04-14 launch):
 
@@ -202,6 +202,89 @@ three ingredients from `needs_formalising` to `in_repo` or
 remaining formalisation work is mapped out in Neo4j, and downstream
 code can begin migrating to `HpwHypothesis`-parameterised theorems
 immediately.
+
+## Status update — 2026-04-15 (Capella, `hpw-chain` v2-apr15)
+
+The three routine ingredients **A**, **C**, **I** are now all in repo.
+
+### A — `central_diff_second_order_accurate` (`TaylorBound.lean`)
+
+Both forms are now exposed:
+* `central_diff_taylor_bound` — divided form `|(f(x+h)−2f(x)+f(x−h))/h² − f''(x)| ≤ (h²/12)·M`.
+* `central_diff_second_order_accurate` — multiplied form
+  `|f(x+h)−2f(x)+f(x−h) − h²·f''(x)| ≤ (h⁴/12)·M`.
+* `central_diff_taylor_bound_axis` — 4D axis-slice, divided form.
+* `central_diff_second_order_accurate_axis` — 4D axis-slice, multiplied form.
+
+The multiplied forms are the shape naturally consumed by
+`hpwHypothesis_remainder_from_triangle` (where the `ℓ_P²` division has
+already been cleared by `discreteLaplacian`).
+
+### C — `partial_secondderiv_second_order_accurate` (`TaylorBound.lean`)
+
+Diagonal version only — `μ = ν`, definitionally equal to the axis-wise A
+bound.  This is the form consumed by `discreteLaplacian`, which sums
+`secondDeriv f μ p` diagonally over `Fin 4`.
+
+**Off-diagonal scope deferral**: `μ ≠ ν` (mixed partial `∂²_{μν}` via
+iterated central first differences) is **not** formalised here.  The
+`discreteLaplacian` chain does not use cross-derivatives, so this is
+intentional unmet scope, not a gap.  A future agent may add
+`partial_secondderiv_second_order_accurate_mixed` when the consumer
+surface grows.
+
+### I — `total_truncation_bound` (`HpwTotalTruncation.lean`, new file)
+
+Named re-export of `hpwHypothesis_remainder_at_twelfth` (already landed
+in `RicciComparison.lean` by the Ricci-comparison agent on 2026-04-14)
+under the NOTES ingredient-graph name.  The file also provides:
+
+* `h_remainder_bound_from_ingredients` — ∀-quantified form suitable for
+  `HpwHypothesis.h_remainder_bound`.
+* `HpwHypothesis_of_ingredients` — direct constructor from `(g_cont,
+  h_interpolates)` + the three sharp `ℓ_P/12` ingredient bounds.
+
+### Field reduction on `HpwHypothesis`
+
+The three Prop slots `h_taylor`, `h_harmonic`, `h_ricci_box` are
+**documentation-only** — never consumed by `hpw_from_hypothesis`.  All
+three concrete instantiators (`HpwMinkowski`, `HpwLinearised`,
+`HpwSchwarzschild`) set them to `True`.  Post-A+C+I:
+
+* **`h_taylor` is now derivable** from a `SmoothInterpolantData` + A's
+  bound, in the sub-Planckian regime `ℓ_P · M ≤ 1`.  Not automated into
+  the structure because the concrete derivation passes through
+  `iteratedDeriv`-to-`iteratedFDeriv` conversion that lives in
+  `SmoothInterpolantData`.
+* **`h_harmonic`, `h_ricci_box` remain hypotheses** — they require
+  Weinberg Ricci-box identity (G) and a harmonic-gauge choice (H), both
+  `needs_formalising`.
+* **`h_remainder_bound` remains a hypothesis in the generic structure**,
+  but consumers going through `HpwHypothesis_of_ingredients` receive it
+  automatically from the three sharp ℓ_P/12 inputs.
+
+Field counts:
+* `HpwHypothesis` has 8 fields (3 data + 5 hypothesis).
+* Post-A+C+I, 1 of the 5 hypothesis fields is *derivable* given
+  interpolant data; 4 remain genuine hypotheses pending E/F/G/H.
+* **No fields are removed** in this round — removing slots would break
+  `HpwMinkowski`/`HpwLinearised`/`HpwSchwarzschild` and the slot cost is
+  zero (all `True`-populated).
+
+### Constant tightening
+
+The multiplied Taylor form gives contribution `(ℓ_P²/12)·M` to the
+triangle budget after dividing through by `ℓ_P²` in the
+`discreteLaplacian` shape.  For this to fit `ℓ_P/12`, the regime must be
+sub-Planckian in the sense `ℓ_P · M ≤ 1` — a mild physical assumption.
+
+### Net closure of the general-curved regime
+
+Still open: **E, F, G, H**.  Estimated ~6–10 weeks of focused Mathlib-
+adjacent formalisation (downsized from 8–12 after A+C+I closure).  The
+axiom remains declared in `LaplacianRicci.lean` pending a concrete
+instantiation of the four open ingredients on a general smooth
+interpolant.
 
 ## How to use this document
 

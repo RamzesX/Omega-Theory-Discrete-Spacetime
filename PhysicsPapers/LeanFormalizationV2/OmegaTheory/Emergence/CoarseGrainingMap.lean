@@ -228,13 +228,17 @@ Kept because (a) it is cited by `paper_coarseGrain_exists` in
 hypothesis is a familiar physical shape even though the sharp form
 subsumes it mathematically (when `min I_KL ≥ 0`).
 
-**TODO (upstream tech debt).** The Gibbs hypothesis
-`∀ p ∈ region, 0 ≤ informationDensityKL ...` in the weak form should
-be promoted to a theorem about `informationDensityKL` under well-defined
-metric conditions, in `OmegaTheory.Conservation.InformationKL`. The
-cleanest name for the upstream lemma would be
-`informationDensityKL_nonneg_of_wellDefined`. Not landed here to avoid
-silently changing the semantics of a neighbouring file. -/
+**Upstream theorem landed** (2026-04-15, Capella, team v2-apr15-lean).
+The Gibbs hypothesis `∀ p ∈ region, 0 ≤ informationDensityKL ...`
+in the weak form is now a theorem `informationDensityKL_nonneg_of_wellDefined`
+in `OmegaTheory.Conservation.InformationKL`: at the reference metric
+`g = g₀` with unit-volume calibration `|det g(p)| ≥ 1`, the density is
+`≥ 2 ≥ 0`.  Matches `DiscreteMetric.flat` exactly; see also
+`informationDensityKL_flat_nonneg` for the direct flat-spacetime corollary.
+General non-negativity for arbitrary `(g, g₀)` pairs would require a
+closed-form Gaussian-KL inequality, which Mathlib v4.29 does not
+currently ship.  The weak-form bound below still takes the Gibbs
+hypothesis as an argument to remain agnostic to the calibration regime. -/
 
 /-- Pointwise bound: whenever `I_KL(g(n), g₀, p) ≥ 0`, the squared
     magnitude `|ψ(p,n)|² ≤ 1`. -/

@@ -109,4 +109,43 @@ theorem informationDensityKL_flat_self (p : LatticePoint) :
   simp only [informationDensityKL_self DiscreteMetric.flat hnd p, flat_log_det, mul_zero,
     zero_add]
 
+/-! ## Non-negativity under well-defined metric conditions
+
+  Promotes the Gibbs hypothesis `0 ≤ informationDensityKL(g, g₀, p)` used
+  in `CoarseGrainingMap.lean` to a theorem in a concrete regime.  The
+  cleanest honest scope (matching `DiscreteMetric.flat` at minimum, per
+  the Task #5 spec) is: **at the reference metric** `g = g₀` with the
+  natural volume-calibration `|det g(p)| ≥ 1`, the information density
+  is `≥ 2 ≥ 0`.  Flat Minkowski satisfies `|det| = 1` exactly and
+  realises equality with `I = 2`.  This is the shape the coarse-graining
+  theory calls on.
+
+  General non-negativity for arbitrary well-defined pairs `(g, g₀)` is
+  the multivariate-Gaussian KL inequality; Mathlib v4.29 does not ship a
+  closed-form Gaussian KL, so we do not prove the general result here. -/
+
+/-- **Non-negativity of information density at the reference metric under
+    unit-volume normalisation.**  When `g = g₀` is non-degenerate and
+    `|det g(p)| ≥ 1`, the information density is at least `2`, hence
+    in particular non-negative.  Matches `DiscreteMetric.flat` (where
+    `|det flat(p)| = 1` and the bound is tight at `I = 2`). -/
+theorem informationDensityKL_nonneg_of_wellDefined
+    (g : DiscreteMetric)
+    (hnd : ∀ p, IsNondegenerate (g p))
+    (hdet : ∀ p, 1 ≤ |(g p).det|)
+    (p : LatticePoint) :
+    0 ≤ informationDensityKL g g p := by
+  rw [informationDensityKL_self g hnd p]
+  have hlog : 0 ≤ Real.log |(g p).det| :=
+    Real.log_nonneg (hdet p)
+  linarith
+
+/-- **Gibbs hypothesis corollary for flat spacetime.**  The Gibbs
+    positivity condition used in the weak `ℓ²` bound of
+    `CoarseGrainingMap` is a theorem for the flat background. -/
+theorem informationDensityKL_flat_nonneg (p : LatticePoint) :
+    0 ≤ informationDensityKL DiscreteMetric.flat DiscreteMetric.flat p := by
+  rw [informationDensityKL_flat_self]
+  norm_num
+
 end OmegaTheory.Conservation

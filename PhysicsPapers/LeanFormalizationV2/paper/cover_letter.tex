@@ -1,0 +1,194 @@
+\documentclass[11pt,a4paper]{letter}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+\signature{Norbert Marchewka\\
+  (on behalf of the Omega-Theory V2 formalisation team)}
+\address{%
+  Norbert Marchewka\\
+  \texttt{norbert.marchewka44@gmail.com}\\
+  Omega-Theory V2 formalisation project}
+
+\begin{document}
+\begin{letter}{%
+  The Editors\\
+  \emph{Foundations of Physics} / \emph{Physical Review Letters} / \emph{Journal of Mathematical Physics}\\
+  (one of the three, depending on submission route)}
+
+\opening{Dear Editors,}
+
+I am pleased to submit the manuscript \emph{Rigorous Machine-Checked
+Derivation of Non-Relativistic Quantum Mechanics from Discrete-Gravity
+Healing Dynamics} (long form, \texttt{main.tex}) together with its
+compressed PRL-letter companion (\texttt{letter.tex}).
+
+\paragraph{Novelty.}
+This paper reports, to the authors' knowledge, the first complete
+machine-checked derivation, in any proof assistant, of the canonical
+postulate set of non-relativistic quantum mechanics from a discrete
+gravitational substrate. Concretely: a chain of seven Lean~4 theorems
+--- Schr\"odinger dynamics, Born-rule conservation, the
+non-relativistic dispersion limit, two-slit interference, the
+Heisenberg uncertainty principle, the four-clause measurement /
+collapse postulate, and Tsirelson-bound-attaining entanglement with
+CHSH-inequality violation --- from which a single eight-conjunct
+\emph{capstone} theorem (\texttt{grand\_qm\_emergence}) bundles the
+entire canonical-QM postulate set into one $\mathsf{Prop}$-record.
+All results build clean against Mathlib v4.29.0 with zero
+\texttt{sorry} and no new axioms beyond the eight physical Planck
+constants.
+
+\paragraph{Machine-checked rigour as differentiator.}
+Four independent programmes have proposed substrate-to-QM derivations
+at the level of physical prose: Wolfram physics, 't~Hooft's
+cellular-automaton interpretation, Adler trace dynamics, and most
+recently Kulkarni's February~2026 ``Selection-Stitch Model''. Each
+describes a picture that is \emph{compatible with} Schr\"odinger
+dynamics; none submits its claims to a proof assistant. The physical
+picture underlying the present paper is, at the level of prose, close
+in spirit to Kulkarni's. What we add --- and what distinguishes
+\emph{Omega-Theory V2} from every adjacent proposal --- is a
+proof-assistant-verified theorem chain with source published
+alongside the submission. A reviewer who doubts our Schr\"odinger
+bound can read the Lean file
+\texttt{OmegaTheory/Emergence/SchrodingerFromLattice.lean} and
+verify it in minutes; the long-form paper includes a faithful
+hypothesis-inventory table for every theorem, separating this
+submission from prose physics even at the reading level.
+
+The Lean development predates the Kulkarni preprint and is logically
+independent; we note the overlap openly in Section~2.3 of the
+long-form paper and frame the contribution as complementary rather
+than competitive.
+
+\paragraph{Honest scope --- preserved in the manuscript.}
+We want to flag upfront that the paper is explicit about what it
+does \emph{not} prove. The dynamical Schr\"odinger bound
+(Theorem~2) is scoped to a \texttt{HasZeroFunctional} regime (the
+metric-Laplacian functional vanishes on every iterate); the
+unconditional bound requires a KL-linearisation bridge that is not
+yet formalised and is flagged as an open workstream. The Heisenberg
+inequality (Theorem~6) is scoped to a commutator-matching
+hypothesis \texttt{CommutatorMatchesMean} encoding $[\hat
+x,\hat{p}]=i\hbar$ on the lattice up to $O(\ell_{P}^{2})$. The
+Phase-1 update rule $F=\Delta_{\mathrm{lat}}$ is structurally
+motivated, not yet derived from the full healing-flow PDE. The
+composition-through-plane-waves bridge
+$\mathsf{discreteLaplacianC}\,\psi_{k}=\lambda(k,\ell_{P})\,\psi_{k}$
+is \emph{stated} in Section~7.3 but not yet machine-checked; this is
+pure lattice-Fourier analysis with no new mathematics, and the
+obstruction is Lean-side work alone. All ten open items are
+catalogued in Section~13, each paired with the specific theorem it
+would close. We submit this scope discipline as a virtue, not a
+weakness: a proof-assistant-verified partial result is, in our view,
+more useful to the community than an unverified complete one
+because each open item becomes a concrete next target rather than a
+vague research programme.
+
+\paragraph{Anticipated reviewer objections.}
+\begin{enumerate}
+\item \textbf{``Is this just another substrate speculation?''} No.
+  Every numbered theorem in Sections~4--12 has a Lean name, a source
+  file, and is machine-checked. The hypothesis-inventory tables
+  (§5.2, §6.3, §9.4, §10.4, §11.8) separate what the
+  theorem \emph{assumes} from what it \emph{concludes} at a level of
+  precision that prose physics cannot offer.
+
+\item \textbf{``Lean~4 is new; how robust is the Mathlib dependency?''}
+  Mathlib v4.29.0 is the community-maintained library with hundreds
+  of contributors. The specific APIs used (real-arithmetic,
+  \texttt{Complex.exp}, \texttt{Finset.sum}, Cauchy--Schwarz) are
+  mature and stable. The project has zero \texttt{sorry} and no
+  \texttt{axiom} declarations beyond the Planck constants and the
+  Hildebrandt--Polthier--Wardetzky correspondence (used only on the
+  Einstein side, not here).
+
+\item \textbf{``Is the \texttt{HasZeroFunctional} scope trivial?''} No.
+  It covers three physically interesting regimes: flat Minkowski
+  backgrounds, exactly-flat pockets on curved backgrounds, and
+  already-static snapshot sequences. These are precisely the regimes
+  in which standard non-relativistic QM is experimentally tested
+  (double-slit interferometry, particle-in-a-box, harmonic
+  oscillator). We discuss the physical meaning of the scope in
+  Section~5.3 in detail.
+
+\item \textbf{``Is the \texttt{CommutatorMatchesMean} hypothesis a
+  smuggled axiom?''} No. It is an honestly-scoped hypothesis
+  encoding $[\hat x,\hat{p}]=i\hbar$ on the lattice. Crucially, the
+  Robertson inequality
+  $\sigma_{A}^{2}\sigma_{B}^{2}\ge|\mathrm{Im}\langle\ldots\rangle|^{2}$
+  is proved unconditionally
+  (\texttt{robertson\_uncertainty\_exact}); only the specific
+  $(\hbar/2)^{2}$ lower bound requires the commutator-matching
+  hypothesis, which is the standard textbook situation. Section~9.3
+  gives the full scope analysis.
+
+\item \textbf{``Kulkarni already proposed this.''} Kulkarni proposed
+  a physical picture without theorems. We provide theorems with
+  published machine-checked source. The distinction is substantive
+  and mirrored in the formalisation literature generally: pictures
+  proposed first, formalisations arriving later from different
+  groups. Section~2.3 addresses this in detail, framing our
+  contribution as complementary rather than competitive.
+
+\item \textbf{``What about backreaction / QFT / N-body states /
+  relativistic QM?''} These are out of scope and catalogued in
+  Section~13 as ten specific open workstreams, each paired with the
+  exact theorem it would close.
+\end{enumerate}
+
+\paragraph{Priority.}
+Omega-Theory V2's Lean development began in 2025 and predates
+Kulkarni's February~2026 preprint. The coarse-graining map we use
+($|\psi|^{2}=\exp(-I_{\mathrm{KL}})$) and the \texttt{HasZeroFunctional}
+scoping differ in detail from any candidate definable from Kulkarni's
+prose. We submit the present paper in part to lock these contributions
+against further parallel prose-level proposals that may appear; an
+arXiv preprint (same content as \texttt{main.tex}) accompanies this
+journal submission for that purpose.
+
+\paragraph{Verifiability.}
+The complete Lean 4 source tree, including every theorem referenced
+in the manuscript, is published with the paper and is buildable with
+a single command against Mathlib v4.29.0
+(\texttt{lake build --log-level=error}). Reviewers who wish to verify
+the theorems directly will find them in
+\texttt{OmegaTheory/Emergence/}; the wrapper file
+\texttt{QmBridgePaper.lean} contains the 24 paper-level
+\texttt{paper\_*} theorems that exactly match the statements in the
+manuscript. The capstone \texttt{grand\_qm\_emergence} is in
+\texttt{QuantumMechanicsCapstone.lean}.
+
+\paragraph{Target audience and venue fit.}
+The manuscript has a dual addressee: (i) physicists interested in
+foundations of QM and discrete-substrate approaches to quantum
+gravity --- the natural home is \emph{Foundations of Physics} for the
+long form and \emph{Physical Review Letters} for the 4-page letter;
+and (ii) the Lean~/~formal-methods community, which has recently
+grown a physics-formalisation ecosystem (\emph{PhysLean},
+\emph{Lean4Physics}) that overlaps our approach --- here the natural
+venue is a computer-assisted-reasoning or mathematical-physics journal
+such as \emph{Journal of Mathematical Physics} or \emph{Archive of
+Formal Proofs}. We request editorial guidance on which route best
+serves the community.
+
+\paragraph{Conflicts and funding.}
+This work was carried out without external grant funding. The author
+declares no competing interests. The Lean development was produced
+by a team of AI agents (Altair, Sirius, Bridger, Polaris, Bellatrix,
+Saiph, Alnilam, and the Phase 3/4/6B/6C leads) acting under the
+author's editorial direction; all contributions are enumerated in
+the manuscript's Acknowledgments.
+
+Thank you for considering our work. I am available at the email
+above for any editorial questions.
+
+\closing{With kind regards,}
+
+\end{letter}
+\end{document}

@@ -46,6 +46,7 @@ import OmegaTheory.Geometry.DiscreteStokes
 import OmegaTheory.Geometry.InnerProduct
 import OmegaTheory.Geometry.PoincareLemma
 import OmegaTheory.Geometry.HodgeDecomposition
+import OmegaTheory.Geometry.GaussBonnet
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor
@@ -110,8 +111,12 @@ import OmegaTheory.Emergence.SchrodingerFromLattice
 import OmegaTheory.Emergence.SnapshotDynamics
 import OmegaTheory.Emergence.BornRule
 import OmegaTheory.Emergence.Interference
+import OmegaTheory.Emergence.Propagator
 import OmegaTheory.Emergence.Entanglement
+import OmegaTheory.Emergence.Decoherence
 import OmegaTheory.Emergence.Measurement
 import OmegaTheory.Emergence.Heisenberg
+import OmegaTheory.Emergence.BekensteinBound
 import OmegaTheory.Emergence.QuantumMechanicsCapstone
 import OmegaTheory.Emergence.QmBridgePaper
+import OmegaTheory.Emergence.AharonovBohm

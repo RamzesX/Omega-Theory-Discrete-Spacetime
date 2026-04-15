@@ -246,4 +246,85 @@ theorem hpw_eliminable_on_linearised
     ∃ _ : HpwHypothesis g, True :=
   ⟨HpwHypothesis_of_linearised D h_scale, trivial⟩
 
+/-! ## Linearised data from a `perturbedFlatInterpolant`
+
+`SmoothInterpolant.perturbedFlatInterpolant` provides, for any smooth
+perturbation `h` with a C⁴ bound `M_h`, a `SmoothInterpolantData` on
+the pullback discrete metric `DiscreteMetric.ofContinuum (perturbedFlatField h ε)`.
+
+To plug this into `LinearisedMetricData` (and thus `HpwHypothesis` via
+`HpwHypothesis_of_linearised`), the user needs two more per-point
+Laplacian/Ricci bounds at scale `ε·K`.  Those bounds are *physical*
+(they depend on the specific perturbation `h`), not structural, and
+so cannot be produced from the interpolant alone.  Instead, we provide
+a *builder* `linearisedDataOfInterpolant` that takes the interpolant
+together with those physical bounds, and emits a `LinearisedMetricData`
+whose `g_cont` / `h_interpolates` fields are discharged automatically.
+
+This is the honest hand-off: the analytic work (the pointwise Lap/Ricci
+bounds) remains the user's responsibility, but the *bookkeeping*
+(interpolation identity, continuum field) is now routed through the
+interpolant library. -/
+
+/-- **Interpolant-extender, Apr 15 2026.**  Build a `LinearisedMetricData`
+    for the pullback metric `DiscreteMetric.ofContinuum (perturbedFlatField h ε)`,
+    using the C⁴ interpolant produced by `perturbedFlatInterpolant` for the
+    structural fields.  The user supplies the physical Laplacian/Ricci
+    bounds at scale `ε·K`. -/
+noncomputable def linearisedDataOfPerturbedFlat
+    (h : (Fin 4 → ℝ) → MetricTensor) (ε M_h : ℝ)
+    (h_smooth : ∀ μ ν : Fin 4,
+      ContDiff ℝ 4 (fun x : Fin 4 → ℝ => h x μ ν))
+    (h_Mh_bound : ∀ μ ν : Fin 4, ∀ x : Fin 4 → ℝ,
+      ‖iteratedFDeriv ℝ 4 (fun y : Fin 4 → ℝ => h y μ ν) x‖ ≤ M_h)
+    (hM_nonneg : 0 ≤ M_h)
+    -- "Physical" inputs — the per-point Lap/Ricci bounds at scale ε·K.
+    (ε_pos : 0 < ε) (K : ℝ) (K_nonneg : 0 ≤ K)
+    (h_lap_bound : ∀ (p : LatticePoint) (μ ν : Fin 4),
+      |discreteLaplacian (fun q =>
+        (DiscreteMetric.ofContinuum (perturbedFlatField h ε)) q μ ν) p| ≤ ε * K)
+    (h_ricci_bound : ∀ (p : LatticePoint) (μ ν : Fin 4),
+      |ricciTensor (DiscreteMetric.ofContinuum
+        (perturbedFlatField h ε)) μ ν p| ≤ ε * K) :
+    LinearisedMetricData
+      (DiscreteMetric.ofContinuum (perturbedFlatField h ε)) :=
+  -- The interpolant provides `g_cont` and the `h_interpolates` identity.
+  let D := perturbedFlatInterpolant h ε M_h h_smooth h_Mh_bound hM_nonneg
+  { g_cont := D.toSmoothMetricField
+    h_interpolates := fun p μ ν =>
+      D.toSmoothMetricField_interpolates p μ ν
+    ε := ε
+    ε_pos := ε_pos
+    K := K
+    K_nonneg := K_nonneg
+    h_lap_bound := h_lap_bound
+    h_ricci_bound := h_ricci_bound }
+
+/-- **Interpolant-extender, Apr 15 2026.**  **Axiom-free HPW on the
+    interpolant-backed linearised regime.**
+
+    Feed a perturbed-flat interpolant (smoothness + C⁴ bound) plus the
+    two physical Lap/Ricci bounds plus the scale hypothesis into the
+    full pipeline, and the HPW remainder bound is a theorem. -/
+theorem hpw_eliminable_on_perturbed_flat
+    (h : (Fin 4 → ℝ) → MetricTensor) (ε M_h : ℝ)
+    (h_smooth : ∀ μ ν : Fin 4,
+      ContDiff ℝ 4 (fun x : Fin 4 → ℝ => h x μ ν))
+    (h_Mh_bound : ∀ μ ν : Fin 4, ∀ x : Fin 4 → ℝ,
+      ‖iteratedFDeriv ℝ 4 (fun y : Fin 4 → ℝ => h y μ ν) x‖ ≤ M_h)
+    (hM_nonneg : 0 ≤ M_h)
+    (ε_pos : 0 < ε) (K : ℝ) (K_nonneg : 0 ≤ K)
+    (h_lap_bound : ∀ (p : LatticePoint) (μ ν : Fin 4),
+      |discreteLaplacian (fun q =>
+        (DiscreteMetric.ofContinuum (perturbedFlatField h ε)) q μ ν) p| ≤ ε * K)
+    (h_ricci_bound : ∀ (p : LatticePoint) (μ ν : Fin 4),
+      |ricciTensor (DiscreteMetric.ofContinuum
+        (perturbedFlatField h ε)) μ ν p| ≤ ε * K)
+    (h_scale : 3 * ε * K ≤ l_P / 2) :
+    ∃ _ : HpwHypothesis
+      (DiscreteMetric.ofContinuum (perturbedFlatField h ε)), True :=
+  let D := linearisedDataOfPerturbedFlat h ε M_h h_smooth h_Mh_bound hM_nonneg
+            ε_pos K K_nonneg h_lap_bound h_ricci_bound
+  ⟨HpwHypothesis_of_linearised D h_scale, trivial⟩
+
 end OmegaTheory.Emergence

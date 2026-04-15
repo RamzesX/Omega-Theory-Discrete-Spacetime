@@ -319,4 +319,176 @@ theorem central_diff_taylor_bound_axis
   rw [hg_plus, hg_x0, hg_minus] at h1d
   exact h1d
 
+/-! ## Ingredient A — multiplied form
+
+The HPW elimination programme (NOTES_HPW_ELIMINATION, Ingredient A) states
+Taylor's second-difference bound in the *multiplied* form:
+
+    | f(x₀+h) − 2·f(x₀) + f(x₀−h) − h²·f''(x₀) |  ≤  (h⁴/12) · M.
+
+This is algebraically equivalent to `central_diff_taylor_bound` (multiply
+both sides by `h² > 0` and rearrange).  We expose the multiplied form
+directly because it is the shape consumed by the triangle-inequality glue
+that produces `HpwHypothesis.h_remainder_bound`: the Taylor contribution
+appears as `|Δ_lat f − h²·f''|` after all `h²` divisions have been cleared.
+
+Caller-facing note: since the Planck-lattice `discreteLaplacian` already
+divides by `ℓ_P²`, consumers usually want the *un*multiplied form.  Both
+forms are available. -/
+
+/-- **Ingredient A (multiplied form).**  For `f ∈ C⁴` on `ℝ`, `h > 0`, and
+`M` a uniform bound on `|f⁽⁴⁾|` over `[x₀−h, x₀+h]`, the symmetric
+second difference approximates `h²·f''(x₀)` with absolute error at most
+`(h⁴/12)·M`:
+
+    | f(x₀+h) − 2·f(x₀) + f(x₀−h) − h² · f''(x₀) |  ≤  (h⁴/12) · M. -/
+theorem central_diff_second_order_accurate
+    (f : ℝ → ℝ) (x₀ h M : ℝ) (hh : 0 < h)
+    (hf : ContDiff ℝ 4 f)
+    (h_bound : ∀ y ∈ Set.Icc (x₀ - h) (x₀ + h),
+                  |iteratedDeriv 4 f y| ≤ M) :
+    |f (x₀ + h) - 2 * f x₀ + f (x₀ - h) - h^2 * iteratedDeriv 2 f x₀|
+      ≤ h^4 / 12 * M := by
+  -- Obtain the divided-form bound from `central_diff_taylor_bound`.
+  have hcd := central_diff_taylor_bound f x₀ h M hh hf h_bound
+  have hh2_pos : 0 < h^2 := by positivity
+  have hh2_nn : 0 ≤ h^2 := le_of_lt hh2_pos
+  -- Multiply both sides of the divided bound by h² ≥ 0.  On the LHS we use
+  -- the identity  h² · |A/h² − B| = |A − h²·B|.
+  have hLHS_eq :
+      |f (x₀ + h) - 2 * f x₀ + f (x₀ - h) - h^2 * iteratedDeriv 2 f x₀|
+        = h^2 * |(f (x₀ + h) - 2 * f x₀ + f (x₀ - h)) / h^2
+                 - iteratedDeriv 2 f x₀| := by
+    have hh2_ne : h^2 ≠ 0 := ne_of_gt hh2_pos
+    have hfact :
+        f (x₀ + h) - 2 * f x₀ + f (x₀ - h) - h^2 * iteratedDeriv 2 f x₀
+          = h^2 * ((f (x₀ + h) - 2 * f x₀ + f (x₀ - h)) / h^2
+                   - iteratedDeriv 2 f x₀) := by
+      field_simp
+    rw [hfact, abs_mul, abs_of_nonneg hh2_nn]
+  rw [hLHS_eq]
+  -- Multiplied bound: h² · ((h²/12) · M) = (h⁴/12) · M.
+  have hRHS_eq : h^2 * (h^2 / 12 * M) = h^4 / 12 * M := by ring
+  rw [← hRHS_eq]
+  exact mul_le_mul_of_nonneg_left hcd hh2_nn
+
+/-- **Ingredient A (per-axis multiplied form).**  4D axis-slice counterpart
+of `central_diff_second_order_accurate`.  For `F : (Fin 4 → ℝ) → ℝ`, a base
+point `p`, an axis `μ`, and `h > 0`, if `M` uniformly bounds the
+fourth derivative of the univariate slice along `μ`, then
+
+    | F(update p μ (p μ + h)) − 2·F(p) + F(update p μ (p μ − h))
+      − h² · (f_slice)''(0) |  ≤  (h⁴/12) · M,
+
+where `f_slice(t) := F(update p μ (p μ + t))`.
+
+This is the statement actually consumed by the lattice `secondDeriv` chain,
+since `secondDeriv f μ p = (f(shiftFin p μ) − 2 f(p) + f(shiftBackFin p μ)) / ℓ_P²`
+matches `F(update p μ (p μ + ℓ_P)) − 2 F(p) + F(update p μ (p μ − ℓ_P))`
+divided by `ℓ_P²`.  The multiplied form below removes the `ℓ_P²` division,
+exposing the raw Taylor remainder. -/
+theorem central_diff_second_order_accurate_axis
+    (F : (Fin 4 → ℝ) → ℝ) (p : Fin 4 → ℝ) (μ : Fin 4)
+    (h M : ℝ) (hh : 0 < h)
+    (hslice : ContDiff ℝ 4 (fun t : ℝ => F (Function.update p μ (p μ + t))))
+    (h_bound : ∀ t ∈ Set.Icc (-h) h,
+        |iteratedDeriv 4 (fun t : ℝ => F (Function.update p μ (p μ + t))) t|
+          ≤ M) :
+    |F (Function.update p μ (p μ + h))
+        - 2 * F p
+        + F (Function.update p μ (p μ - h))
+      - h^2 * iteratedDeriv 2 (fun t : ℝ => F (Function.update p μ (p μ + t))) 0|
+      ≤ h^4 / 12 * M := by
+  -- Run the same scaling argument against the axis form
+  -- `central_diff_taylor_bound_axis`.
+  have hcd := central_diff_taylor_bound_axis F p μ h M hh hslice h_bound
+  have hh2_pos : 0 < h^2 := by positivity
+  have hh2_nn : 0 ≤ h^2 := le_of_lt hh2_pos
+  have hLHS_eq :
+      |F (Function.update p μ (p μ + h))
+          - 2 * F p
+          + F (Function.update p μ (p μ - h))
+        - h^2 * iteratedDeriv 2
+            (fun t : ℝ => F (Function.update p μ (p μ + t))) 0|
+        = h^2 * |(F (Function.update p μ (p μ + h))
+                    - 2 * F p
+                    + F (Function.update p μ (p μ - h))) / h^2
+                 - iteratedDeriv 2
+                     (fun t : ℝ => F (Function.update p μ (p μ + t))) 0| := by
+    have hh2_ne : h^2 ≠ 0 := ne_of_gt hh2_pos
+    have hfact :
+        F (Function.update p μ (p μ + h))
+            - 2 * F p
+            + F (Function.update p μ (p μ - h))
+          - h^2 * iteratedDeriv 2
+              (fun t : ℝ => F (Function.update p μ (p μ + t))) 0
+          = h^2 * ((F (Function.update p μ (p μ + h))
+                      - 2 * F p
+                      + F (Function.update p μ (p μ - h))) / h^2
+                   - iteratedDeriv 2
+                       (fun t : ℝ => F (Function.update p μ (p μ + t))) 0) := by
+      field_simp
+    rw [hfact, abs_mul, abs_of_nonneg hh2_nn]
+  rw [hLHS_eq]
+  have hRHS_eq : h^2 * (h^2 / 12 * M) = h^4 / 12 * M := by ring
+  rw [← hRHS_eq]
+  exact mul_le_mul_of_nonneg_left hcd hh2_nn
+
+/-! ## Ingredient C — per-axis partial second-derivative accuracy
+
+The lattice `discreteLaplacian` sums per-axis second differences
+`secondDeriv f μ p` over `μ : Fin 4`.  Each summand is a diagonal partial
+second derivative in the continuum limit.  Ingredient **C** of
+NOTES_HPW_ELIMINATION is the claim that these *diagonal* partial-second
+derivatives approximate the continuum `∂²_{μμ}` with `O(h²)` error — and
+this is exactly what `central_diff_second_order_accurate_axis` delivers.
+
+For **off-diagonal** (`μ ≠ ν`) partial-second derivatives, the relevant
+discrete operator is an iterated symmetric first difference
+`δ^ν δ^μ` (not the diagonal `secondDeriv`), and the continuum limit is
+`∂²_{μν} g`.  The error-control proof is structurally similar — two
+applications of `taylor_forward_expansion` along nested slices plus a
+triangle inequality — but it is *not* consumed by the current
+`discreteLaplacian` chain, so we honestly stop at the diagonal case.
+
+The diagonal statement `partial_secondderiv_second_order_accurate` below
+is the Ingredient-C deliverable required to close the HPW remainder chain
+at the `discreteLaplacian`-consumer interface.  The off-diagonal case is
+deferred; see the module docstring of `HpwTotalTruncation.lean`. -/
+
+/-- **Ingredient C (diagonal).**  For `F : (Fin 4 → ℝ) → ℝ`, a base point
+`p`, an axis `μ`, and `h > 0`, the axis-wise symmetric second difference
+approximates `h² · ∂²_{μμ} F(p)` (where `∂²_{μμ}` is the second derivative
+of the univariate `μ`-slice at `t = 0`) with absolute error at most
+`(h⁴/12)·M`:
+
+    | F(update p μ (p μ + h)) − 2·F(p) + F(update p μ (p μ − h))
+      − h² · (f_slice_μ)''(0) |  ≤  (h⁴/12) · M.
+
+**Scope**: this is the diagonal (`μ = ν`) ingredient C, which is the
+version consumed by `OmegaTheory.Spacetime.Operators.discreteLaplacian`.
+The off-diagonal (`μ ≠ ν`) lift — mixed partial via iterated central
+first differences — is a separate statement and is NOT needed by the
+current HPW chain.  A future agent may add it as
+`partial_secondderiv_second_order_accurate_mixed` when the consumer
+surface grows; until then it is intentional unmet scope, not a gap.
+
+The statement is `rfl`-equivalent to `central_diff_second_order_accurate_axis`
+with `ν := μ`; we re-export it under the Ingredient-C name used in
+NOTES_HPW_ELIMINATION so the ingredient graph can resolve
+`name = partial_secondderiv_second_order_accurate` to this theorem. -/
+theorem partial_secondderiv_second_order_accurate
+    (F : (Fin 4 → ℝ) → ℝ) (p : Fin 4 → ℝ) (μ : Fin 4)
+    (h M : ℝ) (hh : 0 < h)
+    (hslice : ContDiff ℝ 4 (fun t : ℝ => F (Function.update p μ (p μ + t))))
+    (h_bound : ∀ t ∈ Set.Icc (-h) h,
+        |iteratedDeriv 4 (fun t : ℝ => F (Function.update p μ (p μ + t))) t|
+          ≤ M) :
+    |F (Function.update p μ (p μ + h))
+        - 2 * F p
+        + F (Function.update p μ (p μ - h))
+      - h^2 * iteratedDeriv 2 (fun t : ℝ => F (Function.update p μ (p μ + t))) 0|
+      ≤ h^4 / 12 * M :=
+  central_diff_second_order_accurate_axis F p μ h M hh hslice h_bound
+
 end OmegaTheory.Foundations

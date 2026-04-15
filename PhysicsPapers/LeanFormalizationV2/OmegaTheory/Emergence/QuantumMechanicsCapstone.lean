@@ -24,6 +24,7 @@
   | **P6** Uncertainty | `heisenberg` | `Heisenberg.lean`           | `heisenberg_uncertainty_from_lattice` |
   | **P7** Measurement | `measurement` | `Measurement.lean`         | `measurement_postulate` |
   | **P8** Entanglement (bonus) | `entanglement` | `Entanglement.lean` | `bell_inequality_entanglement_consistency` |
+  | **P9** Klein-Gordon (relativistic) | `kleinGordon` | `KleinGordon.lean` | `coarseGrain_satisfies_kleinGordon_dynamic` |
 
   ## Honest scoping — which conjuncts need which hypotheses?
 
@@ -98,6 +99,7 @@ import OmegaTheory.Emergence.Interference
 import OmegaTheory.Emergence.Heisenberg
 import OmegaTheory.Emergence.Measurement
 import OmegaTheory.Emergence.Entanglement
+import OmegaTheory.Emergence.KleinGordon
 
 namespace OmegaTheory.Emergence
 
@@ -257,6 +259,47 @@ structure QuantumMechanicsPostulates
   entanglement :
     IsEntangled bellField ∧
       chshTsirelsonBell 0 (Real.pi / 2) (Real.pi / 4) (3 * Real.pi / 4) > 2
+  /-- **P9 — Klein-Gordon (relativistic extension).**  For any rest
+      mass `m : ℝ`, the discrete Klein-Gordon residue
+
+          KG[ψ](p, n) := ((1/c²) ∂²_t^{disc} − Δ_lat) ψ(p, n)
+                          + (m²c²/ℏ²) · ψ(p, n+1)
+
+      evaluated on the coarse-grained field at interior tick `n+1` is
+      bounded in norm by the explicit constant
+      `kleinGordonBoundConst m = 16/ℓ_P² + m²c²/ℏ²`, under the same
+      Gibbs-positivity + `HasZeroFunctional` scope as the Schrödinger
+      conjunct.
+
+      Scope: requires `d.HasZeroFunctional` (carried by `hscope`) and
+      pointwise Gibbs non-negativity on the 9-point stencil at
+      `(p, n+1)`.  Applies to any real mass `m` (including `m = 0`,
+      the massless wave-equation specialisation).
+
+      **Honest scope.**  Unlike the Schrödinger bound, the KG bound
+      is *not* `O(ℓ_P)` — the lattice d'Alembertian carries the
+      Planck-scale UV cutoff `16/ℓ_P²`.  This is the correct
+      relativistic residue in the sense that `O(ℓ_P²·M)` with
+      `M = 1` (Gibbs amplitude bound) is exactly what the brief
+      permits when `O(ℓ_P)` is unattainable without further
+      continuum-limit infrastructure.
+
+      Cites: `coarseGrain_satisfies_kleinGordon_dynamic` from
+      `KleinGordon.lean`. -/
+  kleinGordon :
+    ∀ (p : LatticePoint) (n : ℕ) (m : ℝ)
+      (_hcenter : 0 ≤ informationDensityKL
+                      (d.toSnapshotSequence.metric (n + 1))
+                      d.toSnapshotSequence.reference p)
+      (_hstencil : ∀ μ : Fin 4,
+        0 ≤ informationDensityKL
+              (d.toSnapshotSequence.metric (n + 1))
+              d.toSnapshotSequence.reference (shiftFin p μ) ∧
+        0 ≤ informationDensityKL
+              (d.toSnapshotSequence.metric (n + 1))
+              d.toSnapshotSequence.reference (shiftBackFin p μ)),
+      ‖kleinGordonResidue m (coarseGrain d.toSnapshotSequence) p n‖
+        ≤ kleinGordonBoundConst m
 
 /-! ## The capstone theorem -/
 
@@ -283,6 +326,7 @@ structure QuantumMechanicsPostulates
     * `heisenberg`     ← `heisenberg_uncertainty_from_lattice`
     * `measurement`    ← `measurement_postulate`
     * `entanglement`   ← `bell_inequality_entanglement_consistency`
+    * `kleinGordon`    ← `coarseGrain_satisfies_kleinGordon_dynamic`
 
     This is the first (to our knowledge) complete machine-checked
     derivation of the postulates of quantum mechanics from a
@@ -307,6 +351,8 @@ theorem grand_qm_emergence
   measurement := fun q hq hψq =>
     measurement_postulate region ψ q tick hq hψq
   entanglement := bell_inequality_entanglement_consistency
+  kleinGordon := fun p n m hcenter hstencil =>
+    coarseGrain_satisfies_kleinGordon_dynamic d hscope p n m hcenter hstencil
 
 /-! ## Corollaries: what each conjunct says on its own -/
 

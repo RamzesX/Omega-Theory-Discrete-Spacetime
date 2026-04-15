@@ -14,9 +14,13 @@
   Dependencies:
   • `decoupling_scalar` from `OmegaTheory.Irrationality.HermitePade.Decoupling`
   • `Real.pi_transcendental` — STATED AS AXIOM, citation: Lindemann (1882).
-    Mathlib v4.29 ships the analytic part of Lindemann-Weierstrass
+    Mathlib v4.29 ships only the analytic part of Lindemann-Weierstrass
     (`Mathlib.NumberTheory.Transcendental.Lindemann.AnalyticalPart`)
-    but has not yet derived `Transcendental ℚ Real.pi` as a corollary.
+    and has NOT yet derived `Transcendental ℚ Real.pi` as a corollary.
+    Checked 2026-04-15 (Capella, team v2-apr15-lean): searched Mathlib
+    for `transcendental_pi`, `pi_transcendental`, `Real.pi … Transcendental`
+    — zero matches; only `AnalyticalPart.lean` exists under
+    `Mathlib/NumberTheory/Transcendental/Lindemann/`, no `Basic.lean`.
     Once Mathlib completes the Lindemann derivation, this axiom is
     replaced by a theorem with no further work here.
 -/

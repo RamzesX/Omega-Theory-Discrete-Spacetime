@@ -47,6 +47,14 @@ import OmegaTheory.Geometry.InnerProduct
 import OmegaTheory.Geometry.PoincareLemma
 import OmegaTheory.Geometry.HodgeDecomposition
 import OmegaTheory.Geometry.GaussBonnet
+-- Continuum geometry stack (Mizar + Fomalhaut, Apr 15)
+import OmegaTheory.Geometry.SmoothMetric
+import OmegaTheory.Geometry.Christoffel
+import OmegaTheory.Geometry.RiemannCurvature
+import OmegaTheory.Geometry.RicciTensor
+import OmegaTheory.Geometry.HarmonicGaugeContinuum
+import OmegaTheory.Geometry.RicciProperties
+import OmegaTheory.Geometry.WeinbergLinearised
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor
@@ -78,6 +86,8 @@ import OmegaTheory.Emergence.SmoothInterpolant
 import OmegaTheory.Emergence.HarmonicGauge
 import OmegaTheory.Emergence.RicciComparison
 import OmegaTheory.Emergence.HpwSchwarzschild
+import OmegaTheory.Emergence.HpwFRW
+import OmegaTheory.Emergence.HpwBianchiI
 import OmegaTheory.Emergence.HpwElimSummary
 import OmegaTheory.Emergence.EinsteinEmergence
 import OmegaTheory.Emergence.Gravitons

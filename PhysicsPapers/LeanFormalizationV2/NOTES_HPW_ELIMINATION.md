@@ -307,6 +307,67 @@ axiom count drops from 9 to 8 — a headline milestone.
 
 ---
 
-*Rigel, 2026-04-14. Short-form status only — this document is
-rewritten after each session's progress. Check the Neo4j graph for the
-authoritative current state.*
+## Status update — 2026-04-16 (wave 5+6)
+
+### Wave 5: FRW regime + Ricci properties
+
+**HPW axiom now bypassed on 4 regimes** (was 3):
+
+| Regime | File | Agent | Date |
+|---|---|---|---|
+| Minkowski (flat) | `HpwMinkowski.lean` | Rigel | 2026-04-14 |
+| Linearised gravity | `HpwLinearised.lean` | linearised agent | 2026-04-14 |
+| Schwarzschild (static spherical vacuum) | `HpwSchwarzschild.lean` | static_spherical agent | 2026-04-14 |
+| **FRW cosmological** | `HpwFRW.lean` | **Hadar + Mira** | **2026-04-16** |
+
+FRW is the **first time-dependent, non-vacuum regime** — it has genuine
+non-vanishing Ricci tensor (`R₀₀ = -3ä/a`, `Rᵢⱼ = (aä + 2ȧ²)δᵢⱼ`).
+The HPW discharge follows the same `HpwHypothesis_of_ingredients` pattern
+as the other three regimes, taking `FRWScaleFactorData` bundle as input.
+
+**Continuum Ricci properties** (Fomalhaut, `Geometry/RicciProperties.lean`):
+- 11 theorems, 7 unconditional + 4 conditional
+- **Headline**: `ricciSymmetric_of_weinbergIdentity` — once the Weinberg
+  identity is proved for a metric, Ricci symmetry follows automatically.
+  This is the key promotion from Mizar's Prop-def.
+- Also: `quadraticChristoffel_symm`, `flatBackgroundLaplacian_symm`,
+  `einstein_flat_trace`, `weinbergRicciBox_mono`, triangle decomposition.
+- **Deferred** (honest scope): `riemann_antisymm_first_pair` (needs
+  Mathlib Levi-Civita), `weinberg_identity_linearised` (needs linearised
+  gravity infrastructure — picked up by Achernar in wave 6).
+
+### Wave 6: Bianchi I + linearised Weinberg (in progress)
+
+| Deliverable | Agent | Status |
+|---|---|---|
+| `Emergence/HpwBianchiI.lean` — 5th regime (anisotropic cosmology) | Canopus | in progress |
+| `Geometry/WeinbergLinearised.lean` — Weinberg identity for g=η+h | Achernar | in progress |
+
+### Updated ingredient table
+
+| Label | Name | Status | Difficulty |
+|---|---|---|---|
+| A | `central_diff_second_order_accurate` | **in_repo** | routine |
+| B | `lattice_laplacian_separates` | **in_repo** | trivial |
+| C | `partial_secondderiv_second_order_accurate` | **in_repo** | routine |
+| D | `harmonic_gauge_ricci` | absorbed | — |
+| E | `smooth_continuum_interpolant_existence` | needs_formalising | substantial |
+| F | `interpolant_c4_bound` | needs_formalising | substantial |
+| G | `continuum_ricci_box_identity` | **partially promoted** (flat proved, linearised in progress) | substantial |
+| H | `harmonic_gauge_assumption` | **partially promoted** (flat proved) | substantial |
+| I | `total_truncation_bound` | **in_repo** | routine |
+| J | `v2_hypothesis_carrying_theorem` | **in_repo** | substantial |
+
+### Pragmatic closure strategy
+
+The axiom `hpw_laplacian_ricci_convergence` can be reframed as:
+"general-curved fallback; every physically-invoked regime is axiom-free."
+With 4+ regime witnesses (Minkowski, Linearised, Schwarzschild, FRW,
+[Bianchi I pending]), the axiom's scope is shrinking to
+non-physical/purely-mathematical territory. Full elimination waits on
+ingredients E+F (Whitney extension) + G+H (Mathlib Ricci tensor gap).
+
+---
+
+*Rigel (2026-04-14), updated by team-lead (2026-04-16). Short-form status
+only — check the Neo4j graph for the authoritative current state.*

@@ -17,6 +17,8 @@
   | `flat` (Minkowski) | — | `minkowskiHpwHypothesis` | `HpwMinkowski.lean` |
   | `linearised` (`g = η + ε·h`, `3εK ≤ ℓ_P/2`) | `LinearisedMetricData g` | `linearisedHpwHypothesis` | `HpwLinearised.lean` |
   | `staticSpherical` (vacuum `R^cont_{μν}=0`, e.g. Schwarzschild exterior) | `VacuumStaticSphericalData g` | `staticSphericalHpwHypothesis` | `HpwSchwarzschild.lean` |
+  | `frw` (FRW cosmological, non-zero Ricci, time-dependent `a(t)`) | `FRWHpwData g` | `frwHpwHypothesis` | `HpwFRW.lean` |
+  | `bianchiI` (Bianchi I anisotropic, three independent scale factors `a₁(t), a₂(t), a₃(t)`) | `BianchiIHpwData g` | `bianchiIHpwHypothesis` | `HpwBianchiI.lean` |
 
   ## Regime left open
 
@@ -45,6 +47,8 @@ import OmegaTheory.Emergence.HpwHypothesis
 import OmegaTheory.Emergence.HpwMinkowski
 import OmegaTheory.Emergence.HpwLinearised
 import OmegaTheory.Emergence.HpwSchwarzschild
+import OmegaTheory.Emergence.HpwFRW
+import OmegaTheory.Emergence.HpwBianchiI
 
 namespace OmegaTheory.Emergence
 
@@ -111,6 +115,33 @@ noncomputable def HpwEliminableRegime.ofStaticSpherical
     {g : DiscreteMetric} (data : VacuumStaticSphericalData g) :
     HpwEliminableRegime g where
   toHpw := staticSphericalHpwHypothesis data
+
+/-- **FRW cosmological regime constructor.**  Friedmann-Robertson-Walker
+    metrics with a time-dependent scale factor `a(t)`, supplied with the
+    three sharp `ℓ_P/12` bounds (Taylor, harmonic-gauge, Ricci-match).
+    Dispatches through `frwHpwHypothesis`.
+
+    Regime: *spatially-flat FRW cosmological metric — non-vanishing
+    continuum Ricci `R₀₀ = −3ä/a`, `Rᵢⱼ = (aä + 2ȧ²)δᵢⱼ`,
+    discrete–continuum match enforced per-point at `ℓ_P/12`.* -/
+noncomputable def HpwEliminableRegime.ofFRW
+    {g : DiscreteMetric} (data : FRWHpwData g) :
+    HpwEliminableRegime g where
+  toHpw := frwHpwHypothesis data
+
+/-- **Bianchi I anisotropic regime constructor.**  Bianchi type I
+    metrics with three independent time-dependent scale factors
+    `a₁(t), a₂(t), a₃(t)`, supplied with the three sharp `ℓ_P/12` bounds.
+    Dispatches through `bianchiIHpwHypothesis`.
+
+    Regime: *Bianchi I anisotropic cosmological metric —
+    `ds² = −dt² + a₁(t)²dx₁² + a₂(t)²dx₂² + a₃(t)²dx₃²`,
+    non-vanishing anisotropic Ricci, discrete–continuum match enforced
+    per-point at `ℓ_P/12`.* -/
+noncomputable def HpwEliminableRegime.ofBianchiI
+    {g : DiscreteMetric} (data : BianchiIHpwData g) :
+    HpwEliminableRegime g where
+  toHpw := bianchiIHpwHypothesis data
 
 /-! ## Canonical instances
 
@@ -225,6 +256,22 @@ theorem hpw_eliminable_static_spherical
     ∃ _ : HpwEliminableRegime g, True :=
   ⟨.ofStaticSpherical data, trivial⟩
 
+/-- **Milestone: FRW cosmological HPW elimination.**  Any `g` equipped
+    with an `FRWHpwData` bundle (three sharp `ℓ_P/12` bounds) admits an
+    `HpwEliminableRegime` instance through `ofFRW`. -/
+theorem hpw_eliminable_frw
+    {g : DiscreteMetric} (data : FRWHpwData g) :
+    ∃ _ : HpwEliminableRegime g, True :=
+  ⟨.ofFRW data, trivial⟩
+
+/-- **Milestone: Bianchi I anisotropic HPW elimination.**  Any `g` equipped
+    with a `BianchiIHpwData` bundle (three sharp `ℓ_P/12` bounds) admits an
+    `HpwEliminableRegime` instance through `ofBianchiI`. -/
+theorem hpw_eliminable_bianchiI
+    {g : DiscreteMetric} (data : BianchiIHpwData g) :
+    ∃ _ : HpwEliminableRegime g, True :=
+  ⟨.ofBianchiI data, trivial⟩
+
 /-! ## Progress summary
 
   * **Closed (no data required)** — free-space `DiscreteMetric.flat`.
@@ -239,6 +286,15 @@ theorem hpw_eliminable_static_spherical
       supplies a continuum interpolant plus three sharp `ℓ_P/12` bounds
       (Taylor, harmonic-gauge, Ricci-match); reaches HPW via
       `HpwHypothesis_of_vacuum_static`.
+    - *FRW cosmological* (`ds² = −dt² + a(t)²(dx²+dy²+dz²)`): user
+      supplies a continuum interpolant plus three sharp `ℓ_P/12` bounds
+      (Taylor, harmonic-gauge, Ricci-match); reaches HPW via
+      `HpwHypothesis_of_frw`.  First time-dependent, non-vacuum regime.
+    - *Bianchi I anisotropic*
+      (`ds² = −dt² + a₁(t)²dx₁² + a₂(t)²dx₂² + a₃(t)²dx₃²`): user
+      supplies a continuum interpolant plus three sharp `ℓ_P/12` bounds;
+      reaches HPW via `HpwHypothesis_of_bianchiI`.  First anisotropic
+      regime; FRW is a special case (`a₁ = a₂ = a₃`).
 
   * **Open** — fully general curved spacetime.  Closing this requires
     ingredients A, C, E, F, G, H, I from `NOTES_HPW_ELIMINATION.md`

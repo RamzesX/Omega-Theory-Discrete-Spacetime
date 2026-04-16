@@ -338,6 +338,7 @@ Observed factor-10–100 change vs Arrhenius's predicted factor-10⁵⁰: **Arrh
 | UHECR dispersion | `MassAsDelay.massive_asymptotes_to_null_at_high_E:222` + `Defects.Sparsity.defectFraction_le:151` |
 | Spin-1/2 flip rate | `Predictions.SpinFlipRate.spinFlipRateSubstrate_strictly_exceeds_standard_QM` (closed form `4·ℓ_P²·k_B²·T²/(ℏ²·c²·t_P)`, T²-scaling) |
 | Teleportation bound | `Predictions.StochasticTeleportation.teleportation_fidelity_substrate_bound_low_T` |
+| GRB / Pierre Auger LIV consistency | `Predictions.GammaRayDispersion.gammaRayDispersionSubstrate_below_any_positive_bound` + `substrate_vs_pure_LV_distinguisher` (substrate ≤ any positive bound for N large; monotone-decreasing in N vs flat pure-LV) |
 
 **Theorems landed since 2026-04-15 wave 2** (all 0 sorry, 0 new axioms):
 1. `OmegaTheory/Predictions/HermiticityDefect.lean` (Sirius) — 5 Heisenberg observable bounds
@@ -347,6 +348,7 @@ Observed factor-10–100 change vs Arrhenius's predicted factor-10⁵⁰: **Arrh
 5. `OmegaTheory/Predictions/UHECRDispersion.lean` (Deneb) — `(mc)²/p²` mass prefactor dispersion
 6. `OmegaTheory/Predictions/ChristoffelSparsity.lean` (team-lead) — hot-spot density Markov bound
 7. `OmegaTheory/Predictions/SpinFlipRate.lean` (team-lead, wave 3) — closes §8 row 6 with closed-form T²-scaling rate `Γ_flip(T)`
+8. `OmegaTheory/Predictions/GammaRayDispersion.lean` (team-lead, wave 4) — closes §2.3 Pierre Auger LIV consistency; substrate below any positive bound for N ≥ N₀ + N-dependence distinguisher from pure-LV
 
 ---
 

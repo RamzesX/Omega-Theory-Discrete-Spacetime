@@ -19,6 +19,7 @@
   | `staticSpherical` (vacuum `R^cont_{μν}=0`, e.g. Schwarzschild exterior) | `VacuumStaticSphericalData g` | `staticSphericalHpwHypothesis` | `HpwSchwarzschild.lean` |
   | `frw` (FRW cosmological, non-zero Ricci, time-dependent `a(t)`) | `FRWHpwData g` | `frwHpwHypothesis` | `HpwFRW.lean` |
   | `bianchiI` (Bianchi I anisotropic, three independent scale factors `a₁(t), a₂(t), a₃(t)`) | `BianchiIHpwData g` | `bianchiIHpwHypothesis` | `HpwBianchiI.lean` |
+  | `deSitter` (de Sitter, maximally symmetric vacuum `Λ > 0`, exponential scale factor `a(t) = exp(Ht)`) | `DeSitterHpwData H` | `deSitterHpwHypothesis` | `HpwDeSitter.lean` |
 
   ## Regime left open
 
@@ -49,6 +50,7 @@ import OmegaTheory.Emergence.HpwLinearised
 import OmegaTheory.Emergence.HpwSchwarzschild
 import OmegaTheory.Emergence.HpwFRW
 import OmegaTheory.Emergence.HpwBianchiI
+import OmegaTheory.Emergence.HpwDeSitter
 
 namespace OmegaTheory.Emergence
 
@@ -142,6 +144,19 @@ noncomputable def HpwEliminableRegime.ofBianchiI
     {g : DiscreteMetric} (data : BianchiIHpwData g) :
     HpwEliminableRegime g where
   toHpw := bianchiIHpwHypothesis data
+
+/-- **De Sitter regime constructor.**  De Sitter metrics with
+    exponential scale factor `a(t) = exp(Ht)`, supplied with the three
+    sharp `ℓ_P/12` bounds.  Dispatches through `deSitterHpwHypothesis`,
+    which routes through `frwHpwHypothesis`.
+
+    Regime: *de Sitter maximally symmetric vacuum — `Λ > 0`,
+    `ds² = −dt² + exp(2Ht)(dx²+dy²+dz²)`, exponential FRW special case,
+    discrete–continuum match enforced per-point at `ℓ_P/12`.* -/
+noncomputable def HpwEliminableRegime.ofDeSitter
+    {H : ℝ} (data : DeSitterHpwData H) :
+    HpwEliminableRegime (DiscreteMetric.deSitter H) where
+  toHpw := deSitterHpwHypothesis data
 
 /-! ## Canonical instances
 
@@ -272,6 +287,15 @@ theorem hpw_eliminable_bianchiI
     ∃ _ : HpwEliminableRegime g, True :=
   ⟨.ofBianchiI data, trivial⟩
 
+/-- **Milestone: de Sitter HPW elimination.**  Any de Sitter metric
+    `DiscreteMetric.deSitter H` equipped with a `DeSitterHpwData H`
+    bundle (three sharp `ℓ_P/12` bounds) admits an `HpwEliminableRegime`
+    instance through `ofDeSitter`. -/
+theorem hpw_eliminable_deSitter
+    {H : ℝ} (data : DeSitterHpwData H) :
+    ∃ _ : HpwEliminableRegime (DiscreteMetric.deSitter H), True :=
+  ⟨.ofDeSitter data, trivial⟩
+
 /-! ## Progress summary
 
   * **Closed (no data required)** — free-space `DiscreteMetric.flat`.
@@ -295,6 +319,12 @@ theorem hpw_eliminable_bianchiI
       supplies a continuum interpolant plus three sharp `ℓ_P/12` bounds;
       reaches HPW via `HpwHypothesis_of_bianchiI`.  First anisotropic
       regime; FRW is a special case (`a₁ = a₂ = a₃`).
+    - *de Sitter* (`a(t) = exp(Ht)`, maximally symmetric vacuum with
+      `Λ > 0`): user supplies the three sharp `ℓ_P/12` bounds for the
+      exponential-scale-factor FRW metric; reaches HPW via
+      `HpwHypothesis_of_deSitter` → `HpwHypothesis_of_frw`.  First
+      maximally symmetric cosmological regime; physically the vacuum of
+      inflationary cosmology.
 
   * **Open** — fully general curved spacetime.  Closing this requires
     ingredients A, C, E, F, G, H, I from `NOTES_HPW_ELIMINATION.md`

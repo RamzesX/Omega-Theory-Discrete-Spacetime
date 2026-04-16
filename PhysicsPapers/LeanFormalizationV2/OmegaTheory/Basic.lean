@@ -88,8 +88,10 @@ import OmegaTheory.Emergence.RicciComparison
 import OmegaTheory.Emergence.HpwSchwarzschild
 import OmegaTheory.Emergence.HpwFRW
 import OmegaTheory.Emergence.HpwBianchiI
+import OmegaTheory.Emergence.HpwDeSitter
 import OmegaTheory.Emergence.HpwElimSummary
 import OmegaTheory.Emergence.EinsteinEmergence
+import OmegaTheory.Emergence.CosmologicalConstant
 import OmegaTheory.Emergence.Gravitons
 import OmegaTheory.Emergence.SnapshotPropagator
 import OmegaTheory.Emergence.PatternIdentity

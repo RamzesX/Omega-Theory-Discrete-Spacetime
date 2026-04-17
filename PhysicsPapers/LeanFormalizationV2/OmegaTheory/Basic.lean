@@ -106,11 +106,14 @@ import OmegaTheory.Emergence.HpwBianchiI
 import OmegaTheory.Emergence.HpwDeSitter
 import OmegaTheory.Emergence.HpwKerr
 import OmegaTheory.Emergence.HpwElimSummary
+import OmegaTheory.Emergence.BlackHoleFormation
 import OmegaTheory.Emergence.EinsteinEmergence
 import OmegaTheory.Emergence.CosmologicalConstant
 import OmegaTheory.Emergence.CosmologicalConstantProblem
+import OmegaTheory.Emergence.WormholeStability
 import OmegaTheory.Emergence.NegativePressure
 import OmegaTheory.Emergence.Gravitons
+import OmegaTheory.Emergence.GravitonConditions
 import OmegaTheory.Emergence.SnapshotPropagator
 import OmegaTheory.Emergence.PatternIdentity
 
@@ -166,7 +169,7 @@ import OmegaTheory.Emergence.RotationCurves
 import OmegaTheory.Emergence.SpectralActionExpansion
 
 -- Matter sector (Mirach + Algieba + Phecda + Alioth + Propus wave)
-import OmegaTheory.Emergence.FermionContent
+-- FermionContent already imported above (line 155)
 import OmegaTheory.Emergence.FermionHypercharge
 import OmegaTheory.Emergence.FermionQuantumNumbers
 import OmegaTheory.Emergence.AnomalyCancellation
@@ -180,6 +183,7 @@ import OmegaTheory.Emergence.DiracLagrangian
 import OmegaTheory.Emergence.PMNSMatrix
 import OmegaTheory.Emergence.KoideRelation
 import OmegaTheory.Emergence.LeptonMassFromIrrationals
+import OmegaTheory.Emergence.QuarkMassFromIrrationals
 
 -- Layer 9: Falsifiable predictions (substrate vs alternatives)
 import OmegaTheory.Predictions.GravDecoherenceTScaling
@@ -192,6 +196,7 @@ import OmegaTheory.Predictions.SpinFlipRate
 import OmegaTheory.Predictions.GammaRayDispersion
 import OmegaTheory.Predictions.AdditionalPredictions
 import OmegaTheory.Predictions.WarwickGQuEST
+import OmegaTheory.Predictions.NeutrinoMassFloor
 
 -- Layer 11b: Irrationality → predictions bridge
 import OmegaTheory.Irrationality.PredictionsBridge

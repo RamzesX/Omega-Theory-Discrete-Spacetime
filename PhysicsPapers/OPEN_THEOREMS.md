@@ -51,12 +51,11 @@ These are theorems currently shipped as `Prop := True` placeholders or condition
 **Approach**: split `su3f = rational + √3·rational`, decide each over ℚ separately
 **Difficulty**: MEDIUM
 
-### 7. Clifford off-diagonal anticommutators (12 cases)
+### 7. Clifford off-diagonal anticommutators (12 cases) — **CLOSED**
 **File**: `OmegaTheory/Emergence/DiracEquation.lean` (Tureis)
-**Done**: Diagonal `{γ^μ, γ^μ} = 2η^{μμ}·I` (4 cases proved)
-**Open**: 12 off-diagonal `{γ^μ, γ^ν} = 0` for μ≠ν
-**Approach**: `native_decide` or `fin_cases` with maxHeartbeats 16M, per-case 4×4 matrix multiplication
-**Difficulty**: MEDIUM
+**Done**: Diagonal `{γ^μ, γ^μ} = 2η^{μμ}·I` (4 cases proved, `gammaClifford_sq`)
+**Done**: Off-diagonal `{γ^μ, γ^ν} = 0` for μ≠ν (all 12 cases proved, `gammaClifford_offDiagonal`)
+**How**: 6 unique pair theorems `gamma{i}_gamma{j}_anticomm` via `ext i j; fin_cases i <;> fin_cases j <;> simp [gammaI, gammaJ, Matrix.mul_apply, Matrix.of_apply, Fin.sum_univ_four, Matrix.add_apply] <;> ring`, then `first | exact pair_lemma | (rw [add_comm]; exact pair_lemma)` for the 6 reversed pairs. `gammaClifford_anticommutator_full` gives the unconditional full Clifford relation. `diracSquaredIsKG_unconditional` D²=KG bundle inhabited. Verified Apr-17 by Dubhe (full project build GREEN 3544 jobs).
 
 ### 8. Non-abelian Bianchi identity DF = 0
 **File**: `OmegaTheory/Emergence/NonAbelianGauge.lean` (Menkar)

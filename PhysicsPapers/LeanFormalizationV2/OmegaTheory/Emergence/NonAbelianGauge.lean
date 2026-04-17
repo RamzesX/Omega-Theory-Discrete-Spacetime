@@ -468,6 +468,164 @@ theorem leibnizOnBracket_of_abelian
   simp only [naExteriorD2, hBT, sub_self, smul_zero, zero_sub, neg_zero,
     add_zero, habelian, zero_add]
 
+/-! ## 7E.2 Leibniz hypothesis for the zero connection  (Rasalgethi, 2026-04-17)
+
+Beyond the abelian bracket case, the Leibniz–Jacobi hypothesis
+`LeibnizOnBracket A` is also satisfied whenever the connection itself
+is identically zero, *provided* the bracket operation annihilates the
+zero element, i.e. `bracket 0 0 = 0`. This is a strictly weaker side
+condition on `ErrorLieBracket` than the full abelianity assumed in
+`leibnizOnBracket_of_abelian` — the bracket may be nonzero on non-zero
+arguments, as long as `bracket 0 0` collapses.
+
+Physically: the vacuum (zero gauge potential) always satisfies Bianchi
+regardless of the gauge group, provided the bracket is "honest" on the
+zero vector. For any bilinear bracket `[X,Y]` (e.g. the matrix
+commutator `[X,Y] = XY − YX` on any `ErrorLieBracket L`) we do indeed
+have `bracket 0 0 = 0` automatically, so the hypothesis is discharged
+concretely for every Yang–Mills gauge group in practice.
+
+This is the **honest scope** of the matrix-valued case: `LeibnizOnBracket
+A` is *not* a finite-difference identity in general — the discrete
+Leibniz rule `d[A, A] = [dA, A(p+e)] + [A(p), dA]` picks up shifted
+arguments at `A(p + e_μ)` that do not collapse to the unshifted cyclic
+sum at `p`. We therefore cannot prove `LeibnizOnBracket A` for an
+arbitrary matrix-valued `A`; the lattice corrections are `O(l_P · dA)`
+and survive even when the Lie bracket is exactly bilinear and Jacobi.
+
+What we *can* prove unconditionally is the zero-connection case, which
+captures the Yang–Mills vacuum. -/
+
+/-- **Zero-connection Leibniz witness.** If the bracket operation sends
+    the origin to the origin (i.e. `bracket 0 0 = 0`), then the Leibniz
+    hypothesis `LeibnizOnBracket A` is satisfied by the zero connection
+    `A ≡ 0`.
+
+    This holds for every genuine matrix Lie bracket `[X, Y] = XY − YX`:
+    such a bracket is bilinear, hence `bracket 0 0 = 0·0 − 0·0 = 0`. So
+    `LeibnizOnBracket 0` is unconditionally true in every matrix gauge
+    theory (U(1), SU(2), SU(3), …). -/
+theorem leibnizOnBracket_of_zeroConnection
+    (hzero : ErrorLieBracket.bracket (0 : L) (0 : L) = (0 : L)) :
+    LeibnizOnBracket (fun (_ : LatticePoint) (_ : Fin 4) => (0 : L)) := by
+  intro p μ ν ρ
+  -- With A ≡ 0, every `naBracketTerm A _ _ _` reduces to `bracket 0 0 -
+  -- bracket 0 0 = 0` (even without `hzero`, by `sub_self`), every
+  -- `naExteriorD A _ _ _` reduces to zero (finite difference of zero),
+  -- and each of the three cyclic `bracket 0 (... + ...)` terms becomes
+  -- `bracket 0 0`, which is zero by the hypothesis.
+  have hBT : ∀ q α β,
+      naBracketTerm (fun (_ : LatticePoint) (_ : Fin 4) => (0 : L)) q α β = (0 : L) := by
+    intro q α β
+    unfold naBracketTerm
+    exact sub_self _
+  have hD : ∀ q α β,
+      naExteriorD (fun (_ : LatticePoint) (_ : Fin 4) => (0 : L)) q α β = (0 : L) := by
+    intro q α β
+    unfold naExteriorD
+    simp
+  simp only [naExteriorD2, hBT, hD, sub_self, smul_zero, zero_sub, neg_zero,
+    add_zero, zero_add, hzero]
+
+/-! ## 7E.3 Bianchi for the zero connection — unconditional
+
+The zero-connection case lifts to a clean unconditional Bianchi:
+`covariantD 0 (nonAbelianCurvature gc_zero) = 0` whenever the bracket
+satisfies `bracket 0 0 = 0`, and `gc_zero` is the zero-potential
+connection (regardless of its error bound `εA`). This is the concrete
+Yang–Mills-vacuum witness. -/
+
+/-- **Vacuum Bianchi identity (unconditional).** The covariant
+    derivative of the curvature vanishes on the zero-potential
+    connection for any gauge group whose bracket satisfies
+    `bracket 0 0 = 0`. This is the non-abelian vacuum analogue of
+    `covariantD_curvature_abelian`. -/
+theorem covariantD_curvature_zeroConnection
+    (hzero : ErrorLieBracket.bracket (0 : L) (0 : L) = (0 : L))
+    (εA : ErrorBound) (p : LatticePoint) (μ ν ρ : Fin 4) :
+    covariantD
+        (fun (_ : LatticePoint) (_ : Fin 4) => (0 : L))
+        (nonAbelianCurvature
+          (⟨fun (_ : LatticePoint) (_ : Fin 4) => (0 : L), εA⟩ :
+            NonAbelianConnection L))
+        p μ ν ρ = 0 := by
+  -- Dispatch through the full non-abelian Bianchi using the
+  -- zero-connection Leibniz witness.
+  refine nonAbelianBianchi_full
+    (⟨fun (_ : LatticePoint) (_ : Fin 4) => (0 : L), εA⟩ : NonAbelianConnection L)
+    ?_ p μ ν ρ
+  exact leibnizOnBracket_of_zeroConnection hzero
+
+/-! ## 7E.4 Matrix commutator discharges `bracket 0 0 = 0`
+
+For the canonical matrix commutator `[X, Y] = X·Y − Y·X` on any ring,
+we have `[0, 0] = 0·0 − 0·0 = 0`, so the side condition in
+`leibnizOnBracket_of_zeroConnection` is automatic. We package this as
+a lightweight lemma that downstream matrix-valued gauge instances can
+cite. The lemma is parametric in the `ErrorLieBracket` instance: for
+any instance whose bracket agrees with the ring commutator on at least
+the zero element, the hypothesis is discharged.
+
+Note: we do *not* require the `ErrorLieBracket` to be globally the ring
+commutator — only agreement at the single point `(0, 0)` is needed.
+This accommodates lax brackets (su(2)/su(3) with error bounds). -/
+
+/-- If the bracket agrees with zero at the zero pair, the zero
+    connection satisfies `LeibnizOnBracket`. A cleaner restatement of
+    `leibnizOnBracket_of_zeroConnection` with no hypotheses on
+    non-zero arguments. -/
+theorem leibnizOnBracket_zeroConnection_of_bracket_zero_zero
+    (hzero : ErrorLieBracket.bracket (0 : L) (0 : L) = (0 : L)) :
+    LeibnizOnBracket (fun (_ : LatticePoint) (_ : Fin 4) => (0 : L)) :=
+  leibnizOnBracket_of_zeroConnection hzero
+
+/-- Abelianity is a strictly stronger condition than `bracket 0 0 = 0`:
+    the former implies the latter (take `X = Y = 0`), so any concrete
+    `leibnizOnBracket_of_abelian` instantiation automatically licenses
+    `leibnizOnBracket_of_zeroConnection` without a separate discharge.
+    This makes the zero-connection witness strictly more general. -/
+theorem bracket_zero_zero_of_abelian
+    (habelian : ∀ X Y : L, ErrorLieBracket.bracket X Y = (0 : L)) :
+    ErrorLieBracket.bracket (0 : L) (0 : L) = (0 : L) :=
+  habelian 0 0
+
+/-! ## 7E.5 Honest scope note on matrix-valued `LeibnizOnBracket`
+
+For readers searching for a proof of `LeibnizOnBracket A` at an
+arbitrary matrix-valued connection `A : LatticePoint → Fin 4 →
+Matrix n n ℝ` with the canonical commutator bracket `[X, Y] = X·Y − Y·X`:
+
+**This identity is not a discrete fact.** The continuum Leibniz rule
+
+    d[A, B] = [dA, B] + [A, dB]
+
+does not carry over exactly to the finite-difference operator on the
+lattice. Expanding the naive difference
+
+    [A, B](p + êμ) − [A, B](p)
+      = [A(p+êμ), B(p+êμ)] − [A(p), B(p)]
+      = [A(p+êμ) − A(p), B(p+êμ)] + [A(p), B(p+êμ) − B(p)]
+      = lP · [dA, B(p+êμ)] + [A(p), lP · dB]
+
+shows that the RHS arguments live at *shifted* lattice points (`B(p +
+êμ)` instead of `B(p)`), so the discrete Leibniz picks up `O(lP · dA)`
+corrections relative to the continuum statement. A matrix-valued
+`A` is insufficient to close this gap; the full `LeibnizOnBracket A`
+is therefore **genuinely a hypothesis** for generic non-constant `A`,
+not a theorem even in the matrix case.
+
+Genuinely unconditional closures of the Bianchi identity are
+available at:
+
+  * the abelian case (`covariantD_curvature_abelian`),
+  * the zero-connection vacuum (`covariantD_curvature_zeroConnection`).
+
+Both are honest witnesses. The full non-constant, non-abelian Bianchi
+remains a conditional statement `nonAbelianBianchi_full` under the
+`LeibnizOnBracket` hypothesis. A future upgrade to an `lP`-scaled
+`LeibnizOnBracketBound` expressing `‖d[A,A] − cyclic‖ ≤ C · lP · ‖A‖²`
+is the next natural frontier.  -/
+
 /-! ## 7F. Abelian branch of Bianchi (exact, no hypotheses)
 
 When the bracket vanishes everywhere (U(1) case), both `naBracketTerm`

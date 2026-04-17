@@ -92,7 +92,7 @@ gcongr       -- generalized congruence (monotonicity)
 - **Particle masses**: pathway via Connes D_F eigenvalues (capstone goal)
 - **su(3) Jacobi**: hypothesis, fixable with `fin_cases` at high heartbeats
 - **Non-abelian F = dA + [A,A]**: all ingredients exist, not assembled
-- **Clifford off-diagonal**: 12 cases hypothesized, not verified
+- **Clifford off-diagonal**: ~~12 cases hypothesized~~ **CLOSED** (Tureis, DiracEquation.lean:209 `gammaClifford_offDiagonal`, all 12 cases via 6 pair lemmas + `add_comm`, verified by Dubhe Apr-17)
 
 ## The Pi Hunch (central thesis)
 OmegaTheory's deepest claim: **the irrationality of π produces quantum mechanics**.

@@ -382,10 +382,8 @@ These are operator pairs that **exist separately** in the codebase but are **not
 **What's missing**: For non-abelian gauge groups, F_mu_nu = d_mu A_nu - d_nu A_mu + [A_mu, A_nu]. The A-wedge-A term is not assembled. This means gluon self-coupling is absent.
 **Fix**: Define `nonAbelianCurvature := d1 A + errorWedge11 A A ...` using the existing bracket.
 
-### 3. Clifford off-diagonal anticommutator
-**What exists**: All 4 diagonal cases `gamma^mu * gamma^mu = eta(mu)*I` PROVED. Gamma matrices fully defined.
-**What's missing**: The 12 off-diagonal cases `{gamma^mu, gamma^nu} = 0` for mu != nu. Carried as `CliffordOffDiagonal` hypothesis.
-**Fix**: Component-wise `fin_cases` proof (192 matrix entries, but each is routine).
+### 3. Clifford off-diagonal anticommutator — **CLOSED** (Tureis, Apr-15)
+**What exists**: All 4 diagonal cases `gamma^mu * gamma^mu = eta(mu)*I` PROVED. Gamma matrices fully defined. **Plus: all 12 off-diagonal cases `{gamma^mu, gamma^nu} = 0` for mu != nu PROVED** via `gammaClifford_offDiagonal` in `DiracEquation.lean:209`. Six unique pair theorems (`gamma0_gamma1_anticomm` through `gamma2_gamma3_anticomm`) each use component-wise `fin_cases i <;> fin_cases j <;> simp [gammaI, gammaJ, Matrix.mul_apply, Matrix.of_apply, Fin.sum_univ_four, Matrix.add_apply] <;> ring` (192 matrix entries per pair, all routine); the 6 reversed pairs close by `rw [add_comm]; exact <pair_lemma>`. The legacy `CliffordOffDiagonal` hypothesis is discharged unconditionally by `cliffordOffDiagonal_holds`, and `gammaClifford_anticommutator_full` gives the full `{γ^μ, γ^ν} = 2η^{μν}·I` Clifford relation without any hypothesis. `diracSquaredIsKG_unconditional` → D²=KG bundle inhabited unconditionally. Verified Apr-17 by Dubhe: full project GREEN 3544 jobs.
 
 ### 4. Momentum operator Hermiticity
 **What exists**: `momentumOperator mu` defined as symmetric difference (naturally self-adjoint). `IsHermitianOnRegion` defined. `hamiltonianC_hermitian` PROVED.

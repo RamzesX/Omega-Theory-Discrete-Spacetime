@@ -133,13 +133,13 @@ No quarks, no leptons, no flavors, no generations, no Yukawa, no CKM/PMNS, no an
 
 ## 8. Remaining Algebraic Gaps
 
-Per Crawler-C's analysis, three algebraic holes remain:
+Per Crawler-C's analysis, three algebraic holes remain. **Status as of Apr-17 2026:**
 
 1. **su(3) Jacobi identity** — currently a hypothesis `hJ` in `ErrorGaugeSU3.lean`; fixable with `fin_cases` at high heartbeats (Almach in progress)
 2. **Non-abelian F = dA + [A,A]** — all ingredients exist but not assembled; enables gluon self-coupling (Menkar in progress)
-3. **Clifford off-diagonal** — 12 gamma matrix products hypothesized; enables full D² = Klein-Gordon
+3. **Clifford off-diagonal** — ✅ **CLOSED** (Tureis, `DiracEquation.lean:209 gammaClifford_offDiagonal`, all 12 cases via 6 pair lemmas + `add_comm`, unconditional; `gammaClifford_anticommutator_full` gives full Clifford relation; enables `diracSquaredIsKG_unconditional`). Verified Apr-17 by Dubhe.
 
-Closing these three makes the gauge sector fully constructive with no hypothesis slots.
+Closing items 1 and 2 makes the gauge sector fully constructive with no hypothesis slots.
 
 ---
 

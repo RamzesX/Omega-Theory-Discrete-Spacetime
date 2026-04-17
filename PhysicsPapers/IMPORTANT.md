@@ -86,11 +86,9 @@ The finite algebra `A_F = ℂ ⊕ ℍ ⊕ M₃(ℂ)` in `ConnesSpectralAction.le
 **Fix**: compose `errorD1` from ErrorForms with `errorWedge11` and su2/su3 brackets
 **Impact**: enables gluon self-coupling, W self-interaction, full Yang-Mills
 
-### Gap 3: Clifford off-diagonal
+### Gap 3: Clifford off-diagonal  — **CLOSED** (Tureis, DiracEquation.lean:209)
 **File**: `DiracEquation.lean`
-**Problem**: {γ^μ, γ^ν} = 2η^{μν}·I proved for μ=ν (4 cases), hypothesized for μ≠ν (12 cases)
-**Fix**: explicit 4×4 matrix multiplication for each of the 12 cases with `native_decide` or `fin_cases`
-**Impact**: full D² = Klein-Gordon without hypothesis
+**Status**: ✅ CLOSED. `gammaClifford_offDiagonal` proves all 12 cases unconditionally via 6 per-pair lemmas (`gamma{i}_gamma{j}_anticomm` for (i,j) ∈ {(0,1),(0,2),(0,3),(1,2),(1,3),(2,3)}) plus `add_comm` for the 6 reversed pairs. Each pair lemma uses `fin_cases i <;> fin_cases j <;> simp [...Matrix.mul_apply, Fin.sum_univ_four,...] <;> ring`. The legacy `CliffordOffDiagonal` hypothesis is now discharged unconditionally by `cliffordOffDiagonal_holds`, and `gammaClifford_anticommutator_full` gives the full `{γ^μ, γ^ν} = 2η^{μν}·I` Clifford relation (if μ=ν then diag else 0) without any hypothesis. `diracSquaredIsKG_unconditional` is inhabited → D²=KG bundle unconditional. Verified Apr-17 by Dubhe (full project build GREEN 3544 jobs).
 
 ---
 

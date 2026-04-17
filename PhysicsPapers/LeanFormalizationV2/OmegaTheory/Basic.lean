@@ -152,6 +152,18 @@ import OmegaTheory.Emergence.HiggsFromError
 import OmegaTheory.Emergence.PathIntegral
 import OmegaTheory.Emergence.RotationCurves
 
+-- Matter sector (Mirach + Algieba + Phecda + Alioth + Propus wave)
+import OmegaTheory.Emergence.FermionContent
+import OmegaTheory.Emergence.FermionHypercharge
+import OmegaTheory.Emergence.FermionQuantumNumbers
+import OmegaTheory.Emergence.AnomalyCancellation
+import OmegaTheory.Emergence.SpinStatistics
+import OmegaTheory.Emergence.ConnesBimodule
+import OmegaTheory.Emergence.CKMMatrix
+import OmegaTheory.Emergence.YukawaMatrix
+import OmegaTheory.Emergence.DiracLagrangian
+import OmegaTheory.Emergence.PMNSMatrix
+
 -- Layer 9: Falsifiable predictions (substrate vs alternatives)
 import OmegaTheory.Predictions.GravDecoherenceTScaling
 import OmegaTheory.Predictions.UHECRDispersion

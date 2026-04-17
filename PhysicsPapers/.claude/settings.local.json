@@ -115,8 +115,12 @@
       "Bash(ps -p 17142 -o pid,stat,etime,command)",
       "Bash(wait bg01a1qhq *)",
       "Bash(awk '{print $5}')",
-      "Bash(~/.elan/bin/lake --help)",
-      "Bash(awk '{print $5, $NF}')"
+      "Bash(~/.elan/bin/lake --help)",No they
+      "Bash(awk '{print $5, $NF}')",
+      "Bash(mkdir -p ~/.claude/agents)",
+      "Bash(cp /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/.claude/agents/*.md ~/.claude/agents/)",
+      "Read(//home/norbert/.claude/agents/**)",
+      "Bash(awk '{print $2, $11}')"
     ]
   },
   "spinnerTipsEnabled": true,

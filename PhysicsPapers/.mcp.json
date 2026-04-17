@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "lean-lsp": {
+      "type": "stdio",
+      "command": "/home/norbert/.local/bin/lean-lsp-mcp",
+      "args": [
+        "--lean-project-path",
+        "/mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2"
+      ],
+      "env": {}
+    }
+  }
+}

@@ -60,6 +60,14 @@ import OmegaTheory.Geometry.WeinbergLinearised
 import OmegaTheory.Geometry.WeinbergConformal
 -- Error-Bounded HPW scaffold (Phase 1 of EBHPW mission, 2026-04-17)
 import OmegaTheory.Geometry.ErrorBoundedSmooth
+-- Substantive EBHPW with explicit perturbation field (Adhara, 2026-04-17)
+import OmegaTheory.Geometry.ErrorBoundedSmoothReal
+-- Real fderiv-based wrapper around HpwHypothesis.SmoothMetricField (Markab, 2026-04-17)
+-- Non-breaking: adds SmoothMetricFieldReal alongside the opaque = 0 placeholders.
+import OmegaTheory.Geometry.SmoothMetricFieldReal
+-- Minimal Seeley-DeWitt / heat-kernel machinery (Ankaa + Tarazed, 2026-04-17)
+-- Depends on ErrorBoundedSmooth, lives in Foundations namespace.
+import OmegaTheory.Foundations.HeatKernelMinimal
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor
@@ -171,6 +179,7 @@ import OmegaTheory.Emergence.DiracFSpectrum
 import OmegaTheory.Emergence.DiracLagrangian
 import OmegaTheory.Emergence.PMNSMatrix
 import OmegaTheory.Emergence.KoideRelation
+import OmegaTheory.Emergence.LeptonMassFromIrrationals
 
 -- Layer 9: Falsifiable predictions (substrate vs alternatives)
 import OmegaTheory.Predictions.GravDecoherenceTScaling

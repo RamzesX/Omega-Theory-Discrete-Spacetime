@@ -5,6 +5,13 @@
 **Files crawled**: 161 Lean files
 **Headline**: 42 structure-field `:= True` uses + 1 `def ... : Prop := True` = **43 total**. Build currently **RED** on `HpwMinkowski.lean:79` because of a type-shape mismatch between pre-Maia placeholders and the upgraded `HpwHypothesis` structure.
 
+**Post-Alioth / Post-Mirfak / Post-Mebsuta update (2026-04-17 evening)**:
+* Category C (HPW consumer RED sites, 10 total) — all 10 discharged by **Alioth** via Alcyone/Maia `_of_placeholders` dischargers; build GREEN.
+* Cluster A / C matter-sector placeholders (25 sites) — **Mirfak** replaced 16 with real Props, left 9 as refined `TODO CLUSTER-A` markers.
+* **Cluster A SD-sector placeholders (9 sites)** — **Mebsuta** discharged **4 of 9** via Ankaa's `HeatKernelMinimal` skeleton: `has_cosmological_constant` + `has_einstein_hilbert` in both `ConnesSpectralAction.lean` and `SpectralActionExpansion.lean`. **5 remain** as `TODO CLUSTER-A` (Yang-Mills + Higgs in both files + fermion-kinetic in `SpectralActionExpansion.lean`); these are Tarazed's §3 MEDIUM/MEDIUM-HARD sites blocked on Naos's gauge-curvature bridge, HiggsFromError's higgs-sector bridge, and Tureis's spin-sector bridge.
+
+**Net remaining** in the two SD files after Mebsuta: **5 `Prop := True`** sites.
+
 ---
 
 ## Section 1 — Complete inventory

@@ -20,6 +20,7 @@
   | `frw` (FRW cosmological, non-zero Ricci, time-dependent `a(t)`) | `FRWHpwData g` | `frwHpwHypothesis` | `HpwFRW.lean` |
   | `bianchiI` (Bianchi I anisotropic, three independent scale factors `a₁(t), a₂(t), a₃(t)`) | `BianchiIHpwData g` | `bianchiIHpwHypothesis` | `HpwBianchiI.lean` |
   | `deSitter` (de Sitter, maximally symmetric vacuum `Λ > 0`, exponential scale factor `a(t) = exp(Ht)`) | `DeSitterHpwData H` | `deSitterHpwHypothesis` | `HpwDeSitter.lean` |
+  | `kerr` (Kerr rotating black hole, vacuum `R_μν = 0`, off-diagonal `dt dφ` cross-term, spin `a`) | `KerrMetricData g` | `kerrHpwHypothesis` | `HpwKerr.lean` |
 
   ## Regime left open
 
@@ -51,6 +52,7 @@ import OmegaTheory.Emergence.HpwSchwarzschild
 import OmegaTheory.Emergence.HpwFRW
 import OmegaTheory.Emergence.HpwBianchiI
 import OmegaTheory.Emergence.HpwDeSitter
+import OmegaTheory.Emergence.HpwKerr
 
 namespace OmegaTheory.Emergence
 
@@ -157,6 +159,20 @@ noncomputable def HpwEliminableRegime.ofDeSitter
     {H : ℝ} (data : DeSitterHpwData H) :
     HpwEliminableRegime (DiscreteMetric.deSitter H) where
   toHpw := deSitterHpwHypothesis data
+
+/-- **Kerr rotating-black-hole regime constructor.**  Kerr vacuum metrics
+    with Schwarzschild radius `r_s` and spin parameter `a_spin`, supplied
+    with the three sharp `ℓ_P/12` bounds (Taylor, harmonic-gauge,
+    Ricci-match).  Dispatches through `kerrHpwHypothesis`.
+
+    Regime: *Kerr rotating black hole vacuum — `R_μν = 0`, off-diagonal
+    `g_{tφ}` cross-term from angular momentum, discrete-continuum match
+    enforced per-point at `ℓ_P/12` via Taylor truncation, harmonic-gauge
+    Ricci-box identity, and Ricci-tensor comparison.* -/
+noncomputable def HpwEliminableRegime.ofKerr
+    {g : DiscreteMetric} (data : KerrMetricData g) :
+    HpwEliminableRegime g where
+  toHpw := kerrHpwHypothesis data
 
 /-! ## Canonical instances
 
@@ -296,6 +312,15 @@ theorem hpw_eliminable_deSitter
     ∃ _ : HpwEliminableRegime (DiscreteMetric.deSitter H), True :=
   ⟨.ofDeSitter data, trivial⟩
 
+/-- **Milestone: Kerr rotating-black-hole HPW elimination.**  Any `g`
+    equipped with a `KerrMetricData` bundle (three sharp `ℓ_P/12` bounds
+    plus Schwarzschild radius and spin parameter) admits an
+    `HpwEliminableRegime` instance through `ofKerr`. -/
+theorem hpw_eliminable_kerr
+    {g : DiscreteMetric} (data : KerrMetricData g) :
+    ∃ _ : HpwEliminableRegime g, True :=
+  ⟨.ofKerr data, trivial⟩
+
 /-! ## Progress summary
 
   * **Closed (no data required)** — free-space `DiscreteMetric.flat`.
@@ -325,6 +350,12 @@ theorem hpw_eliminable_deSitter
       `HpwHypothesis_of_deSitter` → `HpwHypothesis_of_frw`.  First
       maximally symmetric cosmological regime; physically the vacuum of
       inflationary cosmology.
+    - *Kerr* (rotating black hole, `R_μν = 0`, off-diagonal `g_{tφ}`):
+      user supplies a continuum interpolant plus three sharp `ℓ_P/12`
+      bounds; reaches HPW via `HpwHypothesis_of_kerr`.  First metric
+      with off-diagonal components (frame-dragging cross-term) in the
+      programme; vacuum, so harmonic-gauge term collapses as for
+      Schwarzschild.
 
   * **Open** — fully general curved spacetime.  Closing this requires
     ingredients A, C, E, F, G, H, I from `NOTES_HPW_ELIMINATION.md`

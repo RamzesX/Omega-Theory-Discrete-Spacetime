@@ -14,8 +14,10 @@
 
 -- Layer 0: Foundations
 import OmegaTheory.Foundations.ErrorAlgebra
+import OmegaTheory.Foundations.ErrorLieAlgebra
 import OmegaTheory.Foundations.TaylorBound
-
+import OmegaTheory.Foundations.ErrorForms
+import OmegaTheory.Foundations.ErrorHopfStructure
 
 -- Layer 1: Discrete Spacetime
 import OmegaTheory.Spacetime.Lattice
@@ -83,15 +85,19 @@ import OmegaTheory.Emergence.HpwHypothesis
 import OmegaTheory.Emergence.HpwMinkowski
 import OmegaTheory.Emergence.HpwLinearised
 import OmegaTheory.Emergence.SmoothInterpolant
+import OmegaTheory.Emergence.WhitneyInterpolant
 import OmegaTheory.Emergence.HarmonicGauge
 import OmegaTheory.Emergence.RicciComparison
 import OmegaTheory.Emergence.HpwSchwarzschild
 import OmegaTheory.Emergence.HpwFRW
 import OmegaTheory.Emergence.HpwBianchiI
 import OmegaTheory.Emergence.HpwDeSitter
+import OmegaTheory.Emergence.HpwKerr
 import OmegaTheory.Emergence.HpwElimSummary
 import OmegaTheory.Emergence.EinsteinEmergence
 import OmegaTheory.Emergence.CosmologicalConstant
+import OmegaTheory.Emergence.CosmologicalConstantProblem
+import OmegaTheory.Emergence.NegativePressure
 import OmegaTheory.Emergence.Gravitons
 import OmegaTheory.Emergence.SnapshotPropagator
 import OmegaTheory.Emergence.PatternIdentity
@@ -125,6 +131,7 @@ import OmegaTheory.Emergence.BornRule
 import OmegaTheory.Emergence.Interference
 import OmegaTheory.Emergence.Propagator
 import OmegaTheory.Emergence.Entanglement
+import OmegaTheory.Emergence.CHSHBell
 import OmegaTheory.Emergence.Decoherence
 import OmegaTheory.Emergence.Measurement
 import OmegaTheory.Emergence.Heisenberg
@@ -132,6 +139,11 @@ import OmegaTheory.Emergence.BekensteinBound
 import OmegaTheory.Emergence.QuantumMechanicsCapstone
 import OmegaTheory.Emergence.QmBridgePaper
 import OmegaTheory.Emergence.AharonovBohm
+import OmegaTheory.Emergence.ConnesSpectralAction
+import OmegaTheory.Emergence.ErrorGaugeField
+import OmegaTheory.Emergence.ErrorGaugeSU2
+import OmegaTheory.Emergence.ErrorGaugeSU3
+import OmegaTheory.Emergence.PathIntegral
 
 -- Layer 9: Falsifiable predictions (substrate vs alternatives)
 import OmegaTheory.Predictions.GravDecoherenceTScaling
@@ -142,6 +154,7 @@ import OmegaTheory.Predictions.HermiticityDefect
 import OmegaTheory.Predictions.ChristoffelSparsity
 import OmegaTheory.Predictions.SpinFlipRate
 import OmegaTheory.Predictions.GammaRayDispersion
+import OmegaTheory.Predictions.AdditionalPredictions
 
 -- Layer 11b: Irrationality → predictions bridge
 import OmegaTheory.Irrationality.PredictionsBridge

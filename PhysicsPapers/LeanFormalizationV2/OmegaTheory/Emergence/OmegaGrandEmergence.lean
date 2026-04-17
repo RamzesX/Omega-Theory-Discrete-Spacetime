@@ -315,16 +315,17 @@ theorem omega_grand_emergence
     (region : Finset LatticePoint)
     (tick : ℕ)
     (M_inv M_g : ℝ)
+    (hmu_le : Ω.params.mu ≤ 1)
     [inst : HpwEliminableRegime Ω.metric] :
     OmegaPostulates Ω ψ region tick M_inv M_g where
   hpw_eliminable := fun mu_coeff hmu hmu_le p μ ν =>
     hpw_axiom_eliminable Ω.metric mu_coeff hmu hmu_le p μ ν
   vacuum_einstein_bounded := fun hM_inv hM_g hinv hmet hD hI p μ ν =>
     vacuum_einstein_tensor_bounded Ω.params Ω.g Ω.g_exact Ω.I_field Ω.I_bar
-      M_inv M_g hM_inv hM_g hinv hmet Ω.equilibrium hD hI p μ ν
+      M_inv M_g hM_inv hM_g hinv hmet Ω.equilibrium hD hI hmu_le p μ ν
   sourced_einstein := fun hM_inv hM_g hinv hmet p μ ν =>
     einstein_tensor_emergence Ω.params Ω.g Ω.g_exact Ω.I_field Ω.I_bar
-      M_inv M_g hM_inv hM_g hinv hmet Ω.equilibrium p μ ν
+      M_inv M_g hM_inv hM_g hinv hmet Ω.equilibrium hmu_le p μ ν
   scalar_curvature_triangle_bound := fun K hM_inv hK p hinv hRic =>
     scalar_curvature_bounded Ω.g M_inv K hM_inv hK p hinv hRic
   bianchi_bounded := fun ρ σ p μ ν α =>
@@ -383,6 +384,7 @@ theorem omega_grand_emergence_on_minkowski
     (M_inv M_g : ℝ) :
     OmegaPostulates minkowskiSubstrate ψ region tick M_inv M_g :=
   omega_grand_emergence minkowskiSubstrate ψ region tick M_inv M_g
+    (by norm_num : minkowskiSubstrate.params.mu ≤ 1)
 
 /-! ## Perturbed-flat specialisation
 
@@ -516,12 +518,13 @@ theorem omega_hpw_eliminable
     (region : Finset LatticePoint)
     (tick : ℕ)
     (M_inv M_g : ℝ)
+    (hmu_le_params : Ω.params.mu ≤ 1)
     [HpwEliminableRegime Ω.metric]
     (mu_coeff : ℝ) (hmu : 0 < mu_coeff) (hmu_le : mu_coeff ≤ 1)
     (p : LatticePoint) (μ ν : Fin 4) :
     |mu_coeff * discreteLaplacian (fun q => Ω.g q μ ν) p +
      2 * mu_coeff * ricciTensor Ω.g μ ν p| ≤ l_P / 2 :=
-  (omega_grand_emergence Ω ψ region tick M_inv M_g).hpw_eliminable
+  (omega_grand_emergence Ω ψ region tick M_inv M_g hmu_le_params).hpw_eliminable
     mu_coeff hmu hmu_le p μ ν
 
 /-- **Ω-QM projection.**  Extracts the nine-postulate QM record from
@@ -532,9 +535,10 @@ theorem omega_qm_postulates
     (region : Finset LatticePoint)
     (tick : ℕ)
     (M_inv M_g : ℝ)
+    (hmu_le : Ω.params.mu ≤ 1)
     [HpwEliminableRegime Ω.metric] :
     QuantumMechanicsPostulates Ω.d Ω.hscope ψ region tick :=
-  (omega_grand_emergence Ω ψ region tick M_inv M_g).qm_postulates
+  (omega_grand_emergence Ω ψ region tick M_inv M_g hmu_le).qm_postulates
 
 /-- **Ω-Bianchi projection.**  Extracts the differential Bianchi bound
     from the grand record on any substrate. -/
@@ -544,12 +548,13 @@ theorem omega_bianchi_bounded
     (region : Finset LatticePoint)
     (tick : ℕ)
     (M_inv M_g : ℝ)
+    (hmu_le : Ω.params.mu ≤ 1)
     [HpwEliminableRegime Ω.metric]
     (ρ σ : Fin 4) (p : LatticePoint) (μ ν α : Fin 4) :
     |covariantExtDeriv (connectionForm Ω.scd.g)
         (curvatureForm Ω.scd.g) ρ σ p μ ν α| ≤
       24 * Ω.scd.M_dconn ^ 2 * l_P :=
-  (omega_grand_emergence Ω ψ region tick M_inv M_g).bianchi_bounded ρ σ p μ ν α
+  (omega_grand_emergence Ω ψ region tick M_inv M_g hmu_le).bianchi_bounded ρ σ p μ ν α
 
 /-- **Ω-Dirac projection.**  Extracts the Dirac Prop-carrying data
     from the grand record on any substrate. -/
@@ -559,10 +564,11 @@ theorem omega_dirac_data
     (region : Finset LatticePoint)
     (tick : ℕ)
     (M_inv M_g : ℝ)
+    (hmu_le : Ω.params.mu ≤ 1)
     [HpwEliminableRegime Ω.metric]
     (m : ℝ) :
     diracFromLattice_partial.waveEquation m vacuumLatticeSpinorField :=
-  (omega_grand_emergence Ω ψ region tick M_inv M_g).dirac_data m
+  (omega_grand_emergence Ω ψ region tick M_inv M_g hmu_le).dirac_data m
 
 /-! ## Documentation summary
 

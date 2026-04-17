@@ -142,13 +142,15 @@ theorem darkEnergyEquationOfState_w (μ : ℝ) (hμ : 0 < μ) :
     and `l_P/(2μ) = effectiveCosmologicalConstant μ`. This theorem
     merely records the definitional identity connecting the two. -/
 theorem cosmologicalConstant_from_healing_residual (params : HealingParams)
-    (g g_exact : DiscreteMetric) (I : InformationDensity) (I_bar : ℝ)
+    (g g_exact : DiscreteMetric) [inst : HpwEliminableRegime g]
+    (I : InformationDensity) (I_bar : ℝ)
     (heq : IsHealingEquilibrium params g g_exact I I_bar)
     (hD : ∀ p μ ν, defectTensor g g_exact p μ ν = 0)
     (hI : ∀ p, I p = I_bar)
+    (hmu_le : params.mu ≤ 1)
     (p : LatticePoint) (μ ν : Fin 4) :
     |ricciTensor g μ ν p| ≤ effectiveCosmologicalConstant params.mu :=
-  vacuum_einstein_emergence params g g_exact I I_bar heq hD hI p μ ν
+  vacuum_einstein_emergence params g g_exact I I_bar heq hD hI hmu_le p μ ν
 
 /-- The effective Λ from the healing residual is positive. -/
 theorem cosmologicalConstant_from_healing_pos (params : HealingParams) :

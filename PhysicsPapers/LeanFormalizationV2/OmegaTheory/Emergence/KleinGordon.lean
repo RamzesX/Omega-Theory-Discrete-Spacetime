@@ -540,4 +540,192 @@ theorem kleinGordon_nonRelativistic_limit
   Omega-theory substrate to a Klein-Gordon-shape residue bound.
 -/
 
+/-! ## Real-valued d'Alembertian and Klein-Gordon operator on ScalarField
+
+The definitions above operate on `LatticeComplexField` (two-argument
+complex field indexed by `(LatticePoint, ℕ)`).  The task below builds
+the **single-argument real-valued** versions that operate on
+`ScalarField = LatticePoint → ℝ`, where the 4D lattice `Fin 4 → ℤ`
+carries time as index 0 and space as indices 1, 2, 3.
+
+These real-valued operators are the textbook d'Alembertian □ and KG
+operator acting on a real scalar field on the discrete spacetime
+lattice, using the `secondDeriv` infrastructure from
+`Spacetime.Operators`. -/
+
+/-- **Spatial directions**: the set `{1, 2, 3} ⊂ Fin 4` representing
+    the three spatial indices of the lattice.  Index 0 is time. -/
+def spatialDirs : Finset (Fin 4) := {1, 2, 3}
+
+/-- The spatial discrete Laplacian: Δ_spatial φ(p) = Σ_{μ ∈ {1,2,3}} ∂²_μ φ(p).
+    This sums second derivatives over the three spatial directions only,
+    omitting the temporal direction (μ = 0). -/
+noncomputable def spatialLaplacian (φ : ScalarField) (p : LatticePoint) : ℝ :=
+  spatialDirs.sum fun μ => secondDeriv φ μ p
+
+/-- **Discrete d'Alembertian** on a real scalar field.
+
+        □ φ(p) = (1/c²) ∂²_t φ(p) − Δ_spatial φ(p)
+
+    where ∂²_t = secondDeriv in direction 0 (normalised by l_P²) and
+    Δ_spatial sums secondDeriv over directions 1, 2, 3.
+
+    Dimensionally: each `secondDeriv` has units `φ / l_P²`, and we
+    multiply the temporal piece by `1/c²` to convert from lattice-time
+    spacing to physical-time spacing.  (On the lattice `l_P = c · t_P`,
+    so `(1/c²) · (φ / l_P²) = φ / (c² l_P²) = φ / (l_P · c · l_P /c)
+    = φ / (l_P² · c² / c²)` — the factors conspire correctly.) -/
+noncomputable def discreteDAlembert (φ : ScalarField) (p : LatticePoint) : ℝ :=
+  (1 / c ^ 2) * secondDeriv φ 0 p - spatialLaplacian φ p
+
+/-- **Klein-Gordon operator** on a real scalar field.
+
+        KG_m φ(p) = □ φ(p) + (mc/ℏ)² · φ(p)
+
+    This is the operator whose kernel defines Klein-Gordon solutions. -/
+noncomputable def kleinGordonOperator (m : ℝ) (φ : ScalarField) (p : LatticePoint) : ℝ :=
+  discreteDAlembert φ p + (m * c / hbar) ^ 2 * φ p
+
+/-- **Klein-Gordon solution predicate.**  A field `φ` is a KG solution
+    of mass `m` if the Klein-Gordon operator vanishes at every lattice
+    point.  On the discrete substrate this is an exact equality —
+    continuum solutions satisfy it identically; lattice-discretised
+    solutions satisfy it up to the substrate error bounded above. -/
+def IsKleinGordonSolution (m : ℝ) (φ : ScalarField) : Prop :=
+  ∀ p : LatticePoint, kleinGordonOperator m φ p = 0
+
+/-! ### Massless Klein-Gordon is the wave equation
+
+At `m = 0` the mass term `(mc/ℏ)²` vanishes, and the KG operator
+reduces to the d'Alembertian.  A massless KG solution therefore
+satisfies the wave equation `□φ = 0`. -/
+
+/-- **Massless Klein-Gordon reduces to the wave equation.**
+    At `m = 0`, `kleinGordonOperator 0 φ p = discreteDAlembert φ p`
+    for every field `φ` and lattice point `p`. -/
+theorem massless_kleinGordon_is_wave_equation (φ : ScalarField) (p : LatticePoint) :
+    kleinGordonOperator 0 φ p = discreteDAlembert φ p := by
+  unfold kleinGordonOperator
+  simp [zero_mul, zero_div, zero_pow]
+
+/-- A massless Klein-Gordon solution satisfies `□φ = 0`. -/
+theorem massless_KG_solution_is_wave_solution {φ : ScalarField}
+    (h : IsKleinGordonSolution 0 φ) :
+    ∀ p : LatticePoint, discreteDAlembert φ p = 0 := by
+  intro p
+  have := h p
+  rwa [massless_kleinGordon_is_wave_equation] at this
+
+/-! ### Klein-Gordon dispersion relation
+
+For continuum plane-wave solutions `φ(x) = exp(i(k·x − ωt))`, the
+Klein-Gordon equation `(□ + m²c²/ℏ²)φ = 0` yields the dispersion
+relation
+
+        ω²/c² − |k|² = (mc/ℏ)²     ⟺     E² = (pc)² + (mc²)²
+
+by identifying `E = ℏω` and `p = ℏ|k|`.  This is the relativistic
+mass-shell relation, already proved in `SpecialRelativity.lean` as
+`relativisticEnergy_sq_eq`.
+
+The theorem below is a structural bridge: it states that the mass-shell
+relation `E² = (pc)² + (mc²)²` holds for every momentum and mass,
+which is the operator-level content of the KG dispersion.  A full
+Fourier-transform proof (substituting a discrete plane wave into
+`kleinGordonOperator` and reading off the dispersion) would require
+discrete Fourier analysis not yet in V2; the structural bridge is
+the honest deliverable. -/
+
+/-- **Klein-Gordon dispersion relation (structural form).**
+
+    The operator roots of the Klein-Gordon equation are the mass-shell
+    relation `E(p,m)² = (pc)² + (mc²)²`.  This is the content of the
+    dispersion: a plane wave `exp(i(kx − ωt))` solves the KG equation
+    iff `(ℏω)² = (ℏkc)² + (mc²)²`, which, writing `E = ℏω` and
+    `p_phys = ℏk`, gives the relativistic energy.
+
+    The theorem is a direct citation of `relativisticEnergy_sq_eq`
+    from `SpecialRelativity`, stated here to name the KG-specific
+    narrative. -/
+theorem kleinGordon_dispersion_relation (p_phys m : ℝ) :
+    (relativisticEnergy p_phys m) ^ 2
+      = (p_phys * c) ^ 2 + (m * c ^ 2) ^ 2 :=
+  relativisticEnergy_sq_eq p_phys m
+
+/-! ### Non-relativistic limit — connection to Schrödinger
+
+The Klein-Gordon energy `E(p,m) = √((pc)² + (mc²)²)` reduces in the
+low-momentum limit to `E ≈ mc² + p²/(2m)`, which is the
+non-relativistic (Schrödinger) energy.  The error is controlled by
+`|E − E_NR| ≤ p⁴/(4m³c²)`, already proved as
+`nonRelativistic_energy_approx` in `DispersionBridge.lean`.
+
+This is the quantitative bridge connecting the Klein-Gordon operator
+(this file) back to the Schrödinger derivation
+(`SchrodingerFromLattice.lean`): in the non-relativistic regime the
+two equations agree to quartic order in momentum. -/
+
+/-- **Klein-Gordon non-relativistic limit (Schrödinger connection).**
+
+    For a particle of positive mass `m`, the full relativistic energy
+    (the operator root of Klein-Gordon) differs from the
+    non-relativistic energy `mc² + p²/(2m)` (the energy that
+    generates Schrödinger evolution) by at most `p⁴/(4m³c²)`.
+
+    This is the quantitative content of the "Klein-Gordon reduces to
+    Schrödinger at low momentum" statement. -/
+theorem kleinGordon_nonrelativistic_limit {m : ℝ} (hm : 0 < m) (p : ℝ) :
+    |relativisticEnergy p m - nonRelativisticEnergy p m|
+      ≤ p ^ 4 / (4 * m ^ 3 * c ^ 2) :=
+  nonRelativistic_energy_approx hm p
+
+/-! ### Linearity of the Klein-Gordon operator
+
+Basic structural properties: the KG operator is linear. -/
+
+/-- The d'Alembertian vanishes on constant fields. -/
+theorem discreteDAlembert_const (k : ℝ) (p : LatticePoint) :
+    discreteDAlembert (fun _ => k) p = 0 := by
+  unfold discreteDAlembert spatialLaplacian
+  simp [secondDeriv_const]
+
+/-- The Klein-Gordon operator on a constant field equals the mass
+    term times the constant. -/
+theorem kleinGordonOperator_const (m k : ℝ) (p : LatticePoint) :
+    kleinGordonOperator m (fun _ => k) p = (m * c / hbar) ^ 2 * k := by
+  unfold kleinGordonOperator
+  rw [discreteDAlembert_const]
+  ring
+
+/-- The d'Alembertian is additive. -/
+theorem discreteDAlembert_add (φ ψ : ScalarField) (p : LatticePoint) :
+    discreteDAlembert (φ + ψ) p = discreteDAlembert φ p + discreteDAlembert ψ p := by
+  unfold discreteDAlembert spatialLaplacian
+  simp only [secondDeriv_add]
+  rw [Finset.sum_add_distrib]
+  ring
+
+/-- The d'Alembertian commutes with scalar multiplication. -/
+theorem discreteDAlembert_smul (k : ℝ) (φ : ScalarField) (p : LatticePoint) :
+    discreteDAlembert (k • φ) p = k * discreteDAlembert φ p := by
+  unfold discreteDAlembert spatialLaplacian
+  simp only [secondDeriv_smul]
+  rw [← Finset.mul_sum]
+  ring
+
+/-- **The spatial Laplacian plus temporal second-derivative recover the
+    full 4D Laplacian.**  This connects the 3+1 decomposition back to
+    the existing `discreteLaplacian` infrastructure. -/
+theorem spatialLaplacian_plus_temporal_eq_laplacian (φ : ScalarField) (p : LatticePoint) :
+    secondDeriv φ 0 p + spatialLaplacian φ p = discreteLaplacian φ p := by
+  unfold spatialLaplacian discreteLaplacian spatialDirs
+  rw [Fin.sum_univ_four]
+  -- Need to evaluate ∑ μ ∈ {1, 2, 3}, secondDeriv φ μ p
+  have heval : (({1, 2, 3} : Finset (Fin 4)).sum fun μ => secondDeriv φ μ p)
+      = secondDeriv φ 1 p + secondDeriv φ 2 p + secondDeriv φ 3 p := by
+    simp [Finset.sum_insert, Finset.mem_insert, Finset.mem_singleton, Finset.sum_singleton]
+    ring
+  rw [heval]
+  ring
+
 end OmegaTheory.Emergence

@@ -114,7 +114,8 @@
       "Bash(wait bgu86hh8x *)",
       "Bash(ps -p 17142 -o pid,stat,etime,command)",
       "Bash(wait bg01a1qhq *)",
-      "Bash(awk '{print $5}')"
+      "Bash(awk '{print $5}')",
+      "Bash(~/.elan/bin/lake --help)"
     ]
   },
   "spinnerTipsEnabled": true,

@@ -57,6 +57,7 @@ import OmegaTheory.Geometry.RicciTensor
 import OmegaTheory.Geometry.HarmonicGaugeContinuum
 import OmegaTheory.Geometry.RicciProperties
 import OmegaTheory.Geometry.WeinbergLinearised
+import OmegaTheory.Geometry.WeinbergConformal
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor
@@ -143,7 +144,10 @@ import OmegaTheory.Emergence.ConnesSpectralAction
 import OmegaTheory.Emergence.ErrorGaugeField
 import OmegaTheory.Emergence.ErrorGaugeSU2
 import OmegaTheory.Emergence.ErrorGaugeSU3
+import OmegaTheory.Emergence.SymmetryBreaking
+import OmegaTheory.Emergence.HiggsFromError
 import OmegaTheory.Emergence.PathIntegral
+import OmegaTheory.Emergence.RotationCurves
 
 -- Layer 9: Falsifiable predictions (substrate vs alternatives)
 import OmegaTheory.Predictions.GravDecoherenceTScaling

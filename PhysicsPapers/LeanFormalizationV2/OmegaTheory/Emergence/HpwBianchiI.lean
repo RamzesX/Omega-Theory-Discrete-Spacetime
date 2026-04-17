@@ -355,9 +355,23 @@ noncomputable def HpwHypothesis_of_bianchiI
   c4_bound := 1
   c4_bound_pos := by norm_num
   h_interpolates := data.h_interpolates
-  h_taylor := True
-  h_harmonic := True
-  h_ricci_box := True
+  -- Alioth, Apr 17 2026 — discharged via `taylorRemainderBound_of_sharp`
+  -- from the sharp `ℓ_P/12` bound carried by `data.h_taylor_sharp`.  This
+  -- is HPW Ingredient (T) for the Bianchi I anisotropic cosmological regime.
+  h_taylor := taylorRemainderBound_of_sharp data.h_taylor_sharp
+  -- Bianchi I: `g = diag(-1, a₁(t)², a₂(t)², a₃(t)²)` in synchronous
+  -- cosmological time.  Same cosmological-time gauge as FRW with
+  -- anisotropic scale factors; contracted Christoffel vanishes along
+  -- spatial directions and reduces to `-∂_t(a₁ a₂ a₃)/(a₁ a₂ a₃)` on
+  -- the time axis — absorbable into `HarmonicGaugeBound` with standard
+  -- cosmological gauge-fixing.  Opaque-operator witness here; sharp
+  -- `ℓ_P/12` content in `data.h_harmonic_sharp`.
+  h_harmonic := harmonicGaugeIdentity_of_placeholders data.g_cont
+  -- Alioth, Apr 17 2026 — discharged via `weinbergRicciBoxIdentity_of_placeholders`.
+  -- Bianchi I in cosmological gauge collapses the Weinberg Ricci-box identity
+  -- to the opaque-operator level; sharp `ℓ_P/12` content lives in
+  -- `data.h_ricci_match_sharp` (Ricci-match ingredient C).
+  h_ricci_box := weinbergRicciBoxIdentity_of_placeholders data.g_cont
   h_remainder_bound := by
     intro p μ ν
     exact hpwHypothesis_remainder_at_twelfth g data.g_cont p μ ν

@@ -51,9 +51,14 @@ noncomputable def minkowskiSmoothField : SmoothMetricField :=
     `ricciTensor_flat_eq_zero`.  Hence the `h_remainder_bound` field
     is `|0 + 2·0| = 0 ≤ ℓ_P/2`.
 
-    The `h_taylor`, `h_harmonic`, `h_ricci_box` documentation fields
-    are all `True` here: the free-space case needs none of the three
-    analytic inputs because both sides of each bound vanish identically. -/
+    The `h_taylor`, `h_ricci_box` documentation fields are `True` here:
+    the free-space case needs none of the three analytic inputs because
+    both sides of each bound vanish identically.  `h_harmonic` is
+    discharged by `harmonicGaugeIdentity_of_placeholders` — the
+    quantitative harmonic-gauge Ricci-box identity holds trivially on
+    any `g_cont` because the opaque continuum operators are
+    definitionally zero; the flat case is genuinely harmonic, the
+    witness merely matches the current opaque-operator calculus. -/
 noncomputable def minkowskiHpwHypothesis : HpwHypothesis DiscreteMetric.flat where
   g_cont := minkowskiSmoothField
   c4_bound := 1
@@ -62,9 +67,22 @@ noncomputable def minkowskiHpwHypothesis : HpwHypothesis DiscreteMetric.flat whe
     intro p μ ν
     unfold minkowskiSmoothField
     exact (minkowskiInterpolantField_interpolates_flat p μ ν).symm
-  h_taylor := True
-  h_harmonic := True
-  h_ricci_box := True
+  -- Alcyone, Apr 17 2026 — discharged via `discreteLaplacian_const`:
+  -- on flat Minkowski, each metric component is constant in `p`, so the
+  -- discrete Laplacian vanishes identically, and the opaque continuum
+  -- placeholder also vanishes.  The Taylor truncation is automatic.
+  h_taylor :=
+    taylorRemainderBound_of_laplacian_zero minkowskiSmoothField (by
+      intro p μ ν
+      exact discreteLaplacian_const (minkowskiMetric μ ν) p)
+  h_harmonic := harmonicGaugeIdentity_of_placeholders minkowskiSmoothField
+  -- Alioth, Apr 17 2026 — discharged via `weinbergRicciBoxIdentity_of_placeholders`:
+  -- the opaque continuum Laplacian and continuum Ricci placeholders are both
+  -- definitionally zero, so `|R^cont + (1/2)·□g^cont| = |0 + 0| = 0 ≤ ℓ_P²`
+  -- trivially.  On flat Minkowski the exact harmonic-gauge Weinberg Ricci-box
+  -- identity holds identically; the witness here records the opaque-operator
+  -- version consistent with the `h_harmonic` discharge above.
+  h_ricci_box := weinbergRicciBoxIdentity_of_placeholders minkowskiSmoothField
   h_remainder_bound := by
     intro p μ ν
     have hL : discreteLaplacian (fun q => DiscreteMetric.flat q μ ν) p = 0 :=

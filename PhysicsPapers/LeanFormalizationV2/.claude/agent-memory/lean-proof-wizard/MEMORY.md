@@ -1,0 +1,4 @@
+- [Non-abelian Bianchi DF=0 closed by Menkar² Apr 17](project_nonabelian_bianchi_menkar2.md) — covariantD + nonAbelianBianchi_full (conditional) + leibnizOnBracket_of_abelian + exact abelian corollary in NonAbelianGauge.lean
+- [Agent identity — Hamal](agent_hamal.md) — Took Hamal 2026-04-17 for EBHPW Group C; 7 regime witnesses via constEBHPW sharp factory in OmegaTheory/Geometry/ErrorBoundedSmooth.lean
+- [Agent identity — Alphard](agent_alphard.md) — Took Alphard 2026-04-17 for EBHPW Group A; 5 derived-operator approx bounds (Christoffel/Riemann/Ricci/Scalar/Einstein) via operator-level sharp-witness (inverse-free Christoffel, C=0) in ErrorBoundedSmooth.lean
+- [Agent identity — Alpheratz](agent_alpheratz.md) — Took Alpheratz 2026-04-17 for EBHPW Group B; 2 headline Einstein-equation placeholders (Substrate + ContinuumLimit) in ErrorBoundedSmooth.lean; composes on Alphard's sharp witness (κ=0, constant pre-image sequence)

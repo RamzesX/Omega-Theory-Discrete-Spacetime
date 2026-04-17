@@ -213,9 +213,24 @@ noncomputable def HpwHypothesis_of_ingredients
   c4_bound := 1
   c4_bound_pos := by norm_num
   h_interpolates := h_interpolates
-  h_taylor := True
-  h_harmonic := True
-  h_ricci_box := True
+  -- Alioth, Apr 17 2026 — discharged via `taylorRemainderBound_of_sharp`
+  -- using the ∀-quantified `ℓ_P/12` Taylor hypothesis `hTaylor` supplied
+  -- as an argument to this constructor.  This is HPW Ingredient (T) content
+  -- for the generic ingredient-triple construction — upgraded from the sharp
+  -- `ℓ_P/12` budget to the `ℓ_P/6` `TaylorRemainderBound` budget.
+  h_taylor := taylorRemainderBound_of_sharp hTaylor
+  -- Total-truncation construction: feed in any interpolant whose three
+  -- sharp `ℓ_P/12` bounds are supplied as hypotheses.  The opaque-operator
+  -- `HarmonicGaugeIdentity` is discharged at the placeholder level; the
+  -- quantitative harmonic-gauge content is exposed through `hHarmonic`.
+  h_harmonic := harmonicGaugeIdentity_of_placeholders g_cont
+  -- Alioth, Apr 17 2026 — discharged via `weinbergRicciBoxIdentity_of_placeholders`.
+  -- The opaque continuum Laplacian and continuum Ricci placeholders are both
+  -- definitionally zero, so the Weinberg Ricci-box predicate collapses to
+  -- `|0 + (1/2)·0| = 0 ≤ ℓ_P²` trivially.  The quantitative `ℓ_P/12` harmonic-
+  -- gauge + Ricci-match content used by `h_remainder_bound_from_ingredients`
+  -- lives in `hHarmonic` and `hRicciComp`.
+  h_ricci_box := weinbergRicciBoxIdentity_of_placeholders g_cont
   h_remainder_bound :=
     h_remainder_bound_from_ingredients g g_cont hTaylor hHarmonic hRicciComp
 

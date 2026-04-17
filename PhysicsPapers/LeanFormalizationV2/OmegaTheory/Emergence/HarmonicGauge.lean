@@ -54,74 +54,14 @@ namespace OmegaTheory.Emergence
 open OmegaTheory.Spacetime
 open OmegaTheory.Geometry
 
-/-! ## Continuum operators (opaque placeholders)
+/-! ## Continuum operators and the harmonic-gauge identity
 
-Mathlib v4.29 does not expose a Ricci tensor on `ℝ⁴` out of the box, and
-differentiating `SmoothMetricField` by hand would require committing to a
-specific smoothness class before it is needed.  We therefore give both
-operators as **opaque** definitions returning `0`.  The HPW proof does not
-consume their contents directly — it consumes the *propositions* below
-(`HarmonicGaugeIdentity`, `RicciMatch`), which a concrete model instantiates.
-
-This mirrors the Architect's strategy: `h_harmonic`, `h_ricci_box`,
-`h_remainder_bound` are exposed as `Prop` / bound fields.  The `0`-valued
-placeholders keep the types closed and let us state concrete witnesses
-(`flatHarmonicGauge`) without choosing a differentiation library. -/
-
-/-- **Continuum Laplacian placeholder.**  `continuumLaplacianAt g_cont x μ ν`
-    morally denotes `(∂^α ∂_α g_{μν})(x)`.  In this file it is an opaque
-    `noncomputable def` returning `0`; a concrete instantiator supplies a
-    genuine smooth differentiation in their own namespace and constructs a
-    `HarmonicGaugeIdentity` proof. -/
-noncomputable def continuumLaplacianAt
-    (_g_cont : SmoothMetricField) (_x : Fin 4 → ℝ) (_μ _ν : Fin 4) : ℝ :=
-  0
-
-/-- **Continuum Ricci tensor placeholder.**  `ricciTensorContinuum g_cont x μ ν`
-    morally denotes `R_{μν}(x)` computed from the continuum metric.  Opaque
-    `noncomputable def` returning `0`; purpose matches `continuumLaplacianAt`. -/
-noncomputable def ricciTensorContinuum
-    (_g_cont : SmoothMetricField) (_x : Fin 4 → ℝ) (_μ _ν : Fin 4) : ℝ :=
-  0
-
-/-- The placeholder continuum Laplacian is definitionally zero. -/
-theorem continuumLaplacianAt_placeholder
-    (g_cont : SmoothMetricField) (x : Fin 4 → ℝ) (μ ν : Fin 4) :
-    continuumLaplacianAt g_cont x μ ν = 0 := rfl
-
-/-- The placeholder continuum Ricci tensor is definitionally zero. -/
-theorem ricciTensorContinuum_placeholder
-    (g_cont : SmoothMetricField) (x : Fin 4 → ℝ) (μ ν : Fin 4) :
-    ricciTensorContinuum g_cont x μ ν = 0 := rfl
-
-/-! ## (G) + (H): the quantitative harmonic-gauge identity
-
-The content of Ingredients (G) and (H) combined is the inequality
-    |(∂^α ∂_α g_{μν})(x) + 2 R_{μν}(g)(x)| ≤ ℓ_P²
-at every `x ∈ ℝ⁴` and every component `(μ,ν)`.  This is the **quantitative**
-form of Weinberg's identity in harmonic coordinates: in exact harmonic gauge
-the LHS vanishes identically; allowing a weak gauge slack `|Γ^ρ| ≤ ℓ_P`
-puts `|Q(g, ∂g)| ≤ O(ℓ_P²)`, which is absorbed on the right.
-
-A concrete interpolant (supplied by the Interpolant-constructor agent) will
-prove `HarmonicGaugeIdentity` for its specific `g_cont`.  The
-`flatHarmonicGauge` witness below discharges the trivial Minkowski case. -/
-
-/-- **Ingredient (G)+(H): Quantitative harmonic-gauge Ricci-box identity.**
-    For a smooth continuum metric field `g_cont : (Fin 4 → ℝ) → Fin 4 → Fin 4 → ℝ`,
-    at every spacetime point and every tensor component, the continuum
-    Laplacian of the metric plus twice the Ricci tensor is bounded by
-    `ℓ_P²` in absolute value.
-
-    * Exact harmonic gauge collapses this to `|0 + 2·0| = 0 ≤ ℓ_P²`.
-    * Approximate harmonic gauge (`|Γ^ρ| ≤ ℓ_P`) gives
-      `|Q(g, ∂g)| ≤ O(ℓ_P²)`, still fitting inside `ℓ_P²`.
-    * A future Ricci-comparison agent can convert this into a
-      `HpwHypothesis.h_ricci_box`/`h_harmonic` witness. -/
-def HarmonicGaugeIdentity (g_cont : SmoothMetricField) : Prop :=
-  ∀ (x : Fin 4 → ℝ) (μ ν : Fin 4),
-    |continuumLaplacianAt g_cont x μ ν
-       + 2 * ricciTensorContinuum g_cont x μ ν| ≤ l_P ^ 2
+The opaque placeholders `continuumLaplacianAt`, `ricciTensorContinuum`
+and the proposition `HarmonicGaugeIdentity` now live in
+`Emergence.HpwHypothesis` so that they can be used to type the
+`HpwHypothesis.h_harmonic` field directly.  We import them from there
+and re-use them below.  See `HpwHypothesis.lean` for the full
+documentation and the `harmonicGaugeIdentity_of_placeholders` witness. -/
 
 /-! ## Ricci match between continuum and discrete lattice
 

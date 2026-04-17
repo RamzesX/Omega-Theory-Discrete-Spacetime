@@ -144,19 +144,111 @@ theorem gammaClifford_anticommutator_diag (μ : Fin 4) :
   simp [Matrix.smul_apply, smul_eq_mul]
   ring
 
-/-- **Hypothesis for the off-diagonal Clifford anticommutator.** -/
+/-- Helper: rewrite `gamma0` as an explicit `Matrix.of` matrix, so `mul_apply`
+    unfolds uniformly for both operands via `Matrix.of_apply`. -/
+theorem gamma0_eq_of :
+    gamma0 = Matrix.of ![![(1 : ℂ), 0, 0, 0], ![0, 1, 0, 0],
+                         ![0, 0, -1, 0], ![0, 0, 0, -1]] := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [gamma0, Matrix.diagonal_apply, Matrix.of_apply]
+
+/-- **Off-diagonal Clifford: gamma0 and gamma1 anticommute.** -/
+theorem gamma0_gamma1_anticomm :
+    gamma0 * gamma1 + gamma1 * gamma0 = 0 := by
+  rw [gamma0_eq_of]
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [gamma1, Matrix.mul_apply, Matrix.of_apply,
+          Fin.sum_univ_four, Matrix.add_apply] <;> ring
+
+/-- **Off-diagonal Clifford: gamma0 and gamma2 anticommute.** -/
+theorem gamma0_gamma2_anticomm :
+    gamma0 * gamma2 + gamma2 * gamma0 = 0 := by
+  rw [gamma0_eq_of]
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [gamma2, Matrix.mul_apply, Matrix.of_apply,
+          Fin.sum_univ_four, Matrix.add_apply] <;> ring
+
+/-- **Off-diagonal Clifford: gamma0 and gamma3 anticommute.** -/
+theorem gamma0_gamma3_anticomm :
+    gamma0 * gamma3 + gamma3 * gamma0 = 0 := by
+  rw [gamma0_eq_of]
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [gamma3, Matrix.mul_apply, Matrix.of_apply,
+          Fin.sum_univ_four, Matrix.add_apply] <;> ring
+
+/-- **Off-diagonal Clifford: gamma1 and gamma2 anticommute.** -/
+theorem gamma1_gamma2_anticomm :
+    gamma1 * gamma2 + gamma2 * gamma1 = 0 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [gamma1, gamma2, Matrix.mul_apply, Matrix.of_apply,
+          Fin.sum_univ_four, Matrix.add_apply] <;> ring
+
+/-- **Off-diagonal Clifford: gamma1 and gamma3 anticommute.** -/
+theorem gamma1_gamma3_anticomm :
+    gamma1 * gamma3 + gamma3 * gamma1 = 0 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [gamma1, gamma3, Matrix.mul_apply, Matrix.of_apply,
+          Fin.sum_univ_four, Matrix.add_apply] <;> ring
+
+/-- **Off-diagonal Clifford: gamma2 and gamma3 anticommute.** -/
+theorem gamma2_gamma3_anticomm :
+    gamma2 * gamma3 + gamma3 * gamma2 = 0 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [gamma2, gamma3, Matrix.mul_apply, Matrix.of_apply,
+          Fin.sum_univ_four, Matrix.add_apply] <;> ring
+
+/-- **The off-diagonal Clifford anticommutator (all 12 cases).**
+    Proved by the 6 unique pairs above plus additive symmetry. -/
+theorem gammaClifford_offDiagonal
+    (μ ν : Fin 4) (hne : μ ≠ ν) :
+    gammaClifford μ * gammaClifford ν + gammaClifford ν * gammaClifford μ = 0 := by
+  fin_cases μ <;> fin_cases ν <;> first
+    | (exfalso; exact hne rfl)
+    | exact gamma0_gamma1_anticomm
+    | exact gamma0_gamma2_anticomm
+    | exact gamma0_gamma3_anticomm
+    | exact gamma1_gamma2_anticomm
+    | exact gamma1_gamma3_anticomm
+    | exact gamma2_gamma3_anticomm
+    | (rw [add_comm]; exact gamma0_gamma1_anticomm)
+    | (rw [add_comm]; exact gamma0_gamma2_anticomm)
+    | (rw [add_comm]; exact gamma0_gamma3_anticomm)
+    | (rw [add_comm]; exact gamma1_gamma2_anticomm)
+    | (rw [add_comm]; exact gamma1_gamma3_anticomm)
+    | (rw [add_comm]; exact gamma2_gamma3_anticomm)
+
+/-- **(Legacy) Hypothesis for the off-diagonal Clifford anticommutator.**
+    Now discharged unconditionally by `gammaClifford_offDiagonal`. -/
 def CliffordOffDiagonal : Prop :=
   ∀ (μ ν : Fin 4), μ ≠ ν →
     gammaClifford μ * gammaClifford ν + gammaClifford ν * gammaClifford μ = 0
 
-/-- The full Clifford anticommutator, assuming the off-diagonal hypothesis. -/
-theorem gammaClifford_anticommutator
-    (hoff : CliffordOffDiagonal) (μ ν : Fin 4) :
+/-- The off-diagonal hypothesis holds unconditionally. -/
+theorem cliffordOffDiagonal_holds : CliffordOffDiagonal :=
+  fun μ ν hne => gammaClifford_offDiagonal μ ν hne
+
+/-- The full Clifford anticommutator (UNCONDITIONAL). -/
+theorem gammaClifford_anticommutator_full (μ ν : Fin 4) :
     gammaClifford μ * gammaClifford ν + gammaClifford ν * gammaClifford μ
     = if μ = ν then (2 * etaPP μ) • (1 : Matrix (Fin 4) (Fin 4) ℂ) else 0 := by
   by_cases h : μ = ν
   · simp [h, gammaClifford_anticommutator_diag]
-  · simp [h, hoff μ ν h]
+  · simp [h, gammaClifford_offDiagonal μ ν h]
+
+/-- The full Clifford anticommutator, assuming the off-diagonal hypothesis
+    (retained for backward compatibility; hypothesis is now redundant). -/
+theorem gammaClifford_anticommutator
+    (_hoff : CliffordOffDiagonal) (μ ν : Fin 4) :
+    gammaClifford μ * gammaClifford ν + gammaClifford ν * gammaClifford μ
+    = if μ = ν then (2 * etaPP μ) • (1 : Matrix (Fin 4) (Fin 4) ℂ) else 0 :=
+  gammaClifford_anticommutator_full μ ν
 
 /-! ## Section 4: Dirac Spinor Field on the Lattice -/
 
@@ -259,6 +351,10 @@ noncomputable def diracSquaredIsKG_of_clifford
     (hoff : CliffordOffDiagonal) : DiracSquaredIsKG where
   clifford := hoff
   mass_shell := fun p m => relativisticEnergy_sq_eq p m
+
+/-- `DiracSquaredIsKG` is inhabited UNCONDITIONALLY (Clifford now a theorem). -/
+noncomputable def diracSquaredIsKG_unconditional : DiracSquaredIsKG :=
+  diracSquaredIsKG_of_clifford cliffordOffDiagonal_holds
 
 /-- The Dirac mass shell is the relativistic energy-momentum relation. -/
 theorem dirac_mass_shell (p m : ℝ) :

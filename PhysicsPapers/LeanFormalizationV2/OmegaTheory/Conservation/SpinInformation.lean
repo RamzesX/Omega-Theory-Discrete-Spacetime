@@ -174,15 +174,15 @@ def isBoson (s : SpinAsInfoLoop) : Bool := Even s.nLoops
 
 /-- Electron is a fermion. -/
 theorem electron_is_fermion : isFermion electronInfoLoop = true := by
-  native_decide
+  decide
 
 /-- Photon is a boson. -/
 theorem photon_is_boson : isBoson photonInfoLoop = true := by
-  native_decide
+  decide
 
 /-- Graviton is a boson. -/
 theorem graviton_is_boson : isBoson gravitonInfoLoop = true := by
-  native_decide
+  decide
 
 /-- Fermions and bosons are mutually exclusive. -/
 theorem fermion_boson_exclusive (s : SpinAsInfoLoop) :

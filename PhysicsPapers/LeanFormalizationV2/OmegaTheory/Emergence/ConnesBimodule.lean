@@ -248,9 +248,10 @@ structure IrreducibilityBundle where
   /-- All three simultaneously. -/
   allSimple     : C_simple ∧ H_simple ∧ M3_simple
 
-/-- Default bundle where each irreducibility claim is instantiated
-    by `True`; future agents replace these with Mathlib-backed
-    `Module.IsSimple` witnesses once the upstream API is available. -/
+/-- **Default bundle — 2026-04-17**: Prop := True kept here for
+    backward compat; callers who want REAL Mathlib-backed irreducibility
+    should use `AF_Irreducibility.standardIrreducibilityStrong` instead
+    (from `OmegaTheory/Emergence/AF_Irreducibility.lean`, Unukalhai). -/
 def standardIrreducibility : IrreducibilityBundle where
   C_simple   := True
   H_simple   := True

@@ -302,9 +302,23 @@ noncomputable def HpwHypothesis_of_frw
   c4_bound := 1
   c4_bound_pos := by norm_num
   h_interpolates := data.h_interpolates
-  h_taylor := True
-  h_harmonic := True
-  h_ricci_box := True
+  -- Alcyone, Apr 17 2026 — discharged via `taylorRemainderBound_of_sharp`
+  -- from the sharp `ℓ_P/12` bound carried by `data.h_taylor_sharp`.  This
+  -- is exactly the HPW Ingredient (T) content in the FRW cosmological
+  -- regime.
+  h_taylor := taylorRemainderBound_of_sharp data.h_taylor_sharp
+  -- FRW cosmological: cosmological-time gauge `g_{00} = -1`, `g_{0i} = 0`
+  -- is the standard harmonic choice for spatially-homogeneous spacetimes.
+  -- The opaque-operator `HarmonicGaugeIdentity` collapses to `0 ≤ ℓ_P²`;
+  -- the sharp `ℓ_P/12` Weinberg-Q bound used for `h_remainder_bound` is
+  -- `data.h_harmonic_sharp`.
+  h_harmonic := harmonicGaugeIdentity_of_placeholders data.g_cont
+  -- Alioth, Apr 17 2026 — discharged via `weinbergRicciBoxIdentity_of_placeholders`.
+  -- In FRW cosmological time the harmonic-gauge Weinberg Ricci-box identity
+  -- collapses to the opaque-operator level (both continuum placeholders are
+  -- definitionally zero); the sharp `ℓ_P/12` quantitative content lives in
+  -- `data.h_harmonic_sharp`.
+  h_ricci_box := weinbergRicciBoxIdentity_of_placeholders data.g_cont
   h_remainder_bound := by
     intro p μ ν
     exact hpwHypothesis_remainder_at_twelfth g data.g_cont p μ ν

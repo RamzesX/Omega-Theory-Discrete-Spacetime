@@ -58,6 +58,8 @@ import OmegaTheory.Geometry.HarmonicGaugeContinuum
 import OmegaTheory.Geometry.RicciProperties
 import OmegaTheory.Geometry.WeinbergLinearised
 import OmegaTheory.Geometry.WeinbergConformal
+-- Error-Bounded HPW scaffold (Phase 1 of EBHPW mission, 2026-04-17)
+import OmegaTheory.Geometry.ErrorBoundedSmooth
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor
@@ -84,6 +86,7 @@ import OmegaTheory.Emergence.CoarseGrain
 import OmegaTheory.Emergence.LaplacianRicci
 import OmegaTheory.Emergence.HpwHypothesis
 import OmegaTheory.Emergence.HpwMinkowski
+import OmegaTheory.Emergence.HpwSmoothMetricBridge
 import OmegaTheory.Emergence.HpwLinearised
 import OmegaTheory.Emergence.SmoothInterpolant
 import OmegaTheory.Emergence.WhitneyInterpolant
@@ -146,11 +149,13 @@ import OmegaTheory.Emergence.ErrorGaugeField
 import OmegaTheory.Emergence.ErrorGaugeSU2
 import OmegaTheory.Emergence.ErrorGaugeSU3
 import OmegaTheory.Emergence.SU3JacobiHelper
+import OmegaTheory.Emergence.SU3JacobiFull
 import OmegaTheory.Emergence.NonAbelianGauge
 import OmegaTheory.Emergence.SymmetryBreaking
 import OmegaTheory.Emergence.HiggsFromError
 import OmegaTheory.Emergence.PathIntegral
 import OmegaTheory.Emergence.RotationCurves
+import OmegaTheory.Emergence.SpectralActionExpansion
 
 -- Matter sector (Mirach + Algieba + Phecda + Alioth + Propus wave)
 import OmegaTheory.Emergence.FermionContent
@@ -159,8 +164,10 @@ import OmegaTheory.Emergence.FermionQuantumNumbers
 import OmegaTheory.Emergence.AnomalyCancellation
 import OmegaTheory.Emergence.SpinStatistics
 import OmegaTheory.Emergence.ConnesBimodule
+import OmegaTheory.Emergence.AF_Irreducibility
 import OmegaTheory.Emergence.CKMMatrix
 import OmegaTheory.Emergence.YukawaMatrix
+import OmegaTheory.Emergence.DiracFSpectrum
 import OmegaTheory.Emergence.DiracLagrangian
 import OmegaTheory.Emergence.PMNSMatrix
 

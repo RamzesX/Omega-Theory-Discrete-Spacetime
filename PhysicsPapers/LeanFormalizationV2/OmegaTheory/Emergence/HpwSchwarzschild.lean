@@ -179,9 +179,25 @@ noncomputable def HpwHypothesis_of_vacuum_static
   c4_bound := 1
   c4_bound_pos := by norm_num
   h_interpolates := data.h_interpolates
-  h_taylor := True
-  h_harmonic := True
-  h_ricci_box := True
+  -- Alcyone, Apr 17 2026 — discharged via `taylorRemainderBound_of_sharp`
+  -- from the sharp `ℓ_P/12` bound carried by `data.h_taylor_sharp`.  This
+  -- is exactly the HPW Ingredient (T) content in Schwarzschild's
+  -- vacuum static-spherical regime.
+  h_taylor := taylorRemainderBound_of_sharp data.h_taylor_sharp
+  -- Schwarzschild is static and spherically symmetric.  In Schwarzschild
+  -- coordinates the contracted Christoffel vanishes identically on the
+  -- exterior — the metric is genuinely harmonic.  The quantitative
+  -- `HarmonicGaugeIdentity` is discharged here at the opaque-operator
+  -- level (both continuum Laplacian and continuum Ricci placeholders are
+  -- definitionally zero); the sharp `ℓ_P/12` content used to discharge
+  -- `h_remainder_bound` lives in `data.h_harmonic_sharp`.
+  h_harmonic := harmonicGaugeIdentity_of_placeholders data.g_cont
+  -- Alioth, Apr 17 2026 — discharged via `weinbergRicciBoxIdentity_of_placeholders`.
+  -- Schwarzschild exterior is Ricci-flat (`R^cont_{μν} = 0`) and harmonic-gauge
+  -- interpolants additionally collapse `□g^cont` at the opaque-operator level.
+  -- The quantitative `ℓ_P/12` harmonic-gauge Weinberg-Q content used to
+  -- discharge `h_remainder_bound` lives in `data.h_harmonic_sharp`.
+  h_ricci_box := weinbergRicciBoxIdentity_of_placeholders data.g_cont
   h_remainder_bound := by
     intro p μ ν
     exact hpwHypothesis_remainder_at_twelfth g data.g_cont p μ ν

@@ -115,12 +115,17 @@
       "Bash(ps -p 17142 -o pid,stat,etime,command)",
       "Bash(wait bg01a1qhq *)",
       "Bash(awk '{print $5}')",
-      "Bash(~/.elan/bin/lake --help)",No they
+      "Bash(~/.elan/bin/lake --help)",
       "Bash(awk '{print $5, $NF}')",
       "Bash(mkdir -p ~/.claude/agents)",
       "Bash(cp /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/.claude/agents/*.md ~/.claude/agents/)",
       "Read(//home/norbert/.claude/agents/**)",
-      "Bash(awk '{print $2, $11}')"
+      "Bash(awk '{print $2, $11}')",
+      "Bash(grep -rn \"^\\\\s*sorry\\\\b\\\\|:=\\\\s*sorry\\\\b\\\\|· sorry\\\\b\\\\| sorry$\" OmegaTheory --include=\"*.lean\")",
+      "Bash(grep -rn \"Prop := True\\\\|:= True\\\\s*$\\\\|:= True\\\\s*--\" OmegaTheory --include=\"*.lean\")",
+      "Bash(grep -rn \"^\\\\s*\\\\\\(.*:=\\\\s*trivial\\\\s*\\\\|· trivial\\\\s*\\\\\\)$\" OmegaTheory --include=\"*.lean\")",
+      "Bash(awk -F: '{print $1}')",
+      "Bash(grep -rn \"^\\\\s*.*:\\\\s*Prop\\\\s*$\\\\|^structure.*Prop\" OmegaTheory --include=\"*.lean\")"
     ]
   },
   "spinnerTipsEnabled": true,

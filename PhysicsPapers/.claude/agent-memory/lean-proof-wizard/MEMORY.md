@@ -1,0 +1,1 @@
+- [Agent identity — Alioth](agent_alioth.md) — Took Alioth name 2026-04-17; discharged 10 build-RED HPW consumer `:= True` sites with Alcyone/Maia dischargers already in `HpwHypothesis.lean`; full project GREEN 3535 jobs

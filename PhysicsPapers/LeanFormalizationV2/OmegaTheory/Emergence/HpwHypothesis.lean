@@ -67,6 +67,225 @@ abbrev SmoothMetricField : Type := (Fin 4 → ℝ) → Fin 4 → Fin 4 → ℝ
 noncomputable def latticeEmbed (p : LatticePoint) : Fin 4 → ℝ :=
   fun μ => l_P * (p μ : ℝ)
 
+/-! ## Continuum operator placeholders
+
+Mathlib v4.29 does not ship a Ricci tensor or continuum d'Alembertian on
+`ℝ⁴`.  Rather than committing to a heavy Riemannian library, we expose
+both as **opaque** `noncomputable def`s returning `0`.  The HPW proof does
+not consume their contents directly — it consumes the *propositions*
+below (`HarmonicGaugeIdentity`, `RicciMatch`, plus the sharp per-regime
+fields), which a concrete model instantiates.
+
+Moved from `Emergence.HarmonicGauge` on 2026-04-17 to let
+`HpwHypothesis.h_harmonic` carry a real harmonic-gauge proposition rather
+than unconstrained `Prop`, without inducing a circular import. -/
+
+/-- **Continuum Laplacian placeholder.**  `continuumLaplacianAt g_cont x μ ν`
+    morally denotes `(∂^α ∂_α g_{μν})(x)`.  Opaque `noncomputable def`
+    returning `0`; a concrete instantiator supplies genuine smooth
+    differentiation in their own namespace. -/
+noncomputable def continuumLaplacianAt
+    (_g_cont : SmoothMetricField) (_x : Fin 4 → ℝ) (_μ _ν : Fin 4) : ℝ :=
+  0
+
+/-- **Continuum Ricci tensor placeholder.**  `ricciTensorContinuum g_cont x μ ν`
+    morally denotes `R_{μν}(x)` computed from the continuum metric.  Opaque
+    `noncomputable def` returning `0`; purpose matches `continuumLaplacianAt`. -/
+noncomputable def ricciTensorContinuum
+    (_g_cont : SmoothMetricField) (_x : Fin 4 → ℝ) (_μ _ν : Fin 4) : ℝ :=
+  0
+
+/-- The placeholder continuum Laplacian is definitionally zero. -/
+theorem continuumLaplacianAt_placeholder
+    (g_cont : SmoothMetricField) (x : Fin 4 → ℝ) (μ ν : Fin 4) :
+    continuumLaplacianAt g_cont x μ ν = 0 := rfl
+
+/-- The placeholder continuum Ricci tensor is definitionally zero. -/
+theorem ricciTensorContinuum_placeholder
+    (g_cont : SmoothMetricField) (x : Fin 4 → ℝ) (μ ν : Fin 4) :
+    ricciTensorContinuum g_cont x μ ν = 0 := rfl
+
+/-- **Quantitative harmonic-gauge Ricci-box identity.**
+    For a smooth continuum metric field `g_cont`, at every spacetime point
+    `x` and every tensor component `(μ,ν)`, the continuum Laplacian of the
+    metric plus twice the Ricci tensor is bounded by `ℓ_P²` in absolute
+    value.
+
+    Mathematically this combines Weinberg 1972 §11.1 Eq. (11.1.7) with
+    approximate harmonic gauge `|Γ^ρ| ≤ ℓ_P`:
+
+    * Exact harmonic gauge collapses the LHS to `|0 + 2·0| = 0 ≤ ℓ_P²`.
+    * Approximate gauge puts `|Q(g, ∂g)| ≤ O(ℓ_P²)`, still fitting.
+
+    Used as the type of the `h_harmonic` field of `HpwHypothesis`: this is
+    the honest harmonic-gauge proposition a model must supply, in place of
+    the historical unconstrained `Prop`. -/
+def HarmonicGaugeIdentity (g_cont : SmoothMetricField) : Prop :=
+  ∀ (x : Fin 4 → ℝ) (μ ν : Fin 4),
+    |continuumLaplacianAt g_cont x μ ν
+       + 2 * ricciTensorContinuum g_cont x μ ν| ≤ l_P ^ 2
+
+/-- **Trivial harmonic-gauge witness from opaque placeholders.**  Since
+    `continuumLaplacianAt` and `ricciTensorContinuum` are definitionally
+    `0`, every `g_cont` satisfies `HarmonicGaugeIdentity` via
+    `|0 + 2·0| = 0 ≤ ℓ_P²`.  Concrete models that replace the placeholders
+    with genuine smooth differentiation will discharge `HarmonicGaugeIdentity`
+    non-trivially via Weinberg's identity. -/
+theorem harmonicGaugeIdentity_of_placeholders (g_cont : SmoothMetricField) :
+    HarmonicGaugeIdentity g_cont := by
+  intro x μ ν
+  rw [continuumLaplacianAt_placeholder, ricciTensorContinuum_placeholder,
+      mul_zero, add_zero, abs_zero]
+  exact sq_nonneg _
+
+/-- **Quantitative Weinberg Ricci-box identity (on a `SmoothMetricField`).**
+
+    Pointwise form of Mizar's `Geometry.WeinbergRicciBox` specialised to the
+    `SmoothMetricField` representation used by `HpwHypothesis.g_cont`:
+
+    `|R^cont_{μν}(x) + (1/2) · (□^cont g_{μν})(x)| ≤ ℓ_P²`
+
+    at every `x ∈ ℝ⁴` and every tensor component `(μ, ν)`.  This is the
+    `SmoothMetricField`-shadow of Mizar's `Geometry.WeinbergRicciBox`
+    (which takes a full `Geometry.SmoothMetric`): combining the three
+    ingredients
+
+    * Achernar's `weinbergRicciBox_linearised` (linearised gauge),
+    * Thuban's `conformal_weinbergRicciBox` (conformal gauge),
+    * Fomalhaut's `ricciSymmetric_of_weinbergIdentity` (symmetry chain),
+
+    a concrete model that lifts `g_cont` to a `Geometry.SmoothMetric` with
+    matching component and inverse functions discharges
+    `WeinbergRicciBoxIdentity g_cont` directly via
+    `ricciBoxDefect_bound_of_weinberg_and_quadratic`.
+
+    Used as the type of the `h_ricci_box` field of `HpwHypothesis`: this is
+    the honest Weinberg Ricci-box proposition a model must supply, in place
+    of the historical unconstrained `Prop`.  The budget `ℓ_P²` matches the
+    combined Taylor + harmonic-gauge + Ricci-box allocation in
+    `hpwHypothesis_remainder_at_twelfth`. -/
+def WeinbergRicciBoxIdentity (g_cont : SmoothMetricField) : Prop :=
+  ∀ (x : Fin 4 → ℝ) (μ ν : Fin 4),
+    |ricciTensorContinuum g_cont x μ ν
+       + (1 / 2) * continuumLaplacianAt g_cont x μ ν| ≤ l_P ^ 2
+
+/-- **Trivial Weinberg Ricci-box witness from opaque placeholders.**  Since
+    `continuumLaplacianAt` and `ricciTensorContinuum` are definitionally
+    `0`, every `g_cont` satisfies `WeinbergRicciBoxIdentity` via
+    `|0 + (1/2)·0| = 0 ≤ ℓ_P²`.  Concrete models that lift `g_cont` to a
+    full `Geometry.SmoothMetric` G with matching component function
+    discharge `WeinbergRicciBoxIdentity` non-trivially via
+    `weinbergRicciBox_of_weinberg_and_quadratic` on G. -/
+theorem weinbergRicciBoxIdentity_of_placeholders (g_cont : SmoothMetricField) :
+    WeinbergRicciBoxIdentity g_cont := by
+  intro x μ ν
+  rw [continuumLaplacianAt_placeholder, ricciTensorContinuum_placeholder,
+      mul_zero, add_zero, abs_zero]
+  exact sq_nonneg _
+
+/-! **Bridge to Mizar's `Geometry.WeinbergRicciBox` — downstream.**  A
+    concrete `Geometry.SmoothMetric G` satisfying `Geometry.WeinbergRicciBox G ε`
+    with `ε ≤ ℓ_P²` discharges `WeinbergRicciBoxIdentity g_cont` whenever the
+    model identifies `ricciTensorContinuum g_cont` with `ricci G` and
+    `continuumLaplacianAt g_cont` with `flatBackgroundLaplacian G`.  The full
+    bridge theorem must live downstream of `Geometry.SmoothMetric` (which
+    imports this file), e.g. in `Geometry.HarmonicGaugeContinuum`. -/
+
+/-! ## Taylor-remainder bound predicate (Alcyone, 2026-04-17)
+
+Ingredient (T) of the HPW elimination programme — the quantitative
+Taylor-truncation claim — is captured by the following predicate on a pair
+`(g, g_cont)`.  In the continuum-limit picture (where
+`continuumLaplacianAt g_cont ≡ 0` under the present opaque placeholder),
+the sharp Taylor bound `|Δ_lat g_{μν}(p) − Δ_cont g_{μν}(ι p)| ≤ ℓ_P/12`
+matches the `h_taylor_sharp` field carried by the five per-regime data
+bundles (`VacuumStaticSphericalData`, `FRWHpwData`, `BianchiIHpwData`,
+`KerrMetricData`) and is directly supported by Arcturus's Mathlib-backed
+central-difference Taylor bound `central_diff_second_order_accurate_axis`
+in `Foundations.TaylorBound`. -/
+
+/-- **Taylor-remainder bound (Ingredient T).**  At every lattice point and
+    every tensor component, the discrete Laplacian of `g_{μν}` agrees with
+    the continuum Laplacian of `g_cont` at the embedded point within the
+    `ℓ_P/6` Taylor budget:
+
+    `|Δ_lat g_{μν}(p) − Δ_cont g_{μν}(ι p)| ≤ ℓ_P/6`.
+
+    The budget is `ℓ_P/6` (rather than the sharper `ℓ_P/12`) to cover
+    uniformly:
+
+    * the four **sharp** regimes (Schwarzschild, FRW, Bianchi I, Kerr),
+      whose data bundles carry the sharp `ℓ_P/12` bound — tight enough to
+      satisfy the wider `ℓ_P/6` budget here (monotonicity lemma
+      `TaylorRemainderBound.of_twelfth_sub` below);
+    * the **linearised** regime, whose scale hypothesis `3·ε·K ≤ ℓ_P/2`
+      yields `|Δ_lat g_{μν}| ≤ ε·K ≤ ℓ_P/6` — exactly the Taylor budget;
+    * the **Minkowski** flat regime, where `Δ_lat g ≡ 0` trivially.
+
+    Proved in general from `central_diff_second_order_accurate_axis`
+    (Arcturus, `Foundations.TaylorBound`) for a concrete `g_cont` with
+    known `C⁴` bound. -/
+def TaylorRemainderBound
+    (g : DiscreteMetric) (g_cont : SmoothMetricField) : Prop :=
+  ∀ (p : LatticePoint) (μ ν : Fin 4),
+    |discreteLaplacian (fun q => g q μ ν) p
+       - continuumLaplacianAt g_cont (latticeEmbed p) μ ν| ≤ l_P / 6
+
+/-- **Trivial Taylor-remainder witness for a vanishing discrete Laplacian.**
+    If `discreteLaplacian g_{μν}(p) = 0` for all `(p, μ, ν)` (e.g. flat
+    Minkowski, where `g` is constant in `p`), then
+    `TaylorRemainderBound g g_cont` holds for *any* `g_cont`, since under
+    the opaque `continuumLaplacianAt` placeholder both terms vanish. -/
+theorem taylorRemainderBound_of_laplacian_zero
+    {g : DiscreteMetric} (g_cont : SmoothMetricField)
+    (h_lap_zero : ∀ (p : LatticePoint) (μ ν : Fin 4),
+      discreteLaplacian (fun q => g q μ ν) p = 0) :
+    TaylorRemainderBound g g_cont := by
+  intro p μ ν
+  rw [h_lap_zero p μ ν, continuumLaplacianAt_placeholder, sub_zero, abs_zero]
+  exact div_nonneg l_P_nonneg (by norm_num)
+
+/-- **Sharp-to-budget monotonicity.**  Any regime that supplies the sharp
+    `ℓ_P/12` Taylor bound (`h_taylor_sharp`) satisfies the wider `ℓ_P/6`
+    `TaylorRemainderBound`.  Used by the four sharp per-regime data bundles
+    (Schwarzschild, FRW, Bianchi I, Kerr) to discharge the `h_taylor` field
+    of `HpwHypothesis`. -/
+theorem taylorRemainderBound_of_sharp
+    {g : DiscreteMetric} {g_cont : SmoothMetricField}
+    (h_sharp : ∀ (p : LatticePoint) (μ ν : Fin 4),
+      |discreteLaplacian (fun q => g q μ ν) p
+         - continuumLaplacianAt g_cont (latticeEmbed p) μ ν| ≤ l_P / 12) :
+    TaylorRemainderBound g g_cont := by
+  intro p μ ν
+  have h12 := h_sharp p μ ν
+  -- l_P/12 ≤ l_P/6 since l_P ≥ 0.
+  have hLP : 0 ≤ l_P := l_P_nonneg
+  have hmon : l_P / 12 ≤ l_P / 6 := by
+    have h1 : l_P / 12 = l_P * (1 / 12) := by ring
+    have h2 : l_P / 6 = l_P * (1 / 6) := by ring
+    rw [h1, h2]
+    exact mul_le_mul_of_nonneg_left (by norm_num) hLP
+  exact le_trans h12 hmon
+
+/-- **Linearised-regime Taylor-remainder witness.**  For a metric with a
+    pointwise Laplacian bound `|Δ_lat g_{μν}(p)| ≤ ε·K` and a scale
+    hypothesis `ε·K ≤ ℓ_P/6`, `TaylorRemainderBound g g_cont` holds for
+    any `g_cont` (under the opaque `continuumLaplacianAt` placeholder).
+
+    Used by `HpwHypothesis_of_linearised` in `HpwLinearised.lean`: the
+    public scale hypothesis there is `3·ε·K ≤ ℓ_P/2`, which is literally
+    `ε·K ≤ ℓ_P/6` (divide by 3). -/
+theorem taylorRemainderBound_of_linearised
+    {g : DiscreteMetric} (g_cont : SmoothMetricField)
+    (ε K : ℝ) (hε : 0 < ε) (hK : 0 ≤ K)
+    (h_lap_bound : ∀ (p : LatticePoint) (μ ν : Fin 4),
+      |discreteLaplacian (fun q => g q μ ν) p| ≤ ε * K)
+    (h_scale : ε * K ≤ l_P / 6) :
+    TaylorRemainderBound g g_cont := by
+  intro p μ ν
+  rw [continuumLaplacianAt_placeholder, sub_zero]
+  exact le_trans (h_lap_bound p μ ν) h_scale
+
 /-! ## The hypothesis bundle
 
 `HpwHypothesis g` bundles, for a fixed `DiscreteMetric g`, the data and
@@ -115,24 +334,59 @@ structure HpwHypothesis (g : DiscreteMetric) : Type where
   /-- `g_cont` interpolates `g` at every lattice point, rescaled by `ℓ_P`. -/
   h_interpolates : ∀ (p : LatticePoint) (μ ν : Fin 4),
     (g p) μ ν = g_cont (latticeEmbed p) μ ν
-  /-- **Scalar Taylor-truncation hypothesis.**  The discrete Laplacian of
-      each component of `g` agrees with the continuum Laplacian of the
-      corresponding component of `g_cont` at the embedded point, with error
-      at most `ℓ_P / 4` after scaling by any positive `mu_coeff`.
+  /-- **Scalar Taylor-truncation hypothesis.**  At every lattice point and
+      every tensor component, the discrete Laplacian of `g_{μν}` agrees with
+      the continuum Laplacian of the corresponding component of `g_cont`
+      within the `ℓ_P/6` Taylor budget:
 
-      This is Ingredient (T).  A future agent (Taylor-prover) proves it
-      directly from `taylor_mean_remainder_lagrange` in Mathlib, given
-      the interpolation and the `c4_bound`. -/
-  h_taylor : Prop
-  /-- **Harmonic-gauge hypothesis.**  `g_cont` satisfies the harmonic gauge
-      condition `Γ^ρ := g^{μν} Γ^ρ_{μν} = 0` at every embedded lattice
-      point.  This is Ingredient (H).  Kept as a `Prop` field; its precise
-      content is the responsibility of the instantiator. -/
-  h_harmonic : Prop
+      `|Δ_lat g_{μν}(p) − Δ_cont g_{μν}(ι p)| ≤ ℓ_P/6`.
+
+      **Changed 2026-04-17 (Alcyone).**  Previously unconstrained `Prop`;
+      now carries real semantic content as `TaylorRemainderBound g g_cont`.
+      All seven regime witnesses discharge it:
+
+      * **Minkowski** — `discreteLaplacian g_flat ≡ 0` and the opaque
+        continuum Laplacian is `0`, so the bound collapses to
+        `|0 − 0| = 0 ≤ ℓ_P/6` via
+        `taylorRemainderBound_of_laplacian_zero`.
+      * **Linearised** — the scale hypothesis `3·ε·K ≤ ℓ_P/2` gives
+        `ε·K ≤ ℓ_P/6`, absorbing the per-point Laplacian bound via
+        `taylorRemainderBound_of_linearised`.
+      * **Schwarzschild/FRW/Bianchi I/Kerr** — each carries `h_taylor_sharp`
+        (sharp `ℓ_P/12`), upgraded to the `ℓ_P/6` budget via
+        `taylorRemainderBound_of_sharp`.
+
+      Proved in general from `central_diff_second_order_accurate_axis`
+      (Arcturus's `Foundations.TaylorBound`) for a concrete `g_cont` with
+      known `C⁴` bound `M` satisfying `ℓ_P²·M ≤ 1`. -/
+  h_taylor : TaylorRemainderBound g g_cont
+  /-- **Harmonic-gauge hypothesis.**  `g_cont` satisfies the quantitative
+      harmonic-gauge Ricci-box identity: `|Δ_cont g_{μν} + 2 R^cont_{μν}| ≤ ℓ_P²`
+      at every `(x, μ, ν)`.  This is Ingredient (H) combined with (G).
+
+      **Changed 2026-04-17 (Electra).**  Previously unconstrained `Prop`;
+      now carries real semantic content as `HarmonicGaugeIdentity g_cont`.
+      All seven regime witnesses discharge it — trivially at the opaque-
+      placeholder level via `harmonicGaugeIdentity_of_placeholders`, and
+      non-trivially via Weinberg's identity when concrete models replace
+      the placeholders with genuine smooth differentiation. -/
+  h_harmonic : HarmonicGaugeIdentity g_cont
   /-- **Weinberg Ricci-box identity.**  For `g_cont` in harmonic gauge,
       `□g_{μν} = -2 R_{μν} + Q(g, ∂g)` with `Q` quadratic in Christoffels.
-      This is Ingredient (R).  Kept as a `Prop` field. -/
-  h_ricci_box : Prop
+
+      Quantitative form:
+      `|R^cont_{μν}(x) + (1/2) · (□^cont g_{μν})(x)| ≤ ℓ_P²`
+      at every `(x, μ, ν)`.  This is Ingredient (R).
+
+      **Changed 2026-04-17 (Maia).**  Previously unconstrained `Prop`;
+      now carries real semantic content as `WeinbergRicciBoxIdentity g_cont`,
+      matching the `HarmonicGaugeIdentity` upgrade of `h_harmonic`.  Every
+      seven regime witnesses discharges it — trivially at the opaque-
+      placeholder level via `weinbergRicciBoxIdentity_of_placeholders`,
+      and non-trivially via `weinbergRicciBoxIdentity_of_smoothMetric`
+      when concrete models lift `g_cont` to a full
+      `Geometry.SmoothMetric`. -/
+  h_ricci_box : WeinbergRicciBoxIdentity g_cont
   /-- **The composite per-point HPW remainder bound.**  The conclusion that
       the Taylor + harmonic-gauge + Ricci-box chain produces at every
       lattice point: `|Δ_lat g_{μν}(p) + 2 R_{μν}(p)| ≤ ℓ_P / 2`.

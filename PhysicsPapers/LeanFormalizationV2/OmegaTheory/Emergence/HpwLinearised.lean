@@ -117,9 +117,35 @@ noncomputable def HpwHypothesis_of_linearised
   c4_bound := 1
   c4_bound_pos := by norm_num
   h_interpolates := D.h_interpolates
-  h_taylor := True
-  h_harmonic := True
-  h_ricci_box := True
+  -- Alcyone, Apr 17 2026 — discharged via `taylorRemainderBound_of_linearised`:
+  -- the per-point Laplacian bound `|Δ g_{μν}(p)| ≤ ε·K` combined with the
+  -- scale hypothesis `3·ε·K ≤ ℓ_P/2` (which algebraically gives `ε·K ≤ ℓ_P/6`)
+  -- absorbs into the `ℓ_P/6` Taylor budget under the opaque continuum
+  -- Laplacian placeholder.  This is the direct per-point form of Ingredient
+  -- (T) for the linearised regime; Arcturus's
+  -- `central_diff_second_order_accurate_axis` gives the same control from
+  -- a `C⁴` bound on the perturbation when a concrete smooth interpolant is
+  -- supplied.
+  h_taylor := by
+    refine taylorRemainderBound_of_linearised D.g_cont D.ε D.K
+      D.ε_pos D.K_nonneg D.h_lap_bound ?_
+    -- `ε·K ≤ ℓ_P/6`  ⟺  `3·ε·K ≤ ℓ_P/2`.
+    have hK_nn : 0 ≤ D.K := D.K_nonneg
+    have hε_nn : 0 ≤ D.ε := D.ε_pos.le
+    nlinarith [l_P_nonneg, h_scale]
+  -- Linearised regime: the weak gauge `|Γ^ρ| ≤ ℓ_P` + opaque-operator
+  -- calculus collapse `HarmonicGaugeIdentity` to `0 ≤ ℓ_P²`.  Genuine
+  -- content lives in the Weinberg Ricci-box derivation carried out in
+  -- Achernar's `WeinbergLinearised.lean`; here we record the opaque-level
+  -- witness that is definitionally true.
+  h_harmonic := harmonicGaugeIdentity_of_placeholders D.g_cont
+  -- Alioth, Apr 17 2026 — discharged via `weinbergRicciBoxIdentity_of_placeholders`.
+  -- In the linearised regime the Weinberg Ricci-box identity at the opaque-
+  -- operator level trivially holds (both continuum placeholders are definitionally
+  -- zero); genuine quantitative content is Achernar's `weinbergRicciBox_linearised`
+  -- in `Geometry/WeinbergLinearised.lean`, which a concrete model could plug in
+  -- by replacing the placeholder operators with genuine smooth differentiation.
+  h_ricci_box := weinbergRicciBoxIdentity_of_placeholders D.g_cont
   h_remainder_bound := by
     intro p μ ν
     -- Invoke `hpw_perturbed_flat` at `mu_coeff = 1`.  The hypothesis

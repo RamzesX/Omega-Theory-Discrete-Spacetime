@@ -141,9 +141,12 @@ import OmegaTheory.Emergence.QuantumMechanicsCapstone
 import OmegaTheory.Emergence.QmBridgePaper
 import OmegaTheory.Emergence.AharonovBohm
 import OmegaTheory.Emergence.ConnesSpectralAction
+import OmegaTheory.Emergence.FermionContent
 import OmegaTheory.Emergence.ErrorGaugeField
 import OmegaTheory.Emergence.ErrorGaugeSU2
 import OmegaTheory.Emergence.ErrorGaugeSU3
+import OmegaTheory.Emergence.SU3JacobiHelper
+import OmegaTheory.Emergence.NonAbelianGauge
 import OmegaTheory.Emergence.SymmetryBreaking
 import OmegaTheory.Emergence.HiggsFromError
 import OmegaTheory.Emergence.PathIntegral
@@ -159,6 +162,7 @@ import OmegaTheory.Predictions.ChristoffelSparsity
 import OmegaTheory.Predictions.SpinFlipRate
 import OmegaTheory.Predictions.GammaRayDispersion
 import OmegaTheory.Predictions.AdditionalPredictions
+import OmegaTheory.Predictions.WarwickGQuEST
 
 -- Layer 11b: Irrationality → predictions bridge
 import OmegaTheory.Irrationality.PredictionsBridge

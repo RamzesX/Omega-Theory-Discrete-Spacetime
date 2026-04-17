@@ -65,7 +65,7 @@ Useful options:
 2. **Always use WSL bash** - elan/lake installed at `~/.elan/bin/`
 3. **Parallelism is automatic** - Lake 5.0 uses all available cores
 4. **MCP lean-lsp tools** - Have path issues mixing WSL/Windows paths; use direct bash instead
-5. **Mathlib version** - v4.13.0 (check lakefile.lean)
+5. **Mathlib version** - v4.29.0, Lean v4.29.0 (check lakefile.lean)
 
 ## Project Structure
 
@@ -98,24 +98,56 @@ PhysicsPapers/
 Use `OpusQuantumGravityLeanProofAssistant` agent for fixing Lean proofs.
 Can spawn multiple in parallel for different files.
 
-## Common Proof Tactics
+## Proof Automation Toolkit (USE THESE FIRST!)
 
 ```lean
--- Positivity
-div_pos, mul_pos, pow_pos, sq_pos_of_pos, sq_pos_of_ne_zero
-le_of_lt, mul_nonneg, div_nonneg, pow_nonneg
+-- SEARCH (find proofs automatically — 30s each, searches 210K+ lemmas)
+exact?          -- find ANY matching proof from Mathlib + local theorems
+apply?          -- find applicable lemmas
+rw?             -- find rewrite targets
+simp?           -- show which simp lemmas close the goal
 
--- Sums
-Finset.sum_nonneg, sq_nonneg
+-- AUTOMATED SOLVERS
+aesop           -- white-box best-first proof search (multi-step)
+grind           -- SMT-style (Lean 4.22+, Gröbner + cutsat)
+omega           -- Presburger arithmetic (ℤ/ℕ)
+norm_num        -- numeric normalization
+linarith        -- linear arithmetic
+nlinarith       -- nonlinear arithmetic
+polyrith        -- polynomial arithmetic
+positivity      -- auto-prove 0 < x or 0 ≤ x
+ring            -- ring equalities
+field_simp      -- clear denominators
+decide          -- exhaustive finite check
+native_decide   -- compiled exhaustive check
 
--- Algebra
-ring, field_simp, norm_num
-
--- Real numbers
-Real.sqrt_pos_of_pos, Real.sqrt_nonneg
+-- DOMAIN-SPECIFIC
+fun_prop        -- continuity / differentiability
+gcongr          -- generalized congruence (monotonicity)
+push_cast       -- push coercions (ℕ → ℝ, ℤ → ℝ)
+fin_cases       -- case split on Fin n
 ```
 
-## Mathlib Import Changes (v4.13.0)
+### Strategy: try automation BEFORE manual proof
+1. `exact?` → finds existing lemma (30s search)
+2. `aesop` or `grind` → multi-step automation
+3. `simp [lemmas]` → rewriting
+4. `positivity` → any ≥ 0 or > 0 goal
+5. `ring` or `field_simp; ring` → algebraic identities
+6. `linarith` / `nlinarith` → inequalities
+7. `decide` → finite enumeration
+8. Manual only when all above fail
+
+### Common manual tactics
+```lean
+div_pos, mul_pos, pow_pos          -- positivity
+div_le_iff₀, div_lt_iff₀          -- division (NOTE: ₀ suffix in v4.29!)
+mul_div_cancel₀                    -- cancellation (needs ne_zero)
+Finset.sum_nonneg, sq_nonneg       -- sums and squares
+Real.sqrt_pos_of_pos               -- square root
+```
+
+## Mathlib Import Changes (v4.29.0)
 
 Some modules were renamed/restructured:
 - `Mathlib.Data.Int.Basic` → removed (Int is in Lean core)

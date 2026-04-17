@@ -264,13 +264,35 @@ structure SpectralActionExpansion where
 /-- The headline theorem: the spectral action gives Einstein + gauge.
     Constructed by asserting all four sectors are `True` (trivially
     inhabited). A future agent replaces these with concrete derivations
-    from the Seeley-DeWitt computation. -/
+    from the Seeley-DeWitt computation.
+
+    **Mirfak audit (2026-04-17)**: each of the four sector-presence
+    fields encodes "the k-th Seeley–DeWitt term contributes the
+    sector X Lagrangian", which is a statement about the heat-kernel
+    asymptotic expansion Tr(f(D/Λ)). That expansion is not yet
+    available in Mathlib v4.29.0. Any replacement Prop we could state
+    using only `SpectralActionPrinciple`'s integer-dimension fields
+    (e.g., `spacetimeDim = 4`) would document the *structure* but not
+    the *sector presence* — a physicist reading the upgraded Prop
+    would correctly observe the upgrade did not prove sector
+    presence. So we keep `True` and point at the substrate-cutoff
+    version downstream.
+
+    TODO CLUSTER-A: replace each `True` with the honest Seeley–DeWitt
+    sector claim once Mathlib's heat-kernel asymptotic API lands, or
+    once Zubeneschamali's `SpectralActionExpansion.lean` admits a
+    direct bridge from integer dimensions to sector presence. -/
 noncomputable def spectralAction_gives_einstein_plus_gauge
     (Λ : ℝ) (hΛ : 0 < Λ) : SpectralActionExpansion where
   action := standardModelSpectralAction Λ hΛ
+  -- TODO CLUSTER-A: replace with honest Λ⁴·a₀ term claim
+  -- once heat-kernel expansion is in Mathlib.
   has_cosmological_constant := True
+  -- TODO CLUSTER-A: replace with honest Λ²·a₂ term claim.
   has_einstein_hilbert := True
+  -- TODO CLUSTER-A: replace with honest a₄ gauge-sector claim.
   has_yang_mills := True
+  -- TODO CLUSTER-A: replace with honest a₄ scalar-sector claim.
   has_higgs := True
   all_sectors := ⟨trivial, trivial, trivial, trivial⟩
 

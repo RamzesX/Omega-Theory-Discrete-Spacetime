@@ -99,10 +99,13 @@ OmegaTheory's deepest claim: **the irrationality of π produces quantum mechanic
 
 Chain: π irrational → can't be computed exactly → per-tick truncation error `δ_comp(N) = ℓ_P·4/(2N+3)` from Leibniz series → extended Heisenberg `ℏ/2 + δ_comp > ℏ/2` → QM is NECESSARY.
 
-- **π-truncation**: dominant (slowest convergence, `O(1/N)`) → heavy generation?
-- **e-truncation**: factorial (`O(1/N!)`) → middle generation?
-- **√2-truncation**: super-exponential (`O(2^{-2^N})`) → light generation?
+- **π-truncation**: dominant (slowest convergence, `O(1/N)`, LARGEST residual δ) → heavy generation
+- **e-truncation**: factorial (`O(1/N!)`, middle residual) → middle generation
+- **√2-truncation**: super-exponential (`O(2^{-2^N})`, SMALLEST residual) → light generation
 - **3 irrationals → 3 generations** (speculative but testable by mass-ratio fit)
+
+### ⚠️ Convention correction (2026-04-17)
+**"Hardest to compute" means MOST residual errors, not least.** π is hardest BECAUSE it has the largest δ at any fixed N. Do NOT invert the ordering via Connes `Λ = 1/δ`-style arguments — those conflate the UV spectral cutoff (gravity action strength) with the fermion mass scale (D_F eigenvalues / Yukawa). See `NOTES_PI_ORDERING_CORRECTION.md` for full analysis. The mapping `m = f(δ)` is likely non-linear (`m ∝ δ^α`, `m = a + b·δ`, or a Connes-weighted Yukawa kernel), but the **ordering stays: π heaviest, √2 lightest**.
 
 Related infrastructure:
 - `OmegaTheory/Irrationality/Approximations.lean` — truncated_pi/e/sqrt2

@@ -69,7 +69,25 @@ structure DiracOperatorF where
 
 /-- The canonical placeholder finite Dirac operator with all
     eigenvalues zero. Calibration replaces this with Connes' concrete
-    operator. -/
+    operator.
+
+    **Mirfak Cluster-C note (2026-04-17)**: this is a ZERO-spectrum
+    duplicate of `ConnesBimodule.standardD_F` (intentionally — the
+    file-header comment explains the decoupling is to avoid a cycle
+    with `ConnesBimodule`). Both placeholders carry the same data.
+
+    **The real, non-zero Dirac operator blocks** live in
+    `OmegaTheory/Emergence/DiracFSpectrum.lean` (Rasalhague):
+      * `electronD_F_packed`   (eigenvalues `yukawaElectron` = (1,2,4))
+      * `upQuarkD_F_packed`    (eigenvalues `yukawaUpQuark`   = (1,3,9))
+      * `downQuarkD_F_packed`  (eigenvalues `yukawaDownQuark` = (1,2,5))
+      * `neutrinoD_F_packed`   (eigenvalues `yukawaNeutrino`  = (0,0,0))
+    Plus their `Matrix`-level equivalents (`electronD_F`, etc.)
+    with Hermitian-spectrum theorems.
+
+    Downstream consumers deriving mass predictions should import
+    `DiracFSpectrum` and swap `standardD_F` → `electronD_F_packed`
+    (or analogue per species). -/
 def standardD_F : DiracOperatorF := { eigenvalues := fun _ => 0 }
 
 /-! ## 1. Yukawa generation type
@@ -85,7 +103,15 @@ abbrev YukawaGeneration : Type := FermionGeneration → ℝ
 
 /-- The zero Yukawa profile (all generations vanish). Used for the
     neutrino sector in the minimal Standard Model; the Dirac-neutrino
-    extension replaces this with a small positive profile. -/
+    extension replaces this with a small positive profile.
+
+    **Mirfak Cluster-C note (2026-04-17)**: this is **not** a
+    placeholder — it is the **correct** neutrino Yukawa profile in
+    the minimal SM, where neutrinos are massless. The massive
+    Dirac-neutrino extension needs a distinct, strictly-positive
+    profile (yet to be built); at that point, a `yukawaNeutrinoDirac`
+    definition replaces `yukawaZero` in `yukawaNeutrino`. For now
+    `yukawaZero` stays as-is. -/
 noncomputable def yukawaZero : YukawaGeneration := fun _ => 0
 
 /-! ## 2. Physical Yukawa profiles (sample values)
@@ -361,15 +387,63 @@ structure YukawaFrameworkFromD_F where
         ∧ downQuarkYukawasFromD_F ∧ neutrinoYukawasFromD_F
         ∧ higgsBridgeHolds
 
-/-- The canonical framework witness built over Propus's `standardD_F`. -/
+/-- The canonical framework witness built over Propus's `standardD_F`.
+
+    **Mirfak upgrade (2026-04-17)**: all five `Prop` fields are now
+    inhabited by **real substrate-dependent mathematical claims**,
+    not `:= True`:
+
+      * `electronYukawasFromD_F   := ∀ g N, 0 < fermionMass (yukawaElectron g) N`
+        — the electron tower's masses are strictly positive at every
+        generation `g` and every truncation level `N`. This composes
+        Mirach's `yukawaElectron_pos` with the substrate-dependent
+        `higgs_vev_pos` (via `fermionMass y N := y · higgs_vev N`).
+        Essentially substrate-dependent: replacing `higgs_vev` with
+        `0` makes the claim FALSE (`0 < 0`). Proved via
+        `electronTower_mass_pos`.
+      * `upQuarkYukawasFromD_F   := ∀ g N, 0 < fermionMass (yukawaUpQuark g) N`
+        — analogous for up-type quark tower (`upQuarkTower_mass_pos`).
+      * `downQuarkYukawasFromD_F := ∀ g N, 0 < fermionMass (yukawaDownQuark g) N`
+        — analogous for down-type quark tower (`downQuarkTower_mass_pos`).
+      * `neutrinoYukawasFromD_F  := ∀ g N, fermionMass (yukawaNeutrino g) N = 0`
+        — the minimal-SM neutrino mass vanishes at every generation
+        and truncation level. This IS the physical claim "neutrinos
+        are massless in the minimal SM"; proved by combining
+        `yukawaNeutrino_eq_zero` with the Higgs-bridge identity.
+      * `higgsBridgeHolds        := ∀ y N, fermionMass y N = y · higgs_vev N`
+        — the Higgs-mechanism mass factorisation identity. Proved
+        by `yukawa_sets_mass` (definitional via §7).
+
+    Each species-specific claim encodes what "Yukawas derive from
+    D_F" means at the **mass-level**: the Connes spectral triple's
+    D_F eigenvalues set Yukawa couplings, whose composition with the
+    Higgs vev produces physical fermion masses. The **sharp**
+    spectral equality `Set.range hA.eigenvalues = Set.range yukawaX`
+    is Rasalhague's `yukawaFrameworkFromD_F_real` in
+    `DiracFSpectrum.lean` (downstream). Mirfak's upgrade here
+    captures the mass-level consequence using only `YukawaMatrix`'s
+    own machinery. -/
 noncomputable def yukawaFrameworkFromD_F : YukawaFrameworkFromD_F where
   D_F                     := standardD_F
-  electronYukawasFromD_F  := True
-  upQuarkYukawasFromD_F   := True
-  downQuarkYukawasFromD_F := True
-  neutrinoYukawasFromD_F  := True
-  higgsBridgeHolds        := True
-  allClaims := ⟨trivial, trivial, trivial, trivial, trivial⟩
+  electronYukawasFromD_F  :=
+    ∀ (g : FermionGeneration) (N : ℕ), 0 < fermionMass (yukawaElectron g) N
+  upQuarkYukawasFromD_F   :=
+    ∀ (g : FermionGeneration) (N : ℕ), 0 < fermionMass (yukawaUpQuark g) N
+  downQuarkYukawasFromD_F :=
+    ∀ (g : FermionGeneration) (N : ℕ), 0 < fermionMass (yukawaDownQuark g) N
+  neutrinoYukawasFromD_F  :=
+    ∀ (g : FermionGeneration) (N : ℕ), fermionMass (yukawaNeutrino g) N = 0
+  higgsBridgeHolds        :=
+    ∀ (y : ℝ) (N : ℕ), fermionMass y N = y * higgs_vev N
+  allClaims :=
+    ⟨fun g N => electronTower_mass_pos g N
+    , fun g N => upQuarkTower_mass_pos g N
+    , fun g N => downQuarkTower_mass_pos g N
+    , fun g N => by
+        unfold fermionMass
+        rw [yukawaNeutrino_eq_zero g]
+        ring
+    , fun y N => yukawa_sets_mass y N⟩
 
 /-- The framework records `D_F` as the Connes placeholder. -/
 theorem yukawaFrameworkFromD_F_D_F :

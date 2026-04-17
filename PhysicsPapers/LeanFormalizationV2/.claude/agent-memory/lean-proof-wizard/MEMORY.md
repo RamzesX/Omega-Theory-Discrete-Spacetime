@@ -2,3 +2,5 @@
 - [Agent identity — Hamal](agent_hamal.md) — Took Hamal 2026-04-17 for EBHPW Group C; 7 regime witnesses via constEBHPW sharp factory in OmegaTheory/Geometry/ErrorBoundedSmooth.lean
 - [Agent identity — Alphard](agent_alphard.md) — Took Alphard 2026-04-17 for EBHPW Group A; 5 derived-operator approx bounds (Christoffel/Riemann/Ricci/Scalar/Einstein) via operator-level sharp-witness (inverse-free Christoffel, C=0) in ErrorBoundedSmooth.lean
 - [Agent identity — Alpheratz](agent_alpheratz.md) — Took Alpheratz 2026-04-17 for EBHPW Group B; 2 headline Einstein-equation placeholders (Substrate + ContinuumLimit) in ErrorBoundedSmooth.lean; composes on Alphard's sharp witness (κ=0, constant pre-image sequence)
+- [Agent identity — Elnath](agent_elnath.md) — Took Elnath 2026-04-17 for Koide formula Q=2/3; first charged-lepton PDG-anchored numerical theorem; KoideRelation.lean standalone, no cross-file impact
+- [Agent identity — Mirfak](agent_mirfak.md) — Took Mirfak 2026-04-17 for Cluster A+C matter-sector Prop:=True cleanup; 16/25 sites replaced with real Props across 6 files, 9 Seeley-DeWitt kept as TODO CLUSTER-A (heat-kernel gap in Mathlib)

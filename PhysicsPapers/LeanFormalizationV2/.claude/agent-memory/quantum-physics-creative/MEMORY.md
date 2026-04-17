@@ -1,0 +1,2 @@
+- [Agent identity — Merope](agent_merope.md) — Took name 2026-04-17; wrote NOTES_3GEN_REFINEMENT.md — 5 candidate formulae scored against PDG 2024 data; flagged Acamar↔logarithmic ordering inversion paradox; Connes F4 spectral-weighting as resolution mechanism; Koide (F3) as immediate Lean target
+- [Agent identity — Nashira](agent_nashira.md) — Took name 2026-04-17; wrote NOTES_MASS_DELTA_MAPPING.md — found m ∝ δ^α · (-ln δ)^β at N=4 with (α,β)=(4/7,-1) fits leptons inc. Koide Q=2/3 to 10⁻⁴, quarks with β≈-3 (= -N_color, speculative); preserves π=heavy ordering

@@ -242,7 +242,22 @@ structure SpectralActionAtSubstrateCutoff (N : ℕ) where
     has_fermion_kinetic
 
 /-- Canonical inhabitant of `SpectralActionAtSubstrateCutoff N`: at the
-    substrate cutoff the spectral action produces all five SM sectors. -/
+    substrate cutoff the spectral action produces all five SM sectors.
+
+    **Mirfak audit (2026-04-17)**: the five sector-presence fields
+    correspond to the coefficients `f₄·Λ⁴·a₀`, `f₂·Λ²·a₂`, `f₀·a₄`
+    (gauge / scalar / spinor pieces) of the Seeley–DeWitt heat-kernel
+    expansion of `Tr(f(D/Λ))`. That expansion is not yet available
+    in Mathlib v4.29.0; Zubeneschamali's file header calls this out
+    explicitly. Any replacement Prop we could state using only the
+    integer-dimension / non-negativity data of `SeeleyDeWittCoeffs`
+    (e.g., `0 ≤ sd.a0`) would restate structural bookkeeping, not
+    sector presence. So we keep `True` and document the real blocker.
+
+    TODO CLUSTER-A: replace each `True` with the honest
+    Seeley–DeWitt sector claim once Mathlib's heat-kernel
+    asymptotic API lands. The natural target shape for each is
+    `∃ coeffSector · sector_integral, spectralActionTrace = ... + coeffSector · sector_integral + ...`. -/
 noncomputable def substrateSpectralActionSM (N : ℕ)
     (sd : SeeleyDeWittCoeffs) (cf : CutoffFunctionMoments) :
     SpectralActionAtSubstrateCutoff N where
@@ -253,10 +268,15 @@ noncomputable def substrateSpectralActionSM (N : ℕ)
   Λ_pos := substrateCutoff_value_pos N
   gauge := connesClassification
   gauge_isSM := standardModelFactors_isStandardModel
+  -- TODO CLUSTER-A: `f₄·Λ⁴·a₀` term claim, needs heat-kernel expansion.
   has_cosmological_constant := True
+  -- TODO CLUSTER-A: `f₂·Λ²·a₂` Einstein–Hilbert term claim.
   has_einstein_hilbert := True
+  -- TODO CLUSTER-A: `f₀·a₄` gauge-sector claim.
   has_yang_mills := True
+  -- TODO CLUSTER-A: `f₀·a₄` scalar-sector claim.
   has_higgs := True
+  -- TODO CLUSTER-A: `f₀·a₄` spinor-sector / Yukawa claim.
   has_fermion_kinetic := True
   all_sectors := ⟨trivial, trivial, trivial, trivial, trivial⟩
 

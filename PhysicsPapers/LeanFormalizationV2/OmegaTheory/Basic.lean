@@ -170,6 +170,7 @@ import OmegaTheory.Emergence.YukawaMatrix
 import OmegaTheory.Emergence.DiracFSpectrum
 import OmegaTheory.Emergence.DiracLagrangian
 import OmegaTheory.Emergence.PMNSMatrix
+import OmegaTheory.Emergence.KoideRelation
 
 -- Layer 9: Falsifiable predictions (substrate vs alternatives)
 import OmegaTheory.Predictions.GravDecoherenceTScaling

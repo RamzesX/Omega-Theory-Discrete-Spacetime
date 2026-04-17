@@ -319,7 +319,85 @@ theorem fermion_count_sm_minimal : fermion_count_minimal = 45 := by decide
 theorem fermion_count_sm_with_nuR :
     fermion_count_with_nuR = fermion_count_minimal + 3 := by decide
 
-/-! ## 10. Structural link to A_F -/
+/-! ## 10. Structural realisation lemmas
+
+  We prove that the three bookkeeping maps (for doublets, singlets,
+  and colours) give genuine non-trivial structural claims: doublet
+  realisation is injective, each singlet species embeds injectively
+  into the fermion space at *fixed* species, and the three colour
+  charges are pairwise distinct. Mirfak's `fermion_from_A_F`
+  upgrade below uses these as the real Prop-fields of
+  `FermionsFromAlgebra`.
+-/
+
+/-- **Left-handed doublet realisation is faithful.** Distinct
+    `LeftHandedDoublet` bookkeeping values give distinct
+    `StandardModelFermion` states. Structural non-collapse
+    theorem — *not* a cardinality check. Proof is by structural
+    comparison on the three fields (`generation`, `upper`,
+    `color`). -/
+theorem fromDoublet_injective : Function.Injective fromDoublet := by
+  intro d₁ d₂ hEq
+  rcases d₁ with ⟨g₁, u₁, c₁⟩
+  rcases d₂ with ⟨g₂, u₂, c₂⟩
+  have hg : g₁ = g₂ := by
+    have := congrArg StandardModelFermion.generation hEq
+    simpa [fromDoublet] using this
+  have hc : c₁ = c₂ := by
+    have := congrArg StandardModelFermion.color hEq
+    simpa [fromDoublet] using this
+  have hw : (LeftHandedDoublet.weakIsospin ⟨g₁, u₁, c₁⟩)
+             = (LeftHandedDoublet.weakIsospin ⟨g₂, u₂, c₂⟩) := by
+    have := congrArg StandardModelFermion.weak hEq
+    simpa [fromDoublet] using this
+  have hu : u₁ = u₂ := by
+    cases u₁ <;> cases u₂ <;>
+      simp [LeftHandedDoublet.weakIsospin] at hw <;> rfl
+  subst hg; subst hu; subst hc; rfl
+
+/-- **Right-handed singlet realisation is faithful at fixed species.**
+    For any species, the map `fun (g, c) => fromSinglet ⟨g, species, c⟩`
+    from `FermionGeneration × ColorCharge` is injective. The full
+    map `fromSinglet` is *not* injective because the placeholder
+    charges `twoQ` for neutrino / up-quark / down-quark all collapse
+    to 0 (per the file's own comments); at fixed species, the
+    collision is gone and generation+colour fully identify the
+    fermion state. This is the honest structural claim (species
+    label is extrinsic bookkeeping; within one species, realisation
+    is faithful). -/
+theorem fromSinglet_fixed_species_injective (species : SingletSpecies) :
+    Function.Injective (fun (gc : FermionGeneration × ColorCharge) =>
+      fromSinglet ⟨gc.1, species, gc.2⟩) := by
+  intro ⟨g₁, c₁⟩ ⟨g₂, c₂⟩ hEq
+  have hg : g₁ = g₂ := by
+    have := congrArg StandardModelFermion.generation hEq
+    simpa [fromSinglet] using this
+  have hc : c₁ = c₂ := by
+    have := congrArg StandardModelFermion.color hEq
+    simpa [fromSinglet] using this
+  subst hg; subst hc; rfl
+
+/-- **Singlet realisation is faithful per-species (universal form).**
+    For every species there is a faithful (injective) realisation
+    of `(generation, colour)` pairs as Standard-Model fermions. -/
+theorem fromSinglet_perSpecies_injective :
+    ∀ species : SingletSpecies,
+      Function.Injective (fun (gc : FermionGeneration × ColorCharge) =>
+        fromSinglet ⟨gc.1, species, gc.2⟩) :=
+  fromSinglet_fixed_species_injective
+
+/-- **Quark-colour injectivity.** The three SU(3) colour slots embed
+    injectively into the colour-charge type `ColorCharge = Option Fin 3`.
+    Concretely: `quarkColor 0 ≠ quarkColor 1 ≠ quarkColor 2`. The
+    three colours are genuinely distinct physical states, not
+    degenerate. -/
+theorem quarkColor_injective : Function.Injective quarkColor := by
+  intro c₁ c₂ hEq
+  -- quarkColor c = some c, and `Option.some_injective` gives c₁ = c₂.
+  have : (some c₁ : ColorCharge) = some c₂ := hEq
+  exact Option.some_injective _ this
+
+/-! ## 11. Structural link to A_F -/
 
 /-- Structural assertion: Standard Model fermion species are obtained
     from the irreducible bimodule decomposition of Connes' finite
@@ -327,10 +405,7 @@ theorem fermion_count_sm_with_nuR :
     decomposition (H_F = H_L ⊕ H_R ⊕ H_L^c ⊕ H_R^c with the charge
     conjugation J) is left to a future agent; here we record the
     headline claim as `Prop`-data carried by a structure, exactly in
-    the style of `SpectralActionExpansion` from `ConnesSpectralAction`.
-
-    The fields below are deliberately weak (`True` suffices to inhabit
-    them); later work replaces them with concrete derivations. -/
+    the style of `SpectralActionExpansion` from `ConnesSpectralAction`. -/
 structure FermionsFromAlgebra where
   /-- The Connes classification witness that A_F yields the SM gauge
       group. -/
@@ -352,18 +427,55 @@ structure FermionsFromAlgebra where
   allClaims :
       doubletsRealised ∧ singletsRealised ∧ colorRealised
 
-/-- **Structural theorem**: fermion content arises from A_F. We build
-    the witness with each `Prop` instantiated to `True`, matching the
-    Prop-scaffold style used by `spectralAction_gives_einstein_plus_gauge`.
-    Future agents strengthen the witnesses. -/
+/-- **Structural theorem**: fermion content arises from A_F.
+
+    **Mirfak upgrade (2026-04-17)**: the three `Prop` fields are now
+    filled with **real non-trivial structural claims** about the
+    concrete `LeftHandedDoublet → StandardModelFermion` /
+    `RightHandedSinglet → StandardModelFermion` realisation maps
+    and the distinguishability of colour charges:
+
+      * `doubletsRealised := Function.Injective fromDoublet` — every
+        left-handed doublet slot yields a *distinct* Standard-Model
+        fermion. This is a genuine structural faithfulness claim
+        (not a cardinality check): it would fail if two distinct
+        `LeftHandedDoublet` values collapsed into the same
+        `StandardModelFermion` under `fromDoublet`. Proved via
+        `fromDoublet_injective`.
+      * `singletsRealised := ∀ species, Function.Injective (fun (g,c) => fromSinglet ⟨g,species,c⟩)` —
+        for each of the four singlet species, the
+        `(generation, colour)` → fermion realisation is faithful.
+        This is the honest structural statement (the full
+        `fromSinglet` is not injective because `twoQ` collapses three
+        species onto `0`; at fixed species the collision is gone).
+        Proved via `fromSinglet_perSpecies_injective`.
+      * `colorRealised    := Function.Injective quarkColor` — the
+        three SU(3) colour slots embed injectively into the
+        colour-charge type, so colour is genuinely three-valued
+        (not degenerate). Proved via `quarkColor_injective`.
+
+    These are the **honest structural realisation** claims at the
+    bookkeeping level — each species-slot produces a distinct
+    physical fermion / colour charge. The sharp
+    representation-theoretic statement (e.g., "the doublet subspace
+    is an irreducible `ℂ × ℍ`-bimodule") requires Mathlib's full
+    representation-theory library and stays in Unukalhai's
+    `AF_Irreducibility.lean` (summand-simplicity results at the
+    algebra level). -/
 noncomputable def fermion_from_A_F : FermionsFromAlgebra where
   gauge            := connesClassification
   gauge_isStandard := standardModelFactors_isStandardModel
-  doubletsRealised := True
-  singletsRealised := True
-  colorRealised    := True
+  doubletsRealised := Function.Injective fromDoublet
+  singletsRealised :=
+    ∀ species : SingletSpecies,
+      Function.Injective (fun (gc : FermionGeneration × ColorCharge) =>
+        fromSinglet ⟨gc.1, species, gc.2⟩)
+  colorRealised    := Function.Injective quarkColor
   count_correct    := fermion_count_sm
-  allClaims        := ⟨trivial, trivial, trivial⟩
+  allClaims        :=
+    ⟨fromDoublet_injective
+    , fromSinglet_perSpecies_injective
+    , quarkColor_injective⟩
 
 /-- The number of generations delivered by the construction equals 3. -/
 theorem fermion_from_A_F_generations :

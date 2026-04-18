@@ -275,42 +275,323 @@ theorem conformal_ricciBoxDefect_flat (μ ν : Fin 4) (x : Fin 4 → ℝ) :
   rw [ConformalSmoothMetric.flat_toSmoothMetric]
   exact ricciBoxDefect_flat μ ν x
 
-/-! ## DEFERRED -- documented scope boundaries
+/-! ## General conformal factor — constant-Omega subcase
 
-### Full Weinberg identity for general conformal factor
-Proving `WeinbergIdentity g` unconditionally for an arbitrary
-`ConformalSmoothMetric g` (with `Omega /= 1`) requires:
+For a conformal metric with `Omega` identically equal to a constant `c`,
+the decomposition `g_{mu nu}(x) = c^2 * eta_{mu nu}` is constant in `x`,
+so every partial derivative of `g.comp · mu nu` is zero, every Christoffel
+vanishes, every `Q` term vanishes, and every `flatBackgroundLaplacian`
+vanishes.  This recovers the `Omega = 1` proof pattern for the strictly
+wider class of constant conformal factors.  Example applications:
+static homogeneous backgrounds with a fixed rescaling, units-rescaled
+Minkowski space.
 
-1. Computing `partialDeriv (fun y => Omega(y)^2 * eta_{mu nu}) sigma x`
-   = `2 * Omega(x) * (partialDeriv Omega sigma x) * eta_{mu nu}`.
-   This needs the Leibniz rule for `fderiv` of scalar products, available
-   in Mathlib as `HasFDerivAt.mul` but requires careful typing.
+The constant-Omega subcase is proved unconditionally.  It is a strict
+generalisation of `ConformalSmoothMetric.flat` and of `weinbergIdentity_flat`
+(which is the `c = 1` specialisation).
 
-2. From the derivative formula, computing the Christoffel symbols:
-   `Gamma^alpha_{mu nu} = (delta^alpha_mu * d_nu ln Omega
-                         + delta^alpha_nu * d_mu ln Omega
-                         - eta_{mu nu} * eta^{alpha beta} * d_beta ln Omega)`
-   where `d_sigma ln Omega = (partialDeriv Omega sigma x) / Omega(x)`.
+-- Diphda, weinberg_conformal_general, 2026-04-17
+-/
 
-3. Computing the Riemann tensor from these Christoffels, then contracting
-   to get the Ricci tensor.
+/-- **Constant conformal factor.**  `Omega(x) = c` at every `x`. -/
+def ConstantConformalFactor (g : ConformalSmoothMetric) : Prop :=
+  ∀ x y : Fin 4 → ℝ, g.conformalFactor x = g.conformalFactor y
 
-4. Separately computing `flatBackgroundLaplacian` and `quadraticChristoffel`
-   for the conformal metric.
+/-- **Every component of a constant-Omega conformal metric is constant in `x`.**
 
-5. Matching: showing the Ricci tensor equals `-(1/2) * box g + Q`.
+    For `Omega(x) = c`, `g.comp x mu nu = c^2 * eta_{mu nu}` which does not
+    depend on `x`. -/
+theorem conformal_comp_constant_in_x
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g)
+    (μ ν : Fin 4) (x y : Fin 4 → ℝ) :
+    g.toSmoothMetric.comp x μ ν = g.toSmoothMetric.comp y μ ν := by
+  rw [g.conformal_comp x μ ν, g.conformal_comp y μ ν, hconst x y]
 
-Steps 1-5 are each a self-contained formalisation effort (total ~3-5 days).
-The conditional form `WeinbergIdentity g => consequences` captures all
-downstream utility without the investment.
+/-- **Flat-background Laplacian vanishes on a constant-Omega conformal metric.**
 
-### Isotropic subcase (Omega depends on one coordinate)
-An intermediate target: if `Omega(x) = Omega(x_0)` depends only on the
-time coordinate `x_0`, the Christoffel computation simplifies because
-`partialDeriv Omega sigma x = 0` for `sigma /= 0`.  This would cover
-FRW cosmologies in conformal time.  Deferred as a concrete follow-up.
+    Since every component is constant in `x`, the inner partial derivative
+    `partialDeriv (fun y => g.comp y mu nu) sigma y` is zero, the outer
+    partial derivative is zero of a zero function, and the sum collapses. -/
+theorem conformal_flatBgLap_constant
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g)
+    (μ ν : Fin 4) (x : Fin 4 → ℝ) :
+    flatBackgroundLaplacian g.toSmoothMetric μ ν x = 0 := by
+  unfold flatBackgroundLaplacian
+  apply Finset.sum_eq_zero
+  intro α _
+  -- Inner partial is identically zero because the function is constant in y.
+  have hinner : (fun y : Fin 4 → ℝ =>
+                  partialDeriv (fun z : Fin 4 → ℝ =>
+                    g.toSmoothMetric.comp z μ ν) α y)
+                  = fun _ : Fin 4 → ℝ => (0 : ℝ) := by
+    funext y
+    -- The function z ↦ g.comp z μ ν equals the constant c^2 * eta_{μν}
+    -- where c = g.conformalFactor (0 : Fin 4 → ℝ).
+    have hconst_fn :
+        (fun z : Fin 4 → ℝ => g.toSmoothMetric.comp z μ ν)
+          = fun _ : Fin 4 → ℝ =>
+              g.conformalFactor (0 : Fin 4 → ℝ) ^ 2 * minkowskiMetric μ ν := by
+      funext z
+      rw [g.conformal_comp z μ ν]
+      congr 1
+      rw [hconst z (0 : Fin 4 → ℝ)]
+    rw [hconst_fn]
+    exact partialDeriv_const _ α y
+  rw [hinner]
+  exact partialDeriv_const 0 α x
 
--- Thuban, weinberg_conformal, 2026-04-15
+/-- **Christoffel symbols vanish on a constant-Omega conformal metric.**
+
+    Same structure as `conformal_flatBgLap_constant`: the inner partial
+    derivative of the (constant) metric component is zero, so every
+    summand in the Christoffel sum is zero. -/
+theorem conformal_christoffel_constant
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g)
+    (α μ ν : Fin 4) (x : Fin 4 → ℝ) :
+    christoffel g.toSmoothMetric α μ ν x = 0 := by
+  unfold christoffel
+  -- Show every partialDeriv of (fun y => g.comp y μ' ν') σ x = 0.
+  have hpartial : ∀ μ' ν' σ : Fin 4,
+      partialDeriv (fun y : Fin 4 → ℝ => g.toSmoothMetric.comp y μ' ν') σ x = 0 := by
+    intro μ' ν' σ
+    have hconst_fn :
+        (fun z : Fin 4 → ℝ => g.toSmoothMetric.comp z μ' ν')
+          = fun _ : Fin 4 → ℝ =>
+              g.conformalFactor (0 : Fin 4 → ℝ) ^ 2 * minkowskiMetric μ' ν' := by
+      funext z
+      rw [g.conformal_comp z μ' ν']
+      congr 1
+      rw [hconst z (0 : Fin 4 → ℝ)]
+    rw [hconst_fn]
+    exact partialDeriv_const _ σ x
+  -- Every summand is invComp · 0 = 0.
+  have hzero : ∀ β : Fin 4,
+      g.toSmoothMetric.invComp x α β *
+        ( partialDeriv (fun y => g.toSmoothMetric.comp y ν β) μ x
+        + partialDeriv (fun y => g.toSmoothMetric.comp y μ β) ν x
+        - partialDeriv (fun y => g.toSmoothMetric.comp y μ ν) β x ) = 0 := by
+    intro β
+    rw [hpartial ν β μ, hpartial μ β ν, hpartial μ ν β]
+    ring
+  rw [Finset.sum_congr rfl (fun β _ => hzero β), Finset.sum_const_zero, mul_zero]
+
+/-- **Christoffel derivative vanishes on a constant-Omega conformal metric.**
+
+    Chains `conformal_christoffel_constant` through `partialDeriv_const`. -/
+theorem conformal_christoffelDeriv_constant
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g)
+    (α μ ν σ : Fin 4) (x : Fin 4 → ℝ) :
+    christoffelDeriv g.toSmoothMetric α μ ν σ x = 0 := by
+  unfold christoffelDeriv
+  have hfn : (fun y : Fin 4 → ℝ => christoffel g.toSmoothMetric α μ ν y)
+              = fun _ : Fin 4 → ℝ => (0 : ℝ) := by
+    funext y
+    exact conformal_christoffel_constant g hconst α μ ν y
+  rw [hfn]
+  exact partialDeriv_const 0 σ x
+
+/-- **Riemann tensor vanishes on a constant-Omega conformal metric.**
+
+    All four terms of the definition use only Christoffel symbols and their
+    first-order partial derivatives, both of which vanish. -/
+theorem conformal_riemann_constant
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g)
+    (ρ σ μ ν : Fin 4) (x : Fin 4 → ℝ) :
+    riemann g.toSmoothMetric ρ σ μ ν x = 0 := by
+  unfold riemann
+  rw [conformal_christoffelDeriv_constant g hconst,
+      conformal_christoffelDeriv_constant g hconst]
+  have hB : Finset.univ.sum (fun l =>
+              christoffel g.toSmoothMetric ρ μ l x
+                * christoffel g.toSmoothMetric l ν σ x) = 0 := by
+    apply Finset.sum_eq_zero
+    intro l _
+    rw [conformal_christoffel_constant g hconst]
+    ring
+  have hC : Finset.univ.sum (fun l =>
+              christoffel g.toSmoothMetric ρ ν l x
+                * christoffel g.toSmoothMetric l μ σ x) = 0 := by
+    apply Finset.sum_eq_zero
+    intro l _
+    rw [conformal_christoffel_constant g hconst]
+    ring
+  rw [hB, hC]
+  ring
+
+/-- **Ricci tensor vanishes on a constant-Omega conformal metric.** -/
+theorem conformal_ricci_constant
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g)
+    (μ ν : Fin 4) (x : Fin 4 → ℝ) :
+    ricci g.toSmoothMetric μ ν x = 0 := by
+  unfold ricci
+  apply Finset.sum_eq_zero
+  intro α _
+  exact conformal_riemann_constant g hconst α μ α ν x
+
+/-- **Quadratic Christoffel Q term vanishes on a constant-Omega conformal metric.**
+
+    Every Christoffel in the 4-fold sum is zero, so every summand is zero. -/
+theorem conformal_quadChristoffel_constant
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g)
+    (μ ν : Fin 4) (x : Fin 4 → ℝ) :
+    quadraticChristoffel g.toSmoothMetric μ ν x = 0 := by
+  unfold quadraticChristoffel
+  apply Finset.sum_eq_zero; intro α _
+  apply Finset.sum_eq_zero; intro β _
+  apply Finset.sum_eq_zero; intro σ _
+  apply Finset.sum_eq_zero; intro τ _
+  rw [conformal_christoffel_constant g hconst]
+  ring
+
+/-- **HEADLINE: Weinberg identity for constant-Omega conformal metric.**
+
+    Unconditionally: for any `ConformalSmoothMetric g` with `Omega` constant,
+    `R_{mu nu}(x) = -(1/2) * flatBackgroundLaplacian g_{mu nu}(x)
+                   + quadraticChristoffel g mu nu x` at every `(mu, nu, x)`.
+
+    All three terms are zero individually, so the equation `0 = -1/2 * 0 + 0`
+    holds by `ring`.  This **generalises** `weinbergIdentity_conformal_flat`
+    (the `c = 1` case) to arbitrary positive constant conformal factors.
+
+    Proof structure: constant `Omega` ⇒ constant metric components ⇒ all
+    first and second partial derivatives of components vanish ⇒ every
+    Christoffel / Riemann / Ricci / Q / flatBgLap is identically zero. -/
+theorem weinbergIdentity_conformal_constant
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g) :
+    WeinbergIdentity g.toSmoothMetric := by
+  intro μ ν x
+  rw [conformal_ricci_constant g hconst,
+      conformal_flatBgLap_constant g hconst,
+      conformal_quadChristoffel_constant g hconst]
+  ring
+
+/-- **WeinbergRicciBox with ε = 0 for constant-Omega conformal metric.** -/
+theorem conformal_weinbergRicciBox_constant
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g) :
+    WeinbergRicciBox g.toSmoothMetric 0 := by
+  apply weinbergRicciBox_of_weinberg_and_quadratic g.toSmoothMetric
+    (weinbergIdentity_conformal_constant g hconst) 0
+  intro μ ν x
+  rw [conformal_quadChristoffel_constant g hconst]
+  rw [abs_zero]
+
+/-- **HPW-compatible constant-Omega conformal metric.** -/
+theorem conformal_weinbergHpwCompatible_constant
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g) :
+    WeinbergHpwCompatible g.toSmoothMetric := by
+  apply conformal_weinbergHpwCompatible g
+    (weinbergIdentity_conformal_constant g hconst) 0
+  · intro μ ν x
+    rw [conformal_quadChristoffel_constant g hconst]
+    rw [abs_zero]
+  · exact div_nonneg l_P_nonneg (by norm_num)
+
+/-- **RicciSymmetric for a constant-Omega conformal metric.** -/
+theorem conformal_ricciSymmetric_constant
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g) :
+    RicciSymmetric g.toSmoothMetric := by
+  intro μ ν x
+  rw [conformal_ricci_constant g hconst, conformal_ricci_constant g hconst]
+
+/-! ## Sanity: flat conformal metric has `ConstantConformalFactor` -/
+
+/-- **`ConformalSmoothMetric.flat` has constant conformal factor `1`.** -/
+theorem flat_is_constantConformalFactor :
+    ConstantConformalFactor ConformalSmoothMetric.flat := by
+  intro x y
+  rfl
+
+/-! ## General-Ω Ricci-Box structure (conditional theorem)
+
+The full Weinberg identity for an arbitrary conformal metric is
+
+  R_{mu nu}(x) = -(1/2) * flatBackgroundLaplacian g_{mu nu}(x)
+                + Q_conformal(Omega, d Omega, d^2 Omega)(x)
+
+where `Q_conformal` is a specific quadratic-in-`dOmega` expression.  In full
+closed form (Weinberg 1972, after the `g = Omega^2 * eta` substitution):
+
+  Q_conformal_{mu nu}(x) = 2 * Omega^{-2} * (partial_mu Omega)(partial_nu Omega)
+                         - Omega^{-1} * eta_{mu nu} * eta^{alpha beta}
+                             * (partial_alpha Omega)(partial_beta Omega)
+                         + (further terms from commuted derivatives).
+
+Rather than compute this term structurally, we expose a conditional bridge:
+if the identity holds for the conformal metric AND `Q` has a uniform bound,
+all downstream HPW/Ricci/Einstein-symmetry consequences follow. -/
+
+/-- **Structural Q-bound for a general conformal metric.**
+
+    Predicates that the quadratic Christoffel term `Q_{mu nu}` is
+    pointwise bounded by `epsilon`.  Captures both the constant-`Omega`
+    case (`epsilon = 0`) and the small-perturbation regime. -/
+def ConformalQuadraticBound (g : ConformalSmoothMetric) (ε : ℝ) : Prop :=
+  ∀ (μ ν : Fin 4) (x : Fin 4 → ℝ),
+    |quadraticChristoffel g.toSmoothMetric μ ν x| ≤ ε
+
+/-- **Constant-Omega bound: Q vanishes identically, so the bound holds with
+    `ε = 0` and therefore with any non-negative `ε`.** -/
+theorem conformalQuadraticBound_of_constant
+    (g : ConformalSmoothMetric) (hconst : ConstantConformalFactor g)
+    (ε : ℝ) (hε : 0 ≤ ε) :
+    ConformalQuadraticBound g ε := by
+  intro μ ν x
+  rw [conformal_quadChristoffel_constant g hconst]
+  rw [abs_zero]
+  exact hε
+
+/-- **General Ω conditional Weinberg-Ricci-box bound.**
+
+    Given the Weinberg identity `R = -(1/2) box g + Q` for a conformal metric
+    AND a uniform bound `|Q| <= epsilon`, the Ricci-box defect satisfies
+    `|ricciBoxDefect| <= epsilon`.
+
+    This is the general-Ω analogue of `conformal_weinbergRicciBox` stated
+    via the newly-introduced `ConformalQuadraticBound` predicate. -/
+theorem conformal_weinbergRicciBox_general
+    (g : ConformalSmoothMetric) (hW : WeinbergIdentity g.toSmoothMetric)
+    (ε : ℝ) (hQ : ConformalQuadraticBound g ε) :
+    WeinbergRicciBox g.toSmoothMetric ε :=
+  weinbergRicciBox_of_weinberg_and_quadratic g.toSmoothMetric hW ε hQ
+
+/-- **HPW compatibility from a general Ω conformal metric with bounded Q.**
+
+    Chains `conformal_weinbergRicciBox_general` with the `ε ≤ ℓ_P/12`
+    condition.  The general-Ω analogue of `conformal_weinbergHpwCompatible`. -/
+theorem conformal_weinbergHpwCompatible_general
+    (g : ConformalSmoothMetric) (hW : WeinbergIdentity g.toSmoothMetric)
+    (ε : ℝ) (hQ : ConformalQuadraticBound g ε)
+    (h_budget : ε ≤ l_P / 12) :
+    WeinbergHpwCompatible g.toSmoothMetric := by
+  intro μ ν x
+  exact le_trans
+    (conformal_weinbergRicciBox_general g hW ε hQ μ ν x) h_budget
+
+/-! ## Honest scoping: what remains deferred
+
+### Step 1 (unconditional computation) not yet formalised
+
+Proving `WeinbergIdentity g` unconditionally for arbitrary non-constant
+`Omega` requires computing the partial derivatives of `Omega^2 * eta_{mu nu}`
+and substituting them through the Christoffel → Riemann → Ricci chain.
+
+  partialDeriv (fun y => Omega(y)^2 * eta_{mu nu}) sigma x
+    = 2 * Omega(x) * (partialDeriv Omega sigma x) * eta_{mu nu}
+
+The Leibniz rule for `fderiv` of scalar products is available in Mathlib
+as `HasFDerivAt.mul`, but the full Christoffel expansion requires nested
+applications and a disciplined `ring_nf` pass through products.  The
+conditional theorem `conformal_weinbergRicciBox_general` captures all
+downstream utility without that investment.
+
+### Concrete extension target: isotropic cosmological subcase
+
+If `Omega(x) = Omega(x_0)` depends only on the time coordinate, the
+Christoffel sum simplifies because `partialDeriv Omega sigma x = 0` for
+`sigma /= 0`.  This would cover FRW cosmologies in conformal time as a
+strict generalisation of `weinbergIdentity_conformal_constant`.
+
+-- Diphda, weinberg_conformal_general, 2026-04-17
 -/
 
 end OmegaTheory.Geometry

@@ -18,6 +18,10 @@ import OmegaTheory.Foundations.ErrorLieAlgebra
 import OmegaTheory.Foundations.TaylorBound
 import OmegaTheory.Foundations.ErrorForms
 import OmegaTheory.Foundations.ErrorHopfStructure
+-- Metric-weighted graph Laplacian (Mathlib-gap infrastructure, Kochab 2026-04-17)
+-- Generalises SimpleGraph.lapMatrix from unit weights to arbitrary symmetric weights.
+-- This is the long-missing ingredient the future HPW convergence proof will use.
+import OmegaTheory.Foundations.WeightedGraphLaplacian
 
 -- Layer 1: Discrete Spacetime
 import OmegaTheory.Spacetime.Lattice
@@ -68,6 +72,12 @@ import OmegaTheory.Geometry.SmoothMetricFieldReal
 -- Minimal Seeley-DeWitt / heat-kernel machinery (Ankaa + Tarazed, 2026-04-17)
 -- Depends on ErrorBoundedSmooth, lives in Foundations namespace.
 import OmegaTheory.Foundations.HeatKernelMinimal
+-- Kempf bandlimit bridge (Albireo, 2026-04-17)
+-- Connects Kempf's PRL-2008 quantum-gravity bandlimit to the substrate
+-- truncation error via three bridge theorems: O(1/N) scaling, GUP
+-- positivity, and UV cutoff identification.  Depends only on Spacetime
+-- and Irrationality; lives in Foundations namespace.
+import OmegaTheory.Foundations.KempfBandlimit
 
 -- Layer 5: Defects
 import OmegaTheory.Defects.DefectTensor
@@ -107,6 +117,9 @@ import OmegaTheory.Emergence.HpwDeSitter
 import OmegaTheory.Emergence.HpwKerr
 import OmegaTheory.Emergence.HpwElimSummary
 import OmegaTheory.Emergence.BlackHoleFormation
+-- Hawking radiation as healing-flow output (Avior, 2026-04-17)
+-- Composes with BlackHoleFormation; adds HealingFlowBH namespace
+import OmegaTheory.Emergence.HealingFlowBH
 import OmegaTheory.Emergence.EinsteinEmergence
 import OmegaTheory.Emergence.CosmologicalConstant
 import OmegaTheory.Emergence.CosmologicalConstantProblem
@@ -197,6 +210,13 @@ import OmegaTheory.Predictions.GammaRayDispersion
 import OmegaTheory.Predictions.AdditionalPredictions
 import OmegaTheory.Predictions.WarwickGQuEST
 import OmegaTheory.Predictions.NeutrinoMassFloor
+import OmegaTheory.Predictions.JarlskogFromIrrationals
+import OmegaTheory.Predictions.MixingAnglesFromIrrationals
+
+-- Layer 1b: Planck ↔ eV unit conversions (composes with NeutrinoMassFloor)
+-- Created 2026-04-17 by Enif. Lives in Spacetime namespace; imported here
+-- because it depends on NeutrinoMassFloor from Predictions layer.
+import OmegaTheory.Spacetime.UnitConversions
 
 -- Layer 11b: Irrationality → predictions bridge
 import OmegaTheory.Irrationality.PredictionsBridge

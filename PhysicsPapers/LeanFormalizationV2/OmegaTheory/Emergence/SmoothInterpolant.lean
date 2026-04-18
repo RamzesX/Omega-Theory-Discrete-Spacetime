@@ -486,4 +486,53 @@ noncomputable def SmoothInterpolantData.ofSmoothMetric
   c4_estimate := h_bound
   interpolates := fun _ _ _ => rfl
 
+/-! ## Constant-metric sharp interpolant (Kochab, Apr 17 2026)
+
+For any constant metric tensor `M : MetricTensor`, the map
+`x ↦ M` on `ℝ⁴ → MetricTensor` is `C^∞`, has identically vanishing fourth
+Fréchet derivatives (so the C⁴ bound is sharp at `0`), and trivially
+interpolates the corresponding constant discrete metric
+`DiscreteMetric.ofContinuum (fun _ => M)`.
+
+This factory is the `SmoothInterpolantData` analogue of Hamal's
+`constEBHPW` helper in `Geometry/ErrorBoundedSmooth.lean`: it builds a
+sharp interpolant witness from a single matrix in one step, ready to be
+specialised to representative "constant at representative point"
+witnesses for the de Sitter, Kerr, and Schwarzschild regimes.  The C⁴
+bound is `0`, meaning the interpolant carries *no* residual smoothness
+error — all derivatives vanish. -/
+
+/-- **Constant-metric sharp interpolant.**  For any `MetricTensor M`,
+    builds a `SmoothInterpolantData` for the pullback discrete metric
+    `DiscreteMetric.ofContinuum (fun _ => M)` with C⁴ bound `0`.  All
+    derivatives of a constant are zero, so this witness is sharp. -/
+noncomputable def SmoothInterpolantData.ofConstMetric
+    (M : MetricTensor) :
+    SmoothInterpolantData
+      (DiscreteMetric.ofContinuum (fun _ : Fin 4 → ℝ => M)) where
+  g_cont := fun _ => M
+  smooth := fun _ _ => contDiff_const
+  c4_bound := 0
+  bound_nonneg := le_refl 0
+  c4_estimate := by
+    intro μ ν x
+    have hall : (iteratedFDeriv ℝ 4 fun _ : Fin 4 → ℝ => (M μ ν : ℝ)) = 0 :=
+      iteratedFDeriv_const_of_ne (by decide) _
+    have h := congrFun hall x
+    simp [h]
+  interpolates := fun _ _ _ => rfl
+
+/-- Sanity corollary: the constant-metric interpolant has C⁴ bound exactly `0`. -/
+theorem SmoothInterpolantData.ofConstMetric_c4_bound
+    (M : MetricTensor) :
+    (SmoothInterpolantData.ofConstMetric M).c4_bound = 0 :=
+  rfl
+
+/-- Existence: every constant metric admits a sharp smooth interpolant. -/
+theorem exists_smoothInterpolant_ofConstMetric (M : MetricTensor) :
+    ∃ D : SmoothInterpolantData
+            (DiscreteMetric.ofContinuum (fun _ : Fin 4 → ℝ => M)),
+      D.c4_bound = 0 :=
+  ⟨SmoothInterpolantData.ofConstMetric M, rfl⟩
+
 end OmegaTheory.Emergence

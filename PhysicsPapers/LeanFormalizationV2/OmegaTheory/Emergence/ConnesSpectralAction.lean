@@ -26,6 +26,9 @@
 import OmegaTheory.Foundations.ErrorAlgebra
 import OmegaTheory.Foundations.ErrorLieAlgebra
 import OmegaTheory.Foundations.HeatKernelMinimal
+import OmegaTheory.Emergence.ErrorGaugeField
+import OmegaTheory.Emergence.HiggsFromError
+import OmegaTheory.Emergence.DiracEquation
 import OmegaTheory.Irrationality.Uncertainty
 import Mathlib.Data.Complex.Basic
 import Mathlib.Algebra.Quaternion
@@ -35,6 +38,9 @@ namespace OmegaTheory.Emergence.ConnesSpectralAction
 
 open OmegaTheory.Foundations
 open OmegaTheory.Foundations.HeatKernelMinimal
+open OmegaTheory.Emergence
+open OmegaTheory.Emergence.ErrorGaugeField
+open OmegaTheory.Emergence.HiggsFromError
 open OmegaTheory.Irrationality
 open OmegaTheory.Spacetime
 open OmegaTheory.Geometry.ErrorBoundedSmooth

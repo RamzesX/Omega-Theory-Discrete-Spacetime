@@ -336,4 +336,191 @@ theorem bounded_info_variance
   rw [hinfoeq] at h2
   linarith
 
+/-! ## Corollaries on the Periodic Orbit
+
+Direct consequences of the periodic-orbit analysis above. Each of these
+folds the zero-total-dissipation fact back into physical observables. -/
+
+/-- Every pointwise gradient component vanishes at every step on a discrete
+    periodic orbit. Combining `gradientNormSq_eq_zero_on_periodic_orbit`
+    with the pointwise gradient factorisation from `Lyapunov.lean`. -/
+theorem functionalGradient_eq_zero_on_periodic_orbit
+    (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I : InformationDensity) (I_bar : ℝ)
+    (delta_tau : ℝ) (region : Finset LatticePoint)
+    (hflow : IsLyapunovHealingFlow params path g_exact I I_bar delta_tau region)
+    (tau0 : ℝ) (n : ℕ)
+    (hper : IsDiscretePeriodic path delta_tau n tau0)
+    (k : ℕ) (hk : k < n)
+    (p : LatticePoint) (hp : p ∈ region) (μ ν : Fin 4) :
+    functionalGradient params (path (tau0 + k * delta_tau)) g_exact I I_bar p μ ν = 0 := by
+  have hnorm := gradientNormSq_eq_zero_on_periodic_orbit params path g_exact I I_bar
+    delta_tau region hflow tau0 n hper k hk
+  exact gradientNormSq_eq_zero_imp params (path (tau0 + k * delta_tau))
+    g_exact I I_bar region hnorm p hp μ ν
+
+/-- F is constant at every step on a discrete periodic orbit: combining
+    the telescoping upper bound and the zero-total-dissipation identity
+    squeezes F(path(tau0 + j·δτ)) to a common value for every `j ≤ n`.
+    The per-step decrement inequality is tight — no step strictly decreases
+    the functional when the orbit is periodic. -/
+theorem healingFunctional_constant_on_periodic_orbit
+    (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I : InformationDensity) (I_bar : ℝ)
+    (delta_tau : ℝ) (region : Finset LatticePoint)
+    (hflow : IsLyapunovHealingFlow params path g_exact I I_bar delta_tau region)
+    (tau0 : ℝ) (n : ℕ)
+    (hper : IsDiscretePeriodic path delta_tau n tau0)
+    (k : ℕ) (hk : k < n) :
+    healingFunctional params (path (tau0 + (k + 1) * delta_tau)) g_exact I I_bar region =
+    healingFunctional params (path (tau0 + k * delta_tau)) g_exact I I_bar region := by
+  -- From Lyapunov: F(τ + δτ) ≤ F(τ) - δτ · ‖∇F‖²
+  have hdec := hflow.decrement (tau0 + k * delta_tau)
+  -- From periodic orbit: ‖∇F‖²(k) = 0
+  have hgrad := gradientNormSq_eq_zero_on_periodic_orbit params path g_exact I I_bar
+    delta_tau region hflow tau0 n hper k hk
+  -- So F(k+1) ≤ F(k). But F is monotone non-increasing on the whole orbit,
+  -- and the cycle F(0) = F(n) = F(0) squeezes every intermediate value.
+  -- Direct argument: F(k+1) ≤ F(k); also F(n) = F(0) (periodicity) ≥ F(k+1) ≥ F(k).
+  -- But F is antitone, so F(0) ≥ F(k+1). Chain: F(0) ≥ F(k) ≥ F(k+1) ≥ F(n) = F(0).
+  -- Therefore F(k) = F(k+1).
+  -- Compute: from decrement with hgrad, F((k+1)δτ) ≤ F(kδτ) - δτ·0 = F(kδτ).
+  have harith : tau0 + ↑k * delta_tau + delta_tau = tau0 + ↑(k + 1) * delta_tau := by
+    push_cast; ring
+  rw [harith] at hdec
+  rw [hgrad, mul_zero, sub_zero] at hdec
+  have hle : healingFunctional params (path (tau0 + ↑(k + 1) * delta_tau))
+      g_exact I I_bar region ≤
+      healingFunctional params (path (tau0 + ↑k * delta_tau))
+      g_exact I I_bar region := hdec
+  -- For the reverse inequality, use the telescoping: summing F-drops from k+1 to n,
+  -- each summand is non-negative (from decrement + grad ≥ 0), and the total
+  -- F(k+1) - F(n) is bounded below by δτ · dissipation(n - (k+1)). But
+  -- F(k+1) ≤ F(k), and F(n) = F(0) ≥ F(k) (F antitone from 0 to k). So
+  -- F(k+1) - F(n) ≤ F(k) - F(k) = 0. Combined with non-negativity: F(k+1) = F(n).
+  -- Then F(k+1) ≥ F(n) = F(0) ≥ F(k). So F(k+1) = F(k).
+  -- Simpler: use that F is antitone ⇒ F(k+1) ≤ F(k) and F(0) ≥ F(k+1); combined
+  -- with F(0) = F(n) ≤ F(k+1) (F antitone from k+1 to n) gives F(k+1) = F(0) = F(k).
+  -- Rather than reprove antitonicity here, use the zero-total-dissipation result
+  -- directly: any F-jump would contradict totalDissipation = 0 via telescoping.
+  -- Cleaner path: Invoke healingFunctional_telescoping on [0, n] and [0, k+1].
+  -- Use the endpoint equality from periodicity + every intermediate F is squeezed
+  -- by telescoping inequality + non-negativity of each pointwise summand.
+  have hpath_periodic :
+      healingFunctional params (path tau0) g_exact I I_bar region =
+      healingFunctional params (path (tau0 + ↑n * delta_tau)) g_exact I I_bar region := by
+    have hpath : path tau0 = path (tau0 + n * delta_tau) := by
+      funext p μ ν; exact hper.2 p μ ν
+    rw [hpath]
+  -- Telescope from 0 to k+1:
+  have htel_up := healingFunctional_telescoping params path g_exact I I_bar delta_tau
+    region hflow tau0 (k + 1)
+  have htel_full := healingFunctional_telescoping params path g_exact I I_bar delta_tau
+    region hflow tau0 n
+  -- From hpath_periodic: F(0) - F(n) = 0, so δτ · total(n) ≤ 0. Combined with
+  -- ≥ 0 : total(n) = 0. Thus every gradNormSq along the orbit is zero.
+  -- Now F(k+1) - F(n) : telescope from k+1 to n, all gradNormSq = 0, so F(k+1) = F(n) = F(0).
+  -- Chain: F(0) = F(k+1) ≤ F(k) ≤ F(0) ⟹ equal.
+  -- Formally: F(k+1) - F(n) is bounded below by 0 (each drop ≥ 0), and
+  -- F(k+1) ≤ F(0) = F(n) so F(k+1) - F(n) ≤ 0. Therefore F(k+1) = F(n) = F(0).
+  -- And F(k) ≤ F(0) = F(k+1) (the reverse of hle). Combined: F(k) = F(k+1).
+  -- Direct route using antitonicity from Convergence.lean would be cleaner, but
+  -- to keep this file standalone we establish the needed inequalities here.
+  have hk1_le_0 : healingFunctional params (path (tau0 + ↑(k + 1) * delta_tau))
+      g_exact I I_bar region ≤
+      healingFunctional params (path tau0) g_exact I I_bar region := by
+    -- Apply the telescoping inequality at (k+1) and use totalDissipation ≥ 0
+    have hnn := totalDissipation_nonneg params path g_exact I I_bar region delta_tau
+      (k + 1) tau0
+    have hstep_pos := hflow.step_pos
+    have hprod_nn : 0 ≤ delta_tau *
+        totalDissipation params path g_exact I I_bar region delta_tau (k + 1) tau0 :=
+      mul_nonneg (le_of_lt hstep_pos) hnn
+    linarith
+  have h0_le_k1 : healingFunctional params (path tau0) g_exact I I_bar region ≤
+      healingFunctional params (path (tau0 + ↑(k + 1) * delta_tau))
+      g_exact I I_bar region := by
+    -- Use hpath_periodic (F(0) = F(n)) combined with antitonicity from k+1 to n.
+    -- Apply telescoping on the SHIFTED starting point tau0 + (k+1)δτ over (n - (k+1))
+    -- steps. For cleanliness, compute F(k+1) - F(n) via the full telescope:
+    -- F(0) - F(n) = (F(0) - F(k+1)) + (F(k+1) - F(n))
+    -- where both summands are ≥ 0 (telescoping bound + non-neg dissipation).
+    -- From F(0) = F(n), we get F(0) = F(k+1).
+    -- We prove: F(n) ≥ F(k+1)·(F antitone from k+1 to n)
+    -- This requires a shifted telescope. Use the ORIGINAL telescope and
+    -- hpath_periodic + hk1_le_0:
+    -- From hk1_le_0: F(k+1) ≤ F(0). From hpath_periodic: F(0) = F(n).
+    -- Also F(n) ≤ F(k+1) via shifted telescope below.
+    have hshift_tel := healingFunctional_telescoping params path g_exact I I_bar
+      delta_tau region hflow (tau0 + ↑(k + 1) * delta_tau) (n - (k + 1))
+    have hnn_shift := totalDissipation_nonneg params path g_exact I I_bar region
+      delta_tau (n - (k + 1)) (tau0 + ↑(k + 1) * delta_tau)
+    have hstep_pos := hflow.step_pos
+    have hprod_nn : 0 ≤ delta_tau *
+        totalDissipation params path g_exact I I_bar region delta_tau
+          (n - (k + 1)) (tau0 + ↑(k + 1) * delta_tau) :=
+      mul_nonneg (le_of_lt hstep_pos) hnn_shift
+    have hk1_le_n : (k : ℕ) + 1 ≤ n := hk
+    have harith2 :
+        tau0 + ↑(k + 1) * delta_tau + ↑(n - (k + 1)) * delta_tau =
+        tau0 + ↑n * delta_tau := by
+      have : (↑(n - (k + 1)) : ℝ) = ↑n - ↑(k + 1) := by
+        rw [Nat.cast_sub hk1_le_n]
+      rw [this]; ring
+    rw [harith2] at hshift_tel
+    -- hshift_tel : F(k+1) - F(n) ≥ δτ · total ≥ 0, so F(k+1) ≥ F(n) = F(0).
+    linarith
+  -- Combine hle (F(k+1) ≤ F(k)) with the matching reverse inequality.
+  -- Need to reconcile ↑(k+1) vs ↑k + 1 in the statement.
+  have hcast : (↑(k + 1) : ℝ) = ↑k + 1 := by push_cast; ring
+  have hle' : healingFunctional params (path (tau0 + (↑k + 1) * delta_tau))
+      g_exact I I_bar region ≤
+      healingFunctional params (path (tau0 + ↑k * delta_tau))
+      g_exact I I_bar region := by
+    rw [← hcast]; exact hle
+  have h0_le_k1' : healingFunctional params (path tau0) g_exact I I_bar region ≤
+      healingFunctional params (path (tau0 + (↑k + 1) * delta_tau))
+      g_exact I I_bar region := by
+    rw [← hcast]; exact h0_le_k1
+  have hk1_le_0' : healingFunctional params (path (tau0 + (↑k + 1) * delta_tau))
+      g_exact I I_bar region ≤
+      healingFunctional params (path tau0) g_exact I I_bar region := by
+    rw [← hcast]; exact hk1_le_0
+  -- Now the goal and all hypotheses are in the `↑k + 1` form.
+  -- From F(k+1) ≤ F(k) (hle'), F(0) ≤ F(k+1) (h0_le_k1'), F(k+1) ≤ F(0) (hk1_le_0'),
+  -- conclude F(k+1) = F(0), and since F(k+1) ≤ F(k) ≤ F(0) = F(k+1), also F(k) = F(k+1).
+  -- But wait: we don't yet have F(k) ≤ F(0). Establish via antitonicity:
+  have hk_le_0 : healingFunctional params (path (tau0 + ↑k * delta_tau))
+      g_exact I I_bar region ≤
+      healingFunctional params (path tau0) g_exact I I_bar region := by
+    have htel_k := healingFunctional_telescoping params path g_exact I I_bar delta_tau
+      region hflow tau0 k
+    have hnn_k := totalDissipation_nonneg params path g_exact I I_bar region delta_tau
+      k tau0
+    have hstep_pos := hflow.step_pos
+    have hprod_nn_k : 0 ≤ delta_tau *
+        totalDissipation params path g_exact I I_bar region delta_tau k tau0 :=
+      mul_nonneg (le_of_lt hstep_pos) hnn_k
+    linarith
+  linarith
+
+/-- Every point in a discrete periodic orbit satisfies the equilibrium
+    balance equation pointwise on the observation region — equivalent
+    restatement of `no_nontrivial_periodic_orbits` packaged as a single
+    balance-witness claim that quantifies over the whole orbit. -/
+theorem every_step_satisfies_balance_on_periodic_orbit
+    (params : HealingParams) (path : MetricPath)
+    (g_exact : DiscreteMetric) (I : InformationDensity) (I_bar : ℝ)
+    (delta_tau : ℝ) (region : Finset LatticePoint)
+    (hflow : IsLyapunovHealingFlow params path g_exact I I_bar delta_tau region)
+    (tau0 : ℝ) (n : ℕ)
+    (hper : IsDiscretePeriodic path delta_tau n tau0) :
+    ∀ k : ℕ, k < n → ∀ p ∈ region, ∀ μ ν : Fin 4,
+      params.mu * discreteLaplacian (fun q => path (tau0 + k * delta_tau) q μ ν) p =
+        params.lambda * defectTensor (path (tau0 + k * delta_tau)) g_exact p μ ν +
+        params.gamma * (I p - I_bar) :=
+  fun k hk p hp μ ν =>
+    no_nontrivial_periodic_orbits params path g_exact I I_bar delta_tau region
+      hflow tau0 n hper k hk p hp μ ν
+
 end OmegaTheory.HealingFlow

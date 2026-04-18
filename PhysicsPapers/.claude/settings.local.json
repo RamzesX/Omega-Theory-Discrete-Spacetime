@@ -152,7 +152,9 @@
       "Bash(awk '{print \"PID\", $2, \"CPU%\", $3, \"RAM%\", $4, \"STATE\", $8, \"TIME\", $10}')",
       "Bash(awk '/eth0|wlan0|enp/ {print $1, \"RX_bytes:\", $2, \"TX_bytes:\", $10}')",
       "Bash(pkill -9 -f build_unified_index)",
-      "Bash(awk '{print \"PID\", $2, \"CPU%\", $3, \"RAM_MB\", $6/1024, \"TIME\", $10}')"
+      "Bash(awk '{print \"PID\", $2, \"CPU%\", $3, \"RAM_MB\", $6/1024, \"TIME\", $10}')",
+      "Bash(awk '{print \"PID\", $2, \"CPU%\", $3, \"RAM_GB\", $6/1024/1024, \"TIME\", $10}')",
+      "Bash(cmake --version)"
     ]
   },
   "spinnerTipsEnabled": true,

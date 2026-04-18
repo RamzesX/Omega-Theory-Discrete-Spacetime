@@ -771,4 +771,86 @@ or the `f₂·Λ²·fiberDim` / `f₄·Λ⁴·fiberDim` substrate-cutoff witness
 No predicate can be discharged for an arbitrary cutoff disconnected
 from the substrate. -/
 
+/-! ## 11. Field-replacement helpers (`withGauge` / `withHiggs` / `withSpin`)
+
+These helpers allow downstream consumers to UPGRADE the vacuous
+`A4EssentialSectors.zero` canonical witness with **substantive**
+non-zero sector functions, without needing to construct a full
+`A4EssentialSectors` from scratch.
+
+The "field replacement" pattern: given an existing sector split `s`
+and a new non-negative function `σ : Event → ℝ`, produce a new
+`A4EssentialSectors` equal to `s` except with the chosen sector
+replaced by `σ`.  This is the CONTRACT for downstream agents who
+want to wire in real substrate-essential sector values
+(`|F|² ∝ δ_comp(N)`, `V(H) ∝ (higgs_vev N)²`, fermion kinetic `ψ̄D̸ψ`).
+
+After the replacement, the `canonical_realizes_*` realisation theorems
+continue to hold because `build_has_*` needs only the (new) sector's
+non-negativity field, which is preserved by the helper.  The PHYSICAL
+content of the sector-presence predicate's first conjunct
+`∀ x, 0 ≤ sector x` becomes NON-VACUOUS (no longer `0 ≤ 0`), at the
+cost of a substantively physics-informed non-zero witness. -/
+
+namespace A4EssentialSectors
+
+variable {g : ErrorBoundedSmoothMetric} {Δ : GeneralizedLaplacian g}
+
+/-- Replace the `gauge_sector` of an existing sector split with a new
+    non-negative function.  All other sectors + non-negativity proofs
+    are preserved via dot-syntax updates. -/
+noncomputable def withGauge (s : A4EssentialSectors g Δ)
+    (F2 : Event → ℝ) (hF2 : ∀ x, 0 ≤ F2 x) : A4EssentialSectors g Δ where
+  grav_sector := s.grav_sector
+  gauge_sector := F2
+  higgs_sector := s.higgs_sector
+  spin_sector := s.spin_sector
+  grav_nn := s.grav_nn
+  gauge_nn := hF2
+  higgs_nn := s.higgs_nn
+  spin_nn := s.spin_nn
+
+/-- Replace the `higgs_sector` of an existing sector split with a new
+    non-negative function. -/
+noncomputable def withHiggs (s : A4EssentialSectors g Δ)
+    (V : Event → ℝ) (hV : ∀ x, 0 ≤ V x) : A4EssentialSectors g Δ where
+  grav_sector := s.grav_sector
+  gauge_sector := s.gauge_sector
+  higgs_sector := V
+  spin_sector := s.spin_sector
+  grav_nn := s.grav_nn
+  gauge_nn := s.gauge_nn
+  higgs_nn := hV
+  spin_nn := s.spin_nn
+
+/-- Replace the `spin_sector` of an existing sector split with a new
+    non-negative function. -/
+noncomputable def withSpin (s : A4EssentialSectors g Δ)
+    (K : Event → ℝ) (hK : ∀ x, 0 ≤ K x) : A4EssentialSectors g Δ where
+  grav_sector := s.grav_sector
+  gauge_sector := s.gauge_sector
+  higgs_sector := s.higgs_sector
+  spin_sector := K
+  grav_nn := s.grav_nn
+  gauge_nn := s.gauge_nn
+  higgs_nn := s.higgs_nn
+  spin_nn := hK
+
+/-- `withGauge` preserves the gauge sector's new function at every event. -/
+theorem withGauge_gauge (s : A4EssentialSectors g Δ)
+    (F2 : Event → ℝ) (hF2 : ∀ x, 0 ≤ F2 x) (x : Event) :
+    (s.withGauge F2 hF2).gauge_sector x = F2 x := rfl
+
+/-- `withHiggs` preserves the higgs sector's new function at every event. -/
+theorem withHiggs_higgs (s : A4EssentialSectors g Δ)
+    (V : Event → ℝ) (hV : ∀ x, 0 ≤ V x) (x : Event) :
+    (s.withHiggs V hV).higgs_sector x = V x := rfl
+
+/-- `withSpin` preserves the spin sector's new function at every event. -/
+theorem withSpin_spin (s : A4EssentialSectors g Δ)
+    (K : Event → ℝ) (hK : ∀ x, 0 ≤ K x) (x : Event) :
+    (s.withSpin K hK).spin_sector x = K x := rfl
+
+end A4EssentialSectors
+
 end OmegaTheory.Foundations.HeatKernelMinimal

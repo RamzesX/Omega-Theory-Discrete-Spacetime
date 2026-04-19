@@ -1,0 +1,1 @@
+- [Tarazed HeatKernelDerived Apr-19](agent_tarazed_heatkernelderived.md) — 291L derived heat iterate, a_0=1 and flat a_2=0 from computation, builds 3635 jobs green, 0 sorry, 0 new axioms

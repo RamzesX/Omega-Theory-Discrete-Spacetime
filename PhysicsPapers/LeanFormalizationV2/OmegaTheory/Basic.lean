@@ -72,6 +72,11 @@ import OmegaTheory.Geometry.SmoothMetricFieldReal
 -- Minimal Seeley-DeWitt / heat-kernel machinery (Ankaa + Tarazed, 2026-04-17)
 -- Depends on ErrorBoundedSmooth, lives in Foundations namespace.
 import OmegaTheory.Foundations.HeatKernelMinimal
+-- DERIVED heat-kernel machinery on the discrete lattice (Tarazed, 2026-04-19).
+-- Replaces PARAMETRIC a_0/a_2 fields of HeatKernelMinimal with values
+-- computed from Nat.iterate (I - t·Δ) on ScalarField.  Scalar-fibre
+-- witness of a_0 = 1 and flat-lattice witness of a_2 = 0.
+import OmegaTheory.Foundations.HeatKernelDerived
 -- Kempf bandlimit bridge (Albireo, 2026-04-17)
 -- Connects Kempf's PRL-2008 quantum-gravity bandlimit to the substrate
 -- truncation error via three bridge theorems: O(1/N) scaling, GUP

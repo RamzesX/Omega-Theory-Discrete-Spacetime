@@ -248,6 +248,16 @@ import OmegaTheory.Predictions.ProtonMassFromLambdaQCD
 -- because it depends on NeutrinoMassFloor from Predictions layer.
 import OmegaTheory.Spacetime.UnitConversions
 
+-- Three experimental-falsifiability predictions (experimental-preds,
+-- 2026-04-19):
+--   W1 — Neutrino mass floor with Connes coupling (KATRIN + DESI targets)
+--   ILL-VCN — cold-neutron substrate signature (Ackermann 2026 upgrade)
+--   DESI w(z) — dark-energy equation-of-state substrate deviation
+-- Placed AFTER UnitConversions since W1 depends on neutrinoMassFloor_in_eV.
+import OmegaTheory.Predictions.NeutrinoMassFloorW1
+import OmegaTheory.Predictions.ColdNeutronILL_VCN
+import OmegaTheory.Predictions.DESISubstrateSignature
+
 -- Layer 11b: Irrationality → predictions bridge
 import OmegaTheory.Irrationality.PredictionsBridge
 

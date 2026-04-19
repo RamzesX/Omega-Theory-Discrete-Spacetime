@@ -1,0 +1,5 @@
+- [Agent identity — mass-ratio-validate](agent_mass_ratio_validate.md) — 2026-04-19 first falsifiability test: Nashira N=4 matches PDG lepton ratios to 0.286% total |err|
+- [Nashira N=4 unique sweet spot](project_nashira_N4_sweet_spot.md) — Phase-1 scan proves only N=4 matches; N≥5 diverges by orders of magnitude
+- [Mathlib v4.29 rpow/log evaluation limits](feedback_mathlib_rpow_log_limits.md) — tight numerical bounds on rpow/log of rationals are painful; prefer structural theorems + Python external witness
+- [Agent identity — connes-B-derive](agent_connes_B_derive.md) — 2026-04-19 derived B_up=13 and B_dn=5 from Connes dimensional data: B_up = dim_ℂ(A_F)+δ_KO = 12+1; B_dn = d_spacetime+δ_KO = 4+1; both use same δ_KO=1 as Acrux's β_up C3
+- [Agent identity — n4-uniqueness](agent_n4_uniqueness.md) — 2026-04-19 Shape-B uniqueness thm for Nashira N=4 vs PDG: `lepton_PDG_uniquely_at_N_eq_4` (489 L, 0 sorry, 0 new axioms)

@@ -228,6 +228,11 @@ import OmegaTheory.Predictions.MassRatioNumerical
 -- Second numerical falsifiability test: quark-sector Nashira N=4 vs PDG 2024
 -- (quark-ratios, 2026-04-19). Verdict: PARTIAL_MATCH — 2/4 within PDG uncertainty.
 import OmegaTheory.Predictions.QuarkMassRatioNumerical
+-- First-principles Connes D_F β derivation attempt for quark sectors
+-- (connes-df-derive, Acrux, 2026-04-19). Verdict: PARTIAL — lepton β=4/7 and
+-- k=N_color are first-principles derived; quark β_up, β_down are NOT — best
+-- first-principles candidate β_up=5/12 (C3) marginally beats empirical 3/7.
+import OmegaTheory.Predictions.QuarkBetaFromConnesD_F
 -- Pathway A closure: proton-mass prediction m_p = k · Λ_QCD (k = 4.3 empirical)
 -- (lambda-qcd-builder, 2026-04-19). Verdict: EMPIRICAL_ANSATZ, 3.8% off PDG
 -- with Λ=210 MeV. Future work: derive k from OmegaTheory substrate.

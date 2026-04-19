@@ -28,6 +28,7 @@ import OmegaTheory.Spacetime.Lattice
 import OmegaTheory.Spacetime.Constants
 import OmegaTheory.Spacetime.Operators
 import OmegaTheory.Spacetime.CausalLattice
+import OmegaTheory.Spacetime.LightConeInclusion
 
 -- Layer 2: Error-Propagating Tensor Operations
 import OmegaTheory.Tensor.ErrorTensor
@@ -153,6 +154,7 @@ import OmegaTheory.Irrationality.ActionDensity
 -- Layer 12: Variational (Erdős-Lagrangian, discrete Noether)
 import OmegaTheory.Variational.GraphAction
 import OmegaTheory.Variational.DiscreteNoether
+import OmegaTheory.Variational.DiscreteNoetherU1
 import OmegaTheory.Variational.InformationGeodesics
 
 -- Extended modules
@@ -161,6 +163,9 @@ import OmegaTheory.Torsion.BigBounce
 import OmegaTheory.Irrationality.Uncertainty
 import OmegaTheory.Irrationality.BoundsLemmas
 import OmegaTheory.Irrationality.StrictMonotonicity
+-- Exact super-exponential rate for sqrt2_error_val (Shaula, 2026-04-19)
+-- Closes Gacrux proof-hunter-research Target #9; 3 theorems
+import OmegaTheory.Irrationality.Sqrt2Rate
 import OmegaTheory.Emergence.Predictions
 import OmegaTheory.Emergence.DimensionalFlow
 import OmegaTheory.Emergence.SpecialRelativity
@@ -188,10 +193,13 @@ import OmegaTheory.Emergence.ErrorGaugeSU2
 import OmegaTheory.Emergence.ErrorGaugeSU3
 import OmegaTheory.Emergence.SU3JacobiHelper
 import OmegaTheory.Emergence.SU3JacobiFull
+import OmegaTheory.Emergence.SU3JacobiIdentity
+import OmegaTheory.Emergence.AsymptoticFreedom
 import OmegaTheory.Emergence.NonAbelianGauge
 import OmegaTheory.Emergence.PontryaginForm
 import OmegaTheory.Emergence.SymmetryBreaking
 import OmegaTheory.Emergence.HiggsFromError
+import OmegaTheory.Emergence.HiggsVEVSubstrate
 import OmegaTheory.Emergence.PathIntegral
 import OmegaTheory.Emergence.RotationCurves
 import OmegaTheory.Emergence.SpectralActionExpansion
@@ -270,6 +278,26 @@ import OmegaTheory.Predictions.KKBimoduleBFromConnesStructure
 -- (lambda-qcd-builder, 2026-04-19). Verdict: EMPIRICAL_ANSATZ, 3.8% off PDG
 -- with Λ=210 MeV. Future work: derive k from OmegaTheory substrate.
 import OmegaTheory.Predictions.ProtonMassFromLambdaQCD
+-- W boson mass from Higgs VEV × weak coupling (Heka, 2026-04-19).
+-- First Lean-verified gauge-boson mass prediction that composes
+-- Bellatrix's higgsVEV_PDG with Regor's weakCouplingConstant_from_substrate.
+-- Tree-level SM: M_W = g_W · v / 2 = 0.653 · 246.22 / 2 ≈ 80.39 GeV,
+-- matches PDG 80.379 GeV to within 0.1 GeV.
+import OmegaTheory.Predictions.WBosonMass
+
+-- Proton-photon coupling under gravity via substrate info-cost
+-- (Bellatrix, 2026-04-19). First compositional bridge between EM
+-- (ErrorForms.emNoiseFloor) and gravity (RedshiftFloor.vacuumResidualInformationCost)
+-- through additive information-cost channels. Substrate analog of Compton
+-- scattering in curved spacetime. Charge conservation persists.
+import OmegaTheory.Emergence.ProtonPhotonRedshift
+-- Einstein's equivalence principle on the substrate (Polaris, 2026-04-19).
+-- Tier 1 weak EP: inertialMass = gravitationalMass on every SubstrateState
+-- (definitional equality — both extract |m| from the same state).
+-- Tier 2 universality of free fall: a = g independent of the state.
+-- Foundation of GR emergence; closes Einstein 1907/1911 puzzle as theorem
+-- rather than coincidence.
+import OmegaTheory.Emergence.EquivalencePrinciple
 
 -- Layer 1b: Planck ↔ eV unit conversions (composes with NeutrinoMassFloor)
 -- Created 2026-04-17 by Enif. Lives in Spacetime namespace; imported here
@@ -286,6 +314,12 @@ import OmegaTheory.Predictions.NeutrinoMassFloorW1
 import OmegaTheory.Predictions.ColdNeutronILL_VCN
 import OmegaTheory.Predictions.DESISubstrateSignature
 import OmegaTheory.Predictions.JointConsistency
+-- Fine-structure constant α_EM = 1/137.035999206 + substrate anchoring
+-- (Hadar, 2026-04-19). Physics-C mission: CODATA 2018 definitional bridge
+-- (Tier 1) + δ_comp(N)-based substrate ceiling and canonical scale
+-- (Tier 2, mirroring Bellatrix's HiggsVEVSubstrate) + Schwinger 1948
+-- one-loop anomaly a_e = α/(2π) (Tier 3).
+import OmegaTheory.Predictions.AlphaEM
 import OmegaTheory.Matter.GenerationCount
 import OmegaTheory.Matter.KoideFromThreeIrrationals
 

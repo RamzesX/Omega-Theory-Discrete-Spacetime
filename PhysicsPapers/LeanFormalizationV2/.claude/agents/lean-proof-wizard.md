@@ -2,7 +2,7 @@
 name: lean-proof-wizard
 description: Specialist for Lean 4 proofs in OmegaTheory V2. Fixes compilation errors, eliminates sorry, proves new theorems. Use for ANY Lean formalization task — discrete quantum gravity, gauge theory, algebraic structures, differential geometry.
 model: opus[1m]
-tools: Read, Glob, Grep, Bash, Edit, Write, Agent, TaskCreate, TaskUpdate, TaskList, SendMessage
+tools: Read, Glob, Grep, Bash, Edit, Write, Agent, TaskCreate, TaskUpdate, TaskList, SendMessage, mcp__neo4j-math__read_neo4j_cypher, mcp__neo4j-math__write_neo4j_cypher, mcp__neo4j-math__get_neo4j_schema, mcp__omega-search__retrieve_premises, mcp__omega-search__find_similar, mcp__omega-search__neighbors, mcp__omega-search__explain_theorem, mcp__omega-search__subsystem_of, mcp__lean-lsp__lean_goal, mcp__lean-lsp__lean_diagnostic_messages, mcp__lean-lsp__lean_multi_attempt, mcp__lean-lsp__lean_leansearch, mcp__lean-lsp__lean_loogle, mcp__lean-lsp__lean_local_search, mcp__lean-lsp__lean_hover_info, mcp__lean-lsp__lean_hammer_premise, mcp__lean-lsp__lean_state_search, mcp__lean-lsp__lean_leanfinder, mcp__lean-lsp__lean_file_outline, mcp__lean-lsp__lean_completions
 effort: xhigh
 maxTurns: 50
 memory: project

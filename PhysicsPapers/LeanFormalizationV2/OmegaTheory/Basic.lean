@@ -181,6 +181,11 @@ import OmegaTheory.Emergence.HiggsFromError
 import OmegaTheory.Emergence.PathIntegral
 import OmegaTheory.Emergence.RotationCurves
 import OmegaTheory.Emergence.SpectralActionExpansion
+-- Pathway A: Λ_QCD from substrate via 1-loop RG running
+-- (lambda-qcd-builder, 2026-04-19). Formalizes 1-loop β-function,
+-- Λ_QCD as RG invariant, and substrate UV-cutoff composition.
+import OmegaTheory.Emergence.QCDRunningCoupling
+import OmegaTheory.Emergence.LambdaQCDFromSubstrate
 
 -- Matter sector (Mirach + Algieba + Phecda + Alioth + Propus wave)
 -- FermionContent already imported above (line 155)
@@ -223,6 +228,10 @@ import OmegaTheory.Predictions.MassRatioNumerical
 -- Second numerical falsifiability test: quark-sector Nashira N=4 vs PDG 2024
 -- (quark-ratios, 2026-04-19). Verdict: PARTIAL_MATCH — 2/4 within PDG uncertainty.
 import OmegaTheory.Predictions.QuarkMassRatioNumerical
+-- Pathway A closure: proton-mass prediction m_p = k · Λ_QCD (k = 4.3 empirical)
+-- (lambda-qcd-builder, 2026-04-19). Verdict: EMPIRICAL_ANSATZ, 3.8% off PDG
+-- with Λ=210 MeV. Future work: derive k from OmegaTheory substrate.
+import OmegaTheory.Predictions.ProtonMassFromLambdaQCD
 
 -- Layer 1b: Planck ↔ eV unit conversions (composes with NeutrinoMassFloor)
 -- Created 2026-04-17 by Enif. Lives in Spacetime namespace; imported here

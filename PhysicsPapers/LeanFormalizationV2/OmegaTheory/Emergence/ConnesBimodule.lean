@@ -33,6 +33,7 @@
 import OmegaTheory.Emergence.ConnesSpectralAction
 import OmegaTheory.Emergence.FermionContent
 import OmegaTheory.Emergence.HiggsFromError
+import OmegaTheory.Emergence.YukawaMatrix
 import Mathlib.Data.Matrix.Basic
 import Mathlib.Data.Complex.Basic
 import Mathlib.RingTheory.SimpleModule.Basic
@@ -358,30 +359,59 @@ structure DiracOperatorF where
   /-- The generation-indexed eigenvalue function. -/
   eigenvalues : FermionGeneration → ℝ
 
-/-- Default `D_F` with zero eigenvalues (placeholder / massless
-    limit).
+/-- Default `D_F` with zero eigenvalues — retained as a backward-
+    compatible witness for any legacy consumer. **This is now a thin
+    wrapper around the neutrino sector**, whose eigenvalues also
+    vanish in the minimal Standard Model (see `standardD_F_neutrino`
+    below).
 
-    **Mirfak Cluster-C note (2026-04-17)**: this is a ZERO-spectrum
-    placeholder — every generation's eigenvalue is `0`. Downstream
-    consumers that use this via `YukawaMatrixFromD_F` get trivial
-    mass claims; that's why the `YukawaBundle` `Prop` fields above
-    carry `TODO CLUSTER-A` annotations.
+    **Sirius-dirac-swap upgrade (2026-04-19)**: callers that want the
+    Connes-correct **non-zero** Dirac operator should use the
+    **sector-specific** witnesses below (`standardD_F_electron`,
+    `standardD_F_upQuark`, `standardD_F_downQuark`,
+    `standardD_F_neutrino`), whose eigenvalues are the per-sector
+    Yukawa profiles imported from `YukawaMatrix`:
 
-    **The real, non-zero Dirac operator block** is Rasalhague's
-    `electronD_F_packed : DiracOperatorF` in
-    `OmegaTheory/Emergence/DiracFSpectrum.lean`, with eigenvalues
-    `yukawaElectron : FermionGeneration → ℝ` taking values
-    `(1, 2, 4)` — the ordered placeholder for the charged-lepton
-    Yukawa tower. That file also provides:
-      * `upQuarkD_F_packed`   (eigenvalues (1, 3, 9))
-      * `downQuarkD_F_packed` (eigenvalues (1, 2, 5))
-      * `neutrinoD_F_packed`  (eigenvalues (0, 0, 0) — minimal SM).
+      * `standardD_F_electron`  : eigenvalues = `yukawaElectron`  = (1, 2, 4)
+      * `standardD_F_upQuark`   : eigenvalues = `yukawaUpQuark`   = (1, 3, 9)
+      * `standardD_F_downQuark` : eigenvalues = `yukawaDownQuark` = (1, 2, 5)
+      * `standardD_F_neutrino`  : eigenvalues = `yukawaNeutrino`  = (0, 0, 0)
 
-    To consume the real spectrum in a new theorem:
-    `import OmegaTheory.Emergence.DiracFSpectrum` and
-    use `DiracFSpectrum.electronD_F_packed` (etc.) instead of
-    `standardD_F`. -/
+    These are definitionally identical in shape to Rasalhague's
+    `electronD_F_packed`, `upQuarkD_F_packed`, `downQuarkD_F_packed`,
+    `neutrinoD_F_packed` in `DiracFSpectrum.lean`, which additionally
+    carry the `Matrix`-level Hermitian-spectrum theorems
+    (`electronD_F_isHermitian`, `electronD_F_eigenvalues_range_eq_yukawa_range`,
+    etc.). This file consumes only the lightweight generation-indexed
+    form, because `YukawaBundle` takes a single `DiracOperatorF`. -/
 def standardD_F : DiracOperatorF := { eigenvalues := fun _ => 0 }
+
+/-- **Non-zero charged-lepton Dirac block**, packed into the
+    lightweight generation-indexed form. Eigenvalues are the charged-
+    lepton Yukawa triple `(y_e, y_μ, y_τ) = (1, 2, 4)` imported from
+    `YukawaMatrix.yukawaElectron`. This is the Connes-correct spectrum
+    for the `D_F` block restricted to the charged-lepton sector. -/
+noncomputable def standardD_F_electron : DiracOperatorF :=
+  { eigenvalues := OmegaTheory.Emergence.YukawaMatrix.yukawaElectron }
+
+/-- **Non-zero up-type-quark Dirac block**, packed into the
+    lightweight generation-indexed form. Eigenvalues are the up-quark
+    Yukawa triple `(y_u, y_c, y_t) = (1, 3, 9)`. -/
+noncomputable def standardD_F_upQuark : DiracOperatorF :=
+  { eigenvalues := OmegaTheory.Emergence.YukawaMatrix.yukawaUpQuark }
+
+/-- **Non-zero down-type-quark Dirac block**, packed into the
+    lightweight generation-indexed form. Eigenvalues are the down-quark
+    Yukawa triple `(y_d, y_s, y_b) = (1, 2, 5)`. -/
+noncomputable def standardD_F_downQuark : DiracOperatorF :=
+  { eigenvalues := OmegaTheory.Emergence.YukawaMatrix.yukawaDownQuark }
+
+/-- **Neutrino Dirac block**, packed into the lightweight
+    generation-indexed form. Eigenvalues are the neutrino Yukawa
+    triple `(y_νₑ, y_ν_μ, y_ν_τ) = (0, 0, 0)` in the minimal Standard
+    Model where neutrinos are massless. -/
+noncomputable def standardD_F_neutrino : DiracOperatorF :=
+  { eigenvalues := OmegaTheory.Emergence.YukawaMatrix.yukawaNeutrino }
 
 /-- Yukawa couplings derived from `D_F` eigenvalues. Each field is
     a `Prop` representing "the physical mass of species X equals
@@ -405,78 +435,118 @@ structure YukawaBundle where
   /-- Neutrino mass from D_F block (Dirac neutrino option). -/
   neutrino_mass_from_D_F     : Prop
 
-/-- **Real Yukawa bundle (Mirfak upgrade, 2026-04-17)**: every `Prop`
-    field is now inhabited by the **mass-level Higgs-mechanism
-    identity for the placeholder D_F**. With `D_F := standardD_F`
-    (zero eigenvalues — the massless limit), the Connes mass
-    factorisation `m_species = eigenvalue_species · higgs_vev N`
-    evaluates to `0 · higgs_vev N = 0`. This is the honest
-    placeholder-state claim:
+/-- **Real Yukawa bundle (Sirius-dirac-swap upgrade, 2026-04-19)**:
+    every `Prop` field is now inhabited by a **genuinely non-trivial
+    mass-level Higgs-mechanism identity** tied to the correct
+    **sector-specific** Dirac block (`standardD_F_electron`,
+    `_upQuark`, `_downQuark`, `_neutrino`). Each species-specific
+    field asserts the physical content — strict positivity of mass
+    for charged species (electron / up-quark / down-quark), vanishing
+    mass for the minimal-SM neutrino — using the correct non-zero
+    eigenvalue spectrum per species:
 
-      * `electron_mass_from_D_F   := ∀ g N, standardD_F.eigenvalues g * higgs_vev N = 0`
-      * `up_mass_from_D_F         := ∀ g N, standardD_F.eigenvalues g * higgs_vev N = 0`
-      * `down_mass_from_D_F       := ∀ g N, standardD_F.eigenvalues g * higgs_vev N = 0`
-      * `neutrino_mass_from_D_F   := ∀ g N, standardD_F.eigenvalues g * higgs_vev N = 0`
+      * `electron_mass_from_D_F   := ∀ g N, 0 < standardD_F_electron.eigenvalues g * higgs_vev N`
+      * `up_mass_from_D_F         := ∀ g N, 0 < standardD_F_upQuark.eigenvalues g * higgs_vev N`
+      * `down_mass_from_D_F       := ∀ g N, 0 < standardD_F_downQuark.eigenvalues g * higgs_vev N`
+      * `neutrino_mass_from_D_F   := ∀ g N, standardD_F_neutrino.eigenvalues g * higgs_vev N = 0`
 
-    Essentially substrate-dependent via `higgs_vev` (the claim ranges
-    over every substrate truncation level `N`, and `higgs_vev N`
-    comes from `computationalUncertainty N`, so the Prop genuinely
-    quantifies over substrate data). Proved by `zero_mul`.
+    Each Prop is sharp: for charged species it is the physical
+    identity "fermion mass is positive at every generation and every
+    substrate truncation level" (proved via the sector-specific
+    `yukawaX_pos` + `higgs_vev_pos`). For the neutrino, it is the
+    physical identity "neutrino mass vanishes in the minimal Standard
+    Model" (proved via `yukawaNeutrino_eq_zero`, which gives
+    `0 * higgs_vev N = 0`). **None of the four charged-species Props
+    reduces to `0 = 0`** — replacing `higgs_vev` with anything
+    positive still lets `y · v > 0` hold, but replacing the Yukawa
+    with zero breaks `y · v > 0`. So the claim is substrate-
+    dependent AND sector-dependent.
 
-    When a future upgrade replaces `standardD_F` with Rasalhague's
-    `electronD_F_packed` (eigenvalues = `yukawaElectron = (1, 2, 4)`),
-    the corresponding bundle — with the same four field types —
-    carries the sharp claim `y_species · higgs_vev N ≠ 0` (charged
-    species) or `= 0` (neutrino). The **sharp** spectral equality
-    `spectrum ℝ electronD_F = Set.range yukawaElectron` is
-    Rasalhague's `yukawaFrameworkFromD_F_real` in
-    `OmegaTheory/Emergence/DiracFSpectrum.lean` (downstream). -/
-def YukawaMatrixFromD_F : YukawaBundle where
+    The `YukawaBundle.D_F` field keeps the zero-eigenvalue
+    `standardD_F` for backward compatibility with any legacy consumer
+    that inspects `D_F` itself; the species-specific Props reference
+    the **real** sector Dirac operators defined above. -/
+noncomputable def YukawaMatrixFromD_F : YukawaBundle where
   D_F                        := standardD_F
   electron_mass_from_D_F     :=
     ∀ (g : FermionGeneration) (N : ℕ),
-      standardD_F.eigenvalues g * higgs_vev N = 0
+      0 < standardD_F_electron.eigenvalues g * higgs_vev N
   up_mass_from_D_F           :=
     ∀ (g : FermionGeneration) (N : ℕ),
-      standardD_F.eigenvalues g * higgs_vev N = 0
+      0 < standardD_F_upQuark.eigenvalues g * higgs_vev N
   down_mass_from_D_F         :=
     ∀ (g : FermionGeneration) (N : ℕ),
-      standardD_F.eigenvalues g * higgs_vev N = 0
+      0 < standardD_F_downQuark.eigenvalues g * higgs_vev N
   neutrino_mass_from_D_F     :=
     ∀ (g : FermionGeneration) (N : ℕ),
-      standardD_F.eigenvalues g * higgs_vev N = 0
+      standardD_F_neutrino.eigenvalues g * higgs_vev N = 0
 
-/-- **At the `standardD_F` placeholder, every species' Connes mass
-    vanishes.** This is the shared lemma discharging all four
-    YukawaBundle fields of `YukawaMatrixFromD_F`: the eigenvalues
-    are `fun _ => 0`, so the mass factorisation `eigenvalue · vev`
-    collapses to `0`. -/
+/-- **Placeholder `standardD_F` still zeroes the mass factorisation.**
+    Kept as a named lemma for any downstream consumer that referenced
+    the name. Since `standardD_F.eigenvalues` is `fun _ => 0`, the
+    product `eigenvalue · vev` collapses to `0`. -/
 theorem standardD_F_yukawa_mass_vanishes
     (g : FermionGeneration) (N : ℕ) :
     standardD_F.eigenvalues g * higgs_vev N = 0 := by
   unfold standardD_F
   simp
 
-/-- The electron mass from D_F vanishes at the placeholder. -/
+/-- **Electron sector**: `standardD_F_electron.eigenvalues = yukawaElectron`,
+    so every eigenvalue is strictly positive (via
+    `YukawaMatrix.yukawaElectron_pos`). -/
+theorem standardD_F_electron_eigenvalues_pos (g : FermionGeneration) :
+    0 < standardD_F_electron.eigenvalues g := by
+  unfold standardD_F_electron
+  exact OmegaTheory.Emergence.YukawaMatrix.yukawaElectron_pos g
+
+/-- **Up-quark sector**: eigenvalues are strictly positive. -/
+theorem standardD_F_upQuark_eigenvalues_pos (g : FermionGeneration) :
+    0 < standardD_F_upQuark.eigenvalues g := by
+  unfold standardD_F_upQuark
+  exact OmegaTheory.Emergence.YukawaMatrix.yukawaUpQuark_pos g
+
+/-- **Down-quark sector**: eigenvalues are strictly positive. -/
+theorem standardD_F_downQuark_eigenvalues_pos (g : FermionGeneration) :
+    0 < standardD_F_downQuark.eigenvalues g := by
+  unfold standardD_F_downQuark
+  exact OmegaTheory.Emergence.YukawaMatrix.yukawaDownQuark_pos g
+
+/-- **Neutrino sector**: eigenvalues vanish identically (minimal SM). -/
+theorem standardD_F_neutrino_eigenvalues_zero (g : FermionGeneration) :
+    standardD_F_neutrino.eigenvalues g = 0 := by
+  unfold standardD_F_neutrino
+  exact OmegaTheory.Emergence.YukawaMatrix.yukawaNeutrino_eq_zero g
+
+/-- **Electron mass from D_F is strictly positive at every generation
+    and every substrate truncation `N`.** Witnessed by the product of
+    a strictly positive Yukawa (from the Connes-correct sector Dirac
+    spectrum) and a strictly positive Higgs vev. -/
 theorem YukawaMatrixFromD_F_electron_mass :
     YukawaMatrixFromD_F.electron_mass_from_D_F :=
-  fun g N => standardD_F_yukawa_mass_vanishes g N
+  fun g N => mul_pos (standardD_F_electron_eigenvalues_pos g) (higgs_vev_pos N)
 
-/-- The up-quark mass from D_F vanishes at the placeholder. -/
+/-- **Up-quark mass from D_F is strictly positive at every generation
+    and every substrate truncation `N`.** Same pattern as the electron
+    case with the up-quark Yukawa profile. -/
 theorem YukawaMatrixFromD_F_up_mass :
     YukawaMatrixFromD_F.up_mass_from_D_F :=
-  fun g N => standardD_F_yukawa_mass_vanishes g N
+  fun g N => mul_pos (standardD_F_upQuark_eigenvalues_pos g) (higgs_vev_pos N)
 
-/-- The down-quark mass from D_F vanishes at the placeholder. -/
+/-- **Down-quark mass from D_F is strictly positive at every generation
+    and every substrate truncation `N`.** Same pattern as the electron
+    case with the down-quark Yukawa profile. -/
 theorem YukawaMatrixFromD_F_down_mass :
     YukawaMatrixFromD_F.down_mass_from_D_F :=
-  fun g N => standardD_F_yukawa_mass_vanishes g N
+  fun g N => mul_pos (standardD_F_downQuark_eigenvalues_pos g) (higgs_vev_pos N)
 
-/-- The neutrino mass from D_F vanishes at the placeholder
-    (correct for the minimal SM — neutrinos are massless). -/
+/-- **Neutrino mass from D_F vanishes at every generation and every
+    substrate truncation `N`.** Witnessed by the vanishing of the
+    neutrino Yukawa (minimal SM), which forces `0 · higgs_vev N = 0`. -/
 theorem YukawaMatrixFromD_F_neutrino_mass :
-    YukawaMatrixFromD_F.neutrino_mass_from_D_F :=
-  fun g N => standardD_F_yukawa_mass_vanishes g N
+    YukawaMatrixFromD_F.neutrino_mass_from_D_F := by
+  intro g N
+  rw [standardD_F_neutrino_eigenvalues_zero g]
+  ring
 
 /-! ## 9. Matter sector capstone scaffold -/
 

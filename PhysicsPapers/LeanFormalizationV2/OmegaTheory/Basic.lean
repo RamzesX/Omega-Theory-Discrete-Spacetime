@@ -213,6 +213,10 @@ import OmegaTheory.Predictions.WarwickGQuEST
 import OmegaTheory.Predictions.NeutrinoMassFloor
 import OmegaTheory.Predictions.JarlskogFromIrrationals
 import OmegaTheory.Predictions.MixingAnglesFromIrrationals
+-- Pi Hunch mass-ordering capstone (pi-capstone, 2026-04-19)
+-- Links δ_comp(N) ordering of (π, e, √2) to fermion mass hierarchy
+-- via a strictly monotone Yukawa kernel. Conditional consequence.
+import OmegaTheory.Predictions.PiHunchMassOrdering
 
 -- Layer 1b: Planck ↔ eV unit conversions (composes with NeutrinoMassFloor)
 -- Created 2026-04-17 by Enif. Lives in Spacetime namespace; imported here

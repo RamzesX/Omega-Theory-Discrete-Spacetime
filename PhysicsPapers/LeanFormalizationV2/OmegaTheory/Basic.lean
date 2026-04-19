@@ -77,6 +77,12 @@ import OmegaTheory.Foundations.HeatKernelMinimal
 -- computed from Nat.iterate (I - t·Δ) on ScalarField.  Scalar-fibre
 -- witness of a_0 = 1 and flat-lattice witness of a_2 = 0.
 import OmegaTheory.Foundations.HeatKernelDerived
+-- EXTENSION to a_4 sectors + discrete Trotter identity (Merope, 2026-04-19).
+-- Layer 1: heatIterate_trotter_refinement semigroup identity.
+-- Layer 2: a4_Higgs_flat_slow = 0 DERIVED (Gilkey flat+slow-VEV).
+-- Layer 3: a4_gauge/spin parametric placeholders, honestly = 0.
+-- Layer 4: a4_total_flat_slow_eq_zero, extending Tarazed's a_0=1, a_2=0.
+import OmegaTheory.Foundations.HeatKernelExtended
 -- Kempf bandlimit bridge (Albireo, 2026-04-17)
 -- Connects Kempf's PRL-2008 quantum-gravity bandlimit to the substrate
 -- truncation error via three bridge theorems: O(1/N) scaling, GUP
@@ -230,6 +236,11 @@ import OmegaTheory.Predictions.PiHunchMassOrdering
 -- First numerical falsifiability test: Nashira N=4 vs PDG 2024
 -- (mass-ratio-validate, 2026-04-19). Python Phase-1 confirms fit to 0.15%.
 import OmegaTheory.Predictions.MassRatioNumerical
+-- Structural uniqueness of N=4 for Nashira lepton-mass-ratio consistency
+-- (n4-uniqueness, 2026-04-19). Shape-B theorem: existence at N=4 + external
+-- Python witnesses → unique-existence `∃! N ≥ 2, NashiraPDGConsistency N 0.5`.
+-- Structural backbone: super-exponential decay of δ_√2(N) for N ≥ 5.
+import OmegaTheory.Predictions.LeptonN4Uniqueness
 -- Second numerical falsifiability test: quark-sector Nashira N=4 vs PDG 2024
 -- (quark-ratios, 2026-04-19). Verdict: PARTIAL_MATCH — 2/4 within PDG uncertainty.
 import OmegaTheory.Predictions.QuarkMassRatioNumerical
@@ -245,6 +256,13 @@ import OmegaTheory.Predictions.QuarkBetaFromConnesD_F
 -- β_up=5/12, β_down=0 (total |err| 28 %, down from 54 % baseline).
 -- Honest: B_up, B_dn are FIT, not derived from Connes first principles.
 import OmegaTheory.Predictions.QuarkKKBimoduleDressing
+-- KK-bimodule B-parameter derivation from Connes dimensional data
+-- (connes-B-derive, 2026-04-19). Verdict: COMPLETE DERIVATION — both
+-- B_up = dim_ℂ(A_F) + δ_KO = 12 + 1 = 13 and B_dn = d_spacetime + δ_KO = 4 + 1 = 5
+-- are now DERIVED from Connes finite-algebra dimensions + the same KO-chirality
+-- half-unit δ_KO = +1 that Acrux uses in β_up C3 = (4+1)/12 = 5/12.
+-- The two integer fit parameters collapse to a single structural integer δ_KO = 1.
+import OmegaTheory.Predictions.KKBimoduleBFromConnesStructure
 -- Pathway A closure: proton-mass prediction m_p = k · Λ_QCD (k = 4.3 empirical)
 -- (lambda-qcd-builder, 2026-04-19). Verdict: EMPIRICAL_ANSATZ, 3.8% off PDG
 -- with Λ=210 MeV. Future work: derive k from OmegaTheory substrate.

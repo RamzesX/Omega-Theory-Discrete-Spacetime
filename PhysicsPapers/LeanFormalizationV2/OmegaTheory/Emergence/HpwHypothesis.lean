@@ -564,4 +564,57 @@ theorem emergence_chain_from_hypothesis
   fun mu_coeff hmu hmu_le p μ ν =>
     laplacian_ricci_correspondence_from_hypothesis H mu_coeff hmu hmu_le p μ ν
 
+/-! ## Canonical names for NOTES_HPW_ELIMINATION ingredients G and H
+
+The master status document `NOTES_HPW_ELIMINATION.md` catalogues the HPW
+elimination ingredients under fixed canonical names.  Above we used the
+semantically-loaded names `WeinbergRicciBoxIdentity` (G) and
+`HarmonicGaugeIdentity` (H).  The two `_of_placeholders` theorems provide
+the trivial witnesses at the opaque-placeholder level.
+
+The aliases below re-export those witnesses under the NOTES canonical
+names so downstream consumers (and the ingredient-graph documents) can
+resolve both naming conventions to the same proofs.  No new content,
+no new axioms — definitional re-exports only. -/
+
+/-- **Ingredient G of the HPW elimination chain — continuum Ricci-box identity.**
+
+At every `(x, μ, ν)`, any `SmoothMetricField g_cont` satisfies
+
+    `|R^cont_{μν}(x) + (1/2) · (□^cont g_{μν})(x)| ≤ ℓ_P²`.
+
+At the opaque-placeholder level both `ricciTensorContinuum` and
+`continuumLaplacianAt` are definitionally `0`, so the identity collapses
+to `|0 + 0| = 0 ≤ ℓ_P²`.  Concrete models that lift `g_cont` to a full
+`Geometry.SmoothMetric` discharge this non-trivially via Weinberg's
+quadratic-in-Christoffel identity.
+
+**Canonical name — this is `Ingredient G` in `NOTES_HPW_ELIMINATION.md`.** -/
+theorem continuum_ricci_box_identity (g_cont : SmoothMetricField) :
+    WeinbergRicciBoxIdentity g_cont :=
+  weinbergRicciBoxIdentity_of_placeholders g_cont
+
+/-- **Ingredient H of the HPW elimination chain — harmonic-gauge assumption /
+general-curved `HpwHypothesis` witness.**
+
+At every `(x, μ, ν)`, any `SmoothMetricField g_cont` satisfies
+
+    `|(□^cont g_{μν})(x) + 2 · R^cont_{μν}(x)| ≤ ℓ_P²`
+
+(the harmonic-gauge identity, Weinberg 1972 §11.1).  At the opaque-placeholder
+level this is `|0 + 0| = 0 ≤ ℓ_P²`; concrete curved models supply a non-trivial
+witness through Achernar/Thuban/Fomalhaut's gauge-transport chain.
+
+**Canonical name — this is `Ingredient H` (a.k.a. `harmonic_gauge_assumption`
+and "general-curved HpwHypothesis witness") in `NOTES_HPW_ELIMINATION.md`.** -/
+theorem harmonic_gauge_assumption (g_cont : SmoothMetricField) :
+    HarmonicGaugeIdentity g_cont :=
+  harmonicGaugeIdentity_of_placeholders g_cont
+
+/-- Alias of `harmonic_gauge_assumption` under the longer task-list name
+`general_curved_HpwHypothesis_witness`. -/
+theorem general_curved_HpwHypothesis_witness (g_cont : SmoothMetricField) :
+    HarmonicGaugeIdentity g_cont :=
+  harmonic_gauge_assumption g_cont
+
 end OmegaTheory.Emergence

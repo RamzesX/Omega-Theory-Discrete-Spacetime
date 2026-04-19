@@ -48,6 +48,8 @@
 
 import Mathlib.Analysis.Calculus.ContDiff.Basic
 import Mathlib.Analysis.Calculus.ContDiff.Defs
+import Mathlib.Analysis.Calculus.ContDiff.Operations
+import Mathlib.Analysis.Calculus.ContDiff.FTaylorSeries
 import OmegaTheory.Geometry.Metric
 import OmegaTheory.Spacetime.Lattice
 import OmegaTheory.Spacetime.Constants
@@ -79,8 +81,13 @@ needed to produce a `SmoothInterpolantData` via convolution. -/
 structure MollifierData : Type where
   /-- The mollifier function `phi : R^4 -> R`. -/
   phi : (Fin 4 → ℝ) → ℝ
-  /-- `phi` is `C^infinity`. -/
-  phi_smooth : ContDiff ℝ ⊤ phi
+  /-- `phi` is `C^infinity` (i.e. infinitely differentiable).  We use the
+      coerced `(↑⊤ : WithTop ℕ∞) = ∞` rather than the raw `⊤` of `WithTop ℕ∞`
+      (which would mean *analytic*) because any nontrivial bump function
+      with compact support fails to be real-analytic (Paley–Wiener).  The
+      value `∞` is strictly stronger than any finite `n` we need below,
+      and satisfies `n ≤ ∞` for every `n : ℕ∞`. -/
+  phi_smooth : ContDiff ℝ (↑(⊤ : ℕ∞) : WithTop ℕ∞) phi
   /-- `phi` is supported in the closed unit ball: `norm(x) > 1 => phi(x) = 0`. -/
   phi_support : ∀ x : Fin 4 → ℝ, ‖x‖ > 1 → phi x = 0
   /-- `phi` is pointwise nonneg. -/
@@ -176,7 +183,14 @@ theorem convolutionTerm_contDiff
   unfold convolutionTerm
   -- phi composed with an affine map is C^4 (phi is C^inf).
   have h_phi_comp : ContDiff ℝ 4 (fun x : Fin 4 → ℝ => m.phi (mollifierArg x p)) :=
-    (m.phi_smooth.of_le le_top).comp (mollifierArg_contDiff p)
+    -- `m.phi_smooth : ContDiff ℝ (↑⊤) phi` with `↑⊤ : WithTop ℕ∞ = ∞ = C^∞`.
+    -- To drop down to `C^4` we need `(4 : WithTop ℕ∞) ≤ ↑⊤`.
+    -- Strategy: rewrite `(4 : WithTop ℕ∞)` as `↑(4 : ℕ∞)`, then use `WithTop.coe_le_coe`.
+    (m.phi_smooth.of_le (by
+        show (4 : WithTop ℕ∞) ≤ (↑(⊤ : ℕ∞) : WithTop ℕ∞)
+        have h4 : (4 : WithTop ℕ∞) = (↑((4 : ℕ) : ℕ∞) : WithTop ℕ∞) := by norm_cast
+        rw [h4, WithTop.coe_le_coe]
+        exact le_top)).comp (mollifierArg_contDiff p)
   -- const * (C^4 function) is C^4
   exact contDiff_const.mul h_phi_comp
 
@@ -307,6 +321,196 @@ theorem convolutionInterpolant_flat_compatible
     (I : ConvolutionInterpolant DiscreteMetric.flat) :
     ∃ D : SmoothInterpolantData DiscreteMetric.flat, D.c4_bound = I.c4_bound :=
   ⟨I.toSmoothInterpolantData, rfl⟩
+
+/-! ## Ingredient F — C⁴ bound on the convolution interpolant
+
+Given a bounded discrete metric and a mollifier with bounded 4-th iterated Fréchet
+derivative, the convolution sum on any finite domain `S` is uniformly C⁴-bounded
+with explicit constant depending only on `S.card`, the metric bound `B`, the
+mollifier bound `M_phi`, and the lattice spacing `l_P`.
+
+The proof proceeds by:
+1. Rewriting `mollifierArg x p` as a translated scaling: `l_P⁻¹ • x - p_vec`.
+2. Applying the translation-invariance of `iteratedFDeriv` (`iteratedFDeriv_comp_sub`).
+3. Applying the scaling rule (`iteratedFDeriv_comp_const_smul`).
+4. Using the scalar-multiplication rule for the `g p μ ν` factor.
+5. Bounding each term by `B * M_phi / l_P^4` and summing via `norm_sum_le`. -/
+
+/-- Helper: `mollifierArg x p` expressed as scaling + translation.
+    `mollifierArg x p = l_P⁻¹ • x - p_vec` where `p_vec i = (p i : ℝ)`. -/
+private theorem mollifierArg_eq_smul_sub (x : Fin 4 → ℝ) (p : LatticePoint) :
+    mollifierArg x p = l_P⁻¹ • x - (fun i => ((p i : ℤ) : ℝ)) := by
+  funext i
+  unfold mollifierArg
+  simp only [Pi.smul_apply, smul_eq_mul, Pi.sub_apply]
+  -- Goal: (x i - l_P * ↑(p i)) / l_P = l_P⁻¹ * x i - ↑(p i)
+  have hne : l_P ≠ 0 := l_P_ne_zero
+  rw [div_eq_iff hne, sub_mul, mul_comm l_P⁻¹ _, mul_assoc, inv_mul_cancel₀ hne, mul_one]
+  rw [mul_comm (↑(p i) : ℝ) l_P]
+
+/-- Helper: the 4-th iterated derivative of a constant scalar multiple of a
+    function is that constant times the 4-th iterated derivative. -/
+private theorem iteratedFDeriv_const_mul_scalar
+    (c : ℝ) (f : (Fin 4 → ℝ) → ℝ) (hf : ContDiff ℝ 4 f) (x : Fin 4 → ℝ) :
+    ‖iteratedFDeriv ℝ 4 (fun y : Fin 4 → ℝ => c * f y) x‖
+      = |c| * ‖iteratedFDeriv ℝ 4 f x‖ := by
+  have hf' : ContDiffAt ℝ 4 f x := hf.contDiffAt
+  have key : iteratedFDeriv ℝ 4 (fun y : Fin 4 → ℝ => c * f y) x
+      = c • iteratedFDeriv ℝ 4 f x := by
+    have := iteratedFDeriv_const_smul_apply' (𝕜 := ℝ) (a := c) (i := 4) hf'
+    -- `c * f y = c • f y` in ℝ
+    simpa [smul_eq_mul] using this
+  rw [key]
+  rw [norm_smul]
+  simp [Real.norm_eq_abs]
+
+/-- The derivative chain for a single term: unfolding `mollifierArg` as
+    scale + shift. -/
+private theorem iteratedFDeriv_phi_mollifierArg
+    (m : MollifierData) (p : LatticePoint) (x : Fin 4 → ℝ) :
+    iteratedFDeriv ℝ 4 (fun y : Fin 4 → ℝ => m.phi (mollifierArg y p)) x
+      = l_P⁻¹ ^ 4 • iteratedFDeriv ℝ 4 m.phi (mollifierArg x p) := by
+  -- Step 1: Rewrite the function using mollifierArg_eq_smul_sub.
+  have hphi_cd : ContDiff ℝ 4 m.phi := by
+    -- Drop from C^∞ to C^4.
+    refine m.phi_smooth.of_le ?_
+    show (4 : WithTop ℕ∞) ≤ (↑(⊤ : ℕ∞) : WithTop ℕ∞)
+    have h4 : (4 : WithTop ℕ∞) = (↑((4 : ℕ) : ℕ∞) : WithTop ℕ∞) := by norm_cast
+    rw [h4, WithTop.coe_le_coe]
+    exact le_top
+  let p_vec : Fin 4 → ℝ := fun i => ((p i : ℤ) : ℝ)
+  -- The function equals (fun z => m.phi (z - p_vec)) ∘ (fun y => l_P⁻¹ • y)
+  have heq : (fun y : Fin 4 → ℝ => m.phi (mollifierArg y p))
+      = (fun z : Fin 4 → ℝ => m.phi (z - p_vec)) ∘ (fun y : Fin 4 → ℝ => l_P⁻¹ • y) := by
+    funext y
+    simp only [Function.comp_apply]
+    congr 1
+    exact mollifierArg_eq_smul_sub y p
+  rw [heq]
+  -- Step 2: apply iteratedFDeriv_comp_const_smul with a = l_P⁻¹.
+  have hphi_sub_cd : ContDiff ℝ 4 (fun z : Fin 4 → ℝ => m.phi (z - p_vec)) := by
+    have : ContDiff ℝ 4 (fun z : Fin 4 → ℝ => z - p_vec) := by
+      exact contDiff_id.sub contDiff_const
+    exact hphi_cd.comp this
+  -- Use iteratedFDeriv_comp_const_smul:
+  --   iteratedFDeriv ℝ i (fun z ↦ f (a • z)) = fun x ↦ a^i • iteratedFDeriv ℝ i f (a • x)
+  have h_smul_full := iteratedFDeriv_comp_const_smul (𝕜 := ℝ) (i := 4)
+    (f := fun z : Fin 4 → ℝ => m.phi (z - p_vec)) (a := l_P⁻¹) hphi_sub_cd
+  -- The composition (fun z ↦ m.phi (z - p_vec)) ∘ (fun y ↦ l_P⁻¹ • y) at x gives
+  -- the same as the lambda form. Unfold the composition.
+  show iteratedFDeriv ℝ 4 (fun y : Fin 4 → ℝ =>
+      (fun z : Fin 4 → ℝ => m.phi (z - p_vec)) (l_P⁻¹ • y)) x
+    = l_P⁻¹ ^ 4 • iteratedFDeriv ℝ 4 m.phi (mollifierArg x p)
+  rw [h_smul_full]
+  -- Goal: (fun x ↦ l_P⁻¹ ^ 4 • iteratedFDeriv ℝ 4 (fun z ↦ m.phi (z - p_vec)) (l_P⁻¹ • x)) x
+  --      = l_P⁻¹ ^ 4 • iteratedFDeriv ℝ 4 m.phi (mollifierArg x p)
+  -- Beta reduce then apply iteratedFDeriv_comp_sub.
+  simp only []
+  rw [iteratedFDeriv_comp_sub 4 p_vec (l_P⁻¹ • x)]
+  -- Goal: l_P⁻¹ ^ 4 • iteratedFDeriv ℝ 4 m.phi (l_P⁻¹ • x - p_vec)
+  --       = l_P⁻¹ ^ 4 • iteratedFDeriv ℝ 4 m.phi (mollifierArg x p)
+  congr 1
+  congr 1
+  rw [mollifierArg_eq_smul_sub]
+
+/-- Helper: per-term C⁴ bound. -/
+private theorem convolutionTerm_c4_bound
+    (m : MollifierData)
+    (M_phi : ℝ) (hM_phi_nn : 0 ≤ M_phi)
+    (h_phi_bound : ∀ x : Fin 4 → ℝ,
+        ‖iteratedFDeriv ℝ 4 m.phi x‖ ≤ M_phi)
+    (g : DiscreteMetric) (B : ℝ)
+    (hg : DiscreteMetric.IsBounded g B) (hB_nn : 0 ≤ B)
+    (p : LatticePoint) (μ ν : Fin 4) (x : Fin 4 → ℝ) :
+    ‖iteratedFDeriv ℝ 4 (fun y : Fin 4 → ℝ => convolutionTerm m g p μ ν y) x‖
+      ≤ B * M_phi / l_P^4 := by
+  unfold convolutionTerm
+  have hphi_cd : ContDiff ℝ 4 m.phi := by
+    refine m.phi_smooth.of_le ?_
+    change (4 : WithTop ℕ∞) ≤ (↑(⊤ : ℕ∞) : WithTop ℕ∞)
+    have h4 : (4 : WithTop ℕ∞) = (↑((4 : ℕ) : ℕ∞) : WithTop ℕ∞) := by norm_cast
+    rw [h4, WithTop.coe_le_coe]
+    exact le_top
+  have hphi_comp_cd : ContDiff ℝ 4 (fun y : Fin 4 → ℝ => m.phi (mollifierArg y p)) :=
+    hphi_cd.comp (mollifierArg_contDiff p)
+  have h_scale :
+      ‖iteratedFDeriv ℝ 4 (fun y : Fin 4 → ℝ => g p μ ν * m.phi (mollifierArg y p)) x‖
+        = |g p μ ν| *
+            ‖iteratedFDeriv ℝ 4 (fun y : Fin 4 → ℝ => m.phi (mollifierArg y p)) x‖ :=
+    iteratedFDeriv_const_mul_scalar (g p μ ν) _ hphi_comp_cd x
+  rw [h_scale, iteratedFDeriv_phi_mollifierArg m p x, norm_smul]
+  have h_lp_pow : ‖(l_P⁻¹ : ℝ) ^ 4‖ = 1 / l_P^4 := by
+    rw [Real.norm_eq_abs, abs_pow, abs_of_pos (inv_pos.mpr l_P_pos), inv_pow, one_div]
+  rw [h_lp_pow]
+  have h_gp : |g p μ ν| ≤ B := hg p μ ν
+  have h_gp_nn : 0 ≤ |g p μ ν| := abs_nonneg _
+  have h_phi : ‖iteratedFDeriv ℝ 4 m.phi (mollifierArg x p)‖ ≤ M_phi :=
+    h_phi_bound (mollifierArg x p)
+  have h_phi_nn : 0 ≤ ‖iteratedFDeriv ℝ 4 m.phi (mollifierArg x p)‖ := norm_nonneg _
+  have h_lp4_pos : 0 < l_P^4 := pow_pos l_P_pos 4
+  have h_lp4_nn : 0 ≤ 1 / l_P^4 := by positivity
+  -- Goal: |g p μ ν| * (1/l_P^4 * ‖iteratedFDeriv 4 m.phi ...‖) ≤ B * M_phi / l_P^4
+  have h_le : |g p μ ν| * (1 / l_P^4 * ‖iteratedFDeriv ℝ 4 m.phi (mollifierArg x p)‖)
+      ≤ B * (1 / l_P^4 * M_phi) := by
+    have h1 : |g p μ ν| * (1 / l_P^4 * ‖iteratedFDeriv ℝ 4 m.phi (mollifierArg x p)‖)
+        ≤ B * (1 / l_P^4 * ‖iteratedFDeriv ℝ 4 m.phi (mollifierArg x p)‖) :=
+      mul_le_mul_of_nonneg_right h_gp (mul_nonneg h_lp4_nn h_phi_nn)
+    have h2 : B * (1 / l_P^4 * ‖iteratedFDeriv ℝ 4 m.phi (mollifierArg x p)‖)
+        ≤ B * (1 / l_P^4 * M_phi) :=
+      mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left h_phi h_lp4_nn) hB_nn
+    linarith
+  have heq : B * (1 / l_P^4 * M_phi) = B * M_phi / l_P^4 := by
+    rw [one_div, mul_comm (l_P^4)⁻¹ M_phi, ← mul_assoc, ← div_eq_mul_inv]
+  linarith [heq]
+
+/-- **Ingredient F.**  C⁴ uniform bound on each `(μ,ν)` component of the
+convolution interpolant. -/
+theorem convolutionFixedBox_c4_bound
+    (m : MollifierData)
+    (M_phi : ℝ) (hM_phi_nn : 0 ≤ M_phi)
+    (h_phi_bound : ∀ x : Fin 4 → ℝ,
+        ‖iteratedFDeriv ℝ 4 m.phi x‖ ≤ M_phi)
+    (g : DiscreteMetric) (B : ℝ)
+    (hg : DiscreteMetric.IsBounded g B) (hB_nn : 0 ≤ B)
+    (S : Finset LatticePoint) (μ ν : Fin 4) (x : Fin 4 → ℝ) :
+    ‖iteratedFDeriv ℝ 4 (convolutionFixedBox m g S μ ν) x‖
+      ≤ (S.card : ℝ) * B * M_phi / l_P^4 := by
+  -- Step 1: Rewrite the iteratedFDeriv of the sum using iteratedFDeriv_sum_apply.
+  have h_sum : iteratedFDeriv ℝ 4 (convolutionFixedBox m g S μ ν) x
+      = ∑ p ∈ S, iteratedFDeriv ℝ 4 (fun y => convolutionTerm m g p μ ν y) x := by
+    -- convolutionFixedBox = fun x => ∑ p ∈ S, convolutionTerm m g p μ ν x
+    -- We convert to ∑ p ∈ S, (fun y => convolutionTerm m g p μ ν y) (the same as a function).
+    have h_eq : (convolutionFixedBox m g S μ ν)
+        = ∑ p ∈ S, (fun y : Fin 4 → ℝ => convolutionTerm m g p μ ν y) := by
+      funext y
+      unfold convolutionFixedBox
+      rw [Finset.sum_apply]
+    rw [h_eq]
+    have h_ctd : ∀ p ∈ S, ContDiffAt ℝ 4 (fun y : Fin 4 → ℝ => convolutionTerm m g p μ ν y) x :=
+      fun p _ => (convolutionTerm_contDiff m g p μ ν).contDiffAt
+    exact iteratedFDeriv_sum_apply h_ctd
+  rw [h_sum]
+  -- Step 2: Triangle inequality + per-term bound + sum_const.
+  calc ‖∑ p ∈ S, iteratedFDeriv ℝ 4 (fun y => convolutionTerm m g p μ ν y) x‖
+      ≤ ∑ p ∈ S, ‖iteratedFDeriv ℝ 4 (fun y => convolutionTerm m g p μ ν y) x‖ :=
+        norm_sum_le S _
+    _ ≤ ∑ _p ∈ S, B * M_phi / l_P^4 :=
+        Finset.sum_le_sum (fun p _ =>
+          convolutionTerm_c4_bound m M_phi hM_phi_nn h_phi_bound g B hg hB_nn p μ ν x)
+    _ = (S.card : ℝ) * (B * M_phi / l_P^4) := by
+        rw [Finset.sum_const]; simp [nsmul_eq_mul]
+    _ = (S.card : ℝ) * B * M_phi / l_P^4 := by ring
+
+/-- **F-glue:** ∀-quantified shape. -/
+theorem convolutionFixedBox_c4_bound_forall
+    (m : MollifierData) (M_phi : ℝ) (hM_phi_nn : 0 ≤ M_phi)
+    (h_phi_bound : ∀ x, ‖iteratedFDeriv ℝ 4 m.phi x‖ ≤ M_phi)
+    (g : DiscreteMetric) (B : ℝ)
+    (hg : DiscreteMetric.IsBounded g B) (hB_nn : 0 ≤ B)
+    (S : Finset LatticePoint) :
+    ∀ μ ν x, ‖iteratedFDeriv ℝ 4 (convolutionFixedBox m g S μ ν) x‖
+              ≤ (S.card : ℝ) * B * M_phi / l_P^4 :=
+  fun μ ν x => convolutionFixedBox_c4_bound m M_phi hM_phi_nn h_phi_bound g B hg hB_nn S μ ν x
 
 /-! ## Connection to HpwHypothesis
 

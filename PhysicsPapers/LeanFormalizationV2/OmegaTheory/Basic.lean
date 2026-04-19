@@ -108,6 +108,7 @@ import OmegaTheory.Emergence.HpwSmoothMetricBridge
 import OmegaTheory.Emergence.HpwLinearised
 import OmegaTheory.Emergence.SmoothInterpolant
 import OmegaTheory.Emergence.WhitneyInterpolant
+import OmegaTheory.Emergence.WhitneyMollifier
 import OmegaTheory.Emergence.HarmonicGauge
 import OmegaTheory.Emergence.RicciComparison
 import OmegaTheory.Emergence.HpwSchwarzschild

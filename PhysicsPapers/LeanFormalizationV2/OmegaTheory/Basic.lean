@@ -159,6 +159,7 @@ import OmegaTheory.Torsion.SpinTorsion
 import OmegaTheory.Torsion.BigBounce
 import OmegaTheory.Irrationality.Uncertainty
 import OmegaTheory.Irrationality.BoundsLemmas
+import OmegaTheory.Irrationality.StrictMonotonicity
 import OmegaTheory.Emergence.Predictions
 import OmegaTheory.Emergence.DimensionalFlow
 import OmegaTheory.Emergence.SpecialRelativity
@@ -282,6 +283,8 @@ import OmegaTheory.Spacetime.UnitConversions
 import OmegaTheory.Predictions.NeutrinoMassFloorW1
 import OmegaTheory.Predictions.ColdNeutronILL_VCN
 import OmegaTheory.Predictions.DESISubstrateSignature
+import OmegaTheory.Predictions.JointConsistency
+import OmegaTheory.Matter.GenerationCount
 
 -- Layer 11b: Irrationality → predictions bridge
 import OmegaTheory.Irrationality.PredictionsBridge

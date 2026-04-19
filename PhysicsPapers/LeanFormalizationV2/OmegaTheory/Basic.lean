@@ -238,6 +238,13 @@ import OmegaTheory.Predictions.QuarkMassRatioNumerical
 -- k=N_color are first-principles derived; quark β_up, β_down are NOT — best
 -- first-principles candidate β_up=5/12 (C3) marginally beats empirical 3/7.
 import OmegaTheory.Predictions.QuarkBetaFromConnesD_F
+-- KK-bimodule trace dressing for quark Nashira kernels
+-- (connes-kk-dress, 2026-04-19). Verdict: PARTIAL_CLOSES_GAP — per-sector
+-- weights cancel in ratios; per-generation KK-bimodule weights
+-- w_i = B/(B+i-1) CAN close 4/4 PDG bands at B_up=13, B_dn=5 with Acrux C3
+-- β_up=5/12, β_down=0 (total |err| 28 %, down from 54 % baseline).
+-- Honest: B_up, B_dn are FIT, not derived from Connes first principles.
+import OmegaTheory.Predictions.QuarkKKBimoduleDressing
 -- Pathway A closure: proton-mass prediction m_p = k · Λ_QCD (k = 4.3 empirical)
 -- (lambda-qcd-builder, 2026-04-19). Verdict: EMPIRICAL_ANSATZ, 3.8% off PDG
 -- with Λ=210 MeV. Future work: derive k from OmegaTheory substrate.

@@ -75,6 +75,12 @@ exclude:
   - "PhysicsPapers/LeanFormalization/.lake"
   - "PhysicsPapers/LeanFormalization/build"
   - "PhysicsPapers/LeanFormalization/lake-packages"
+  - "PhysicsPapers/LeanFormalizationV2/.lake"
+  - "PhysicsPapers/LeanFormalizationV2/build"
+  - "PhysicsPapers/LeanFormalizationV2/lake-packages"
+  # Astro sub-site (built separately by astro-build action, not Jekyll)
+  - site
+  - "site/"
 
 # Include markdown files
 include:

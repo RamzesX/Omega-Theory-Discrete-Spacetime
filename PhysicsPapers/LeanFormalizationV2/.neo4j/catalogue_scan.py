@@ -27,7 +27,10 @@ OUT_DIR = ROOT / '.neo4j'
 MOD_PREFIX = r'(?:(?:@\[[^\]]*\]\s*)?(?:protected\s+|private\s+|noncomputable\s+|unsafe\s+|partial\s+|@\[[^\]]*\]\s*)*)'
 
 # Helper: a Lean identifier (allow dots for namespaced names)
-IDENT = r'[A-Za-z_][A-Za-z0-9_\.\'\!]*'
+# Unicode-aware: matches Greek letters (δ, μ, ν, Λ, π, …), subscripts (₀–₉),
+# blackboard letters (ℝ, ℂ, ℤ, …), plus ASCII letters/digits/underscore/dot/prime/bang.
+# `[^\W\d]` = Unicode word char but not digit = letter or underscore.
+IDENT = r'[^\W\d][\w\.\'\!₀₁₂₃₄₅₆₇₈₉ℝℂℤℕℚℙΛ]*'
 
 RE_AXIOM     = re.compile(rf'^\s*{MOD_PREFIX}axiom\s+({IDENT})', re.MULTILINE)
 RE_THEOREM   = re.compile(rf'^\s*{MOD_PREFIX}theorem\s+({IDENT})', re.MULTILINE)

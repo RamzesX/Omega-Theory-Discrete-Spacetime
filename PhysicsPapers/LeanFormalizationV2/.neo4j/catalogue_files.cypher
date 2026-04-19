@@ -96,7 +96,7 @@ MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/H
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Emergence'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/HiggsFromError.lean'}) MERGE (ent)-[:CONTAINS]->(file);
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/HilbertEmergence.lean'}) SET file.declarations_count = 30;
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Emergence'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/HilbertEmergence.lean'}) MERGE (ent)-[:CONTAINS]->(file);
-MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/HpwBianchiI.lean'}) SET file.declarations_count = 24;
+MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/HpwBianchiI.lean'}) SET file.declarations_count = 29;
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Emergence'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/HpwBianchiI.lean'}) MERGE (ent)-[:CONTAINS]->(file);
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/HpwCreativeAttack.lean'}) SET file.declarations_count = 11;
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Emergence'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/HpwCreativeAttack.lean'}) MERGE (ent)-[:CONTAINS]->(file);
@@ -126,7 +126,7 @@ MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/I
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Emergence'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/Interference.lean'}) MERGE (ent)-[:CONTAINS]->(file);
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/KleinGordon.lean'}) SET file.declarations_count = 35;
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Emergence'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/KleinGordon.lean'}) MERGE (ent)-[:CONTAINS]->(file);
-MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/KoideRelation.lean'}) SET file.declarations_count = 38;
+MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/KoideRelation.lean'}) SET file.declarations_count = 46;
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Emergence'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/KoideRelation.lean'}) MERGE (ent)-[:CONTAINS]->(file);
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/LambdaQCDFromSubstrate.lean'}) SET file.declarations_count = 10;
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Emergence'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Emergence/LambdaQCDFromSubstrate.lean'}) MERGE (ent)-[:CONTAINS]->(file);
@@ -206,7 +206,9 @@ MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Foundations
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Foundations'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Foundations/ErrorLieAlgebra.lean'}) MERGE (ent)-[:CONTAINS]->(file);
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Foundations/HeatKernelDerived.lean'}) SET file.declarations_count = 24;
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Foundations'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Foundations/HeatKernelDerived.lean'}) MERGE (ent)-[:CONTAINS]->(file);
-MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Foundations/HeatKernelMinimal.lean'}) SET file.declarations_count = 45;
+MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Foundations/HeatKernelExtended.lean'}) SET file.declarations_count = 24;
+MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Foundations'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Foundations/HeatKernelExtended.lean'}) MERGE (ent)-[:CONTAINS]->(file);
+MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Foundations/HeatKernelMinimal.lean'}) SET file.declarations_count = 49;
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Foundations'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Foundations/HeatKernelMinimal.lean'}) MERGE (ent)-[:CONTAINS]->(file);
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Foundations/KempfBandlimit.lean'}) SET file.declarations_count = 17;
 MATCH (ent:EntityNavigator {namespace: 'OmegaTheoryV2', name: 'Foundations'}), (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Foundations/KempfBandlimit.lean'}) MERGE (ent)-[:CONTAINS]->(file);
@@ -363,12 +365,13 @@ MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Paper/Quant
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/AdditionalPredictions.lean'}) SET file.declarations_count = 40, file.role = 'aggregator';
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/ChristoffelSparsity.lean'}) SET file.declarations_count = 9, file.role = 'aggregator';
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/ColdNeutronILL_VCN.lean'}) SET file.declarations_count = 25, file.role = 'aggregator';
-MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/DESISubstrateSignature.lean'}) SET file.declarations_count = 26, file.role = 'aggregator';
+MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/DESISubstrateSignature.lean'}) SET file.declarations_count = 30, file.role = 'aggregator';
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/GammaRayDispersion.lean'}) SET file.declarations_count = 10, file.role = 'aggregator';
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/GravDecoherenceTScaling.lean'}) SET file.declarations_count = 12, file.role = 'aggregator';
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/HermiticityDefect.lean'}) SET file.declarations_count = 5, file.role = 'aggregator';
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/JarlskogFromIrrationals.lean'}) SET file.declarations_count = 17, file.role = 'aggregator';
-MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/KKBimoduleBFromConnesStructure.lean'}) SET file.declarations_count = 25, file.role = 'aggregator';
+MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/KKBimoduleBFromConnesStructure.lean'}) SET file.declarations_count = 26, file.role = 'aggregator';
+MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/LeptonN4Uniqueness.lean'}) SET file.declarations_count = 31, file.role = 'aggregator';
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/MassRatioNumerical.lean'}) SET file.declarations_count = 19, file.role = 'aggregator';
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/MixingAnglesFromIrrationals.lean'}) SET file.declarations_count = 32, file.role = 'aggregator';
 MERGE (file:LeanFile {namespace: 'OmegaTheoryV2', path: 'OmegaTheory/Predictions/NeutrinoMassFloor.lean'}) SET file.declarations_count = 21, file.role = 'aggregator';

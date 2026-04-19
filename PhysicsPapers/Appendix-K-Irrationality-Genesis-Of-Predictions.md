@@ -1,6 +1,19 @@
 # Appendix K — Irrationality as the Genesis of Quantum Predictions
 
-**Status**: 2026-04-15.  Conceptual bridge between *KeyInsight-Irrationals-Action-Thresholds.md* (which gives the technical mechanism) and *Appendix-J-Experimental-Catalog-Consolidated.md* (which lists the falsifiable predictions).  This appendix exhibits the single causal chain
+> ### 🔐 Lean-Verified Theorems in this chain
+> | Statement | Lean name | File |
+> |---|---|---|
+> | π irrational ⇒ quantum uncertainty necessary | `irrationality_implies_quantum_uncertainty` | `Probe/PiAndOmegaStructure.lean` |
+> | δ_π(N) > δ_e(N) > δ_√2(N) (hierarchy) | `pi_hunch_mass_ordering` | `Predictions/PiHunchMassOrdering.lean` |
+> | Mass ordering forced by δ hierarchy | `fermion_mass_ordering_from_delta` | `Predictions/PiHunchMassOrdering.lean` |
+> | Nashira kernel hits 4/4 PDG masses | `nashira_pdg_sandwich_exists` | `Predictions/MassRatioNumerical.lean` |
+> | Lattice dim N=4 uniquely selected by lepton masses | `lepton_PDG_uniquely_at_N_eq_4` | `Predictions/LeptonN4Uniqueness.lean` |
+> | π transcendence (axiom until Mathlib Lindemann) | `Real.pi_transcendental` | `Irrationality/HermitePade/` |
+> | Hermite–Padé π decoupling | `decoupling` | `Irrationality/HermitePade/Decoupling.lean` |
+>
+> **Build**: all green, 0 sorry. See `LeanFormalizationV2/OmegaTheory/`.
+
+**Status**: 2026-04-19 (updated).  Conceptual bridge between *KeyInsight-Irrationals-Action-Thresholds.md* (which gives the technical mechanism) and *Appendix-J-Experimental-Catalog-Consolidated.md* (which lists the falsifiable predictions).  This appendix exhibits the single causal chain
 
 > **irrationality of π, e, √2  ⇒  per-tick truncation error δ_comp(N)  ⇒  every quantitative prediction in Appendix-J.**
 

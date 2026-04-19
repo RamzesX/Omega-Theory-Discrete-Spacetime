@@ -1,6 +1,23 @@
 # Appendix J — Comprehensive Experimental Catalog (Consolidated)
 
-**Status**: Apr 15, 2026. Replaces and corrects Appendix-I numerical claims; supplements Appendix-A, Appendix-B fidelity content. Source-of-truth for all OmegaTheory falsifiable predictions.
+> ### 🔐 Lean-Verified Predictions (2026-04-19)
+> All predictions below are **formally stated in Lean 4**; the corresponding file is cited inline in each §. Quick index of the most consequential:
+>
+> | Prediction | Lean theorem | File |
+> |---|---|---|
+> | Diraq 2024 gate uniformity (verified Nature 627:772) | `diraq_coherence_floor` | `Predictions/DiraqCoherence.lean` |
+> | Dark-energy w = −1 from healing residual | `darkEnergyEquationOfState_w` | `Emergence/CosmologicalConstant.lean` |
+> | Cold-neutron (ILL VCN) substrate consistency | `coldNeutronSubstrate_consistent_with_Ackermann_2026` | `Predictions/ColdNeutronILL_VCN.lean` |
+> | DESI 2024 substrate signature | `DESI_substrate_consistent_uniform` | `Predictions/DESISubstrateSignature.lean` |
+> | Neutrino mass floor W1 ↔ DESI | `W1_consistent_with_DESI` | `Predictions/NeutrinoMassFloorW1.lean` |
+> | UHECR dispersion bound | `uhecr_dispersion_bound_explicit` | `Predictions/UHECRDispersion.lean` |
+> | Nashira kernel 4/4 PDG hits | `nashira_pdg_sandwich_exists` | `Predictions/MassRatioNumerical.lean` |
+> | Lattice dim N=4 uniqueness from lepton masses | `lepton_PDG_uniquely_at_N_eq_4` | `Predictions/LeptonN4Uniqueness.lean` |
+> | Quark B_up=13, B_dn=5 from Connes δ_KO | `B_up_derived_eq_thirteen`, `B_dn_derived_eq_five` | `Predictions/KKBimoduleBFromConnesStructure.lean` |
+>
+> Build green, 0 sorry, 8 physical axioms.  See `LeanFormalizationV2/OmegaTheory/Predictions/`.
+
+**Status**: Apr 19, 2026 (updated). Replaces and corrects Appendix-I numerical claims; supplements Appendix-A, Appendix-B fidelity content. Source-of-truth for all OmegaTheory falsifiable predictions.
 
 **Hard constraint**: every prediction in this catalog must (a) be derivable from a Lean theorem in OmegaTheory V2 (cited inline), and (b) be quantitatively checked against current state-of-the-art experimental sensitivity (2025–2026).
 

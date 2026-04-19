@@ -568,4 +568,33 @@ theorem tau_mass_predicted_from_koide_exists :
       |m_τ - m_τ_predicted| < (1 : ℝ) / 2 :=
   ⟨koidePredictedTau, koidePredictedTau_pos, tau_mass_predicted_from_koide⟩
 
+/-! ## 11. PDG numerical lepton mass hierarchy
+
+The `electronTower_mass_hierarchy` result in `Emergence/YukawaMatrix.lean`
+establishes the hierarchy in terms of the Yukawa-bridged `fermionMass`
+function. Here we record the direct PDG-numeric counterpart: the observed
+charged-lepton masses satisfy `m_e < m_μ < m_τ`. Companion to the bridged
+statement via `MASS_HIERARCHY_PDG ≡ electronTower_mass_hierarchy` — no new
+physics, just the concrete PDG inequality expected by downstream code that
+unfolds `m_e, m_μ, m_τ` directly (Koide bounds, Nashira fits). -/
+
+theorem m_e_lt_m_μ : m_e < m_μ := by
+  unfold m_e m_μ; norm_num
+
+theorem m_μ_lt_m_τ : m_μ < m_τ := by
+  unfold m_μ m_τ; norm_num
+
+/-- **PDG charged-lepton mass hierarchy** (numeric).  The three observed
+    charged-lepton masses form a strictly ascending chain. -/
+theorem pdg_lepton_hierarchy : m_e < m_μ ∧ m_μ < m_τ :=
+  ⟨m_e_lt_m_μ, m_μ_lt_m_τ⟩
+
+/-- Strict ordering at the level of square roots — mirrors the strict
+    ordering at the mass level, useful for Koide-denominator bounds. -/
+theorem sqrt_lepton_hierarchy :
+    Real.sqrt m_e < Real.sqrt m_μ ∧ Real.sqrt m_μ < Real.sqrt m_τ := by
+  refine ⟨?_, ?_⟩
+  · exact Real.sqrt_lt_sqrt m_e_nonneg m_e_lt_m_μ
+  · exact Real.sqrt_lt_sqrt m_μ_nonneg m_μ_lt_m_τ
+
 end OmegaTheory.Emergence.KoideRelation

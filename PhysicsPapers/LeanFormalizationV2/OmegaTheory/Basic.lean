@@ -220,6 +220,9 @@ import OmegaTheory.Predictions.PiHunchMassOrdering
 -- First numerical falsifiability test: Nashira N=4 vs PDG 2024
 -- (mass-ratio-validate, 2026-04-19). Python Phase-1 confirms fit to 0.15%.
 import OmegaTheory.Predictions.MassRatioNumerical
+-- Second numerical falsifiability test: quark-sector Nashira N=4 vs PDG 2024
+-- (quark-ratios, 2026-04-19). Verdict: PARTIAL_MATCH — 2/4 within PDG uncertainty.
+import OmegaTheory.Predictions.QuarkMassRatioNumerical
 
 -- Layer 1b: Planck ↔ eV unit conversions (composes with NeutrinoMassFloor)
 -- Created 2026-04-17 by Enif. Lives in Spacetime namespace; imported here

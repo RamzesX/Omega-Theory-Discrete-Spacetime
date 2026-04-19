@@ -109,6 +109,7 @@ import OmegaTheory.HealingFlow.Flow
 import OmegaTheory.HealingFlow.Lyapunov
 import OmegaTheory.HealingFlow.Periodic
 import OmegaTheory.HealingFlow.Convergence
+import OmegaTheory.HealingFlow.LyapunovStrictDecrease
 
 -- Layer 8: Emergence
 import OmegaTheory.Emergence.CoarseGrain
@@ -188,6 +189,7 @@ import OmegaTheory.Emergence.ErrorGaugeSU3
 import OmegaTheory.Emergence.SU3JacobiHelper
 import OmegaTheory.Emergence.SU3JacobiFull
 import OmegaTheory.Emergence.NonAbelianGauge
+import OmegaTheory.Emergence.PontryaginForm
 import OmegaTheory.Emergence.SymmetryBreaking
 import OmegaTheory.Emergence.HiggsFromError
 import OmegaTheory.Emergence.PathIntegral
@@ -285,6 +287,7 @@ import OmegaTheory.Predictions.ColdNeutronILL_VCN
 import OmegaTheory.Predictions.DESISubstrateSignature
 import OmegaTheory.Predictions.JointConsistency
 import OmegaTheory.Matter.GenerationCount
+import OmegaTheory.Matter.KoideFromThreeIrrationals
 
 -- Layer 11b: Irrationality → predictions bridge
 import OmegaTheory.Irrationality.PredictionsBridge

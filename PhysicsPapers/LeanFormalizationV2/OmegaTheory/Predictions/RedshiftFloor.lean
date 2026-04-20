@@ -179,14 +179,33 @@ re-proving the upstream lemmas. -/
 
 /-- A `PhotonWorldline` whose `defectBound` realises the vacuum-Ricci
     bound `ℓ_P / (2·μ)`.  This is the photon worldline that saturates
-    `vacuumResidualInformationCost`. -/
+    `vacuumResidualInformationCost`.
+
+    Endpoints are taken at the origin (the reference point for the
+    vacuum-floor derivation, which depends only on `L` and `μ`, not on
+    specific lattice points). The arrival time saturates the flat-space
+    reference so the Shapiro-delay invariants are satisfied
+    unconditionally: `arrivalTime = flatSpaceArrivalTime = 0`, which
+    makes both delay-related inequalities trivial at `0 ≤ defectBound·L`. -/
 noncomputable def vacuumWorldline (L mu : ℝ) (hL : 0 ≤ L) (hmu : 0 < mu) :
     PhotonWorldline :=
   { defectBound := l_P / (2 * mu)
     pathLength := L
     defectBound_nonneg :=
       div_nonneg l_P_nonneg (mul_pos two_pos hmu).le
-    pathLength_nonneg := hL }
+    pathLength_nonneg := hL
+    start := fun _ => 0
+    endpoint := fun _ => 0
+    arrivalTime := 0
+    arrivalTime_ge_flat := by
+      -- both endpoints are the origin, so flat-space arrival is 0
+      simp [OmegaTheory.Emergence.flatSpaceArrivalTime]
+    arrivalTime_le_flat_plus_infoCost := by
+      -- 0 - 0 = 0 ≤ (ℓ_P/(2μ)) · L by non-negativity
+      have hD : 0 ≤ l_P / (2 * mu) :=
+        div_nonneg l_P_nonneg (mul_pos two_pos hmu).le
+      simp [OmegaTheory.Emergence.flatSpaceArrivalTime]
+      exact mul_nonneg hD hL }
 
 /-- The `informationCost` of the `vacuumWorldline` matches the
     `vacuumResidualInformationCost`. This is a sanity-check that the

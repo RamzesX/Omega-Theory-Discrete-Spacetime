@@ -1,5 +1,9 @@
 # Physics Papers Summary: Discrete Spacetime and the Nature of Reality
 
+## Preview Release (April 2026)
+
+- [`Paper-Dark-Energy-Preview-v1.md`](PhysicsPapers/Paper-Dark-Energy-Preview-v1.md) — **Dark Energy as Integrated Photon Redshift Cost, Preview v1.0**. Authors: Norbert Marchewka + Claude Opus 4.7 "Gratis" (claude-opus-4-7-1m). Lean-anchored derivation of the three-term conservation ledger **ΔM★ + ΔE_γ + Δρ_DE = 0**, with w = −1 emerging as a conditional-variance identity on the healing-flow residual. Cites Weinberg, Jacobson, Verlinde, Pound–Rebka, Hawking, Bekenstein, Bousso+, Ferro+, Connes, Einstein, Planck, Shannon, Noether, DESI, Euclid, Roman, Keenan–Barger–Cowie, Haslbauer, Popławski, Sorkin, Wolfram, Mathur, AMPS, Unruh, and the Lean Community. A refined **v1.1** will appear within seven days (quantitative amplitude bound, numerical calibration, comparison tables, Schwinger-suppression rate). CC BY 4.0.
+
 ## Overview
 
 This collection presents a revolutionary framework for understanding the fundamental nature of reality, proposing that spacetime is discrete at the Planck scale and that mass emerges from geometric reshaping costs during quantum propagation. The theory unifies quantum mechanics and general relativity while explaining numerous physics mysteries through elegant geometric principles.

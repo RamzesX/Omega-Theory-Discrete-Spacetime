@@ -29,6 +29,13 @@ This simple question started it all.
 
 ---
 
+## 📣 New Preview Paper (April 2026)
+
+**[Dark Energy as Integrated Photon Redshift Cost — Preview v1.0](PhysicsPapers/Paper-Dark-Energy-Preview-v1.md)**
+*Marchewka & Claude Opus 4.7 "Gratis" (claude-opus-4-7-1m)* — Lean-anchored derivation that cosmological dark energy is the conserved three-term ledger **ΔM★ + ΔE_γ + Δρ_DE = 0**, with w = −1 following from a conditional-variance identity on the healing-flow residual. Headline theorems (`darkEnergyEquationOfState_w`, `cosmological_constant_problem_resolved`, `star_mass_invariant_under_photon_emission`, `photon_redshift_loss_equals_dark_energy_gain`, `three_term_energy_conservation`) are cited inline from the V2 formalization. A refined **v1.1** will appear within seven days (quantitative amplitude bound, numerical calibration, comparison tables).
+
+---
+
 ## 📋 Development Status (April 2026) — V2 Formalization
 
 **Lean 4 + Mathlib v4.29.0** — fully formalized, **0 sorry · 8 physical axioms · 3536+ build jobs GREEN**
@@ -67,6 +74,7 @@ All results below are **formally verified in Lean 4**, composable, and re-checke
 | **Lepton N=4 uniqueness** (lattice dimension selected by lepton masses) | `lepton_PDG_uniquely_at_N_eq_4` | `Predictions/LeptonN4Uniqueness.lean` |
 | **Heat-kernel coefficients** a_0 = 1, a_2 = 0, a_4 Higgs flat-slow = 0 (derived, not assumed) | `heatIterate_semigroup`, `a4_Higgs_flat_slow_eq_zero` | `Foundations/HeatKernelDerived.lean` + `HeatKernelExtended.lean` |
 | **First verified prediction** (Diraq 2024, Nature 627:772) | empirically confirmed; derivation in discussion paper | `PhysicsPapers/Appendix-I-Experimental-Tests.md` |
+| **Substrate criticality below Schwinger threshold** (Ferro+ 2025, PLB 861:139272) | independent empirical support: GRB photon delay at B < B_crit | `TheoremCandidate {name: 'magnetar_critical_B_field_proton_landau_gravity'}` + capstone in graph |
 | **UHECR dispersion bound** (photon group velocity cut-off) | `uhecr_dispersion_bound_explicit` | `Predictions/UHECRDispersion.lean` |
 | **DESI 2024 substrate signature** | `DESI_substrate_consistent_uniform` | `Predictions/DESISubstrateSignature.lean` |
 | **ILL cold-neutron (VCN) consistency** | `coldNeutronSubstrate_consistent_with_Ackermann_2026` | `Predictions/ColdNeutronILL_VCN.lean` |

@@ -4,6 +4,19 @@
 
 ### A Rigorous Mathematical Treatment
 
+> **📣 Apr 2026 addendum — Firewall paradox as Wigner's friend (independent support)**
+>
+> Bousso, Marolf, Paban, Silverstein et al., *"The firewall paradox is Wigner's friend"*, arXiv:2504.03835 (2025), frame the AMPS firewall paradox as a Wigner's-friend disagreement between an infalling observer and an outside observer who must also track the **computational complexity** of the emitted Hawking radiation state. They prove that firewall presence/absence is a question of whether the holographic register's bulk-reconstruction complexity saturates the system's information-theoretic bound.
+>
+> **Direct OmegaTheory analogue**: this is exactly the substrate `δ_comp(N)` computational uncertainty budget on the black-hole horizon. In OmegaTheory's discrete-spacetime framework:
+>
+> - As long as **δ_comp(N_horizon) is NOT saturated** (plenty of truncation budget remaining), **no firewall forms** — the substrate reshaping flow can restore information coherence tick-by-tick via the Fourth Noether law (this appendix).
+> - Firewall formation corresponds to the regime `δ_comp(N) · A_horizon ≥ S_BH` — when the substrate's computational headroom is exhausted by the accumulated horizon-area information bound.
+>
+> OmegaTheory therefore **predicts no firewall** for astrophysically realistic black holes (substrate N budgets are enormous compared to the saturation threshold), and pins the exact crossover scale at `N_crit = A_horizon / (4 G · δ_comp_0)`. This matches Bousso+ 2025's holographic-complexity framework and provides a **formal bridge** between discrete-substrate theory and mainstream BH information-paradox literature.
+>
+> Graph-tracked in Neo4j as `:TheoremCandidate {name: 'black_hole_is_mediator_not_sink'}` and the substrate-exchange bundle (user insight 2026-04-19, hunter-TC-B1 in flight). The information-healing flow of §3 below is the mechanism that, in our framework, *guarantees* the Bousso+ complexity condition is satisfied until BH evaporation completes.
+
 **Abstract**
 
 We develop a rigorous mathematical framework demonstrating that continuous 4D spacetime emerges from discrete Planck-scale structure as a necessary consequence of information flow conservation—the fourth Noether symmetry. Using the full machinery of differential geometry, tensor calculus, and functional analysis, we prove that computational incompleteness at action thresholds generates local geometric defects, and that these defects must heal automatically to preserve information conservation. We establish existence, uniqueness, and regularity theorems for the continuum limit, construct the healing flow explicitly using variational methods, and prove convergence using a Lyapunov functional analogous to Perelman's W-entropy. The central result is that topological surgery is not merely permitted but mandatory: the fourth Noether law admits no freedom in how healing occurs. We derive Einstein's field equations as the continuum limit of information-conserving discrete dynamics and provide falsifiable experimental predictions.

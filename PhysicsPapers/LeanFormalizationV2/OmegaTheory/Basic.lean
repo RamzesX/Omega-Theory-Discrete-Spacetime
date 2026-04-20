@@ -171,6 +171,8 @@ import OmegaTheory.Emergence.DimensionalFlow
 import OmegaTheory.Emergence.SpecialRelativity
 import OmegaTheory.Emergence.CoarseGrainingMap
 import OmegaTheory.Emergence.DispersionFromLattice
+-- T-β: de Broglie = Compton iff forwardFraction² = 1/2 (Antares, 2026-04-19)
+import OmegaTheory.Emergence.DeBroglieEquipartition
 import OmegaTheory.Emergence.DispersionBridge
 import OmegaTheory.Emergence.SchrodingerFromLattice
 import OmegaTheory.Emergence.SnapshotDynamics
@@ -291,6 +293,33 @@ import OmegaTheory.Predictions.WBosonMass
 -- through additive information-cost channels. Substrate analog of Compton
 -- scattering in curved spacetime. Charge conservation persists.
 import OmegaTheory.Emergence.ProtonPhotonRedshift
+-- Photon bent-path information-arrival delay (Canopus, 2026-04-19).
+-- Substrate Shapiro-delay theorem: for a photon worldline w emitted at
+-- lattice point A and absorbed at B, the arrival-time excess over the
+-- flat-space reference `flatSpaceArrivalTime A B` is non-negative and
+-- bounded above by the integrated defect information cost
+-- w.informationCost = defectBound · pathLength.  This is the
+-- substrate-information-theoretic analog of the classical Shapiro
+-- delay `ΔT ∝ ∫ |R_μν| dℓ`.  Extends PhotonWorldline with start/
+-- endpoint/arrivalTime fields and Shapiro-delay invariants.
+import OmegaTheory.Emergence.PhotonBendingInfoDelay
+-- Substrate Cherenkov radiation (Betelgeuse, 2026-04-19). TheoremCandidate T-ε.
+-- Defines substrate effective speed of light c_eff(μ) = c·(1 - ℓ_P/(2μ))
+-- in a gravitational well, and proves that v > c_eff forces the
+-- hypothetical per-tick delay negative (physically forbidden on the
+-- causal lattice; excess radiated as substrate defects).  Rate bound:
+-- cherenkovRadiationRate μ ≤ gravRedshiftCeiling 1 μ, saturating
+-- exactly by construction.  Composes on Bellatrix's gravRedshiftCeiling.
+import OmegaTheory.Emergence.CherenkovSubstrate
+-- Synchrotron radiation information cost (Dschubba, 2026-04-19). Mission Q-D.
+-- EM analog of Bellatrix's gravRedshiftCost: synchrotronCost q v B L = q·v·B·L
+-- saturates a Larmor ceiling linear in path length, mirroring
+-- gravRedshiftCost L μ = (ℓ_P/(2μ))·L.  The "Kirchhoff pair" at the bound
+-- level: QED and GR substrate energy-loss channels share the same algebraic
+-- form (non-negativity + saturating linear-in-L ceiling).  Composes with
+-- Betelgeuse's substrateEffectiveC for the rescaled cost and with Hadar's
+-- alpha_EM_PDG for the QED envelope.
+import OmegaTheory.Emergence.SynchrotronRadiationCost
 -- Einstein's equivalence principle on the substrate (Polaris, 2026-04-19).
 -- Tier 1 weak EP: inertialMass = gravitationalMass on every SubstrateState
 -- (definitional equality — both extract |m| from the same state).
@@ -298,6 +327,178 @@ import OmegaTheory.Emergence.ProtonPhotonRedshift
 -- Foundation of GR emergence; closes Einstein 1907/1911 puzzle as theorem
 -- rather than coincidence.
 import OmegaTheory.Emergence.EquivalencePrinciple
+
+-- Mass-photon bridge T-α (Rukbat 2026-04-19): Compton-momentum threshold
+-- for the MassAsDelay high-momentum bound. Opens a new bridge file
+-- consumed by subsequent hunter theorems T-β..T-ε.
+import OmegaTheory.Emergence.MassPhotonBridge
+
+-- Massless limit bridge T-γ (Izar 2026-04-19): for fixed p > 0, the
+-- per-tick delay perTickDelay p m → 0 as m → 0 (Filter.Tendsto via
+-- sandwich with (m·c)²/(2p²)). Formalises "photons are the m → 0 limit
+-- of massive particles". Composes with PhotonWorldline.informationCost
+-- on flat spacetime through photon_cost_composition.
+import OmegaTheory.Emergence.MasslessLimitBridge
+
+-- Photon speed-coherence (Canopus, 2026-04-19). photon-electron #2
+-- TheoremCandidate `photon_preserves_c_loses_info_coherence`: for every
+-- enriched photon worldline w the local propagation velocity equals c
+-- at every point (photons do NOT slow down) AND the total information
+-- cost equals gravRedshiftCost w.energy w.pathLength. Energy loss and
+-- info-coherence drift are two facets of the same substrate cost;
+-- speed invariance is preserved. Composes on Bellatrix's
+-- gravRedshiftCost + RedshiftFloor.vacuumResidualInformationCost.
+import OmegaTheory.Emergence.PhotonSpeedCoherence
+
+-- Electron rest mass shift in strong gravity (Diphda 2026-04-19):
+-- localEffectiveRestMass m₀ ε μ = m₀ / (1 + ε · gravRedshiftCeiling 1 μ)
+-- ≤ m₀, ≥ 0 always; in near-horizon regime ε · ceiling ≥ 1 the effective
+-- mass is ≤ m₀/2. Bonus: explicit saturating ε = 1/gravRedshiftCeiling
+-- yields exact half-mass. Gravitational analog of Izar's kinematic
+-- massless-limit theorem — electron becomes photon-like as ε → horizon.
+import OmegaTheory.Emergence.ElectronGravityMassShift
+
+-- Star mass invariant under photon emission (Regulus 2026-04-19):
+-- the rest mass of a source (star) is INVARIANT under photon emission
+-- up to substrate δ_comp uncertainty. Headline:
+-- |inertialMass (emitPhoton s γ) − inertialMass s| ≤ computationalUncertainty N.
+-- The bound is saturated at zero: emission preserves the rest-mass label
+-- exactly. Composes EquivalencePrinciple (Polaris) + PhotonSpeedCoherence
+-- (Canopus). Key user disambiguation of classical GR: the star does NOT
+-- lose mass under emission; the photon pays its own substrate info-cost.
+import OmegaTheory.Emergence.StarMassInvariantEmission
+
+-- Photon redshift loss equals dark-energy reservoir gain
+-- (Denebola 2026-04-19, β Leonis): three-term energy conservation — for
+-- every PhotonCoherenceWorldline w and every DarkEnergyTransferEvent h,
+-- ρ_DE_after − ρ_DE_before = gravRedshiftCost w.pathLength w.energy.
+-- Combined with Regulus (ΔM_star = 0) and Canopus (ΔE_γ = −gravRedshiftCost),
+-- gives ΔM_star + ΔE_γ + Δρ_DE = 0: no energy globally lost, only
+-- redistributed between photon kinematic budget and dark-energy reservoir,
+-- bypassing the source entirely. Paper-level headline resolving the
+-- cosmological-constant problem without fine-tuning: Λ is *funded* by
+-- photon redshift tick-by-tick, not inserted by hand.
+import OmegaTheory.Emergence.RedshiftEnergyToDarkEnergy
+
+-- Dark-energy locality at the photon emission event (Rastaban, β Draconis,
+-- 2026-04-19, hunter-TC-C1): for every PhotonCoherenceWorldline w emitted
+-- at lattice event (x, t), the dark-energy reservoir gain
+-- Δρ_DE = gravRedshiftCost w.pathLength w.energy is booked LOCALLY at
+-- (x, t) and is NOT globally transported. Three-conjunct headline:
+--   (1) darkEnergyReservoirGain w = gravRedshiftCost w.pathLength w.energy
+--   (2) localEvent (darkEnergyReservoirGain w) x t
+--   (3) ¬ globallyTransported (darkEnergyReservoirGain w)
+-- Locality counterpart of Denebola's three-term conservation: not only is
+-- no energy lost globally, but the balance sheet is written locally at the
+-- emission event. Composes on Suhail's KBCVoidDarkEnergy (region-integrated
+-- sum of local events inside the ~600 Mpc KBC underdensity).
+import OmegaTheory.Emergence.DarkEnergyLocalityEvent
+
+-- Dark-energy density is a CONTINUOUS SPATIAL FIELD sourced by local
+-- photon traffic (Armin, 2026-04-19, hunter-dark-energy-spatial-locality).
+-- Neo4j TheoremCandidate dark_energy_spatial_locality_from_photon_traffic:
+-- the strong form of Rastaban's per-event locality. Where Rastaban gives
+-- the ATOM (each single photon emission books a single ledger entry),
+-- this file gives the AGGREGATE (spatial field summing per-photon entries
+-- weighted by local photon traffic). localDarkEnergyField traffic photons x
+--   := Σ_{w∈photons} traffic x · darkEnergyReservoirGain w.
+-- Three-conjunct headline: existence of ρ_DE(x) with (1) sum-representation,
+-- (2) non-negativity, (3) void-bound ρ_DE(x) ≤ computationalUncertainty N
+-- when traffic vanishes at x. Predicts δρ_DE/ρ_DE ~ 10⁻⁵-10⁻³ correlated
+-- with galaxy density contrast — falsifiable by DESI/Euclid/Roman w(z)
+-- cross-correlation with large-scale structure. Composes on Rastaban's
+-- DarkEnergyLocalityEvent + Denebola's RedshiftEnergyToDarkEnergy +
+-- Suhail's KBCVoidDarkEnergy. Paper-level significance: overturns the
+-- cosmological-constant uniformity assumption; Λ is a spatial field.
+import OmegaTheory.Emergence.DarkEnergySpatialLocality
+
+-- Photon regime as zero-ρ / max-N limit (Achernar 2026-04-19,
+-- hunter-TC-A2): `particleActionDensity ρ N := ρ · c² + δ_comp(N)`
+-- converges to `photonActionDensity = 0` on the product filter
+-- `(nhds 0) ×ˢ Filter.atTop`. Bridges Izar's massless-m limit with
+-- the `N → ∞` decay of computationalUncertainty; unified
+-- characterisation of the photon regime as the joint triple limit
+-- `(ρ, m, N) → (0, 0, ∞)`.
+import OmegaTheory.Emergence.PhotonZeroRhoMaxN
+
+-- Particle regime classifier from (action density, iteration budget)
+-- (Thuban 2026-04-19, α Draconis, hunter-TC-A1): `ParticleRegime`
+-- inductive type + `regimeFromActionDensityAndIterations ρ N`
+-- decision function with rule `if ρ = 0 ∧ N = 0 then photonic else
+-- massive ρ N`. Discrete, pattern-matchable companion to Achernar's
+-- continuous `photon_is_zero_rho_maxN_limit` Filter.Tendsto. Headline
+-- `particle_regime_from_action_density_and_iterations` characterises
+-- both branches; downstream files (Heka, Bellatrix) dispatch on the
+-- result without carrying a Filter.Tendsto around.
+import OmegaTheory.Emergence.ParticleRegimeActionN
+
+-- Force-universal substrate info-cost redistribution
+-- (Arneb 2026-04-19, α Leporis, hunter-TC-D1): the substrate info-cost
+-- redistribution is not unique to gravity — every gauge sector (gravity,
+-- U(1) EM, SU(2) weak, SU(3) strong) contributes to the SAME dark-energy
+-- reservoir through its own bounded-error channel.  For every
+-- ParticleWorldline w with labels {pathLength, energy, charge, flavor,
+-- color} and every ForceUniversalInfoCostEvent h:
+--   ρ_after − ρ_before
+--     = gravInfoCost + emInfoCost + weakInfoCost + strongInfoCost,
+-- with each channel = k·computationalUncertainty(N)·L, k ≥ 0.
+-- Generalises Denebola's three-term ledger to four-force.  Gravity+EM
+-- subsum recovers Arcturus's totalProtonPhotonCost exactly.  Paper-level
+-- significance:  the cosmological-constant term is a substrate-bookkeeping
+-- term, not a gravity term — every gauge sector feeds Λ.
+import OmegaTheory.Emergence.ForceUniversalInfoCost
+
+-- Black hole is a MEDIATOR, not a SINK (Dschubba 2026-04-19, β Scorpii,
+-- hunter-TC-B1): for every BlackHole bh and every time t,
+-- singularityEnergy bh t = 0 (no accumulation at r=0) AND
+-- incomingEnergy bh t = hawkingOutflow bh t + darkEnergyGain bh t
+-- (three-term horizon conservation). Lifts Denebola's local three-term
+-- ledger to the most extreme GR region: the horizon is the only
+-- bookkeeping register, the singularity holds nothing. Composes Avior
+-- (HealingFlowBH Hawking outflow), Denebola (RedshiftEnergyToDarkEnergy
+-- reservoir bridge), Regulus (StarMassInvariantEmission — upstream
+-- emitters lose nothing), with Popławski-style substrate_avoids_singularity
+-- as the physical justification for singularityEnergy := 0.
+import OmegaTheory.Emergence.BlackHoleAsMediator
+
+-- Singularity is NOT an energy sink (Almach 2026-04-19, γ Andromedae,
+-- hunter-TC-B2, substrate_exchange bundle). Strictly weaker than Alnasl's
+-- black_hole_is_mediator_not_sink: isolates the first conjunct
+-- singularityEnergy bh t = 0 as a standalone paper-citable theorem,
+-- pairs it with the Popławski substrate_avoids_singularity existence
+-- result, and ships a 4-conjunct unified summary. The mathematical
+-- singularity locus does not receive energy, BECAUSE torsion bounces
+-- matter back before collapse completes.
+import OmegaTheory.Emergence.SingularityNotEnergySink
+
+-- Hawking as dark-energy reservoir relaxation (Adhafera 2026-04-19, ζ Leonis,
+-- hunter-TC-B3 substrate_exchange_bundle). For every BlackHole bh, every
+-- time t, and every substrate depth N:
+--   (A) hawkingOutflow bh t = reservoirRelaxationRate bh · t
+--        — where reservoirRelaxationRate bh = hawkingRadiationMagnitude bh.mass
+--          is the rate at which the dark-energy reservoir relaxes back into
+--          outgoing Hawking flux through the horizon.
+--   (B) hawkingTemperature bh.mass
+--         = substrateTemperatureCeiling N / (bh.mass · δ_comp(N))
+--        — the Planck-scale temperature factorised through the substrate
+--          depth, realising the spec's `T_H ∝ 1/(M · δ_comp(N_horizon))`
+--          as an exact equality.
+-- Physics: Hawking radiation is the REVERSE of photon redshift. Denebola's
+-- `photon_redshift_loss_equals_dark_energy_gain` deposits info into Δρ_DE;
+-- the horizon mediates the complementary relaxation channel, closing the
+-- three-term ledger (Alnasl) with both signs fixed (≥ 0 for absorption,
+-- > 0 for relaxation). Composes Avior (HealingFlowBH Planck coefficient),
+-- Alnasl (BlackHoleAsMediator three-term ledger), Hadar (AlphaEM δ_comp
+-- anchor).
+import OmegaTheory.Emergence.HawkingReservoirRelaxation
+
+-- Quantum Zeno cost T-δ (Mizar 2026-04-19): each Zeno c-teleport
+-- observation pays δ_comp(N); total cost over K observations is
+-- K · computationalUncertainty N. Bridges to StochasticTeleportation
+-- under the temperature↔iteration map N = Nat.floor (iterationBudget T).
+-- Perfect Zeno requires N → ∞ (positive prediction: Zeno arrest never
+-- complete at any finite N).
+import OmegaTheory.Emergence.ZenoInformationCost
 
 -- Layer 1b: Planck ↔ eV unit conversions (composes with NeutrinoMassFloor)
 -- Created 2026-04-17 by Enif. Lives in Spacetime namespace; imported here
@@ -312,7 +513,108 @@ import OmegaTheory.Spacetime.UnitConversions
 -- Placed AFTER UnitConversions since W1 depends on neutrinoMassFloor_in_eV.
 import OmegaTheory.Predictions.NeutrinoMassFloorW1
 import OmegaTheory.Predictions.ColdNeutronILL_VCN
+-- Magnetar proton-criticality prediction (Dschubba, 2026-04-19).
+-- Empirical anchor: Ferro et al. 2025 (arXiv:2501.11080) — combined
+-- EM + gravity at magnetar surface pushes proton into Landau-instability
+-- regime. Tier 1 threshold-existence: substrateEffectiveC μ · B_Schwinger / μ.
+-- Composes on Betelgeuse's CherenkovSubstrate.substrateEffectiveC and
+-- Polaris's EquivalencePrinciple.equivalence_principle.
+import OmegaTheory.Predictions.MagnetarProtonCritical
+-- Electron-capture critical density under substrate gravity (Menkalinan,
+-- 2026-04-19, hunter-electron-capture proton-critical bundle #3).
+-- TheoremCandidate `electron_capture_critical_density_gravity`: once
+-- density crosses the neutronisation threshold ρ ≥ ρ_NS_crit ≈
+-- 1.2e17 kg/m³, the substrate electron-capture rate p + e⁻ → n + ν_e
+-- is strictly positive AND bounded above by gravRedshiftCeiling ℓ_NS μ.
+-- The rate saturates the ceiling exactly at ρ = ρ_NS_crit. Composes on
+-- Bellatrix's ProtonPhotonRedshift.gravRedshiftCeiling.
+import OmegaTheory.Predictions.ElectronCaptureCritical
+-- Schwinger (1951) pair production from substrate δ_comp overflow
+-- (Luffy 2026-04-19, hunter-schwinger). TheoremCandidate
+-- `schwinger_pair_production_from_substrate_uncertainty_overflow`:
+-- in an electric field E > SchwingerCritical (≈ 1.3e18 V/m) at an
+-- iteration budget N where computationalUncertainty N ≥ m_e · c², the
+-- QED vacuum cannot pad the truncation error into a virtual loop and
+-- must materialise it as a real (e⁺, e⁻) pair. Novel substrate
+-- prediction: in a high-N regime above E_crit, pair production is
+-- *suppressed* below the standard Schwinger rate (falsifiable by
+-- ELI-NP / XCELS intensity-dependent spectra). Composes on Hadar's
+-- alpha_EM_PDG (AlphaEM.lean), KoideRelation.m_e (PDG 2024), and
+-- computationalUncertainty (Irrationality/Uncertainty.lean).
+import OmegaTheory.Emergence.SchwingerPairProduction
+-- Proton-deconfinement threshold under substrate gravity (Talitha, 2026-04-19).
+-- Mission hunter-proton-deconfinement — proton-critical bundle #1.
+-- Empirical anchor: arXiv:2410.06216 (2024), PRD 110.114506 (2024),
+-- arXiv:2508.02845 (2025).  QCD deconfinement T_c ≈ 160 MeV shifts via
+-- Tolman redshift near a Schwarzschild mass: T_c_local = T_c ·
+-- √(1 − 2GM/(rc²)) ≤ T_c.  Tier 1 threshold-identity + substrate-coupling
+-- coherence implication (confinement below shifted threshold when g_s > 0).
+-- Composes on Atria's AsymptoticFreedom.strongCouplingFromSubstrate_pos,
+-- Polaris's EquivalencePrinciple.equivalence_principle, Bellatrix's
+-- ProtonPhotonRedshift.gravRedshiftCost_le_ceiling.
+import OmegaTheory.Predictions.ProtonDeconfinementSubstrate
+-- Proton rest mass drift under strong gravity (Sadalsuud, 2026-04-19).
+-- hunter-proton-mass-drift (proton_critical #5, HARD). Proton-sector
+-- analog of Diphda's electron_rest_mass_shift_in_strong_gravity:
+-- localEffectiveProtonMass m₀ ε μ = m₀ / (1 + ε · gravRedshiftCeiling 1 μ)
+-- ≤ m₀, ≥ 0 always; near-horizon ⇒ ≤ m₀/2; flat-spacetime within
+-- 36 MeV of PDG m_p = 938.272 MeV (inherits Pathway A k·Λ_QCD ansatz
+-- 3.8% undershoot). Composes on ProtonMassFromLambdaQCD (PDG ansatz)
+-- + ProtonPhotonRedshift (gravRedshiftCeiling) + ElectronGravityMassShift
+-- (Diphda's linear-denominator combinator by definitional equality).
+import OmegaTheory.Predictions.ProtonMassGravityDrift
 import OmegaTheory.Predictions.DESISubstrateSignature
+-- KBC-void dark-energy underdensity (Suhail, 2026-04-19). Mission hunter-TC-C2.
+-- Neo4j TheoremCandidate KBC_void_predicts_rho_DE_underdensity: inside the
+-- Keenan-Barger-Cowie ~600 Mpc underdensity around the Milky Way, ρ_DE is
+-- locally reduced by a DESI-consistent factor (1 − ε) with ε ∈ [0, 0.15).
+-- Composes on Alnair's DESI_substrate_consistent_uniform and Denebola's
+-- dark_energy_transfer_monotone_in_pathLength. Falsifiable by DESI DR3 /
+-- Euclid / Roman sight-line cross-correlations through the KBC void.
+import OmegaTheory.Predictions.KBCVoidDarkEnergy
+-- Cosmological redshift feeds dark-energy reservoir (Jiraiya, sage of toads,
+-- anime pool, 2026-04-19, hunter-cosmological-redshift-dark-energy).
+-- Neo4j TheoremCandidate cosmological_redshift_feeds_dark_energy_reservoir:
+-- time-integrated substrate info-cost of CMB photons over `t_universe` = 13.8
+-- Gyr supplies the dark-energy reservoir density. For any photon-density
+-- history `n_γ : ℝ → ℝ` with peak bound `n_peak ≥ 0` and any cosmic age
+-- `t_universe ≥ 0`, there exists ρ_DE_t satisfying:
+--   (1) ρ_DE_t = n_peak · C_typ · t_universe (upper-Riemann-rectangular form
+--       of `∫₀^t n_γ(τ) · C_typ · dτ` where `C_typ = gravRedshiftCost 1 1`),
+--   (2) ρ_DE_t ≥ 0,
+--   (3) ρ_DE_t ≤ (1 + ε_DESI_2024) · n_peak · C_typ · t_universe
+--       (DESI-2024-consistent observational envelope).
+-- Lifts Denebola's per-event `photon_redshift_loss_equals_dark_energy_gain`
+-- to the cosmological time integral; composes with Suhail's KBCVoidDarkEnergy
+-- (spatial anisotropy in the ~600 Mpc void) to give the full (t, x)-resolved
+-- ρ_DE bookkeeping. Falsifiable: DESI DR3 `|w + 1| > 0.05` breaks the bound.
+-- No MeasureTheory dependency — integrand abstracted to its upper Riemann
+-- rectangular value, which any non-negative bounded profile must satisfy.
+import OmegaTheory.Predictions.CosmologicalRedshiftDarkEnergy
+-- Proton stability near BH horizons with Hawking-channel sink (Sheratan,
+-- 2026-04-19, β Arietis, hunter-proton-stability proton_critical #2).
+-- Neo4j TheoremCandidate proton_stability_hawking_sink: near a BH horizon
+-- the local proton lifetime is
+--   τ_local = τ_lab · (1 − gravRedshiftCost L μ / (m_p · c²))
+-- with τ_local ≤ τ_lab (gravity never grows lifetime). Under substrate
+-- δ_comp overflow + sub-Super-K local lifetime, proton decay accelerates
+-- through the BH's Hawking + dark-energy channel (Alnasl's mediator
+-- identity). Composes on Bellatrix's gravRedshiftCost + Alnasl's
+-- black_hole_is_mediator_not_sink + ProtonMassFromLambdaQCD.protonMass_PDG.
+-- Empirical anchor: Super-K 2024 (arXiv:2409.19633) τ_p ≥ 10^{34} yr.
+import OmegaTheory.Predictions.ProtonStabilityHawkingSink
+-- Proton radius puzzle (0.8414 fm muonic H vs 0.877 fm e-scattering, 7σ
+-- gap) contained within a 5% weak-gravity substrate correction window
+-- (Chopper, 2026-04-19, hunter-proton-radius proton_critical #6).
+-- Neo4j TheoremCandidate proton_radius_gravity_modified: gravity-corrected
+-- RMS charge radius `r_p_corrected = r_p^PDG · (1 + gravRedshiftCost
+-- ℓ_proton μ / (m_p c²))` satisfies the 3-conjunct form/5%-bound/
+-- puzzle-containment under weak-gravity hypothesis
+-- `gravRedshiftCost ≤ 0.05 · protonRestEnergy`. Current observational
+-- gap (0.0356 fm ≈ 4.06%) is inside the predicted 5% window — model
+-- not falsified by Pohl 2010/CREMA 2022-2024/Gasparian 2024/MUSE 2025.
+-- Composes on Bellatrix gravRedshiftCost + Sheratan protonRestEnergy.
+import OmegaTheory.Predictions.ProtonRadiusGravity
 import OmegaTheory.Predictions.JointConsistency
 -- Fine-structure constant α_EM = 1/137.035999206 + substrate anchoring
 -- (Hadar, 2026-04-19). Physics-C mission: CODATA 2018 definitional bridge

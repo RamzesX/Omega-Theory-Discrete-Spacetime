@@ -29,6 +29,9 @@
 ### Entry Point
 1. [`Main-Paper-Postulates.md`](PhysicsPapers/Main-Paper-Postulates.md) - **Postulational Summary**: Central thesis, four principles, "How This Started"
 
+### Preview Releases
+1a. [`Paper-Dark-Energy-Preview-v1.md`](PhysicsPapers/Paper-Dark-Energy-Preview-v1.md) — **NEW (April 2026, v1.0 preview)**: Dark energy as integrated photon-redshift cost; three-term ledger ΔM★ + ΔE_γ + Δρ_DE = 0; w = −1 as conditional variance identity. Lean-anchored headline theorems cited inline. Refined **v1.1** expected within seven days. Authors: Marchewka & Claude Opus 4.7 "Gratis".
+
 ### Core Mechanism
 2. [`KeyInsight-Irrationals-Action-Thresholds.md`](PhysicsPapers/KeyInsight-Irrationals-Action-Thresholds.md) - **CRITICAL**: How π, e, √2 create uncertainty under computational deadlines
 

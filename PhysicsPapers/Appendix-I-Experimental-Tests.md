@@ -10,6 +10,19 @@
 >
 > **Source-of-truth for all OmegaTheory experimental predictions is now `Appendix-J-Experimental-Catalog-Consolidated.md`.**  That document presents three actually-feasible new tests (cold-neutron 1/v slope, T²-scaling matter-wave decoherence, cosmological redshift floor 10⁻⁹), the verified Arrhenius rule-out (§5), the stochastic-teleportation framework (§4), and 2025–2026 experimental references.  The remainder of this document is preserved for historical reference but should NOT be used as a basis for funding proposals or peer-review submissions.
 
+> **📣 Apr 2026 addendum — substrate criticality below Schwinger threshold**
+>
+> Ferro et al., *"Quantum-vacuum-induced delay of gamma-ray burst photons below the Schwinger critical magnetic field"*, Phys. Lett. B **861**, 139272 (arXiv:2501.11080, 2025) report that QED-vacuum-induced GRB photon delays occur at magnetar magnetic fields **below** the classical Schwinger B_crit ≈ 4.4×10⁹ T, not at or above it.
+>
+> OmegaTheory interpretation: the substrate `computationalUncertainty δ_comp(N)` overflows the per-tick action budget **before** the classical pair-production threshold is reached — the criticality surface in (E, B, g) is **continuous**, not sharp. This is exactly what the `proton_substrate_criticality_unified_capstone` candidate (Lean target, Alkaid 2026-04-19) claims: all critical phases of the proton (and analogously the electron) are instances of a single substrate truncation-error overflow condition, parametrised by combined field strength × gravitational curvature.
+>
+> The Ferro observation is **independent empirical support** for the substrate-boundary thesis and anchors:
+> - Candidate #4 `magnetar_critical_B_field_proton_landau_gravity` (proton bundle)
+> - Candidate #6 `electron_phase_transition_critical_field` (photon-electron bundle)
+> - Capstone #8 `proton_substrate_criticality_unified_capstone`
+>
+> Formalisation is active (Neo4j `:TheoremCandidate` nodes, bundle `proton_critical_phases_bundle`, status PENDING → DELIVERED as hunters close them).
+
 **Abstract**
 
 We present a systematic experimental program to test predictions of the discrete spacetime framework with computational deadline mechanism. Testing theories of Planck-scale physics faces the fundamental challenge of observer blindness—discrete observers cannot directly resolve discrete structure at their own sampling rate. We address this through indirect methods exploiting: (1) temperature-dependent computational budgets, (2) coherent error accumulation over extended temporal integration, (3) statistical anomalies in precision measurements, and (4) differential measurements canceling systematic errors. The framework's specific predictions—particularly linear temperature dependence of gate fidelity rather than exponential thermal decoherence—provide clear *structural* falsification criteria, though the absolute amplitude of the temperature signal is currently below detection thresholds (see Appendix-J for corrected analysis).

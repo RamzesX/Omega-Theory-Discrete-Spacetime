@@ -49,6 +49,7 @@
 -/
 
 import OmegaTheory.Spacetime.Constants
+import OmegaTheory.Spacetime.Lattice
 import OmegaTheory.Defects.DefectTensor
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Tactic
@@ -58,6 +59,44 @@ namespace OmegaTheory.Emergence
 open OmegaTheory.Spacetime
 open OmegaTheory.Defects
 open OmegaTheory.Geometry
+
+/-! ## Flat-space reference arrival time
+
+For two lattice points `A B`, the flat-space arrival time of a photon is
+its Manhattan distance in Planck units times the Planck tick:
+
+    flatSpaceArrivalTime A B = (∑ᵢ |B_i − A_i|) · t_P
+
+On flat Minkowski lattice this is the minimum number of reshaping ticks
+required to move from `A` to `B`, each tick lasting `t_P = l_P / c`.
+The actual arrival time along a null geodesic in curved spacetime is
+at least this (Shapiro delay) and at most this plus the integrated
+defect information cost. -/
+
+/-- The **flat-space arrival time** between two lattice points:
+    Manhattan distance in Planck-length units, times `t_P`. -/
+noncomputable def flatSpaceArrivalTime (A B : LatticePoint) : ℝ :=
+  ((Finset.univ : Finset (Fin 4)).sum fun i => |((B i : ℝ) - (A i : ℝ))|) * t_P
+
+/-- Flat-space arrival time is non-negative (sum of absolute values is
+    non-negative, times the positive Planck tick). -/
+theorem flatSpaceArrivalTime_nonneg (A B : LatticePoint) :
+    0 ≤ flatSpaceArrivalTime A B := by
+  unfold flatSpaceArrivalTime
+  apply mul_nonneg
+  · exact Finset.sum_nonneg (fun _ _ => abs_nonneg _)
+  · exact (div_nonneg l_P_nonneg c_nonneg)
+
+/-- Flat-space arrival time at equal points is zero. -/
+@[simp] theorem flatSpaceArrivalTime_self (A : LatticePoint) :
+    flatSpaceArrivalTime A A = 0 := by
+  unfold flatSpaceArrivalTime
+  have : ((Finset.univ : Finset (Fin 4)).sum fun i =>
+      |((A i : ℝ) - (A i : ℝ))|) = 0 := by
+    apply Finset.sum_eq_zero
+    intro i _
+    rw [sub_self, abs_zero]
+  rw [this, zero_mul]
 
 /-! ## Redshift factor
 
@@ -106,11 +145,22 @@ ticks, each of which picks up at most `informationCost` nats of KL
 divergence from the local defect tensor. We bound the observed frequency
 shift by this accumulated cost. -/
 
-/-- A **photon worldline** abstracted as a (defect-bounded, length) pair.
+/-- A **photon worldline** abstracted as a (defect-bounded, length) pair
+    with explicit lattice-point endpoints and arrival time.
+
     In the lattice picture, `defectBound` is an upper bound for
     `defectMagnitude g g_exact p` at every point `p` traversed; the
     `pathLength` is the number of reshaping ticks the photon spends in
-    the region. -/
+    the region; `start` and `endpoint` are the lattice points at which
+    the photon is emitted and absorbed; and `arrivalTime` is the
+    observer-measured time elapsed between emission and absorption.
+
+    The `arrivalTime_ge_flat` invariant encodes the **Shapiro delay**:
+    a photon traversing a curved region never arrives earlier than it
+    would in flat spacetime along the straight line. The
+    `arrivalTime_le_flat_plus_infoCost` invariant encodes the substrate
+    information-cost ceiling: the excess delay is bounded by the total
+    Kullback-Leibler budget `defectBound · pathLength`. -/
 structure PhotonWorldline where
   /-- Upper bound on the defect magnitude along the worldline. -/
   defectBound : ℝ
@@ -120,6 +170,22 @@ structure PhotonWorldline where
   defectBound_nonneg : 0 ≤ defectBound
   /-- Path length is non-negative. -/
   pathLength_nonneg : 0 ≤ pathLength
+  /-- Lattice point at which the photon is emitted. -/
+  start : LatticePoint
+  /-- Lattice point at which the photon is absorbed. -/
+  endpoint : LatticePoint
+  /-- Observer-measured time of flight from `start` to `endpoint`. -/
+  arrivalTime : ℝ
+  /-- **Shapiro delay is non-negative**: a photon in curved spacetime
+      never beats its flat-space counterpart. -/
+  arrivalTime_ge_flat :
+    flatSpaceArrivalTime start endpoint ≤ arrivalTime
+  /-- **Information-cost ceiling**: the excess arrival time over the
+      flat-space reference is bounded by the integrated defect
+      information cost `defectBound · pathLength`. -/
+  arrivalTime_le_flat_plus_infoCost :
+    arrivalTime - flatSpaceArrivalTime start endpoint
+      ≤ defectBound * pathLength
 
 namespace PhotonWorldline
 

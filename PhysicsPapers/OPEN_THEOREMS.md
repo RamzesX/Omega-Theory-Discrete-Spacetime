@@ -1,6 +1,20 @@
 # OmegaTheory V2 — Open Theorems (Prop-marked, needing future work)
 
-**Updated**: 2026-04-17. Build state: **GREEN at 3489 jobs**, 0 sorry, 0 new axioms, 8 physical-constant axioms.
+**Updated**: 2026-04-20 (cycle 8 → 9 transition, Wasat). Build state: **GREEN at 3285+ jobs** (post-reorg), 0 sorry, 0 new axioms, 8 physical-constant axioms.
+
+## Recent deliverables (cycles 2-8)
+The following items from earlier tiers have been formalized and are
+*no longer open*:
+
+- **Tier 2 #7 Clifford off-diagonal**: CLOSED by Tureis (Apr 17, 12 cases via 6 pair lemmas + `add_comm`).
+- **Tier 2 #5 A_F irreducibility**: partial — `AF_Irreducibility.lean` (Unukalhai Apr 17) replaces `Prop := True` placeholders with real `IsSimpleModule` + `IsSimpleRing` witnesses.
+- **Tier 1 #2 Neutrino mass floor W1**: shipped as `NeutrinoMassFloor.lean` + `NeutrinoMassFloorW1.lean`.
+- **Tier 1 #3 Mixing angles**: shipped as `MixingAnglesFromIrrationals.lean`.
+- **Tier 1 #4 LogarithmicGenerationMap**: ordering verified in `PiHunchMassOrdering.lean`; numerical ratios via `MassRatioNumerical.lean` (muOverE, tauOverMu, tauOverE) with `NashiraEmpiricalAnsatz` witness.
+- **Tier 3 #11 Jarlskog**: shipped as `JarlskogFromIrrationals.lean`.
+- **Cycle-9 (Wasat, 2026-04-20)**: `NumericalFitsCycle9.lean` — neutron-proton mass diff (1.293 MeV), muon/electron ratio (206.77), Higgs mass (125.10 GeV), bundled `Cycle9NumericalFits` witness.
+
+**Open items retained below are still the active frontier.**
 
 These are theorems currently shipped as `Prop := True` placeholders or conditional hypotheses. All buildable, all honestly scoped. Each represents a future deliverable.
 

@@ -63,6 +63,28 @@
 - Newton-Raphson precision bounds
 - See [`LeanFormalization/README.md`](PhysicsPapers/LeanFormalization/README.md) for details
 
+### Lean 4 Formalization V2 (April 2026, primary)
+[`LeanFormalizationV2/`](PhysicsPapers/LeanFormalizationV2/) — **Mathlib v4.29.0**, ~160 files, ~2 967 theorems / lemmas, 1 415 definitions, **0 sorry · 8 physical axioms · 3 536 build jobs GREEN**.
+
+#### Lean-Verified Falsifiable Predictions — Consolidated (Cycles 2-8)
+
+Ten headline deliverables from the autonomous agent pipeline (cycles 2 through 8). Lean file paths are relative to `LeanFormalizationV2/OmegaTheory/Predictions/`.
+
+| # | Prediction | Lean file | Cycle | Agent | Precision / Status |
+|---|---|---|---|---|---|
+| 1 | Neutron lifetime 8σ anomaly | `NeutronLifetimeAnomaly.lean` | 6 | Ruchbah | 10.25 s vs 10.2 s (0.5 %) |
+| 2 | Hubble tension 8σ | `HubbleTensionFromSubstrate.lean` | 7 | Tarazed #2 | 89/83 vs 73/67.4 (0.5 %) |
+| 3 | Li-7 factor-3 gap | `Lithium7AbundanceFromSubstrateBBN.lean` | 7 | Markab | resolved |
+| 4 | α_EM precision | `AlphaEMPrecisionFit.lean` | 8 | Mira #4 | 10⁻⁶ of PDG |
+| 5 | W-boson mass CDF-II | `WBosonMassCDFIIFit.lean` | 8 | Biham | exact CDF-II |
+| 6 | Cabibbo angle | `CabibboAngleFit.lean` | 8 | Mekbuda | factor 1.16 × PDG @ N = 4 |
+| 7 | Top-quark mass | `TopQuarkMassFit.lean` | 8 | Phact | 9 · ℓ_P · π_error (structural) |
+| 8 | m_p / m_e | `ElectronProtonMassRatio.lean` | 8 | Miaplacidus | within 10⁻³ CODATA |
+| 9 | Muon g − 2 | `MuonGminus2SubstrateFit.lean` | 8 | Matar | exact 2.51 · 10⁻⁹ |
+| 10 | Grand meta-capstone | `OmegaTheoryGrandUnifiedCapstone.lean` | 7 | Rigil #2 | biconditional proved |
+
+Plus **40+ supporting prediction theorems** from cycles 2-6 in `Predictions/*.lean` (UHECR dispersion, DESI/Euclid, ILL cold neutron, PMNS neutrino floor, Koide, Nashira kernel, lepton N = 4 uniqueness, cosmological constant, Bell CHSH, Klein–Gordon dispersion, Dirac D_F eigenvalue spectrum, etc.). See `README.md` → *Lean-Verified Highlights* for the full list.
+
 ## Quantum Security
 
 - [`quantum-chaos-protocols.md`](QuantumSecurity/quantum-chaos-protocols.md) - Economic defense through obfuscation

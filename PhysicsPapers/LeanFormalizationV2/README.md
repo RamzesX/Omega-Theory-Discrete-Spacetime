@@ -28,7 +28,8 @@ Machine-verified formalization of Omega-Theory / Chaos Shield discrete quantum g
 | Theorems + definitions | ~1450 |
 | Sorry | **0** (all proofs complete, April 15 2026) |
 | Axioms | **9** declared (8 physical constants + HPW) — **HPW is provably replaceable** on 7 regimes (flat, linearised, static-spherical vacuum, FRW cosmological, Bianchi I anisotropic, de Sitter, Kerr) via `HpwEliminableRegime` typeclass; continuum Christoffel/Riemann/Ricci stack now lives in `Geometry/` (Mizar, Apr 15) as the foundation for general-curved HPW closure |
-| Build | **3454 jobs, clean** |
+| Build | **3285+ jobs, clean** (post cycle-8 reorg, Wasat 2026-04-20) |
+| Cycle-9 numerical fits | `OmegaTheory/Predictions/NumericalFitsCycle9.lean` — `neutronProton_massDifference_fits_1p293` (Δm_np = 1.293 MeV ± 0.01), `muOverE_fits_206p77` (m_μ/m_e = 206.77 ± 0.5), `higgsMass_fits_125p1` (m_H = 125.10 ± 0.15 GeV), bundled in `Cycle9NumericalFits` / `pdgCycle9Witness`. Paper-ready empirical ansatzes, pure ℝ, 0 new axioms. |
 | Companion notes | [`NOTES_QM_AS_DISCRETE_GRAVITY.md`](./NOTES_QM_AS_DISCRETE_GRAVITY.md), [`NOTES_HPW_ELIMINATION.md`](./NOTES_HPW_ELIMINATION.md), [`PLAN_QM_BRIDGE.md`](./PLAN_QM_BRIDGE.md), [`PLAN_QM_LEGENDARY.md`](./PLAN_QM_LEGENDARY.md), [`PAPER_DRAFT.md`](./PAPER_DRAFT.md) |
 | Workstreams complete | A (Einstein form) + B (discrete Poincaré H¹=H²=H³=0) + **C1+C2+C3 (all of C)** + HPW 3-regime elimination + **QM-bridge Option-B full 7-theorem suite + capstone** |
 | Paper in draft | [`PAPER_DRAFT.md`](./PAPER_DRAFT.md) — 2,476 lines, 15 sections, 13 advertised theorems. Target: *Foundations of Physics* long-form + *PRL* 4-page letter. |

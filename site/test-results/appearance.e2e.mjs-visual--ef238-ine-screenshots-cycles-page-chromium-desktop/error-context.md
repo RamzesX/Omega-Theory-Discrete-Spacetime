@@ -6,72 +6,34 @@
 
 # Test info
 
-- Name: accessibility.e2e.mjs >> WCAG accessibility (axe-core) >> cycles — no serious/critical a11y violations
-- Location: tests/accessibility.e2e.mjs:36:5
+- Name: appearance.e2e.mjs >> visual regression (baseline screenshots) >> cycles page
+- Location: tests/appearance.e2e.mjs:149:3
 
 # Error details
 
 ```
-Error: axe serious/critical violations on /cycles/: scrollable-region-focusable (1)
+Error: expect(page).toHaveScreenshot(expected) failed
 
-expect(received).toEqual(expected) // deep equality
+  1202912 pixels (ratio 0.93 of all image pixels) are different.
 
-- Expected  -  1
-+ Received  + 52
+  Snapshot: cycles.png
 
-- Array []
-+ Array [
-+   Object {
-+     "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
-+     "help": "Scrollable region must have keyboard access",
-+     "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable?application=playwright",
-+     "id": "scrollable-region-focusable",
-+     "impact": "serious",
-+     "nodes": Array [
-+       Object {
-+         "all": Array [],
-+         "any": Array [
-+           Object {
-+             "data": null,
-+             "id": "focusable-content",
-+             "impact": "serious",
-+             "message": "Element should have focusable content",
-+             "relatedNodes": Array [],
-+           },
-+           Object {
-+             "data": null,
-+             "id": "focusable-element",
-+             "impact": "serious",
-+             "message": "Element should be focusable",
-+             "relatedNodes": Array [],
-+           },
-+         ],
-+         "failureSummary": "Fix any of the following:
-+   Element should have focusable content
-+   Element should be focusable",
-+         "html": "<p class=\"capstone-sig\" data-astro-cid-lidk6xd6=\"\"> <code data-astro-cid-lidk6xd6=\"\">omega_theory_grand_capstone : Substrate-fit-bundle _ ∧ PDG-consistency _ ∧ Lean-verified _</code> </p>",
-+         "impact": "serious",
-+         "none": Array [],
-+         "target": Array [
-+           ".capstone-sig",
-+         ],
-+       },
-+     ],
-+     "tags": Array [
-+       "cat.keyboard",
-+       "wcag2a",
-+       "wcag211",
-+       "wcag213",
-+       "TTv5",
-+       "TT4.a",
-+       "EN-301-549",
-+       "EN-9.2.1.1",
-+       "EN-9.2.1.3",
-+       "RGAAv4",
-+       "RGAA-7.3.2",
-+     ],
-+   },
-+ ]
+Call log:
+  - Expect "toHaveScreenshot(cycles.png)" with timeout 5000ms
+    - verifying given screenshot expectation
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - 1202912 pixels (ratio 0.93 of all image pixels) are different.
+  - waiting 100ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - captured a stable screenshot
+  - 1202912 pixels (ratio 0.93 of all image pixels) are different.
+
 ```
 
 # Page snapshot
@@ -227,7 +189,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Numerical-fit scaffolding" [level=2] [ref=e126]
           - paragraph [ref=e127]: First sustained cycle of PDG-anchored substrate fits; seeds three-channel partition evidence.
         - paragraph [ref=e128]: Six substrate fits (Z mass, pion mass, kaon mass, PMNS theta_23, electron g-2, cycle-9 numerical bundle). First hadrons formalized; middle-generation e-channel calibration hit exactly at N=1.
-        - region "Data table, scroll horizontally" [ref=e130]:
+        - table [ref=e130]:
           - rowgroup [ref=e131]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e132]:
               - columnheader "Lean theorem" [ref=e133]
@@ -358,7 +320,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "e-channel universality emerges" [level=2] [ref=e246]
           - paragraph [ref=e247]: "First paper-worthy structural finding: middle-generation observables share identical dimensionless shape 3/(N+1)!."
         - paragraph [ref=e248]: "First hadron→quark bridge (Goldstone-Gell-Mann). Four-hadron mass hierarchy closed: m_π < m_K ≤ m_η < m_p. First three-lepton g-2 ordering a_e < a_μ < a_τ. Three rfl structural identities: fpiFitBase_eq_kaonFitBase, etaFitBase_eq_kaonFitBase, VcbFitBase_eq_kaonFitBase."
-        - region "Data table, scroll horizontally" [ref=e250]:
+        - table [ref=e250]:
           - rowgroup [ref=e251]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e252]:
               - columnheader "Lean theorem" [ref=e253]
@@ -489,7 +451,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Four-observable EW ordering + PMNS triplet" [level=2] [ref=e366]
           - paragraph [ref=e367]: First quark enters e-channel universality; PMNS three angles formally closed.
         - paragraph [ref=e368]: mcFitBase_eq_kaonFitBase proves the charm quark shares the exact e-channel eigenvalue block with hadron observables. Four-observable EW ordering Γ_W < Γ_Z < m_W < m_Z formalized. PMNS triplet θ_13 < θ_12 < θ_23 closed.
-        - region "Data table, scroll horizontally" [ref=e370]:
+        - table [ref=e370]:
           - rowgroup [ref=e371]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e372]:
               - columnheader "Lean theorem" [ref=e373]
@@ -620,7 +582,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "PMNS fully substrate-derived" [level=2] [ref=e486]
           - paragraph [ref=e487]: All four PMNS parameters derived; first CP violation both sectors.
         - paragraph [ref=e488]: PMNS_matrix_fully_substrate_derived (θ_12 + θ_13 + θ_23 + δ_CP). First quark Jarlskog ∝ π·e mixed channel. e-channel universality grows to 7 members (includes m_s, muon lifetime).
-        - region "Data table, scroll horizontally" [ref=e490]:
+        - table [ref=e490]:
           - rowgroup [ref=e491]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e492]:
               - columnheader "Lean theorem" [ref=e493]
@@ -751,7 +713,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Three-channel partition confirmed" [level=2] [ref=e606]
           - paragraph [ref=e607]: First two flavor columns in sqrt2-channel; first fine-tuning (θ_QCD) resolved.
         - paragraph [ref=e608]: Pi Hunch quark-sector confirmed on both flavor columns. First upper/lower-bound theorems (Σm_ν, θ_QCD) — sqrt2 super-exponential is natural for small quantities. First fine-tuning resolution without axion.
-        - region "Data table, scroll horizontally" [ref=e610]:
+        - table [ref=e610]:
           - rowgroup [ref=e611]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e612]:
               - columnheader "Lean theorem" [ref=e613]
@@ -882,7 +844,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Higgs sector closed + derived couplings" [level=2] [ref=e726]
           - paragraph [ref=e727]: First DERIVED (not fitted) coupling; Sakharov CP → η_B bridge; triple-consistency identity.
         - paragraph [ref=e728]: Higgs self-coupling derived composed from VEV and m_H. α_EM(m_Z) and α_s(m_Z) on substrate with opposite running signs. First Sakharov bridge quark-CP → cosmic baryon asymmetry. Triple-consistency m_H² = 2λv² identity closes Higgs sector.
-        - region "Data table, scroll horizontally" [ref=e730]:
+        - table [ref=e730]:
           - rowgroup [ref=e731]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e732]:
               - columnheader "Lean theorem" [ref=e733]
@@ -1013,7 +975,7 @@ expect(received).toEqual(expected) // deep equality
           - 'heading "Cosmological regime: Lambda + Planck 2018" [level=2] [ref=e846]'
           - paragraph [ref=e847]: Second fine-tuning resolved (Λ = 10⁻⁵² m⁻²); full CMB parameter set on substrate.
         - paragraph [ref=e848]: Λ_CC on sqrt2-channel at N≈10 delivers 2⁻¹⁰²⁴ ≈ 10⁻³⁰⁸ residual — the 120-order cosmological constant scale is anthropic-free. Cosmological block links to KBC void and dark-energy reservoir. First falsification-by-consistency test (Ω_b h² from η_B).
-        - region "Data table, scroll horizontally" [ref=e850]:
+        - table [ref=e850]:
           - rowgroup [ref=e851]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e852]:
               - columnheader "Lean theorem" [ref=e853]
@@ -1144,7 +1106,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Nuclear / hadronic sector opens" [level=2] [ref=e966]
           - paragraph [ref=e967]: Magnetic moments, nuclear binding, Goldberger-Treiman relation — first non-perturbative nuclear force fits.
         - paragraph [ref=e968]: First spin observables (proton μ_p/μ_N). Nuclear binding energy per nucleon in π-channel. Goldberger-Treiman substrate derivation. e-channel universality family reaches 8 members across 5 sectors.
-        - region "Data table, scroll horizontally" [ref=e970]:
+        - table [ref=e970]:
           - rowgroup [ref=e971]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e972]:
               - columnheader "Lean theorem" [ref=e973]
@@ -1275,7 +1237,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Meson spectrum + CKM third row" [level=2] [ref=e1086]
           - paragraph [ref=e1087]: First vector meson, first charmonium, first bottomonium; CKM matrix closes.
         - paragraph [ref=e1088]: First meson spectrum entries. CKM |V_td|, |V_ts| completes third row for full numerical unitarity check. Prepares CKM γ angle + unitarity triangle closure for cycle 18.
-        - region "Data table, scroll horizontally" [ref=e1090]:
+        - table [ref=e1090]:
           - rowgroup [ref=e1091]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1092]:
               - columnheader "Lean theorem" [ref=e1093]
@@ -1406,7 +1368,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Unitarity triangle + weak-sector closure" [level=2] [ref=e1206]
           - paragraph [ref=e1207]: CKM γ derived; unitarity triangle substrate-verified; first full closed mixing matrix.
         - paragraph [ref=e1208]: Unitarity triangle angle γ + full substrate verification. B physics observables from substrate (ΔM_s / ΔM_d). First derived strong coupling mismatch below 1-loop.
-        - region "Data table, scroll horizontally" [ref=e1210]:
+        - table [ref=e1210]:
           - rowgroup [ref=e1211]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1212]:
               - columnheader "Lean theorem" [ref=e1213]
@@ -1537,7 +1499,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Neutrino sector + cosmic tests" [level=2] [ref=e1326]
           - paragraph [ref=e1327]: First neutrinoless double-β bound; mass-ordering prediction; cosmic neutrino background link.
         - paragraph [ref=e1328]: Neutrino mass ordering predicted (normal vs inverted). Neutrinoless double-β effective mass bound. Cosmic neutrino background temperature consistency check.
-        - region "Data table, scroll horizontally" [ref=e1330]:
+        - table [ref=e1330]:
           - rowgroup [ref=e1331]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1332]:
               - columnheader "Lean theorem" [ref=e1333]
@@ -1799,7 +1761,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Gravitational-wave / compact-object tests" [level=2] [ref=e1566]
           - paragraph [ref=e1567]: GW170817 consistency; black-hole quasinormal modes; ringdown from substrate.
         - paragraph [ref=e1568]: GW speed-of-light bound, c_T = c to 10⁻¹⁵. BH quasinormal mode spectrum from substrate. Merger remnant mass from Noether current conservation.
-        - region "Data table, scroll horizontally" [ref=e1570]:
+        - table [ref=e1570]:
           - rowgroup [ref=e1571]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1572]:
               - columnheader "Lean theorem" [ref=e1573]
@@ -1930,7 +1892,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Precision QED + atomic-clock tests" [level=2] [ref=e1686]
           - paragraph [ref=e1687]: Electron EDM bound; Rydberg constant from substrate; atomic-clock sensitivity to dark matter.
         - paragraph [ref=e1688]: Electron EDM bound tightens θ-parameter constraint. Rydberg constant derived from α and m_e composition. Atomic-clock drift bound as DM-coupling window.
-        - region "Data table, scroll horizontally" [ref=e1690]:
+        - table [ref=e1690]:
           - rowgroup [ref=e1691]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1692]:
               - columnheader "Lean theorem" [ref=e1693]
@@ -2061,7 +2023,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Grand capstone signature" [level=2] [ref=e1806]
           - paragraph [ref=e1807]: "Signature theorem: OmegaTheory derives 14 cycles × 6 = 84 PDG-consistent predictions from 8 physical axioms + 3 irrationals."
         - paragraph [ref=e1808]: "omega_theory_grand_capstone bundles all cycle fits under one roof: Standard Model + cosmology + astrophysics derivable from π/e/√2-truncation residuals plus healing-flow dynamics. 0 sorry, 8 axioms, build 3818 GREEN."
-        - region "Data table, scroll horizontally" [ref=e1810]:
+        - table [ref=e1810]:
           - rowgroup [ref=e1811]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1812]:
               - columnheader "Lean theorem" [ref=e1813]
@@ -2219,158 +2181,115 @@ expect(received).toEqual(expected) // deep equality
 # Test source
 
 ```ts
-  1   | /**
-  2   |  * Accessibility + visual-quality E2E tests (Playwright).
-  3   |  *
-  4   |  * What this checks:
-  5   |  *   - WCAG violations via axe-core (color contrast, alt-text, heading order,
-  6   |  *     landmark regions, aria labels)
-  7   |  *   - Every <img> has alt-text (critical for screen readers)
-  8   |  *   - Heading hierarchy: exactly one <h1>, no skipped levels
-  9   |  *   - Minimum font size (readable on mobile)
-  10  |  *   - Links have discernible text (not just icons with empty anchors)
-  11  |  *   - Tab order is logical (interactive elements reachable by keyboard)
-  12  |  *
-  13  |  * Uses @axe-core/playwright (install via `npm install --save-dev @axe-core/playwright`).
-  14  |  * Skips gracefully if axe is not installed, so CI doesn't fail pre-install.
-  15  |  */
-  16  | 
-  17  | import { test, expect } from '@playwright/test';
-  18  | 
-  19  | // Dynamic import so tests that don't need axe still run if the dev-dep is missing
-  20  | let AxeBuilder;
-  21  | try {
-  22  |   AxeBuilder = (await import('@axe-core/playwright')).default;
-  23  | } catch (_e) {
-  24  |   AxeBuilder = null;
-  25  | }
-  26  | 
-  27  | const PAGES = {
-  28  |   home: '/',
-  29  |   paperQM: '/papers/paper-qm-from-discrete-gravity/',
-  30  |   appendixF: '/papers/appendix-f-information-flow-conservation/',
-  31  |   cycles: '/cycles/',
-  32  | };
-  33  | 
-  34  | test.describe('WCAG accessibility (axe-core)', () => {
-  35  |   for (const [name, pth] of Object.entries(PAGES)) {
-  36  |     test(`${name} — no serious/critical a11y violations`, async ({ page }) => {
-  37  |       test.skip(
-  38  |         !AxeBuilder,
-  39  |         '@axe-core/playwright not installed; run `npm install --save-dev @axe-core/playwright`'
-  40  |       );
-  41  |       await page.goto(pth);
-  42  |       await page.waitForLoadState('networkidle');
-  43  | 
-  44  |       const results = await new AxeBuilder({ page })
-  45  |         .options({
-  46  |           // Only fail on serious/critical. Minor issues get logged but don't
-  47  |           // block CI — fonts on mobile can trip contrast false positives.
-  48  |           resultTypes: ['violations'],
-  49  |         })
-  50  |         .analyze();
-  51  | 
-  52  |       const hardBlockers = results.violations.filter((v) =>
-  53  |         ['serious', 'critical'].includes(v.impact)
-  54  |       );
-  55  | 
-  56  |       expect(
-  57  |         hardBlockers,
-  58  |         `axe serious/critical violations on ${pth}: ${hardBlockers
-  59  |           .map((v) => `${v.id} (${v.nodes.length})`)
-  60  |           .join(', ')}`
-> 61  |       ).toEqual([]);
-      |         ^ Error: axe serious/critical violations on /cycles/: scrollable-region-focusable (1)
-  62  |     });
-  63  |   }
+  52  | 
+  53  |   test('a physics paper: CSS/JS/fonts all load', async ({ page }) => {
+  54  |     const failures = [];
+  55  |     page.on('response', (r) => {
+  56  |       const u = r.url();
+  57  |       const is_asset = /\.(css|js|woff2?|svg|png|jpg|webp|ico)(\?|$)/i.test(u);
+  58  |       if (is_asset && r.status() >= 400) failures.push(`${r.status()} ${u}`);
+  59  |     });
+  60  |     await page.goto(PAGES.paperQM);
+  61  |     await page.waitForLoadState('networkidle');
+  62  |     expect(failures, 'failed asset requests').toEqual([]);
+  63  |   });
   64  | });
   65  | 
-  66  | test.describe('images have alt text', () => {
-  67  |   for (const [name, pth] of Object.entries(PAGES)) {
-  68  |     test(`${name} — no <img> without alt`, async ({ page }) => {
-  69  |       await page.goto(pth);
-  70  |       const missing = await page.$$eval('img', (imgs) =>
-  71  |         imgs
-  72  |           .filter((i) => !i.hasAttribute('alt'))
-  73  |           .map((i) => i.getAttribute('src') || '(no src)')
-  74  |       );
-  75  |       expect(missing, `<img> elements missing alt: ${missing.join(', ')}`).toEqual([]);
-  76  |     });
-  77  |   }
-  78  | });
-  79  | 
-  80  | test.describe('heading hierarchy', () => {
-  81  |   test('home has exactly one <h1>', async ({ page }) => {
-  82  |     await page.goto('/');
-  83  |     const h1Count = await page.locator('h1').count();
-  84  |     expect(h1Count, 'exactly one <h1> per page (W3C HTML best practice)').toBe(1);
-  85  |   });
-  86  | 
-  87  |   test('a paper page has a single <h1>', async ({ page }) => {
-  88  |     await page.goto(PAGES.paperQM);
-  89  |     const h1Count = await page.locator('h1').count();
-  90  |     expect(h1Count, 'paper pages should have exactly one <h1>').toBe(1);
-  91  |   });
-  92  | 
-  93  |   test('no skipped heading levels (h1 -> h3 without h2)', async ({ page }) => {
-  94  |     await page.goto(PAGES.paperQM);
-  95  |     const levels = await page.$$eval('h1, h2, h3, h4, h5, h6', (hs) =>
-  96  |       hs.map((h) => parseInt(h.tagName.slice(1), 10))
-  97  |     );
-  98  |     const skips = [];
-  99  |     for (let i = 1; i < levels.length; i++) {
-  100 |       if (levels[i] > levels[i - 1] + 1) {
-  101 |         skips.push(`h${levels[i - 1]} -> h${levels[i]} at index ${i}`);
-  102 |       }
-  103 |     }
-  104 |     expect(skips, `skipped heading levels: ${skips.join(', ')}`).toEqual([]);
-  105 |   });
-  106 | });
-  107 | 
-  108 | test.describe('readable typography', () => {
-  109 |   test('body text is at least 14px on desktop', async ({ page }) => {
-  110 |     await page.goto('/');
-  111 |     const fontSizePx = await page.evaluate(() => {
-  112 |       const el = document.querySelector('main, body');
-  113 |       return parseFloat(getComputedStyle(el).fontSize);
-  114 |     });
-  115 |     expect(
-  116 |       fontSizePx,
-  117 |       `body text too small (${fontSizePx}px) — readability risk`
-  118 |     ).toBeGreaterThanOrEqual(14);
-  119 |   });
-  120 | });
-  121 | 
-  122 | test.describe('links are discernible', () => {
-  123 |   test('no <a> with empty href or empty text', async ({ page }) => {
-  124 |     await page.goto('/');
-  125 |     const bad = await page.$$eval('a', (as) =>
-  126 |       as
-  127 |         .filter((a) => {
-  128 |           const href = a.getAttribute('href');
-  129 |           const text = (a.textContent || '').trim();
-  130 |           const aria = a.getAttribute('aria-label');
-  131 |           const hasImg = !!a.querySelector('img[alt]');
-  132 |           // OK if: href present AND (text OR aria-label OR img-with-alt)
-  133 |           return !href || (!text && !aria && !hasImg);
-  134 |         })
-  135 |         .map((a) => a.outerHTML.slice(0, 120))
-  136 |     );
-  137 |     expect(bad, `<a> elements with no discernible label: ${bad.join(' | ')}`).toEqual([]);
-  138 |   });
-  139 | });
-  140 | 
-  141 | test.describe('tab-reachable interactive elements', () => {
-  142 |   test('first tab press focuses an interactive element', async ({ page }) => {
-  143 |     await page.goto('/');
-  144 |     await page.keyboard.press('Tab');
-  145 |     const focused = await page.evaluate(() => {
-  146 |       const el = document.activeElement;
-  147 |       if (!el || el === document.body) return null;
-  148 |       return { tag: el.tagName, href: el.getAttribute('href'), text: el.textContent?.slice(0, 40) };
-  149 |     });
-  150 |     expect(focused, 'first Tab should focus a real interactive element, not document.body').not.toBeNull();
-  151 |   });
-  152 | });
-  153 | 
+  66  | test.describe('no console errors on key pages', () => {
+  67  |   for (const [name, path] of Object.entries(PAGES).slice(0, 4)) {
+  68  |     test(`${name} — no console errors`, async ({ page }) => {
+  69  |       const errors = [];
+  70  |       page.on('console', (msg) => {
+  71  |         if (msg.type() === 'error') errors.push(msg.text());
+  72  |       });
+  73  |       page.on('pageerror', (err) => errors.push(err.message));
+  74  |       await page.goto(path);
+  75  |       await page.waitForLoadState('networkidle');
+  76  |       expect(errors, `console errors on ${path}`).toEqual([]);
+  77  |     });
+  78  |   }
+  79  | });
+  80  | 
+  81  | test.describe('CSS is actually applied', () => {
+  82  |   test('home page has non-default body background', async ({ page }) => {
+  83  |     await page.goto('/');
+  84  |     const bg = await page.evaluate(() =>
+  85  |       getComputedStyle(document.body).backgroundColor
+  86  |     );
+  87  |     // Astro + custom theme should not render as "rgba(0, 0, 0, 0)" (transparent = no CSS)
+  88  |     expect(bg, 'body background should be set by CSS').not.toBe('rgba(0, 0, 0, 0)');
+  89  |     expect(bg, 'body background should not be default white').not.toBe('rgb(255, 255, 255)');
+  90  |   });
+  91  | 
+  92  |   test('home page has custom font (not Times New Roman default)', async ({ page }) => {
+  93  |     await page.goto('/');
+  94  |     const font = await page.evaluate(() =>
+  95  |       getComputedStyle(document.body).fontFamily.toLowerCase()
+  96  |     );
+  97  |     // Anything non-default indicates our stylesheet loaded
+  98  |     expect(font, 'body font should not be the browser default').not.toMatch(/^times/);
+  99  |   });
+  100 | });
+  101 | 
+  102 | test.describe('KaTeX math renders (physics paper)', () => {
+  103 |   test('appendix F renders at least one MathML/KaTeX block', async ({ page }) => {
+  104 |     await page.goto(PAGES.appendixF);
+  105 |     await page.waitForLoadState('networkidle');
+  106 |     // KaTeX injects either <span class="katex"> or MathML in rendered output.
+  107 |     const katexCount = await page.locator('.katex').count();
+  108 |     const mathmlCount = await page.locator('math').count();
+  109 |     expect(katexCount + mathmlCount, 'no rendered math found — rehype-katex may be broken').toBeGreaterThan(0);
+  110 |   });
+  111 | });
+  112 | 
+  113 | test.describe('navigation works', () => {
+  114 |   test('home page has at least one link to /papers/', async ({ page }) => {
+  115 |     await page.goto('/');
+  116 |     const count = await page.locator('a[href*="/papers/"]').count();
+  117 |     expect(count, 'home should link to at least one paper').toBeGreaterThan(0);
+  118 |   });
+  119 | 
+  120 |   test('clicking the first paper link lands on a 200 page', async ({ page }) => {
+  121 |     await page.goto('/');
+  122 |     const first = page.locator('a[href*="/papers/"]').first();
+  123 |     const href = await first.getAttribute('href');
+  124 |     const nav = page.waitForResponse((r) => r.url().includes(href));
+  125 |     await first.click();
+  126 |     const resp = await nav;
+  127 |     expect(resp.status()).toBe(200);
+  128 |   });
+  129 | });
+  130 | 
+  131 | test.describe('responsive — mobile viewport does not break', () => {
+  132 |   test('home on mobile: no horizontal overflow', async ({ page, viewport }) => {
+  133 |     test.skip(viewport.width > 500, 'desktop-viewport project, skip');
+  134 |     await page.goto('/');
+  135 |     const overflow = await page.evaluate(() =>
+  136 |       document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
+  137 |     );
+  138 |     expect(overflow, 'mobile page has horizontal scroll — layout broken').toBe(false);
+  139 |   });
+  140 | });
+  141 | 
+  142 | test.describe('visual regression (baseline screenshots)', () => {
+  143 |   test('home page', async ({ page }) => {
+  144 |     await page.goto('/');
+  145 |     await page.waitForLoadState('networkidle');
+  146 |     await expect(page).toHaveScreenshot('home.png', { fullPage: true });
+  147 |   });
+  148 | 
+  149 |   test('cycles page', async ({ page }) => {
+  150 |     await page.goto('/cycles/');
+  151 |     await page.waitForLoadState('networkidle');
+> 152 |     await expect(page).toHaveScreenshot('cycles.png', { fullPage: false });
+      |                        ^ Error: expect(page).toHaveScreenshot(expected) failed
+  153 |   });
+  154 | 
+  155 |   test('a paper page', async ({ page }) => {
+  156 |     await page.goto(PAGES.appendixA);
+  157 |     await page.waitForLoadState('networkidle');
+  158 |     await expect(page).toHaveScreenshot('paper-appendix-a.png', { fullPage: false });
+  159 |   });
+  160 | });
+  161 | 
 ```

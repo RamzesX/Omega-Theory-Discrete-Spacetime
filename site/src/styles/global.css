@@ -328,7 +328,11 @@ table {
   font-variant-numeric: tabular-nums;
   border: 1px solid var(--color-seam);
   border-radius: var(--radius-md);
-  overflow: hidden;
+  /* Don't use `overflow: hidden` here — it defeats the `main table
+     { overflow-x: auto }` rule below that lets wide tables scroll
+     inside their container. Corner-rounding via border-radius works
+     without overflow: hidden at the cost of slight rendering quirk
+     at the corners, which is acceptable. */
 }
 
 th, td {
@@ -397,6 +401,22 @@ main table {
   display: block;
   max-width: 100%;
   overflow-x: auto;
+  overflow-y: hidden; /* explicit — shorthand-conflict with base `overflow` */
+}
+/* Shiki code-fence CSS sets white-space: pre. Force wrap for inline code
+   *inside italics/text-flow* so a long identifier inside an `<em>` doesn't
+   push its line past the paper column. Leave actual <pre> code-fences
+   (block-level) alone — those use overflow-x: auto above. */
+main em code,
+main strong code,
+main p code,
+main li code,
+main td code,
+main em,
+main strong {
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
 }
 /* WCAG 2.1 (axe: scrollable-region-focusable): scrollable regions must
    be keyboard-focusable. tabindex=0 gives them into the Tab order so

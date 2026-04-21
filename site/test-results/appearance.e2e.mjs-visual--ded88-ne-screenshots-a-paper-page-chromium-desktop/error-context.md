@@ -1,0 +1,1869 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: appearance.e2e.mjs >> visual regression (baseline screenshots) >> a paper page
+- Location: tests/appearance.e2e.mjs:155:3
+
+# Error details
+
+```
+Error: expect(page).toHaveScreenshot(expected) failed
+
+  1193249 pixels (ratio 0.93 of all image pixels) are different.
+
+  Snapshot: paper-appendix-a.png
+
+Call log:
+  - Expect "toHaveScreenshot(paper-appendix-a.png)" with timeout 5000ms
+    - verifying given screenshot expectation
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - 1193249 pixels (ratio 0.93 of all image pixels) are different.
+  - waiting 100ms before taking screenshot
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - captured a stable screenshot
+  - 1193249 pixels (ratio 0.93 of all image pixels) are different.
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - generic [ref=e3]:
+    - complementary "Primary" [ref=e4]:
+      - generic [ref=e5]:
+        - link "Omega-Theory home" [ref=e6] [cursor=pointer]:
+          - /url: /Omega-Theory-Discrete-Spacetime/
+          - generic [ref=e7]: Ω
+          - generic [ref=e8]:
+            - generic [ref=e9]: Omega-Theory
+            - generic [ref=e10]: discrete spacetime · Lean 4
+        - button "Toggle theme" [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+      - navigation "Site sections" [ref=e14]:
+        - generic [ref=e15]:
+          - button "Getting Started" [expanded] [ref=e16] [cursor=pointer]:
+            - generic [ref=e17]: Getting Started
+            - img [ref=e18]
+          - list [ref=e20]:
+            - listitem [ref=e21]:
+              - link "Overview" [ref=e22] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/
+            - listitem [ref=e23]:
+              - link "Main Paper" [ref=e24] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/main-paper-postulates/
+            - listitem [ref=e25]:
+              - link "Visual Summary" [ref=e26] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/unified-theory-diagram/
+        - generic [ref=e27]:
+          - button "Predictions" [expanded] [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: Predictions
+            - img [ref=e30]
+          - list [ref=e32]:
+            - listitem [ref=e33]:
+              - link "14 Cycles · 84 Predictions" [ref=e34] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/cycles/
+            - listitem [ref=e35]:
+              - link "Lean Formalization" [ref=e36] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/lean/
+            - listitem [ref=e37]:
+              - 'link "Appendix I: Experimental Tests" [ref=e38] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/appendix-i-experimental-tests/
+            - listitem [ref=e39]:
+              - 'link "Appendix J: Experimental Catalog" [ref=e40] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/appendix-j-experimental-catalog-consolidated/
+            - listitem [ref=e41]:
+              - 'link "Appendix K: Irrationality Genesis" [ref=e42] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/appendix-k-irrationality-genesis-of-predictions/
+            - listitem [ref=e43]:
+              - link "Cold-Neutron Letter (PRL)" [ref=e44] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/letter-coldneutron-executivesummary/
+        - generic [ref=e45]:
+          - button "Core Theory" [expanded] [ref=e46] [cursor=pointer]:
+            - generic [ref=e47]: Core Theory
+            - img [ref=e48]
+          - list [ref=e50]:
+            - listitem [ref=e51]:
+              - link "Complete Framework" [ref=e52] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/complete-omega-theory-unified-framework/
+            - listitem [ref=e53]:
+              - 'link "Key Insight: Irrationals" [ref=e54] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/keyinsight-irrationals-action-thresholds/
+            - listitem [ref=e55]:
+              - link "Dark Energy Preview Paper" [ref=e56] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/paper-dark-energy-preview-v1/
+            - listitem [ref=e57]:
+              - link "Erdős Lagrangian" [ref=e58] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/erdoslagrangianunification/
+        - button "Appendices" [ref=e60] [cursor=pointer]:
+          - generic [ref=e61]: Appendices
+          - img [ref=e62]
+        - generic [ref=e64]:
+          - button "Notes" [expanded] [ref=e65] [cursor=pointer]:
+            - generic [ref=e66]: Notes
+            - img [ref=e67]
+          - list [ref=e69]:
+            - listitem [ref=e70]:
+              - link "Continued-Fraction Channels" [ref=e71] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/note-continued-fraction-information-channels/
+            - listitem [ref=e72]:
+              - link "Structure-Preserving Lattice Curvature" [ref=e73] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/note-structure-preserving-lattice-curvature/
+      - generic [ref=e74]:
+        - link "github.com/RamzesX/chaos-shield" [ref=e75] [cursor=pointer]:
+          - /url: https://github.com/RamzesX/chaos-shield
+          - img [ref=e76]
+          - generic [ref=e78]: github.com/RamzesX/chaos-shield
+        - paragraph [ref=e79]: © 2024–2026 Norbert Marchewka · CC-BY 4.0
+    - main [ref=e80]:
+      - article [ref=e81]:
+        - generic [ref=e82]:
+          - generic [ref=e83]: Appendices
+          - 'heading "Appendix A: Action Density and Quantum Errors" [level=1] [ref=e84]'
+          - paragraph [ref=e85]: Connecting action density to quantum error rates
+          - generic [ref=e87]:
+            - img [ref=e88]
+            - text: 13 min read
+        - generic [ref=e91]:
+          - heading "Action-Threshold Physics and Time Emergence from Quantum Action Accumulation" [level=2] [ref=e92]
+          - heading "A Foundation for Discrete Spacetime Theory" [level=3] [ref=e93]
+          - paragraph [ref=e94]:
+            - strong [ref=e95]: Abstract
+          - paragraph [ref=e96]: "We present a theoretical framework in which time emerges as a derived quantity from the accumulation of action at quantum thresholds S = nℏ. This formulation reinterprets Hamilton’s integration bounds in the principle of stationary action as physical constraints rather than arbitrary parameters, representing computational deadlines imposed by quantum transitions. We demonstrate that: (1) the stress-energy tensor can be interpreted as Lagrange multipliers enforcing Noether conservation laws during constrained action optimization, (2) time emergence from dt = dS/L naturally recovers special relativity and the Minkowski metric, (3) quantum error rates exhibit correlation with action density (ε ∝ ρ_S = S/V), yielding testable predictions for quantum computing systems, and (4) the Wheeler-DeWitt equation emerges naturally from this timeless formulation. We propose experimental protocols utilizing IBM Quantum processors, atomic systems, and gravitational measurements to test these predictions with existing technology."
+          - paragraph [ref=e97]:
+            - strong [ref=e98]: Keywords
+            - text: ": Action principle, quantum thresholds, emergent time, discrete spacetime, quantum computing, decoherence"
+          - separator [ref=e99]
+          - heading "1. Introduction" [level=3] [ref=e100]
+          - heading "1.1 Historical Context" [level=4] [ref=e101]
+          - paragraph [ref=e102]: Hamilton’s principle of stationary action, formulated in 1834-1835, constitutes one of the foundational principles of theoretical physics. The principle states that physical systems evolve such that the action integral
+          - paragraph [ref=e103]:
+            - generic [ref=e104]:
+              - math [ref=e106]:
+                - generic [ref=e108]:
+                  - generic [ref=e109]: S
+                  - generic [ref=e110]: =
+                  - generic [ref=e111]:
+                    - generic [ref=e112]: ∫
+                    - generic [ref=e113]:
+                      - generic [ref=e114]: t
+                      - generic [ref=e115]: "1"
+                    - generic [ref=e116]:
+                      - generic [ref=e117]: t
+                      - generic [ref=e118]: "2"
+                  - generic [ref=e119]: L
+                  - generic [ref=e120]: (
+                  - generic [ref=e121]: q
+                  - generic [ref=e122]: ","
+                  - generic [ref=e123]:
+                    - generic [ref=e124]: q
+                    - generic [ref=e125]: ˙
+                  - generic [ref=e126]: ","
+                  - generic [ref=e127]: t
+                  - generic [ref=e128]: )
+                  - generic [ref=e129]: d
+                  - generic [ref=e130]: t
+              - generic [ref=e131]:
+                - generic [ref=e132]: S =
+                - generic [ref=e133]:
+                  - generic [ref=e134]:
+                    - text: ∫
+                    - generic [ref=e138]:
+                      - generic [ref=e141]:
+                        - text: t
+                        - generic [ref=e146]: "1"
+                      - generic [ref=e152]:
+                        - text: t
+                        - generic [ref=e157]: "2"
+                  - text: L(q,
+                  - generic [ref=e167]:
+                    - generic [ref=e168]: q
+                    - text: ˙
+                  - text: ", t) dt"
+          - paragraph [ref=e172]: achieves a stationary value with respect to variations in the path, where L denotes the Lagrangian. Hamilton explicitly noted that “the limits t₁ and t₂ [are] regarded as given” (Hamilton, 1834), a phrase interpreted for nearly two centuries as indicating arbitrary boundary conditions.
+          - paragraph [ref=e173]: "We propose an alternative interpretation: these bounds encode physical constraints arising from quantum mechanics, specifically the quantization of action at integer multiples of ℏ."
+          - heading "1.2 Central Hypothesis" [level=4] [ref=e174]
+          - paragraph [ref=e175]: "Our framework inverts the conventional hierarchy of physical concepts:"
+          - paragraph [ref=e176]:
+            - strong [ref=e177]: "Conventional formulation:"
+          - list [ref=e178]:
+            - listitem [ref=e179]: Time is fundamental
+            - listitem [ref=e180]: Action accumulates over time
+            - listitem [ref=e181]: Quantum states evolve in time
+          - paragraph [ref=e182]:
+            - strong [ref=e183]: "Proposed formulation:"
+          - list [ref=e184]:
+            - listitem [ref=e185]: Action accumulation is fundamental
+            - listitem [ref=e186]: Thresholds at S = nℏ force quantum transitions
+            - listitem [ref=e187]: "Time emerges from counting threshold crossings: dt = dS/L"
+          - paragraph [ref=e188]: This inversion provides a natural explanation for action quantization, the occurrence of quantum jumps, the origin of uncertainty, and the arrow of time.
+          - 'heading "1.3 Time as Counting: From Intuition to Mechanism" [level=4] [ref=e189]'
+          - paragraph [ref=e190]: The idea that time is fundamentally about counting repeated events is not new. One year equals one orbit around the Sun. One day equals one Earth rotation. One second equals 9,192,631,770 cesium-133 transitions. Throughout history, we have always measured time by counting cycles of one process against another.
+          - paragraph [ref=e191]: General relativity provided an extraordinarily precise description of how time behaves—time dilation near massive objects, the relativity of simultaneity, the curvature of spacetime. These predictions have been confirmed to remarkable accuracy.
+          - paragraph [ref=e192]: "What this framework adds is a proposed mechanism: action density ρ_S = NkT/V as the quantity that determines local tick rate. In everyday conditions, ρ_S is approximately constant, so time appears to flow uniformly. When ρ_S varies—near massive objects or at high velocities—time dilation emerges as a natural consequence."
+          - paragraph [ref=e193]: This connects the ancient intuition (time = counting events) with relativistic phenomena through a concrete physical quantity that can be measured and tested.
+          - separator [ref=e194]
+          - heading "2. Mathematical Framework" [level=3] [ref=e195]
+          - heading "2.1 Fundamental Postulates" [level=4] [ref=e196]
+          - paragraph [ref=e197]:
+            - strong [ref=e198]: Postulate 1
+            - text: "(Action Primacy): Action S constitutes the fundamental physical quantity, with time being derived."
+          - paragraph [ref=e199]:
+            - strong [ref=e200]: Postulate 2
+            - text: "(Quantum Thresholds): Action is quantized at S = nℏ for n ∈ ℤ."
+          - paragraph [ref=e201]:
+            - strong [ref=e202]: Postulate 3
+            - text: "(Monotonic Accumulation): For systems with non-zero energy:"
+            - generic [ref=e203]:
+              - math [ref=e205]:
+                - generic [ref=e207]:
+                  - generic [ref=e208]:
+                    - generic [ref=e209]:
+                      - generic [ref=e210]: d
+                      - generic [ref=e211]: S
+                    - generic [ref=e212]:
+                      - generic [ref=e213]: d
+                      - generic [ref=e214]: t
+                  - generic [ref=e215]: =
+                  - generic [ref=e216]: L
+                  - generic [ref=e217]: =
+                  - generic [ref=e218]: T
+                  - generic [ref=e219]: −
+                  - generic [ref=e220]: V
+                  - generic [ref=e221]: ≥
+                  - generic [ref=e222]: "0"
+              - generic [ref=e223]:
+                - generic [ref=e224]:
+                  - generic [ref=e229]:
+                    - generic [ref=e231]: dt
+                    - generic [ref=e234]: dS
+                  - text: =
+                - generic [ref=e238]: L =
+                - generic [ref=e239]: T −
+                - generic [ref=e240]: V ≥
+                - generic [ref=e241]: "0"
+          - paragraph [ref=e242]:
+            - strong [ref=e243]: Postulate 4
+            - text: "(Forced Transitions): When S → nℏ, the system undergoes a quantum transition regardless of the completion status of any ongoing geometric calculations."
+          - paragraph [ref=e244]:
+            - strong [ref=e245]: Postulate 5
+            - text: "(Time Emergence): Physical time emerges as:"
+            - generic [ref=e246]:
+              - math [ref=e248]:
+                - generic [ref=e250]:
+                  - generic [ref=e251]: d
+                  - generic [ref=e252]: t
+                  - generic [ref=e253]: =
+                  - generic [ref=e254]:
+                    - generic [ref=e255]:
+                      - generic [ref=e256]: d
+                      - generic [ref=e257]: S
+                    - generic [ref=e258]: L
+              - generic [ref=e259]:
+                - generic [ref=e260]: dt =
+                - generic [ref=e266]:
+                  - generic [ref=e268]: L
+                  - generic [ref=e271]: dS
+          - heading "2.2 Computational Constraints at Thresholds" [level=4] [ref=e275]
+          - paragraph [ref=e276]:
+            - strong [ref=e277]: Theorem 2.1
+            - text: "(Computational Incompleteness): At quantum thresholds, geometric calculations involving transcendental and algebraic irrational numbers (π, e, √2) cannot achieve arbitrary precision, introducing fundamental uncertainty proportional to action density."
+          - paragraph [ref=e278]:
+            - emphasis [ref=e279]: "Derivation:"
+          - paragraph [ref=e280]: "Consider a quantum system with action S approaching threshold S_n = nℏ. Define the remaining time before forced transition:"
+          - paragraph [ref=e281]:
+            - generic [ref=e282]:
+              - math [ref=e284]:
+                - generic [ref=e286]:
+                  - generic [ref=e287]:
+                    - generic [ref=e288]: τ
+                    - generic [ref=e289]: remaining
+                  - generic [ref=e290]: =
+                  - generic [ref=e291]:
+                    - generic [ref=e292]:
+                      - generic [ref=e293]: "n"
+                      - generic [ref=e294]: ℏ
+                      - generic [ref=e295]: −
+                      - generic [ref=e296]: S
+                    - generic [ref=e297]: L
+              - generic [ref=e298]:
+                - generic [ref=e299]:
+                  - generic [ref=e300]:
+                    - text: τ
+                    - generic [ref=e307]: remaining
+                  - text: =
+                - generic [ref=e316]:
+                  - generic [ref=e318]: L
+                  - generic [ref=e321]: nℏ−S
+          - paragraph [ref=e325]: "The maximum number of computational operations available before the deadline:"
+          - paragraph [ref=e326]:
+            - generic [ref=e327]:
+              - math [ref=e329]:
+                - generic [ref=e331]:
+                  - generic [ref=e332]:
+                    - generic [ref=e333]: "N"
+                    - generic [ref=e334]: max
+                  - generic [ref=e335]: =
+                  - generic [ref=e336]:
+                    - generic [ref=e337]:
+                      - generic [ref=e338]: τ
+                      - generic [ref=e339]: remaining
+                    - generic [ref=e340]:
+                      - generic [ref=e341]: t
+                      - generic [ref=e342]: Planck
+                  - generic [ref=e343]: =
+                  - generic [ref=e344]:
+                    - generic [ref=e345]: ℏ
+                    - generic [ref=e346]:
+                      - generic [ref=e347]: L
+                      - generic [ref=e348]: ⋅
+                      - generic [ref=e349]:
+                        - generic [ref=e350]: t
+                        - generic [ref=e351]: Planck
+              - generic [ref=e352]:
+                - generic [ref=e353]:
+                  - generic [ref=e354]:
+                    - text: "N"
+                    - generic [ref=e361]: max
+                  - text: =
+                - generic [ref=e365]:
+                  - generic [ref=e370]:
+                    - generic [ref=e373]:
+                      - text: t
+                      - generic [ref=e380]: Planck
+                    - generic [ref=e387]:
+                      - text: τ
+                      - generic [ref=e394]: remaining
+                  - text: =
+                - generic [ref=e406]:
+                  - generic [ref=e408]:
+                    - text: L⋅
+                    - generic [ref=e409]:
+                      - text: t
+                      - generic [ref=e416]: Planck
+                  - generic [ref=e422]: ℏ
+          - paragraph [ref=e426]: "For a thermal system with N particles at temperature T in volume V, with average Lagrangian ⟨L⟩ ≈ Nk_BT:"
+          - paragraph [ref=e427]:
+            - generic [ref=e428]:
+              - math [ref=e430]:
+                - generic [ref=e432]:
+                  - generic [ref=e433]:
+                    - generic [ref=e434]: "N"
+                    - generic [ref=e435]: max
+                  - generic [ref=e436]: =
+                  - generic [ref=e437]:
+                    - generic [ref=e438]: ℏ
+                    - generic [ref=e439]:
+                      - generic [ref=e440]: "N"
+                      - generic [ref=e441]:
+                        - generic [ref=e442]: k
+                        - generic [ref=e443]: B
+                      - generic [ref=e444]: T
+                      - generic [ref=e445]: ⋅
+                      - generic [ref=e446]:
+                        - generic [ref=e447]: t
+                        - generic [ref=e448]: Planck
+              - generic [ref=e449]:
+                - generic [ref=e450]:
+                  - generic [ref=e451]:
+                    - text: "N"
+                    - generic [ref=e458]: max
+                  - text: =
+                - generic [ref=e467]:
+                  - generic [ref=e469]:
+                    - text: "N"
+                    - generic [ref=e470]:
+                      - text: k
+                      - generic [ref=e475]: B
+                    - text: T⋅
+                    - generic [ref=e479]:
+                      - text: t
+                      - generic [ref=e486]: Planck
+                  - generic [ref=e492]: ℏ
+          - paragraph [ref=e496]: "The precision achievable for irrational geometric factors scales as:"
+          - paragraph [ref=e497]:
+            - generic [ref=e498]:
+              - math [ref=e500]:
+                - generic [ref=e502]:
+                  - generic [ref=e503]: ϵ
+                  - generic [ref=e504]: ∼
+                  - generic [ref=e505]:
+                    - generic [ref=e506]: "10"
+                    - generic [ref=e507]:
+                      - generic [ref=e508]: −
+                      - generic [ref=e509]:
+                        - generic [ref=e510]: "N"
+                        - generic [ref=e511]: max
+              - generic [ref=e512]:
+                - generic [ref=e513]: ϵ ∼
+                - generic [ref=e514]:
+                  - text: "1"
+                  - generic [ref=e515]:
+                    - text: "0"
+                    - generic [ref=e521]:
+                      - text: −
+                      - generic [ref=e522]:
+                        - text: "N"
+                        - generic [ref=e529]: max
+          - paragraph [ref=e533]:
+            - strong [ref=e534]: Corollary 2.1
+            - text: ": Quantum uncertainty acquires an additional term dependent on action density:"
+          - paragraph [ref=e535]:
+            - generic [ref=e536]:
+              - math [ref=e538]:
+                - generic [ref=e540]:
+                  - generic [ref=e541]: Δ
+                  - generic [ref=e542]: x
+                  - generic [ref=e543]: Δ
+                  - generic [ref=e544]: p
+                  - generic [ref=e545]: ≥
+                  - generic [ref=e546]:
+                    - generic [ref=e547]: ℏ
+                    - generic [ref=e548]: "2"
+                  - generic [ref=e549]: +
+                  - generic [ref=e550]: δ
+                  - generic [ref=e551]: (
+                  - generic [ref=e552]:
+                    - generic [ref=e553]: ρ
+                    - generic [ref=e554]: S
+                  - generic [ref=e555]: )
+              - generic [ref=e556]:
+                - generic [ref=e557]: ΔxΔp ≥
+                - generic [ref=e558]:
+                  - generic [ref=e563]:
+                    - generic [ref=e565]: "2"
+                    - generic [ref=e568]: ℏ
+                  - text: +
+                - generic [ref=e572]:
+                  - text: δ(
+                  - generic [ref=e573]:
+                    - text: ρ
+                    - generic [ref=e578]: S
+                  - text: )
+          - paragraph [ref=e582]: where δ(ρ_S) represents computational incompleteness and scales linearly with action density ρ_S = S/V in the first-order approximation.
+          - heading "2.3 Action Density and Error Scaling" [level=4] [ref=e583]
+          - paragraph [ref=e584]:
+            - strong [ref=e585]: Definition 2.1
+            - text: "(Action Density):"
+            - generic [ref=e586]:
+              - math [ref=e588]:
+                - generic [ref=e590]:
+                  - generic [ref=e591]:
+                    - generic [ref=e592]: ρ
+                    - generic [ref=e593]: S
+                  - generic [ref=e594]: =
+                  - generic [ref=e595]:
+                    - generic [ref=e596]: S
+                    - generic [ref=e597]: V
+                  - generic [ref=e598]: =
+                  - generic [ref=e599]:
+                    - generic [ref=e600]:
+                      - generic [ref=e601]: ∫
+                      - generic [ref=e602]: L
+                      - generic [ref=e603]: d
+                      - generic [ref=e604]: t
+                    - generic [ref=e605]: V
+              - generic [ref=e606]:
+                - generic [ref=e607]:
+                  - generic [ref=e608]:
+                    - text: ρ
+                    - generic [ref=e613]: S
+                  - text: =
+                - generic [ref=e617]:
+                  - generic [ref=e622]:
+                    - generic [ref=e624]: V
+                    - generic [ref=e627]: S
+                  - text: =
+                - generic [ref=e636]:
+                  - generic [ref=e638]: V
+                  - generic [ref=e641]: ∫ L dt
+          - paragraph [ref=e645]:
+            - strong [ref=e646]: Theorem 2.2
+            - text: "(Error-Density Correlation): Quantum error rates scale with action density according to:"
+          - paragraph [ref=e647]:
+            - generic [ref=e648]:
+              - math [ref=e650]:
+                - generic [ref=e652]:
+                  - generic [ref=e653]: ϵ
+                  - generic [ref=e654]: =
+                  - generic [ref=e655]: α
+                  - generic [ref=e656]:
+                    - generic [ref=e657]:
+                      - generic [ref=e658]: (
+                      - generic [ref=e659]:
+                        - generic [ref=e660]:
+                          - generic [ref=e661]: ρ
+                          - generic [ref=e662]: S
+                        - generic [ref=e663]:
+                          - generic [ref=e664]: ρ
+                          - generic [ref=e665]: Planck
+                      - generic [ref=e666]: )
+                    - generic [ref=e667]: β
+              - generic [ref=e668]:
+                - generic [ref=e669]: ϵ =
+                - generic [ref=e670]:
+                  - text: α
+                  - generic [ref=e671]:
+                    - generic [ref=e672]:
+                      - generic [ref=e673]: (
+                      - generic [ref=e678]:
+                        - generic [ref=e681]:
+                          - text: ρ
+                          - generic [ref=e688]: Planck
+                        - generic [ref=e695]:
+                          - text: ρ
+                          - generic [ref=e700]: S
+                      - generic [ref=e707]: )
+                    - generic [ref=e712]: β
+          - paragraph [ref=e713]: where β ≈ 1 in the linear regime and α is an architecture-dependent constant.
+          - paragraph [ref=e714]:
+            - emphasis [ref=e715]: "Derivation:"
+          - paragraph [ref=e716]:
+            - text: "The time available for geometric calculations before threshold crossing:"
+            - generic [ref=e717]:
+              - math [ref=e719]:
+                - generic [ref=e721]:
+                  - generic [ref=e722]: Δ
+                  - generic [ref=e723]:
+                    - generic [ref=e724]: t
+                    - generic [ref=e725]: threshold
+                  - generic [ref=e726]: =
+                  - generic [ref=e727]:
+                    - generic [ref=e728]: ℏ
+                    - generic [ref=e729]:
+                      - generic [ref=e730]: L
+                      - generic [ref=e731]: total
+                  - generic [ref=e732]: =
+                  - generic [ref=e733]:
+                    - generic [ref=e734]: ℏ
+                    - generic [ref=e735]:
+                      - generic [ref=e736]:
+                        - generic [ref=e737]: ρ
+                        - generic [ref=e738]: S
+                      - generic [ref=e739]: ⋅
+                      - generic [ref=e740]: V
+              - generic [ref=e741]:
+                - generic [ref=e742]:
+                  - text: Δ
+                  - generic [ref=e743]:
+                    - text: t
+                    - generic [ref=e750]: threshold
+                  - text: =
+                - generic [ref=e754]:
+                  - generic [ref=e759]:
+                    - generic [ref=e762]:
+                      - text: L
+                      - generic [ref=e769]: total
+                    - generic [ref=e775]: ℏ
+                  - text: =
+                - generic [ref=e784]:
+                  - generic [ref=e786]:
+                    - generic [ref=e787]:
+                      - text: ρ
+                      - generic [ref=e792]: S
+                    - text: ⋅V
+                  - generic [ref=e798]: ℏ
+          - paragraph [ref=e802]:
+            - text: "Computational iterations possible:"
+            - generic [ref=e803]:
+              - math [ref=e805]:
+                - generic [ref=e807]:
+                  - generic [ref=e808]:
+                    - generic [ref=e809]: "n"
+                    - generic [ref=e810]: iterations
+                  - generic [ref=e811]: =
+                  - generic [ref=e812]:
+                    - generic [ref=e813]:
+                      - generic [ref=e814]: Δ
+                      - generic [ref=e815]:
+                        - generic [ref=e816]: t
+                        - generic [ref=e817]: threshold
+                    - generic [ref=e818]:
+                      - generic [ref=e819]: t
+                      - generic [ref=e820]: Planck
+                  - generic [ref=e821]: =
+                  - generic [ref=e822]:
+                    - generic [ref=e823]: ℏ
+                    - generic [ref=e824]:
+                      - generic [ref=e825]:
+                        - generic [ref=e826]: ρ
+                        - generic [ref=e827]: S
+                      - generic [ref=e828]: ⋅
+                      - generic [ref=e829]: V
+                      - generic [ref=e830]: ⋅
+                      - generic [ref=e831]:
+                        - generic [ref=e832]: t
+                        - generic [ref=e833]: Planck
+              - generic [ref=e834]:
+                - generic [ref=e835]:
+                  - generic [ref=e836]:
+                    - text: "n"
+                    - generic [ref=e843]: iterations
+                  - text: =
+                - generic [ref=e847]:
+                  - generic [ref=e852]:
+                    - generic [ref=e855]:
+                      - text: t
+                      - generic [ref=e862]: Planck
+                    - generic [ref=e868]:
+                      - text: Δ
+                      - generic [ref=e869]:
+                        - text: t
+                        - generic [ref=e876]: threshold
+                  - text: =
+                - generic [ref=e888]:
+                  - generic [ref=e890]:
+                    - generic [ref=e891]:
+                      - text: ρ
+                      - generic [ref=e896]: S
+                    - text: ⋅V⋅
+                    - generic [ref=e900]:
+                      - text: t
+                      - generic [ref=e907]: Planck
+                  - generic [ref=e913]: ℏ
+          - paragraph [ref=e917]:
+            - text: "Precision achieved:"
+            - generic [ref=e918]:
+              - math [ref=e920]:
+                - generic [ref=e922]:
+                  - generic [ref=e923]: ϵ
+                  - generic [ref=e924]: ≈
+                  - generic [ref=e925]: α
+                  - generic [ref=e926]: ⋅
+                  - generic [ref=e927]:
+                    - generic [ref=e928]:
+                      - generic [ref=e929]: ρ
+                      - generic [ref=e930]: S
+                    - generic [ref=e931]:
+                      - generic [ref=e932]: ρ
+                      - generic [ref=e933]: Planck
+              - generic [ref=e934]:
+                - generic [ref=e935]: ϵ ≈
+                - generic [ref=e936]: α ⋅
+                - generic [ref=e942]:
+                  - generic [ref=e945]:
+                    - text: ρ
+                    - generic [ref=e952]: Planck
+                  - generic [ref=e959]:
+                    - text: ρ
+                    - generic [ref=e964]: S
+          - paragraph [ref=e971]: yielding linear scaling in the regime ρ_S << ρ_Planck.
+          - heading "2.4 The Complete Action Density Formula" [level=4] [ref=e972]
+          - paragraph [ref=e973]:
+            - strong [ref=e974]: Definition 2.2
+            - text: "(Full Action Density):"
+            - generic [ref=e975]:
+              - math [ref=e977]:
+                - generic [ref=e979]:
+                  - generic [ref=e980]:
+                    - generic [ref=e981]: ρ
+                    - generic [ref=e982]: S
+                  - generic [ref=e983]: =
+                  - generic [ref=e984]:
+                    - generic [ref=e985]:
+                      - generic [ref=e986]: "N"
+                      - generic [ref=e987]:
+                        - generic [ref=e988]: k
+                        - generic [ref=e989]: B
+                      - generic [ref=e990]: T
+                    - generic [ref=e991]: V
+              - generic [ref=e992]:
+                - generic [ref=e993]:
+                  - generic [ref=e994]:
+                    - text: ρ
+                    - generic [ref=e999]: S
+                  - text: =
+                - generic [ref=e1008]:
+                  - generic [ref=e1010]: V
+                  - generic [ref=e1013]:
+                    - text: "N"
+                    - generic [ref=e1014]:
+                      - text: k
+                      - generic [ref=e1019]: B
+                    - text: T
+          - paragraph [ref=e1026]: "where:"
+          - list [ref=e1027]:
+            - listitem [ref=e1028]: N = number of thermally active degrees of freedom
+            - listitem [ref=e1029]: T = temperature
+            - listitem [ref=e1030]: V = effective volume
+          - paragraph [ref=e1031]:
+            - strong [ref=e1032]: Critical insight
+            - text: ": Temperature is only ONE of three variables controlling action density:"
+          - table [ref=e1033]:
+            - rowgroup [ref=e1034]:
+              - row "Variable Symbol Effect on ρ_S Optimization strategy" [ref=e1035]:
+                - columnheader "Variable" [ref=e1036]
+                - columnheader "Symbol" [ref=e1037]
+                - columnheader "Effect on ρ_S" [ref=e1038]
+                - columnheader "Optimization strategy" [ref=e1039]
+            - rowgroup [ref=e1040]:
+              - row "Temperature T ρ_S ∝ T Cryogenic cooling" [ref=e1041]:
+                - cell "Temperature" [ref=e1042]
+                - cell "T" [ref=e1043]
+                - cell "ρ_S ∝ T" [ref=e1044]
+                - cell "Cryogenic cooling" [ref=e1045]
+              - row "Particle count N ρ_S ∝ N Better isolation, fewer defects" [ref=e1046]:
+                - cell "Particle count" [ref=e1047]
+                - cell "N" [ref=e1048]
+                - cell "ρ_S ∝ N" [ref=e1049]
+                - cell "Better isolation, fewer defects" [ref=e1050]
+              - row "Volume V ρ_S ∝ 1/V Larger qubits, heavier atoms" [ref=e1051]:
+                - cell "Volume" [ref=e1052]
+                - cell "V" [ref=e1053]
+                - cell "ρ_S ∝ 1/V" [ref=e1054]
+                - cell "Larger qubits, heavier atoms" [ref=e1055]
+          - paragraph [ref=e1056]:
+            - strong [ref=e1057]: Corollary 2.2
+            - text: "(Multi-Channel Power Law): When multiple decoherence channels contribute, each with distinct action density ρ_{S,i} = N_i k_B T / V_i, the total error rate becomes:"
+          - paragraph [ref=e1058]:
+            - generic [ref=e1059]:
+              - math [ref=e1061]:
+                - generic [ref=e1063]:
+                  - generic [ref=e1064]:
+                    - generic [ref=e1065]: ϵ
+                    - generic [ref=e1066]:
+                      - generic [ref=e1067]: t
+                      - generic [ref=e1068]: o
+                      - generic [ref=e1069]: t
+                      - generic [ref=e1070]: a
+                      - generic [ref=e1071]: l
+                  - generic [ref=e1072]: =
+                  - generic [ref=e1073]:
+                    - generic [ref=e1074]: ∑
+                    - generic [ref=e1075]: i
+                  - generic [ref=e1076]:
+                    - generic [ref=e1077]: ϵ
+                    - generic [ref=e1078]: i
+                  - generic [ref=e1079]: =
+                  - generic [ref=e1080]:
+                    - generic [ref=e1081]: ∑
+                    - generic [ref=e1082]: i
+                  - generic [ref=e1083]:
+                    - generic [ref=e1084]: α
+                    - generic [ref=e1085]: i
+                  - generic [ref=e1086]:
+                    - generic [ref=e1087]:
+                      - generic [ref=e1088]: (
+                      - generic [ref=e1089]:
+                        - generic [ref=e1090]:
+                          - generic [ref=e1091]: ρ
+                          - generic [ref=e1092]:
+                            - generic [ref=e1093]: S
+                            - generic [ref=e1094]: ","
+                            - generic [ref=e1095]: i
+                        - generic [ref=e1096]:
+                          - generic [ref=e1097]: ρ
+                          - generic [ref=e1098]:
+                            - generic [ref=e1099]: P
+                            - generic [ref=e1100]: l
+                            - generic [ref=e1101]: a
+                            - generic [ref=e1102]: "n"
+                            - generic [ref=e1103]: c
+                            - generic [ref=e1104]: k
+                      - generic [ref=e1105]: )
+                    - generic [ref=e1106]:
+                      - generic [ref=e1107]: β
+                      - generic [ref=e1108]: i
+              - generic [ref=e1109]:
+                - generic [ref=e1110]:
+                  - generic [ref=e1111]:
+                    - text: ϵ
+                    - generic [ref=e1117]: total
+                  - text: =
+                - generic [ref=e1121]:
+                  - generic [ref=e1122]:
+                    - text: ∑
+                    - generic [ref=e1127]: i
+                  - generic [ref=e1131]:
+                    - text: ϵ
+                    - generic [ref=e1136]: i
+                  - text: =
+                - generic [ref=e1140]:
+                  - generic [ref=e1141]:
+                    - text: ∑
+                    - generic [ref=e1146]: i
+                  - generic [ref=e1150]:
+                    - text: α
+                    - generic [ref=e1155]: i
+                  - generic [ref=e1159]:
+                    - generic [ref=e1160]:
+                      - generic [ref=e1161]: (
+                      - generic [ref=e1166]:
+                        - generic [ref=e1169]:
+                          - text: ρ
+                          - generic [ref=e1175]: Planck
+                        - generic [ref=e1182]:
+                          - text: ρ
+                          - generic [ref=e1188]: S,i
+                      - generic [ref=e1195]: )
+                    - generic [ref=e1202]:
+                      - text: β
+                      - generic [ref=e1207]: i
+          - paragraph [ref=e1211]: This summation over channels with different (N_i, V_i) produces emergent power-law temperature dependence.
+          - separator [ref=e1212]
+          - 'heading "2A. Experimental Validation: Arrhenius vs. Action Density" [level=3] [ref=e1213]'
+          - heading "2A.1 The Arrhenius Model and Its Failure" [level=4] [ref=e1214]
+          - paragraph [ref=e1215]: "Standard thermodynamic theory predicts error rates via Arrhenius kinetics:"
+          - paragraph [ref=e1216]:
+            - generic [ref=e1217]:
+              - math [ref=e1219]:
+                - generic [ref=e1221]:
+                  - generic [ref=e1222]:
+                    - generic [ref=e1223]: ϵ
+                    - generic [ref=e1224]:
+                      - generic [ref=e1225]: A
+                      - generic [ref=e1226]: r
+                      - generic [ref=e1227]: r
+                      - generic [ref=e1228]: h
+                      - generic [ref=e1229]: e
+                      - generic [ref=e1230]: "n"
+                      - generic [ref=e1231]: i
+                      - generic [ref=e1232]: u
+                      - generic [ref=e1233]: s
+                  - generic [ref=e1234]: (
+                  - generic [ref=e1235]: T
+                  - generic [ref=e1236]: )
+                  - generic [ref=e1237]: =
+                  - generic [ref=e1238]: A
+                  - generic [ref=e1239]: ⋅
+                  - generic [ref=e1240]: exp
+                  - generic: ⁡
+                  - generic [ref=e1241]:
+                    - generic [ref=e1242]: (
+                    - generic [ref=e1243]: −
+                    - generic [ref=e1244]:
+                      - generic [ref=e1245]:
+                        - generic [ref=e1246]: E
+                        - generic [ref=e1247]: a
+                      - generic [ref=e1248]:
+                        - generic [ref=e1249]:
+                          - generic [ref=e1250]: k
+                          - generic [ref=e1251]: B
+                        - generic [ref=e1252]: T
+                    - generic [ref=e1253]: )
+              - generic [ref=e1254]:
+                - generic [ref=e1255]:
+                  - generic [ref=e1256]:
+                    - text: ϵ
+                    - generic [ref=e1262]: Arrhenius
+                  - text: (T) =
+                - generic [ref=e1266]: A ⋅
+                - generic [ref=e1267]:
+                  - text: exp
+                  - generic [ref=e1268]:
+                    - generic [ref=e1269]: (
+                    - text: −
+                    - generic [ref=e1274]:
+                      - generic [ref=e1276]:
+                        - generic [ref=e1277]:
+                          - text: k
+                          - generic [ref=e1282]: B
+                        - text: T
+                      - generic [ref=e1289]:
+                        - text: E
+                        - generic [ref=e1294]: a
+                    - generic [ref=e1301]: )
+          - paragraph [ref=e1302]:
+            - strong [ref=e1303]: Critical problem
+            - text: ": For activation energy E_a ~ 1 meV, changing temperature from 0.1 K to 1.0 K should produce ~10^50 change in error rate."
+          - paragraph [ref=e1304]:
+            - strong [ref=e1305]: Experimental reality
+            - text: ": Observed changes are factors of 10-100, NOT 10^50."
+          - heading "2A.2 Diraq/Nature 2024 Spin Qubit Data" [level=4] [ref=e1306]
+          - paragraph [ref=e1307]: "The paper “High-fidelity spin qubit operation and algorithmic initialization above 1 K” (Huang et al., Nature 627, 772-777, 2024) provides definitive experimental data:"
+          - paragraph [ref=e1308]:
+            - strong [ref=e1309]: "Measured temperature scaling:"
+          - table [ref=e1310]:
+            - rowgroup [ref=e1311]:
+              - row "Parameter Observed Scaling Arrhenius Prediction" [ref=e1312]:
+                - columnheader "Parameter" [ref=e1313]
+                - columnheader "Observed Scaling" [ref=e1314]
+                - columnheader "Arrhenius Prediction" [ref=e1315]
+            - rowgroup [ref=e1316]:
+              - row "T₁ (relaxation) T^(-2.0) to T^(-3.1) exp(+E/kT)" [ref=e1317]:
+                - cell "T₁ (relaxation)" [ref=e1318]
+                - cell "T^(-2.0) to T^(-3.1)" [ref=e1319]
+                - cell "exp(+E/kT)" [ref=e1320]
+              - row "T₂ (Hahn echo) T^(-1.0) to T^(-1.1) exp(+E/kT)" [ref=e1321]:
+                - cell "T₂ (Hahn echo)" [ref=e1322]
+                - cell "T^(-1.0) to T^(-1.1)" [ref=e1323]
+                - cell "exp(+E/kT)" [ref=e1324]
+              - row "T₂* (dephasing) T^(-0.2) exp(+E/kT)" [ref=e1325]:
+                - cell "T₂* (dephasing)" [ref=e1326]
+                - cell "T^(-0.2)" [ref=e1327]
+                - cell "exp(+E/kT)" [ref=e1328]
+              - row "PSB relaxation T^(-2.8) exp(+E/kT)" [ref=e1329]:
+                - cell "PSB relaxation" [ref=e1330]
+                - cell "T^(-2.8)" [ref=e1331]
+                - cell "exp(+E/kT)" [ref=e1332]
+          - paragraph [ref=e1333]:
+            - strong [ref=e1334]: Key finding
+            - text: ": Power-law behavior (T^n) observed, NOT exponential."
+          - heading "2A.3 Evidence for N-Dependence from Charge Configurations" [level=4] [ref=e1335]
+          - paragraph [ref=e1336]: "The Diraq paper shows different charge configurations yield different exponents:"
+          - table [ref=e1337]:
+            - rowgroup [ref=e1338]:
+              - row "Configuration Electron count T₁ exponent" [ref=e1339]:
+                - columnheader "Configuration" [ref=e1340]
+                - columnheader "Electron count" [ref=e1341]
+                - columnheader "T₁ exponent" [ref=e1342]
+            - rowgroup [ref=e1343]:
+              - row "(1,3) 4 electrons T^(-2.0)" [ref=e1344]:
+                - cell "(1,3)" [ref=e1345]
+                - cell "4 electrons" [ref=e1346]
+                - cell "T^(-2.0)" [ref=e1347]
+              - row "(5,3) 8 electrons T^(-3.1)" [ref=e1348]:
+                - cell "(5,3)" [ref=e1349]
+                - cell "8 electrons" [ref=e1350]
+                - cell "T^(-3.1)" [ref=e1351]
+          - paragraph [ref=e1352]:
+            - strong [ref=e1353]: Interpretation
+            - text: ": More electrons (higher N) → steeper temperature dependence. This is consistent with ρ_S = NkT/V but NOT with simple thermal activation."
+          - 'heading "2A.4 Why Power-Law Emerges: Multi-Channel Action Density" [level=4] [ref=e1354]'
+          - paragraph [ref=e1355]: "From European Physical Journal B: “Temperature dependence can show power law behavior as result of summation over large number of electron traveling paths although hopping intensity in every step is exponentially dependent on temperature.”"
+          - paragraph [ref=e1356]: "Our interpretation: Each decoherence channel has distinct action density:"
+          - list [ref=e1357]:
+            - listitem [ref=e1358]: "Phonons: ρ_{S,phonon} = N_phonon k_B T / V_phonon"
+            - listitem [ref=e1359]: "Quasiparticles: ρ_{S,qp} = N_qp k_B T / V_qp"
+            - listitem [ref=e1360]: "TLS defects: ρ_{S,TLS} = N_TLS k_B T / V_TLS"
+          - paragraph [ref=e1361]: "The sum produces emergent power-law: ε ∝ T^{β_eff} where β_eff = 2.0 to 3.0."
+          - heading "2A.5 Testable Predictions Distinguishing Action Density from Arrhenius" [level=4] [ref=e1362]
+          - table [ref=e1363]:
+            - rowgroup [ref=e1364]:
+              - row "Experiment Arrhenius prediction Action density prediction" [ref=e1365]:
+                - columnheader "Experiment" [ref=e1366]
+                - columnheader "Arrhenius prediction" [ref=e1367]
+                - columnheader "Action density prediction" [ref=e1368]
+            - rowgroup [ref=e1369]:
+              - row "Smaller qubit (↓V), same T No change ↑ Errors" [ref=e1370]:
+                - cell "Smaller qubit (↓V), same T" [ref=e1371]
+                - cell "No change" [ref=e1372]
+                - cell "↑ Errors" [ref=e1373]
+              - row "Better isolation (↓N), same T No change ↓ Errors" [ref=e1374]:
+                - cell "Better isolation (↓N), same T" [ref=e1375]
+                - cell "No change" [ref=e1376]
+                - cell "↓ Errors" [ref=e1377]
+              - row "More TLS defects (↑N) More noise sources ↑ Errors (quantifiable via ρ_S)" [ref=e1378]:
+                - cell "More TLS defects (↑N)" [ref=e1379]
+                - cell "More noise sources" [ref=e1380]
+                - cell "↑ Errors (quantifiable via ρ_S)" [ref=e1381]
+              - row "Larger atoms (↑V) No change ↓ Errors" [ref=e1382]:
+                - cell "Larger atoms (↑V)" [ref=e1383]
+                - cell "No change" [ref=e1384]
+                - cell "↓ Errors" [ref=e1385]
+              - row "Different electron count, same T No change Different scaling exponent" [ref=e1386]:
+                - cell "Different electron count, same T" [ref=e1387]
+                - cell "No change" [ref=e1388]
+                - cell "Different scaling exponent" [ref=e1389]
+          - paragraph [ref=e1390]:
+            - strong [ref=e1391]: Summary
+            - text: ": Arrhenius predicts only T matters. Action density predicts N and V also matter, with specific quantitative relationships."
+          - separator [ref=e1392]
+          - heading "3. Emergence of Special Relativity" [level=3] [ref=e1393]
+          - heading "3.1 Derivation of the Minkowski Metric" [level=4] [ref=e1394]
+          - paragraph [ref=e1395]:
+            - strong [ref=e1396]: Theorem 3.1
+            - text: ": Starting from dt = dS/L, the Minkowski metric and Lorentz transformations emerge naturally."
+          - paragraph [ref=e1397]:
+            - emphasis [ref=e1398]: "Proof:"
+          - paragraph [ref=e1399]:
+            - text: "In the rest frame O:"
+            - generic [ref=e1400]:
+              - math [ref=e1402]:
+                - generic [ref=e1404]:
+                  - generic [ref=e1405]:
+                    - generic [ref=e1406]: L
+                    - generic [ref=e1407]: "0"
+                  - generic [ref=e1408]: =
+                  - generic [ref=e1409]: −
+                  - generic [ref=e1410]: m
+                  - generic [ref=e1411]:
+                    - generic [ref=e1412]: c
+                    - generic [ref=e1413]: "2"
+                  - generic [ref=e1414]: ⇒
+                  - generic [ref=e1415]: d
+                  - generic [ref=e1416]:
+                    - generic [ref=e1417]: t
+                    - generic [ref=e1418]: "0"
+                  - generic [ref=e1419]: =
+                  - generic [ref=e1420]: −
+                  - generic [ref=e1421]:
+                    - generic [ref=e1422]:
+                      - generic [ref=e1423]: d
+                      - generic [ref=e1424]:
+                        - generic [ref=e1425]: S
+                        - generic [ref=e1426]: "0"
+                    - generic [ref=e1427]:
+                      - generic [ref=e1428]: m
+                      - generic [ref=e1429]:
+                        - generic [ref=e1430]: c
+                        - generic [ref=e1431]: "2"
+              - generic [ref=e1432]:
+                - generic [ref=e1433]:
+                  - generic [ref=e1434]:
+                    - text: L
+                    - generic [ref=e1439]: "0"
+                  - text: =
+                - generic [ref=e1443]:
+                  - text: −m
+                  - generic [ref=e1444]:
+                    - text: c
+                    - generic [ref=e1449]: "2"
+                  - text: ⇒
+                - generic [ref=e1450]:
+                  - text: d
+                  - generic [ref=e1451]:
+                    - text: t
+                    - generic [ref=e1456]: "0"
+                  - text: =
+                - generic [ref=e1460]:
+                  - text: −
+                  - generic [ref=e1465]:
+                    - generic [ref=e1467]:
+                      - text: m
+                      - generic [ref=e1468]:
+                        - text: c
+                        - generic [ref=e1473]: "2"
+                    - generic [ref=e1476]:
+                      - text: d
+                      - generic [ref=e1477]:
+                        - text: S
+                        - generic [ref=e1482]: "0"
+          - paragraph [ref=e1489]:
+            - text: "In a moving frame O’ with velocity v:"
+            - generic [ref=e1490]:
+              - math [ref=e1492]:
+                - generic [ref=e1494]:
+                  - generic [ref=e1495]:
+                    - generic [ref=e1496]: L
+                    - generic [ref=e1497]: ′
+                  - generic [ref=e1498]: =
+                  - generic [ref=e1499]: −
+                  - generic [ref=e1500]: m
+                  - generic [ref=e1501]:
+                    - generic [ref=e1502]: c
+                    - generic [ref=e1503]: "2"
+                  - generic [ref=e1505]:
+                    - generic [ref=e1506]: "1"
+                    - generic [ref=e1507]: −
+                    - generic [ref=e1508]:
+                      - generic [ref=e1509]: v
+                      - generic [ref=e1510]: "2"
+                    - generic [ref=e1511]: /
+                    - generic [ref=e1512]:
+                      - generic [ref=e1513]: c
+                      - generic [ref=e1514]: "2"
+              - generic [ref=e1515]:
+                - generic [ref=e1516]:
+                  - generic [ref=e1517]:
+                    - text: L
+                    - generic [ref=e1523]: ′
+                  - text: =
+                - generic [ref=e1524]:
+                  - text: −m
+                  - generic [ref=e1525]:
+                    - text: c
+                    - generic [ref=e1530]: "2"
+                  - generic [ref=e1534]:
+                    - generic [ref=e1535]:
+                      - text: 1 −
+                      - generic [ref=e1536]:
+                        - text: v
+                        - generic [ref=e1541]: "2"
+                      - text: /
+                      - generic [ref=e1542]:
+                        - text: c
+                        - generic [ref=e1547]: "2"
+                    - img [ref=e1549]
+          - paragraph [ref=e1554]:
+            - text: "Applying action invariance (dS₀ = dS’):"
+            - generic [ref=e1555]:
+              - math [ref=e1557]:
+                - generic [ref=e1559]:
+                  - generic [ref=e1560]: −
+                  - generic [ref=e1561]: m
+                  - generic [ref=e1562]:
+                    - generic [ref=e1563]: c
+                    - generic [ref=e1564]: "2"
+                  - generic [ref=e1565]: d
+                  - generic [ref=e1566]:
+                    - generic [ref=e1567]: t
+                    - generic [ref=e1568]: "0"
+                  - generic [ref=e1569]: =
+                  - generic [ref=e1570]: −
+                  - generic [ref=e1571]: m
+                  - generic [ref=e1572]:
+                    - generic [ref=e1573]: c
+                    - generic [ref=e1574]: "2"
+                  - generic [ref=e1576]:
+                    - generic [ref=e1577]: "1"
+                    - generic [ref=e1578]: −
+                    - generic [ref=e1579]:
+                      - generic [ref=e1580]: v
+                      - generic [ref=e1581]: "2"
+                    - generic [ref=e1582]: /
+                    - generic [ref=e1583]:
+                      - generic [ref=e1584]: c
+                      - generic [ref=e1585]: "2"
+                  - generic [ref=e1586]: d
+                  - generic [ref=e1587]:
+                    - generic [ref=e1588]: t
+                    - generic [ref=e1589]: ′
+              - generic [ref=e1590]:
+                - generic [ref=e1591]:
+                  - text: −m
+                  - generic [ref=e1592]:
+                    - text: c
+                    - generic [ref=e1597]: "2"
+                  - text: d
+                  - generic [ref=e1598]:
+                    - text: t
+                    - generic [ref=e1603]: "0"
+                  - text: =
+                - generic [ref=e1607]:
+                  - text: −m
+                  - generic [ref=e1608]:
+                    - text: c
+                    - generic [ref=e1613]: "2"
+                  - generic [ref=e1617]:
+                    - generic [ref=e1618]:
+                      - text: 1 −
+                      - generic [ref=e1619]:
+                        - text: v
+                        - generic [ref=e1624]: "2"
+                      - text: /
+                      - generic [ref=e1625]:
+                        - text: c
+                        - generic [ref=e1630]: "2"
+                    - img [ref=e1632]
+                  - text: d
+                  - generic [ref=e1637]:
+                    - text: t
+                    - generic [ref=e1643]: ′
+          - paragraph [ref=e1644]:
+            - text: "Therefore:"
+            - generic [ref=e1645]:
+              - math [ref=e1647]:
+                - generic [ref=e1649]:
+                  - generic [ref=e1650]: d
+                  - generic [ref=e1651]:
+                    - generic [ref=e1652]: t
+                    - generic [ref=e1653]: ′
+                  - generic [ref=e1654]: =
+                  - generic [ref=e1655]:
+                    - generic [ref=e1656]:
+                      - generic [ref=e1657]: d
+                      - generic [ref=e1658]:
+                        - generic [ref=e1659]: t
+                        - generic [ref=e1660]: "0"
+                    - generic [ref=e1662]:
+                      - generic [ref=e1663]: "1"
+                      - generic [ref=e1664]: −
+                      - generic [ref=e1665]:
+                        - generic [ref=e1666]: v
+                        - generic [ref=e1667]: "2"
+                      - generic [ref=e1668]: /
+                      - generic [ref=e1669]:
+                        - generic [ref=e1670]: c
+                        - generic [ref=e1671]: "2"
+                  - generic [ref=e1672]: =
+                  - generic [ref=e1673]: γ
+                  - generic [ref=e1674]: d
+                  - generic [ref=e1675]:
+                    - generic [ref=e1676]: t
+                    - generic [ref=e1677]: "0"
+              - generic [ref=e1678]:
+                - generic [ref=e1679]:
+                  - text: d
+                  - generic [ref=e1680]:
+                    - text: t
+                    - generic [ref=e1686]: ′
+                  - text: =
+                - generic [ref=e1687]:
+                  - generic [ref=e1692]:
+                    - generic [ref=e1698]:
+                      - generic [ref=e1699]:
+                        - text: 1−
+                        - generic [ref=e1700]:
+                          - text: v
+                          - generic [ref=e1705]: "2"
+                        - text: /
+                        - generic [ref=e1706]:
+                          - text: c
+                          - generic [ref=e1711]: "2"
+                      - img [ref=e1713]
+                    - generic [ref=e1720]:
+                      - text: d
+                      - generic [ref=e1721]:
+                        - text: t
+                        - generic [ref=e1726]: "0"
+                  - text: =
+                - generic [ref=e1733]:
+                  - text: γ d
+                  - generic [ref=e1734]:
+                    - text: t
+                    - generic [ref=e1739]: "0"
+          - paragraph [ref=e1743]: "This recovers the time dilation formula. The spacetime interval follows from dt = dS/L and action invariance:"
+          - paragraph [ref=e1744]:
+            - generic [ref=e1745]:
+              - math [ref=e1747]:
+                - generic [ref=e1749]:
+                  - generic [ref=e1750]: d
+                  - generic [ref=e1751]:
+                    - generic [ref=e1752]: s
+                    - generic [ref=e1753]: "2"
+                  - generic [ref=e1754]: =
+                  - generic [ref=e1755]: −
+                  - generic [ref=e1756]:
+                    - generic [ref=e1757]: c
+                    - generic [ref=e1758]: "2"
+                  - generic [ref=e1759]: d
+                  - generic [ref=e1760]:
+                    - generic [ref=e1761]: t
+                    - generic [ref=e1762]: "2"
+                  - generic [ref=e1763]: +
+                  - generic [ref=e1764]: d
+                  - generic [ref=e1765]:
+                    - generic [ref=e1766]: x
+                    - generic [ref=e1767]: "2"
+                  - generic [ref=e1768]: +
+                  - generic [ref=e1769]: d
+                  - generic [ref=e1770]:
+                    - generic [ref=e1771]: "y"
+                    - generic [ref=e1772]: "2"
+                  - generic [ref=e1773]: +
+                  - generic [ref=e1774]: d
+                  - generic [ref=e1775]:
+                    - generic [ref=e1776]: z
+                    - generic [ref=e1777]: "2"
+                  - generic [ref=e1778]: =
+                  - generic [ref=e1779]: invariant
+              - generic [ref=e1780]:
+                - generic [ref=e1781]:
+                  - text: d
+                  - generic [ref=e1782]:
+                    - text: s
+                    - generic [ref=e1787]: "2"
+                  - text: =
+                - generic [ref=e1788]:
+                  - text: −
+                  - generic [ref=e1789]:
+                    - text: c
+                    - generic [ref=e1794]: "2"
+                  - text: d
+                  - generic [ref=e1795]:
+                    - text: t
+                    - generic [ref=e1800]: "2"
+                  - text: +
+                - generic [ref=e1801]:
+                  - text: d
+                  - generic [ref=e1802]:
+                    - text: x
+                    - generic [ref=e1807]: "2"
+                  - text: +
+                - generic [ref=e1808]:
+                  - text: d
+                  - generic [ref=e1809]:
+                    - text: "y"
+                    - generic [ref=e1814]: "2"
+                  - text: +
+                - generic [ref=e1815]:
+                  - text: d
+                  - generic [ref=e1816]:
+                    - text: z
+                    - generic [ref=e1821]: "2"
+                  - text: =
+                - generic [ref=e1823]: invariant
+          - heading "3.2 Physical Interpretation" [level=4] [ref=e1824]
+          - paragraph [ref=e1825]: Time dilation represents differential rates of action threshold crossing. Systems with higher kinetic energy accumulate action faster, crossing more thresholds per unit coordinate time. This manifests as apparent clock slowing when observed using coordinate time rather than threshold counting.
+          - separator [ref=e1826]
+          - heading "4. Stress-Energy Tensor as Constraint Enforcement" [level=3] [ref=e1827]
+          - heading "4.1 Lagrange Multiplier Interpretation" [level=4] [ref=e1828]
+          - paragraph [ref=e1829]:
+            - strong [ref=e1830]: Theorem 4.1
+            - text: ": The stress-energy tensor T_μν emerges as Lagrange multipliers enforcing Noether conservation laws during action optimization."
+          - paragraph [ref=e1831]:
+            - emphasis [ref=e1832]: "Derivation:"
+          - paragraph [ref=e1833]: "Consider action minimization subject to conservation constraints from Noether’s theorem:"
+          - paragraph [ref=e1834]:
+            - generic [ref=e1835]:
+              - math [ref=e1837]:
+                - generic [ref=e1839]:
+                  - generic [ref=e1840]: "Minimize:"
+                  - generic [ref=e1841]: S
+                  - generic [ref=e1842]: "["
+                  - generic [ref=e1843]: ϕ
+                  - generic [ref=e1844]: "]"
+                  - generic [ref=e1845]: =
+                  - generic [ref=e1846]: ∫
+                  - generic [ref=e1847]: L
+                  - generic [ref=e1848]: (
+                  - generic [ref=e1849]: ϕ
+                  - generic [ref=e1850]: ","
+                  - generic [ref=e1851]:
+                    - generic [ref=e1852]: ∂
+                    - generic [ref=e1853]: μ
+                  - generic [ref=e1854]: ϕ
+                  - generic [ref=e1855]: )
+                  - generic [ref=e1856]:
+                    - generic [ref=e1857]: d
+                    - generic [ref=e1858]: "4"
+                  - generic [ref=e1859]: x
+              - generic [ref=e1860]:
+                - generic [ref=e1861]:
+                  - generic [ref=e1862]: "Minimize:"
+                  - text: S[ϕ] =
+                - generic [ref=e1863]:
+                  - text: ∫ L(ϕ,
+                  - generic [ref=e1864]:
+                    - text: ∂
+                    - generic [ref=e1869]: μ
+                  - text: ϕ)
+                  - generic [ref=e1873]:
+                    - text: d
+                    - generic [ref=e1878]: "4"
+                  - text: x
+            - generic [ref=e1879]:
+              - math [ref=e1881]:
+                - generic [ref=e1883]:
+                  - generic [ref=e1884]: "Subject to:"
+                  - generic [ref=e1885]:
+                    - generic [ref=e1886]: ∂
+                    - generic [ref=e1887]: μ
+                  - generic [ref=e1888]:
+                    - generic [ref=e1889]: J
+                    - generic [ref=e1890]: a
+                    - generic [ref=e1891]: μ
+                  - generic [ref=e1892]: =
+                  - generic [ref=e1893]: "0"
+                  - generic [ref=e1894]: (conservation laws)
+              - generic [ref=e1895]:
+                - generic [ref=e1896]:
+                  - generic [ref=e1897]: "Subject to:"
+                  - generic [ref=e1898]:
+                    - text: ∂
+                    - generic [ref=e1903]: μ
+                  - generic [ref=e1907]:
+                    - text: J
+                    - generic [ref=e1911]:
+                      - generic [ref=e1912]: a
+                      - generic [ref=e1913]: μ
+                  - text: =
+                - generic [ref=e1917]:
+                  - text: "0"
+                  - generic [ref=e1918]: (conservation laws)
+          - paragraph [ref=e1919]:
+            - text: "Introducing Lagrange multipliers λ^a_μ:"
+            - generic [ref=e1920]:
+              - math [ref=e1922]:
+                - generic [ref=e1924]:
+                  - generic [ref=e1925]:
+                    - generic [ref=e1926]: S
+                    - generic [ref=e1927]: constrained
+                  - generic [ref=e1928]: =
+                  - generic [ref=e1929]: ∫
+                  - generic [ref=e1930]:
+                    - generic [ref=e1931]: "["
+                    - generic [ref=e1932]: L
+                    - generic [ref=e1933]: +
+                    - generic [ref=e1934]:
+                      - generic [ref=e1935]: λ
+                      - generic [ref=e1936]: μ
+                      - generic [ref=e1937]: a
+                    - generic [ref=e1938]:
+                      - generic [ref=e1939]: ∂
+                      - generic [ref=e1940]: ν
+                    - generic [ref=e1941]:
+                      - generic [ref=e1942]: J
+                      - generic [ref=e1943]: a
+                      - generic [ref=e1944]: ν
+                    - generic [ref=e1945]: "]"
+                  - generic [ref=e1946]:
+                    - generic [ref=e1947]: d
+                    - generic [ref=e1948]: "4"
+                  - generic [ref=e1949]: x
+              - generic [ref=e1950]:
+                - generic [ref=e1951]:
+                  - generic [ref=e1952]:
+                    - text: S
+                    - generic [ref=e1959]: constrained
+                  - text: =
+                - generic [ref=e1963]:
+                  - text: ∫
+                  - generic [ref=e1964]:
+                    - generic [ref=e1965]: "["
+                    - text: L +
+                    - generic [ref=e1966]:
+                      - text: λ
+                      - generic [ref=e1970]:
+                        - generic [ref=e1971]: μ
+                        - generic [ref=e1972]: a
+                    - generic [ref=e1976]:
+                      - text: ∂
+                      - generic [ref=e1981]: ν
+                    - generic [ref=e1985]:
+                      - text: J
+                      - generic [ref=e1989]:
+                        - generic [ref=e1990]: a
+                        - generic [ref=e1991]: ν
+                    - generic [ref=e1995]: "]"
+                  - generic [ref=e1996]:
+                    - text: d
+                    - generic [ref=e2001]: "4"
+                  - text: x
+          - paragraph [ref=e2002]:
+            - text: "Identifying the stress-energy tensor:"
+            - generic [ref=e2003]:
+              - math [ref=e2005]:
+                - generic [ref=e2007]:
+                  - generic [ref=e2008]:
+                    - generic [ref=e2009]: T
+                    - generic [ref=e2010]:
+                      - generic [ref=e2011]: μ
+                      - generic [ref=e2012]: ν
+                  - generic [ref=e2013]: ≡
+                  - generic [ref=e2014]:
+                    - generic [ref=e2015]: ∑
+                    - generic [ref=e2016]: a
+                  - generic [ref=e2017]:
+                    - generic [ref=e2018]: λ
+                    - generic [ref=e2019]: μ
+                    - generic [ref=e2020]: a
+                  - generic [ref=e2021]:
+                    - generic [ref=e2022]: J
+                    - generic [ref=e2023]:
+                      - generic [ref=e2024]: a
+                      - generic [ref=e2025]: ν
+              - generic [ref=e2026]:
+                - generic [ref=e2027]:
+                  - generic [ref=e2028]:
+                    - text: T
+                    - generic [ref=e2034]: μν
+                  - text: ≡
+                - generic [ref=e2038]:
+                  - generic [ref=e2039]:
+                    - text: ∑
+                    - generic [ref=e2044]: a
+                  - generic [ref=e2048]:
+                    - text: λ
+                    - generic [ref=e2052]:
+                      - generic [ref=e2053]: μ
+                      - generic [ref=e2054]: a
+                  - generic [ref=e2058]:
+                    - text: J
+                    - generic [ref=e2064]: aν
+          - paragraph [ref=e2068]: "This tensor satisfies:"
+          - list [ref=e2069]:
+            - listitem [ref=e2070]: "Conservation: ∂^μT_μν = 0"
+            - listitem [ref=e2071]: "Symmetry: T_μν = T_νμ"
+            - listitem [ref=e2072]: "Physical interpretation: T₀₀ represents energy density, T₀ᵢ momentum density, Tᵢⱼ stress"
+          - paragraph [ref=e2073]: Einstein’s field equation thus states that spacetime curvature equals the stress required to maintain conservation laws during action-constrained evolution.
+          - separator [ref=e2074]
+          - heading "5. Experimental Predictions and Protocols" [level=3] [ref=e2075]
+          - heading "5.1 Quantum Computing Error Rates" [level=4] [ref=e2076]
+          - paragraph [ref=e2077]:
+            - strong [ref=e2078]: Prediction
+            - text: ": Gate fidelity scales inversely with temperature:"
+            - generic [ref=e2079]:
+              - math [ref=e2081]:
+                - generic [ref=e2083]:
+                  - generic [ref=e2084]: F
+                  - generic [ref=e2085]: (
+                  - generic [ref=e2086]: T
+                  - generic [ref=e2087]: )
+                  - generic [ref=e2088]: =
+                  - generic [ref=e2089]:
+                    - generic [ref=e2090]:
+                      - generic [ref=e2091]: F
+                      - generic [ref=e2092]: "0"
+                    - generic [ref=e2093]:
+                      - generic [ref=e2094]: "1"
+                      - generic [ref=e2095]: +
+                      - generic [ref=e2096]: α
+                      - generic [ref=e2097]: T
+              - generic [ref=e2098]:
+                - generic [ref=e2099]: F(T) =
+                - generic [ref=e2105]:
+                  - generic [ref=e2107]: 1+αT
+                  - generic [ref=e2111]:
+                    - text: F
+                    - generic [ref=e2116]: "0"
+          - paragraph [ref=e2123]:
+            - text: where
+            - code [ref=e2124]: α_engineering ≈ 0.065 K⁻¹
+            - text: is the
+            - strong [ref=e2125]: architecture-specific
+            - text: emergent multi-channel coupling for superconducting / silicon qubits. This is
+            - strong [ref=e2126]: not
+            - text: the per-channel substrate constant
+            - code [ref=e2127]: α_theory = k_B·t_P/(2ℏ) ≈ 3.5×10⁻³³ K⁻¹
+            - text: "(Lean:"
+            - code [ref=e2128]: OmegaTheory/Emergence/Predictions.lean:27
+            - text: ); the relationship is
+            - code [ref=e2129]: α_engineering = α_theory · Σᵢ (channel multiplicity)ᵢ
+            - text: (cf. Appendix-B §2A.3, Appendix-J §0). The architecture-specific value
+            - code [ref=e2130]: ≈ 0.065
+            - text: matches the Diraq Nature-2024 spin-qubit dataset (Appendix-B §2A.2).
+          - paragraph [ref=e2131]:
+            - strong [ref=e2132]: "Protocol A: Temperature Scaling Measurement"
+          - paragraph [ref=e2133]:
+            - emphasis [ref=e2134]: "Apparatus:"
+            - text: Variable-temperature quantum processor (10 mK - 1 K range)
+          - paragraph [ref=e2135]:
+            - emphasis [ref=e2136]: "Procedure:"
+          - list [ref=e2137]:
+            - listitem [ref=e2138]: Prepare standardized benchmark circuit (depth 20, mixed gate types)
+            - listitem [ref=e2139]: "Execute at temperatures: 15, 20, 30, 50, 75, 100, 150, 200, 300, 500 mK"
+            - listitem [ref=e2140]: Measure gate fidelity via randomized benchmarking (10,000 shots per temperature)
+            - listitem [ref=e2141]: Fit to F(T) = F₀/(1 + αT)
+          - paragraph [ref=e2142]:
+            - emphasis [ref=e2143]: "Expected Result:"
+            - text: Linear relationship with R² > 0.95
+          - paragraph [ref=e2144]:
+            - emphasis [ref=e2145]: "Distinguishing Signature:"
+            - text: Our prediction yields linear T-dependence, distinguishable from exponential thermal activation (~exp(-E/k_BT)) expected from conventional decoherence models.
+          - heading "5.2 Action Density Variation" [level=4] [ref=e2146]
+          - paragraph [ref=e2147]:
+            - strong [ref=e2148]: "Protocol B: Qubit Density Correlation"
+          - paragraph [ref=e2149]:
+            - emphasis [ref=e2150]: "Apparatus:"
+            - text: Multi-qubit processor with configurable spacing
+          - paragraph [ref=e2151]:
+            - emphasis [ref=e2152]: "Procedure:"
+          - list [ref=e2153]:
+            - listitem [ref=e2154]: Configure qubit layouts with spacing ratios 1:2:3:4 (dense to sparse)
+            - listitem [ref=e2155]: Execute identical circuits on each configuration
+            - listitem [ref=e2156]: Measure fidelity vs. effective action density
+          - paragraph [ref=e2157]:
+            - emphasis [ref=e2158]: "Prediction:"
+            - text: ε ∝ 1/V (sparser layouts exhibit reduced error rates)
+          - heading "5.3 Atomic Coherence Measurements" [level=4] [ref=e2159]
+          - paragraph [ref=e2160]:
+            - strong [ref=e2161]: "Protocol C: Temperature-Coherence Correlation"
+          - paragraph [ref=e2162]:
+            - emphasis [ref=e2163]: "Apparatus:"
+            - text: ⁸⁷Rb BEC or trapped ion system with temperature control (10 nK - 1 μK)
+          - paragraph [ref=e2164]:
+            - emphasis [ref=e2165]: "Procedure:"
+          - list [ref=e2166]:
+            - listitem [ref=e2167]: Prepare superposition states via Ramsey interferometry
+            - listitem [ref=e2168]: Measure coherence time T₂ across temperature range
+            - listitem [ref=e2169]: Fit to T₂ = T₂⁰/(1 + βT)
+          - paragraph [ref=e2170]:
+            - emphasis [ref=e2171]: "Prediction:"
+            - text: β ≈ 1 μK⁻¹
+          - separator [ref=e2172]
+          - heading "6. Connections to Existing Frameworks" [level=3] [ref=e2173]
+          - heading "6.1 Wheeler-DeWitt Equation" [level=4] [ref=e2174]
+          - paragraph [ref=e2175]: "The Wheeler-DeWitt equation Ĥ|Ψ⟩ = 0 emerges naturally from our framework. Since time is not fundamental but emergent, there exists no external time parameter:"
+          - paragraph [ref=e2176]:
+            - generic [ref=e2177]:
+              - math [ref=e2179]:
+                - generic [ref=e2181]:
+                  - generic [ref=e2182]:
+                    - generic [ref=e2183]:
+                      - generic [ref=e2184]: ∂
+                      - generic [ref=e2185]: ∣
+                      - generic [ref=e2186]: Ψ
+                      - generic [ref=e2187]: ⟩
+                    - generic [ref=e2188]:
+                      - generic [ref=e2189]: ∂
+                      - generic [ref=e2190]: t
+                  - generic [ref=e2191]: =
+                  - generic [ref=e2192]: "0"
+              - generic [ref=e2193]:
+                - generic [ref=e2194]:
+                  - generic [ref=e2199]:
+                    - generic [ref=e2201]: ∂t
+                    - generic [ref=e2204]: ∂∣Ψ⟩
+                  - text: =
+                - generic [ref=e2208]: "0"
+          - paragraph [ref=e2209]:
+            - text: "Evolution proceeds through action increments:"
+            - generic [ref=e2210]:
+              - math [ref=e2212]:
+                - generic [ref=e2214]:
+                  - generic [ref=e2215]: ∣
+                  - generic [ref=e2216]: Ψ
+                  - generic [ref=e2217]: (
+                  - generic [ref=e2218]: S
+                  - generic [ref=e2219]: +
+                  - generic [ref=e2220]: d
+                  - generic [ref=e2221]: S
+                  - generic [ref=e2222]: )
+                  - generic [ref=e2223]: ⟩
+                  - generic [ref=e2224]: =
+                  - generic [ref=e2225]:
+                    - generic [ref=e2226]: U
+                    - generic [ref=e2227]: ^
+                  - generic [ref=e2228]: (
+                  - generic [ref=e2229]: d
+                  - generic [ref=e2230]: S
+                  - generic [ref=e2231]: )
+                  - generic [ref=e2232]: ∣
+                  - generic [ref=e2233]: Ψ
+                  - generic [ref=e2234]: (
+                  - generic [ref=e2235]: S
+                  - generic [ref=e2236]: )
+                  - generic [ref=e2237]: ⟩
+              - generic [ref=e2238]:
+                - generic [ref=e2239]: ∣Ψ(S +
+                - generic [ref=e2240]: dS)⟩ =
+                - generic [ref=e2241]:
+                  - generic [ref=e2245]:
+                    - generic [ref=e2246]: U
+                    - text: ^
+                  - text: (dS)∣Ψ(S)⟩
+          - paragraph [ref=e2247]: with generator Û(dS) = exp(-iĤdS/ℏ). The constraint Ĥ|Ψ⟩ = 0 follows from action-based evolution without external time.
+          - heading "6.2 Path Integral Formulation" [level=4] [ref=e2248]
+          - paragraph [ref=e2249]: "Feynman’s path integral naturally accommodates our framework. The sum over paths becomes a sum over different threshold crossing sequences:"
+          - paragraph [ref=e2250]:
+            - generic [ref=e2251]:
+              - math [ref=e2253]:
+                - generic [ref=e2255]:
+                  - generic [ref=e2256]: ⟨
+                  - generic [ref=e2257]:
+                    - generic [ref=e2258]: x
+                    - generic [ref=e2259]: f
+                  - generic [ref=e2260]: ∣
+                  - generic [ref=e2261]:
+                    - generic [ref=e2262]: x
+                    - generic [ref=e2263]: i
+                  - generic [ref=e2264]: ⟩
+                  - generic [ref=e2265]: =
+                  - generic [ref=e2266]:
+                    - generic [ref=e2267]: ∑
+                    - generic [ref=e2268]: paths
+                  - generic [ref=e2269]: exp
+                  - generic: ⁡
+                  - generic [ref=e2270]:
+                    - generic [ref=e2271]: (
+                    - generic [ref=e2272]:
+                      - generic [ref=e2273]:
+                        - generic [ref=e2274]: i
+                        - generic [ref=e2275]:
+                          - generic [ref=e2276]: S
+                          - generic [ref=e2277]: path
+                      - generic [ref=e2278]: ℏ
+                    - generic [ref=e2279]: )
+              - generic [ref=e2280]:
+                - generic [ref=e2281]:
+                  - text: ⟨
+                  - generic [ref=e2282]:
+                    - text: x
+                    - generic [ref=e2287]: f
+                  - text: ∣
+                  - generic [ref=e2291]:
+                    - text: x
+                    - generic [ref=e2296]: i
+                  - text: ⟩ =
+                - generic [ref=e2300]:
+                  - generic [ref=e2301]:
+                    - text: ∑
+                    - generic [ref=e2308]: paths
+                  - text: exp
+                  - generic [ref=e2312]:
+                    - generic [ref=e2313]: (
+                    - generic [ref=e2318]:
+                      - generic [ref=e2320]: ℏ
+                      - generic [ref=e2323]:
+                        - text: i
+                        - generic [ref=e2324]:
+                          - text: S
+                          - generic [ref=e2331]: path
+                    - generic [ref=e2338]: )
+          - paragraph [ref=e2339]: Each “path” corresponds to a specific sequence of action threshold crossings, with the geometric factors (π, e, √2) computed to varying precision depending on the time available before each threshold.
+          - separator [ref=e2340]
+          - heading "7. Discussion" [level=3] [ref=e2341]
+          - heading "7.1 Falsifiability" [level=4] [ref=e2342]
+          - paragraph [ref=e2343]: "The framework makes specific, falsifiable predictions:"
+          - list [ref=e2344]:
+            - listitem [ref=e2345]:
+              - paragraph [ref=e2346]:
+                - strong [ref=e2347]: Error-temperature scaling
+                - text: ": If quantum errors scale as T² or exp(-E/k_BT) rather than linearly with T, the framework requires revision."
+            - listitem [ref=e2348]:
+              - paragraph [ref=e2349]:
+                - strong [ref=e2350]: Density independence
+                - text: ": If quantum errors prove independent of qubit density at fixed temperature, the action density correlation is invalidated."
+            - listitem [ref=e2351]:
+              - paragraph [ref=e2352]:
+                - strong [ref=e2353]: Architecture universality
+                - text: ": Different quantum computing architectures should exhibit the same functional form F = F₀/(1 + αT) with architecture-specific α values."
+          - heading "7.2 Open Questions" [level=4] [ref=e2354]
+          - paragraph [ref=e2355]: "Several aspects require further theoretical development:"
+          - list [ref=e2356]:
+            - listitem [ref=e2357]: Derivation of the coupling constant α from first principles
+            - listitem [ref=e2358]: Extension to entangled multi-particle systems
+            - listitem [ref=e2359]: Treatment of non-equilibrium systems
+            - listitem [ref=e2360]: Connection to quantum error correction threshold behavior
+          - heading "7.3 Relation to Other Approaches" [level=4] [ref=e2361]
+          - paragraph [ref=e2362]: Our framework shares features with loop quantum gravity (discrete spacetime structure), causal set theory (discrete causal ordering), and the Wheeler-DeWitt approach (timeless formulation), while providing distinct testable predictions through the action density correlation.
+          - separator [ref=e2363]
+          - heading "8. Conclusion" [level=3] [ref=e2364]
+          - paragraph [ref=e2365]: "We have presented a theoretical framework in which time emerges from action accumulation at quantum thresholds. The framework provides:"
+          - list [ref=e2366]:
+            - listitem [ref=e2367]: A physical interpretation of Hamilton’s integration bounds
+            - listitem [ref=e2368]: Natural derivation of special relativistic effects
+            - listitem [ref=e2369]: Interpretation of the stress-energy tensor as constraint enforcement
+            - listitem [ref=e2370]: Testable predictions for quantum computing error rates
+            - listitem [ref=e2371]: Connection to the Wheeler-DeWitt equation
+          - paragraph [ref=e2372]: The central prediction—linear scaling of quantum errors with temperature due to reduced computational time before action thresholds—can be tested with existing quantum computing hardware. Confirmation would support the hypothesis that action, rather than time, constitutes the fundamental quantity in physics.
+          - separator [ref=e2373]
+          - heading "References" [level=3] [ref=e2374]
+          - paragraph [ref=e2375]:
+            - text: Hamilton, W.R. (1834). On a General Method in Dynamics.
+            - emphasis [ref=e2376]: Philosophical Transactions of the Royal Society of London
+            - text: ", 124, 247-308."
+          - paragraph [ref=e2377]:
+            - text: Hamilton, W.R. (1835). Second Essay on a General Method in Dynamics.
+            - emphasis [ref=e2378]: Philosophical Transactions of the Royal Society of London
+            - text: ", 125, 95-144."
+          - paragraph [ref=e2379]:
+            - text: DeWitt, B.S. (1967). Quantum Theory of Gravity. I. The Canonical Theory.
+            - emphasis [ref=e2380]: Physical Review
+            - text: ", 160(5), 1113-1148."
+          - paragraph [ref=e2381]:
+            - text: Feynman, R.P. (1948). Space-Time Approach to Non-Relativistic Quantum Mechanics.
+            - emphasis [ref=e2382]: Reviews of Modern Physics
+            - text: ", 20(2), 367-387."
+          - paragraph [ref=e2383]:
+            - text: Rovelli, C. (2004).
+            - emphasis [ref=e2384]: Quantum Gravity
+            - text: . Cambridge University Press.
+          - paragraph [ref=e2385]:
+            - text: Zurek, W.H. (2003). Decoherence, einselection, and the quantum origins of the classical.
+            - emphasis [ref=e2386]: Reviews of Modern Physics
+            - text: ", 75(3), 715-775."
+          - separator [ref=e2387]
+          - paragraph [ref=e2388]:
+            - emphasis [ref=e2389]: "Target Journal: Foundations of Physics"
+            - emphasis [ref=e2390]: "PACS: 03.65.Ta, 04.60.-m, 03.67.Ac"
+        - link "Back to overview" [ref=e2392] [cursor=pointer]:
+          - /url: /Omega-Theory-Discrete-Spacetime/
+          - img [ref=e2393]
+          - text: Back to overview
+```
+
+# Test source
+
+```ts
+  58  |       if (is_asset && r.status() >= 400) failures.push(`${r.status()} ${u}`);
+  59  |     });
+  60  |     await page.goto(PAGES.paperQM);
+  61  |     await page.waitForLoadState('networkidle');
+  62  |     expect(failures, 'failed asset requests').toEqual([]);
+  63  |   });
+  64  | });
+  65  | 
+  66  | test.describe('no console errors on key pages', () => {
+  67  |   for (const [name, path] of Object.entries(PAGES).slice(0, 4)) {
+  68  |     test(`${name} — no console errors`, async ({ page }) => {
+  69  |       const errors = [];
+  70  |       page.on('console', (msg) => {
+  71  |         if (msg.type() === 'error') errors.push(msg.text());
+  72  |       });
+  73  |       page.on('pageerror', (err) => errors.push(err.message));
+  74  |       await page.goto(path);
+  75  |       await page.waitForLoadState('networkidle');
+  76  |       expect(errors, `console errors on ${path}`).toEqual([]);
+  77  |     });
+  78  |   }
+  79  | });
+  80  | 
+  81  | test.describe('CSS is actually applied', () => {
+  82  |   test('home page has non-default body background', async ({ page }) => {
+  83  |     await page.goto('/');
+  84  |     const bg = await page.evaluate(() =>
+  85  |       getComputedStyle(document.body).backgroundColor
+  86  |     );
+  87  |     // Astro + custom theme should not render as "rgba(0, 0, 0, 0)" (transparent = no CSS)
+  88  |     expect(bg, 'body background should be set by CSS').not.toBe('rgba(0, 0, 0, 0)');
+  89  |     expect(bg, 'body background should not be default white').not.toBe('rgb(255, 255, 255)');
+  90  |   });
+  91  | 
+  92  |   test('home page has custom font (not Times New Roman default)', async ({ page }) => {
+  93  |     await page.goto('/');
+  94  |     const font = await page.evaluate(() =>
+  95  |       getComputedStyle(document.body).fontFamily.toLowerCase()
+  96  |     );
+  97  |     // Anything non-default indicates our stylesheet loaded
+  98  |     expect(font, 'body font should not be the browser default').not.toMatch(/^times/);
+  99  |   });
+  100 | });
+  101 | 
+  102 | test.describe('KaTeX math renders (physics paper)', () => {
+  103 |   test('appendix F renders at least one MathML/KaTeX block', async ({ page }) => {
+  104 |     await page.goto(PAGES.appendixF);
+  105 |     await page.waitForLoadState('networkidle');
+  106 |     // KaTeX injects either <span class="katex"> or MathML in rendered output.
+  107 |     const katexCount = await page.locator('.katex').count();
+  108 |     const mathmlCount = await page.locator('math').count();
+  109 |     expect(katexCount + mathmlCount, 'no rendered math found — rehype-katex may be broken').toBeGreaterThan(0);
+  110 |   });
+  111 | });
+  112 | 
+  113 | test.describe('navigation works', () => {
+  114 |   test('home page has at least one link to /papers/', async ({ page }) => {
+  115 |     await page.goto('/');
+  116 |     const count = await page.locator('a[href*="/papers/"]').count();
+  117 |     expect(count, 'home should link to at least one paper').toBeGreaterThan(0);
+  118 |   });
+  119 | 
+  120 |   test('clicking the first paper link lands on a 200 page', async ({ page }) => {
+  121 |     await page.goto('/');
+  122 |     const first = page.locator('a[href*="/papers/"]').first();
+  123 |     const href = await first.getAttribute('href');
+  124 |     const nav = page.waitForResponse((r) => r.url().includes(href));
+  125 |     await first.click();
+  126 |     const resp = await nav;
+  127 |     expect(resp.status()).toBe(200);
+  128 |   });
+  129 | });
+  130 | 
+  131 | test.describe('responsive — mobile viewport does not break', () => {
+  132 |   test('home on mobile: no horizontal overflow', async ({ page, viewport }) => {
+  133 |     test.skip(viewport.width > 500, 'desktop-viewport project, skip');
+  134 |     await page.goto('/');
+  135 |     const overflow = await page.evaluate(() =>
+  136 |       document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
+  137 |     );
+  138 |     expect(overflow, 'mobile page has horizontal scroll — layout broken').toBe(false);
+  139 |   });
+  140 | });
+  141 | 
+  142 | test.describe('visual regression (baseline screenshots)', () => {
+  143 |   test('home page', async ({ page }) => {
+  144 |     await page.goto('/');
+  145 |     await page.waitForLoadState('networkidle');
+  146 |     await expect(page).toHaveScreenshot('home.png', { fullPage: true });
+  147 |   });
+  148 | 
+  149 |   test('cycles page', async ({ page }) => {
+  150 |     await page.goto('/cycles/');
+  151 |     await page.waitForLoadState('networkidle');
+  152 |     await expect(page).toHaveScreenshot('cycles.png', { fullPage: false });
+  153 |   });
+  154 | 
+  155 |   test('a paper page', async ({ page }) => {
+  156 |     await page.goto(PAGES.appendixA);
+  157 |     await page.waitForLoadState('networkidle');
+> 158 |     await expect(page).toHaveScreenshot('paper-appendix-a.png', { fullPage: false });
+      |                        ^ Error: expect(page).toHaveScreenshot(expected) failed
+  159 |   });
+  160 | });
+  161 | 
+```

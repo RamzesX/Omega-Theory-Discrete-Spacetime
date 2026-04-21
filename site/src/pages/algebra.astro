@@ -1,0 +1,348 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import { HEADLINES, fmt } from '../data/status.mjs';
+
+const rawBase = import.meta.env.BASE_URL;
+const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
+const GH = 'https://github.com/RamzesX/chaos-shield';
+const GH_ALG = `${GH}/tree/main/PhysicsPapers/OmegaTheoryAlgebra`;
+
+// Three-part architecture layout:
+//   1. Headline (what V3-for-Lean is + why Neo4j)
+//   2. Paper anchors (Grothendieck Puzzle + Achievements — the two headline docs)
+//   3. Phase-0 design memos (10 numbered files)
+//   4. Neo4j / live graph state snapshot
+const designMemos = [
+  { n: '01', slug: '01_entity_types',        title: 'Lean entity types',
+    hook: '6 entity types (Axiom · Theorem · Definition · Structure · Instance · Namespace) with heights and V3 analogues. R(3,3)=6 justification.' },
+  { n: '02', slug: '02_relationships',       title: 'Typed arrows',
+    hook: '15 typed relationships: 4 structural (IMPORTS, OPENS, EXTENDS, INSTANTIATES) + 5 dependency (ASSUMES, APPLIES, UNFOLDS, SPECIALIZES, REWRITES_BY) + 3 type-theoretic + 3 computational.' },
+  { n: '03', slug: '03_selection_rules',     title: 'Selection rules',
+    hook: '7 HARD_BLOCK forbidden compositions: Axiom pure-source, Instance unique-parent, Namespace container-only, 4 more.' },
+  { n: '04', slug: '04_magnetic_laplacian',  title: 'Magnetic Laplacian',
+    hook: '𝔄 ∈ ℂ^{6×6} construction with magnetic phase g=1/4, Hermiticity sketch, per-relation rank-2 decomposition.' },
+  { n: '05', slug: '05_cycle_hypotheses',    title: 'Cycle hypotheses',
+    hook: 'Bidirectional SPECIALIZES⇌GENERALIZES and UNFOLDS⇌FOLDS as candidate 𝔰𝔲(2) cycles with ±i eigenvalue predictions.' },
+  { n: '06', slug: '06_fastrp_scaling',      title: 'FastRP scaling',
+    hook: 'Johnson–Lindenstrauss bound for m=64 per relation across ~243K nodes, seed=42, weights [0, 1, 1, 0.5].' },
+  { n: '07', slug: '07_single_lens_rationale', title: 'Single-lens rationale',
+    hook: 'Why a single Qwen3-8B embedding wins over V3\'s 3-lens overlay on a formal theorem-prover corpus.' },
+  { n: '08', slug: '08_empirical_spectrum',  title: 'Empirical spectrum',
+    hook: 'Live commutator spectrum: rank-7 saturating, λ₁/λ₂ = 1.038 first degeneracy break, 73.3% non-commutativity, 5-scale hierarchy {43379, 41787, 1722, 127, 3.83}.' },
+  { n: '09', slug: '09_subsystem_sanity',    title: 'Subsystem sanity',
+    hook: 'Detected subsystems vs expected OmegaTheory physics themes (Foundations, Irrationality, Gauge, Emergence, Predictions, Conservation).' },
+  { n: '10', slug: '10_neo4j_schema_map',    title: 'Neo4j schema map',
+    hook: 'Explicit Cypher-node / edge mapping: .neo4j/lean_algebra_ontology.cypher + lean_algebra_arrows.cypher + lean_magnetic_laplacian.cypher.' },
+];
+---
+
+<BaseLayout
+  title="OmegaTheoryAlgebra — V3-for-Lean · Neo4j · Magnetic Laplacian"
+  description={`V3-for-Lean graph-algebra research: Magnetic Laplacian + Leiden community detection + FastRP applied to the ${HEADLINES.ownTheoremsShort}-theorem OmegaTheory V2 corpus. Neo4j-backed empirical pipeline for ICLR 2027 / NeurIPS 2026.`}
+>
+  <Navigation slot="sidebar" />
+
+  <header class="algebra-header">
+    <div class="eyebrow">Graph Research · Neo4j · First corpus-scale study</div>
+    <h1 class="algebra-title">OmegaTheory as a <span class="accent">typed quiver</span></h1>
+    <p class="algebra-lede">
+      A novel graph-theoretic framework applied to a machine-verified physics corpus.
+      We treat OmegaTheory V2 as a Lean-theory-with-structure — <strong>{fmt.int(HEADLINES.ownTheorems)} own theorems</strong>
+      + <strong>{fmt.int(HEADLINES.grandTotalTheorems - HEADLINES.ownTheorems)} integrated Mathlib theorems</strong>
+      = <strong>{fmt.thousands(HEADLINES.grandTotalTheorems)} total</strong> connected by
+      <strong>15 typed arrows</strong> across <strong>~3.95M edges</strong> — and ask the graph
+      what mathematics the theory is already asking for.
+    </p>
+    <div class="stack-row">
+      <span class="pill">Magnetic Laplacian 𝔄 ∈ ℂ<sup>6×6</sup></span>
+      <span class="pill">Leiden Q = +0.447</span>
+      <span class="pill">FastRP m = 64</span>
+      <span class="pill">Neo4j <code>math</code> · bolt://localhost:7687</span>
+      <span class="pill">ByT5 retriever d=1472</span>
+    </div>
+    <p class="paper-target">
+      <strong>Paper target:</strong> V3-for-Lean v1.1 — NeurIPS 2026 / ICLR 2027 submission window.
+      First corpus-scale Magnetic-Laplacian + Leiden + FastRP study of a Lean theorem-graph.
+    </p>
+  </header>
+
+  <section class="section">
+    <h2>Headline documents</h2>
+
+    <article class="headline-card">
+      <div class="headline-head">
+        <span class="headline-tag">Method · 969 lines · 8 synthesis passes</span>
+        <h3><a href={`${baseUrl}papers/grothendieck_math_puzzle/`}>Grothendieck Math Puzzle</a></h3>
+      </div>
+      <p class="headline-lede">
+        <em>"We do not look for what we do not already suspect. The heuristic is the thing."</em>
+        — paraphrase of Grothendieck. Eight passes (MP-1 through MP-8) ask categorical,
+        homological, and spectral questions of the Lean theorem graph. Each pass:
+      </p>
+      <ol class="headline-ol">
+        <li><strong>MP-1</strong> — What categorical species does OmegaTheory inhabit? Fibration, Lawvere theory, spectral triple, or ∞-topos?</li>
+        <li><strong>MP-2</strong> — Homological signature: Betti profile (b₀, b₁, b₂) of the theorem graph.</li>
+        <li><strong>MP-3</strong> — Connes-NCG adoption profile: which standard constructs are missing?</li>
+        <li><strong>MP-4</strong> — Kempf bandlimit pathway: α / β / γ / δ status across 4 sub-pathways.</li>
+        <li><strong>MP-5</strong> — 4-irrational partition spectral test via Magnetic-Laplacian band structure.</li>
+        <li><strong>MP-6</strong> — FastRP-predicted bridge theorems across the APPLIES relation.</li>
+        <li><strong>MP-7</strong> — Homotopy-limit / sheaf-descent gaps as one-sided operations.</li>
+        <li><strong>MP-8</strong> — The Pi Hunch frontier: next rigorous step for ℏ/2 + δ_comp(N).</li>
+      </ol>
+      <p>
+        Every claim is backed by a Cypher query against the live Neo4j <code>math</code> container.
+        Each pass ends with 1–3 theorem-signatures in OmegaTheoryV2 naming style predicted to be missing.
+      </p>
+      <div class="headline-ctas">
+        <a href={`${baseUrl}papers/grothendieck_math_puzzle/`} class="btn btn-primary">Read on this site</a>
+        <a href={`${GH_ALG}/GROTHENDIECK_MATH_PUZZLE.md`} target="_blank" rel="noopener" class="btn btn-outline">View on GitHub</a>
+      </div>
+    </article>
+
+    <article class="headline-card">
+      <div class="headline-head">
+        <span class="headline-tag">Status report · Empirical findings</span>
+        <h3><a href={`${baseUrl}papers/achievements/`}>Achievements — V3-for-Lean</a></h3>
+      </div>
+      <p class="headline-lede">
+        Design + empirical foundation for the V3-for-Lean paper: 10 modular design memos
+        (entity types, typed arrows, selection rules, Magnetic Laplacian, FastRP), two empirical
+        scripts that run against the live Neo4j graph, and key numerical findings persisted
+        as <code>:GraphFinding</code> nodes.
+      </p>
+      <ul class="bullets">
+        <li><strong>Rank-7 saturating</strong> — first degeneracy break at rank-7 eigenvalue pair</li>
+        <li><strong>λ₁/λ₂ = 1.038</strong> — first degeneracy-break ratio (tight; signals substrate structure)</li>
+        <li><strong>73.3% non-commutativity</strong> — [ρᵢ, ρⱼ] ≠ 0 for 73% of arrow-pair products</li>
+        <li><strong>5-scale hierarchy</strong> — eigenvalue magnitudes span 4 orders: {'{'}43379, 41787, 1722, 127, 3.83{'}'}</li>
+      </ul>
+      <div class="headline-ctas">
+        <a href={`${baseUrl}papers/achievements/`} class="btn btn-primary">Read on this site</a>
+        <a href={`${GH_ALG}/ACHIEVEMENTS.md`} target="_blank" rel="noopener" class="btn btn-outline">View on GitHub</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="section">
+    <h2>Phase 0 design memos (10 files)</h2>
+    <p class="section-intro">
+      Ten modular <code>.md</code> files, one concern per file. Each is cited against
+      V3 papers and OmegaTheory source with line numbers. Contributors: Sarin-Alpha
+      (γ Sgr), Sarin-Beta (Nunki, σ Sgr), Merak, Dubhe.
+    </p>
+    <div class="memo-grid">
+      {designMemos.map((m) => (
+        <a class="memo-card" href={`${baseUrl}papers/${m.slug}/`}>
+          <span class="memo-n">{m.n}</span>
+          <span class="memo-title">{m.title}</span>
+          <span class="memo-hook">{m.hook}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section neo4j-box">
+    <h2>Live Neo4j pipeline</h2>
+    <p>
+      Everything on this page runs against a Docker-hosted Neo4j container
+      (<code>math</code>, bolt://localhost:7687) with APOC + GDS + GenAI plugins.
+      Two Lean metaprograms (<a href={`${GH}/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Meta/DumpDeclarations.lean`} target="_blank" rel="noopener"><code>dump_decls</code></a>
+      + <a href={`${GH}/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Meta/DumpArrows.lean`} target="_blank" rel="noopener"><code>dump_arrows</code></a>)
+      extract declarations and typed arrows from the Lean environment. Python loaders
+      ingest into Neo4j. Qwen3-Embedding-8B (GPU, BF16) on <code>:7999</code> computes
+      1472-d ByT5 vectors for retrieval.
+    </p>
+    <div class="neo4j-stats">
+      <div class="stat"><strong>{fmt.int(HEADLINES.ownTheorems)}</strong><span>OmegaTheoryV2 Theorems</span></div>
+      <div class="stat"><strong>{fmt.int(HEADLINES.grandTotalTheorems - HEADLINES.ownTheorems)}</strong><span>Mathlib Theorems (integrated)</span></div>
+      <div class="stat"><strong>~3.95M</strong><span>typed edges</span></div>
+      <div class="stat"><strong>677</strong><span>:SubsystemNavigator nodes</span></div>
+      <div class="stat"><strong>88</strong><span>:GraphFinding nodes (44 paper-worthy)</span></div>
+      <div class="stat"><strong>166</strong><span>:TheoremCandidate nodes</span></div>
+    </div>
+    <p class="neo4j-ctas">
+      <a href={`${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/.neo4j`} target="_blank" rel="noopener" class="btn btn-outline">
+        Browse .neo4j/ pipeline
+      </a>
+      <a href={GH_ALG} target="_blank" rel="noopener" class="btn btn-outline">
+        Full OmegaTheoryAlgebra/ tree
+      </a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .algebra-header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--color-seam);
+  }
+  .eyebrow {
+    display: inline-block;
+    color: var(--color-magenta);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+  }
+  .algebra-title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.1;
+    margin: 0 0 var(--space-md);
+    color: var(--color-text);
+  }
+  .algebra-title .accent {
+    background: var(--grad-magenta-azure);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .algebra-lede {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--color-text-dim);
+    max-width: 52rem;
+  }
+  .stack-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin: var(--space-lg) 0;
+  }
+  .pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid var(--color-seam);
+    border-radius: var(--radius-pill);
+    background: rgba(10, 14, 26, 0.6);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--color-text-dim);
+  }
+  .pill code { background: none; padding: 0; color: var(--color-azure); border: 0; }
+  .paper-target {
+    font-size: 0.92rem;
+    color: var(--color-text-mut);
+    padding: var(--space-sm) var(--space-md);
+    border-left: 2px solid var(--color-amber);
+    background: rgba(245, 166, 35, 0.06);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    max-width: 52rem;
+  }
+
+  .section { margin: var(--space-2xl) 0; }
+  .section-intro { color: var(--color-text-dim); max-width: 52rem; }
+
+  .headline-card {
+    padding: var(--space-xl);
+    margin: var(--space-lg) 0;
+    border: 1px solid var(--color-seam);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(160deg, rgba(200, 110, 255, 0.05), rgba(95, 184, 255, 0.03));
+  }
+  .headline-head { margin-bottom: var(--space-md); }
+  .headline-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-mut);
+    margin-bottom: var(--space-xs);
+  }
+  .headline-head h3 { margin: 0; font-size: 1.5rem; }
+  .headline-head h3 a { color: var(--color-text); border-bottom: 0; }
+  .headline-head h3 a:hover { color: var(--color-magenta); border-bottom: 0; }
+  .headline-lede { color: var(--color-text-dim); }
+  .headline-ol, .bullets { margin: var(--space-md) 0; color: var(--color-text-dim); font-size: 0.95rem; }
+  .headline-ol li, .bullets li { margin-bottom: var(--space-xs); }
+  .headline-ctas { display: flex; gap: var(--space-sm); margin-top: var(--space-md); flex-wrap: wrap; }
+
+  .memo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+  .memo-card {
+    display: block;
+    padding: var(--space-md);
+    border: 1px solid var(--color-seam);
+    border-radius: var(--radius-md);
+    background: var(--color-ink);
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--t-fast), border-color var(--t-fast), box-shadow var(--t-normal);
+    border-bottom: 1px solid var(--color-seam);
+  }
+  .memo-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-magenta);
+    box-shadow: var(--shadow-md), 0 0 24px rgba(200, 110, 255, 0.2);
+    color: inherit;
+    border-bottom: 1px solid var(--color-magenta);
+  }
+  .memo-n {
+    display: inline-block;
+    font-family: var(--font-mono);
+    color: var(--color-magenta);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-right: var(--space-xs);
+  }
+  .memo-title {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+  }
+  .memo-hook {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-text-mut);
+    line-height: 1.5;
+    margin-top: var(--space-xs);
+  }
+
+  .neo4j-box {
+    padding: var(--space-xl);
+    border: 1px solid var(--color-seam);
+    border-left: 3px solid var(--color-azure);
+    border-radius: var(--radius-lg);
+    background: rgba(95, 184, 255, 0.04);
+  }
+  .neo4j-box h2 { margin-top: 0; }
+  .neo4j-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+  }
+  .neo4j-stats .stat {
+    padding: var(--space-sm) var(--space-md);
+    border-left: 2px solid var(--color-azure);
+    background: rgba(10, 14, 26, 0.5);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .neo4j-stats .stat strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+  }
+  .neo4j-stats .stat span {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-text-mut);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+  .neo4j-ctas { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+</style>

@@ -41,6 +41,91 @@ const papersMeta = {
     order: 4,
   },
 
+  // ─────────────────────────────────────────────────────────────
+  // V3-for-Lean / OmegaTheoryAlgebra — Magnetic Laplacian + Leiden +
+  // FastRP over the Lean theorem graph (Neo4j `math` container).
+  // First corpus-scale application of graph-theoretic methods to a
+  // Lean theorem-prover corpus. Paper target: NeurIPS 2026 / ICLR 2027.
+  // ─────────────────────────────────────────────────────────────
+  'GROTHENDIECK_MATH_PUZZLE.md': {
+    title: 'Grothendieck Math Puzzle — Missing-Piece Synthesis',
+    description: '8-pass categorical / homological / spectral analysis of OmegaTheory V2 as a Lean-theory-with-structure — what mathematics is the graph asking for? Neo4j · Magnetic Laplacian · FastRP.',
+    category: 'Graph Research · Neo4j',
+    order: 100,
+  },
+  'ACHIEVEMENTS.md': {
+    title: 'OmegaTheoryAlgebra — Graph Research Achievements',
+    description: 'Design + empirical foundation for the V3-for-Lean paper: 10 design memos, 8,996 theorems × 15 arrow types × 3.95M typed edges. Rank-7 saturating, λ₁/λ₂=1.038, 73.3% non-commutativity.',
+    category: 'Graph Research · Neo4j',
+    order: 101,
+  },
+  '01_entity_types.md': {
+    title: '01 — The 6 Lean Entity Types',
+    description: 'V3\'s 6-entity model (Actor, Process, Resource, Rule, Event, Context) re-mapped for Lean 4: Axiom, Theorem/Lemma, Definition/Abbrev, Structure/Class, Instance, Namespace.',
+    category: 'Graph Research · Neo4j',
+    order: 110,
+  },
+  '02_relationships.md': {
+    title: '02 — Typed Arrows (15 relationships)',
+    description: '4 structural + 5 dependency + 3 type-theoretic + 3 computational typed arrows. IMPORTS, OPENS_NAMESPACE, EXTENDS, INSTANTIATES, ASSUMES, APPLIES, UNFOLDS, SPECIALIZES, ...',
+    category: 'Graph Research · Neo4j',
+    order: 111,
+  },
+  '03_selection_rules.md': {
+    title: '03 — Selection Rules (Forbidden Compositions)',
+    description: '13 design rules pruning the 6×15 product space. 7 ship as HARD_BLOCK :SelectionRule nodes in live Neo4j.',
+    category: 'Graph Research · Neo4j',
+    order: 112,
+  },
+  '04_magnetic_laplacian.md': {
+    title: '04 — Magnetic Laplacian construction',
+    description: '𝔄 ∈ ℂ^{6×6} Hermitian at magnetic phase g=1/4. Per-relation rank-2 decomposition, Hermiticity sketch.',
+    category: 'Graph Research · Neo4j',
+    order: 113,
+  },
+  '05_cycle_hypotheses.md': {
+    title: '05 — Cycle hypotheses (𝔰𝔲(2) candidates)',
+    description: 'SPECIALIZES⇌GENERALIZES and UNFOLDS⇌FOLDS bidirectional cycles. ±i eigenvalue predictions.',
+    category: 'Graph Research · Neo4j',
+    order: 114,
+  },
+  '06_fastrp_scaling.md': {
+    title: '06 — FastRP scaling (Johnson–Lindenstrauss)',
+    description: 'm=64 per relation for ~243K nodes. J-L bound, seed=42, weights [0.0, 1.0, 1.0, 0.5].',
+    category: 'Graph Research · Neo4j',
+    order: 115,
+  },
+  '07_single_lens_rationale.md': {
+    title: '07 — Single-lens rationale',
+    description: 'Why a single Qwen3-8B embedding beats V3\'s 3-lens overlay on a formal theorem-prover corpus.',
+    category: 'Graph Research · Neo4j',
+    order: 116,
+  },
+  '08_empirical_spectrum.md': {
+    title: '08 — Empirical spectrum (live measurements)',
+    description: 'Commutator eigenvalues on real OmegaTheory+Mathlib data. Rank-7 saturating, λ₁/λ₂ = 1.038, 5-scale hierarchy.',
+    category: 'Graph Research · Neo4j',
+    order: 117,
+  },
+  '09_subsystem_sanity.md': {
+    title: '09 — Subsystem sanity check',
+    description: 'Detected subsystems vs expected OmegaTheory physics themes (Foundations, Irrationality, Gauge, Emergence, Predictions, Conservation).',
+    category: 'Graph Research · Neo4j',
+    order: 118,
+  },
+  '10_neo4j_schema_map.md': {
+    title: '10 — Neo4j schema map (Cypher pipeline)',
+    description: 'Explicit Cypher-node / edge mapping. .neo4j/lean_algebra_ontology.cypher + lean_algebra_arrows.cypher + lean_magnetic_laplacian.cypher.',
+    category: 'Graph Research · Neo4j',
+    order: 119,
+  },
+  'mathlib_theorems_without_proof_body.md': {
+    title: 'Mathlib theorems without proof body',
+    description: 'Inventory of Mathlib theorems missing proof_body after the 175K-theorem ingest.',
+    category: 'Graph Research · Neo4j',
+    order: 120,
+  },
+
   // Appendices (actual files)
   'Appendix-A-Action-Density-and-Quantum-Errors.md': {
     title: 'Appendix A: Action Density and Quantum Errors',
@@ -214,7 +299,7 @@ function ensureDir(dir) {
 }
 
 function addFrontmatter(content, meta) {
-  const frontmatter = `---
+  const frontmatterBlock = `---
 title: "${meta.title}"
 ${meta.description ? `description: "${meta.description}"` : ''}
 ${meta.category ? `category: "${meta.category}"` : ''}
@@ -223,16 +308,35 @@ ${meta.order ? `order: ${meta.order}` : ''}
 
 `;
 
-  // Check if file already has frontmatter
+  // If the file has its own frontmatter, check whether it satisfies the
+  // papers schema (requires `title:`). If `title:` is missing but we have
+  // a meta.title, replace the existing block — internal author-generated
+  // frontmatter (e.g. `name: 03_selection_rules`) is not compatible with
+  // the Astro content schema on its own.
   if (content.startsWith('---')) {
-    return content;
+    const endIdx = content.indexOf('\n---', 4);
+    if (endIdx === -1) return content;
+    const block = content.slice(0, endIdx + 4);
+    const rest = content.slice(endIdx + 4);
+    const hasTitle = /^title:\s*["']?.+["']?\s*$/m.test(block);
+    if (hasTitle) return content; // author-supplied frontmatter is fine
+    if (!meta.title) return content; // nothing to inject
+    // Replace the author frontmatter with the papersMeta block so the
+    // Astro schema validates. Author's metadata is preserved as HTML
+    // comment so it's not lost.
+    const preservedInternal = block
+      .split('\n')
+      .slice(1, -1)
+      .map((l) => `<!-- orig-frontmatter: ${l} -->`)
+      .join('\n');
+    return frontmatterBlock + preservedInternal + '\n' + rest.trimStart();
   }
 
-  return frontmatter + content;
+  return frontmatterBlock + content;
 }
 
 // Subfolders to scan (post-reorg 2026-04-20)
-const paperSubdirs = ['', 'papers', 'appendices', 'letter-coldneutron', 'diagrams', 'notes'];
+const paperSubdirs = ['', 'papers', 'appendices', 'letter-coldneutron', 'diagrams', 'notes', 'OmegaTheoryAlgebra'];
 // Default categories by subdir (used when file not in papersMeta)
 const categoryBySubdir = {
   '': 'Meta',
@@ -241,6 +345,10 @@ const categoryBySubdir = {
   'letter-coldneutron': 'PRL Submission',
   'diagrams': 'Visual',
   'notes': 'Research Notes',
+  // V3-for-Lean graph algebra — Magnetic Laplacian + Leiden + FastRP applied to
+  // the Lean theorem graph (Neo4j `math` container). Surfaced through
+  // /papers/grothendieck_math_puzzle/, /papers/achievements/, etc.
+  'OmegaTheoryAlgebra': 'Graph Research · Neo4j',
 };
 
 function copyPapers() {

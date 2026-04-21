@@ -21,6 +21,9 @@ This simple question started it all.
 
 ### [**Read the Full Documentation**](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/) | [**Start with Main Paper**](PhysicsPapers/Main-Paper-Postulates.md)
 
+> **🧠 Graph-theoretic research track** — Alongside the physics, we treat the 184K-theorem Lean corpus as a typed quiver and apply Magnetic Laplacian + Leiden + FastRP to detect missing mathematics.
+> **[→ OmegaTheoryAlgebra hub](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/algebra/)** · **[→ Grothendieck Math Puzzle (8-pass synthesis)](PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md)** · **[→ Achievements (rank-7 saturating, λ₁/λ₂=1.038)](PhysicsPapers/OmegaTheoryAlgebra/ACHIEVEMENTS.md)** · Paper target **NeurIPS 2026 / ICLR 2027**. Neo4j `math` container · 3.95M typed edges · 15 arrow types.
+
 [![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue?logo=github)](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0007--3029--175X-A6CE39?logo=orcid)](https://orcid.org/0009-0007-3029-175X)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)

@@ -13,6 +13,8 @@
     "astro": "astro",
     "audit": "node scripts/audit-dist.js",
     "copy-content": "node scripts/copy-content.js",
+    "copy-cycle-index": "node scripts/copy-cycle-index.mjs",
+    "prebuild": "node scripts/copy-cycle-index.mjs",
     "test": "npm run test:smoke && npm run test:build && npm run audit",
     "test:smoke": "node --test tests/smoke.test.mjs",
     "test:build": "node --test tests/build.test.mjs",

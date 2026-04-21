@@ -2,19 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import { HEADLINES, fmt } from '../data/status.mjs';
+import { cyclesFull, cyclesSummary, channelStyle as channelStyleFromJson, CYCLE_INDEX_META } from '../data/cycles.mjs';
 
 const rawBase = import.meta.env.BASE_URL;
 const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
-// GitHub repo used for Lean source links.
-// Uses origin `RamzesX/chaos-shield` (verified via git remote).
-// NOTE: The 14-cycle catalogue was shipped on the native ext4 working dir
-// (~/lean-v2/) and syncs to this path on the next push.  For now individual
-// Lean files are linked to the Predictions directory index so the link is
-// never broken; files already pushed (NumericalFitsCycle9.lean, Cold-Neutron,
-// DESI etc.) open directly.
+// GitHub repo used for Lean source links. Uses origin `RamzesX/chaos-shield`
+// (verified via git remote).
 const GH_DIR = 'https://github.com/RamzesX/chaos-shield/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions';
 const GH_BLOB = 'https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions';
+const GH_OMEGA_DIR = 'https://github.com/RamzesX/chaos-shield/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory';
 
 // Files that are actually present on main (vs speculative names for unpushed cycles).
 const presentOnMain = new Set([
@@ -63,10 +60,10 @@ function leanHref(file: string): string {
   return presentOnMain.has(file) ? `${GH_BLOB}/${file}` : GH_DIR;
 }
 
-// Each cycle block = {cycle, title, theme, agents, channels, findings[], rows[]}
-// Row format: {name, observable, pdg, tol, channel, agent, star, file}
-// Channel legend: pi (heavy), e (middle), s2 (sqrt2, light), composed, derived
-const cycles = [
+// Cycle catalogue now lives in `PhysicsPapers/LeanFormalizationV2/cycle-index.json`
+// (see cycle-index.schema.md for the schema). Retained here for type-checker
+// compat; `cycles` is re-aliased to the JSON-loaded `cyclesFull` below.
+const _deprecatedInlineCycles = [
   {
     cycle: 9,
     title: 'Numerical-fit scaffolding',
@@ -279,16 +276,12 @@ const cycles = [
   },
 ];
 
-// Channel → colour
-const channelStyle = {
-  π: { label: 'π', tooltip: 'Pi-channel (heavy, Leibniz O(1/N))', bg: 'rgba(255, 82, 82, 0.15)', fg: '#ff8585', border: '#ff5252' },
-  e: { label: 'e', tooltip: 'e-channel (middle, factorial O(1/N!))', bg: 'rgba(255, 215, 64, 0.15)', fg: '#ffd740', border: '#ffd740' },
-  s2: { label: '√2', tooltip: 'Sqrt2-channel (light, super-exp O(2^{-2^N}))', bg: 'rgba(0, 230, 118, 0.15)', fg: '#00e676', border: '#00e676' },
-  composed: { label: 'π·e', tooltip: 'Composed channel (cross-product)', bg: 'rgba(124, 77, 255, 0.15)', fg: '#b47cff', border: '#7c4dff' },
-  derived: { label: 'id', tooltip: 'Pure structural identity (0 free parameters)', bg: 'rgba(0, 212, 255, 0.15)', fg: '#7fe5ff', border: '#00d4ff' },
-};
+// Drop the inline catalogue — data now flows in from cycle-index.json via
+// cycles.mjs. Alias for any legacy references below.
+const cycles = cyclesFull;
+const channelStyle: Record<string, { label: string; tooltip: string; bg: string; fg: string; border: string }> = channelStyleFromJson as any;
 
-const totalTheorems = cycles.reduce((n, c) => n + c.rows.length, 0);
+const totalTheorems = cycles.reduce((n, c) => n + (c.rows?.length ?? 0), 0);
 ---
 
 <BaseLayout
@@ -378,12 +371,50 @@ const totalTheorems = cycles.reduce((n, c) => n + c.rows.length, 0);
     </div>
   </section>
 
+  {cyclesSummary.length > 0 && (
+    <section class="summary-cycles">
+      <header class="summary-cycles-head">
+        <h2>Foundational cycles ({cyclesSummary[0].cycle}–{cyclesSummary[cyclesSummary.length-1].cycle})</h2>
+        <p>
+          Early cycles that built the core infrastructure — Pi Hunch chain,
+          substrate bridges, error algebras — before the numerical-fit
+          scaffolding opened in cycle 9. Full Lean sources in
+          <a href={GH_OMEGA_DIR} target="_blank" rel="noopener"><code>OmegaTheory/</code></a>.
+        </p>
+      </header>
+      <div class="summary-grid">
+        {cyclesSummary.map(c => (
+          <article class="summary-card" id={`cycle-${c.cycle}`}>
+            <div class="summary-card-head">
+              <span class="summary-badge">Cycle {c.cycle}</span>
+              {c.dir && (
+                <a class="summary-dir" target="_blank" rel="noopener"
+                   href={`https://github.com/RamzesX/chaos-shield/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/${c.dir}`}>
+                  {c.dir}/ ↗
+                </a>
+              )}
+            </div>
+            <h3 class="summary-title">{c.title}</h3>
+            <p class="summary-hook">{c.hook}</p>
+            <p class="summary-body">{c.summary}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
   {cycles.map(c => (
     <section class="cycle-block" id={`cycle-${c.cycle}`}>
       <header class="cycle-header">
         <div class="cycle-badge">Cycle {c.cycle}</div>
         <h2 class="cycle-title">{c.title}</h2>
         <p class="cycle-hook">{c.hook}</p>
+        {c.note_file && (
+          <a class="cycle-note-link" target="_blank" rel="noopener"
+             href={`https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/${c.note_file}`}>
+            Research memo ({c.note_file.split('/').pop()}) ↗
+          </a>
+        )}
       </header>
 
       <p class="cycle-summary">{c.summary}</p>
@@ -603,6 +634,64 @@ const totalTheorems = cycles.reduce((n, c) => n + c.rows.length, 0);
   }
 
   /* Cycle block */
+  .summary-cycles {
+    margin: var(--space-2xl) 0;
+    padding: var(--space-xl);
+    border: 1px solid var(--color-seam);
+    border-radius: var(--radius-lg);
+    background: rgba(10, 14, 26, 0.35);
+  }
+  .summary-cycles-head h2 { margin-top: 0; }
+  .summary-cycles-head p { color: var(--color-text-dim); font-size: 0.95rem; max-width: 52rem; }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+  .summary-card {
+    padding: var(--space-md);
+    border: 1px solid var(--color-seam);
+    border-radius: var(--radius-md);
+    background: var(--color-ink);
+  }
+  .summary-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+  .summary-badge {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-magenta);
+    background: rgba(200, 110, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+  }
+  .summary-dir {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-text-mut);
+    border-bottom: 0;
+  }
+  .summary-title { font-size: 1rem; margin: 0 0 var(--space-xs); color: var(--color-text); }
+  .summary-hook { font-size: 0.88rem; color: var(--color-text-dim); margin-bottom: var(--space-xs); font-style: italic; }
+  .summary-body { font-size: 0.85rem; color: var(--color-text-mut); margin: 0; }
+
+  .cycle-note-link {
+    display: inline-block;
+    margin-top: var(--space-xs);
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
+    color: var(--color-text-mut);
+    border-bottom: 0;
+  }
+  .cycle-note-link:hover { color: var(--color-magenta); border-bottom: 0; }
+
   .cycle-block {
     margin: var(--space-2xl) 0;
     padding: var(--space-xl);

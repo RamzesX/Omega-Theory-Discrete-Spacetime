@@ -18,8 +18,9 @@ plus one sterile/DM slot.
   are cross-namespace: 2.03M OmegaTheoryV2→Mathlib + 1.25M Mathlib→OmegaTheoryV2)
 - **Cycles 2–43 all shipped.** Mekbuda's 60-theorem cycles 24–43 backlog is CLOSED.
   Grand Capstone V2 (`omega_theory_v2_final_meta_capstone`) locked by Polaris.
-- **Graph state**: 95 `:GraphFinding` nodes (44 paper_worthy) + 144 `:TheoremCandidate`
-  nodes (60 closed by the Mekbuda arc, 84 open for cycles 44+)
+- **Graph state** (live via Neo4j `math` container, 2026-04-21): 88 `:GraphFinding`
+  nodes (44 paper_worthy) + 166 `:TheoremCandidate` nodes (52 closed / 113 open /
+  1 blocked) + 677 `:SubsystemNavigator` nodes
 
 ## Repository structure
 ```
@@ -50,10 +51,12 @@ PhysicsPapers/
 │   │   ├── Paper/                 Headline aliases for manuscript citation
 │   │   ├── Meta/                  DumpDeclarations, DumpArrows (graph pipeline)
 │   │   └── Probe/                 Proof-search experiments (PiAndOmegaStructure, etc.)
-│   ├── notes/                     ← 23 cycle closure memos + research notes
-│   │                               (NOTES_CYCLE{24…35,37,43}_*.md among them;
-│   │                                earlier audits/ retired 2026-04-21 — superseded
-│   │                                by live build)
+│   ├── notes/                     ← 20 files after 2026-04-21 triage:
+│   │                               14 cycle closures (NOTES_CYCLE{24…35,37,43}_*.md),
+│   │                               4 open-work design memos (Kempf×2, Seeley-DeWitt,
+│   │                               Gap-Hunter, Proton-Mass), NOTES_QM_AS_DISCRETE_GRAVITY
+│   │                               (README-cited companion). Earlier audits/ retired
+│   │                               2026-04-21 and HPW/cycle17/alpha47 memos deleted
 │   ├── plans/                     ← active to-do + follow-up reports:
 │   │                               THEOREM_BACKLOG_CYCLES_24_43.md (60 items CLOSED),
 │   │                               GROTHENDIECK_FOLLOWUP_REPORT.md,
@@ -96,13 +99,14 @@ theorems.
 ```bash
 cd ~/lean-v2
 ~/.elan/bin/lake build --log-level=error          # must be GREEN first
-~/.elan/bin/lake exe dump_declarations --out .neo4j/declarations_from_env_v2.jsonl
+~/.elan/bin/lake exe dump_decls --out .neo4j/declarations_from_env_v2.jsonl
 ~/.elan/bin/lake exe dump_arrows --out .neo4j/arrows_from_env_cycleN.jsonl --include-mathlib
 cd .neo4j
 python3 load_declarations_env_v2.py               # Naos: MERGE Theorem/Def/Axiom
 python3 load_arrows_parallel.py                   # SOTA: 16-worker batched UNWIND (~500× faster)
 python3 reembed_qwen3_delta.py                    # Qwen3-8B embeddings (:7999)
 ```
+(Lake exe names are `dump_decls` and `dump_arrows`, per `~/lean-v2/lakefile.toml`.)
 
 **Key files (never rewrite from scratch — extend them):**
 - `OmegaTheory/Meta/DumpDeclarations.lean` (Schedar) — env declaration dumper
@@ -200,11 +204,18 @@ gcongr       -- generalized congruence (monotonicity)
 - **Absolute particle masses**: `m_e`, `m_μ`, `m_τ`, quarks within 1% of PDG from
   Connes D_F eigenvalues alone (capstone research track)
 - **CP-violation phase derivation** for baryogenesis (Grothendieck puzzle MP-8)
-- **84 open `:TheoremCandidate` nodes** + **44 paper_worthy GraphFindings** (Neo4j)
+- **113 open `:TheoremCandidate` nodes** + **44 paper_worthy `:GraphFinding` nodes**
+  (Neo4j `math`, measured 2026-04-21; 52 candidates already closed, 1 blocked)
 - **`Real.pi_transcendental` axiom** — waiting on Mathlib Lindemann–Weierstrass
 - **15 HermitePadé conjectures** — eliminated incrementally via `pi-formalizer`
 - **su(3) Jacobi identity**: still a hypothesis, fixable via `fin_cases` at high heartbeats
 - **Non-abelian F = dA + [A,A]** full general bundle (partial progress in Tiaki cycle 29)
+- **Proton mass / Λ_QCD**: unshipped after cycle 43; see `notes/NOTES_PROTON_MASS_SCOPE.md`
+  Pathway A (δ_comp → Λ_QCD via one-loop RG)
+- **Kempf β/γ/δ integration**: UV-cutoff / bandlimited-field / CMB-oscillation bridges
+  all unshipped; see `notes/NOTES_KEMPF_BRIDGE.md` + `NOTES_KEMPF_DELTA_CMB.md`
+- **Seeley-DeWitt 9 `Prop := True` sites**: closed-form `a₀/a₂/a₄` coefficients still
+  parametric; see `notes/NOTES_SEELEY_DEWITT_DESIGN.md`
 - **Clifford off-diagonal** ~~12 cases hypothesized~~ **CLOSED** (Tureis + Dubhe 2026-04-17,
   `DiracEquation.lean:209 gammaClifford_offDiagonal`)
 

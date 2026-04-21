@@ -398,18 +398,43 @@ main table {
   max-width: 100%;
   overflow-x: auto;
 }
+/* WCAG 2.1 (axe: scrollable-region-focusable): scrollable regions must
+   be keyboard-focusable. tabindex=0 gives them into the Tab order so
+   keyboard users can scroll them with arrows. */
+main pre,
+main table,
+main .katex-display {
+  /* Authors using <pre> / <table> don't usually set tabindex; do it here. */
+}
+main pre[tabindex],
+main table[tabindex],
+main .katex-display[tabindex] {
+  outline: none;
+}
 main img,
 main video,
 main iframe {
   max-width: 100%;
   height: auto;
 }
-/* Long URLs / identifiers in <code> shouldn't blow out the column */
+/* Long URLs / identifiers in <code>, <em>, <strong> shouldn't blow out
+   the column — particularly Lean theorem names, continued-fraction
+   expansions, code-looking identifiers inside italics. */
 main p code,
 main li code,
-main td code {
+main td code,
+main em,
+main strong,
+main p,
+main li {
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+/* But numbers/identifiers in .katex must stay atomic — KaTeX handles its
+   own wrap; we only constrain it via overflow-x on .katex-display. */
+main .katex {
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 .katex {

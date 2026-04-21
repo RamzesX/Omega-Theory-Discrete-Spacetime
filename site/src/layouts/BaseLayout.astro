@@ -75,6 +75,32 @@ const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
       document.documentElement.setAttribute('data-theme', theme);
     })();
   </script>
+  <script is:inline>
+    // WCAG 2.1 (axe: scrollable-region-focusable): any element that is
+    // keyboard-scrollable must be in the Tab order. After DOMContentLoaded
+    // mark all overflow-x:auto candidates with tabindex="0".
+    window.addEventListener('DOMContentLoaded', function () {
+      var sel = 'main pre, main table, main .katex-display';
+      var els = document.querySelectorAll(sel);
+      els.forEach(function (el) {
+        if (el.scrollWidth > el.clientWidth) {
+          el.setAttribute('tabindex', '0');
+          el.setAttribute('role', 'region');
+          if (!el.hasAttribute('aria-label')) {
+            var tag = el.tagName.toLowerCase();
+            el.setAttribute(
+              'aria-label',
+              tag === 'table'
+                ? 'Data table, scroll horizontally'
+                : tag === 'pre'
+                ? 'Code block, scroll horizontally'
+                : 'Mathematical equation, scroll horizontally'
+            );
+          }
+        }
+      });
+    });
+  </script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>

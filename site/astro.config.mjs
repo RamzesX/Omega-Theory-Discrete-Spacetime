@@ -3,6 +3,7 @@ import mdx from '@astrojs/mdx';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { remarkRewritePaperLinks } from './src/plugins/remarkRewritePaperLinks.mjs';
+import { remarkDemoteHeadings } from './src/plugins/remarkDemoteHeadings.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,6 +17,9 @@ export default defineConfig({
     remarkPlugins: [
       remarkMath,
       [remarkRewritePaperLinks, { base: '/Omega-Theory-Discrete-Spacetime' }],
+      // Shift every h1→h2, h2→h3 etc. so PaperLayout's frontmatter-title
+      // <h1> is the only H1 on the page (WCAG hierarchy; axe requirement).
+      remarkDemoteHeadings,
     ],
     rehypePlugins: [
       [

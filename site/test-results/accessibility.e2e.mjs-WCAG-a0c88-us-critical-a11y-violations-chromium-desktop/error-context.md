@@ -227,7 +227,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Numerical-fit scaffolding" [level=2] [ref=e126]
           - paragraph [ref=e127]: First sustained cycle of PDG-anchored substrate fits; seeds three-channel partition evidence.
         - paragraph [ref=e128]: Six substrate fits (Z mass, pion mass, kaon mass, PMNS theta_23, electron g-2, cycle-9 numerical bundle). First hadrons formalized; middle-generation e-channel calibration hit exactly at N=1.
-        - table [ref=e130]:
+        - region "Data table, scroll horizontally" [ref=e130]:
           - rowgroup [ref=e131]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e132]:
               - columnheader "Lean theorem" [ref=e133]
@@ -358,7 +358,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "e-channel universality emerges" [level=2] [ref=e246]
           - paragraph [ref=e247]: "First paper-worthy structural finding: middle-generation observables share identical dimensionless shape 3/(N+1)!."
         - paragraph [ref=e248]: "First hadron→quark bridge (Goldstone-Gell-Mann). Four-hadron mass hierarchy closed: m_π < m_K ≤ m_η < m_p. First three-lepton g-2 ordering a_e < a_μ < a_τ. Three rfl structural identities: fpiFitBase_eq_kaonFitBase, etaFitBase_eq_kaonFitBase, VcbFitBase_eq_kaonFitBase."
-        - table [ref=e250]:
+        - region "Data table, scroll horizontally" [ref=e250]:
           - rowgroup [ref=e251]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e252]:
               - columnheader "Lean theorem" [ref=e253]
@@ -489,7 +489,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Four-observable EW ordering + PMNS triplet" [level=2] [ref=e366]
           - paragraph [ref=e367]: First quark enters e-channel universality; PMNS three angles formally closed.
         - paragraph [ref=e368]: mcFitBase_eq_kaonFitBase proves the charm quark shares the exact e-channel eigenvalue block with hadron observables. Four-observable EW ordering Γ_W < Γ_Z < m_W < m_Z formalized. PMNS triplet θ_13 < θ_12 < θ_23 closed.
-        - table [ref=e370]:
+        - region "Data table, scroll horizontally" [ref=e370]:
           - rowgroup [ref=e371]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e372]:
               - columnheader "Lean theorem" [ref=e373]
@@ -620,7 +620,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "PMNS fully substrate-derived" [level=2] [ref=e486]
           - paragraph [ref=e487]: All four PMNS parameters derived; first CP violation both sectors.
         - paragraph [ref=e488]: PMNS_matrix_fully_substrate_derived (θ_12 + θ_13 + θ_23 + δ_CP). First quark Jarlskog ∝ π·e mixed channel. e-channel universality grows to 7 members (includes m_s, muon lifetime).
-        - table [ref=e490]:
+        - region "Data table, scroll horizontally" [ref=e490]:
           - rowgroup [ref=e491]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e492]:
               - columnheader "Lean theorem" [ref=e493]
@@ -751,7 +751,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Three-channel partition confirmed" [level=2] [ref=e606]
           - paragraph [ref=e607]: First two flavor columns in sqrt2-channel; first fine-tuning (θ_QCD) resolved.
         - paragraph [ref=e608]: Pi Hunch quark-sector confirmed on both flavor columns. First upper/lower-bound theorems (Σm_ν, θ_QCD) — sqrt2 super-exponential is natural for small quantities. First fine-tuning resolution without axion.
-        - table [ref=e610]:
+        - region "Data table, scroll horizontally" [ref=e610]:
           - rowgroup [ref=e611]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e612]:
               - columnheader "Lean theorem" [ref=e613]
@@ -882,7 +882,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Higgs sector closed + derived couplings" [level=2] [ref=e726]
           - paragraph [ref=e727]: First DERIVED (not fitted) coupling; Sakharov CP → η_B bridge; triple-consistency identity.
         - paragraph [ref=e728]: Higgs self-coupling derived composed from VEV and m_H. α_EM(m_Z) and α_s(m_Z) on substrate with opposite running signs. First Sakharov bridge quark-CP → cosmic baryon asymmetry. Triple-consistency m_H² = 2λv² identity closes Higgs sector.
-        - table [ref=e730]:
+        - region "Data table, scroll horizontally" [ref=e730]:
           - rowgroup [ref=e731]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e732]:
               - columnheader "Lean theorem" [ref=e733]
@@ -1013,7 +1013,7 @@ expect(received).toEqual(expected) // deep equality
           - 'heading "Cosmological regime: Lambda + Planck 2018" [level=2] [ref=e846]'
           - paragraph [ref=e847]: Second fine-tuning resolved (Λ = 10⁻⁵² m⁻²); full CMB parameter set on substrate.
         - paragraph [ref=e848]: Λ_CC on sqrt2-channel at N≈10 delivers 2⁻¹⁰²⁴ ≈ 10⁻³⁰⁸ residual — the 120-order cosmological constant scale is anthropic-free. Cosmological block links to KBC void and dark-energy reservoir. First falsification-by-consistency test (Ω_b h² from η_B).
-        - table [ref=e850]:
+        - region "Data table, scroll horizontally" [ref=e850]:
           - rowgroup [ref=e851]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e852]:
               - columnheader "Lean theorem" [ref=e853]
@@ -1144,7 +1144,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Nuclear / hadronic sector opens" [level=2] [ref=e966]
           - paragraph [ref=e967]: Magnetic moments, nuclear binding, Goldberger-Treiman relation — first non-perturbative nuclear force fits.
         - paragraph [ref=e968]: First spin observables (proton μ_p/μ_N). Nuclear binding energy per nucleon in π-channel. Goldberger-Treiman substrate derivation. e-channel universality family reaches 8 members across 5 sectors.
-        - table [ref=e970]:
+        - region "Data table, scroll horizontally" [ref=e970]:
           - rowgroup [ref=e971]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e972]:
               - columnheader "Lean theorem" [ref=e973]
@@ -1275,7 +1275,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Meson spectrum + CKM third row" [level=2] [ref=e1086]
           - paragraph [ref=e1087]: First vector meson, first charmonium, first bottomonium; CKM matrix closes.
         - paragraph [ref=e1088]: First meson spectrum entries. CKM |V_td|, |V_ts| completes third row for full numerical unitarity check. Prepares CKM γ angle + unitarity triangle closure for cycle 18.
-        - table [ref=e1090]:
+        - region "Data table, scroll horizontally" [ref=e1090]:
           - rowgroup [ref=e1091]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1092]:
               - columnheader "Lean theorem" [ref=e1093]
@@ -1406,7 +1406,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Unitarity triangle + weak-sector closure" [level=2] [ref=e1206]
           - paragraph [ref=e1207]: CKM γ derived; unitarity triangle substrate-verified; first full closed mixing matrix.
         - paragraph [ref=e1208]: Unitarity triangle angle γ + full substrate verification. B physics observables from substrate (ΔM_s / ΔM_d). First derived strong coupling mismatch below 1-loop.
-        - table [ref=e1210]:
+        - region "Data table, scroll horizontally" [ref=e1210]:
           - rowgroup [ref=e1211]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1212]:
               - columnheader "Lean theorem" [ref=e1213]
@@ -1537,7 +1537,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Neutrino sector + cosmic tests" [level=2] [ref=e1326]
           - paragraph [ref=e1327]: First neutrinoless double-β bound; mass-ordering prediction; cosmic neutrino background link.
         - paragraph [ref=e1328]: Neutrino mass ordering predicted (normal vs inverted). Neutrinoless double-β effective mass bound. Cosmic neutrino background temperature consistency check.
-        - table [ref=e1330]:
+        - region "Data table, scroll horizontally" [ref=e1330]:
           - rowgroup [ref=e1331]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1332]:
               - columnheader "Lean theorem" [ref=e1333]
@@ -1799,7 +1799,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Gravitational-wave / compact-object tests" [level=2] [ref=e1566]
           - paragraph [ref=e1567]: GW170817 consistency; black-hole quasinormal modes; ringdown from substrate.
         - paragraph [ref=e1568]: GW speed-of-light bound, c_T = c to 10⁻¹⁵. BH quasinormal mode spectrum from substrate. Merger remnant mass from Noether current conservation.
-        - table [ref=e1570]:
+        - region "Data table, scroll horizontally" [ref=e1570]:
           - rowgroup [ref=e1571]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1572]:
               - columnheader "Lean theorem" [ref=e1573]
@@ -1930,7 +1930,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Precision QED + atomic-clock tests" [level=2] [ref=e1686]
           - paragraph [ref=e1687]: Electron EDM bound; Rydberg constant from substrate; atomic-clock sensitivity to dark matter.
         - paragraph [ref=e1688]: Electron EDM bound tightens θ-parameter constraint. Rydberg constant derived from α and m_e composition. Atomic-clock drift bound as DM-coupling window.
-        - table [ref=e1690]:
+        - region "Data table, scroll horizontally" [ref=e1690]:
           - rowgroup [ref=e1691]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1692]:
               - columnheader "Lean theorem" [ref=e1693]
@@ -2061,7 +2061,7 @@ expect(received).toEqual(expected) // deep equality
           - heading "Grand capstone signature" [level=2] [ref=e1806]
           - paragraph [ref=e1807]: "Signature theorem: OmegaTheory derives 14 cycles × 6 = 84 PDG-consistent predictions from 8 physical axioms + 3 irrationals."
         - paragraph [ref=e1808]: "omega_theory_grand_capstone bundles all cycle fits under one roof: Standard Model + cosmology + astrophysics derivable from π/e/√2-truncation residuals plus healing-flow dynamics. 0 sorry, 8 axioms, build 3818 GREEN."
-        - table [ref=e1810]:
+        - region "Data table, scroll horizontally" [ref=e1810]:
           - rowgroup [ref=e1811]:
             - row "Lean theorem Observable PDG target Tolerance Channel Agent · star Source" [ref=e1812]:
               - columnheader "Lean theorem" [ref=e1813]

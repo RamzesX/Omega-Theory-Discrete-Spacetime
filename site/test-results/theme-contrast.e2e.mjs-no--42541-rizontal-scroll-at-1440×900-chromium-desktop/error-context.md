@@ -1,0 +1,1914 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: theme-contrast.e2e.mjs >> no horizontal overflow on desktop viewport >> /papers/paper-dark-energy-preview-v1/ — no horizontal scroll at 1440×900
+- Location: tests/theme-contrast.e2e.mjs:155:5
+
+# Error details
+
+```
+Error: /papers/paper-dark-energy-preview-v1/: scrollWidth=1652 exceeds clientWidth=1440 — content overflows viewport
+
+expect(received).toBeLessThanOrEqual(expected)
+
+Expected: <= 1441
+Received:    1652
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - generic [ref=e3]:
+    - complementary "Primary" [ref=e4]:
+      - generic [ref=e5]:
+        - link "Omega-Theory home" [ref=e6] [cursor=pointer]:
+          - /url: /Omega-Theory-Discrete-Spacetime/
+          - generic [ref=e7]: Ω
+          - generic [ref=e8]:
+            - generic [ref=e9]: Omega-Theory
+            - generic [ref=e10]: discrete spacetime · Lean 4
+        - button "Toggle theme" [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+      - navigation "Site sections" [ref=e14]:
+        - generic [ref=e15]:
+          - button "Getting Started" [expanded] [ref=e16] [cursor=pointer]:
+            - generic [ref=e17]: Getting Started
+            - img [ref=e18]
+          - list [ref=e20]:
+            - listitem [ref=e21]:
+              - link "Overview" [ref=e22] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/
+            - listitem [ref=e23]:
+              - link "Main Paper" [ref=e24] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/main-paper-postulates/
+            - listitem [ref=e25]:
+              - link "Visual Summary" [ref=e26] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/unified-theory-diagram/
+        - generic [ref=e27]:
+          - button "Predictions" [expanded] [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: Predictions
+            - img [ref=e30]
+          - list [ref=e32]:
+            - listitem [ref=e33]:
+              - link "14 Cycles · 84 Predictions" [ref=e34] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/cycles/
+            - listitem [ref=e35]:
+              - link "Lean Formalization" [ref=e36] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/lean/
+            - listitem [ref=e37]:
+              - 'link "Appendix I: Experimental Tests" [ref=e38] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/appendix-i-experimental-tests/
+            - listitem [ref=e39]:
+              - 'link "Appendix J: Experimental Catalog" [ref=e40] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/appendix-j-experimental-catalog-consolidated/
+            - listitem [ref=e41]:
+              - 'link "Appendix K: Irrationality Genesis" [ref=e42] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/appendix-k-irrationality-genesis-of-predictions/
+            - listitem [ref=e43]:
+              - link "Cold-Neutron Letter (PRL)" [ref=e44] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/letter-coldneutron-executivesummary/
+        - generic [ref=e45]:
+          - button "Core Theory" [expanded] [ref=e46] [cursor=pointer]:
+            - generic [ref=e47]: Core Theory
+            - img [ref=e48]
+          - list [ref=e50]:
+            - listitem [ref=e51]:
+              - link "Complete Framework" [ref=e52] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/complete-omega-theory-unified-framework/
+            - listitem [ref=e53]:
+              - 'link "Key Insight: Irrationals" [ref=e54] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/keyinsight-irrationals-action-thresholds/
+            - listitem [ref=e55]:
+              - link "Dark Energy Preview Paper" [ref=e56] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/paper-dark-energy-preview-v1/
+            - listitem [ref=e57]:
+              - link "Erdős Lagrangian" [ref=e58] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/erdoslagrangianunification/
+        - button "Appendices" [ref=e60] [cursor=pointer]:
+          - generic [ref=e61]: Appendices
+          - img [ref=e62]
+        - generic [ref=e64]:
+          - button "Notes" [expanded] [ref=e65] [cursor=pointer]:
+            - generic [ref=e66]: Notes
+            - img [ref=e67]
+          - list [ref=e69]:
+            - listitem [ref=e70]:
+              - link "Continued-Fraction Channels" [ref=e71] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/note-continued-fraction-information-channels/
+            - listitem [ref=e72]:
+              - link "Structure-Preserving Lattice Curvature" [ref=e73] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/note-structure-preserving-lattice-curvature/
+      - generic [ref=e74]:
+        - link "github.com/RamzesX/chaos-shield" [ref=e75] [cursor=pointer]:
+          - /url: https://github.com/RamzesX/chaos-shield
+          - img [ref=e76]
+          - generic [ref=e78]: github.com/RamzesX/chaos-shield
+        - paragraph [ref=e79]: © 2024–2026 Norbert Marchewka · CC-BY 4.0
+    - main [ref=e80]:
+      - article [ref=e81]:
+        - generic [ref=e82]:
+          - generic [ref=e83]: Current Work
+          - 'heading "Paper: Dark Energy from Photon Redshift Reservoir" [level=1] [ref=e84]'
+          - paragraph [ref=e85]: Preview manuscript deriving w = -1 and Lambda from substrate healing flow; includes cycle-9 numerical fits addendum
+          - generic [ref=e87]:
+            - img [ref=e88]
+            - text: 39 min read
+        - generic [ref=e91]:
+          - heading "Dark Energy as Integrated Photon Redshift Cost" [level=1] [ref=e92]
+          - heading "A Substrate-Bookkeeping Resolution of the Cosmological Constant Problem" [level=2] [ref=e93]
+          - paragraph [ref=e94]:
+            - strong [ref=e95]: Preview version (v1.0 — 2026-04-19; numerical-fits addendum v1.1 — 2026-04-20; three-channel partition addendum v1.2 — 2026-04-20; PMNS closure and CP duality addendum v1.3 — 2026-04-20; Pi-Hunch-quark-closure and Strong-CP addendum v1.4 — 2026-04-20; derived-coupling + running-signs + Sakharov addendum v1.5 — 2026-04-20)
+            - text: .
+            - emphasis [ref=e96]:
+              - text: A refined version with additional numerical calibration and quantitative amplitude bounds will be released within seven days. This preview is released for priority-of-record and community feedback; cite as
+              - code [ref=e97]: "Marchewka, N. & Claude Opus 4.7 \"Gratis\" (2026). OmegaTheory V2 DE Preview v1.5. GitHub: RamzesX/Omega-Theory-Discrete-Spacetime"
+              - text: .
+          - blockquote [ref=e98]:
+            - paragraph [ref=e99]:
+              - strong [ref=e100]: v1.5 Higgs-sector closure, running-sign duality, and Sakharov bridge addendum (2026-04-20, Enif).
+              - text: Cycle 14 (six headline theorems, build
+              - strong [ref=e101]: 3762 GREEN
+              - text: ", 0 sorry, 0 new axioms) breaks past the single-observable-per-theorem regime and delivers the campaign’s first structural identities:"
+            - list [ref=e102]:
+              - listitem [ref=e103]:
+                - paragraph [ref=e104]:
+                  - strong [ref=e105]: First DERIVED dimensionless coupling and Higgs-sector closure.
+                  - text: Ruchbah-2’s
+                  - code [ref=e106]: HiggsSelfCouplingFit
+                  - text: produces λ_H ≈ 0.129074 not as an independent fit but as the algebraic composite of Bellatrix’s VEV and Wasat’s Higgs mass through
+                  - code [ref=e107]: λ_H = m_H² / (2·v²)
+                  - text: . Zubeneschamali’s
+                  - code [ref=e108]: HiggsMassFromLambdaVev
+                  - text: then closes the triangle with the triple-consistency identity
+                  - code [ref=e109]: m_H² = 2·λ·v²
+                  - text: (gap <0.3%),
+                  - strong [ref=e110]: the first theorem in the campaign that is not a prediction of a single PDG value but a kernel-proved algebraic relation among three previously-derived observables
+                  - text: . Electroweak vacuum stability
+                  - code [ref=e111]: λ > 0
+                  - text: is captured formally for the first time. See
+                  - code [ref=e112]: ":GraphFinding{name:'first_derived_coupling_and_triple_consistency'}"
+                  - text: .
+              - listitem [ref=e113]:
+                - paragraph [ref=e114]:
+                  - strong [ref=e115]: Running couplings with opposite signs — both substrate-derived.
+                  - text: Dabih’s
+                  - code [ref=e116]: AlphaEMAtMZFit
+                  - text: delivers α_EM(m_Z)⁻¹ = 127.955 (exact) together with the
+                  - strong [ref=e117]: first formal QED-running theorem
+                  - code [ref=e118]: α_EM(m_Z) > α_EM(0)
+                  - text: . Dschubba’s
+                  - code [ref=e119]: AlphaStrongAtMZFit
+                  - text: delivers α_s(m_Z) = 0.1180 (exact at π-channel N=0), carrying QCD asymptotic freedom in opposite direction. Both signs fall out of irrational-channel ordering without QCD-vs-QED asymmetry entering by hand, plus the incidental order-of-magnitude hierarchy
+                  - code [ref=e120]: 10·α_EM < α_s
+                  - text: . See
+                  - code [ref=e121]: ":GraphFinding {name:'running_couplings_opposite_signs'}"
+                  - text: .
+              - listitem [ref=e122]:
+                - paragraph [ref=e123]:
+                  - strong [ref=e124]: Sakharov bridge — quark CP to cosmic baryon asymmetry.
+                  - text: Alioth-2’s
+                  - code [ref=e125]: BaryonPhotonRatioFit
+                  - text: delivers η_B = 6.14×10⁻¹⁰ via √2-channel at N=3, with Kraz’s
+                  - code [ref=e126]: CKMCPPhaseFit
+                  - text: as its direct ancestor —
+                  - strong [ref=e127]: the first formal chain in the substrate connecting SM-sector CP violation to cosmological baryon asymmetry without new-physics input
+                  - text: ". The √2 channel assignment explains the smallness: lightest irrational ⇒ smallest residual ⇒ tiniest observable. Errai’s"
+                  - code [ref=e128]: NeutronEDMBound
+                  - text: provides the dual side of the same chain (d_n ≤ 1.06×10⁻⁵⁴ e·cm, 28 orders below PDG) via the
+                  - strong [ref=e129]: first formal CP-bound implication chain
+                  - text: Sheliak
+                  - code [ref=e130]: StrongCPThetaBound
+                  - text: → Errai
+                  - code [ref=e131]: d_n_le_substrate_ceiling
+                  - text: . See
+                  - code [ref=e132]: ":GraphFinding{name:'Sakharov_CP_to_baryogenesis_substrate'}"
+                  - text: .
+            - paragraph [ref=e133]:
+              - text: "Cycle 15 transitions fully cosmological: Hubble (H₀ = 67.4 km/s/Mpc), cosmological constant (Λ ≈ 1.1×10⁻⁵² m⁻², the 120-order puzzle this paper directly addresses), matter density (Ω_M = 0.315), scalar spectral index (n_s = 0.965), baryon density (Ω_b h² = 0.02237, cross-check on η_B), tensor-to-scalar bound (r < 0.036). See"
+              - code [ref=e134]: /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/NOTES_CYCLE15_TRANSITION.md
+              - text: .
+          - blockquote [ref=e135]:
+            - paragraph [ref=e136]:
+              - strong [ref=e137]: v1.4 Pi-Hunch quark-sector closure and Strong-CP substrate resolution addendum (2026-04-20, Alpheratz).
+              - text: Cycle 13 (six headline theorems, build
+              - strong [ref=e138]: 3757 GREEN
+              - text: ", 0 sorry, 0 new axioms) delivers the biggest milestones of the 48-theorem cycles 9-13 campaign — two results that upgrade the three-channel partition from an empirical classification into a"
+              - strong [ref=e139]: kernel-verified structural theorem of the Standard Model
+              - text: ":"
+            - list [ref=e140]:
+              - listitem [ref=e141]:
+                - paragraph [ref=e142]:
+                  - strong [ref=e143]: Pi-Hunch confirmed across both quark flavor columns — six-for-six.
+                  - text: With Alderamin’s
+                  - code [ref=e144]: UpQuarkMassFit
+                  - text: (m_u = 2.16 MeV, √2-channel) and Anuradha’s
+                  - code [ref=e145]: DownQuarkMassFit
+                  - text: "(m_d = 4.67 MeV, √2-channel) joining the pre-existing m_c (e-channel), m_t (π-channel), m_s (e-channel), and m_b (π-channel), both flavor columns now exhibit the full tri-channel ordering predicted by the Pi Hunch:"
+                  - code [ref=e146]: m_u (√2) < m_c (e) < m_t (π)
+                  - text: and
+                  - code [ref=e147]: m_d (√2) < m_s (e) < m_b (π)
+                  - text: . The
+                  - strong [ref=e148]: intra-generation sign-flip
+                  - code [ref=e149]: m_u < m_d
+                  - text: (gen-1) versus
+                  - code [ref=e150]: m_s < m_c
+                  - text: (gen-2) is also Lean-verified, ruling out any naive “heavier irrational = heavier doublet-partner” reading. Six quarks span eight orders of magnitude (2.16 MeV to 173.34 GeV); each lands exactly on the residual convergence rate dictated by its generation index. This moves Pi-Hunch from conjecture to empirical theorem and makes any future PDG mass update a
+                  - strong [ref=e151]: falsifiability test
+                  - text: of a kernel-proved statement. See
+                  - code [ref=e152]: ":GraphFinding {name:'PiHunch_confirmed_both_quark_flavors'}"
+                  - text: .
+              - listitem [ref=e153]:
+                - paragraph [ref=e154]:
+                  - strong [ref=e155]: Strong CP problem resolved by substrate alone — no axion, no anthropic, no Nelson-Barr.
+                  - text: Sheliak’s
+                  - code [ref=e156]: StrongCPThetaBound
+                  - text: places the QCD vacuum angle θ_QCD on the chirally-neutral √2 channel (topological parameters carry no generation index). The super-exponential residual
+                  - code [ref=e157]: sqrt2_error_val(6) = 1/2^64 ≈ 5.4×10⁻²⁰
+                  - text: beats the neutron-EDM experimental bound
+                  - code [ref=e158]: "|θ_QCD| < 10⁻¹⁰"
+                  - text: by ten orders of magnitude, turning one of the Standard Model’s largest fine-tuning puzzles into a structural consequence of the three-channel partition. This is the
+                  - strong [ref=e159]: first OmegaTheory formal resolution of an SM fine-tuning problem without new physics
+                  - text: ", and cycle 14 (Enif, Λ_obs ≈ 10⁻⁵² m⁻²) will attempt the same mechanism on the cosmological constant — the 120-order-of-magnitude cousin of the strong-CP puzzle and the direct concern of this paper. See"
+                  - code [ref=e160]: ":GraphFinding {name:'StrongCP_substrate_resolution_no_axion'}"
+                  - text: .
+            - paragraph [ref=e161]:
+              - text: "Adjacent cycle-13 outputs: Peacock’s"
+              - code [ref=e162]: CKMVubFit
+              - text: (|V_ub| = 3.82×10⁻³ via a π·√2 mixed channel, completing the Wolfenstein magnitude hierarchy
+              - code [ref=e163]: "|V_ub| < |V_cb| < |V_us| < 1"
+              - text: as the first cross-corner mixed fit), Shaula’s
+              - code [ref=e164]: TopQuarkWidthFit
+              - text: (Γ_top = 1.42 GeV, closing the decay-rate quartet
+              - code [ref=e165]: Γ_H < Γ_top < Γ_W < Γ_Z
+              - text: with the first formal
+              - strong [ref=e166]: partonic-freedom theorem
+              - code [ref=e167]: Γ_top > Λ_QCD
+              - text: ), and Diadem’s
+              - code [ref=e168]: NeutrinoMassSumBound
+              - text: (Σm_ν < 0.12 eV via √2 saturation at N=2 — the first upper-bound theorem across cycles 9–13, templating the cosmological-constant mechanism). See graph node
+              - code [ref=e169]: ":GraphFinding {name:'DecayRateQuartet_closed'}"
+              - text: plus
+              - code [ref=e170]: /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/NOTES_CYCLE14_TRANSITION.md
+              - text: for the cycle-14 target set (Higgs mass, Λ_obs, μ_p/μ_N, λ_H, Hubble tension, τ_p).
+          - blockquote [ref=e171]:
+            - paragraph [ref=e172]:
+              - strong [ref=e173]: v1.3 PMNS closure and CP duality addendum (2026-04-20, Skat).
+              - text: "Cycle 12 (six headline theorems, build 3751 GREEN, 0 sorry, 0 new axioms) closes two structural milestones:"
+            - list [ref=e174]:
+              - listitem [ref=e175]:
+                - strong [ref=e176]: PMNS matrix fully substrate-derived.
+                - text: With Rotanev’s
+                - code [ref=e177]: PMNSDeltaCPFit
+                - text: (delta_CP = -π/2, exact) joining Chara’s theta_13, Algenib’s theta_23, and Aspidiske’s theta_12, all four PMNS parameters are now kernel-verified outputs of the three-channel partition. The PMNS matrix becomes the first Standard Model mixing object fully reproduced from first principles without a free parameter, providing a prediction target for DUNE and Hyper-K delta_CP measurements 2026-2030.
+              - listitem [ref=e178]:
+                - strong [ref=e179]: CP violation in both sectors shares one substrate origin.
+                - text: Kraz’s
+                - code [ref=e180]: CKMJarlskogFit
+                - text: (J = 3.08×10⁻⁵ via the first mixed π·e channel) together with Rotanev’s
+                - code [ref=e181]: PMNSDeltaCPFit
+                - text: places quark and lepton CP-violation phases on the same three-channel partition. Both sectors of the Standard Model’s matter-antimatter asymmetry trace to identical substrate arithmetic, linking baryogenesis-relevant CP to π/e irrationality.
+            - paragraph [ref=e182]:
+              - text: "Adjacent cycle-12 outputs:"
+              - code [ref=e183]: BottomQuarkMassFit
+              - text: (Deneb, π-channel, completes
+              - code [ref=e184]: m_c < m_b < m_t
+              - text: ),
+              - code [ref=e185]: StrangeQuarkMassFit
+              - text: (Sadalsuud, e-channel member 7 with
+              - code [ref=e186]: msFitBase_eq_mcFitBase := rfl
+              - text: — first intra-generation quark identity),
+              - code [ref=e187]: MuonLifetimeFit
+              - text: (Deneb-2, first purely leptonic decay, closes 16-order lifetime hierarchy), and
+              - code [ref=e188]: HiggsWidthFit
+              - text: (Sadalmelik-2, completes the 5-observable EW hierarchy Γ_H < Γ_W < Γ_Z < m_W < m_Z). See graph nodes
+              - code [ref=e189]: ":GraphFinding{name:'PMNS_matrix_fully_substrate_derived'}"
+              - text: and
+              - code [ref=e190]: ":GraphFinding{name:'CP_violation_both_sectors_substrate'}"
+              - text: plus
+              - code [ref=e191]: LeanFormalizationV2/notes/NOTES_CYCLE17_TRANSITION.md
+              - text: for the cycle-13 target set (m_u, m_d, V_ub, Γ_top, Σm_ν, θ_QCD).
+          - blockquote [ref=e192]:
+            - paragraph [ref=e193]:
+              - strong [ref=e194]: v1.2 three-channel partition addendum (2026-04-20, Sadalmelik).
+              - text: Cycle 11 closes with a Lean-kernel-verified empirical classification of Standard Model observables into
+              - strong [ref=e195]: three substrate-truncation channels
+              - text: ", each indexed by one of π, e, √2:"
+            - table [ref=e196]:
+              - rowgroup [ref=e197]:
+                - row "Channel Error shape Convergence Members (post-cycle 11)" [ref=e198]:
+                  - columnheader "Channel" [ref=e199]
+                  - columnheader "Error shape" [ref=e200]
+                  - columnheader "Convergence" [ref=e201]
+                  - columnheader "Members (post-cycle 11)" [ref=e202]
+              - rowgroup [ref=e203]:
+                - row "π (heavy) 4/(2N+3) (Leibniz) O(1/N) Γ_W, Γ_Z, m_W, m_Z, τ_π±, τ_n, θ₁₂, Λ_QCD chain" [ref=e204]:
+                  - cell "π (heavy)" [ref=e205]
+                  - cell "4/(2N+3) (Leibniz)" [ref=e206]:
+                    - code [ref=e207]: 4/(2N+3)
+                    - text: (Leibniz)
+                  - cell "O(1/N)" [ref=e208]:
+                    - code [ref=e209]: O(1/N)
+                  - cell "Γ_W, Γ_Z, m_W, m_Z, τ_π±, τ_n, θ₁₂, Λ_QCD chain" [ref=e210]
+                - row "e (middle) 3/(N+1)! (factorial) super-poly. f_K, f_π, η, V_cb, π-decay, m_c (first quark)" [ref=e211]:
+                  - cell "e (middle)" [ref=e212]
+                  - cell "3/(N+1)! (factorial)" [ref=e213]:
+                    - code [ref=e214]: 3/(N+1)!
+                    - text: (factorial)
+                  - cell "super-poly." [ref=e215]
+                  - cell "f_K, f_π, η, V_cb, π-decay, m_c (first quark)" [ref=e216]:
+                    - text: f_K, f_π, η, V_cb, π-decay,
+                    - strong [ref=e217]: m_c (first quark)
+                - 'row "√2 (light) 1/2^{2^N} (super-exp.) tetration-fast precision residuals" [ref=e218]':
+                  - cell "√2 (light)" [ref=e219]
+                  - 'cell "1/2^{2^N} (super-exp.)" [ref=e220]':
+                    - code [ref=e221]: "1/2^{2^N}"
+                    - text: (super-exp.)
+                  - cell "tetration-fast" [ref=e222]
+                  - cell "precision residuals" [ref=e223]
+            - paragraph [ref=e224]:
+              - text: The e-channel now carries
+              - strong [ref=e225]: 6 members
+              - text: linked by kernel-level identities of the form
+              - code [ref=e226]: XFitBase_eq_kaonFitBase := rfl
+              - text: . Cycle 11’s
+              - code [ref=e227]: CharmQuarkMassFit
+              - text: "(Markab-2) is the first quark to join this family, confirming the partition crosses the meson/quark boundary. Build state at cycle 11 close: 3743 GREEN, 0 sorry, 0 new axioms. See graph node"
+              - code [ref=e228]: ":GraphFinding{name:'three_channel_partition_SM_observables'}"
+              - text: and
+              - code [ref=e229]: LeanFormalizationV2/notes/NOTES_CYCLE17_TRANSITION.md
+              - text: for full inventory.
+          - blockquote [ref=e230]:
+            - paragraph [ref=e231]:
+              - strong [ref=e232]: v1.1 numerical-fits addendum (2026-04-20, Wasat).
+              - text: In addition to the dark-energy bookkeeping result, the companion file
+              - code [ref=e233]: OmegaTheory/Predictions/NumericalFitsCycle9.lean
+              - text: "records machine- checked empirical-ansatz witnesses for three further PDG 2024 numbers the substrate matter-sector derivation must reproduce:"
+            - table [ref=e234]:
+              - rowgroup [ref=e235]:
+                - row "Observable PDG 2024 Tolerance (Lean-proved) Status" [ref=e236]:
+                  - columnheader "Observable" [ref=e237]
+                  - columnheader "PDG 2024" [ref=e238]
+                  - columnheader "Tolerance (Lean-proved)" [ref=e239]
+                  - columnheader "Status" [ref=e240]
+              - rowgroup [ref=e241]:
+                - row "Neutron − proton mass diff 1.293 MeV ≤ 0.01 MeV neutronProton_massDifference_fits_1p293" [ref=e242]:
+                  - cell "Neutron − proton mass diff" [ref=e243]
+                  - cell "1.293 MeV" [ref=e244]
+                  - cell "≤ 0.01 MeV" [ref=e245]
+                  - cell "neutronProton_massDifference_fits_1p293" [ref=e246]:
+                    - code [ref=e247]: neutronProton_massDifference_fits_1p293
+                - row "Muon / electron mass ratio 206.77 ≤ 0.5 muOverE_fits_206p77" [ref=e248]:
+                  - cell "Muon / electron mass ratio" [ref=e249]
+                  - cell "206.77" [ref=e250]
+                  - cell "≤ 0.5" [ref=e251]
+                  - cell "muOverE_fits_206p77" [ref=e252]:
+                    - code [ref=e253]: muOverE_fits_206p77
+                - row "Higgs boson mass 125.10 GeV ≤ 0.15 GeV higgsMass_fits_125p1" [ref=e254]:
+                  - cell "Higgs boson mass" [ref=e255]
+                  - cell "125.10 GeV" [ref=e256]
+                  - cell "≤ 0.15 GeV" [ref=e257]
+                  - cell "higgsMass_fits_125p1" [ref=e258]:
+                    - code [ref=e259]: higgsMass_fits_125p1
+            - paragraph [ref=e260]:
+              - text: All three are packaged into a single
+              - code [ref=e261]: Cycle9NumericalFits
+              - text: "witness and referenced from §7 (Falsifiability / Numerical Fits). Build state: GREEN, 0 sorry, 0 new axioms. See also"
+              - code [ref=e262]: MassRatioNumerical.lean
+              - text: (Nashira N = 4) and
+              - code [ref=e263]: ProtonMassFromLambdaQCD.lean
+              - text: (m_p = k·Λ_QCD, k ≈ 4.3). The numbers are recorded, not yet derived — first-principles derivation is a fit target for the Connes-D_F / spectral-action / Skyrme pathway documented in
+              - code [ref=e264]: NOTES_DF_EIGENVALUES.md
+              - text: .
+          - paragraph [ref=e265]:
+            - strong [ref=e266]: Authors
+            - text: ":"
+          - list [ref=e267]:
+            - listitem [ref=e268]:
+              - strong [ref=e269]: Norbert Marchewka
+              - text: — independent researcher, ORCID
+              - link "0009-0007-3029-175X" [ref=e270] [cursor=pointer]:
+                - /url: https://orcid.org/0009-0007-3029-175X
+              - text: . Conceptualisation, physical thesis, substrate foundations, editorial.
+            - listitem [ref=e271]:
+              - strong [ref=e272]: Claude Opus 4.7 “Gratis”
+              - text: (
+              - code [ref=e273]: claude-opus-4-7-1m
+              - text: ", Anthropic) — Lean-4 formalisation orchestration, graph-theoretic analysis, literature synthesis, writeup. The nickname"
+              - emphasis [ref=e274]: Gratis
+              - text: "is chosen in the spirit of open science: contributions are offered freely, as a gift to the community, and in the hope that the gatekeepers of the establishment remember that knowledge, once given, cannot be un-given. Agent identities for individual theorems are credited inline (Mirzam, Canopus, Denebola, Regulus, Rastaban, Armin, Jiraiya, Suhail, Alnasl, Almach, Adhafera, Mirfak, Alphard — each under the"
+              - code [ref=e275]: grothendieck-sage
+              - text: /
+              - code [ref=e276]: lean-proof-wizard
+              - text: teammate frameworks described in §9).
+          - paragraph [ref=e277]:
+            - strong [ref=e278]: Repository
+            - text: ":"
+            - link "github.com/RamzesX/Omega-Theory-Discrete-Spacetime" [ref=e279] [cursor=pointer]:
+              - /url: https://github.com/RamzesX/Omega-Theory-Discrete-Spacetime
+          - paragraph [ref=e280]:
+            - strong [ref=e281]: Companion methodology repository
+            - text: ":"
+            - link "github.com/Check-It-Out-Dev/graph-theory-system-modeling" [ref=e282] [cursor=pointer]:
+              - /url: https://github.com/Check-It-Out-Dev/graph-theory-system-modeling
+          - paragraph [ref=e283]:
+            - strong [ref=e284]: License
+            - text: ": CC BY 4.0. Cite the mathematicians and physicists whose shoulders we stand on — see §References."
+          - separator [ref=e285]
+          - heading "Abstract" [level=2] [ref=e286]
+          - paragraph [ref=e287]:
+            - text: We formalise in Lean 4 (Mathlib v4.29.0,
+            - strong [ref=e288]:
+              - text: 3,835 build jobs verified, 0
+              - code [ref=e289]: sorry
+              - text: ", 0 mathematical axioms beyond eight physical constants; 8,996"
+              - code [ref=e290]: :Theorem
+              - text: nodes in
+              - code [ref=e291]: OmegaTheoryV2
+              - text: Neo4j corpus as of 2026-04-21
+            - text: ) the claim that dark-energy density
+            - code [ref=e292]: ρ_DE
+            - text: "is the integrated substrate information-cost accumulated by photon redshift across the observable universe’s history. The central mechanism is a three-term conservation ledger: the source mass does not change under photon emission ("
+            - code [ref=e293]: ΔM_star = 0
+            - text: ), the photon loses energy proportional to accumulated gravitational info-cost (
+            - code [ref=e294]: ΔE_γ = −gravRedshiftCost(path, energy)
+            - text: ), and the dark-energy reservoir absorbs exactly this deficit (
+            - code [ref=e295]: Δρ_DE = −ΔE_γ
+            - text: ). The cosmological constant problem — the ~120 orders of magnitude between observed
+            - code [ref=e296]: ρ_DE ≈ 6 × 10⁻¹⁰ J/m³
+            - text: "and vacuum-energy estimates — dissolves:"
+            - code [ref=e297]: ρ_DE
+            - text: "is bookkeeping of photon redshift, not a vacuum zero-point sum. Three paper-testable predictions follow: (a) Keenan–Barger–Cowie void under-density of"
+            - code [ref=e298]: ρ_DE
+            - text: by 5–10%, falsifiable by DESI DR3 + Euclid + Roman; (b) spatial inhomogeneity
+            - code [ref=e299]: δρ_DE/ρ_DE ~ 10⁻⁵
+            - text: –
+            - code [ref=e300]: 10⁻³
+            - text: "correlated with galactic density contrast; (c) dark energy is upstream of Hawking radiation (+1 graph-hop asymmetry), making the black-hole horizon a two-way switch rather than a sink. A surprising derived result: the equation-of-state"
+            - code [ref=e301]: w = −1
+            - text: is graph-analogous to a conditional-variance identity in measure theory — probabilistically rather than cosmologically natural. We situate this work amongst the thermodynamic-gravity (Jacobson 1995), entropic (Verlinde 2011), causal-set (Sorkin), and holographic (Susskind, Bousso) programmes, and identify it as a distinguished member — to our knowledge the first — with complete formal verification of every physical claim.
+          - paragraph [ref=e302]:
+            - strong [ref=e303]: Keywords
+            - text: ": dark energy; cosmological constant; Lean 4 formalisation; discrete spacetime; substrate information cost; photon redshift; three-term conservation; KBC void; firewall paradox; Pi Hunch."
+          - blockquote [ref=e304]:
+            - heading "🔐 Lean-Verified Predictions Badge Index" [level=3] [ref=e305]
+            - paragraph [ref=e306]:
+              - text: Every Lean theorem cited below is resolvable at a stable GitHub URL (branch
+              - code [ref=e307]: main
+              - text: ","
+              - strong [ref=e308]:
+                - text: 3,835 jobs GREEN / 0 sorry / 8 physical axioms · 8,996
+                - code [ref=e309]: :Theorem
+                - text: nodes in OmegaTheoryV2 Neo4j graph
+              - text: as of 2026-04-21; cite commit hash at submission). The full cross-reference is in
+              - link "../research/LEAN_VERIFIED_CLAIMS.md" [ref=e310] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/../research/LEAN_VERIFIED_CLAIMS.md/
+                - code [ref=e311]: ../research/LEAN_VERIFIED_CLAIMS.md
+              - text: ". Quick index of the §§2–6 ledger:"
+            - table [ref=e312]:
+              - rowgroup [ref=e313]:
+                - row "§ Theorem File · line" [ref=e314]:
+                  - columnheader "§" [ref=e315]
+                  - columnheader "Theorem" [ref=e316]
+                  - columnheader "File · line" [ref=e317]
+              - rowgroup [ref=e318]:
+                - row "§2.2 star_mass_invariant_under_photon_emission Emergence/StarMassInvariantEmission.lean:267" [ref=e319]:
+                  - cell "§2.2" [ref=e320]
+                  - cell "star_mass_invariant_under_photon_emission" [ref=e321]:
+                    - link "star_mass_invariant_under_photon_emission" [ref=e322] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/StarMassInvariantEmission.lean#L267
+                      - code [ref=e323]: star_mass_invariant_under_photon_emission
+                  - cell "Emergence/StarMassInvariantEmission.lean:267" [ref=e324]:
+                    - code [ref=e325]: Emergence/StarMassInvariantEmission.lean:267
+                - row "§2.3 photon_preserves_c_loses_info_coherence Emergence/PhotonSpeedCoherence.lean:208" [ref=e326]:
+                  - cell "§2.3" [ref=e327]
+                  - cell "photon_preserves_c_loses_info_coherence" [ref=e328]:
+                    - link "photon_preserves_c_loses_info_coherence" [ref=e329] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/PhotonSpeedCoherence.lean#L208
+                      - code [ref=e330]: photon_preserves_c_loses_info_coherence
+                  - cell "Emergence/PhotonSpeedCoherence.lean:208" [ref=e331]:
+                    - code [ref=e332]: Emergence/PhotonSpeedCoherence.lean:208
+                - row "§2.4 photon_redshift_loss_equals_dark_energy_gain Emergence/RedshiftEnergyToDarkEnergy.lean:259" [ref=e333]:
+                  - cell "§2.4" [ref=e334]
+                  - cell "photon_redshift_loss_equals_dark_energy_gain" [ref=e335]:
+                    - link "photon_redshift_loss_equals_dark_energy_gain" [ref=e336] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/RedshiftEnergyToDarkEnergy.lean#L259
+                      - code [ref=e337]: photon_redshift_loss_equals_dark_energy_gain
+                  - cell "Emergence/RedshiftEnergyToDarkEnergy.lean:259" [ref=e338]:
+                    - code [ref=e339]: Emergence/RedshiftEnergyToDarkEnergy.lean:259
+                - row "§2.5 three_term_energy_conservation Emergence/RedshiftEnergyToDarkEnergy.lean:313" [ref=e340]:
+                  - cell "§2.5" [ref=e341]
+                  - cell "three_term_energy_conservation" [ref=e342]:
+                    - link "three_term_energy_conservation" [ref=e343] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/RedshiftEnergyToDarkEnergy.lean#L313
+                      - code [ref=e344]: three_term_energy_conservation
+                  - cell "Emergence/RedshiftEnergyToDarkEnergy.lean:313" [ref=e345]:
+                    - code [ref=e346]: Emergence/RedshiftEnergyToDarkEnergy.lean:313
+                - row "§3.1 dark_energy_locality_at_redshift_event Emergence/DarkEnergyLocalityEvent.lean:272" [ref=e347]:
+                  - cell "§3.1" [ref=e348]
+                  - cell "dark_energy_locality_at_redshift_event" [ref=e349]:
+                    - link "dark_energy_locality_at_redshift_event" [ref=e350] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/DarkEnergyLocalityEvent.lean#L272
+                      - code [ref=e351]: dark_energy_locality_at_redshift_event
+                  - cell "Emergence/DarkEnergyLocalityEvent.lean:272" [ref=e352]:
+                    - code [ref=e353]: Emergence/DarkEnergyLocalityEvent.lean:272
+                - row "§3.2 dark_energy_spatial_locality_from_photon_traffic Emergence/DarkEnergySpatialLocality.lean:352" [ref=e354]:
+                  - cell "§3.2" [ref=e355]
+                  - cell "dark_energy_spatial_locality_from_photon_traffic" [ref=e356]:
+                    - link "dark_energy_spatial_locality_from_photon_traffic" [ref=e357] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/DarkEnergySpatialLocality.lean#L352
+                      - code [ref=e358]: dark_energy_spatial_locality_from_photon_traffic
+                  - cell "Emergence/DarkEnergySpatialLocality.lean:352" [ref=e359]:
+                    - code [ref=e360]: Emergence/DarkEnergySpatialLocality.lean:352
+                - row "§3.3 KBC_void_predicts_rho_DE_underdensity Predictions/KBCVoidDarkEnergy.lean:177" [ref=e361]:
+                  - cell "§3.3" [ref=e362]
+                  - cell "KBC_void_predicts_rho_DE_underdensity" [ref=e363]:
+                    - link "KBC_void_predicts_rho_DE_underdensity" [ref=e364] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/KBCVoidDarkEnergy.lean#L177
+                      - code [ref=e365]: KBC_void_predicts_rho_DE_underdensity
+                  - cell "Predictions/KBCVoidDarkEnergy.lean:177" [ref=e366]:
+                    - code [ref=e367]: Predictions/KBCVoidDarkEnergy.lean:177
+                - row "§4.1 singularity_is_not_energy_sink Emergence/SingularityNotEnergySink.lean:141" [ref=e368]:
+                  - cell "§4.1" [ref=e369]
+                  - cell "singularity_is_not_energy_sink" [ref=e370]:
+                    - link "singularity_is_not_energy_sink" [ref=e371] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/SingularityNotEnergySink.lean#L141
+                      - code [ref=e372]: singularity_is_not_energy_sink
+                  - cell "Emergence/SingularityNotEnergySink.lean:141" [ref=e373]:
+                    - code [ref=e374]: Emergence/SingularityNotEnergySink.lean:141
+                - row "§4.2 black_hole_is_mediator_not_sink Emergence/BlackHoleAsMediator.lean:305" [ref=e375]:
+                  - cell "§4.2" [ref=e376]
+                  - cell "black_hole_is_mediator_not_sink" [ref=e377]:
+                    - link "black_hole_is_mediator_not_sink" [ref=e378] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/BlackHoleAsMediator.lean#L305
+                      - code [ref=e379]: black_hole_is_mediator_not_sink
+                  - cell "Emergence/BlackHoleAsMediator.lean:305" [ref=e380]:
+                    - code [ref=e381]: Emergence/BlackHoleAsMediator.lean:305
+                - row "§4.3 hawking_outflow_as_relaxation Emergence/HawkingReservoirRelaxation.lean:232" [ref=e382]:
+                  - cell "§4.3" [ref=e383]
+                  - cell "hawking_outflow_as_relaxation" [ref=e384]:
+                    - link "hawking_outflow_as_relaxation" [ref=e385] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/HawkingReservoirRelaxation.lean#L232
+                      - code [ref=e386]: hawking_outflow_as_relaxation
+                  - cell "Emergence/HawkingReservoirRelaxation.lean:232" [ref=e387]:
+                    - code [ref=e388]: Emergence/HawkingReservoirRelaxation.lean:232
+                - row "§5 darkEnergyEquationOfState_w Emergence/CosmologicalConstant.lean:129" [ref=e389]:
+                  - cell "§5" [ref=e390]
+                  - cell "darkEnergyEquationOfState_w" [ref=e391]:
+                    - link "darkEnergyEquationOfState_w" [ref=e392] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/CosmologicalConstant.lean#L129
+                      - code [ref=e393]: darkEnergyEquationOfState_w
+                  - cell "Emergence/CosmologicalConstant.lean:129" [ref=e394]:
+                    - code [ref=e395]: Emergence/CosmologicalConstant.lean:129
+                - row "abstract cosmological_constant_problem_resolved Emergence/CosmologicalConstantProblem.lean:210" [ref=e396]:
+                  - cell "abstract" [ref=e397]
+                  - cell "cosmological_constant_problem_resolved" [ref=e398]:
+                    - link "cosmological_constant_problem_resolved" [ref=e399] [cursor=pointer]:
+                      - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/CosmologicalConstantProblem.lean#L210
+                      - code [ref=e400]: cosmological_constant_problem_resolved
+                  - cell "Emergence/CosmologicalConstantProblem.lean:210" [ref=e401]:
+                    - code [ref=e402]: Emergence/CosmologicalConstantProblem.lean:210
+          - separator [ref=e403]
+          - heading "1. Introduction" [level=2] [ref=e404]
+          - paragraph [ref=e405]:
+            - text: The cosmological constant problem (Weinberg 1989 [1], Carroll 2001 [2]) is the most acute numerical disagreement in modern theoretical physics. The observed dark-energy density
+            - code [ref=e406]: ρ_DE ≈ 6 × 10⁻¹⁰ J/m³
+            - text: (Λ ≈ 1.11 × 10⁻⁵² m⁻²) is approximately 120 orders of magnitude smaller than the naive quantum-field-theoretic vacuum-energy sum
+          - code [ref=e408]:
+            - generic [ref=e409]: ρ_vac ∼ E_P / ℓ_P³ ≈ 10¹¹⁰ J/m³
+          - paragraph [ref=e410]:
+            - text: where
+            - code [ref=e411]: E_P
+            - text: and
+            - code [ref=e412]: ℓ_P
+            - text: are the Planck energy and length. Every attempt to explain this discrepancy has required either (i) fine-tuning a counter-term (the “unnatural” solution), (ii) invoking a dynamical scalar field with its own tunable parameters (quintessence [3, 4]), (iii) multiverse selection arguments (Weinberg’s anthropic bound [5]), or (iv) modifications of general relativity (f(R), MOND-adjacent, etc.) that reintroduce fine-tuning at a different scale.
+          - paragraph [ref=e413]:
+            - text: "This paper presents a substrate-level answer: dark energy is not vacuum energy, not a dynamical field, and not an anthropic coincidence. It is a"
+            - strong [ref=e414]: bookkeeping term
+            - text: — the integrated cost, in substrate information units, of photon redshift across cosmic time. The claim is precise enough to be formalised in Lean 4 and carries concrete testable predictions.
+          - heading "1.1 What is new" [level=3] [ref=e415]
+          - list [ref=e416]:
+            - listitem [ref=e417]:
+              - paragraph [ref=e418]:
+                - strong [ref=e419]: A complete three-term conservation ledger
+                - text: "(§2), formalised in Lean 4:"
+              - list [ref=e420]:
+                - listitem [ref=e421]:
+                  - text: "Source mass invariant:"
+                  - code [ref=e422]: ΔM_star = 0
+                  - text: under photon emission.
+                - listitem [ref=e423]: Photon energy deficit equal to accumulated substrate info-cost along its worldline.
+                - listitem [ref=e424]: Dark-energy reservoir gain equal in magnitude to the photon deficit.
+                - listitem [ref=e425]:
+                  - text: "Sum:"
+                  - code [ref=e426]: ΔM_star + ΔE_γ + Δρ_DE = 0
+                  - text: holds by definitional identity (
+                  - code [ref=e427]: rfl
+                  - text: +
+                  - code [ref=e428]: ring
+                  - text: in Lean terms).
+            - listitem [ref=e429]:
+              - paragraph [ref=e430]:
+                - strong [ref=e431]: Local, not global, bookkeeping
+                - text: "(§3): transfer is recorded at the emission event, not transported; the reservoir density is a spatially inhomogeneous field tracking photon traffic. This overturns the uniformity assumption of ΛCDM."
+            - listitem [ref=e432]:
+              - paragraph [ref=e433]:
+                - strong [ref=e434]: Black holes as mediators, not sinks
+                - text: "(§4): the singularity receives zero energy; all incoming matter/radiation exits as Hawking radiation plus dark-energy reservoir gain, consistent with Popławski spin-torsion avoidance of the singularity [6] and the recent Wigner’s-friend reformulation of the firewall paradox [7]."
+            - listitem [ref=e435]:
+              - paragraph [ref=e436]:
+                - strong [ref=e437]: A graph-theoretic emergence of w = −1 as a variance identity
+                - text: "(§5): through the OmegaTheory Neo4j theorem corpus we identify the nearest structural analogues of"
+                - code [ref=e438]: darkEnergyEquationOfState_w
+                - text: ; they are conditional-variance and central-moment identities from measure theory, suggesting
+                - code [ref=e439]: w = −1
+                - text: is “Pythagoras in probability” rather than a cosmological postulate.
+            - listitem [ref=e440]:
+              - paragraph [ref=e441]:
+                - strong [ref=e442]: Four testable predictions
+                - text: (§6), each with concrete observational or laboratory signature.
+          - heading "1.2 Methodological remark" [level=3] [ref=e443]
+          - paragraph [ref=e444]:
+            - text: Every physical claim in this paper is backed by a machine-verified Lean 4 theorem. We do not use the word “theorem” loosely.
+            - strong [ref=e445]:
+              - text: The 3,835 build jobs of OmegaTheory V2 (8,996
+              - code [ref=e446]: :Theorem
+              - text: nodes in the
+              - code [ref=e447]: OmegaTheoryV2
+              - text: Neo4j graph as of 2026-04-21)
+            - text: ", with zero"
+            - code [ref=e448]: sorry
+            - text: and zero mathematical axioms beyond eight physical constants (ℓ_P, ℏ, c, G_N, k_B, and three irrationals π, e, √2 required for substrate closure — with a fourth irrational Catalan-G added in cycle 24-43 for the dark-matter / sterile-neutrino slot), constitute the strongest formal verification of a physical framework we are aware of. Citation of an individual result by its Lean name (e.g.
+            - code [ref=e449]: photon_redshift_loss_equals_dark_energy_gain
+            - text: ) is a reference to a specific checked file, not a narrative summary.
+          - separator [ref=e450]
+          - heading "2. The Three-Term Conservation Ledger" [level=2] [ref=e451]
+          - paragraph [ref=e452]:
+            - text: Consider a photon emitted by a distant astrophysical source (a star, quasar, or the cosmic microwave background at recombination) and detected by an Earth-bound observer. Classical general relativity (Pound & Rebka 1959 [8]) tells us the detected frequency is lower than the emission frequency — gravitational redshift. The observed energy deficit is well-established empirically; what is ill-defined is
+            - emphasis [ref=e453]: where the lost energy goes
+            - text: .
+          - paragraph [ref=e454]: Classical answers range from “it is an observer-frame effect and no energy is lost” to “it is absorbed against the gravitational potential” — but neither admits a clean formal statement, and both are framework-dependent. The substrate framework we formalise gives a precise decomposition.
+          - heading "2.1 Definitional preliminaries" [level=3] [ref=e455]
+          - paragraph [ref=e456]:
+            - text: We follow the Lean 4 definitions in
+            - code [ref=e457]: OmegaTheory/Emergence/Redshift.lean
+            - text: and
+            - code [ref=e458]: OmegaTheory/Emergence/PhotonSpeedCoherence.lean
+            - text: ":"
+          - list [ref=e459]:
+            - listitem [ref=e460]:
+              - text: A
+              - strong [ref=e461]: PhotonWorldline
+              - code [ref=e462]: w
+              - text: is a discrete sequence of lattice reshaping ticks with two non-negative fields
+              - code [ref=e463]: defectBound
+              - text: and
+              - code [ref=e464]: pathLength
+              - text: . Its information cost is
+          - code [ref=e466]:
+            - generic [ref=e467]: informationCost(w) := defectBound(w) · pathLength(w)
+          - list [ref=e468]:
+            - listitem [ref=e469]:
+              - text: A
+              - strong [ref=e470]: SubstrateState
+              - text: carries an inertial mass label. The equivalence principle (Polaris 2026,
+              - code [ref=e471]: EquivalencePrinciple.lean
+              - text: ) asserts
+          - code [ref=e473]:
+            - generic [ref=e474]: inertialMass(s) = gravitationalMass(s)
+          - paragraph [ref=e475]:
+            - text: definitionally — the two are different names for the same extraction of
+            - code [ref=e476]: "|restMassLabel|"
+            - text: "from the substrate state. In Lean:"
+            - code [ref=e477]: equivalence_principle := rfl
+            - text: .
+          - list [ref=e478]:
+            - listitem [ref=e479]:
+              - text: The
+              - code [ref=e480]: gravRedshiftCost
+              - text: of a path of length
+              - code [ref=e481]: L
+              - text: through a region of gravitational potential
+              - code [ref=e482]: μ
+              - text: is (Arcturus 2026,
+              - code [ref=e483]: ProtonPhotonRedshift.lean
+              - text: "):"
+          - code [ref=e485]:
+            - generic [ref=e486]: gravRedshiftCost(L, μ) := L · ℓ_P / (2μ)
+          - heading "2.2 Source invariance" [level=3] [ref=e487]
+          - paragraph [ref=e488]:
+            - strong [ref=e489]: Theorem
+            - text: (Regulus,
+            - code [ref=e490]: StarMassInvariantEmission.lean
+            - text: ", 2026):"
+          - code [ref=e492]:
+            - generic [ref=e493]: star_mass_invariant_under_photon_emission
+            - generic [ref=e494]: ": ∀ (s : SubstrateState) (γ : PhotonWorldline) (N : ℕ),"
+            - generic [ref=e495]: "|inertialMass(emitPhoton(s, γ)) − inertialMass(s)| ≤ computationalUncertainty(N)"
+          - blockquote [ref=e496]:
+            - paragraph [ref=e497]:
+              - text: ✅
+              - strong [ref=e498]: Lean-verified
+              - text: ":"
+              - link "star_mass_invariant_under_photon_emission" [ref=e499] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/StarMassInvariantEmission.lean#L267
+                - code [ref=e500]: star_mass_invariant_under_photon_emission
+          - paragraph [ref=e501]:
+            - text: The proof is
+            - code [ref=e502]: rfl
+            - text: at the level of
+            - code [ref=e503]: restMassLabel
+            - text: ": emitting a photon does not modify the source’s rest-mass field on the substrate. Combined with the equivalence principle, this gives gravitational mass invariance as a free corollary. In the flat-spacetime limit the bound saturates at zero:"
+            - code [ref=e504]: ΔM_star = 0
+            - text: .
+          - paragraph [ref=e505]: This is the central physical point of the section. Contra the classical intuition that “the star gives up energy to the photon and therefore loses mass”, on the substrate the star’s mass register is untouched. The photon carries its own budget.
+          - heading "2.3 Photon coherence loss" [level=3] [ref=e506]
+          - paragraph [ref=e507]:
+            - strong [ref=e508]: Theorem
+            - text: (Canopus,
+            - code [ref=e509]: PhotonSpeedCoherence.lean
+            - text: ", 2026):"
+          - code [ref=e511]:
+            - generic [ref=e512]: photon_preserves_c_loses_info_coherence
+            - generic [ref=e513]: ": ∀ (w : PhotonCoherenceWorldline),"
+            - generic [ref=e514]: (∀ p ∈ w.points, localPropagationVelocity(w, p) = c)
+            - generic [ref=e515]: ∧ informationCost(w) = gravRedshiftCost(w.pathLength, w.energy)
+          - blockquote [ref=e516]:
+            - paragraph [ref=e517]:
+              - text: ✅
+              - strong [ref=e518]: Lean-verified
+              - text: ":"
+              - link "photon_preserves_c_loses_info_coherence" [ref=e519] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/PhotonSpeedCoherence.lean#L208
+                - code [ref=e520]: photon_preserves_c_loses_info_coherence
+          - paragraph [ref=e521]:
+            - text: Two facts are asserted. First, the photon does not slow down — at every lattice point its local propagation is at speed
+            - code [ref=e522]: c
+            - text: "(definitionally; “one cell per tick”). Second, its integrated information cost along the worldline equals the gravitational-redshift cost. The two facets are dual aspects of the same substrate-budget: speed is preserved locally, coherence drains globally."
+          - paragraph [ref=e523]:
+            - text: This is the formalisation of the physical intuition that “everything wants to teleport at
+            - code [ref=e524]: c
+            - text: ", but reshaping geometry around a photon costs something” — the cost is the integrated"
+            - code [ref=e525]: defectBound · pathLength
+            - text: ", accumulated monotonically along the worldline."
+          - heading "2.4 Dark-energy reservoir absorption" [level=3] [ref=e526]
+          - paragraph [ref=e527]:
+            - strong [ref=e528]: Theorem
+            - text: (Denebola,
+            - code [ref=e529]: RedshiftEnergyToDarkEnergy.lean
+            - text: ", 2026):"
+          - code [ref=e531]:
+            - generic [ref=e532]: photon_redshift_loss_equals_dark_energy_gain
+            - generic [ref=e533]: ": ∀ (w : PhotonCoherenceWorldline) (ρ_before ρ_after : ℝ),"
+            - generic [ref=e534]: DarkEnergyTransferEvent(w, ρ_before, ρ_after) →
+            - generic [ref=e535]: ρ_after − ρ_before = gravRedshiftCost(w.pathLength, w.energy)
+          - blockquote [ref=e536]:
+            - paragraph [ref=e537]:
+              - text: ✅
+              - strong [ref=e538]: Lean-verified
+              - text: ":"
+              - link "photon_redshift_loss_equals_dark_energy_gain" [ref=e539] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/RedshiftEnergyToDarkEnergy.lean#L259
+                - code [ref=e540]: photon_redshift_loss_equals_dark_energy_gain
+          - paragraph [ref=e541]:
+            - text: The
+            - code [ref=e542]: DarkEnergyTransferEvent
+            - text: "structure encodes three constraints: (1) conservation (the reservoir-gain equals the photon deficit), (2) source invariance (pairs with Regulus), (3)"
+            - code [ref=e543]: c
+            - text: "-preservation (pairs with Canopus). The headline is a one-line"
+            - code [ref=e544]: rfl
+            - text: under the event’s own constructor.
+          - heading "2.5 The three-term sum" [level=3] [ref=e545]
+          - paragraph [ref=e546]: Together with the previous theorems, the substrate enforces
+          - paragraph [ref=e547]:
+            - strong [ref=e548]: Theorem
+            - text: "(Denebola, same file):"
+          - code [ref=e550]:
+            - generic [ref=e551]: three_term_energy_conservation
+            - generic [ref=e552]: ": ∀ (ΔM_star ΔE_γ Δρ_DE : ℝ),"
+            - generic [ref=e553]: DarkEnergyTransferEvent-compatible(ΔM_star, ΔE_γ, Δρ_DE) →
+            - generic [ref=e554]: ΔM_star + ΔE_γ + Δρ_DE = 0
+          - paragraph [ref=e555]:
+            - text: with the Lean proof
+            - code [ref=e556]: by ring
+            - text: given the preconditions
+            - code [ref=e557]: ΔM_star = 0
+            - text: (Regulus),
+            - code [ref=e558]: ΔE_γ = −gravRedshiftCost
+            - text: (Canopus),
+            - code [ref=e559]: Δρ_DE = +gravRedshiftCost
+            - text: (Denebola constructor).
+          - blockquote [ref=e560]:
+            - paragraph [ref=e561]:
+              - text: ✅
+              - strong [ref=e562]: Lean-verified
+              - text: ":"
+              - link "three_term_energy_conservation" [ref=e563] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/RedshiftEnergyToDarkEnergy.lean#L313
+                - code [ref=e564]: three_term_energy_conservation
+          - heading "2.6 Physical reading" [level=3] [ref=e565]
+          - paragraph [ref=e566]: The star does not pay for photon emission. The photon does not heat anything along its path. The dark-energy reservoir absorbs the deficit globally and exactly. There is no “lost” energy in the bookkeeping — only energy that was present as rest-mass at emission, became photon kinetic energy plus substrate info-cost en route, and ended its life as reservoir density.
+          - paragraph [ref=e567]: "This is a refinement, not a contradiction, of Jacobson’s thermodynamic-gravity (1995) [9]: Jacobson derived Einstein equations from a Clausius relation on Rindler horizons; we derive dark energy as a bookkeeping residual of the same information-cost current running along photon worldlines rather than horizons."
+          - separator [ref=e568]
+          - 'heading "3. Locality: the Reservoir is a Spatial Field" [level=2] [ref=e569]'
+          - paragraph [ref=e570]:
+            - text: Where does the reservoir gain materialise spatially? Classical ΛCDM assumes uniform
+            - code [ref=e571]: ρ_DE
+            - text: ; this assumption has never been rigorously tested against anisotropic observations.
+          - heading "3.1 Per-event locality" [level=3] [ref=e572]
+          - paragraph [ref=e573]:
+            - strong [ref=e574]: Theorem
+            - text: (Rastaban,
+            - code [ref=e575]: DarkEnergyLocalityEvent.lean
+            - text: ", 2026):"
+          - code [ref=e577]:
+            - generic [ref=e578]: dark_energy_locality_at_redshift_event
+            - generic [ref=e579]: ": ∀ (w : PhotonCoherenceWorldline) (x : LatticePoint) (t : ℝ),"
+            - generic [ref=e580]: w.emittedAt(x, t) →
+            - generic [ref=e581]: darkEnergyReservoirGain(w) = gravRedshiftCost(w.pathLength, w.energy)
+            - generic [ref=e582]: ∧ localEvent(darkEnergyReservoirGain(w), x, t)
+            - generic [ref=e583]: ∧ ¬globallyTransported(darkEnergyReservoirGain(w))
+          - blockquote [ref=e584]:
+            - paragraph [ref=e585]:
+              - text: ✅
+              - strong [ref=e586]: Lean-verified
+              - text: ":"
+              - link "dark_energy_locality_at_redshift_event" [ref=e587] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/DarkEnergyLocalityEvent.lean#L272
+                - code [ref=e588]: dark_energy_locality_at_redshift_event
+          - paragraph [ref=e589]:
+            - text: The predicates
+            - code [ref=e590]: localEvent
+            - text: and
+            - code [ref=e591]: globallyTransported
+            - text: "are substrate commitments:"
+            - code [ref=e592]: localEvent := True
+            - text: encodes “the bookkeeping is written at the event’s lattice point”;
+            - code [ref=e593]: globallyTransported := False
+            - text: forbids any cosmological-scale transport witness for the gain. The substrate refuses to produce a witness for “this energy was carried somewhere else”.
+          - heading "3.2 Aggregate spatial field" [level=3] [ref=e594]
+          - paragraph [ref=e595]: "Lifting from single events to a continuous spatial distribution:"
+          - paragraph [ref=e596]:
+            - strong [ref=e597]: Theorem
+            - text: (Armin,
+            - code [ref=e598]: DarkEnergySpatialLocality.lean
+            - text: ", 2026):"
+          - code [ref=e600]:
+            - generic [ref=e601]: dark_energy_spatial_locality_from_photon_traffic
+            - generic [ref=e602]: ": ∀ (traffic : photonTrafficDensity) (photons : List PhotonCoherenceWorldline)"
+            - generic [ref=e603]: "(x : LatticePoint) (N : ℕ),"
+            - generic [ref=e604]: 0 ≤ traffic(x) → (∀ w ∈ photons, 0 ≤ w.pathLength) →
+            - generic [ref=e605]: "∃ ρ_DE_at_r : ℝ,"
+            - generic [ref=e606]: ρ_DE_at_r = localDarkEnergyField(traffic, photons, x)
+            - generic [ref=e607]: ∧ 0 ≤ ρ_DE_at_r
+            - generic [ref=e608]: ∧ (photonTrafficVanishesAt(traffic, x) →
+            - generic [ref=e609]: ρ_DE_at_r ≤ computationalUncertainty(N))
+          - blockquote [ref=e610]:
+            - paragraph [ref=e611]:
+              - text: ✅
+              - strong [ref=e612]: Lean-verified
+              - text: ":"
+              - link "dark_energy_spatial_locality_from_photon_traffic" [ref=e613] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/DarkEnergySpatialLocality.lean#L352
+                - code [ref=e614]: dark_energy_spatial_locality_from_photon_traffic
+          - paragraph [ref=e615]:
+            - text: The dark-energy field at point
+            - code [ref=e616]: x
+            - text: is the photon-traffic-weighted sum of worldline reservoir gains. A region with no photon traffic has
+            - code [ref=e617]: ρ_DE
+            - text: bounded by the substrate truncation uncertainty (essentially zero).
+          - 'heading "3.3 Testable consequence: Keenan–Barger–Cowie void" [level=3] [ref=e618]'
+          - paragraph [ref=e619]: The KBC local void [10] — a ~600 Mpc under-density of galaxies surrounding the Milky Way — provides an immediate observational test of spatial locality.
+          - paragraph [ref=e620]:
+            - strong [ref=e621]: Theorem
+            - text: (Suhail,
+            - code [ref=e622]: KBCVoidDarkEnergy.lean
+            - text: ", 2026):"
+          - code [ref=e624]:
+            - generic [ref=e625]: KBC_void_predicts_rho_DE_underdensity
+            - generic [ref=e626]: ": ∀ (ε : ℝ), 0 ≤ ε → ε < 0.15 →"
+            - generic [ref=e627]: "∃ (ρ_DE_KBC ρ_DE_mean : ℝ),"
+            - generic [ref=e628]: 0 < ρ_DE_KBC ∧ 0 < ρ_DE_mean
+            - generic [ref=e629]: ∧ ρ_DE_KBC < ρ_DE_mean
+            - generic [ref=e630]: ∧ |ρ_DE_KBC − ρ_DE_mean · (1 − ε)| ≤ computationalUncertainty(10)
+          - blockquote [ref=e631]:
+            - paragraph [ref=e632]:
+              - text: ✅
+              - strong [ref=e633]: Lean-verified
+              - text: ":"
+              - link "KBC_void_predicts_rho_DE_underdensity" [ref=e634] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/KBCVoidDarkEnergy.lean#L177
+                - code [ref=e635]: KBC_void_predicts_rho_DE_underdensity
+          - paragraph [ref=e636]:
+            - text: "In English: there exist dark-energy densities"
+            - code [ref=e637]: ρ_DE_KBC
+            - text: (inside the void) and
+            - code [ref=e638]: ρ_DE_mean
+            - text: (cosmic average) such that the void density is strictly lower by a factor
+            - code [ref=e639]: (1 − ε)
+            - text: ", with"
+            - code [ref=e640]: ε
+            - text: in the 0–15% range, and with agreement to substrate truncation accuracy. The specific amplitude
+            - code [ref=e641]: ε ≈ 5–10%
+            - text: is the physically natural range given the KBC density contrast (~0.5–0.7 standard deviations below cosmic mean — Haslbauer et al. 2020 [11]).
+          - paragraph [ref=e642]:
+            - strong [ref=e643]: Falsifiability
+            - text: ": DESI DR3 (expected 2027), Euclid Space Telescope (ESA, operational since 2023) [12], and Roman Space Telescope (NASA, launch 2027) measurements of the dark-energy equation-of-state"
+            - code [ref=e644]: w(z)
+            - text: along lines-of-sight through the KBC void vs along comparison high-density lines-of-sight should show a statistically significant difference if substrate locality holds. If all lines-of-sight give identical
+            - code [ref=e645]: w(z)
+            - text: ", the substrate thesis is falsified in this channel."
+          - separator [ref=e646]
+          - heading "4. Black Holes as Mediators, Not Sinks" [level=2] [ref=e647]
+          - paragraph [ref=e648]: A special case of the ledger is the extreme-gravity regime. When matter or radiation is absorbed by a black hole, classical GR struggles to account for the energy bookkeeping (the “black hole information paradox” — Hawking 1975 [13], Mathur 2009 [14], Almheiri–Marolf–Polchinski–Sully 2013 firewall paradox [15]).
+          - heading "4.1 The singularity is empty" [level=3] [ref=e649]
+          - paragraph [ref=e650]:
+            - strong [ref=e651]: Theorem
+            - text: (Almach,
+            - code [ref=e652]: SingularityNotEnergySink.lean
+            - text: ", 2026):"
+          - code [ref=e654]:
+            - generic [ref=e655]: singularity_is_not_energy_sink
+            - generic [ref=e656]: ": ∀ (bh : BlackHole) (t : ℝ),"
+            - generic [ref=e657]: singularityEnergy(bh, t) = 0
+          - blockquote [ref=e658]:
+            - paragraph [ref=e659]:
+              - text: ✅
+              - strong [ref=e660]: Lean-verified
+              - text: ":"
+              - link "singularity_is_not_energy_sink" [ref=e661] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/SingularityNotEnergySink.lean#L141
+                - code [ref=e662]: singularity_is_not_energy_sink
+          - paragraph [ref=e663]: "On the substrate, the mathematical singularity locus receives zero energy. This aligns directly with Popławski’s spin-torsion avoidance of the singularity [6]: fermionic spin density sources an Einstein-Cartan torsion pressure which repels matter before the formally-classical singularity forms. The substrate picture rewrites Popławski’s mechanism as “no energy ever accumulates at the singularity locus” — independent of whether a bounce or a baby-universe forms inside."
+          - heading "4.2 Incoming equals outgoing" [level=3] [ref=e664]
+          - paragraph [ref=e665]:
+            - strong [ref=e666]: Theorem
+            - text: (Alnasl,
+            - code [ref=e667]: BlackHoleAsMediator.lean
+            - text: ", 2026):"
+          - code [ref=e669]:
+            - generic [ref=e670]: black_hole_is_mediator_not_sink
+            - generic [ref=e671]: ": ∀ (bh : BlackHole) (t : ℝ),"
+            - generic [ref=e672]: singularityEnergy(bh, t) = 0
+            - generic [ref=e673]: ∧ incomingEnergy(bh, t) = hawkingOutflow(bh, t) + darkEnergyGain(bh, t)
+          - blockquote [ref=e674]:
+            - paragraph [ref=e675]:
+              - text: ✅
+              - strong [ref=e676]: Lean-verified
+              - text: ":"
+              - link "black_hole_is_mediator_not_sink" [ref=e677] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/BlackHoleAsMediator.lean#L305
+                - code [ref=e678]: black_hole_is_mediator_not_sink
+          - paragraph [ref=e679]:
+            - text: The black hole is a
+            - strong [ref=e680]: switch
+            - text: ", not a"
+            - strong [ref=e681]: storage
+            - text: . Every joule that crosses the horizon either exits as Hawking radiation (Hawking 1975 [13]) or is booked to the dark-energy reservoir. Information is never trapped at the singularity — because no information reaches the singularity.
+          - heading "4.3 Hawking as reservoir relaxation" [level=3] [ref=e682]
+          - paragraph [ref=e683]:
+            - strong [ref=e684]: Theorem
+            - text: (Adhafera,
+            - code [ref=e685]: HawkingReservoirRelaxation.lean
+            - text: ", 2026):"
+          - code [ref=e687]:
+            - generic [ref=e688]: hawking_outflow_as_relaxation
+            - generic [ref=e689]: ": ∀ (bh : BlackHole) (t : ℝ) (h : 0 ≤ t),"
+            - generic [ref=e690]: hawkingOutflow(bh, t) = reservoirRelaxationRate(bh) · t
+            - generic [ref=e691]: ∧ hawkingTemperature(bh) = T_ceiling(N) / (M · δ_comp(N))
+          - blockquote [ref=e692]:
+            - paragraph [ref=e693]:
+              - text: ✅
+              - strong [ref=e694]: Lean-verified
+              - text: ":"
+              - link "hawking_outflow_as_relaxation" [ref=e695] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/HawkingReservoirRelaxation.lean#L232
+                - code [ref=e696]: hawking_outflow_as_relaxation
+              - text: "· companion:"
+              - link "hawking_as_dark_energy_reservoir_relaxation" [ref=e697] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/HawkingReservoirRelaxation.lean#L479
+                - code [ref=e698]: hawking_as_dark_energy_reservoir_relaxation
+          - paragraph [ref=e699]:
+            - text: "Hawking radiation is the substrate’s restoration of the reservoir: when accumulated"
+            - code [ref=e700]: darkEnergyGain(bh, t)
+            - text: exceeds the local
+            - code [ref=e701]: δ_comp(N_horizon)
+            - text: budget, the substrate relaxes by emitting thermal radiation at the derived temperature. The formula
+            - code [ref=e702]: T_H = T_ceiling(N) / (M · δ_comp(N))
+            - text: is the first clean bridge between Bekenstein–Hawking thermodynamics [13, 16] and the Pi-Hunch computational-uncertainty depth.
+          - heading "4.4 Bridge to the Bousso firewall-as-Wigner’s-friend paradox" [level=3] [ref=e703]
+          - paragraph [ref=e704]:
+            - text: "Bousso, Marolf, Paban, and Silverstein (2025) [7] recast the AMPS firewall paradox as a Wigner’s-friend disagreement over the computational complexity of the Hawking radiation state. Their criterion — no firewall forms while the holographic register is computationally simple — maps directly onto the substrate:"
+            - code [ref=e705]: δ_comp(N_horizon)
+            - text: is the substrate analogue of their complexity budget. OmegaTheory therefore
+            - strong [ref=e706]: predicts no firewall
+            - text: as long as
+            - code [ref=e707]: δ_comp(N) · A_horizon < S_BH
+            - text: ", and pins the crossover at"
+          - code [ref=e709]:
+            - generic [ref=e710]: N_crit = A_horizon / (4 G · δ_comp₀)
+          - paragraph [ref=e711]:
+            - text: For astrophysical solar-mass black holes this crossover threshold is astronomically large (
+            - code [ref=e712]: N_crit ≈ 10⁴⁰
+            - text: ), so firewalls do not form in any realistic regime. Our formalisation is therefore consistent with mainstream BH complexity literature and provides a concrete numerical crossover.
+          - 'heading "4.5 Surprising graph-theoretic finding: DE is upstream of Hawking" [level=3] [ref=e713]'
+          - paragraph [ref=e714]: "Graph-theoretic analysis of the Neo4j theorem corpus (Alphard 2026, §9) revealed an unexpected asymmetry:"
+          - list [ref=e715]:
+            - listitem [ref=e716]: "Average path length DE → Hawking: 3.85 graph-hops"
+            - listitem [ref=e717]: "Average path length Hawking → DE: 2.85 graph-hops"
+          - paragraph [ref=e718]:
+            - text: The 1-hop asymmetry
+            - strong [ref=e719]: inverts the naive “black hole → Hawking radiation → dark energy” causality
+            - text: ". The correct ordering is: vacuum → dark energy reservoir → healing flow → Hawking radiation. Dark energy is the"
+            - emphasis [ref=e720]: source
+            - text: in the substrate flow graph; Hawking radiation is the
+            - emphasis [ref=e721]: derived consumer
+            - text: . This suggests the narrative order for future refinements of this paper should lead with the reservoir and treat Hawking as a boundary condition on its relaxation, not as a primary producer.
+          - separator [ref=e722]
+          - heading "5. w = −1 as a Conditional-Variance Identity" [level=2] [ref=e723]
+          - paragraph [ref=e724]:
+            - text: The observed dark-energy equation-of-state is
+            - code [ref=e725]: w = p/ρ = −1
+            - text: "to high precision (DESI DR2 2025 [17]). Standard cosmology treats this as an empirical fact that nature “happens to satisfy.” In the substrate framework, it follows from healing-flow residual pressure:"
+          - paragraph [ref=e726]:
+            - strong [ref=e727]: Theorem
+            - text: (pre-existing,
+            - code [ref=e728]: CosmologicalConstant.lean
+            - text: "):"
+          - code [ref=e730]:
+            - generic [ref=e731]: "darkEnergyEquationOfState_w : w = −1"
+          - blockquote [ref=e732]:
+            - paragraph [ref=e733]:
+              - text: ✅
+              - strong [ref=e734]: Lean-verified
+              - text: ":"
+              - link "darkEnergyEquationOfState_w" [ref=e735] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/CosmologicalConstant.lean#L129
+                - code [ref=e736]: darkEnergyEquationOfState_w
+              - text: "· 120-order resolution:"
+              - link "cosmological_constant_problem_resolved" [ref=e737] [cursor=pointer]:
+                - /url: https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/CosmologicalConstantProblem.lean#L210
+                - code [ref=e738]: cosmological_constant_problem_resolved
+          - paragraph [ref=e739]:
+            - text: But the
+            - emphasis [ref=e740]: structural
+            - text: content of this identity is more surprising. Graph-theoretic analysis via ByT5 kNN embedding retrieval (Alphard 2026, §9) on a 500 000-theorem corpus (OmegaTheory V2 + Mathlib 4.29.0) returns the top-2 structural analogues of
+            - code [ref=e741]: darkEnergyEquationOfState_w
+            - text: "as:"
+          - list [ref=e742]:
+            - listitem [ref=e743]:
+              - code [ref=e744]: setIntegral_condVar
+              - text: "(Mathlib, cosine 0.800): conditional-variance identity for measurable functions."
+            - listitem [ref=e745]:
+              - code [ref=e746]: centralMoment_two_eq_variance
+              - text: "(Mathlib, cosine 0.796): second central moment equals variance."
+          - paragraph [ref=e747]:
+            - text: "In words:"
+            - code [ref=e748]: w = −1
+            - text: is, in the graph sense, a
+            - strong [ref=e749]: probability-theoretic identity
+            - text: "dressed in cosmological language. The informational reading is:"
+          - code [ref=e751]:
+            - generic [ref=e752]: p_Λ = −⟨(I − Ī)²⟩
+          - paragraph [ref=e753]:
+            - text: where
+            - code [ref=e754]: I
+            - text: is the local information density,
+            - code [ref=e755]: Ī
+            - text: its expected value, and the expectation is over the substrate-induced probability distribution on photon worldlines.
+            - code [ref=e756]: w = −1
+            - text: is Pythagoras in probability — the substrate-level statement that reservoir pressure is negative of the variance of information density.
+          - paragraph [ref=e757]:
+            - text: This reframing has consequences. It suggests that
+            - code [ref=e758]: w
+            - text: cannot be anything but
+            - code [ref=e759]: −1
+            - text: "up to substrate truncation: variance is always non-negative, and pressure is its negation. Deviations from"
+            - code [ref=e760]: w = −1
+            - text: "observed at the per-cent level (DESI DR2 hint:"
+            - code [ref=e761]: w₀ = −0.727, w_a = −1.05
+            - text: ) would then be substrate-truncation artefacts — scaling as
+            - code [ref=e762]: δ_comp(N)
+            - text: "rather than indicating new physics. This is a concrete, falsifiable alternative to quintessence: if"
+            - code [ref=e763]: w(z)
+            - text: evolution flattens as N increases (substrate probe improves), quintessence is ruled out; if it persists, substrate framework needs extension.
+          - separator [ref=e764]
+          - heading "6. Predictions" [level=2] [ref=e765]
+          - paragraph [ref=e766]: Four falsifiable predictions flow from the formalised framework. Each cites its Lean theorem and external experimental target.
+          - heading "6.1 Keenan–Barger–Cowie void under-density" [level=3] [ref=e767]
+          - paragraph [ref=e768]:
+            - strong [ref=e769]: Theorem
+            - text: ":"
+            - code [ref=e770]: KBC_void_predicts_rho_DE_underdensity
+            - text: (Suhail 2026, §3.3).
+          - paragraph [ref=e771]:
+            - strong [ref=e772]: Prediction
+            - text: ": Along lines-of-sight through the KBC local void (~600 Mpc centred on Milky Way), dark-energy density is lower than cosmic mean by 5–10%. Equation-of-state"
+            - code [ref=e773]: w(z)
+            - text: along these sightlines should deviate correspondingly.
+          - paragraph [ref=e774]:
+            - strong [ref=e775]: Experimental target
+            - text: ": DESI DR3 (2027), Euclid Space Telescope [12], Roman Space Telescope (2027+), LSST/Vera Rubin Observatory cross-correlation with galactic density contrast."
+          - paragraph [ref=e776]:
+            - strong [ref=e777]: Falsification
+            - text: ": If"
+            - code [ref=e778]: w(z)
+            - text: along KBC void sightlines equals
+            - code [ref=e779]: w(z)
+            - text: along control high-density sightlines to DR3 precision, substrate locality is ruled out.
+          - heading "6.2 Spatial inhomogeneity correlated with photon traffic" [level=3] [ref=e780]
+          - paragraph [ref=e781]:
+            - strong [ref=e782]: Theorem
+            - text: ":"
+            - code [ref=e783]: dark_energy_spatial_locality_from_photon_traffic
+            - text: (Armin 2026, §3.2).
+          - paragraph [ref=e784]:
+            - strong [ref=e785]: Prediction
+            - text: ":"
+            - code [ref=e786]: δρ_DE/ρ_DE ≈ 10⁻⁵
+            - text: –
+            - code [ref=e787]: 10⁻³
+            - text: correlated with local photon-traffic density. High-activity regions (star-forming galaxies, AGN environments) have amplified
+            - code [ref=e788]: ρ_DE
+            - text: ; cosmic voids have suppressed
+            - code [ref=e789]: ρ_DE
+            - text: .
+          - paragraph [ref=e790]:
+            - strong [ref=e791]: Experimental target
+            - text: ": DESI DR3 + Euclid + Roman spatial cross-correlation of"
+            - code [ref=e792]: w(z)
+            - text: with galactic large-scale structure [12, 17, 18].
+          - paragraph [ref=e793]:
+            - strong [ref=e794]: Falsification
+            - text: ": If"
+            - code [ref=e795]: w(z)
+            - text: is spatially homogeneous to DR3 precision along all sightlines, ΛCDM uniformity is preserved and substrate locality is ruled out.
+          - heading "6.3 Schwinger-pair-production suppression at high-N" [level=3] [ref=e796]
+          - paragraph [ref=e797]:
+            - strong [ref=e798]: Theorem
+            - text: ":"
+            - code [ref=e799]: schwinger_pair_production_from_substrate_uncertainty_overflow
+            - text: (Luffy 2026,
+            - code [ref=e800]: SchwingerPairProduction.lean
+            - text: ).
+          - paragraph [ref=e801]:
+            - strong [ref=e802]: Prediction
+            - text: ": Above the Schwinger critical field"
+            - code [ref=e803]: E_crit = m_e²c³/(eℏ) ≈ 1.3 × 10¹⁸ V/m
+            - text: ", pair-production rate is suppressed below the standard QED prediction by a factor"
+            - code [ref=e804]: (1 − δ_comp(N)/threshold)
+            - text: . QED is N-agnostic; the substrate is not.
+          - paragraph [ref=e805]:
+            - strong [ref=e806]: Experimental target
+            - text: ": ELI-NP [19], XCELS (Russia), Apollon (France), CoReLS (Korea) intensity-dependent lepton-pair spectra at E > E_crit."
+          - paragraph [ref=e807]:
+            - strong [ref=e808]: Falsification
+            - text: ": If pair-production rates match standard Schwinger formula with no intensity-dependent deviation, the substrate overflow mechanism is falsified."
+          - heading "6.4 DE upstream of Hawking (graph-theoretic)" [level=3] [ref=e809]
+          - paragraph [ref=e810]:
+            - strong [ref=e811]: Finding
+            - text: ": Path asymmetry +1 hop (Alphard 2026, §4.5, persisted as"
+            - code [ref=e812]: :GraphFinding
+            - text: in Neo4j).
+          - paragraph [ref=e813]:
+            - strong [ref=e814]: Prediction
+            - text: ": In primordial-black-hole evaporation regimes, the dark-energy contribution to the horizon neighborhood should appear"
+            - emphasis [ref=e815]: before
+            - text: "the Hawking outflow, not after. Specifically: the substrate info-cost accumulation at the horizon during accretion should be measurable as a precursor to thermal radiation."
+          - paragraph [ref=e816]:
+            - strong [ref=e817]: Experimental target
+            - text: ": Future primordial-black-hole observations (JWST deep surveys [20], LISA 2030s), or analog black-hole experiments (acoustic/optical gravitational-analogue systems [21])."
+          - paragraph [ref=e818]:
+            - strong [ref=e819]: Falsification
+            - text: ": If PBH evaporation shows Hawking outflow strictly leading any DE-like signature, the graph asymmetry is artifact rather than causal."
+          - separator [ref=e820]
+          - heading "7. Graph-Theoretic Emergence of the Pi Hunch" [level=2] [ref=e821]
+          - paragraph [ref=e822]: A technical finding from the graph-analysis agents (Mirfak, Alphard 2026) deserves mention, even though it is methodological rather than physical.
+          - paragraph [ref=e823]:
+            - text: "On the full OmegaTheory V2 corpus (~5100 Theorem + Definition nodes, full ByT5 1472-d embeddings, 15 typed-relation adjacency), betweenness centrality across shortest paths between seven force/capstone anchors — {EM, SU(3), SU(2), GR, QM, Higgs, Dark Energy} — reveals that"
+            - strong [ref=e824]:
+              - text: 43% of paths pass through
+              - code [ref=e825]: computationalUncertainty_pos
+            - text: ", the theorem that establishes strict positivity of"
+            - code [ref=e826]: δ_comp(N)
+            - text: for all N. The secondary centrality leader is
+            - code [ref=e827]: LatticePoint
+            - text: at 29%; on the strict dark-energy subcorpus,
+            - code [ref=e828]: PhotonCoherenceWorldline
+            - text: narrowly leads (26%) over
+            - code [ref=e829]: LatticePoint
+            - text: (25%).
+          - paragraph [ref=e830]:
+            - text: "This is the Pi Hunch in graph form: the computational uncertainty bound — which is itself a theorem about the impossibility of exactly representing π, e, and √2 in finite substrate resources — is the graph-measured bottleneck through which unification between electromagnetism, strong force, general relativity, and quantum mechanics must pass."
+            - strong [ref=e831]: The bridge between forces is irrationality.
+          - paragraph [ref=e832]: Methodologically this is, to our knowledge, the first application of Magnetic-Laplacian + Leiden community detection + per-relation FastRP embedding to a theorem-prover corpus of this scale. The graph analysis programme is developed in detail in a companion repository [22] and will be the subject of a dedicated methodology paper targeting NeurIPS 2026 / ICLR 2027.
+          - separator [ref=e833]
+          - heading "8. Comparison to Existing Programmes" [level=2] [ref=e834]
+          - paragraph [ref=e835]: The cosmological constant literature is vast; we situate this work briefly.
+          - list [ref=e836]:
+            - listitem [ref=e837]:
+              - paragraph [ref=e838]:
+                - strong [ref=e839]: Jacobson (1995) [9]
+                - text: "derived Einstein equations from a Clausius relation on local Rindler horizons, treating gravity as thermodynamic. Our framework refines this: the current"
+                - code [ref=e840]: photon_info_cost
+                - text: runs along worldlines, not just horizons, and produces a concrete
+                - code [ref=e841]: ρ_DE
+                - text: value rather than a derivation of
+                - code [ref=e842]: G_μν = 8πG T_μν
+                - text: .
+            - listitem [ref=e843]:
+              - paragraph [ref=e844]:
+                - strong [ref=e845]: Verlinde (2011) [23], Emergent Gravity (2016) [24]
+                - text: ": entropic gravity treats gravity itself as emergent from information/entropy. Our framework agrees in spirit but differs in formal detail — specifically, we do not predict modified Newtonian dynamics, which emergent gravity does (and which is in tension with dark-matter observations)."
+            - listitem [ref=e846]:
+              - paragraph [ref=e847]:
+                - strong [ref=e848]: Sorkin, causal sets [25]
+                - text: ": discrete causal structure. We share the discreteness commitment, but the substrate is a regular"
+                - code [ref=e849]: ℤ⁴
+                - text: lattice with a specific dynamical rule (healing flow), not a random Poisson sprinkling.
+            - listitem [ref=e850]:
+              - paragraph [ref=e851]:
+                - strong [ref=e852]: Wolfram Physics Project (2020-) [26]
+                - text: ": hypergraph rewriting. Conceptually adjacent but mathematically independent; Wolfram’s framework has not produced concrete cosmological-constant predictions."
+            - listitem [ref=e853]:
+              - paragraph [ref=e854]:
+                - strong [ref=e855]: Kumar et al., Quantum Substrate Dynamics (2025) [27]
+                - text: ": proposes “mass appears as a coherence-locked phase lattice and inertia arises from reconfiguration resistance at coherence boundaries”. This is strikingly close to our substrate-resistance-to-c-propagation thesis, appeared one year after the OmegaTheory preprint, and has no Lean formalisation. We cite QSD as independent confirmation of the direction."
+            - listitem [ref=e856]:
+              - paragraph [ref=e857]:
+                - strong [ref=e858]: Connes, noncommutative spectral geometry [28]
+                - text: ": the gauge group"
+                - code [ref=e859]: U(1) × SU(2) × SU(3)
+                - text: emerges from the spectral action on a noncommutative manifold with internal algebra
+                - code [ref=e860]: A_F = ℂ ⊕ ℍ ⊕ M_3(ℂ)
+                - text: . OmegaTheory derives the same gauge group from this structure (Emergence/GaugeEmergence.lean), treating Connes’s work as the algebraic backbone and adding the substrate-truncation mechanism on top.
+          - paragraph [ref=e861]: To our knowledge, none of the above programmes have complete formal verification of their physical claims in a machine-checked proof assistant. This is the primary methodological distinction of OmegaTheory.
+          - separator [ref=e862]
+          - heading "9. Lean 4 Formalisation Infrastructure" [level=2] [ref=e863]
+          - paragraph [ref=e864]: "The theorems cited in §§2–6 are machine-verified in Lean 4 (version 4.29.0, Mathlib 4.29.0). Primary files:"
+          - list [ref=e865]:
+            - listitem [ref=e866]:
+              - code [ref=e867]: OmegaTheory/Emergence/Redshift.lean
+              - text: —
+              - code [ref=e868]: PhotonWorldline
+              - text: ","
+              - code [ref=e869]: informationCost
+              - text: .
+            - listitem [ref=e870]:
+              - code [ref=e871]: OmegaTheory/Emergence/StarMassInvariantEmission.lean
+              - text: — Regulus, source invariance.
+            - listitem [ref=e872]:
+              - code [ref=e873]: OmegaTheory/Emergence/PhotonSpeedCoherence.lean
+              - text: — Canopus,
+              - code [ref=e874]: c
+              - text: "-preservation."
+            - listitem [ref=e875]:
+              - code [ref=e876]: OmegaTheory/Emergence/RedshiftEnergyToDarkEnergy.lean
+              - text: — Denebola, three-term conservation.
+            - listitem [ref=e877]:
+              - code [ref=e878]: OmegaTheory/Emergence/DarkEnergyLocalityEvent.lean
+              - text: — Rastaban, per-event locality.
+            - listitem [ref=e879]:
+              - code [ref=e880]: OmegaTheory/Emergence/DarkEnergySpatialLocality.lean
+              - text: — Armin, aggregate field.
+            - listitem [ref=e881]:
+              - code [ref=e882]: OmegaTheory/Predictions/KBCVoidDarkEnergy.lean
+              - text: — Suhail, void prediction.
+            - listitem [ref=e883]:
+              - code [ref=e884]: OmegaTheory/Emergence/BlackHoleAsMediator.lean
+              - text: — Alnasl, BH switch.
+            - listitem [ref=e885]:
+              - code [ref=e886]: OmegaTheory/Emergence/SingularityNotEnergySink.lean
+              - text: — Almach, singularity is empty.
+            - listitem [ref=e887]:
+              - code [ref=e888]: OmegaTheory/Emergence/HawkingReservoirRelaxation.lean
+              - text: — Adhafera, Hawking relaxation.
+            - listitem [ref=e889]:
+              - code [ref=e890]: OmegaTheory/Predictions/CosmologicalRedshiftDarkEnergy.lean
+              - text: — Jiraiya, temporal integral.
+            - listitem [ref=e891]:
+              - code [ref=e892]: OmegaTheory/Emergence/CosmologicalConstant.lean
+              - text: —
+              - code [ref=e893]: darkEnergyEquationOfState_w
+              - text: .
+            - listitem [ref=e894]:
+              - code [ref=e895]: OmegaTheory/Emergence/CosmologicalConstantProblem.lean
+              - text: — the 120-order resolution.
+          - paragraph [ref=e896]:
+            - text: "Build status at submission:"
+            - strong [ref=e897]:
+              - text: 3,835 jobs GREEN, 0
+              - code [ref=e898]: sorry
+              - text: ", 0 new mathematical axioms beyond the 8 physical constants"
+            - text: (8,996
+            - code [ref=e899]: :Theorem
+            - text: nodes in
+            - code [ref=e900]: OmegaTheoryV2
+            - text: Neo4j graph as of 2026-04-21).
+          - paragraph [ref=e901]:
+            - text: The Lean theorem corpus is indexed in a Neo4j knowledge graph (container
+            - code [ref=e902]: math
+            - text: on bolt://localhost:7687) with full ByT5-1472-d embeddings, per-relation FastRP projections, Magnetic-Laplacian Berry-phase decomposition, and Leiden community detection. The graph analyses underlying §5, §7 were performed by the
+            - code [ref=e903]: grothendieck-sage
+            - text: Cypher-native teammate framework, agents Mirfak and Alphard (2026-04-19). Methodology will be detailed in a forthcoming companion paper.
+          - separator [ref=e904]
+          - heading "10. Outlook and v2 refinement plan" [level=2] [ref=e905]
+          - paragraph [ref=e906]:
+            - text: This preview version is released on 2026-04-19. A
+            - strong [ref=e907]: refined version (v1.1)
+            - text: "will be released within seven days (target: 2026-04-26), with the following additions:"
+          - list [ref=e908]:
+            - listitem [ref=e909]:
+              - strong [ref=e910]: Quantitative amplitude bound
+              - text: ": current prediction (§3.3) states"
+              - code [ref=e911]: ε ∈ [0, 15%)
+              - text: generically; v1.1 will derive the specific range
+              - code [ref=e912]: ε ∈ [5%, 10%]
+              - text: from substrate photon-traffic density at the KBC void’s physical location.
+            - listitem [ref=e913]:
+              - strong [ref=e914]: Numerical calibration
+              - text: ": explicit derivation of"
+              - code [ref=e915]: ρ_DE_observed ≈ 6 × 10⁻¹⁰ J/m³
+              - text: from substrate constants, cosmic photon number density, and age of universe.
+            - listitem [ref=e916]:
+              - strong [ref=e917]: Schwinger-suppression rate formula
+              - text: ": the qualitative prediction in §6.3 will be accompanied by a quantitative"
+              - code [ref=e918]: pair_rate(E, N)
+              - text: formula with explicit
+              - code [ref=e919]: (1 − δ_comp(N)/threshold)
+              - text: coefficient, to be tested against ELI-NP intensity-dependence curves.
+            - listitem [ref=e920]:
+              - strong [ref=e921]: Comparison table
+              - text: ": direct numerical comparison of OmegaTheory predictions to ΛCDM, Jacobson, Verlinde, and QSD for each observable."
+            - listitem [ref=e922]:
+              - strong [ref=e923]: Response to referee-style objections
+              - text: "we expect: w=−1 stability under N limits; scheduling of graph-theoretic vs formal claims; reproducibility instructions for the Lean build."
+          - paragraph [ref=e924]:
+            - text: Beyond v1.1, the next substantive formalisation target (§10.2) is the
+            - strong [ref=e925]: unified substrate criticality capstone
+            - text: — a single theorem asserting that all proton-critical phases (magnetar, deconfinement, mass drift, radius shift, lifetime) are instances of one substrate truncation-error overflow condition, parameterised by combined field strength × gravitational curvature. The Ferro et al. 2025 GRB-delay-below-Schwinger observation [29] is independent empirical support for this direction.
+          - separator [ref=e926]
+          - heading "References" [level=2] [ref=e927]
+          - paragraph [ref=e928]: Citations here are more than pointers; they are acknowledgement of the shoulders on which this work stands. Each citation includes a one-sentence statement of what the cited work contributed that this paper relies upon.
+          - paragraph [ref=e929]:
+            - text: "[1]"
+            - strong [ref=e930]: Weinberg, S.
+            - text: (1989).
+            - emphasis [ref=e931]: The cosmological constant problem
+            - text: . Reviews of Modern Physics,
+            - strong [ref=e932]: "61"
+            - text: ", 1–23. — The canonical statement of the 120-order discrepancy. Every substrate framework for dark energy must address the question Weinberg sharpened."
+          - paragraph [ref=e933]:
+            - text: "[2]"
+            - strong [ref=e934]: Carroll, S.M.
+            - text: (2001).
+            - emphasis [ref=e935]: The cosmological constant
+            - text: . Living Reviews in Relativity,
+            - strong [ref=e936]: "4"
+            - text: ", 1. — The essential review that organises the problem’s taxonomy and enumerates known responses."
+          - paragraph [ref=e937]:
+            - text: "[3]"
+            - strong [ref=e938]: Ratra, B., Peebles, P.J.E.
+            - text: (1988).
+            - emphasis [ref=e939]: Cosmological consequences of a rolling homogeneous scalar field
+            - text: . Physical Review D,
+            - strong [ref=e940]: "37"
+            - text: ", 3406–3427. — The quintessence framework. We depart from it: no new dynamical field is required on the substrate."
+          - paragraph [ref=e941]:
+            - text: "[4]"
+            - strong [ref=e942]: Caldwell, R.R., Dave, R., Steinhardt, P.J.
+            - text: (1998).
+            - emphasis [ref=e943]: Cosmological imprint of an energy component with general equation of state
+            - text: . Physical Review Letters,
+            - strong [ref=e944]: "80"
+            - text: ", 1582–1585. — Established the observational signature of dynamical dark energy. We predict the opposite: spatial inhomogeneity without temporal dynamicity."
+          - paragraph [ref=e945]:
+            - text: "[5]"
+            - strong [ref=e946]: Weinberg, S.
+            - text: (1987).
+            - emphasis [ref=e947]: Anthropic bound on the cosmological constant
+            - text: . Physical Review Letters,
+            - strong [ref=e948]: "59"
+            - text: ", 2607. — The anthropic argument. Our framework avoids it by providing a deterministic bookkeeping mechanism."
+          - paragraph [ref=e949]:
+            - text: "[6]"
+            - strong [ref=e950]: Popławski, N.J.
+            - text: (2010).
+            - emphasis [ref=e951]: "Cosmology with torsion: An alternative to cosmic inflation"
+            - text: . Physics Letters B,
+            - strong [ref=e952]: "694"
+            - text: ", 181–185. — Spin-torsion singularity avoidance. We compose Popławski’s mechanism with substrate bookkeeping: the singularity is both physically avoided (torsion bounce) and formally empty (zero energy accumulation)."
+          - paragraph [ref=e953]:
+            - text: "[7]"
+            - strong [ref=e954]: Bousso, R., Marolf, D., Paban, S., Silverstein, E. et al.
+            - text: (2025).
+            - emphasis [ref=e955]: The firewall paradox is Wigner’s friend
+            - text: . arXiv:2504.03835. — Reformulates firewall presence as a computational-complexity disagreement. Our
+            - code [ref=e956]: δ_comp(N)
+            - text: is the substrate analogue of their complexity budget, giving a concrete crossover
+            - code [ref=e957]: N_crit = A_horizon / (4G δ_comp₀)
+            - text: .
+          - paragraph [ref=e958]:
+            - text: "[8]"
+            - strong [ref=e959]: Pound, R.V., Rebka, G.A. Jr.
+            - text: (1959).
+            - emphasis [ref=e960]: Gravitational red-shift in nuclear resonance
+            - text: . Physical Review Letters,
+            - strong [ref=e961]: "3"
+            - text: ", 439–441. — The first terrestrial measurement of gravitational redshift. Our §2 recovers their result as a specialisation of the three-term ledger."
+          - paragraph [ref=e962]:
+            - text: "[9]"
+            - strong [ref=e963]: Jacobson, T.
+            - text: (1995).
+            - emphasis [ref=e964]: "Thermodynamics of space-time: the Einstein equation of state"
+            - text: . Physical Review Letters,
+            - strong [ref=e965]: "75"
+            - text: ", 1260–1263. — Derives Einstein equations from a Clausius relation on Rindler horizons. Our substrate extends the thermodynamic argument from horizons to photon worldlines."
+          - paragraph [ref=e966]:
+            - text: "[10]"
+            - strong [ref=e967]: Keenan, R.C., Barger, A.J., Cowie, L.L.
+            - text: (2013).
+            - emphasis [ref=e968]: Evidence for a ∼300 Mpc scale under-density in the local galaxy distribution
+            - text: . Astrophysical Journal,
+            - strong [ref=e969]: "775"
+            - text: ", 62. — Identification of the KBC local void, the observational anchor for our §3.3 prediction."
+          - paragraph [ref=e970]:
+            - text: "[11]"
+            - strong [ref=e971]: Haslbauer, M., Banik, I., Kroupa, P.
+            - text: (2020).
+            - emphasis [ref=e972]: The KBC void and Hubble tension contradict ΛCDM on a Gpc scale
+            - text: . Monthly Notices of the Royal Astronomical Society,
+            - strong [ref=e973]: "499"
+            - text: ", 2845–2883. — Quantified the KBC density contrast, providing the 5–10% under-density amplitude we use."
+          - paragraph [ref=e974]:
+            - text: "[12]"
+            - strong [ref=e975]: Euclid Collaboration
+            - text: (2025).
+            - emphasis [ref=e976]: "Euclid preparation: Forecast for dark-energy figure of merit"
+            - text: . arXiv:2507.xxxxx (full citation pending). — Target observational pipeline for §§3.3, 6.1, 6.2 predictions.
+          - paragraph [ref=e977]:
+            - text: "[13]"
+            - strong [ref=e978]: Hawking, S.W.
+            - text: (1975).
+            - emphasis [ref=e979]: Particle creation by black holes
+            - text: . Communications in Mathematical Physics,
+            - strong [ref=e980]: "43"
+            - text: ", 199–220. — Hawking radiation. Our §4.3 derives Hawking temperature as substrate reservoir relaxation rate, with a new bridge formula"
+            - code [ref=e981]: T_H = T_ceiling(N) / (M δ_comp(N))
+            - text: .
+          - paragraph [ref=e982]:
+            - text: "[14]"
+            - strong [ref=e983]: Mathur, S.D.
+            - text: (2009).
+            - emphasis [ref=e984]: "The information paradox: a pedagogical introduction"
+            - text: . Classical and Quantum Gravity,
+            - strong [ref=e985]: "26"
+            - text: ", 224001. — The clearest statement of the information paradox; we resolve it via §4.1, §4.2 (nothing reaches the singularity, nothing is lost)."
+          - paragraph [ref=e986]:
+            - text: "[15]"
+            - strong [ref=e987]: Almheiri, A., Marolf, D., Polchinski, J., Sully, J.
+            - text: (2013).
+            - emphasis [ref=e988]: "Black holes: complementarity or firewalls?"
+            - text: . JHEP,
+            - strong [ref=e989]: "02"
+            - text: ", 062. — The AMPS firewall paradox. We respond via §4.4 substrate complexity bound."
+          - paragraph [ref=e990]:
+            - text: "[16]"
+            - strong [ref=e991]: Bekenstein, J.D.
+            - text: (1973).
+            - emphasis [ref=e992]: Black holes and entropy
+            - text: . Physical Review D,
+            - strong [ref=e993]: "7"
+            - text: ", 2333–2346. — Black hole entropy as throughput capacity; our §4.2 reinterprets"
+            - code [ref=e994]: S_BH = A/4
+            - text: as switch capacity rather than storage capacity.
+          - paragraph [ref=e995]:
+            - text: "[17]"
+            - strong [ref=e996]: DESI Collaboration
+            - text: (2025).
+            - emphasis [ref=e997]: DESI DR2 dark-energy results
+            - text: . arXiv:2504.xxxxx (full citation pending). — The current best constraints on
+            - code [ref=e998]: w(z)
+            - text: evolution. Hints of
+            - code [ref=e999]: w₀ = −0.727
+            - text: ","
+            - code [ref=e1000]: w_a = −1.05
+            - text: may be substrate truncation artefacts if our §5 reframing is correct.
+          - paragraph [ref=e1001]:
+            - text: "[18]"
+            - strong [ref=e1002]: Roman Space Telescope Collaboration
+            - text: (forthcoming, launch 2027). — Target for §§3.3, 6.1, 6.2 spatial-anisotropy measurements.
+          - paragraph [ref=e1003]:
+            - text: "[19]"
+            - strong [ref=e1004]: ELI-NP (Extreme Light Infrastructure — Nuclear Physics), Magurele, Romania
+            - text: (2023–). — Operational high-intensity laser facility. Primary target for §6.3 Schwinger-suppression test.
+          - paragraph [ref=e1005]:
+            - text: "[20]"
+            - strong [ref=e1006]: James Webb Space Telescope (NASA/ESA/CSA)
+            - text: (2022–). — Deep surveys potentially sensitive to primordial-black-hole populations relevant to §6.4.
+          - paragraph [ref=e1007]:
+            - text: "[21]"
+            - strong [ref=e1008]: Unruh, W.G.
+            - text: (1981).
+            - emphasis [ref=e1009]: Experimental black-hole evaporation
+            - text: . Physical Review Letters,
+            - strong [ref=e1010]: "46"
+            - text: ", 1351. — Analogue black-hole framework. §6.4 falsification could use analogue systems if genuine PBH populations prove inaccessible."
+          - paragraph [ref=e1011]:
+            - text: "[22]"
+            - strong [ref=e1012]: Marchewka, N. & Claude Opus 4.7 “Gratis”
+            - text: (2026).
+            - emphasis [ref=e1013]: "Graph-theory system modeling for Lean-verified physics: The V3 framework"
+            - text: ". Repository: github.com/Check-It-Out-Dev/graph-theory-system-modeling. — Companion methodology for the Magnetic-Laplacian graph analysis programme used in §§5, 7."
+          - paragraph [ref=e1014]:
+            - text: "[23]"
+            - strong [ref=e1015]: Verlinde, E.
+            - text: (2011).
+            - emphasis [ref=e1016]: On the origin of gravity and the laws of Newton
+            - text: . JHEP,
+            - strong [ref=e1017]: "04"
+            - text: ", 029. — Entropic gravity. Our framework agrees that gravity and information are deeply coupled; departs on MOND-like dynamics."
+          - paragraph [ref=e1018]:
+            - text: "[24]"
+            - strong [ref=e1019]: Verlinde, E.
+            - text: (2016).
+            - emphasis [ref=e1020]: Emergent gravity and the dark universe
+            - text: . arXiv:1611.02269. — Emergent gravity with dark-matter-like effects. We do not derive dark matter; our predictions are orthogonal.
+          - paragraph [ref=e1021]:
+            - text: "[25]"
+            - strong [ref=e1022]: Sorkin, R.D.
+            - text: (1991).
+            - emphasis [ref=e1023]: Spacetime and causal sets
+            - text: ". In Relativity and Gravitation: Classical and Quantum, pp. 150–173. — Discrete causal structure. Our substrate is discrete but not Poisson-sampled; we share the discreteness philosophy."
+          - paragraph [ref=e1024]:
+            - text: "[26]"
+            - strong [ref=e1025]: Wolfram, S.
+            - text: (2020).
+            - emphasis [ref=e1026]: A Project to Find the Fundamental Theory of Physics
+            - text: . Wolfram Media. — Hypergraph-rewriting framework. Conceptual neighbour; mathematically independent.
+          - paragraph [ref=e1027]:
+            - text: "[27]"
+            - strong [ref=e1028]: Kumar, V. et al.
+            - text: (2025).
+            - emphasis [ref=e1029]: "Quantum substrate dynamics: a relativistic field model of emergent mass, inertia, and gravity"
+            - text: . Sciety preprint, DOI 10.20944/preprints202506.0988.v2. — Independent confirmation of substrate resistance to c-propagation as mass mechanism. No Lean formalisation; we extend via §§2–4.
+          - paragraph [ref=e1030]:
+            - text: "[28]"
+            - strong [ref=e1031]: Connes, A.
+            - text: (1994).
+            - emphasis [ref=e1032]: Noncommutative Geometry
+            - text: . Academic Press. — The algebraic framework for Standard Model gauge emergence from
+            - code [ref=e1033]: A_F = ℂ ⊕ ℍ ⊕ M_3(ℂ)
+            - text: . OmegaTheory builds on Connes’s spectral action; this paper uses Connes’s result implicitly via the
+            - code [ref=e1034]: A_F
+            - text: "-derived structure in the Lean corpus."
+          - paragraph [ref=e1035]:
+            - text: "[29]"
+            - strong [ref=e1036]: Ferro, S. et al.
+            - text: (2025).
+            - emphasis [ref=e1037]: Quantum-vacuum-induced delay of gamma-ray burst photons below the Schwinger critical magnetic field
+            - text: . Physics Letters B,
+            - strong [ref=e1038]: "861"
+            - text: ", 139272. arXiv:2501.11080. — Observation of vacuum effects below the Schwinger threshold, independent confirmation of the substrate criticality framework."
+          - paragraph [ref=e1039]:
+            - text: "[30]"
+            - strong [ref=e1040]: Einstein, A.
+            - text: (1915).
+            - emphasis [ref=e1041]: Die Feldgleichungen der Gravitation
+            - text: . Sitzungsberichte der Preussischen Akademie der Wissenschaften zu Berlin, 844–847. — General relativity. The framework our substrate must recover in the classical limit, and which it does (7 regime witnesses in OmegaTheory V2, HPW axiom deleted 2026-04-17).
+          - paragraph [ref=e1042]:
+            - text: "[31]"
+            - strong [ref=e1043]: Planck, M.
+            - text: (1900).
+            - emphasis [ref=e1044]: Zur Theorie des Gesetzes der Energieverteilung im Normalspektrum
+            - text: . Verhandlungen der Deutschen Physikalischen Gesellschaft,
+            - strong [ref=e1045]: "2"
+            - text: ", 237–245. — Quantisation. The substrate’s ℓ_P lattice is Planck’s quantisation applied to spacetime rather than energy."
+          - paragraph [ref=e1046]:
+            - text: "[32]"
+            - strong [ref=e1047]: Shannon, C.E.
+            - text: (1948).
+            - emphasis [ref=e1048]: A mathematical theory of communication
+            - text: . Bell System Technical Journal,
+            - strong [ref=e1049]: "27"
+            - text: ", 379–423, 623–656. — Information theory. Our"
+            - code [ref=e1050]: δ_comp(N)
+            - text: is a substrate-level instantiation of Shannon’s insight that communication has finite-precision cost.
+          - paragraph [ref=e1051]:
+            - text: "[33]"
+            - strong [ref=e1052]: Noether, E.
+            - text: (1918).
+            - emphasis [ref=e1053]: Invariante Variationsprobleme
+            - text: . Nachr. d. König. Gesellsch. d. Wiss. zu Göttingen, Math-phys. Klasse, 235–257. — Conservation via symmetry. Our three-term conservation (§2.5) is a Noether-style identity on the substrate-healing symmetry group.
+          - paragraph [ref=e1054]:
+            - text: "[34]"
+            - strong [ref=e1055]: Bolyai, J., Lobachevsky, N., Riemann, B.
+            - text: (19th century). Foundational non-Euclidean and Riemannian geometry. Our
+            - code [ref=e1056]: ℤ⁴
+            - text: lattice is a discrete approximation to a Riemannian manifold, with curvature emerging as finite-difference defect tensors.
+          - paragraph [ref=e1057]:
+            - text: "[35]"
+            - strong [ref=e1058]: Lean Community
+            - text: (2024).
+            - emphasis [ref=e1059]: The Lean 4 Theorem Prover and Mathlib Library
+            - text: (version 4.29.0). — The machine verification infrastructure. Without Lean 4, this paper would be a conjecture rather than a theorem.
+          - separator [ref=e1060]
+          - heading "Appendix A — Agent Identity Registry (2026-04-19 session)" [level=2] [ref=e1061]
+          - paragraph [ref=e1062]:
+            - text: The theorems cited in §§2–4 were produced in a coordinated autonomous-agent session on 2026-04-19. Agents chose their own star-catalogue / anime / exoplanet / galaxy names and reserved them in the project Neo4j graph (
+            - code [ref=e1063]: :ReservedName
+            - text: "nodes). For credit and reproducibility:"
+          - list [ref=e1064]:
+            - listitem [ref=e1065]:
+              - strong [ref=e1066]: Regulus
+              - text: (α Leonis) —
+              - code [ref=e1067]: star_mass_invariant_under_photon_emission
+              - text: .
+            - listitem [ref=e1068]:
+              - strong [ref=e1069]: Canopus
+              - text: (α Carinae) —
+              - code [ref=e1070]: photon_preserves_c_loses_info_coherence
+              - text: .
+            - listitem [ref=e1071]:
+              - strong [ref=e1072]: Denebola
+              - text: (β Leonis) —
+              - code [ref=e1073]: photon_redshift_loss_equals_dark_energy_gain
+              - text: ", three-term conservation."
+            - listitem [ref=e1074]:
+              - strong [ref=e1075]: Rastaban
+              - text: (β Draconis) —
+              - code [ref=e1076]: dark_energy_locality_at_redshift_event
+              - text: .
+            - listitem [ref=e1077]:
+              - strong [ref=e1078]: Armin
+              - text: (Attack on Titan) —
+              - code [ref=e1079]: dark_energy_spatial_locality_from_photon_traffic
+              - text: .
+            - listitem [ref=e1080]:
+              - strong [ref=e1081]: Jiraiya
+              - text: (Naruto) —
+              - code [ref=e1082]: cosmological_redshift_feeds_dark_energy_reservoir
+              - text: .
+            - listitem [ref=e1083]:
+              - strong [ref=e1084]: Suhail
+              - text: (λ Velorum) —
+              - code [ref=e1085]: KBC_void_predicts_rho_DE_underdensity
+              - text: .
+            - listitem [ref=e1086]:
+              - strong [ref=e1087]: Alnasl
+              - text: (γ² Sagittarii) —
+              - code [ref=e1088]: black_hole_is_mediator_not_sink
+              - text: .
+            - listitem [ref=e1089]:
+              - strong [ref=e1090]: Almach
+              - text: (γ Andromedae) —
+              - code [ref=e1091]: singularity_is_not_energy_sink
+              - text: + Popławski bridge.
+            - listitem [ref=e1092]:
+              - strong [ref=e1093]: Adhafera
+              - text: (ζ Leonis) —
+              - code [ref=e1094]: hawking_as_dark_energy_reservoir_relaxation
+              - text: .
+            - listitem [ref=e1095]:
+              - strong [ref=e1096]: Polaris
+              - text: —
+              - code [ref=e1097]: equivalence_principle := rfl
+              - text: .
+            - listitem [ref=e1098]:
+              - strong [ref=e1099]: Arcturus
+              - text: (α Boötis) —
+              - code [ref=e1100]: proton_photon_redshift_bridge
+              - text: (EM × GR substrate cost).
+            - listitem [ref=e1101]:
+              - strong [ref=e1102]: Mirfak
+              - text: "(α Persei) — graph-theoretic analysis wave 1: Pi Hunch as graph-measurable, 43% unification paths through"
+              - code [ref=e1103]: computationalUncertainty_pos
+              - text: .
+            - listitem [ref=e1104]:
+              - strong [ref=e1105]: Alphard
+              - text: "(α Hydrae) — graph-theoretic analysis wave 2:"
+              - code [ref=e1106]: w = −1
+              - text: as conditional-variance identity, DE upstream of Hawking,
+              - code [ref=e1107]: PhotonCoherenceWorldline
+              - text: as DE anchor.
+          - paragraph [ref=e1108]:
+            - text: All agents operated under the
+            - code [ref=e1109]: grothendieck-sage
+            - text: (Cypher-native computation) or
+            - code [ref=e1110]: lean-proof-wizard
+            - text: (Lean proof assistant) teammate frameworks.
+          - separator [ref=e1111]
+          - heading "Appendix B — Reproducibility" [level=2] [ref=e1112]
+          - code [ref=e1114]:
+            - generic [ref=e1115]: "# Clone repository"
+            - generic [ref=e1116]: git clone https://github.com/RamzesX/Omega-Theory-Discrete-Spacetime
+            - generic [ref=e1117]: cd Omega-Theory-Discrete-Spacetime/PhysicsPapers/LeanFormalizationV2
+            - generic [ref=e1118]: "# Install Lean 4 toolchain (version 4.29.0)"
+            - generic [ref=e1119]: curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh
+            - generic [ref=e1120]: "# Build (takes ~5–10 min on modern hardware)"
+            - generic [ref=e1121]: lake exe cache get
+            - generic [ref=e1122]: lake build --log-level=error
+            - generic [ref=e1123]: "# Expected output: 3835+ jobs GREEN, 0 sorry, 0 new axioms (as of 2026-04-21)"
+          - paragraph [ref=e1124]:
+            - text: Individual theorems may be verified by reading the corresponding
+            - code [ref=e1125]: .lean
+            - text: file. Each cited theorem name is globally unique in the project namespace.
+          - separator [ref=e1126]
+          - paragraph [ref=e1127]:
+            - emphasis [ref=e1128]: "End of preview v1.0. Refined version v1.1 within seven days. Cite as: Marchewka, N. & Claude Opus 4.7 “Gratis” (2026). “Dark Energy as Integrated Photon Redshift Cost: A Substrate-Bookkeeping Resolution of the Cosmological Constant Problem” (preview v1.0). GitHub: RamzesX/Omega-Theory-Discrete-Spacetime. Licensed CC BY 4.0."
+          - separator [ref=e1129]
+          - 'heading "Addendum v1.6 — Cycle 16: Opening the Nuclear / Hadronic Sector" [level=2] [ref=e1130]'
+          - paragraph [ref=e1131]:
+            - text: Cycle 16 (2026-04-20) pushes the Lean formalization into the nuclear and hadronic regime with six simultaneous firsts, all Lean-verified at
+            - strong [ref=e1132]: 3775 jobs GREEN, 0 sorry, 0 new axioms
+            - text: ":"
+          - paragraph [ref=e1133]:
+            - strong [ref=e1134]: Baryon magnetic moments (Zavijava, Avior).
+            - code [ref=e1135]: protonMagneticMomentFit_exact
+            - text: pins μ_p/μ_N = 2.79284734463 via the e-channel;
+            - code [ref=e1136]: neutronMagneticMomentFit_exact
+            - text: pins μ_n/μ_N = −1.91304273. This is the
+            - emphasis [ref=e1137]: first negative substrate fit
+            - text: in the project and establishes the sign-flip ordering μ_p · μ_n < 0 as a structural witness. The |μ_p/μ_n| ratio sits near the Gell-Mann SU(6) prediction 3/2, now derivable from substrate rather than postulated.
+          - paragraph [ref=e1138]:
+            - strong [ref=e1139]: Nuclear binding (Tarazed-2, Pollux).
+            - code [ref=e1140]: deuteronBindingEnergyFit_exact
+            - text: fixes B_d = 2.22456612 MeV via the π-channel with the accompanying weak-binding witness B_d / m_p < 1/400 — the lightest bound nucleus now lives on substrate.
+            - code [ref=e1141]: bindingEnergyPerNucleonFit_exact
+            - text: gives BE/A(Fe-56) = 8.79 MeV and proves the iron-peak ordering BE/A(Fe-56) > BE/A(deuteron) by a factor of 7.9, fixing the stellar-nucleosynthesis endpoint inside the theorem.
+          - paragraph [ref=e1142]:
+            - strong [ref=e1143]: Goldberger-Treiman identity (Nusakan, Schedar-2).
+            - code [ref=e1144]: axialCouplingGAFit_exact
+            - text: derives g_A = 1.2724 via the e-channel with
+            - code [ref=e1145]: gAFitBase_eq_fpiFitBase := rfl
+            - text: — the PCAC relation becomes
+            - emphasis [ref=e1146]: definitionally
+            - text: true at the Pi-Hunch level. Schedar-2’s
+            - code [ref=e1147]: pionNucleonCouplingFit_exact
+            - text: yields g_πNN = 13.05 via the π-channel and proves |g_A · m_p / f_π − 13.05| < 1, the
+            - strong [ref=e1148]: first Goldberger-Treiman identity formally derived from a substrate model
+            - text: .
+          - paragraph [ref=e1149]:
+            - strong [ref=e1150]: Non-perturbative witness.
+            - text: Schedar-2’s supplementary lemma
+            - code [ref=e1151]: 4 · π < 13.05
+            - text: is the first Lean theorem certifying that a Standard-Model coupling exceeds the naive chiral-perturbation-theory expansion radius. Non-perturbative nuclear physics is thereby encoded directly in the π-channel residual — the Pi-Hunch predicts not only that nuclear physics is strong-coupling, but
+            - emphasis [ref=e1152]: how
+            - text: strong.
+          - paragraph [ref=e1153]:
+            - strong [ref=e1154]: Channel census.
+            - text: The e-channel universality family now has 8 members spanning five sectors (lepton masses, quark masses, hadronic decay constants, baryon magnetic moments, baryon axial coupling). The π-channel extends from cosmological Λ/α_s down into nuclear binding energies at MeV–GeV. The meson spectrum is the frontier of cycle 17.
+          - separator [ref=e1155]
+        - link "Back to overview" [ref=e1157] [cursor=pointer]:
+          - /url: /Omega-Theory-Discrete-Spacetime/
+          - img [ref=e1158]
+          - text: Back to overview
+```
+
+# Test source
+
+```ts
+  70  |       });
+  71  |     });
+  72  |     await page.goto('/');
+  73  |     const theme = await page.evaluate(() =>
+  74  |       document.documentElement.getAttribute('data-theme')
+  75  |     );
+  76  |     expect(theme, 'theme should default to "dark" even when system prefers light').toBe('dark');
+  77  |   });
+  78  | });
+  79  | 
+  80  | test.describe('sidebar contrast (WCAG AA = 4.5:1 min for normal text)', () => {
+  81  |   const PAGES = ['/', '/cycles/', '/lean/', '/papers/paper-qm-from-discrete-gravity/'];
+  82  | 
+  83  |   for (const path of PAGES) {
+  84  |     test(`${path} — .nav-link text contrast ≥ 4.5:1`, async ({ page }) => {
+  85  |       await page.goto(path);
+  86  |       const m = await page.evaluate(() => {
+  87  |         const link = document.querySelector('.nav-link:not(.active)');
+  88  |         const sidebar = document.querySelector('.sidebar');
+  89  |         if (!link || !sidebar) return null;
+  90  |         return {
+  91  |           fg: getComputedStyle(link).color,
+  92  |           bg: getComputedStyle(sidebar).backgroundColor,
+  93  |         };
+  94  |       });
+  95  |       expect(m, 'page must have .nav-link and .sidebar elements').not.toBeNull();
+  96  |       const bg = m.bg.includes('rgba') ? composite(m.bg, PAGE_BG) : m.bg;
+  97  |       const ratio = contrastRatio(m.fg, bg);
+  98  |       expect(
+  99  |         ratio,
+  100 |         `nav-link color=${m.fg} on composited bg=${bg}: contrast=${ratio?.toFixed(2)}`
+  101 |       ).toBeGreaterThanOrEqual(4.5);
+  102 |     });
+  103 | 
+  104 |     test(`${path} — .nav-section-title text contrast ≥ 4.5:1`, async ({ page }) => {
+  105 |       await page.goto(path);
+  106 |       const m = await page.evaluate(() => {
+  107 |         const t = document.querySelector('.nav-section-title');
+  108 |         const sidebar = document.querySelector('.sidebar');
+  109 |         if (!t || !sidebar) return null;
+  110 |         return {
+  111 |           fg: getComputedStyle(t).color,
+  112 |           bg: getComputedStyle(sidebar).backgroundColor,
+  113 |         };
+  114 |       });
+  115 |       expect(m, 'page must have .nav-section-title and .sidebar').not.toBeNull();
+  116 |       const bg = m.bg.includes('rgba') ? composite(m.bg, PAGE_BG) : m.bg;
+  117 |       const ratio = contrastRatio(m.fg, bg);
+  118 |       expect(
+  119 |         ratio,
+  120 |         `nav-section-title color=${m.fg} on bg=${bg}: contrast=${ratio?.toFixed(2)}`
+  121 |       ).toBeGreaterThanOrEqual(4.5);
+  122 |     });
+  123 |   }
+  124 | });
+  125 | 
+  126 | test.describe('body text contrast on paper pages (AA, normal text)', () => {
+  127 |   test('appendix-F paragraph contrast ≥ 4.5:1', async ({ page }) => {
+  128 |     await page.goto('/papers/appendix-f-information-flow-conservation/');
+  129 |     const m = await page.evaluate(() => {
+  130 |       const p = document.querySelector('main p');
+  131 |       if (!p) return null;
+  132 |       const html = document.documentElement;
+  133 |       return {
+  134 |         fg: getComputedStyle(p).color,
+  135 |         bg: getComputedStyle(html).backgroundColor,
+  136 |       };
+  137 |     });
+  138 |     expect(m).not.toBeNull();
+  139 |     const ratio = contrastRatio(m.fg, m.bg);
+  140 |     expect(ratio, `paragraph fg=${m.fg} vs bg=${m.bg}: ratio=${ratio?.toFixed(2)}`).toBeGreaterThanOrEqual(4.5);
+  141 |   });
+  142 | });
+  143 | 
+  144 | test.describe('no horizontal overflow on desktop viewport', () => {
+  145 |   const PAGES = [
+  146 |     '/',
+  147 |     '/cycles/',
+  148 |     '/lean/',
+  149 |     '/papers/paper-qm-from-discrete-gravity/',
+  150 |     '/papers/paper-dark-energy-preview-v1/',
+  151 |     '/papers/appendix-f-information-flow-conservation/',
+  152 |     '/papers/main-paper-postulates/',
+  153 |   ];
+  154 |   for (const path of PAGES) {
+  155 |     test(`${path} — no horizontal scroll at 1440×900`, async ({ page }) => {
+  156 |       test.skip(
+  157 |         test.info().project.name === 'chromium-mobile',
+  158 |         'mobile-overflow is a separate test'
+  159 |       );
+  160 |       await page.setViewportSize({ width: 1440, height: 900 });
+  161 |       await page.goto(path);
+  162 |       await page.waitForLoadState('networkidle');
+  163 |       const overflow = await page.evaluate(() => ({
+  164 |         sw: document.documentElement.scrollWidth,
+  165 |         cw: document.documentElement.clientWidth,
+  166 |       }));
+  167 |       expect(
+  168 |         overflow.sw,
+  169 |         `${path}: scrollWidth=${overflow.sw} exceeds clientWidth=${overflow.cw} — content overflows viewport`
+> 170 |       ).toBeLessThanOrEqual(overflow.cw + 1);
+      |         ^ Error: /papers/paper-dark-energy-preview-v1/: scrollWidth=1652 exceeds clientWidth=1440 — content overflows viewport
+  171 |     });
+  172 |   }
+  173 | });
+  174 | 
+  175 | test.describe('light theme (forced via toggle) remains readable', () => {
+  176 |   test('after setting localStorage theme=light: nav contrast still ≥ 4.5:1', async ({ page }) => {
+  177 |     // Inject theme=light BEFORE page script runs
+  178 |     await page.addInitScript(() => {
+  179 |       localStorage.setItem('theme', 'light');
+  180 |     });
+  181 |     await page.goto('/');
+  182 |     const m = await page.evaluate(() => {
+  183 |       const theme = document.documentElement.getAttribute('data-theme');
+  184 |       const link = document.querySelector('.nav-link:not(.active)');
+  185 |       const sidebar = document.querySelector('.sidebar');
+  186 |       if (!link || !sidebar) return { theme };
+  187 |       return {
+  188 |         theme,
+  189 |         fg: getComputedStyle(link).color,
+  190 |         bg: getComputedStyle(sidebar).backgroundColor,
+  191 |       };
+  192 |     });
+  193 |     expect(m.theme, 'localStorage override should take effect').toBe('light');
+  194 |     if (m.fg && m.bg) {
+  195 |       const bg = m.bg.includes('rgba') ? composite(m.bg, 'rgb(250, 251, 253)') : m.bg;
+  196 |       const ratio = contrastRatio(m.fg, bg);
+  197 |       expect(
+  198 |         ratio,
+  199 |         `light theme nav fg=${m.fg} bg=${bg}: contrast=${ratio?.toFixed(2)}`
+  200 |       ).toBeGreaterThanOrEqual(4.5);
+  201 |     }
+  202 |   });
+  203 | });
+  204 | 
+```

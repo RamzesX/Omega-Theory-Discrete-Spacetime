@@ -188,8 +188,21 @@ const collapsedSections = new Set(['Appendices']); // long list starts collapsed
     z-index: 10;
   }
 
-  [data-theme="light"] .sidebar {
-    background: rgba(255, 255, 255, 0.85);
+  /* Astro scopes component CSS by default — the `[data-theme="light"]`
+     attribute lives on <html> which is outside this component's scope.
+     Wrap in :global() so Astro keeps the selector exactly as written.
+     Otherwise the override compiles to a scoped hash that never matches. */
+  :global([data-theme="light"]) .sidebar {
+    background: rgba(255, 255, 255, 0.97);
+  }
+  :global([data-theme="light"]) .nav-link {
+    color: var(--color-text);  /* in light-theme this IS a dark color */
+  }
+  :global([data-theme="light"]) .nav-link:hover {
+    color: var(--color-magenta-2);
+  }
+  :global([data-theme="light"]) .nav-section-title {
+    color: var(--color-text-mut);
   }
 
   .sidebar-header {

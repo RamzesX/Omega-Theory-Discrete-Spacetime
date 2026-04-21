@@ -387,6 +387,29 @@ hr {
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
   overflow-x: auto;
   overflow-y: hidden;
+  /* Prevent wide equations from pushing the whole page horizontally. */
+  max-width: 100%;
+}
+
+/* Prevent all the usual horizontal-overflow culprits in paper content */
+main pre,
+main table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+main img,
+main video,
+main iframe {
+  max-width: 100%;
+  height: auto;
+}
+/* Long URLs / identifiers in <code> shouldn't blow out the column */
+main p code,
+main li code,
+main td code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .katex {

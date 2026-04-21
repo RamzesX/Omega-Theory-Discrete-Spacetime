@@ -87,9 +87,15 @@ server.listen(PORT, '127.0.0.1', () => {
   console.log(`static-server: http://127.0.0.1:${PORT}${BASE_PATH}/`);
 });
 
-// Graceful shutdown
-['SIGINT', 'SIGTERM'].forEach((sig) =>
+// Graceful shutdown on real termination signals
+['SIGINT', 'SIGTERM', 'SIGHUP'].forEach((sig) =>
   process.on(sig, () => {
     server.close(() => process.exit(0));
   })
 );
+
+// Node's default SIGUSR2 handler toggles the inspector, which in some
+// backgrounded WSL2 launches terminates the process with exit 144. Install
+// a no-op handler so the server survives orphan SIGUSR2 from parent shells.
+// See https://github.com/microsoft/WSL/issues/6917 for the class of bugs.
+process.on('SIGUSR2', () => { /* ignore */ });

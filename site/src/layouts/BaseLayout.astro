@@ -65,10 +65,13 @@ const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
   <script is:inline>
     // Theme persistence — run before body paints to avoid FOUC.
+    // Default: dark (the site's designed palette). System light-preference
+    // is NOT auto-applied because the light theme has several bugs (scoped
+    // sidebar overrides fail). Users can still toggle via the ThemeToggle
+    // component — their choice persists via localStorage.
     (function () {
       const stored = localStorage.getItem('theme');
-      const systemLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-      const theme = stored || (systemLight ? 'light' : 'dark');
+      const theme = stored || 'dark';
       document.documentElement.setAttribute('data-theme', theme);
     })();
   </script>

@@ -1,0 +1,3820 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: accessibility.e2e.mjs >> heading hierarchy >> a paper page has a single <h1>
+- Location: tests/accessibility.e2e.mjs:87:3
+
+# Error details
+
+```
+Error: paper pages should have exactly one <h1>
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: 1
+Received: 2
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - generic [ref=e3]:
+    - complementary "Primary" [ref=e4]:
+      - generic [ref=e5]:
+        - link "Omega-Theory home" [ref=e6] [cursor=pointer]:
+          - /url: /Omega-Theory-Discrete-Spacetime/
+          - generic [ref=e7]: Ω
+          - generic [ref=e8]:
+            - generic [ref=e9]: Omega-Theory
+            - generic [ref=e10]: discrete spacetime · Lean 4
+        - button "Toggle theme" [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+      - navigation "Site sections" [ref=e14]:
+        - generic [ref=e15]:
+          - button "Getting Started" [expanded] [ref=e16] [cursor=pointer]:
+            - generic [ref=e17]: Getting Started
+            - img [ref=e18]
+          - list [ref=e20]:
+            - listitem [ref=e21]:
+              - link "Overview" [ref=e22] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/
+            - listitem [ref=e23]:
+              - link "Main Paper" [ref=e24] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/main-paper-postulates/
+            - listitem [ref=e25]:
+              - link "Visual Summary" [ref=e26] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/unified-theory-diagram/
+        - generic [ref=e27]:
+          - button "Predictions" [expanded] [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: Predictions
+            - img [ref=e30]
+          - list [ref=e32]:
+            - listitem [ref=e33]:
+              - link "14 Cycles · 84 Predictions" [ref=e34] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/cycles/
+            - listitem [ref=e35]:
+              - link "Lean Formalization" [ref=e36] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/lean/
+            - listitem [ref=e37]:
+              - 'link "Appendix I: Experimental Tests" [ref=e38] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/appendix-i-experimental-tests/
+            - listitem [ref=e39]:
+              - 'link "Appendix J: Experimental Catalog" [ref=e40] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/appendix-j-experimental-catalog-consolidated/
+            - listitem [ref=e41]:
+              - 'link "Appendix K: Irrationality Genesis" [ref=e42] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/appendix-k-irrationality-genesis-of-predictions/
+            - listitem [ref=e43]:
+              - link "Cold-Neutron Letter (PRL)" [ref=e44] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/letter-coldneutron-executivesummary/
+        - generic [ref=e45]:
+          - button "Core Theory" [expanded] [ref=e46] [cursor=pointer]:
+            - generic [ref=e47]: Core Theory
+            - img [ref=e48]
+          - list [ref=e50]:
+            - listitem [ref=e51]:
+              - link "Complete Framework" [ref=e52] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/complete-omega-theory-unified-framework/
+            - listitem [ref=e53]:
+              - 'link "Key Insight: Irrationals" [ref=e54] [cursor=pointer]':
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/keyinsight-irrationals-action-thresholds/
+            - listitem [ref=e55]:
+              - link "Dark Energy Preview Paper" [ref=e56] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/paper-dark-energy-preview-v1/
+            - listitem [ref=e57]:
+              - link "Erdős Lagrangian" [ref=e58] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/erdoslagrangianunification/
+        - button "Appendices" [ref=e60] [cursor=pointer]:
+          - generic [ref=e61]: Appendices
+          - img [ref=e62]
+        - generic [ref=e64]:
+          - button "Notes" [expanded] [ref=e65] [cursor=pointer]:
+            - generic [ref=e66]: Notes
+            - img [ref=e67]
+          - list [ref=e69]:
+            - listitem [ref=e70]:
+              - link "Continued-Fraction Channels" [ref=e71] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/note-continued-fraction-information-channels/
+            - listitem [ref=e72]:
+              - link "Structure-Preserving Lattice Curvature" [ref=e73] [cursor=pointer]:
+                - /url: /Omega-Theory-Discrete-Spacetime/papers/note-structure-preserving-lattice-curvature/
+      - generic [ref=e74]:
+        - link "github.com/RamzesX/chaos-shield" [ref=e75] [cursor=pointer]:
+          - /url: https://github.com/RamzesX/chaos-shield
+          - img [ref=e76]
+          - generic [ref=e78]: github.com/RamzesX/chaos-shield
+        - paragraph [ref=e79]: © 2024–2026 Norbert Marchewka · CC-BY 4.0
+    - main [ref=e80]:
+      - article [ref=e81]:
+        - generic [ref=e82]:
+          - generic [ref=e83]: Current Work
+          - 'heading "Paper: Quantum Mechanics from Discrete-Gravity Healing Dynamics" [level=1] [ref=e84]'
+          - paragraph [ref=e85]: Machine-checked derivation of 7 QM pillars (Schrödinger, Born, 2-slit, Heisenberg, collapse, CHSH, non-relativistic limit) from the substrate; Lean 4 + Mathlib v4.29; target PRL / Nature Physics / Foundations of Physics
+          - generic [ref=e87]:
+            - img [ref=e88]
+            - text: 86 min read
+        - generic [ref=e91]:
+          - heading "Rigorous Machine-Checked Derivation of Non-Relativistic Quantum Mechanics from Discrete-Gravity Healing Dynamics" [level=1] [ref=e92]
+          - paragraph [ref=e93]:
+            - strong [ref=e94]: "Status:"
+            - text: draft, paper-in-preparation. Scope expanded from 1-theorem to 7-theorem chain on 2026-04-15 (Option B plan
+            - code [ref=e95]: PLAN_QM_BRIDGE.md
+            - text: "plus Phase 6A/B/C). All seven theorems have landed as of 2026-04-15: Phase 1 dynamical snapshot sequence, Phase 2 dynamical Schrödinger bound under"
+            - code [ref=e96]: HasZeroFunctional
+            - text: ", Phase 3 Born-rule conservation, Phase 4 two-slit interference (exact identity, no residue), Phase 6A Heisenberg uncertainty principle under"
+            - code [ref=e97]: CommutatorMatchesMean
+            - text: ", Phase 6B measurement/collapse postulate (non-unitarity as a theorem), Phase 6C Tsirelson-bound-attaining entanglement with CHSH > 2."
+            - strong [ref=e98]: "Target venues:"
+            - emphasis [ref=e99]: Physical Review Letters
+            - text: (4-page letter) or
+            - emphasis [ref=e100]: Nature Physics
+            - text: (6-page letter), with a long-form companion in
+            - emphasis [ref=e101]: Foundations of Physics
+            - text: . An interim submission to
+            - emphasis [ref=e102]: Journal of Mathematical Physics
+            - text: remains admissible if the letter-length venue is not reachable.
+            - strong [ref=e103]: "Formalization:"
+            - text: Lean 4 + Mathlib v4.29.0. Every theorem cited below either is machine-checked today or will be before submission; §§ 5–7 are explicitly labelled with their Phase status. All 19 paper-wrapper theorems (
+            - code [ref=e104]: paper_coarseGrain_exists
+            - text: through
+            - code [ref=e105]: paper_grand_qm_emergence_on_minkowski
+            - text: ) plus the capstone
+            - code [ref=e106]: grand_qm_emergence
+            - text: are verified against the
+            - code [ref=e107]: ":Theorem {namespace:'OmegaTheoryV2'}"
+            - text: "nodes in Neo4j (2026-04-21 audit: 19/19 present)."
+            - strong [ref=e108]: "Build state (2026-04-21):"
+            - text: 3,835 jobs GREEN · 0 sorry · 8 physical axioms · 8,996
+            - code [ref=e109]: :Theorem
+            - text: nodes in
+            - code [ref=e110]: OmegaTheoryV2
+            - text: Neo4j graph.
+            - strong [ref=e111]: "Source tree:"
+            - code [ref=e112]: PhysicsPapers/LeanFormalizationV2/
+            - text: ", commit-hash to be inserted at submission."
+          - separator [ref=e113]
+          - heading "Abstract" [level=2] [ref=e114]
+          - paragraph [ref=e115]:
+            - text: We derive
+            - strong [ref=e116]: seven pillars of non-relativistic quantum mechanics — Schrödinger dynamics, the Born rule, the non-relativistic limit of relativistic dispersion, two-slit interference, the Heisenberg uncertainty principle, the measurement / collapse postulate, and Tsirelson-bound-attaining entanglement with CHSH-inequality violation — as machine-checked Lean 4 theorems
+            - text: from the discrete Planck-scale healing dynamics of Omega-Theory V2. The substrate is a local update rule on
+            - code [ref=e117]: Z^4
+            - text: whose equilibrium condition already reproduces Einstein’s field equations modulo a controlled
+            - code [ref=e118]: O(l_P)
+            - text: remainder (published elsewhere); we show that the
+            - emphasis [ref=e119]: same
+            - text: substrate, once equipped with a complex-valued tick-to-tick update rule, coarse-grains to the standard non-relativistic wave mechanics — and does so with enough resolution to derive all seven of the canonical QM postulates that standard textbooks take as axioms.
+          - paragraph [ref=e120]: The central construction is a map
+          - code [ref=e122]:
+            - generic [ref=e123]: "L : SnapshotSequence → LatticeComplexField"
+          - paragraph [ref=e124]:
+            - text: sending a time-indexed family of discrete metrics to a complex field
+            - code [ref=e125]: ψ(x, n)
+            - text: "on"
+            - code [ref=e126]: LatticePoint × ℕ
+            - text: . The amplitude is fixed by the Kullback–Leibler information density as
+            - code [ref=e127]: "|ψ|² = exp(−I_KL)"
+            - text: ; a phase-carrying extension
+            - code [ref=e128]: coarseGrainWithPhase
+            - text: admits plane-wave phases sourced from the lattice geometry; a two-body tensor-product extension
+            - code [ref=e129]: tensorProduct
+            - text: carries the Bell-state construction.
+          - paragraph [ref=e130]: "The seven headline theorems are:"
+          - list [ref=e131]:
+            - listitem [ref=e132]:
+              - strong [ref=e133]: Dynamical Schrödinger bound.
+              - text: On a dynamical snapshot sequence with rest mass
+              - code [ref=e134]: m > 0
+              - text: ", the per-tick increment of"
+              - code [ref=e135]: ψ = L(s)
+              - text: matches the discrete Schrödinger right-hand side
+              - code [ref=e136]: (−iℏ/2m)·Δψ·t_P
+              - text: up to an explicit
+              - code [ref=e137]: O(l_P)
+              - text: remainder. (The coefficient
+              - code [ref=e138]: −iℏ/(2m)
+              - text: is fixed by the substrate, not put in by hand.)
+            - listitem [ref=e139]:
+              - strong [ref=e140]: Born rule as conservation.
+              - text: The total probability
+              - code [ref=e141]: ∑_p |ψ(p, n)|²
+              - text: is conserved across ticks under the dynamical update — a
+              - emphasis [ref=e142]: theorem
+              - text: ", not an axiom."
+            - listitem [ref=e143]:
+              - strong [ref=e144]: Non-relativistic limit.
+              - text: The lattice mass shell
+              - code [ref=e145]: E² = (pc)² + (mc²)²
+              - text: differs from
+              - code [ref=e146]: mc² + p²/(2m)
+              - text: by an algebraic quartic remainder
+              - code [ref=e147]: p⁴ / (4 m³ c²)
+              - text: ; this ties Theorem 1’s kinetic coefficient to the relativistic substrate with zero Taylor-series machinery.
+            - listitem [ref=e148]:
+              - strong [ref=e149]: Two-slit interference.
+              - text: Two plane-wave coarse-grainings with distinct
+              - code [ref=e150]: (k, ω)
+              - text: combine via a superposition rule whose squared modulus at the detection lattice exhibits constructive / destructive bands matching
+              - code [ref=e151]: cos²((k₁ − k₂)·p/2)
+              - text: exactly (no residue).
+            - listitem [ref=e152]:
+              - strong [ref=e153]: Heisenberg uncertainty principle.
+              - text: On any finite lattice region,
+              - code [ref=e154]: variance_x · variance_p ≥ (ℏ/2)²
+              - text: ", under the honestly-scoped hypothesis"
+              - code [ref=e155]: CommutatorMatchesMean
+              - text: encoding the lattice-continuum commutator bridge
+              - code [ref=e156]: "[x̂, p̂] = iℏ"
+              - text: up to
+              - code [ref=e157]: O(ℓ_P²)
+              - text: corrections.
+            - listitem [ref=e158]:
+              - strong [ref=e159]: Measurement / collapse postulate as a theorem.
+              - text: The four-clause collapse bundle — Born-ratio probability, unit norm post-measurement, support concentration at the outcome, unit modulus at the outcome — is derived from the substrate. The post-measurement state is
+              - emphasis [ref=e160]: provably
+              - text: not in the image of
+              - code [ref=e161]: coarseGrain
+              - text: ":"
+              - strong [ref=e162]: collapse is non-unitary, as a theorem
+              - text: ", not a separate axiom."
+            - listitem [ref=e163]:
+              - strong [ref=e164]: Entanglement and CHSH violation.
+              - text: The Bell state
+              - code [ref=e165]: bellField = (|00⟩ + |11⟩)/√2
+              - text: on the lattice is (a) structurally entangled (non-factorisable), (b) has two-particle correlator
+              - code [ref=e166]: cos(α − β)
+              - text: exactly, (c) attains the Tsirelson bound
+              - code [ref=e167]: 2·√2
+              - text: at canonical CHSH angles, and (d) strictly violates the classical Bell bound
+              - code [ref=e168]: "2"
+              - text: . Einstein’s “spooky action at a distance” is thereby a theorem of V2.
+          - paragraph [ref=e169]:
+            - text: Pillars 1–7 are delivered as seven individual theorems. An eighth
+            - emphasis [ref=e170]: capstone
+            - text: theorem
+            - code [ref=e171]: grand_qm_emergence
+            - text: bundles them into a single
+            - code [ref=e172]: Prop
+            - text: "-record"
+            - code [ref=e173]: QuantumMechanicsPostulates
+            - text: that holds for every dynamical snapshot sequence in the
+            - code [ref=e174]: HasZeroFunctional
+            - text: "regime, every coarse-grained state, every finite region, every tick. This is the umbrella statement of the paper:"
+            - strong [ref=e175]: every defining feature of non-relativistic quantum mechanics is derived as a machine-checked theorem from a single discrete gravitational substrate
+            - text: ", assembled into one top-level theorem."
+          - paragraph [ref=e176]:
+            - text: Every theorem builds clean in Lean 4 / Mathlib v4.29.0 with zero
+            - code [ref=e177]: sorry
+            - text: and no new axioms beyond the 8 physical Planck constants and the Hildebrandt–Polthier–Wardetzky Laplacian–Ricci correspondence (used only on the Einstein side,
+            - emphasis [ref=e178]: not
+            - text: on the QM bridge; provably eliminable on three regimes via the
+            - code [ref=e179]: HpwEliminableRegime
+            - text: typeclass).
+            - strong [ref=e180]:
+              - text: "Build state on 2026-04-21: 3,835 jobs GREEN, 0 sorry, 8 physical axioms; 8,996"
+              - code [ref=e181]: :Theorem
+              - text: nodes in the
+              - code [ref=e182]: OmegaTheoryV2
+              - text: Neo4j graph.
+          - paragraph [ref=e183]:
+            - strong [ref=e184]: Differentiator.
+            - text: Closely related prose proposals exist — Kulkarni’s February 2026 “Selection-Stitch Model” (
+            - emphasis [ref=e185]: AI Journal
+            - text: ), ‘t Hooft’s cellular-automaton interpretation, Wolfram physics, Adler’s trace dynamics. What none of these provide, and what we do, is a proof-assistant-checked theorem chain from Planck-scale first principles to all seven QM pillars above. To the authors’ knowledge, this is the first machine-checked derivation in a proof assistant of the full canonical-QM postulate set (Schrödinger, Born, uncertainty, measurement, entanglement + Bell violation) from a
+            - emphasis [ref=e186]: single
+            - text: discrete-gravity substrate; we do not claim an exhaustive survey, and this phrasing is best-effort. Results that the substrate-derivation literature cites as heuristics or axioms, we furnish as theorems.
+          - separator [ref=e187]
+          - heading "1. Introduction" [level=2] [ref=e188]
+          - paragraph [ref=e189]: "A recurring theme across discrete-substrate approaches to quantum mechanics — Wolfram physics, ‘t Hooft’s cellular-automaton interpretation, causal sets, stochastic electrodynamics — is that the smooth Schrödinger evolution ought to emerge as the large-scale phenomenology of a discrete local update rule. The difficulty is notorious: going from a local combinatorial dynamics to a continuum wave equation has historically required either informal coarse-graining arguments or postulates that sneak in the Hilbert-space structure they set out to derive."
+          - paragraph [ref=e190]:
+            - text: This paper reports a
+            - emphasis [ref=e191]: different kind
+            - text: of contribution. We do not propose a new physical mechanism. We take the mechanism that is already built into the Omega-Theory V2 Lean formalization — a Planck-scale lattice with a healing flow that stabilises the metric against computational truncation errors, and from which Einstein’s equations have already been derived as a theorem at equilibrium — and we show, as a sequence of Lean 4 theorems, that a natural coarse-graining of that dynamics satisfies a Schrödinger-type bound in a well-defined non-relativistic limit.
+          - paragraph [ref=e192]: "The result is modest in physical scope and ambitious in formal scope:"
+          - list [ref=e193]:
+            - listitem [ref=e194]:
+              - strong [ref=e195]: Modest in physical scope.
+              - text: We do not derive the Born rule, we do not derive interference/double-slit, and we do not claim to reproduce general curved Einstein side axiom-free (that is the job of the companion HPW- elimination workstream, see
+              - code [ref=e196]: NOTES_HPW_ELIMINATION.md
+              - text: ).
+            - listitem [ref=e197]:
+              - strong [ref=e198]: Ambitious in formal scope.
+              - text: The entire proof chain — from the lattice update rule to the Schrödinger-type bound — is machine-checked in Lean 4 against Mathlib v4.29.0. No step is hand-waved, and the exact cost of every axiom used is itemised in Section 3.
+          - paragraph [ref=e199]:
+            - text: We state the eight headline theorems informally here (T1 = coarse- graining existence, T2 = Schrödinger bound, T3 = Born rule as conservation, T4 = non-relativistic limit, T5 = two-slit interference, T6 = Heisenberg uncertainty, T7 = measurement / collapse, T8 = entanglement / Bell violation); formal statements and Lean provenance appear in Sections 4–11, and the capstone theorem
+            - code [ref=e200]: grand_qm_emergence
+            - text: bundling them all into a single 8-field
+            - code [ref=e201]: QuantumMechanicsPostulates
+            - text: record is stated in §12.
+          - blockquote [ref=e202]:
+            - paragraph [ref=e203]:
+              - strong [ref=e204]: Theorem 1 (Coarse-graining map exists).
+              - text: There is a map
+              - code [ref=e205]: "L : SnapshotSequence → LatticeComplexField"
+              - text: whose squared modulus equals the Kullback–Leibler information density
+              - code [ref=e206]: "|ψ|² = exp(−I_KL)"
+              - text: of the lattice metric against the reference background.
+              - code [ref=e207]: L
+              - text: is well-defined, strictly positive pointwise, and satisfies a controlled finite-region
+              - code [ref=e208]: ℓ²
+              - text: bound.
+          - blockquote [ref=e209]:
+            - paragraph [ref=e210]:
+              - strong [ref=e211]: Theorem 2 (Schrödinger bound, main result).
+              - text: On a dynamical snapshot sequence
+              - code [ref=e212]: d
+              - text: with
+              - code [ref=e213]: d.HasZeroFunctional
+              - text: (the metric- Laplacian functional
+              - code [ref=e214]: F
+              - text: vanishes on every iterate) and rest mass
+              - code [ref=e215]: m > 0
+              - text: ", the coarse-grained field"
+              - code [ref=e216]: ψ := L d.toSnapshotSequence
+              - text: satisfies
+              - code [ref=e217]: ψ(p, n+1) − ψ(p, n) ≈ (−iℏ / 2m) · Δψ(p, n) · t_P
+              - text: modulo an explicit remainder bounded by
+              - code [ref=e218]: schrodingerBoundConst m · ℓ_P = 8ℏ/(m · c · ℓ_P)
+              - text: . The static form (on bare
+              - code [ref=e219]: SnapshotSequence
+              - text: ) is retained as a reference corollary.
+          - blockquote [ref=e220]:
+            - paragraph [ref=e221]:
+              - strong [ref=e222]: Theorem 3 (Born rule as conservation).
+              - text: Under the
+              - emphasis [ref=e223]: same
+              - code [ref=e224]: d.HasZeroFunctional
+              - text: scope as Theorem 2, and for
+              - emphasis [ref=e225]: any
+              - text: phase function and effective mass, the Born-rule sum
+              - code [ref=e226]: "∑_{p ∈ region} |ψ(p, n)|²"
+              - text: "is tick-invariant:"
+              - code [ref=e227]: ∑ |ψ(p, n)|² = ∑ |ψ(p, n+1)|²
+              - text: . Probability conservation is therefore a
+              - emphasis [ref=e228]: theorem
+              - text: "of the substrate, not a postulate. An honest quantitative residue bound applies off-regime: the per-tick change of the region sum is bounded by the total absolute pointwise change of the Gibbs weight"
+              - code [ref=e229]: exp(−I_KL)
+              - text: ", collapsing to exact equality under tick-invariance of the KL density."
+          - blockquote [ref=e230]:
+            - paragraph [ref=e231]:
+              - strong [ref=e232]: Theorem 4 (Non-relativistic limit).
+              - text: For every
+              - code [ref=e233]: m > 0
+              - text: and every
+              - code [ref=e234]: p
+              - text: ", the relativistic energy differs from"
+              - code [ref=e235]: mc² + p²/(2m)
+              - text: by at most
+              - code [ref=e236]: p⁴/(4 m³ c²)
+              - text: . The bound is
+              - emphasis [ref=e237]: closed form
+              - text: — obtained from the elementary algebraic identity
+              - code [ref=e238]: B² − A² = p⁴/(4m²)
+              - text: with
+              - code [ref=e239]: B = mc² + p²/(2m)
+              - text: ","
+              - code [ref=e240]: A = E(p,m)
+              - text: ", so no Taylor-series machinery is required. This is the bridge to"
+              - code [ref=e241]: OmegaTheory.Emergence.SpecialRelativity
+              - text: and closes the gap between the discrete lattice mass-shell and the Schrödinger equation’s kinetic term.
+          - blockquote [ref=e242]:
+            - paragraph [ref=e243]:
+              - strong [ref=e244]: Theorem 5 (Two-slit interference).
+              - text: For two plane-wave coarse-grained fields on a common substrate, the probability density of the superposed field is
+              - emphasis [ref=e245]: exactly
+              - code [ref=e246]: "|ψ₁ + ψ₂|² = |ψ₁|² + |ψ₂|² + 2 · A² · cos(Δφ)"
+              - text: with no residue and no smoothness hypothesis, where
+              - code [ref=e247]: A = exp(−I_KL/2)
+              - text: is the shared substrate amplitude and
+              - code [ref=e248]: Δφ = (k₁−k₂)·p − (ω₁−ω₂)·n
+              - text: is the plane-wave phase difference. Constructive peaks (
+              - code [ref=e249]: Δφ = 0
+              - text: ) give the canonical
+              - code [ref=e250]: 4 · A²
+              - text: quantum-doubling and destructive nulls (
+              - code [ref=e251]: Δφ = π
+              - text: ) give exact cancellation.
+          - blockquote [ref=e252]:
+            - paragraph [ref=e253]:
+              - strong [ref=e254]: Theorem 6 (Heisenberg uncertainty).
+              - text: For any direction
+              - code [ref=e255]: μ
+              - text: ", any"
+              - code [ref=e256]: LatticeComplexField ψ
+              - text: ", any finite region, any tick, under the commutator-matching hypothesis"
+              - code [ref=e257]: CommutatorMatchesMean (x̂_μ) (p̂_μ) ℏ ψ R n
+              - text: (which encodes
+              - code [ref=e258]: "[x̂, p̂] = iℏ"
+              - text: on the lattice up to an
+              - code [ref=e259]: O(ℓ_P²)
+              - text: "correction for smooth states):"
+              - code [ref=e260]: variance_x μ ψ R n · variance_p μ ψ R n ≥ (ℏ/2)²
+              - text: . The Robertson inequality holds as a pure Cauchy-Schwarz fact; the
+              - code [ref=e261]: (ℏ/2)²
+              - text: bound follows when the commutator expectation value matches
+              - code [ref=e262]: ℏ
+              - text: .
+          - blockquote [ref=e263]:
+            - paragraph [ref=e264]:
+              - strong [ref=e265]: Theorem 7 (Measurement / collapse as a theorem).
+              - text: For any region,
+              - code [ref=e266]: ψ
+              - text: ", outcome"
+              - code [ref=e267]: q ∈ region
+              - text: with
+              - code [ref=e268]: ψ(q, tick) ≠ 0
+              - text: ", the four-clause collapse postulate holds: probability of"
+              - code [ref=e269]: q
+              - text: equals the Born ratio
+              - code [ref=e270]: ‖ψ(q, tick)‖²/regionL2NormSq
+              - text: ; post-measurement state has unit region-relative L² norm; support is concentrated at
+              - code [ref=e271]: q
+              - text: ; modulus at
+              - code [ref=e272]: q
+              - text: is 1. The post-measurement state is
+              - emphasis [ref=e273]: provably
+              - text: not a coarse-grained field (
+              - code [ref=e274]: postMeasurement_not_in_coarseGrain_image
+              - text: "): collapse is non-unitary, as a theorem."
+          - blockquote [ref=e275]:
+            - paragraph [ref=e276]:
+              - strong [ref=e277]: Theorem 8 (Entanglement and Bell violation).
+              - text: The lattice Bell state
+              - code [ref=e278]: bellField = (|00⟩ + |11⟩)/√2
+              - text: is entangled (
+              - code [ref=e279]: bellField_isEntangled
+              - text: ), its two-particle correlator is exactly
+              - code [ref=e280]: cos(α − β)
+              - text: (
+              - code [ref=e281]: cos_correlation_theorem
+              - text: ), and at canonical CHSH angles
+              - code [ref=e282]: (0, π/2, π/4, 3π/4)
+              - text: its CHSH value equals
+              - code [ref=e283]: 2·√2
+              - text: exactly — the Tsirelson bound attained. Since
+              - code [ref=e284]: 2·√2 > 2
+              - text: ", the classical Bell bound is strictly violated ("
+              - code [ref=e285]: bell_inequality_violation
+              - text: ).
+          - paragraph [ref=e286]:
+            - text: The rest of the paper is organised as follows. Section 2 positions the result against prior work, with an honest comparison to Kulkarni’s recent selection-stitch proposal. Section 3 recaps the Omega-Theory V2 setup at the level needed for the QM bridge. Sections 4–11 present the seven theorems with Lean excerpts. Section 13 is a candid inventory of what is
+            - emphasis [ref=e287]: not
+            - text: yet proved.
+          - separator [ref=e288]
+          - heading "2. Prior Work" [level=2] [ref=e289]
+          - heading "2.1 Wolfram Physics and the hypergraph-rewrite programme" [level=3] [ref=e290]
+          - paragraph [ref=e291]: The Wolfram physics programme (Wolfram 2020 and subsequent) proposes that all of physics emerges from a hypergraph-rewrite system. The programme has produced dimensional analyses, sketch derivations of general relativity, and plausibility arguments for quantum behaviour via branchial space. What it has not produced, at the time of writing, is a formally verified derivation of any standard equation of physics — including the Schrödinger equation — from the rewrite dynamics. The Wolfram system is a framework for intuition and simulation, not a proof pipeline. The present paper is a proof pipeline.
+          - heading "2.2 ‘t Hooft’s cellular-automaton interpretation of QM" [level=3] [ref=e292]
+          - paragraph [ref=e293]: ‘t Hooft (2016 and earlier) has argued that quantum mechanics is the statistical description of a deterministic cellular automaton at the Planck scale. The central technical tool is the “beable” basis, and the argument is made at the level of operator algebras rather than a discrete-to-continuum convergence theorem. Like Wolfram’s programme, it is not formally verified in any proof assistant, and it leaves the coarse-graining step unspecified at the mathematical level.
+          - paragraph [ref=e294]:
+            - text: "Our contribution differs in aim: we do not attempt to reconstruct the full Hilbert-space structure of standard QM from the lattice. We construct"
+            - emphasis [ref=e295]: one concrete map
+            - code [ref=e296]: "L : SnapshotSequence → LatticeComplexField"
+            - text: and prove
+            - emphasis [ref=e297]: one concrete evolution bound
+            - text: in Lean. That is a narrower claim than ‘t Hooft’s, and correspondingly more checkable.
+          - heading "2.3 Kulkarni’s “Selection-Stitch Model” (February 2026)" [level=3] [ref=e298]
+          - paragraph [ref=e299]:
+            - text: Kulkarni (
+            - emphasis [ref=e300]: AI Journal
+            - text: ", February 2026) proposed what he calls the"
+            - strong [ref=e301]: Selection-Stitch Model
+            - text: ": a self-healing lattice whose coarse-graining produces the Schrödinger equation from first principles. The physical picture he describes is, at the level of prose, very close to the picture we formalise here. In particular the identification of the electron with a pattern that is re-instantiated on each tick, and the framing of Schrödinger evolution as the coarse-grained consequence of per-tick self-healing, appear in both workstreams."
+          - paragraph [ref=e302]: "We want to be clear about what Kulkarni’s paper does and does not do:"
+          - list [ref=e303]:
+            - listitem [ref=e304]:
+              - strong [ref=e305]: What Kulkarni does.
+              - text: He lays out the physical narrative. He gestures at the coarse-graining map. He writes the phrases “from first principles” and “rigorously follows from”. The paper is well-written prose that an informed reader of the discrete-substrate literature can follow.
+            - listitem [ref=e306]:
+              - strong [ref=e307]: What Kulkarni does not do.
+              - text: He does not provide a formal definition of the coarse-graining map, he does not provide a proof of the Schrödinger bound, and he does not submit any of his claims to a proof assistant. The paper contains no theorems in the formal sense of the word — only labelled derivations and order-of-magnitude estimates. Whether the physical picture actually
+              - emphasis [ref=e308]: implies
+              - text: the Schrödinger equation, as opposed to being
+              - emphasis [ref=e309]: compatible with
+              - text: it, is a question that his text does not and cannot settle at the level of rigour it operates at.
+          - paragraph [ref=e310]:
+            - text: This is not a criticism of Kulkarni’s paper as a
+            - emphasis [ref=e311]: conceptual
+            - text: contribution. Physics-intuition papers that propose a picture for others to formalise have a long and honourable tradition (think of Wheeler’s “It from bit”, or Feynman’s original path-integral papers), and Kulkarni’s is a reasonable entry in that genre. It is also entirely common for physicists to publish a picture and for the formalisation to come later from a different group.
+          - paragraph [ref=e312]: "What we claim here is complementary and narrower: we state a specific theorem, we prove it, we check the proof with a machine, and we publish the source. A reviewer who doubts our derivation can read the Lean file and verify it; no such possibility exists for Kulkarni’s paper, and none was claimed for it."
+          - paragraph [ref=e313]:
+            - text: "If Kulkarni or collaborators develop an independent formalisation, the two projects will provide cross-verification for a common physical picture — a useful state of affairs. In the meantime, we note that the work presented here is logically independent: the Lean development began in 2025, predates the Kulkarni paper, and the coarse-graining map we use ("
+            - code [ref=e314]: "|ψ|² = exp(−I_KL)"
+            - text: ", see Section 4) differs in detail from any candidate definable from Kulkarni’s prose."
+          - heading "2.4 Causal sets, stochastic electrodynamics, and other programmes" [level=3] [ref=e315]
+          - paragraph [ref=e316]: We omit a detailed survey here; the relevant references (Bombelli–Lee–Meyer– Sorkin 1987; de la Peña–Cetto 1996; Markopoulou 2008) are standard. The common thread across these programmes is a physical picture that has not been formally verified, paired with a conjecture about how QM should emerge. The present paper does not attempt to adjudicate between programmes. It pins down one version of the conjecture and checks it.
+          - separator [ref=e317]
+          - 'heading "3. Setup: OmegaTheory V2 in Lean 4" [level=2] [ref=e318]'
+          - paragraph [ref=e319]: The Lean development is organised in 12 layers; for this paper we need the following six.
+          - table [ref=e320]:
+            - rowgroup [ref=e321]:
+              - row "Layer Purpose Key file" [ref=e322]:
+                - columnheader "Layer" [ref=e323]
+                - columnheader "Purpose" [ref=e324]
+                - columnheader "Key file" [ref=e325]
+            - rowgroup [ref=e326]:
+              - 'row "Spacetime Lattice Z^4, Planck constants Spacetime/{Lattice,Constants}.lean" [ref=e327]':
+                - cell "Spacetime" [ref=e328]
+                - cell "Lattice Z^4, Planck constants" [ref=e329]:
+                  - text: Lattice
+                  - code [ref=e330]: Z^4
+                  - text: ", Planck constants"
+                - 'cell "Spacetime/{Lattice,Constants}.lean" [ref=e331]':
+                  - code [ref=e332]: "Spacetime/{Lattice,Constants}.lean"
+              - 'row "Geometry Discrete metric, connection, curvature Geometry/{Metric,Curvature}.lean" [ref=e333]':
+                - cell "Geometry" [ref=e334]
+                - cell "Discrete metric, connection, curvature" [ref=e335]
+                - 'cell "Geometry/{Metric,Curvature}.lean" [ref=e336]':
+                  - code [ref=e337]: "Geometry/{Metric,Curvature}.lean"
+              - row "Conservation KL information density Conservation/InformationKL.lean" [ref=e338]:
+                - cell "Conservation" [ref=e339]
+                - cell "KL information density" [ref=e340]
+                - cell "Conservation/InformationKL.lean" [ref=e341]:
+                  - code [ref=e342]: Conservation/InformationKL.lean
+              - 'row "HealingFlow Lyapunov monotonicity, convergence HealingFlow/{Lyapunov,Convergence}.lean" [ref=e343]':
+                - cell "HealingFlow" [ref=e344]
+                - cell "Lyapunov monotonicity, convergence" [ref=e345]
+                - 'cell "HealingFlow/{Lyapunov,Convergence}.lean" [ref=e346]':
+                  - code [ref=e347]: "HealingFlow/{Lyapunov,Convergence}.lean"
+              - row "Emergence (gravity side) Einstein tensor emergence Emergence/EinsteinEmergence.lean" [ref=e348]:
+                - cell "Emergence (gravity side)" [ref=e349]
+                - cell "Einstein tensor emergence" [ref=e350]
+                - cell "Emergence/EinsteinEmergence.lean" [ref=e351]:
+                  - code [ref=e352]: Emergence/EinsteinEmergence.lean
+              - 'row "Emergence (QM side) The present contribution Emergence/{CoarseGrainingMap,SnapshotDynamics,SchrodingerFromLattice,DispersionFromLattice,DispersionBridge,BornRule,Interference,Heisenberg,Measurement,Entanglement,QmBridgePaper}.lean" [ref=e353]':
+                - cell "Emergence (QM side)" [ref=e354]
+                - cell "The present contribution" [ref=e355]
+                - 'cell "Emergence/{CoarseGrainingMap,SnapshotDynamics,SchrodingerFromLattice,DispersionFromLattice,DispersionBridge,BornRule,Interference,Heisenberg,Measurement,Entanglement,QmBridgePaper}.lean" [ref=e356]':
+                  - code [ref=e357]: "Emergence/{CoarseGrainingMap,SnapshotDynamics,SchrodingerFromLattice,DispersionFromLattice,DispersionBridge,BornRule,Interference,Heisenberg,Measurement,Entanglement,QmBridgePaper}.lean"
+          - heading "3.1 Axiom inventory" [level=3] [ref=e358]
+          - paragraph [ref=e359]: The total cost of axioms used in the QM bridge is as follows.
+          - list [ref=e360]:
+            - listitem [ref=e361]:
+              - strong [ref=e362]: Eight physical Planck constants
+              - text: (
+              - code [ref=e363]: c
+              - text: ","
+              - code [ref=e364]: ℏ
+              - text: ","
+              - code [ref=e365]: G
+              - text: ","
+              - code [ref=e366]: k_B
+              - text: ","
+              - code [ref=e367]: l_P
+              - text: ","
+              - code [ref=e368]: t_P
+              - text: ","
+              - code [ref=e369]: E_P
+              - text: ","
+              - code [ref=e370]: m_P
+              - text: ) declared in
+              - code [ref=e371]: Spacetime/Constants.lean
+              - text: . These are numerical constants of nature; declaring them is standard in physics formalisation.
+            - listitem [ref=e372]:
+              - strong [ref=e373]: The HPW Laplacian–Ricci correspondence
+              - text: (Hildebrandt, Polthier, Wardetzky 2006), used on the Einstein side, not on the QM side. The QM bridge theorems below do not depend on HPW.
+          - paragraph [ref=e374]:
+            - text: No additional axiom is introduced by the QM bridge. In particular we do not axiomatise the Schrödinger equation,
+            - code [ref=e375]: ψ
+            - text: ", or any quantum-mechanical object."
+          - heading "3.2 Core types and definitions" [level=3] [ref=e376]
+          - paragraph [ref=e377]:
+            - text: From
+            - code [ref=e378]: Emergence/CoarseGrainingMap.lean
+            - text: ":"
+          - code [ref=e380]:
+            - generic [ref=e381]: "abbrev LatticeComplexField : Type := LatticePoint → ℕ → ℂ"
+            - generic [ref=e382]: structure SnapshotSequence where
+            - generic [ref=e383]: "metric : ℕ → DiscreteMetric"
+            - generic [ref=e384]: "reference : DiscreteMetric"
+            - generic [ref=e385]: "noncomputable def coarseGrain (s : SnapshotSequence) : LatticeComplexField :="
+            - generic [ref=e386]: fun p n =>
+            - generic [ref=e387]: "(coarseGrainAmplitude s p n : ℂ) *"
+            - generic [ref=e388]: "Complex.exp (Complex.I * (coarseGrainPhase s p n : ℂ))"
+          - paragraph [ref=e389]:
+            - text: From
+            - code [ref=e390]: Emergence/SpecialRelativity.lean
+            - text: ":"
+          - code [ref=e392]:
+            - generic [ref=e393]: "noncomputable def relativisticEnergy (p m : ℝ) : ℝ :="
+            - generic [ref=e394]: Real.sqrt ((p * c) ^ 2 + (m * c ^ 2) ^ 2)
+          - paragraph [ref=e395]:
+            - text: From
+            - code [ref=e396]: Emergence/DispersionFromLattice.lean
+            - text: "(tick-counting):"
+          - code [ref=e398]:
+            - generic [ref=e399]: "noncomputable def forwardFraction (p m : ℝ) : ℝ := p * c / relativisticEnergy p m"
+            - generic [ref=e400]: "noncomputable def zitterbewegungFraction (p m : ℝ) : ℝ := 1 - (forwardFraction p m) ^ 2"
+          - paragraph [ref=e401]:
+            - text: These — together with
+            - code [ref=e402]: DynamicalSnapshotSequence
+            - text: (Phase 1),
+            - code [ref=e403]: LatticeOperator
+            - text: /
+            - code [ref=e404]: positionOperator
+            - text: /
+            - code [ref=e405]: momentumOperator
+            - text: (Phase 6A), the region-relative norm
+            - code [ref=e406]: regionL2NormSq
+            - text: and
+            - code [ref=e407]: postMeasurementState
+            - text: (Phase 6B), and the two-body
+            - code [ref=e408]: TwoBodyField
+            - text: /
+            - code [ref=e409]: tensorProduct
+            - text: /
+            - code [ref=e410]: bellField
+            - text: (Phase 6C) — are the types on which the eight headline theorems live.
+          - separator [ref=e411]
+          - heading "4. The Coarse-Graining Map L" [level=2] [ref=e412]
+          - heading "4.1 Definition" [level=3] [ref=e413]
+          - paragraph [ref=e414]:
+            - text: The map
+            - code [ref=e415]: L = coarseGrain
+            - text: in
+            - code [ref=e416]: CoarseGrainingMap.lean
+            - text: is
+          - code [ref=e418]:
+            - generic [ref=e419]: L(s)(p, n) = exp(− I_KL(s.metric n, s.reference, p) / 2) · exp(i · φ(s, p, n))
+          - paragraph [ref=e420]:
+            - text: with
+            - code [ref=e421]: I_KL
+            - text: the Kullback–Leibler information density
+          - code [ref=e423]:
+            - generic [ref=e424]: I_KL(g, g₀, p) = ½ log |det g(p)| + ½ tr(g⁻¹(p) g₀(p))
+          - paragraph [ref=e425]:
+            - text: defined in
+            - code [ref=e426]: Conservation/InformationKL.lean
+            - text: ", and"
+            - code [ref=e427]: φ ≡ 0
+            - text: in the present paper (phase is left as a hook for a follow-up gauge/torsion-coupling workstream).
+          - paragraph [ref=e428]:
+            - text: The physical content is that
+            - code [ref=e429]: "|ψ|² = exp(−I_KL)"
+            - text: identifies the squared wavefunction amplitude with the Gibbs weight of the KL divergence of the current metric against the background. Points where the metric deviates little from the reference carry more wavefunction mass; points where it deviates a lot are exponentially suppressed. This is a natural discrete analogue of
+            - code [ref=e430]: "|ψ|²"
+            - text: concentrating where the potential favours it.
+          - heading "4.2 Theorem 1 (formal statement)" [level=3] [ref=e431]
+          - paragraph [ref=e432]:
+            - text: The
+            - emphasis [ref=e433]: defining identity
+            - text: of the coarse-graining map — the one line a reviewer must accept before anything else in §4 follows — is the Born-rule-shaped equality between
+            - code [ref=e434]: "|ψ|²"
+            - text: "and the Gibbs weight of the KL density. It is total: no hypotheses, applies to every"
+            - code [ref=e435]: s, p, n
+            - text: .
+          - blockquote [ref=e436]:
+            - paragraph [ref=e437]:
+              - strong [ref=e438]: Theorem 1 (Coarse-graining exists).
+              - text: There is a total map
+              - code [ref=e439]: "coarseGrain : SnapshotSequence → (LatticePoint × ℕ → ℂ)"
+              - text: such that for every snapshot sequence
+              - code [ref=e440]: s
+              - text: ", every lattice point"
+              - code [ref=e441]: p
+              - text: ", and every tick"
+              - code [ref=e442]: "n"
+              - text: ","
+            - paragraph [ref=e443]: "[ |coarseGrain(s)(p,n)|^2 ;=; \\exp!\\big(-I_{KL}(g(n), g_0, p)\\big). ]"
+          - paragraph [ref=e444]:
+            - text: Formalised as
+            - code [ref=e445]: sq_abs_coarseGrain
+            - text: in
+            - code [ref=e446]: OmegaTheory.Emergence.CoarseGrainingMap
+            - text: ":"
+          - code [ref=e448]:
+            - generic [ref=e449]: theorem sq_abs_coarseGrain
+            - generic [ref=e450]: "(s : SnapshotSequence) (p : LatticePoint) (n : ℕ) :"
+            - generic [ref=e451]: (‖coarseGrain s p n‖) ^ 2
+            - generic [ref=e452]: = Real.exp (- informationDensityKL (s.metric n) s.reference p)
+          - paragraph [ref=e453]: "Two supporting corollaries follow immediately and are cited alongside:"
+          - list [ref=e454]:
+            - listitem [ref=e455]:
+              - code [ref=e456]: coarseGrain_flat
+              - text: — on the flat Minkowski vacuum,
+              - code [ref=e457]: ψ
+              - text: is the constant
+              - code [ref=e458]: exp(−1)
+              - text: independently of
+              - code [ref=e459]: (p, n)
+              - text: .
+            - listitem [ref=e460]:
+              - code [ref=e461]: coarseGrain_info_bounded
+              - text: — on any finite region where
+              - code [ref=e462]: I_KL ≥ 0
+              - text: ", the discrete"
+              - code [ref=e463]: L²
+              - text: mass of
+              - code [ref=e464]: ψ
+              - text: is bounded by the lattice volume of the region.
+          - paragraph [ref=e465]:
+            - text: For ergonomic paper citation,
+            - code [ref=e466]: QmBridgePaper.lean
+            - text: also bundles the headline identity, pointwise strict positivity, and the finite-region bound into a single conjunction
+            - code [ref=e467]: paper_coarseGrain_exists
+            - text: ":"
+          - code [ref=e469]:
+            - generic [ref=e470]: theorem paper_coarseGrain_exists
+            - generic [ref=e471]: "(s : SnapshotSequence) (region : Finset LatticePoint) (n : ℕ)"
+            - generic [ref=e472]: "(h : ∀ p ∈ region, 0 ≤ informationDensityKL (s.metric n) s.reference p) :"
+            - generic [ref=e473]: (∀ p, 0 < ‖coarseGrain s p n‖) ∧
+            - generic [ref=e474]: (∀ p, (‖coarseGrain s p n‖) ^ 2 =
+            - generic [ref=e475]: Real.exp (- (informationDensityKL (s.metric n) s.reference p))) ∧
+            - generic [ref=e476]: (region.sum (fun p => (‖coarseGrain s p n‖) ^ 2) ≤ region.card)
+          - paragraph [ref=e477]:
+            - text: The identity line is a direct application of
+            - code [ref=e478]: sq_abs_coarseGrain
+            - text: ; the strict-positivity line follows from
+            - code [ref=e479]: coarseGrainAmplitude_pos
+            - text: ; the
+            - code [ref=e480]: ℓ²
+            - text: bound is
+            - code [ref=e481]: coarseGrain_info_bounded
+            - text: . The phase-carrying extension (Section 4.4) specialises to this basic map under zero phase, formally
+            - code [ref=e482]: coarseGrainWithPhase_zero_phase
+            - text: .
+          - 'heading "4.3 Sanity: the vacuum case" [level=3] [ref=e483]'
+          - paragraph [ref=e484]:
+            - text: On the flat Minkowski reference (
+            - code [ref=e485]: s = SnapshotSequence.flat
+            - text: ) the KL density equals
+            - code [ref=e486]: "2"
+            - text: at every point (
+            - code [ref=e487]: informationDensityKL_flat_self
+            - text: ), so the amplitude collapses to
+            - code [ref=e488]: exp(−1)
+            - text: and the coarse-grained field is constant in space and time (
+            - code [ref=e489]: coarseGrain_flat
+            - text: ). This is the “vacuum” consistency check and is itself a theorem, not a stipulation.
+          - heading "4.4 Phase-carrying variant and mass-blind |ψ|²" [level=3] [ref=e490]:
+            - text: 4.4 Phase-carrying variant and mass-blind
+            - code [ref=e491]: "|ψ|²"
+          - paragraph [ref=e492]:
+            - code [ref=e493]: CoarseGrainingMap.lean
+            - text: also exposes a generalisation
+          - code [ref=e495]:
+            - generic [ref=e496]: "coarseGrainWithPhase : SnapshotSequence → (LatticePoint → ℕ → ℝ) → ℝ"
+            - generic [ref=e497]: → LatticeComplexField
+          - paragraph [ref=e498]:
+            - text: that carries an explicit phase function
+            - code [ref=e499]: φ(p, n)
+            - text: and an effective mass
+            - code [ref=e500]: "m : ℝ"
+            - text: . The zero-phase specialisation recovers
+            - code [ref=e501]: coarseGrain
+            - text: exactly (
+            - code [ref=e502]: coarseGrainWithPhase_zero_phase
+            - text: ). The key structural fact is that the squared modulus
+          - code [ref=e504]:
+            - generic [ref=e505]: "|coarseGrainWithPhase s φ m p n|² = exp(− I_KL(s.metric n, s.reference, p))"
+          - paragraph [ref=e506]:
+            - text: is
+            - emphasis [ref=e507]:
+              - text: independent of both the phase
+              - code [ref=e508]: φ
+              - text: and the mass
+              - code [ref=e509]: m
+            - text: (
+            - code [ref=e510]: abs_coarseGrainWithPhase
+            - text: ","
+            - code [ref=e511]: sq_abs_coarseGrainWithPhase
+            - text: "). This is the correct non-relativistic-QM behaviour:"
+            - code [ref=e512]: "|ψ|²"
+            - text: is Born-rule-shaped and mass-blind (the Born rule itself makes no reference to particle mass); the kinetic coefficient
+            - code [ref=e513]: ℏ²/(2m)
+            - text: lives in the
+            - emphasis [ref=e514]: phase
+            - text: dynamics, not the amplitude.
+          - paragraph [ref=e515]:
+            - text: The paper-level invariants (non-negativity,
+            - code [ref=e516]: "|ψ|² = exp(−I_KL)"
+            - text: ", finite-region"
+            - code [ref=e517]: ℓ²
+            - text: bound, flat-vacuum constant
+            - code [ref=e518]: exp(−1)
+            - text: ) carry over verbatim from Theorem 1 to the phase-carrying variant. Formally this is
+            - code [ref=e519]: paper_coarseGrainWithPhase_exists
+            - text: and
+            - code [ref=e520]: paper_coarseGrainWithPhase_flat
+            - text: in
+            - code [ref=e521]: QmBridgePaper.lean
+            - text: .
+          - paragraph [ref=e522]:
+            - text: The file also includes a plane-wave adapter
+            - code [ref=e523]: coarseGrainWithPhase s (planeWavePhase k ω) m
+            - text: whose natural dispersion relation is
+            - code [ref=e524]: ℏ · ω(m, k) = relativisticEnergy (ℏ · k) m
+            - text: . The
+            - emphasis [ref=e525]: non-relativistic limit
+            - text: of that dispersion — bounded in
+            - code [ref=e526]: nonRelativistic_energy_approx
+            - text: (Section 6) — recovers the Schrödinger kinetic coefficient
+            - code [ref=e527]: ℏ²/(2m)
+            - text: attached to
+            - code [ref=e528]: discreteLaplacianC
+            - text: in Section 5. What V2 does
+            - emphasis [ref=e529]: not
+            - text: yet derive is
+            - code [ref=e530]: m
+            - text: itself from lattice defect structure; the identification between the
+            - code [ref=e531]: m
+            - text: carried by
+            - code [ref=e532]: coarseGrainWithPhase
+            - text: and the
+            - code [ref=e533]: m
+            - text: in
+            - code [ref=e534]: relativisticEnergy
+            - text: is
+            - emphasis [ref=e535]: definitional
+            - text: (the same Lean binder), not theorem-level.
+          - heading "4.5 The dynamical update rule (Phase 1)" [level=3] [ref=e536]
+          - paragraph [ref=e537]:
+            - code [ref=e538]: coarseGrain
+            - text: and its phase-carrying variant are spatial; they turn a tick-indexed family of discrete metrics
+            - code [ref=e539]: "{g(n)}"
+            - text: into a wavefunction on
+            - code [ref=e540]: LatticePoint × ℕ
+            - text: . For Theorem 2 to exhibit
+            - emphasis [ref=e541]: non-trivial
+            - text: evolution (rather than the static-sequence degeneracy
+            - code [ref=e542]: ψ(n+1) − ψ(n) = 0
+            - text: of the current static-regime bound), the family
+            - code [ref=e543]: "{g(n)}"
+            - text: itself has to update from one tick to the next. That update is the content of Phase 1.
+          - paragraph [ref=e544]:
+            - text: The formalisation is
+            - code [ref=e545]: OmegaTheory/Emergence/SnapshotDynamics.lean
+            - text: (structure
+            - code [ref=e546]: DynamicalSnapshotSequence
+            - text: ", theorems"
+            - code [ref=e547]: DynamicalSnapshotSequence.update_rule
+            - text: ","
+            - code [ref=e548]: DynamicalSnapshotSequence.metric_update_linear_in_t_P
+            - text: ","
+            - code [ref=e549]: coarseGrain_dynamic_diff_metric
+            - text: ","
+            - code [ref=e550]: DynamicalSnapshotSequence.static_reduces_to_snapshot_sequence
+            - text: ","
+            - code [ref=e551]: minkowskiDynamicalSequence_toSnapshotSequence_eq_flat
+            - text: ). The update rule is the Planck-scale Laplacian-of-metric step
+          - code [ref=e553]:
+            - generic [ref=e554]: "g_{n+1}(p)_{μν} = g_n(p)_{μν} + t_P · Δ_lat[ q ↦ g_n(q)_{μν} ](p)."
+          - paragraph [ref=e555]:
+            - text: Every metric component evolves by its own spatial Laplacian — a discrete analog of Ricci-flow-type smoothing, distinct from the healing-functional gradient flow that operates on a different time scale. The choice is
+            - emphasis [ref=e556]: structural
+            - text: ": reproducing Schrödinger’s"
+            - code [ref=e557]: (−iℏ/2m) · Δ · ψ
+            - text: on the coarse-grained side forces the substrate step to carry a spatial Laplacian of the metric.
+          - paragraph [ref=e558]: "Three immediate consequences, each a Lean theorem:"
+          - list [ref=e559]:
+            - listitem [ref=e560]:
+              - strong [ref=e561]: Vacuum is stationary.
+              - text: On flat Minkowski every component is spatially constant, so
+              - code [ref=e562]: Δ_lat
+              - text: "annihilates it; the dynamical sequence collapses to the static flat instance. Formally:"
+              - code [ref=e563]: minkowskiDynamicalSequence_toSnapshotSequence_eq_flat
+              - text: .
+            - listitem [ref=e564]:
+              - strong [ref=e565]:
+                - text: Per-tick change is
+                - code [ref=e566]: O(t_P)
+                - text: by construction.
+              - text: The update is algebraically
+              - code [ref=e567]: "g_{n+1} − g_n = t_P · F(g_n)"
+              - text: with
+              - code [ref=e568]: F = Δ_lat(·)
+              - text: ", so every quantity built from the per-tick metric difference inherits"
+              - code [ref=e569]: O(t_P)
+              - text: control for free (
+              - code [ref=e570]: metric_update_linear_in_t_P
+              - text: ).
+            - listitem [ref=e571]:
+              - strong [ref=e572]: The coarse-grained per-tick difference inherits the same structure
+              - text: via
+              - code [ref=e573]: coarseGrain_dynamic_diff_metric
+              - text: ", which is the substrate-side input consumed by Theorem 2’s dynamical extension (in-progress on the Phase 2 workstream)."
+          - paragraph [ref=e574]:
+            - text: The structural caveat — that
+            - code [ref=e575]: F = Δ_lat(·)
+            - text: is chosen for compatibility with Schrödinger rather than
+            - emphasis [ref=e576]: derived
+            - text: from the full healing-flow PDE
+            - code [ref=e577]: OmegaTheory.HealingFlow.Flow
+            - text: — is flagged honestly in Section 13 item 3.
+          - separator [ref=e578]
+          - heading "5. The Schrödinger Bound (Main Theorem)" [level=2] [ref=e579]
+          - heading "5.1 Physical derivation" [level=3] [ref=e580]
+          - paragraph [ref=e581]:
+            - text: Expanding
+            - code [ref=e582]: L(s)(p, n+1) − L(s)(p, n)
+            - text: to first order in
+            - code [ref=e583]: t_P
+            - text: and using the Phase-1 metric update rule
+            - code [ref=e584]: "g_{n+1} = g_n + t_P · F(g_n)"
+            - text: (§4.5), the leading behaviour on the coarse-grained side is a discrete Laplacian acting on
+            - code [ref=e585]: ψ
+            - text: ". Naming constants:"
+          - code [ref=e587]:
+            - generic [ref=e588]: L(s)(p, n+1) − L(s)(p, n)
+            - generic [ref=e589]: = (−iℏ / 2m) · Δψ(p, n) · t_P + R(p, n)
+          - paragraph [ref=e590]:
+            - text: where
+            - code [ref=e591]: Δ
+            - text: is the discrete Laplacian on
+            - code [ref=e592]: LatticePoint
+            - text: and
+            - code [ref=e593]: R(p, n)
+            - text: is the remainder. The remainder is bounded by an explicit Planck-scale constant
+            - code [ref=e594]: schrodingerBoundConst m · ℓ_P = 8ℏ / (m · c · ℓ_P)
+            - text: depending only on the tick length
+            - code [ref=e595]: t_P
+            - text: ", the Planck length"
+            - code [ref=e596]: l_P
+            - text: ", and the rest mass"
+            - code [ref=e597]: m
+            - text: via the physically correct
+            - code [ref=e598]: 1/m
+            - text: kinetic factor.
+          - heading "5.2 Theorem 2 (formal statement, dynamical form)" [level=3] [ref=e599]
+          - paragraph [ref=e600]:
+            - text: The Phase-2 theorem lifts the Schrödinger-shape inequality from the static
+            - code [ref=e601]: SnapshotSequence
+            - text: abstraction of §3 onto the dynamical
+            - code [ref=e602]: DynamicalSnapshotSequence
+            - text: type introduced in §4.5, preserving the constant
+            - code [ref=e603]: schrodingerBoundConst m · ℓ_P
+            - text: verbatim. The theorem is proved as
+            - code [ref=e604]: coarseGrain_satisfies_schrodinger_dynamic
+            - text: in
+            - code [ref=e605]: SchrodingerFromLattice.lean
+            - text: and re-exported as
+            - code [ref=e606]: paper_schrodinger_bound_dynamic
+            - text: in
+            - code [ref=e607]: QmBridgePaper.lean
+            - text: ":"
+          - code [ref=e609]:
+            - generic [ref=e610]: /-- **Theorem 2 (Schrödinger bound, dynamical form).**
+            - generic [ref=e611]: "On a DynamicalSnapshotSequence `d` with `d.HasZeroFunctional`,"
+            - generic [ref=e612]: "rest mass `m > 0`, and Gibbs condition `I_KL ≥ 0` on the 9-point"
+            - generic [ref=e613]: "stencil of `(p, n)`, the Schrödinger residue is bounded by"
+            - generic [ref=e614]: "`schrodingerBoundConst m · ℓ_P`, with"
+            - generic [ref=e615]: "`schrodingerBoundConst m = 8 ℏ / (m · c · ℓ_P²)`. -/"
+            - generic [ref=e616]: theorem paper_schrodinger_bound_dynamic
+            - generic [ref=e617]: "(d : DynamicalSnapshotSequence) (hF : d.HasZeroFunctional)"
+            - generic [ref=e618]: "(p : LatticePoint) (n : ℕ)"
+            - generic [ref=e619]: "{m : ℝ} (hm : 0 < m)"
+            - generic [ref=e620]: "(hcenter : 0 ≤ informationDensityKL"
+            - generic [ref=e621]: (d.toSnapshotSequence.metric n)
+            - generic [ref=e622]: d.toSnapshotSequence.reference p)
+            - generic [ref=e623]: "(hstencil : ∀ μ : Fin 4,"
+            - generic [ref=e624]: 0 ≤ informationDensityKL
+            - generic [ref=e625]: (d.toSnapshotSequence.metric n)
+            - generic [ref=e626]: d.toSnapshotSequence.reference (shiftFin p μ) ∧
+            - generic [ref=e627]: 0 ≤ informationDensityKL
+            - generic [ref=e628]: (d.toSnapshotSequence.metric n)
+            - generic [ref=e629]: "d.toSnapshotSequence.reference (shiftBackFin p μ)) :"
+            - generic [ref=e630]: ‖schrodingerResidue m (coarseGrain d.toSnapshotSequence) p n‖
+            - generic [ref=e631]: ≤ schrodingerBoundConst m * l_P :=
+            - generic [ref=e632]: coarseGrain_satisfies_schrodinger_dynamic d hF p n hm hcenter hstencil
+          - paragraph [ref=e633]:
+            - text: Here
+            - code [ref=e634]: schrodingerResidue m ψ p n := (ψ p (n+1) − ψ p n) − schrodingerRHS m ψ p n
+            - text: and
+            - code [ref=e635]: schrodingerRHS m ψ p n := (−iℏ / 2m) · Δψ(·, n) · t_P
+            - text: ", both defined in"
+            - code [ref=e636]: SchrodingerFromLattice.lean
+            - text: .
+            - code [ref=e637]: discreteLaplacianC
+            - text: is the complex extension of the discrete five-point Laplacian;
+            - code [ref=e638]: schrodingerBoundConst m
+            - text: unfolds to
+            - code [ref=e639]: 8 ℏ / (m · c · ℓ_P²)
+            - text: ", giving an overall RHS of"
+            - code [ref=e640]: 8 ℏ / (m · c · ℓ_P)
+            - text: after multiplying by
+            - code [ref=e641]: ℓ_P
+            - text: .
+          - paragraph [ref=e642]:
+            - strong [ref=e643]: Faithful hypothesis inventory.
+            - text: The following table records exactly what Theorem 2 assumes, so no hypothesis is silently dropped between the Lean statement and the informal paper claim.
+          - table [ref=e644]:
+            - rowgroup [ref=e645]:
+              - row "Hypothesis Lean name Meaning" [ref=e646]:
+                - columnheader "Hypothesis" [ref=e647]
+                - columnheader "Lean name" [ref=e648]
+                - columnheader "Meaning" [ref=e649]
+            - rowgroup [ref=e650]:
+              - 'row "d : DynamicalSnapshotSequence — Phase-1 dynamical snapshot sequence, metric evolves by g_{n+1} = g_n + t_P · F(g_n)." [ref=e651]':
+                - 'cell "d : DynamicalSnapshotSequence" [ref=e652]':
+                  - code [ref=e653]: "d : DynamicalSnapshotSequence"
+                - cell "—" [ref=e654]
+                - 'cell "Phase-1 dynamical snapshot sequence, metric evolves by g_{n+1} = g_n + t_P · F(g_n)." [ref=e655]':
+                  - text: Phase-1 dynamical snapshot sequence, metric evolves by
+                  - code [ref=e656]: "g_{n+1} = g_n + t_P · F(g_n)"
+                  - text: .
+              - row "d.HasZeroFunctional DynamicalSnapshotSequence.HasZeroFunctional ∀ n p μ ν, metricLaplacianFunctional (d.metric n) p μ ν = 0 — the metric-Laplacian functional F vanishes on every iterate." [ref=e657]:
+                - cell "d.HasZeroFunctional" [ref=e658]:
+                  - code [ref=e659]: d.HasZeroFunctional
+                - cell "DynamicalSnapshotSequence.HasZeroFunctional" [ref=e660]:
+                  - code [ref=e661]: DynamicalSnapshotSequence.HasZeroFunctional
+                - cell "∀ n p μ ν, metricLaplacianFunctional (d.metric n) p μ ν = 0 — the metric-Laplacian functional F vanishes on every iterate." [ref=e662]:
+                  - code [ref=e663]: ∀ n p μ ν, metricLaplacianFunctional (d.metric n) p μ ν = 0
+                  - text: — the metric-Laplacian functional
+                  - code [ref=e664]: F
+                  - text: vanishes on every iterate.
+              - row "0 < m hm strict positivity of the rest mass; the Schrödinger RHS contains 1/m." [ref=e665]:
+                - cell "0 < m" [ref=e666]:
+                  - code [ref=e667]: 0 < m
+                - cell "hm" [ref=e668]:
+                  - code [ref=e669]: hm
+                - cell "strict positivity of the rest mass; the Schrödinger RHS contains 1/m." [ref=e670]:
+                  - text: strict positivity of the rest mass; the Schrödinger RHS contains
+                  - code [ref=e671]: 1/m
+                  - text: .
+              - row "0 ≤ I_KL(g(n), g₀, p) hcenter Gibbs non-negativity at the central stencil point." [ref=e672]:
+                - cell "0 ≤ I_KL(g(n), g₀, p)" [ref=e673]:
+                  - code [ref=e674]: 0 ≤ I_KL(g(n), g₀, p)
+                - cell "hcenter" [ref=e675]:
+                  - code [ref=e676]: hcenter
+                - cell "Gibbs non-negativity at the central stencil point." [ref=e677]
+              - row "∀ μ, 0 ≤ I_KL(g(n), g₀, p±eμ) hstencil Gibbs non-negativity at the 8 neighbouring stencil points." [ref=e678]:
+                - cell "∀ μ, 0 ≤ I_KL(g(n), g₀, p±eμ)" [ref=e679]:
+                  - code [ref=e680]: ∀ μ, 0 ≤ I_KL(g(n), g₀, p±eμ)
+                - cell "hstencil" [ref=e681]:
+                  - code [ref=e682]: hstencil
+                - cell "Gibbs non-negativity at the 8 neighbouring stencil points." [ref=e683]
+          - paragraph [ref=e684]:
+            - text: The Gibbs conditions
+            - code [ref=e685]: hcenter
+            - text: and
+            - code [ref=e686]: hstencil
+            - text: hold automatically on any background where
+            - code [ref=e687]: I_KL
+            - text: is non-negative — notably the flat Minkowski instance, which is the canonical example and discharges them from
+            - code [ref=e688]: informationDensityKL_flat_self
+            - text: .
+          - 'heading "5.3 The HasZeroFunctional scope: what it is and is not" [level=3] [ref=e689]':
+            - text: 5.3 The
+            - code [ref=e690]: HasZeroFunctional
+            - text: "scope: what it is and is not"
+          - paragraph [ref=e691]:
+            - code [ref=e692]: d.HasZeroFunctional
+            - text: asserts that the metric-Laplacian functional
+            - code [ref=e693]: F = metricLaplacianFunctional
+            - emphasis [ref=e694]: vanishes on every iterate
+            - text: of the dynamical sequence. Under this hypothesis the Phase-1 update rule
+            - code [ref=e695]: "g_{n+1} = g_n + t_P · F(g_n)"
+            - text: collapses to
+            - code [ref=e696]: "g_{n+1} = g_n"
+            - text: ": the induced"
+            - code [ref=e697]: SnapshotSequence
+            - text: is genuinely static, and the static-regime bound of
+            - code [ref=e698]: coarseGrain_satisfies_schrodinger_static
+            - text: transfers verbatim. Formally the reduction is
+            - code [ref=e699]: DynamicalSnapshotSequence.static_reduces_to_snapshot_sequence
+            - text: from Phase 1, consumed in the proof of Theorem 2 via
+            - code [ref=e700]: dynamic_hasZeroFunctional_induces_static
+            - text: .
+          - paragraph [ref=e701]:
+            - text: The scope of
+            - code [ref=e702]: HasZeroFunctional
+            - text: is
+            - strong [ref=e703]: structural, not cosmetic
+            - text: ". It covers three regimes of physical interest:"
+          - list [ref=e704]:
+            - listitem [ref=e705]:
+              - strong [ref=e706]: Flat Minkowski backgrounds.
+              - code [ref=e707]: minkowskiDynamicalSequence
+              - text: satisfies
+              - code [ref=e708]: HasZeroFunctional
+              - text: because
+              - code [ref=e709]: F
+              - text: annihilates spatially constant metrics (
+              - code [ref=e710]: metricLaplacianFunctional_flat
+              - text: ", Phase 1). The paper-level corollary"
+              - code [ref=e711]: paper_schrodinger_bound_dynamic_flat
+              - text: discharges all side hypotheses automatically.
+            - listitem [ref=e712]:
+              - strong [ref=e713]: Exactly-flat pockets on a curved background.
+              - text: Any region where every metric component is spatially constant at every tick closes
+              - code [ref=e714]: HasZeroFunctional
+              - text: locally, by the same mechanism.
+            - listitem [ref=e715]:
+              - strong [ref=e716]:
+                - text: Any
+                - code [ref=e717]: SnapshotSequence
+                - text: that is already static
+              - text: ", re-interpreted as a"
+              - code [ref=e718]: DynamicalSnapshotSequence
+              - text: with
+              - code [ref=e719]: F ≡ 0
+              - text: . The lift is a trivial cast.
+          - paragraph [ref=e720]:
+            - text: The scope
+            - strong [ref=e721]: does not
+            - text: cover the genuinely-evolving regime where
+            - code [ref=e722]: F
+            - text: produces non-trivial per-tick change. In that regime the Phase-1 identity
+            - code [ref=e723]: "g_{n+1} − g_n = t_P · F(g_n)"
+            - text: (Lean-exposed as
+            - code [ref=e724]: paper_dynamic_metric_update_rule
+            - text: ) is non-degenerate, and closing the Schrödinger bound requires a KL-linearisation bridge
+            - code [ref=e725]: I_KL(g + δg) ≈ I_KL(g) + ⟨∂I_KL/∂g, δg⟩
+            - text: that is not yet formalised in V2. The Phase-2 brief forbids axioms; stating the unconditional dynamical bound without the linearisation bridge would therefore require introducing one. We honour the brief and ship the
+            - code [ref=e726]: HasZeroFunctional
+            - text: "- scoped bound as the honest current frontier. Section 13 item 3 restates this precisely as an open workstream."
+          - paragraph [ref=e727]:
+            - strong [ref=e728]: What the scope buys us, physically.
+            - text: "Standard non-relativistic QM is empirically tested against near-flat or ground-state-dominated backgrounds: the double-slit interferometer, the particle in a box, the harmonic oscillator. These are the regimes in which the"
+            - code [ref=e729]: HasZeroFunctional
+            - text: dynamical instance applies. Extending the bound off-regime is a relativistic question (in the sense that the genuinely-evolving metric tracks gravitational back-reaction at Planck scale) and belongs to the relativistic Schrödinger / Klein-Gordon sequel paper (§13 item 8).
+          - heading "5.4 Static-regime reference form" [level=3] [ref=e730]
+          - paragraph [ref=e731]:
+            - text: "The static-regime antecedent of Theorem 2 is retained in the formalisation and the paper for two reasons: it is the pure"
+            - code [ref=e732]: SnapshotSequence
+            - text: "-level statement that does not require Phase 1’s"
+            - code [ref=e733]: DynamicalSnapshotSequence
+            - text: infrastructure, and the dynamical theorem reduces to it under
+            - code [ref=e734]: HasZeroFunctional
+            - text: . The static form is exported as
+            - code [ref=e735]: paper_schrodinger_bound
+            - text: ":"
+          - code [ref=e737]:
+            - generic [ref=e738]: "/-- **Theorem 2, static form.** On a static `SnapshotSequence` with"
+            - generic [ref=e739]: "rest mass `m > 0` and 9-point Gibbs stencil, the Schrödinger"
+            - generic [ref=e740]: "residue is bounded by `schrodingerBoundConst m · ℓ_P`. -/"
+            - generic [ref=e741]: theorem paper_schrodinger_bound
+            - generic [ref=e742]: "(s : SnapshotSequence) (hstat : s.IsStatic)"
+            - generic [ref=e743]: "(p : LatticePoint) (n : ℕ)"
+            - generic [ref=e744]: "{m : ℝ} (hm : 0 < m)"
+            - generic [ref=e745]: "(hcenter : 0 ≤ informationDensityKL (s.metric n) s.reference p)"
+            - generic [ref=e746]: "(hstencil : ∀ μ : Fin 4,"
+            - generic [ref=e747]: 0 ≤ informationDensityKL (s.metric n) s.reference (shiftFin p μ) ∧
+            - generic [ref=e748]: "0 ≤ informationDensityKL (s.metric n) s.reference (shiftBackFin p μ)) :"
+            - generic [ref=e749]: ‖schrodingerResidue m (coarseGrain s) p n‖
+            - generic [ref=e750]: ≤ schrodingerBoundConst m * l_P
+          - paragraph [ref=e751]:
+            - text: The flat-Minkowski corollary
+            - code [ref=e752]: paper_schrodinger_bound_flat
+            - text: discharges the stencil hypotheses without side conditions. The massless-Helmholtz corollary
+            - code [ref=e753]: paper_schrodinger_massless
+            - text: records the honest degeneracy at
+            - code [ref=e754]: m = 0
+            - text: ": the Schrödinger RHS contains a"
+            - code [ref=e755]: 1/m
+            - text: factor and is undefined, but the LHS
+            - code [ref=e756]: ψ(n+1) − ψ(n) = 0
+            - text: is still valid on static sequences.
+          - heading "5.5 Phase-aware bridge to §4.4" [level=3] [ref=e757]
+          - paragraph [ref=e758]:
+            - text: Both the static and the dynamical Schrödinger bounds lift automatically to the phase-carrying coarse-graining map
+            - code [ref=e759]: coarseGrainWithPhase s 0 m
+            - text: at zero phase. The Lean statements are
+            - code [ref=e760]: coarseGrainWithPhase_satisfies_schrodinger_static_zero_phase
+            - text: and
+            - code [ref=e761]: coarseGrainWithPhase_satisfies_schrodinger_dynamic_zero_phase
+            - text: in
+            - code [ref=e762]: SchrodingerFromLattice.lean
+            - text: (with identical hypotheses and identical
+            - code [ref=e763]: schrodingerBoundConst m · ℓ_P
+            - text: RHS), and the paper wrappers are
+            - code [ref=e764]: paper_schrodinger_bound_phase_zero
+            - text: and
+            - code [ref=e765]: paper_schrodinger_bound_dynamic_phase_zero
+            - text: in
+            - code [ref=e766]: QmBridgePaper.lean
+            - text: . The proof is a one-line application of
+            - code [ref=e767]: coarseGrainWithPhase_zero_phase
+            - text: ": at zero phase the two maps agree pointwise, so the residue is literally the same quantity."
+          - paragraph [ref=e768]:
+            - text: The significance for the paper’s narrative arc is that §4.4’s phase-carrying variant is
+            - emphasis [ref=e769]: compatible
+            - text: "with Theorem 2 out of the box: once a geometrically-sourced phase is supplied (a follow-up workstream; see §13 item 2), the phase-aware dynamical Schrödinger bound becomes a trivial corollary of the same inequality. No re-proof is needed."
+          - heading "5.6 Interpretation" [level=3] [ref=e770]
+          - paragraph [ref=e771]:
+            - text: The form of the bound is what makes this a
+            - emphasis [ref=e772]: Schrödinger
+            - text: "theorem as opposed to a generic discrete diffusion bound: the coefficient of"
+            - code [ref=e773]: Δψ
+            - text: is precisely
+            - code [ref=e774]: −iℏ/(2m)
+            - text: ", not an arbitrary complex number. That coefficient is fixed by two ingredients:"
+          - list [ref=e775]:
+            - listitem [ref=e776]:
+              - code [ref=e777]: ℏ = E_P · t_P
+              - text: from
+              - code [ref=e778]: Spacetime/Constants.lean
+              - text: ;
+            - listitem [ref=e779]:
+              - text: the rest-mass normalisation from the tick-counting identity of
+              - code [ref=e780]: DispersionFromLattice.lean
+              - text: .
+          - paragraph [ref=e781]: Neither factor is put in by hand; both emerge from the lattice kinematics. To the authors’ knowledge, this is the first machine-checked derivation of a Schrödinger-shape inequality from a discrete gravitational substrate on a dynamical snapshot type carrying an explicit Planck-scale update rule — though we do not claim an exhaustive survey of the formalisation literature, and the wording should be read as a best-effort statement rather than a categorical priority claim.
+          - heading "5.7 What the theorem does not say" [level=3] [ref=e782]:
+            - text: 5.7 What the theorem does
+            - emphasis [ref=e783]: not
+            - text: say
+          - paragraph [ref=e784]:
+            - text: It does not say that the discrete field satisfies Schrödinger’s equation
+            - emphasis [ref=e785]: exactly
+            - text: ": there is always a residual"
+            - code [ref=e786]: O(ℓ_P² / m)
+            - text: error absorbed into the
+            - code [ref=e787]: schrodingerBoundConst m · ℓ_P
+            - text: RHS. That error is consistent with the theory’s stated position that standard QM is the
+            - code [ref=e788]: ℓ_P → 0
+            - text: limit of the lattice dynamics, not an exact identity.
+          - paragraph [ref=e789]:
+            - text: It does not give the unconditional dynamical bound on arbitrary
+            - code [ref=e790]: DynamicalSnapshotSequence
+            - text: — only the
+            - code [ref=e791]: HasZeroFunctional
+            - text: "-scoped version. The unconditional case requires the KL-linearisation bridge flagged in §5.3 and §13 item 3."
+          - paragraph [ref=e792]:
+            - text: It also does not by itself say anything about the Born rule as a
+            - emphasis [ref=e793]: probability
+            - text: density — that is the content of Theorem 3 in §6 below. §6 proves that the same
+            - code [ref=e794]: HasZeroFunctional
+            - text: scope that closes the Schrödinger bound
+            - emphasis [ref=e795]: automatically
+            - text: "gives probability conservation:"
+            - code [ref=e796]: ∑_p |ψ(p, n)|²
+            - text: is tick-invariant, so the standard non-relativistic QM axiom “total probability is conserved” becomes a theorem on the substrate rather than a postulate.
+          - separator [ref=e797]
+          - heading "6. Born Rule as a Conservation Theorem" [level=2] [ref=e798]
+          - heading "6.1 The claim" [level=3] [ref=e799]
+          - paragraph [ref=e800]:
+            - text: Standard non-relativistic quantum mechanics postulates the Born rule —
+            - code [ref=e801]: "|ψ|²"
+            - text: is a probability density — and then
+            - emphasis [ref=e802]: assumes
+            - text: unitarity of the time-evolution operator, from which probability conservation
+            - code [ref=e803]: d/dt ∫|ψ|² = 0
+            - text: "follows. Theorem 3 inverts this dependency on the Omega-Theory V2 substrate: under the same static-functional scope"
+            - code [ref=e804]: d.HasZeroFunctional
+            - text: that closes the Schrödinger bound of §5, the sum of
+            - code [ref=e805]: "|ψ|²"
+            - text: over any finite lattice region is automatically tick-invariant — a theorem, not a postulate.
+          - paragraph [ref=e806]:
+            - text: Concretely, write
+            - code [ref=e807]: ψ(p, n) := coarseGrainWithPhase d.toSnapshotSequence phase m p n
+            - text: . Then
+          - code [ref=e809]:
+            - generic [ref=e810]: "∀ region : Finset LatticePoint. ∀ n : ℕ."
+            - generic [ref=e811]: "∑_{p ∈ region} |ψ(p, n)|²"
+            - generic [ref=e812]: "= ∑_{p ∈ region} |ψ(p, n+1)|²"
+          - paragraph [ref=e813]:
+            - text: without approximation, without a Planck-scale remainder. The identity holds for
+            - emphasis [ref=e814]: every
+            - text: phase function
+            - code [ref=e815]: phase
+            - text: and
+            - emphasis [ref=e816]: every
+            - text: effective mass
+            - code [ref=e817]: m
+            - text: (the amplitude
+            - code [ref=e818]: "|ψ|²"
+            - text: is mass- and phase-blind, a consequence of the
+            - code [ref=e819]: "|ψ|² = exp(−I_KL)"
+            - text: "Gibbs weight established in §4). This is Theorem 3: the companion conservation law that sits alongside the Schrödinger bound at the same honest scope, and together with §5’s dynamical bound completes the internal consistency of Born-rule-shaped QM on the V2 substrate."
+          - heading "6.2 Why the scope HasZeroFunctional is natural here" [level=3] [ref=e820]:
+            - text: 6.2 Why the scope
+            - code [ref=e821]: HasZeroFunctional
+            - text: is natural here
+          - paragraph [ref=e822]:
+            - text: The
+            - code [ref=e823]: HasZeroFunctional
+            - text: hypothesis (§5.3) asserts that the metric-Laplacian functional
+            - code [ref=e824]: F
+            - text: vanishes on every iterate of the Phase-1 dynamical update rule. Under this hypothesis the induced metric is tick-invariant, hence the KL density
+            - code [ref=e825]: I_KL(g(n), g₀, p)
+            - text: is tick-invariant, hence the Gibbs weight
+            - code [ref=e826]: exp(−I_KL)
+            - text: is tick-invariant, hence
+            - code [ref=e827]: "|ψ(p, n)|² = exp(−I_KL(g(n), g₀, p))"
+            - text: is tick-invariant, hence the region sum is tick-invariant. Each step is a direct rewrite.
+          - paragraph [ref=e828]:
+            - text: "The natural-scope diagnosis is therefore:"
+            - strong [ref=e829]: Born-rule conservation and the Schrödinger bound share a scope because they share a physical input
+            - text: — the tick-invariance of the KL density. §5’s Theorem 2 concerns the
+            - emphasis [ref=e830]: form
+            - text: of the per-tick change of
+            - code [ref=e831]: ψ
+            - text: (Schrödinger-shape with a
+            - code [ref=e832]: −iℏΔ/(2m)
+            - text: coefficient); §6’s Theorem 3 concerns the
+            - emphasis [ref=e833]: conservation
+            - text: of
+            - code [ref=e834]: "|ψ|²"
+            - text: across the tick. Both collapse trivially under
+            - code [ref=e835]: HasZeroFunctional
+            - text: because both start from the same metric- tick-invariance. This is why Phase 2 and Phase 3 of the plan are
+            - emphasis [ref=e836]: companion
+            - text: workstreams rather than independent ones.
+          - heading "6.3 Theorem 3 (formal statement)" [level=3] [ref=e837]
+          - paragraph [ref=e838]:
+            - text: The headline theorem is
+            - code [ref=e839]: bornRuleConservation
+            - text: in
+            - code [ref=e840]: OmegaTheory/Emergence/BornRule.lean
+            - text: ", re-exported as"
+            - code [ref=e841]: paper_bornRule_conservation
+            - text: in
+            - code [ref=e842]: QmBridgePaper.lean
+            - text: ":"
+          - code [ref=e844]:
+            - generic [ref=e845]: /-- **Theorem 3 (Born rule as a conservation theorem).** Under the
+            - generic [ref=e846]: "static-regime hypothesis `HasZeroFunctional`, the sum"
+            - generic [ref=e847]: "∑_{p ∈ region} |coarseGrainWithPhase s phase m p n|² is tick-"
+            - generic [ref=e848]: "invariant: probability is conserved across ticks, *as a theorem*. -/"
+            - generic [ref=e849]: theorem paper_bornRule_conservation
+            - generic [ref=e850]: "(d : DynamicalSnapshotSequence) (hF : d.HasZeroFunctional)"
+            - generic [ref=e851]: "(phase : LatticePoint → ℕ → ℝ) (m : ℝ)"
+            - generic [ref=e852]: "(region : Finset LatticePoint) (n : ℕ) :"
+            - generic [ref=e853]: (region.sum fun p =>
+            - generic [ref=e854]: (‖coarseGrainWithPhase d.toSnapshotSequence phase m p n‖) ^ 2) =
+            - generic [ref=e855]: (region.sum fun p =>
+            - generic [ref=e856]: (‖coarseGrainWithPhase d.toSnapshotSequence phase m p (n + 1)‖) ^ 2) :=
+            - generic [ref=e857]: bornRuleConservation d hF phase m region n
+          - paragraph [ref=e858]:
+            - strong [ref=e859]: Faithful hypothesis inventory.
+            - text: Theorem 3 shares exactly the same scoping hypothesis as Theorem 2 (§5); the table below makes the shared structure explicit.
+          - table [ref=e860]:
+            - rowgroup [ref=e861]:
+              - row "Hypothesis Lean name Meaning" [ref=e862]:
+                - columnheader "Hypothesis" [ref=e863]
+                - columnheader "Lean name" [ref=e864]
+                - columnheader "Meaning" [ref=e865]
+            - rowgroup [ref=e866]:
+              - 'row "d : DynamicalSnapshotSequence — Phase-1 dynamical snapshot sequence." [ref=e867]':
+                - 'cell "d : DynamicalSnapshotSequence" [ref=e868]':
+                  - code [ref=e869]: "d : DynamicalSnapshotSequence"
+                - cell "—" [ref=e870]
+                - cell "Phase-1 dynamical snapshot sequence." [ref=e871]
+              - row "d.HasZeroFunctional DynamicalSnapshotSequence.HasZeroFunctional ∀ n p μ ν, metricLaplacianFunctional (d.metric n) p μ ν = 0 — shared with Theorem 2." [ref=e872]:
+                - cell "d.HasZeroFunctional" [ref=e873]:
+                  - code [ref=e874]: d.HasZeroFunctional
+                - cell "DynamicalSnapshotSequence.HasZeroFunctional" [ref=e875]:
+                  - code [ref=e876]: DynamicalSnapshotSequence.HasZeroFunctional
+                - cell "∀ n p μ ν, metricLaplacianFunctional (d.metric n) p μ ν = 0 — shared with Theorem 2." [ref=e877]:
+                  - code [ref=e878]: ∀ n p μ ν, metricLaplacianFunctional (d.metric n) p μ ν = 0
+                  - text: — shared with Theorem 2.
+              - 'row "phase : LatticePoint → ℕ → ℝ — any phase function; `" [ref=e879]':
+                - 'cell "phase : LatticePoint → ℕ → ℝ" [ref=e880]':
+                  - code [ref=e881]: "phase : LatticePoint → ℕ → ℝ"
+                - cell "—" [ref=e882]
+                - 'cell "any phase function; `" [ref=e883]'
+              - 'row "m : ℝ — effective mass; `" [ref=e884]':
+                - 'cell "m : ℝ" [ref=e885]':
+                  - code [ref=e886]: "m : ℝ"
+                - cell "—" [ref=e887]
+                - 'cell "effective mass; `" [ref=e888]'
+              - 'row "region : Finset LatticePoint — any finite lattice region." [ref=e889]':
+                - 'cell "region : Finset LatticePoint" [ref=e890]':
+                  - code [ref=e891]: "region : Finset LatticePoint"
+                - cell "—" [ref=e892]
+                - cell "any finite lattice region." [ref=e893]
+              - 'row "n : ℕ — tick at which we compare n and n+1." [ref=e894]':
+                - 'cell "n : ℕ" [ref=e895]':
+                  - code [ref=e896]: "n : ℕ"
+                - cell "—" [ref=e897]
+                - cell "tick at which we compare n and n+1." [ref=e898]:
+                  - text: tick at which we compare
+                  - code [ref=e899]: "n"
+                  - text: and
+                  - code [ref=e900]: n+1
+                  - text: .
+          - paragraph [ref=e901]:
+            - text: Unlike Theorem 2, Theorem 3 requires
+            - strong [ref=e902]: no positivity hypothesis
+            - text: on the rest mass and
+            - strong [ref=e903]: no Gibbs stencil condition
+            - text: — the proof uses only tick-invariance of the KL density, which is a
+            - emphasis [ref=e904]: direct
+            - text: consequence of
+            - code [ref=e905]: HasZeroFunctional
+            - text: without passing through the 9-point stencil of the discrete Laplacian.
+          - heading "6.4 Corollaries and specialisations" [level=3] [ref=e906]
+          - paragraph [ref=e907]:
+            - text: The Lean workstream exposes six additional paper-wrapper theorems consumed by the
+            - code [ref=e908]: BornRule.lean
+            - text: "source:"
+          - list [ref=e909]:
+            - listitem [ref=e910]:
+              - strong [ref=e911]: Pointwise conservation
+              - text: (
+              - code [ref=e912]: paper_bornRule_pointwise_conservation
+              - text: ). The site-wise identity
+              - code [ref=e913]: "|ψ(p, n)|² = |ψ(p, n+1)|²"
+              - text: from which the region-sum equality follows. Useful when the paper wants to discuss probability conservation at a single lattice site rather than integrated over a region.
+            - listitem [ref=e914]:
+              - strong [ref=e915]: Iterated form
+              - text: (
+              - code [ref=e916]: paper_bornRule_amplitude_sum_invariant
+              - text: ). The region sum is invariant across
+              - emphasis [ref=e917]: any
+              - text: two ticks
+              - code [ref=e918]: n, k
+              - text: ", not just consecutive ones. This is what one invokes to compare total probability between widely separated times (e.g. before-interaction vs. after-interaction)."
+            - listitem [ref=e919]:
+              - strong [ref=e920]: Minkowski-vacuum specialisation
+              - text: (
+              - code [ref=e921]: paper_bornRule_on_minkowski
+              - text: ). On the flat dynamical vacuum, conservation holds with
+              - emphasis [ref=e922]: "no"
+              - text: "side hypotheses: every tick carries the flat metric, so"
+              - code [ref=e923]: "|ψ|²"
+              - text: is the constant
+              - code [ref=e924]: exp(−2)
+              - text: at every lattice site and every tick, and the region sum is
+              - code [ref=e925]: "|region| · exp(−2)"
+              - text: always. This is the sanity check.
+          - paragraph [ref=e926]:
+            - text: Three further corollaries concern the
+            - strong [ref=e927]: off-regime
+            - text: (without
+            - code [ref=e928]: HasZeroFunctional
+            - text: ") behaviour of the region sum:"
+          - list [ref=e929]:
+            - listitem [ref=e930]:
+              - strong [ref=e931]: Honest dynamical residue bound
+              - text: (
+              - code [ref=e932]: paper_bornRule_sum_diff_bound
+              - text: ). Without any static hypothesis, the absolute per-tick change of the region sum of
+              - code [ref=e933]: "|ψ|²"
+              - text: is bounded by the total absolute pointwise change of
+              - code [ref=e934]: "|ψ|²"
+              - text: "across the region. This is a pure triangle-inequality control:"
+              - code [ref=e935]: "|∑ a_i| ≤ ∑ |a_i|"
+              - text: ", applied to"
+              - code [ref=e936]: a_i = |ψ(p_i, n+1)|² − |ψ(p_i, n)|²
+              - text: . It is an
+              - emphasis [ref=e937]: inequality
+              - text: ", not an equality, and its RHS is zero exactly when"
+              - code [ref=e938]: I_KL
+              - text: is tick-invariant on the region — recovering Theorem 3.
+            - listitem [ref=e939]:
+              - strong [ref=e940]: Residue bound in KL-density form
+              - text: (
+              - code [ref=e941]: paper_bornRule_sum_diff_bound_KL
+              - text: ). The same bound, but with the RHS written in terms of the KL Boltzmann weight. Physically the RHS is the total absolute pointwise change of the Gibbs weight
+              - code [ref=e942]: exp(−I_KL)
+              - text: across the region — the Planck-scale analogue of the volume integral of
+              - code [ref=e943]: "|∂_t |ψ|²|"
+              - text: in continuum theory. No divergence theorem is invoked; the bound is purely algebraic.
+            - listitem [ref=e944]:
+              - strong [ref=e945]: Consistency corollary
+              - text: (
+              - code [ref=e946]: paper_bornRule_sum_eq_of_KL_static
+              - text: ). When the KL density is tick-invariant
+              - emphasis [ref=e947]: on the region
+              - text: between
+              - code [ref=e948]: "n"
+              - text: and
+              - code [ref=e949]: n+1
+              - text: ", the KL-form residue bound collapses to exact conservation. This verifies internal consistency between the off-regime bound and the on-regime equality: both deliver the same conservation statement when the KL input is static."
+          - heading "6.5 How Theorem 3 differs from the standard-QM Born rule" [level=3] [ref=e950]
+          - paragraph [ref=e951]:
+            - text: Theorem 3 is the
+            - strong [ref=e952]: conservation
+            - text: "half of Born-rule-interpreted QM, not the whole story. Standard QM takes two independent inputs:"
+          - list [ref=e953]:
+            - listitem [ref=e954]:
+              - emphasis [ref=e955]: Born postulate
+              - text: ":"
+              - code [ref=e956]: "|ψ(x, t)|²"
+              - text: is a probability density.
+            - listitem [ref=e957]:
+              - emphasis [ref=e958]: Unitarity / Schrödinger
+              - text: ": the time evolution of"
+              - code [ref=e959]: ψ
+              - text: is a unitary operator, from which probability conservation follows.
+          - paragraph [ref=e960]:
+            - text: On the Omega-Theory V2 substrate we prove
+            - emphasis [ref=e961]: both
+            - text: (1) and (2) at the
+            - code [ref=e962]: HasZeroFunctional
+            - text: "scope: (1) is the defining identity"
+            - code [ref=e963]: "|ψ|² = exp(−I_KL)"
+            - text: from Theorem 1 (§4), and (2) is the Schrödinger- shape bound from Theorem 2 (§5). The conservation law
+            - code [ref=e964]: ∑|ψ|²
+            - text: = const is then a
+            - emphasis [ref=e965]: theorem
+            - text: derived from the two, not an additional axiom. What is
+            - emphasis [ref=e966]: not
+            - text: derived — and what belongs to a separate paper — is the measurement-theoretic interpretation that connects
+            - code [ref=e967]: "|ψ|²"
+            - text: to experimental outcome frequencies (the deeper layer that reconstructs the Born rule from decoherence or envariance mechanisms at the Planck scale). Theorem 3 does not attempt that.
+          - paragraph [ref=e968]: To the authors’ knowledge, this is the first machine-checked derivation of probability conservation from a discrete gravitational substrate, though we do not claim an exhaustive survey and the wording is best-effort rather than categorical.
+          - heading "6.6 Compatibility with Theorem 5 (interference)" [level=3] [ref=e969]
+          - paragraph [ref=e970]:
+            - text: The static amplitude envelope used by Theorem 5 (§8) is
+            - emphasis [ref=e971]: tick-invariant
+            - text: under
+            - code [ref=e972]: HasZeroFunctional
+            - text: — this is what lets the two-slit interference pattern’s “shape” stay constant across ticks while the fringes shift via the plane-wave phase’s
+            - code [ref=e973]: −ω · n
+            - text: term. Formally this is
+            - code [ref=e974]: paper_two_slit_envelope_tick_invariant
+            - text: in §8.5; the underlying invariance is the same one that closes Theorem 3 (tick-invariance of the substrate amplitude). §8.5 invokes this as “probability conserved at the substrate level, fringes still move across ticks in the phase”. Theorem 3 is the formal statement of the conservation half; §8.5’s corollary is the Theorem-4-specific instance.
+          - separator [ref=e975]
+          - heading "7. Non-Relativistic Limit" [level=2] [ref=e976]
+          - heading "7.1 From the mass shell to the kinetic term" [level=3] [ref=e977]
+          - paragraph [ref=e978]:
+            - text: The lattice-derived mass shell
+            - code [ref=e979]: E² = (pc)² + (mc²)²
+            - text: is stated as
+            - code [ref=e980]: massShell_from_tick_counting
+            - text: in
+            - code [ref=e981]: DispersionFromLattice.lean
+            - text: . The standard Taylor expansion around
+            - code [ref=e982]: p = 0
+          - code [ref=e984]:
+            - generic [ref=e985]: E(p, m) = mc² · √(1 + (p/mc)²)
+            - generic [ref=e986]: = mc² + p²/(2m) − p⁴/(8 m³ c²) + O(p⁶)
+          - paragraph [ref=e987]:
+            - text: identifies the first two terms as the rest energy and the classical kinetic term, with the third as the leading relativistic correction — but the Lean proof does
+            - emphasis [ref=e988]: not
+            - text: go through this expansion, and the distinction matters.
+          - paragraph [ref=e989]:
+            - strong [ref=e990]: The proof is algebraic, not analytic.
+            - text: Write
+          - code [ref=e992]:
+            - generic [ref=e993]: A := E(p, m) = √((pc)² + (mc²)²), B := mc² + p²/(2m).
+          - paragraph [ref=e994]: A one-line calculation gives the exact identity
+          - code [ref=e996]:
+            - generic [ref=e997]: B² − A² = p⁴ / (4 m²),
+          - paragraph [ref=e998]:
+            - text: and
+            - code [ref=e999]: A + B ≥ mc²
+            - text: (from
+            - code [ref=e1000]: A ≥ 0
+            - text: and
+            - code [ref=e1001]: B ≥ mc²
+            - text: when
+            - code [ref=e1002]: m > 0
+            - text: ). Hence
+          - code [ref=e1004]:
+            - generic [ref=e1005]: 0 ≤ B − A = (B² − A²) / (A + B) ≤ p⁴ / (4 m² · mc²) = p⁴ / (4 m³ c²).
+          - paragraph [ref=e1006]:
+            - text: "This route avoids all epsilon-delta analytic machinery: no derivatives, no series convergence, no limit definition enters the proof. The bound is provable in finitely many elementary real-arithmetic steps, and the Lean proof ("
+            - code [ref=e1007]: nonRelativisticEnergy_sq_sub_relativisticEnergy_sq
+            - text: followed by
+            - code [ref=e1008]: nonRelativistic_energy_approx
+            - text: in
+            - code [ref=e1009]: DispersionBridge.lean
+            - text: ") reflects that structure. The methodological point, compressed into a single line:"
+            - strong [ref=e1010]: the non-relativistic limit is an algebraic identity, not an asymptotic expansion
+            - text: . It is worth emphasising because the usual textbook argument for the same inequality invokes Taylor’s theorem with a remainder estimate — machinery that is overkill for a fourth-degree algebraic fact. The machine-checked proof is the shorter one.
+          - heading "7.2 Theorem 4 (formal statement)" [level=3] [ref=e1011]
+          - paragraph [ref=e1012]:
+            - text: The final form of the bound, proved in
+            - code [ref=e1013]: DispersionBridge.lean
+            - text: and re-exported as
+            - code [ref=e1014]: paper_nonrel_limit
+            - text: in
+            - code [ref=e1015]: QmBridgePaper.lean
+            - text: ", is a"
+            - emphasis [ref=e1016]: closed-form
+            - text: quartic remainder — no Taylor-series machinery is invoked. The identity
+            - code [ref=e1017]: (mc² + p²/(2m))² − E(p,m)² = p⁴/(4m²)
+            - text: is elementary; the sqrt-to-linear reduction uses only
+            - code [ref=e1018]: A + B ≥ mc²
+            - text: .
+          - code [ref=e1020]:
+            - generic [ref=e1021]: "/-- **Theorem 4 (Non-relativistic limit).** For rest mass `m > 0` and"
+            - generic [ref=e1022]: "any momentum `p`, the relativistic energy differs from the non-relativistic"
+            - generic [ref=e1023]: "expression `mc² + p²/(2m)` by a quartic-in-`p` remainder:"
+            - generic [ref=e1024]: "|relativisticEnergy p m − (m c² + p²/(2m))|"
+            - generic [ref=e1025]: ≤ p⁴ / (4 · m³ · c²). -/
+            - generic [ref=e1026]: theorem paper_nonrel_limit
+            - generic [ref=e1027]: "{m : ℝ} (hm : 0 < m) (p : ℝ) :"
+            - generic [ref=e1028]: "|relativisticEnergy p m - nonRelativisticEnergy p m|"
+            - generic [ref=e1029]: ≤ p ^ 4 / (4 * m ^ 3 * c ^ 2) :=
+            - generic [ref=e1030]: nonRelativistic_energy_approx hm p
+          - paragraph [ref=e1031]:
+            - text: Note the bound is
+            - strong [ref=e1032]:
+              - text: unconditional in
+              - code [ref=e1033]: p
+            - text: (no
+            - code [ref=e1034]: "|p| ≤ α m c"
+            - text: hypothesis is needed); the RHS grows with
+            - code [ref=e1035]: p⁴
+            - text: so at large
+            - code [ref=e1036]: p
+            - text: the bound becomes vacuous, but the
+            - emphasis [ref=e1037]: inequality
+            - text: is valid everywhere. The non-relativistic
+            - emphasis [ref=e1038]: regime
+            - text: is the sub-region
+            - code [ref=e1039]: "|p| ≪ mc"
+            - text: where the RHS is small; the
+            - emphasis [ref=e1040]: inequality
+            - text: holds globally.
+          - paragraph [ref=e1041]:
+            - text: The companion lemma
+            - code [ref=e1042]: schrodinger_is_nonrel_limit
+            - text: "provides the formal “Schrödinger ⊂ relativistic” hierarchy claim: if any Schrödinger-side approximation produces an eigenvalue-like quantity"
+            - code [ref=e1043]: K(p, m)
+            - text: with
+            - code [ref=e1044]: "|K − p²/(2m)| ≤ ε"
+            - text: ", then"
+            - code [ref=e1045]: "|K − (E(p,m) − mc²)| ≤ ε + p⁴/(4m³c²)"
+            - text: . The first summand is the Schrödinger-side approximation error; the second is the intrinsic non-relativistic-expansion remainder. Re-exported as
+            - code [ref=e1046]: paper_schrodinger_is_nonrel_limit
+            - text: in
+            - code [ref=e1047]: QmBridgePaper.lean
+            - text: .
+          - paragraph [ref=e1048]:
+            - text: The lemma takes
+            - code [ref=e1049]: K
+            - text: as an
+            - strong [ref=e1050]: opaque input
+            - text: . To instantiate it from Theorem 2’s discrete-Laplacian residue bound the reader has to supply
+            - code [ref=e1051]: K = −k²
+            - text: via a lattice-Fourier eigenvalue extraction on plane-wave states (see §7.3 below).
+          - heading "7.3 Bridging Theorems 2 and 3" [level=3] [ref=e1052]
+          - paragraph [ref=e1053]:
+            - strong [ref=e1054]: Composition is pointwise, not operator-level.
+            - text: Theorem 2 controls the norm of the residue field
+            - code [ref=e1055]: schrodingerResidue m ψ p n
+            - text: at a site
+            - code [ref=e1056]: (p, n)
+            - text: ; Theorem 4 +
+            - code [ref=e1057]: schrodinger_is_nonrel_limit
+            - text: controls the scalar gap between an eigenvalue-like
+            - code [ref=e1058]: K
+            - text: and
+            - code [ref=e1059]: p²/(2m)
+            - text: . Gluing the two requires identifying
+            - code [ref=e1060]: K
+            - text: with the eigenvalue of
+            - code [ref=e1061]: discreteLaplacianC
+            - text: on a
+            - emphasis [ref=e1062]: plane-wave state
+            - text: — a reduction from pointwise-field arithmetic to scalar-spectrum arithmetic.
+          - paragraph [ref=e1063]:
+            - text: Concretely, on
+            - code [ref=e1064]: ψ_k := coarseGrainWithPhase s (planeWavePhase k ω) m
+            - text: "(the plane-wave coarse-graining from §4.4), the complex discrete Laplacian is diagonal:"
+          - code [ref=e1066]:
+            - generic [ref=e1067]: discreteLaplacianC ψ_k (p, n) = λ(k, ℓ_P) · ψ_k (p, n)
+          - paragraph [ref=e1068]: with the lattice-Fourier eigenvalue
+          - code [ref=e1070]:
+            - generic [ref=e1071]: λ(k, ℓ_P) = − (4 / ℓ_P²) · ∑_μ sin²(k_μ · ℓ_P / 2).
+          - paragraph [ref=e1072]:
+            - text: A Taylor expansion of
+            - code [ref=e1073]: sin²
+            - text: near zero gives
+          - code [ref=e1075]:
+            - generic [ref=e1076]: "| λ(k, ℓ_P) − (− k²) | = O(ℓ_P² · k⁴),"
+          - paragraph [ref=e1077]:
+            - text: which is exactly the
+            - code [ref=e1078]: ε
+            - text: that
+            - code [ref=e1079]: schrodinger_is_nonrel_limit
+            - text: consumes. Composing then yields,
+            - strong [ref=e1080]: on plane-wave test states
+            - text: ","
+          - code [ref=e1082]:
+            - generic [ref=e1083]: "| (E(p, m) − mc²) − p²/(2m) | ≤ O(ℓ_P² · k⁴) + p⁴/(4 m³ c²)"
+          - paragraph [ref=e1084]:
+            - text: after identifying
+            - code [ref=e1085]: p = ℏ · k
+            - text: via the plane-wave dispersion relation. The resulting compound error is
+            - code [ref=e1086]: O(ℓ_P² · k⁴) + O(p⁴/(m³c²))
+            - text: ", with both pieces"
+            - emphasis [ref=e1087]: algebraically
+            - text: bounded — no analytic limiting arguments enter either side.
+          - paragraph [ref=e1088]:
+            - strong [ref=e1089]: What is and is not machine-checked.
+            - text: Theorems 2 and 3 are each machine-checked. The pointwise-to-eigenvalue reduction above — the three or four trigonometric lemmas needed to prove
+            - code [ref=e1090]: discreteLaplacianC ψ_k = λ(k, ℓ_P) · ψ_k
+            - text: and the Taylor bound on
+            - code [ref=e1091]: λ(k, ℓ_P) − (−k²)
+            - text: — is
+            - emphasis [ref=e1092]: stated
+            - text: in the paper but
+            - strong [ref=e1093]: not yet
+            - text: "formalised. It is pure lattice-Fourier analysis; the obstruction is Lean-side work, not new mathematics. This is the sense in which we say the framework derives the non-relativistic Schrödinger equation “from the discrete substrate”: the discrete Laplacian, its plane-wave eigenvalue, and the non-relativistic limit all exist and are each provable at the level of the lattice; the operator-level chaining of the three into a single inequality is a separable follow-up step. Section 13 item 5 lists this honestly as open."
+          - paragraph [ref=e1094]: Stronger senses — a full-QM derivation, including the substrate-sourced phase and the interference pattern that falls out of the complex-field-level superposition — are the subject of §8; all remaining open questions are inventoried in §13.
+          - separator [ref=e1095]
+          - heading "8. Two-Slit Interference (Theorem 5)" [level=2] [ref=e1096]
+          - heading "7.1 What the theorem claims" [level=3] [ref=e1097]
+          - paragraph [ref=e1098]:
+            - text: "The two-slit thought experiment is the canonical signature of quantum mechanics: two plane-wave “paths” coherently superpose on a common substrate, and the resulting probability density carries a"
+            - code [ref=e1099]: cos(Δφ)
+            - text: "-modulated fringe pattern that is absent in either classical path taken alone. Theorem 5 makes this signature a"
+            - emphasis [ref=e1100]: machine-checked theorem
+            - text: "of the Omega-Theory V2 substrate: superposing two plane-wave coarse-grained fields yields,"
+            - strong [ref=e1101]: pointwise and without residue
+            - text: ", the standard interference formula"
+          - code [ref=e1103]:
+            - generic [ref=e1104]: "|ψ₁ + ψ₂|²(p, n)"
+            - generic [ref=e1105]: = |ψ₁|²(p, n) + |ψ₂|²(p, n) + 2 · A(p, n)² · cos(Δφ(p, n))
+          - paragraph [ref=e1106]:
+            - text: where
+            - code [ref=e1107]: A(p, n) = exp(−I_KL(g(n), g₀, p) / 2)
+            - text: is the shared substrate amplitude and
+            - code [ref=e1108]: Δφ(p, n) = (k₁ − k₂) · p − (ω₁ − ω₂) · n
+            - text: "is the phase difference of the two “slits”. No smoothness hypothesis, no Planck-scale remainder, no approximation: both halves of the proof (the"
+            - code [ref=e1109]: "|a + b|² = |a|² + |b|² + 2 Re(a · conj b)"
+            - text: expansion and the
+            - code [ref=e1110]: Re(ψ₁ · conj ψ₂) = A² · cos(Δφ)
+            - text: evaluation on plane waves) are algebraic identities.
+          - heading "7.2 Superposition is a complex-field operation" [level=3] [ref=e1111]
+          - paragraph [ref=e1112]:
+            - text: Theorem 5 deliberately lifts superposition to the level of
+            - code [ref=e1113]: LatticeComplexField = LatticePoint → ℕ → ℂ
+            - text: ","
+            - strong [ref=e1114]: not
+            - text: to the level of
+            - code [ref=e1115]: SnapshotSequence
+            - text: ". Concretely, the superposition operation is pointwise complex addition:"
+          - code [ref=e1117]:
+            - generic [ref=e1118]: noncomputable def superposedField
+            - generic [ref=e1119]: "(ψ₁ ψ₂ : LatticeComplexField) : LatticeComplexField :="
+            - generic [ref=e1120]: fun p n => ψ₁ p n + ψ₂ p n
+          - paragraph [ref=e1121]:
+            - text: This is a design choice, and the honest one.
+            - code [ref=e1122]: DiscreteMetric
+            - text: "lacks a natural Lorentzian-respecting additive structure: summing two metrics produces an object that is not, in general, a metric at all. Any attempt to define a “superposition of snapshot sequences” by lifting pointwise metric addition would introduce"
+            - code [ref=e1123]: O(ℓ_P)
+            - text: "residues in the interference formula and make the two-slit identity approximate rather than exact. The complex-field-level operation matches the Feynman path-integral picture: two paths share"
+            - emphasis [ref=e1124]: one
+            - text: background and sum at the amplitude level, which is precisely what the Lean definition captures. That the headline identity becomes residue-free is the reward for picking the correct venue.
+          - heading "7.3 Theorem 5 (formal statement)" [level=3] [ref=e1125]
+          - paragraph [ref=e1126]:
+            - text: The headline theorem is
+            - code [ref=e1127]: two_slit_interference
+            - text: in
+            - code [ref=e1128]: OmegaTheory/Emergence/Interference.lean
+            - text: ", re-exported as"
+            - code [ref=e1129]: paper_two_slit_interference
+            - text: in
+            - code [ref=e1130]: QmBridgePaper.lean
+            - text: ":"
+          - code [ref=e1132]:
+            - generic [ref=e1133]: /-- **Theorem 5 (Two-slit interference).** For two plane-wave
+            - generic [ref=e1134]: coarse-grained fields ψⱼ = coarseGrainWithPhase s
+            - generic [ref=e1135]: (planeWavePhase kⱼ ωⱼ) m (j = 1, 2) on a common substrate
+            - generic [ref=e1136]: "s : SnapshotSequence, the superposed-field probability density is"
+            - generic [ref=e1137]: "*exactly* |ψ₁|² + |ψ₂|² + 2·A²·cos(Δφ). -/"
+            - generic [ref=e1138]: theorem paper_two_slit_interference
+            - generic [ref=e1139]: "(s : SnapshotSequence) (m : ℝ)"
+            - generic [ref=e1140]: "(k₁ k₂ : LatticePoint) (ω₁ ω₂ : ℝ)"
+            - generic [ref=e1141]: "(p : LatticePoint) (n : ℕ) :"
+            - generic [ref=e1142]: ‖superposedField (planeWaveField s m k₁ ω₁)
+            - generic [ref=e1143]: (planeWaveField s m k₂ ω₂) p n‖ ^ 2 =
+            - generic [ref=e1144]: ‖planeWaveField s m k₁ ω₁ p n‖ ^ 2 +
+            - generic [ref=e1145]: ‖planeWaveField s m k₂ ω₂ p n‖ ^ 2 +
+            - generic [ref=e1146]: 2 * coarseGrainAmplitude s p n ^ 2 *
+            - generic [ref=e1147]: Real.cos (planeWavePhase k₁ ω₁ p n -
+            - generic [ref=e1148]: planeWavePhase k₂ ω₂ p n) :=
+            - generic [ref=e1149]: two_slit_interference s m k₁ k₂ ω₁ ω₂ p n
+          - paragraph [ref=e1150]:
+            - strong [ref=e1151]: Faithful hypothesis inventory.
+            - text: Theorem 5 is unconditional in its inputs; every parameter is free. The table below is deliberately short because the theorem has no side hypotheses.
+          - table [ref=e1152]:
+            - rowgroup [ref=e1153]:
+              - row "Hypothesis Lean name Meaning" [ref=e1154]:
+                - columnheader "Hypothesis" [ref=e1155]
+                - columnheader "Lean name" [ref=e1156]
+                - columnheader "Meaning" [ref=e1157]
+            - rowgroup [ref=e1158]:
+              - 'row "s : SnapshotSequence — shared substrate; supplies the amplitude A(p, n) = exp(−I_KL/2)." [ref=e1159]':
+                - 'cell "s : SnapshotSequence" [ref=e1160]':
+                  - code [ref=e1161]: "s : SnapshotSequence"
+                - cell "—" [ref=e1162]
+                - cell "shared substrate; supplies the amplitude A(p, n) = exp(−I_KL/2)." [ref=e1163]:
+                  - text: shared substrate; supplies the amplitude
+                  - code [ref=e1164]: A(p, n) = exp(−I_KL/2)
+                  - text: .
+              - 'row "m : ℝ — effective mass carried by coarseGrainWithPhase; mass-blind in `" [ref=e1165]':
+                - 'cell "m : ℝ" [ref=e1166]':
+                  - code [ref=e1167]: "m : ℝ"
+                - cell "—" [ref=e1168]
+                - 'cell "effective mass carried by coarseGrainWithPhase; mass-blind in `" [ref=e1169]':
+                  - text: effective mass carried by
+                  - code [ref=e1170]: coarseGrainWithPhase
+                  - text: ;
+                  - emphasis [ref=e1171]: mass-blind
+                  - text: "in `"
+              - 'row "k₁, k₂ : LatticePoint, ω₁, ω₂ : ℝ — wavevectors and frequencies of the two plane waves; fully free." [ref=e1172]':
+                - 'cell "k₁, k₂ : LatticePoint, ω₁, ω₂ : ℝ" [ref=e1173]':
+                  - code [ref=e1174]: "k₁, k₂ : LatticePoint"
+                  - text: ","
+                  - code [ref=e1175]: "ω₁, ω₂ : ℝ"
+                - cell "—" [ref=e1176]
+                - cell "wavevectors and frequencies of the two plane waves; fully free." [ref=e1177]
+              - 'row "p : LatticePoint, n : ℕ — spacetime point at which the identity is evaluated." [ref=e1178]':
+                - 'cell "p : LatticePoint, n : ℕ" [ref=e1179]':
+                  - code [ref=e1180]: "p : LatticePoint, n : ℕ"
+                - cell "—" [ref=e1181]
+                - cell "spacetime point at which the identity is evaluated." [ref=e1182]
+          - paragraph [ref=e1183]:
+            - text: No positivity of mass, no Gibbs stencil condition, no
+            - code [ref=e1184]: HasZeroFunctional
+            - text: . The identity holds in the free algebraic regime.
+          - 'heading "7.4 Corollaries: visibility, constructive peak, destructive null" [level=3] [ref=e1185]'
+          - paragraph [ref=e1186]: "Two subsequent algebraic rewrites deliver the textbook fringe shape:"
+          - list [ref=e1187]:
+            - listitem [ref=e1188]:
+              - paragraph [ref=e1189]:
+                - strong [ref=e1190]: Boltzmann-weight form
+                - text: (
+                - code [ref=e1191]: paper_two_slit_interference_KL
+                - text: ). Rewriting
+                - code [ref=e1192]: "|ψⱼ|²"
+                - text: via
+                - code [ref=e1193]: planeWaveField_abs_sq
+                - text: gives
+              - code [ref=e1195]:
+                - generic [ref=e1196]: "|ψ₁ + ψ₂|²(p, n)"
+                - generic [ref=e1197]: = 2 · exp(−I_KL(g(n), g₀, p)) + 2 · A(p, n)² · cos(Δφ(p, n)).
+              - paragraph [ref=e1198]: The first summand is the classical (incoherent) intensity — what a detector would register if the two paths were statistically independent — and the second is the purely-quantum coherence term. This is the decomposition that makes the interference contribution physically transparent.
+            - listitem [ref=e1199]:
+              - paragraph [ref=e1200]:
+                - strong [ref=e1201]: Canonical visibility
+                - text: (
+                - code [ref=e1202]: paper_double_slit_visibility
+                - text: ). Because both plane-wave fields inherit the
+                - emphasis [ref=e1203]: same
+                - text: substrate amplitude
+                - code [ref=e1204]: A
+                - text: by construction, the two-slit probability density collapses to the textbook
+              - code [ref=e1206]:
+                - generic [ref=e1207]: "|ψ₁ + ψ₂|²(p, n) = 2 · A(p, n)² · (1 + cos Δφ(p, n))"
+                - generic [ref=e1208]: = 4 · A(p, n)² · cos²(Δφ(p, n) / 2).
+              - paragraph [ref=e1209]:
+                - text: The
+                - code [ref=e1210]: (1 + cos)
+                - text: form is the one that falls out of the exact theorem; the
+                - code [ref=e1211]: cos²(Δφ/2)
+                - text: identity is a trivial half-angle rewrite on the RHS. Crucially,
+                - strong [ref=e1212]: no equal-amplitude hypothesis is required
+                - text: ": the shared substrate enforces equal amplitudes automatically."
+            - listitem [ref=e1213]:
+              - paragraph [ref=e1214]:
+                - strong [ref=e1215]: Constructive peak
+                - text: (
+                - code [ref=e1216]: paper_two_slit_constructive_peak
+                - text: ). At
+                - code [ref=e1217]: Δφ = 0
+                - text: the intensity is
+                - code [ref=e1218]: 4 · A²
+                - text: ", four times the single-slit intensity. This is the canonical quantum-doubling at the maximum fringe."
+            - listitem [ref=e1219]:
+              - paragraph [ref=e1220]:
+                - strong [ref=e1221]: Destructive null
+                - text: (
+                - code [ref=e1222]: paper_two_slit_destructive_null
+                - text: ). At
+                - code [ref=e1223]: Δφ = π
+                - text: the intensity is identically zero — exact cancellation, not exponentially small suppression. This is the canonical quantum-minimum.
+            - listitem [ref=e1224]:
+              - paragraph [ref=e1225]:
+                - strong [ref=e1226]: Flat-vacuum sanity
+                - text: (
+                - code [ref=e1227]: paper_two_slit_on_flat
+                - text: ). On the Minkowski vacuum where
+                - code [ref=e1228]: A = exp(−1)
+                - text: pointwise, the pattern collapses to
+                - code [ref=e1229]: 2 · exp(−2) · (1 + cos Δφ)
+                - text: ": the full-contrast cosine fringe that every textbook reproduces."
+          - heading "7.5 Compatibility with Born-rule conservation (Phase 3)" [level=3] [ref=e1230]
+          - paragraph [ref=e1231]:
+            - text: Under the static-functional regime
+            - code [ref=e1232]: d.HasZeroFunctional
+            - text: used in Phases 2 and 3, the substrate amplitude
+            - code [ref=e1233]: A(p, n)
+            - text: is
+            - emphasis [ref=e1234]: tick-invariant
+            - text: ": the Phase-3 Born-rule conservation theorem implies that the KL information density"
+            - code [ref=e1235]: I_KL(g(n), g₀, p)
+            - text: is constant in
+            - code [ref=e1236]: "n"
+            - text: ", hence so is"
+            - code [ref=e1237]: A
+            - text: . The formal consequence for interference is
+            - code [ref=e1238]: paper_two_slit_envelope_tick_invariant
+            - text: ":"
+          - code [ref=e1240]:
+            - generic [ref=e1241]: /-- On a DynamicalSnapshotSequence with HasZeroFunctional, the
+            - generic [ref=e1242]: substrate amplitude A(p, n) is tick-invariant — the interference
+            - generic [ref=e1243]: pattern's amplitude envelope 2·A² does not change across ticks;
+            - generic [ref=e1244]: all tick dependence of |ψ_super|² sits in the cos(Δφ) factor. -/
+            - generic [ref=e1245]: theorem paper_two_slit_envelope_tick_invariant
+            - generic [ref=e1246]: "(d : DynamicalSnapshotSequence) (hF : d.HasZeroFunctional)"
+            - generic [ref=e1247]: "(m : ℝ) (k₁ k₂ : LatticePoint) (ω₁ ω₂ : ℝ)"
+            - generic [ref=e1248]: "(p : LatticePoint) (n k : ℕ) :"
+            - generic [ref=e1249]: coarseGrainAmplitude d.toSnapshotSequence p n =
+            - generic [ref=e1250]: coarseGrainAmplitude d.toSnapshotSequence p k
+          - paragraph [ref=e1251]:
+            - text: "Physically:"
+            - strong [ref=e1252]: probability is conserved at the substrate (amplitude) level, while interference fringes still move across ticks
+            - text: — because the phase difference
+            - code [ref=e1253]: Δφ(p, n) = (k₁ − k₂) · p − (ω₁ − ω₂) · n
+            - text: picks up
+            - code [ref=e1254]: (ω₂ − ω₁) · n
+            - text: "per tick. This is the honest Phase-4 × Phase-3 compatibility statement:"
+            - code [ref=e1255]: "|ψ|²"
+            - text: is Born-rule-conserved even on a dynamical substrate, and the observable fringe motion is entirely a phase-side phenomenon.
+          - heading "7.6 What Theorem 5 does and does not buy" [level=3] [ref=e1256]
+          - paragraph [ref=e1257]:
+            - text: Theorem 5
+            - emphasis [ref=e1258]: is
+            - text: a machine-checked derivation of the textbook two-slit interference identity from a discrete gravitational substrate. To the authors’ knowledge, this is the first time such an identity has been proved rather than postulated in a proof assistant from a discrete substrate, though we do not claim an exhaustive survey and the wording should be read as best-effort rather than categorical.
+          - paragraph [ref=e1259]:
+            - text: Theorem 5 is
+            - emphasis [ref=e1260]: not
+            - text: a derivation of the geometric origin of the plane-wave phase. The identity takes
+            - code [ref=e1261]: (k₁, ω₁)
+            - text: and
+            - code [ref=e1262]: (k₂, ω₂)
+            - text: as external inputs via
+            - code [ref=e1263]: planeWavePhase
+            - text: ; what happens in a physical two-slit apparatus — the diffraction through the slits, the dependence of the outgoing phases on the geometry of the apparatus — is not in the theorem. A principled derivation of the outgoing
+            - code [ref=e1264]: k
+            - text: from the geometry of the “slit” pattern on the lattice is a separate workstream (flagged as §13 item 2).
+          - paragraph [ref=e1265]:
+            - text: Theorem 5 is
+            - emphasis [ref=e1266]: not
+            - text: ", by itself, a derivation of the Born rule. It says that if you accept"
+            - code [ref=e1267]: "|ψ|²"
+            - text: as the intensity functional (the standard Born postulate), then the two-slit identity gives you the fringe pattern exactly. Phase 3’s
+            - code [ref=e1268]: bornRuleConservation
+            - text: is the complementary result that
+            - code [ref=e1269]: ∑_p |ψ|²
+            - text: is conserved across ticks on
+            - code [ref=e1270]: HasZeroFunctional
+            - text: sequences — the
+            - emphasis [ref=e1271]: conservation
+            - text: half of the Born story. Together the two theorems constitute the internal consistency of the Born interpretation on the substrate. The complementary
+            - emphasis [ref=e1272]: measurement-collapse
+            - text: half is the subject of §10 (Theorem 7), which derives the collapse postulate of standard QM as a theorem from the same substrate; §10.5 gives the formal acknowledgement that the post-measurement state falls outside the image of
+            - code [ref=e1273]: coarseGrain
+            - text: — collapse is non-unitary, and this is a theorem of V2 rather than an additional axiom. A deeper derivation reconstructing
+            - code [ref=e1274]: "|ψ|²"
+            - text: as the measurement-outcome distribution under a Planck-scale decoherence / envariance mechanism remains open for a sequel paper.
+          - separator [ref=e1275]
+          - heading "9. Heisenberg Uncertainty (Theorem 6)" [level=2] [ref=e1276]
+          - heading "9.1 The claim" [level=3] [ref=e1277]
+          - paragraph [ref=e1278]:
+            - text: The Heisenberg uncertainty principle
+            - code [ref=e1279]: Δx · Δp ≥ ℏ/2
+            - text: is, in standard non-relativistic QM, a consequence of the Robertson-Schrödinger inequality applied to the canonical commutation relation
+            - code [ref=e1280]: "[x̂, p̂] = iℏ"
+            - text: ". Theorem 6 derives the Heisenberg inequality on the V2 substrate: position"
+            - code [ref=e1281]: x̂_μ
+            - text: and momentum
+            - code [ref=e1282]: p̂_μ = −iℏ ∂_μ
+            - text: are given concrete definitions on the lattice, the Robertson inequality holds as a
+            - emphasis [ref=e1283]: pure Cauchy-Schwarz fact
+            - text: on any
+            - code [ref=e1284]: LatticeComplexField
+            - text: ", and the canonical"
+            - code [ref=e1285]: (ℏ/2)²
+            - text: lower bound follows when the lattice commutator
+            - code [ref=e1286]: "[x̂_μ, p̂_μ]"
+            - text: evaluated against the state’s own expectation values matches its continuum value
+            - code [ref=e1287]: ℏ
+            - text: .
+          - paragraph [ref=e1288]:
+            - text: Concretely, for any direction
+            - code [ref=e1289]: "μ : Fin 4"
+            - text: ", any state"
+            - code [ref=e1290]: "ψ : LatticeComplexField"
+            - text: ", any finite region"
+            - code [ref=e1291]: "region : Finset LatticePoint"
+            - text: ", any tick"
+            - code [ref=e1292]: "n : ℕ"
+            - text: ", and under the hypothesis"
+            - code [ref=e1293]: CommutatorMatchesMean (x̂_μ) (p̂_μ) ℏ ψ region n
+            - text: ":"
+          - code [ref=e1295]:
+            - generic [ref=e1296]: variance_x μ ψ region n · variance_p μ ψ region n ≥ (ℏ/2)².
+          - paragraph [ref=e1297]:
+            - text: This is Theorem 6. The Lean name is
+            - code [ref=e1298]: heisenberg_uncertainty_from_lattice
+            - text: ", re-exported as"
+            - code [ref=e1299]: paper_heisenberg_uncertainty
+            - text: .
+          - heading "9.2 Lattice operators and their variances" [level=3] [ref=e1300]
+          - paragraph [ref=e1301]:
+            - code [ref=e1302]: Heisenberg.lean
+            - text: defines a
+            - code [ref=e1303]: LatticeOperator
+            - text: as a map
+            - code [ref=e1304]: LatticeComplexField → LatticePoint → ℕ → ℂ
+            - text: "— a pointwise complex transformation of a wavefunction. The position and momentum operators are:"
+          - code [ref=e1306]:
+            - generic [ref=e1307]: "noncomputable def positionOperator (μ : Fin 4) : LatticeOperator :="
+            - generic [ref=e1308]: "fun ψ p n => ((p μ : ℝ) : ℂ) * ψ p n"
+            - generic [ref=e1309]: "noncomputable def momentumOperator (μ : Fin 4) : LatticeOperator :="
+            - generic [ref=e1310]: "fun ψ p n => -Complex.I * ((hbar : ℝ) : ℂ) *"
+            - generic [ref=e1311]: "((ψ (shiftFin p μ) n - ψ (shiftBackFin p μ) n) / ((2 * l_P : ℝ) : ℂ))"
+          - paragraph [ref=e1312]:
+            - text: The position operator multiplies the wavefunction by the
+            - code [ref=e1313]: μ
+            - text: "-th integer coordinate of"
+            - code [ref=e1314]: p
+            - text: ", reflecting the lattice embedding"
+            - code [ref=e1315]: x̂_μ ψ = p_μ · ψ
+            - text: . The momentum operator is the symmetric-difference approximation to
+            - code [ref=e1316]: −iℏ ∂/∂x_μ
+            - text: ", using the forward and backward lattice shifts"
+            - code [ref=e1317]: shiftFin
+            - text: ","
+            - code [ref=e1318]: shiftBackFin
+            - text: and dividing by
+            - code [ref=e1319]: 2ℓ_P
+            - text: (the lattice spacing, at the Planck scale). Both are noncomputable because they use
+            - code [ref=e1320]: Real.sqrt
+            - text: / real-arithmetic constants, but their
+            - code [ref=e1321]: Prop
+            - text: "-level properties are provable."
+          - paragraph [ref=e1322]: "The variance definitions are:"
+          - code [ref=e1324]:
+            - generic [ref=e1325]: noncomputable def variance_x
+            - generic [ref=e1326]: "(μ : Fin 4) (ψ : LatticeComplexField)"
+            - generic [ref=e1327]: "(region : Finset LatticePoint) (tick : ℕ) : ℝ :="
+            - generic [ref=e1328]: l2Variance (positionOperator μ) (expValue (positionOperator μ) ψ region tick)
+            - generic [ref=e1329]: ψ region tick
+            - generic [ref=e1330]: noncomputable def variance_p
+            - generic [ref=e1331]: "(μ : Fin 4) (ψ : LatticeComplexField)"
+            - generic [ref=e1332]: "(region : Finset LatticePoint) (tick : ℕ) : ℝ :="
+            - generic [ref=e1333]: l2Variance (momentumOperator μ) (expValue (momentumOperator μ) ψ region tick)
+            - generic [ref=e1334]: ψ region tick
+          - paragraph [ref=e1335]:
+            - text: Both are non-negative (
+            - code [ref=e1336]: variance_x_nonneg
+            - text: ","
+            - code [ref=e1337]: variance_p_nonneg
+            - text: ). The generalised
+            - code [ref=e1338]: l2Variance A μ ψ region tick
+            - text: is
+            - code [ref=e1339]: "∑_{p ∈ region} ‖A ψ p tick − μ · ψ p tick‖²"
+            - text: — the L² distance of
+            - code [ref=e1340]: A ψ
+            - text: from its candidate mean
+            - code [ref=e1341]: μ ψ
+            - text: . When
+            - code [ref=e1342]: μ = ⟨A⟩
+            - text: this recovers the textbook variance; the generalisation is needed for the Robertson Cauchy-Schwarz step.
+          - heading "9.3 The CommutatorMatchesMean hypothesis" [level=3] [ref=e1343]:
+            - text: 9.3 The
+            - code [ref=e1344]: CommutatorMatchesMean
+            - text: hypothesis
+          - paragraph [ref=e1345]: "The Heisenberg bound is proved conditional on a hypothesis that encodes the continuum commutator value on the lattice:"
+          - code [ref=e1347]:
+            - generic [ref=e1348]: def CommutatorMatchesMean
+            - generic [ref=e1349]: "(A B : LatticeOperator) (c : ℝ) (ψ : LatticeComplexField)"
+            - generic [ref=e1350]: "(region : Finset LatticePoint) (tick : ℕ) : Prop :="
+            - generic [ref=e1351]: 2 * (robertsonCrossTerm A B
+            - generic [ref=e1352]: (expValue A ψ region tick)
+            - generic [ref=e1353]: (expValue B ψ region tick) ψ region tick).im = c
+          - paragraph [ref=e1354]:
+            - text: Physically, this says that
+            - code [ref=e1355]: 2 · Im⟨(A − ⟨A⟩)ψ | (B − ⟨B⟩)ψ⟩ = c
+            - text: ": the expectation value of"
+            - code [ref=e1356]: −i[A, B]
+            - text: "on"
+            - code [ref=e1357]: ψ
+            - text: ", evaluated at the variance-centred operators, equals"
+            - code [ref=e1358]: c
+            - text: . Setting
+            - code [ref=e1359]: A = x̂_μ
+            - text: ","
+            - code [ref=e1360]: B = p̂_μ
+            - text: ","
+            - code [ref=e1361]: c = ℏ
+            - text: then says that the lattice-evaluated commutator reproduces the continuum value
+            - code [ref=e1362]: ℏ
+            - text: when integrated against
+            - code [ref=e1363]: ψ
+            - text: across the region.
+          - paragraph [ref=e1364]:
+            - strong [ref=e1365]: Scope of the hypothesis.
+            - text: On a smooth state (plane wave, Gaussian) sampled at lattice sites,
+            - code [ref=e1366]: CommutatorMatchesMean
+            - text: holds exactly in the
+            - code [ref=e1367]: ℓ_P → 0
+            - text: limit. On the lattice at finite
+            - code [ref=e1368]: ℓ_P
+            - text: ", the symmetric-difference momentum operator satisfies"
+            - code [ref=e1369]: "[x̂, p̂] ψ(p) = iℏ · (ψ(p+ê) + ψ(p−ê))/2"
+            - text: rather than
+            - code [ref=e1370]: iℏ · ψ(p)
+            - text: ", so the commutator picks up an"
+            - code [ref=e1371]: O(ℓ_P²)
+            - text: correction for states smooth on the lattice scale. The
+            - code [ref=e1372]: CommutatorMatchesMean
+            - text: predicate is the honest
+            - emphasis [ref=e1373]: scope of the closure
+            - text: ": we close the Heisenberg bound exactly when the integral-against-ψ of the lattice commutator equals the continuum value. A quantitative"
+            - code [ref=e1374]: lattice_commutator_converges
+            - text: theorem bounding the
+            - code [ref=e1375]: O(ℓ_P²)
+            - text: slack is future work.
+          - heading "9.4 Theorem 6 (formal statement)" [level=3] [ref=e1376]
+          - paragraph [ref=e1377]:
+            - text: Proved in
+            - code [ref=e1378]: OmegaTheory/Emergence/Heisenberg.lean
+            - text: and re-exported as
+            - code [ref=e1379]: paper_heisenberg_uncertainty
+            - text: in
+            - code [ref=e1380]: QmBridgePaper.lean
+            - text: ":"
+          - code [ref=e1382]:
+            - generic [ref=e1383]: /-- **Theorem 6 (Heisenberg uncertainty, from the lattice).** For
+            - generic [ref=e1384]: any direction μ, any ψ, any finite region R, tick n, and
+            - generic [ref=e1385]: "normalised state (∑ |ψ|² = 1) satisfying `CommutatorMatchesMean"
+            - generic [ref=e1386]: "(x̂_μ) (p̂_μ) ℏ ψ R n`, the variance product is bounded below"
+            - generic [ref=e1387]: "by `(ℏ/2)²`. -/"
+            - generic [ref=e1388]: theorem paper_heisenberg_uncertainty
+            - generic [ref=e1389]: "(μ : Fin 4) (ψ : LatticeComplexField)"
+            - generic [ref=e1390]: "(region : Finset LatticePoint) (tick : ℕ)"
+            - generic [ref=e1391]: "(hnorm : ∑ p ∈ region, ‖ψ p tick‖ ^ 2 = 1)"
+            - generic [ref=e1392]: "(hcomm : CommutatorMatchesMean (positionOperator μ)"
+            - generic [ref=e1393]: "(momentumOperator μ) hbar ψ region tick) :"
+            - generic [ref=e1394]: variance_x μ ψ region tick * variance_p μ ψ region tick ≥
+            - generic [ref=e1395]: (hbar / 2) ^ 2
+          - paragraph [ref=e1396]:
+            - strong [ref=e1397]: Faithful hypothesis inventory.
+            - text: Six parameters plus two hypotheses, each carrying a specific physical reading.
+          - table [ref=e1398]:
+            - rowgroup [ref=e1399]:
+              - row "Hypothesis Lean name Meaning" [ref=e1400]:
+                - columnheader "Hypothesis" [ref=e1401]
+                - columnheader "Lean name" [ref=e1402]
+                - columnheader "Meaning" [ref=e1403]
+            - rowgroup [ref=e1404]:
+              - 'row "μ : Fin 4 — direction index (the μ of x̂_μ, p̂_μ)." [ref=e1405]':
+                - 'cell "μ : Fin 4" [ref=e1406]':
+                  - code [ref=e1407]: "μ : Fin 4"
+                - cell "—" [ref=e1408]
+                - cell "direction index (the μ of x̂_μ, p̂_μ)." [ref=e1409]:
+                  - text: direction index (the
+                  - code [ref=e1410]: μ
+                  - text: of
+                  - code [ref=e1411]: x̂_μ, p̂_μ
+                  - text: ).
+              - 'row "ψ : LatticeComplexField — the state under consideration." [ref=e1412]':
+                - 'cell "ψ : LatticeComplexField" [ref=e1413]':
+                  - code [ref=e1414]: "ψ : LatticeComplexField"
+                - cell "—" [ref=e1415]
+                - cell "the state under consideration." [ref=e1416]
+              - 'row "region : Finset LatticePoint — finite lattice region (the infinite lattice has no total ℓ² norm)." [ref=e1417]':
+                - 'cell "region : Finset LatticePoint" [ref=e1418]':
+                  - code [ref=e1419]: "region : Finset LatticePoint"
+                - cell "—" [ref=e1420]
+                - cell "finite lattice region (the infinite lattice has no total ℓ² norm)." [ref=e1421]:
+                  - text: finite lattice region (the infinite lattice has no total
+                  - code [ref=e1422]: ℓ²
+                  - text: norm).
+              - 'row "tick : ℕ — time slice at which the inequality is evaluated." [ref=e1423]':
+                - 'cell "tick : ℕ" [ref=e1424]':
+                  - code [ref=e1425]: "tick : ℕ"
+                - cell "—" [ref=e1426]
+                - cell "time slice at which the inequality is evaluated." [ref=e1427]
+              - 'row "hnorm — L²-normalisation on the region: ∑_{p ∈ R} ‖ψ(p, tick)‖² = 1. Not strictly used in the proof (the Robertson step is scale-free) but required for the standard physical reading." [ref=e1428]':
+                - cell "hnorm" [ref=e1429]:
+                  - code [ref=e1430]: hnorm
+                - cell "—" [ref=e1431]
+                - 'cell "L²-normalisation on the region: ∑_{p ∈ R} ‖ψ(p, tick)‖² = 1. Not strictly used in the proof (the Robertson step is scale-free) but required for the standard physical reading." [ref=e1432]':
+                  - text: "L²-normalisation on the region:"
+                  - code [ref=e1433]: "∑_{p ∈ R} ‖ψ(p, tick)‖² = 1"
+                  - text: . Not strictly used in the proof (the Robertson step is scale-free) but required for the standard physical reading.
+              - row "hcomm CommutatorMatchesMean lattice-continuum commutator-matching hypothesis (see §9.3). Honest scope flag." [ref=e1434]:
+                - cell "hcomm" [ref=e1435]:
+                  - code [ref=e1436]: hcomm
+                - cell "CommutatorMatchesMean" [ref=e1437]:
+                  - code [ref=e1438]: CommutatorMatchesMean
+                - cell "lattice-continuum commutator-matching hypothesis (see §9.3). Honest scope flag." [ref=e1439]
+              - row "0 ≤ hbar_pos positivity of ℏ (a background Planck-constant axiom from Spacetime/Constants.lean, not a user-side hypothesis)." [ref=e1440]:
+                - cell "0 ≤" [ref=e1441]:
+                  - code [ref=e1442]: 0 ≤
+                - cell "hbar_pos" [ref=e1443]:
+                  - code [ref=e1444]: hbar_pos
+                - cell "positivity of ℏ (a background Planck-constant axiom from Spacetime/Constants.lean, not a user-side hypothesis)." [ref=e1445]:
+                  - text: positivity of
+                  - code [ref=e1446]: ℏ
+                  - text: (a background Planck-constant axiom from
+                  - code [ref=e1447]: Spacetime/Constants.lean
+                  - text: ", not a user-side hypothesis)."
+          - paragraph [ref=e1448]:
+            - text: The conclusion
+            - code [ref=e1449]: variance_x · variance_p ≥ (ℏ/2)²
+            - text: "is exact on-regime: under"
+            - code [ref=e1450]: CommutatorMatchesMean ... ℏ
+            - text: ", the bound has the classic textbook form with no Planck-scale remainder at the level of the inequality itself; the remainder lives inside the"
+            - code [ref=e1451]: hcomm
+            - text: hypothesis, as designed.
+          - heading "9.5 Corollaries" [level=3] [ref=e1452]
+          - list [ref=e1453]:
+            - listitem [ref=e1454]:
+              - strong [ref=e1455]: Abstract Robertson-form
+              - text: (
+              - code [ref=e1456]: paper_heisenberg_uncertainty_abstract
+              - text: ). For any two lattice operators
+              - code [ref=e1457]: A, B
+              - text: with
+              - code [ref=e1458]: CommutatorMatchesValue A B c
+              - text: ","
+              - code [ref=e1459]: l2Variance A 0 ψ R n · l2Variance B 0 ψ R n ≥ (c/2)²
+              - text: . Theorem 6 is the specialisation
+              - code [ref=e1460]: A = x̂_μ, B = p̂_μ, c = ℏ
+              - text: on variance-centred operators. This is exposed for paper citation in contexts beyond position-momentum (e.g. angular-momentum components, energy-time duality).
+            - listitem [ref=e1461]:
+              - strong [ref=e1462]: Positive-variance corollaries
+              - text: (
+              - code [ref=e1463]: variance_x_pos_of_heisenberg
+              - text: ","
+              - code [ref=e1464]: variance_p_pos_of_heisenberg
+              - text: ). Under
+              - code [ref=e1465]: CommutatorMatchesMean ... ℏ
+              - text: ", both variances must be strictly positive. Physical content: “no simultaneously localised position and momentum” — simultaneous delocalisation is forbidden by the inequality, as in standard QM."
+            - listitem [ref=e1466]:
+              - strong [ref=e1467]: Robertson exact form
+              - text: (
+              - code [ref=e1468]: robertson_uncertainty_exact
+              - text: "). Stated without the commutator-matching hypothesis:"
+              - code [ref=e1469]: l2Variance A μ_A · l2Variance B μ_B ≥ |Im ⟨(A − μ_A)ψ | (B − μ_B)ψ⟩|²
+              - text: for
+              - emphasis [ref=e1470]: any
+              - text: lattice operators and means. This is the pure Cauchy-Schwarz fact that underlies Theorem 6.
+          - heading "9.6 What Theorem 6 does and does not say" [level=3] [ref=e1471]
+          - paragraph [ref=e1472]:
+            - text: Theorem 6
+            - emphasis [ref=e1473]: is
+            - text: a machine-checked derivation of the Heisenberg bound from a discrete gravitational substrate, under an honestly-scoped commutator-matching hypothesis. To the authors’ knowledge, this is the first such derivation of the Heisenberg principle from a lattice-gravity substrate in a proof assistant; we do not claim an exhaustive survey and the wording is best-effort rather than categorical.
+          - paragraph [ref=e1474]:
+            - text: Theorem 6 is
+            - emphasis [ref=e1475]: not
+            - text: a derivation that makes the lattice commutator equal its continuum value as a theorem — that would require a quantitative
+            - code [ref=e1476]: O(ℓ_P²)
+            - text: Taylor bound on smooth test states, which is not yet formalised. It states the Heisenberg inequality conditional on that equality. The standard non-relativistic limit (Theorem 4) provides the analogous algebraic-not-analytic reduction on the kinetic side; a companion analytic-expansion workstream on the commutator side would close the full
+            - code [ref=e1477]: O(ℓ_P²)
+            - text: story. This is Section 13 item 4.
+          - paragraph [ref=e1478]:
+            - text: Theorem 6 is
+            - emphasis [ref=e1479]: not
+            - text: an uncertainty relation for continuous Schrödinger operators on
+            - code [ref=e1480]: L²(ℝ⁴)
+            - text: — the theorem is stated inside the lattice framework, with
+            - code [ref=e1481]: variance_x, variance_p
+            - text: computed via
+            - code [ref=e1482]: Finset.sum
+            - text: over a finite lattice region. Moving to a continuum limit is future work; the lattice form is itself sufficient for the paper’s narrative (“the Heisenberg principle is a theorem of V2, not a postulate”).
+          - separator [ref=e1483]
+          - heading "10. Measurement / Collapse (Theorem 7)" [level=2] [ref=e1484]
+          - heading "10.1 The claim" [level=3] [ref=e1485]
+          - paragraph [ref=e1486]:
+            - text: In standard non-relativistic QM, the measurement / wavefunction-collapse postulate is a
+            - emphasis [ref=e1487]: separate axiom
+            - text: "from the Schrödinger evolution: upon measurement of an observable with a discrete eigenvalue basis, the wavefunction is projected onto the eigenstate of the measured outcome and renormalised to unit norm, with the probability of outcome"
+            - code [ref=e1488]: q
+            - text: given by the Born ratio
+            - code [ref=e1489]: "|ψ(q)|²"
+            - text: . The four-clause package — probability is Born-ratio, unit norm post-measurement, support concentration at
+            - code [ref=e1490]: q
+            - text: ", unit modulus at"
+            - code [ref=e1491]: q
+            - text: — constitutes the collapse postulate.
+          - paragraph [ref=e1492]:
+            - text: Theorem 7 delivers this package as a
+            - emphasis [ref=e1493]: theorem
+            - text: on the V2 substrate. The projector is a pointwise indicator (
+            - code [ref=e1494]: measurementProjector q
+            - text: ), the renormalisation is division by a region-relative L²-norm (
+            - code [ref=e1495]: normaliseCoarseGrain
+            - text: ), and the composition
+            - code [ref=e1496]: postMeasurementState region ψ q tick = normalise (project ψ q) q tick
+            - text: satisfies all four clauses of the textbook postulate, with the crucial honest acknowledgement (§10.5) that the post-measurement state falls outside the image of
+            - code [ref=e1497]: coarseGrain
+            - text: — collapse is non-unitary, and this is a theorem rather than an axiom.
+          - heading "10.2 Region-relative L² norm" [level=3] [ref=e1498]
+          - paragraph [ref=e1499]:
+            - text: Because the Omega substrate lives on
+            - code [ref=e1500]: ℤ⁴
+            - text: with no natural total
+            - code [ref=e1501]: ℓ²
+            - text: mass, every measurement-postulate statement is parametrised by a
+            - code [ref=e1502]: Finset LatticePoint
+            - text: "region on which the wavefunction is conditioned. The region-relative norm is:"
+          - code [ref=e1504]:
+            - generic [ref=e1505]: noncomputable def regionL2NormSq
+            - generic [ref=e1506]: "(region : Finset LatticePoint) (ψ : LatticeComplexField)"
+            - generic [ref=e1507]: "(tick : ℕ) : ℝ :="
+            - generic [ref=e1508]: ∑ p ∈ region, ‖ψ p tick‖ ^ 2
+          - paragraph [ref=e1509]:
+            - text: with the scalar
+            - code [ref=e1510]: regionL2Norm := sqrt (regionL2NormSq)
+            - text: . This is the standard Born-probability denominator. In standard textbook QM on
+            - code [ref=e1511]: L²(ℝⁿ)
+            - text: ", the total norm is 1 by construction; on the lattice we condition on a finite region and the ratio"
+            - code [ref=e1512]: ‖ψ(q)‖² / regionL2NormSq
+            - text: is the outcome probability.
+          - heading "10.3 The measurement operation" [level=3] [ref=e1513]
+          - paragraph [ref=e1514]:
+            - code [ref=e1515]: Measurement.lean
+            - text: "composes three pointwise operations:"
+          - list [ref=e1516]:
+            - listitem [ref=e1517]:
+              - strong [ref=e1518]: Projector
+              - text: (
+              - code [ref=e1519]: measurementProjector q ψ p n := if p = q then ψ p n else 0
+              - text: ). Idempotent pointwise indicator at outcome
+              - code [ref=e1520]: q
+              - text: . Support is the singleton
+              - code [ref=e1521]: "{q}"
+              - text: .
+            - listitem [ref=e1522]:
+              - strong [ref=e1523]: Renormaliser
+              - text: (
+              - code [ref=e1524]: normaliseCoarseGrain region ψ tick p n := ψ p n / regionL2Norm region ψ tick
+              - text: ). Divides the wavefunction by the region-relative L² norm at the specified tick; produces a unit vector on the region.
+            - listitem [ref=e1525]:
+              - strong [ref=e1526]: Composition
+              - text: (
+              - code [ref=e1527]: postMeasurementState region ψ q tick
+              - text: "). The projected, renormalised state: the textbook wavefunction post-measurement."
+          - paragraph [ref=e1528]:
+            - text: Each step is defined pointwise; no operator-theoretic machinery (e.g. spectral projection on
+            - code [ref=e1529]: L²(ℝⁿ)
+            - text: ) is invoked. The honesty of the construction is that the projector commutes with pointwise complex conjugation and the renormaliser is a scalar division, so each Lean definition is a one-liner. The postulate’s content lives in the theorem below, not in the definitions.
+          - heading "10.4 Theorem 7 (formal statement, four-clause bundle)" [level=3] [ref=e1530]
+          - paragraph [ref=e1531]:
+            - text: Proved in
+            - code [ref=e1532]: OmegaTheory/Emergence/Measurement.lean
+            - text: and re-exported as
+            - code [ref=e1533]: paper_measurement_postulate
+            - text: ":"
+          - code [ref=e1535]:
+            - generic [ref=e1536]: /-- **Theorem 7 (Measurement postulate).** Let region, ψ, q, tick
+            - generic [ref=e1537]: "be as above with q ∈ region and ψ q tick ≠ 0. Then:"
+            - generic [ref=e1538]: (1) probability_of_outcome = Born ratio,
+            - generic [ref=e1539]: (2) unit norm post-measurement,
+            - generic [ref=e1540]: (3) support concentrated at q,
+            - generic [ref=e1541]: (4) unit modulus at q. -/
+            - generic [ref=e1542]: theorem paper_measurement_postulate
+            - generic [ref=e1543]: "(region : Finset LatticePoint) (ψ : LatticeComplexField)"
+            - generic [ref=e1544]: "(q : LatticePoint) (tick : ℕ)"
+            - generic [ref=e1545]: "(hq : q ∈ region) (hψq : ψ q tick ≠ 0) :"
+            - generic [ref=e1546]: probability_of_outcome region ψ q tick =
+            - generic [ref=e1547]: (‖ψ q tick‖) ^ 2 / regionL2NormSq region ψ tick
+            - generic [ref=e1548]: ∧ regionL2NormSq region (postMeasurementState region ψ q tick) tick = 1
+            - generic [ref=e1549]: "∧ (∀ p' : LatticePoint, p' ≠ q →"
+            - generic [ref=e1550]: postMeasurementState region ψ q tick p' tick = 0)
+            - generic [ref=e1551]: ∧ ‖postMeasurementState region ψ q tick q tick‖ = 1
+          - paragraph [ref=e1552]:
+            - strong [ref=e1553]: Faithful hypothesis inventory.
+          - table [ref=e1554]:
+            - rowgroup [ref=e1555]:
+              - row "Hypothesis Lean name Meaning" [ref=e1556]:
+                - columnheader "Hypothesis" [ref=e1557]
+                - columnheader "Lean name" [ref=e1558]
+                - columnheader "Meaning" [ref=e1559]
+            - rowgroup [ref=e1560]:
+              - 'row "region : Finset LatticePoint — finite region on which the probability is conditioned." [ref=e1561]':
+                - 'cell "region : Finset LatticePoint" [ref=e1562]':
+                  - code [ref=e1563]: "region : Finset LatticePoint"
+                - cell "—" [ref=e1564]
+                - cell "finite region on which the probability is conditioned." [ref=e1565]
+              - 'row "ψ : LatticeComplexField — pre-measurement state." [ref=e1566]':
+                - 'cell "ψ : LatticeComplexField" [ref=e1567]':
+                  - code [ref=e1568]: "ψ : LatticeComplexField"
+                - cell "—" [ref=e1569]
+                - cell "pre-measurement state." [ref=e1570]
+              - 'row "q : LatticePoint — outcome of the measurement." [ref=e1571]':
+                - 'cell "q : LatticePoint" [ref=e1572]':
+                  - code [ref=e1573]: "q : LatticePoint"
+                - cell "—" [ref=e1574]
+                - cell "outcome of the measurement." [ref=e1575]
+              - 'row "tick : ℕ — time slice at which the measurement occurs." [ref=e1576]':
+                - 'cell "tick : ℕ" [ref=e1577]':
+                  - code [ref=e1578]: "tick : ℕ"
+                - cell "—" [ref=e1579]
+                - cell "time slice at which the measurement occurs." [ref=e1580]
+              - 'row "hq : q ∈ region — the outcome is inside the conditioned region." [ref=e1581]':
+                - 'cell "hq : q ∈ region" [ref=e1582]':
+                  - code [ref=e1583]: "hq : q ∈ region"
+                - cell "—" [ref=e1584]
+                - cell "the outcome is inside the conditioned region." [ref=e1585]
+              - 'row "hψq : ψ q tick ≠ 0 — the outcome has non-zero pre-measurement amplitude; otherwise the Born ratio is undefined (zero divided by zero)." [ref=e1586]':
+                - 'cell "hψq : ψ q tick ≠ 0" [ref=e1587]':
+                  - code [ref=e1588]: "hψq : ψ q tick ≠ 0"
+                - cell "—" [ref=e1589]
+                - cell "the outcome has non-zero pre-measurement amplitude; otherwise the Born ratio is undefined (zero divided by zero)." [ref=e1590]
+          - paragraph [ref=e1591]:
+            - text: The theorem has no side hypothesis on the substrate (no
+            - code [ref=e1592]: HasZeroFunctional
+            - text: ", no Gibbs stencil, no mass positivity). It holds for"
+            - emphasis [ref=e1593]: any
+            - code [ref=e1594]: LatticeComplexField
+            - text: ". This matches the physics: the collapse postulate is a statement about what happens"
+            - emphasis [ref=e1595]: upon
+            - text: measurement; it is independent of how the wavefunction got there.
+          - 'heading "10.5 Non-unitarity: the honest acknowledgement" [level=3] [ref=e1596]'
+          - paragraph [ref=e1597]:
+            - text: "A foundational question forced by Theorem 7 is: does the post-measurement state admit a Schrödinger-evolution treatment? If"
+            - code [ref=e1598]: postMeasurementState region ψ q tick
+            - text: were still in the image of
+            - code [ref=e1599]: coarseGrain
+            - text: ", then the Phase-2 Schrödinger bound would still apply after measurement. The honest answer is"
+            - strong [ref=e1600]: "no"
+            - text: ", and the paper commits to this openly."
+          - paragraph [ref=e1601]: "The witness theorem:"
+          - code [ref=e1603]:
+            - generic [ref=e1604]: /-- **Collapse is non-unitary.** For any p' ≠ q,
+            - generic [ref=e1605]: postMeasurementState region ψ q tick p' tick ≠ coarseGrain s p' tick
+            - generic [ref=e1606]: for any SnapshotSequence s. -/
+            - generic [ref=e1607]: theorem paper_postMeasurement_non_unitary
+            - generic [ref=e1608]: "(region : Finset LatticePoint) (ψ : LatticeComplexField)"
+            - generic [ref=e1609]: "(q : LatticePoint) (tick : ℕ)"
+            - generic [ref=e1610]: "(p' : LatticePoint) (hp'_ne : p' ≠ q)"
+            - generic [ref=e1611]: "(s : SnapshotSequence) :"
+            - generic [ref=e1612]: postMeasurementState region ψ q tick p' tick ≠
+            - generic [ref=e1613]: coarseGrain s p' tick
+          - paragraph [ref=e1614]:
+            - text: "Proof: the post-measurement state is zero at"
+            - code [ref=e1615]: p'
+            - text: by support concentration (Theorem 7 clause 3), while
+            - code [ref=e1616]: coarseGrain s p' tick
+            - text: has strictly positive modulus because the amplitude
+            - code [ref=e1617]: A = exp(−I_KL/2)
+            - text: is strictly positive everywhere (the exponential is positive). Hence they disagree at
+            - code [ref=e1618]: p'
+            - text: .
+          - paragraph [ref=e1619]:
+            - strong [ref=e1620]: Physical reading.
+            - text: The Phase-2 Schrödinger-shape bound (
+            - code [ref=e1621]: paper_schrodinger_bound_dynamic
+            - text: ) is a theorem about a specific well-behaved class of
+            - code [ref=e1622]: LatticeComplexField
+            - text: "s — those obtained by coarse-graining a snapshot sequence. Measurement takes us out of this class by design:"
+            - code [ref=e1623]: coarseGrain s
+            - text: has everywhere-positive modulus, while the collapsed state has zero modulus off
+            - code [ref=e1624]: q
+            - text: . The Phase-2 theorem therefore
+            - emphasis [ref=e1625]: does not apply
+            - text: to the post-measurement state, and it
+            - emphasis [ref=e1626]: should not
+            - text: — wavefunction collapse is non-unitary, and the substrate formalism recognises this. The alternative (demanding that Phase-2 apply to collapsed states) would imply
+            - code [ref=e1627]: 0 ≈ (−iℏ/2m) · Δψ_collapsed · t_P
+            - text: ", which would force"
+            - code [ref=e1628]: Δψ_collapsed
+            - text: to nearly vanish at
+            - code [ref=e1629]: q
+            - text: — a physically incorrect artefact of over-extending the theorem.
+          - heading "10.6 Compatibility with Phase 3 (probability conservation)" [level=3] [ref=e1630]
+          - paragraph [ref=e1631]:
+            - text: Under
+            - code [ref=e1632]: HasZeroFunctional
+            - text: ", the Born-ratio probability"
+            - code [ref=e1633]: probability_of_outcome region (coarseGrainWithPhase ...) q n
+            - text: is itself
+            - emphasis [ref=e1634]: tick-invariant
+            - text: ":"
+          - code [ref=e1636]:
+            - generic [ref=e1637]: theorem paper_probability_of_outcome_invariant_under_hasZero
+            - generic [ref=e1638]: "(d : DynamicalSnapshotSequence) (hF : d.HasZeroFunctional)"
+            - generic [ref=e1639]: "(phase : LatticePoint → ℕ → ℝ) (m : ℝ)"
+            - generic [ref=e1640]: "(region : Finset LatticePoint) (q : LatticePoint) (n k : ℕ) :"
+            - generic [ref=e1641]: probability_of_outcome region
+            - generic [ref=e1642]: (coarseGrainWithPhase d.toSnapshotSequence phase m) q n =
+            - generic [ref=e1643]: probability_of_outcome region
+            - generic [ref=e1644]: (coarseGrainWithPhase d.toSnapshotSequence phase m) q k
+          - paragraph [ref=e1645]:
+            - text: This composes Phase 3’s
+            - code [ref=e1646]: bornRule_amplitude_sum_invariant
+            - text: (conservation of the region sum
+            - code [ref=e1647]: ∑ |ψ|²
+            - text: ) with the pointwise tick-invariance of
+            - code [ref=e1648]: "|ψ|²"
+            - text: (
+            - code [ref=e1649]: sq_abs_coarseGrainWithPhase_static_under_dynamics
+            - text: ). On the static regime the probability of outcome
+            - code [ref=e1650]: q
+            - text: does not drift as the substrate evolves — the measurement theory is compatible with the conservation theory on the same honest scope.
+          - paragraph [ref=e1651]:
+            - text: The Minkowski-vacuum specialisation
+            - code [ref=e1652]: paper_probability_of_outcome_flat
+            - text: "says that on the flat coarse-grained field, every outcome in the region is uniformly distributed:"
+            - code [ref=e1653]: probability_of_outcome = 1 / |region|
+            - text: . The substrate amplitude
+            - code [ref=e1654]: exp(−1)
+            - text: cancels between numerator and denominator, leaving the pure uniform distribution — the natural vacuum prediction.
+          - heading "10.7 What Theorem 7 does and does not buy" [level=3] [ref=e1655]
+          - paragraph [ref=e1656]:
+            - text: Theorem 7
+            - emphasis [ref=e1657]: is
+            - text: a machine-checked derivation of the four-clause collapse postulate of standard QM — projection, renormalisation, Born ratio, support concentration — from the V2 substrate, with the non-unitarity of collapse (
+            - code [ref=e1658]: paper_postMeasurement_non_unitary
+            - text: ) as a theorem rather than a side remark. To the authors’ knowledge, this is the first time the measurement-collapse postulate has been derived, in a proof assistant, from a discrete gravitational substrate. Best-effort framing; no exhaustive-survey claim.
+          - paragraph [ref=e1659]:
+            - text: Theorem 7 is
+            - emphasis [ref=e1660]: not
+            - text: a resolution of the measurement problem. It derives the
+            - emphasis [ref=e1661]: phenomenology
+            - text: (what the wavefunction looks like after measurement, given that a measurement happened with outcome
+            - code [ref=e1662]: q
+            - text: ) from the substrate, but it does not derive
+            - emphasis [ref=e1663]: why
+            - text: measurements happen or
+            - emphasis [ref=e1664]: how
+            - text: a specific outcome
+            - code [ref=e1665]: q
+            - text: is selected from the pre-measurement distribution. That deeper layer — the continuous-measurement decoherence / envariance machinery — remains beyond the scope of this paper.
+          - separator [ref=e1666]
+          - heading "11. Entanglement and Bell Inequality Violation (Theorem 8)" [level=2] [ref=e1667]
+          - heading "11.1 The dramatic claim" [level=3] [ref=e1668]
+          - paragraph [ref=e1669]:
+            - text: Bell’s theorem (Bell 1964, CHSH 1969) states that no local hidden variable (LHV) theory can reproduce the correlations of certain entangled quantum states — the classical Bell bound
+            - code [ref=e1670]: "|S_CHSH| ≤ 2"
+            - text: is provably violated by suitable choices of entangled state and measurement angles, with the quantum Tsirelson bound
+            - code [ref=e1671]: "|S_CHSH| ≤ 2√2"
+            - text: (Tsirelson 1980) as the ultimate upper limit. This is the mathematical foundation of Einstein’s “spooky action at a distance” — the experimental closure of LHV theories (Aspect 1982, Hensen
+            - emphasis [ref=e1672]: et al.
+            - text: 2015, Giustina
+            - emphasis [ref=e1673]: et al.
+            - text: 2015) — and the single most consequential no-go result in quantum foundations.
+          - paragraph [ref=e1674]: "Theorem 8 reconstructs this result on the V2 substrate, with four machine-checked conclusions:"
+          - list [ref=e1675]:
+            - listitem [ref=e1676]:
+              - text: The Bell state
+              - code [ref=e1677]: bellField = (|00⟩ + |11⟩)/√2
+              - text: — built as an explicit
+              - code [ref=e1678]: "TwoBodyField : LatticePoint → LatticePoint → ℕ → ℂ"
+              - text: on the lattice — is
+              - strong [ref=e1679]: entangled
+              - text: ", in the sense that it is not the tensor product of any two single-body fields ("
+              - code [ref=e1680]: bellField_isEntangled
+              - text: ).
+            - listitem [ref=e1681]:
+              - text: Its two-particle correlator is
+              - strong [ref=e1682]: exactly
+              - code [ref=e1683]: cos(α − β)
+              - text: — not merely bounded by 1 (
+              - code [ref=e1684]: cos_correlation_theorem
+              - text: ).
+            - listitem [ref=e1685]:
+              - text: At the canonical CHSH angles
+              - code [ref=e1686]: (0, π/2, π/4, 3π/4)
+              - text: ", the CHSH value"
+              - strong [ref=e1687]: attains the Tsirelson bound
+              - code [ref=e1688]: 2·√2
+              - text: (
+              - code [ref=e1689]: chsh_tsirelson_bell
+              - text: ). This is the
+              - emphasis [ref=e1690]: maximum
+              - text: attainable by any quantum correlator.
+            - listitem [ref=e1691]:
+              - text: The same CHSH value
+              - strong [ref=e1692]: strictly exceeds
+              - text: the classical Bell bound
+              - code [ref=e1693]: "2"
+              - text: (
+              - code [ref=e1694]: bell_inequality_violation
+              - text: ). Local hidden variable theories are provably insufficient.
+          - paragraph [ref=e1695]: Together these four statements constitute a machine-checked formalisation of Bell’s theorem on the discrete-gravity lattice. Einstein’s “spooky action at a distance” is a theorem of Omega-Theory V2.
+          - heading "11.2 Two-body fields and tensor products" [level=3] [ref=e1696]
+          - paragraph [ref=e1697]:
+            - code [ref=e1698]: Entanglement.lean
+            - text: introduces the two-body field type
+            - code [ref=e1699]: "TwoBodyField : LatticePoint → LatticePoint → ℕ → ℂ"
+            - text: ", and the tensor-product operation:"
+          - code [ref=e1701]:
+            - generic [ref=e1702]: noncomputable def tensorProduct
+            - generic [ref=e1703]: "(ψA ψB : LatticeComplexField) : TwoBodyField :="
+            - generic [ref=e1704]: fun p q n => ψA p n * ψB q n
+            - generic [ref=e1705]: notation:70 ψA " ⊗ₜ " ψB => tensorProduct ψA ψB
+          - paragraph [ref=e1706]:
+            - text: The tensor product is bilinear on the left and right (
+            - code [ref=e1707]: tensorProduct_add_left
+            - text: ","
+            - code [ref=e1708]: tensorProduct_add_right
+            - text: ) and factorises the squared modulus (
+            - code [ref=e1709]: tensorProduct_abs_sq
+            - text: ":"
+            - code [ref=e1710]: ‖ψA ⊗ ψB‖²(p, q, n) = ‖ψA‖²(p, n) · ‖ψB‖²(q, n)
+            - text: ).
+          - paragraph [ref=e1711]: "The factorisability predicate:"
+          - code [ref=e1713]:
+            - generic [ref=e1714]: "def IsProduct (Ψ : TwoBodyField) : Prop :="
+            - generic [ref=e1715]: "∃ ψA ψB : LatticeComplexField, Ψ = ψA ⊗ₜ ψB"
+            - generic [ref=e1716]: "def IsEntangled (Ψ : TwoBodyField) : Prop :="
+            - generic [ref=e1717]: ¬ IsProduct Ψ
+          - paragraph [ref=e1718]: Product states are the “classical” (separable) sector; entangled states are the non-product sector. This is the standard definition of entanglement in a pointwise / finite setting.
+          - paragraph [ref=e1719]:
+            - strong [ref=e1720]: Design note.
+            - text: As with two-slit interference (§8.2), superposition here lives at the complex-field level (
+            - code [ref=e1721]: TwoBodyField
+            - text: is a pointwise complex-valued function),
+            - strong [ref=e1722]: not
+            - text: at the snapshot-sequence / metric level.
+            - code [ref=e1723]: DiscreteMetric
+            - text: lacks a Lorentzian-respecting additive structure; any attempt to lift superposition to the metric side would introduce
+            - code [ref=e1724]: O(ℓ_P)
+            - text: residues in the interference and entanglement identities, making them approximate rather than exact. The Bell theorem’s residue-free form is a reward for the honest venue choice.
+          - heading "11.3 The Bell state on the lattice" [level=3] [ref=e1725]
+          - paragraph [ref=e1726]:
+            - text: The Bell state
+            - code [ref=e1727]: "|Φ⁺⟩ = (|00⟩ + |11⟩)/√2"
+            - text: is realised on the lattice by picking two distinguished lattice points
+            - code [ref=e1728]: zeroPoint
+            - text: and
+            - code [ref=e1729]: onePoint
+            - text: "(explicit constructions:"
+            - code [ref=e1730]: zeroPoint p = 0
+            - text: for all
+            - code [ref=e1731]: μ
+            - text: ;
+            - code [ref=e1732]: onePoint p μ = if μ = 0 then 1 else 0
+            - text: ") and defining:"
+          - code [ref=e1734]:
+            - generic [ref=e1735]: "noncomputable def bellField : TwoBodyField :="
+            - generic [ref=e1736]: fun p q n =>
+            - generic [ref=e1737]: "if p = zeroPoint ∧ q = zeroPoint then (1 / Real.sqrt 2 : ℂ)"
+            - generic [ref=e1738]: "else if p = onePoint ∧ q = onePoint then (1 / Real.sqrt 2 : ℂ)"
+            - generic [ref=e1739]: else 0
+          - paragraph [ref=e1740]:
+            - text: The four diagonal / off-diagonal values (
+            - code [ref=e1741]: bellField_diag_zero
+            - text: ","
+            - code [ref=e1742]: bellField_diag_one
+            - text: ","
+            - code [ref=e1743]: bellField_offdiag_01
+            - text: ","
+            - code [ref=e1744]: bellField_offdiag_10
+            - text: ) confirm that
+            - code [ref=e1745]: bellField
+            - text: has amplitude
+            - code [ref=e1746]: 1/√2
+            - text: "on"
+            - code [ref=e1747]: (0, 0)
+            - text: and
+            - code [ref=e1748]: (1, 1)
+            - text: ", zero on"
+            - code [ref=e1749]: (0, 1)
+            - text: and
+            - code [ref=e1750]: (1, 0)
+            - text: ", and zero everywhere else. This is the finite-support lattice image of the usual two-qubit Bell amplitudes."
+          - heading "11.4 Theorem 8a — structural entanglement" [level=3] [ref=e1751]
+          - paragraph [ref=e1752]: "The first headline theorem is:"
+          - code [ref=e1754]:
+            - generic [ref=e1755]: /-- **Theorem 8a (Bell state is entangled).** There exist no
+            - generic [ref=e1756]: ψA, ψB such that bellField = ψA ⊗ ψB. -/
+            - generic [ref=e1757]: "theorem paper_bell_state_exists :"
+            - generic [ref=e1758]: IsEntangled bellField :=
+            - generic [ref=e1759]: bellField_isEntangled
+          - paragraph [ref=e1760]:
+            - text: "The proof is the standard algebraic argument: if"
+            - code [ref=e1761]: bellField = ψA ⊗ ψB
+            - text: ", then"
+            - code [ref=e1762]: bellField (p, q, n) = ψA p n · ψB q n
+            - text: . Evaluating at
+            - code [ref=e1763]: (zeroPoint, zeroPoint)
+            - text: gives
+            - code [ref=e1764]: 1/√2 = ψA(zero) · ψB(zero) ≠ 0
+            - text: ", so both factors are non-zero at"
+            - code [ref=e1765]: zero
+            - text: . Evaluating at
+            - code [ref=e1766]: (zeroPoint, onePoint)
+            - text: gives
+            - code [ref=e1767]: 0 = ψA(zero) · ψB(one)
+            - text: ", which forces"
+            - code [ref=e1768]: ψB(one) = 0
+            - text: . But evaluating at
+            - code [ref=e1769]: (onePoint, onePoint)
+            - text: gives
+            - code [ref=e1770]: 1/√2 = ψA(one) · ψB(one) = 0
+            - text: ", contradiction. Hence"
+            - code [ref=e1771]: bellField
+            - text: is not a product. This is the structural (algebraic) witness of entanglement.
+          - heading "11.5 Theorem 8b — the cosine correlator" [level=3] [ref=e1772]
+          - code [ref=e1774]:
+            - generic [ref=e1775]: /-- **Theorem 8b (cos correlation).** The Bell-state correlator
+            - generic [ref=e1776]: is exactly cos(α − β), not merely bounded by 1. -/
+            - generic [ref=e1777]: "theorem paper_cos_correlation (α β : ℝ) :"
+            - generic [ref=e1778]: correlationBell α β = Real.cos (α - β) :=
+            - generic [ref=e1779]: cos_correlation_theorem α β
+          - paragraph [ref=e1780]:
+            - text: Physically,
+            - code [ref=e1781]: α, β
+            - text: are polarisation-measurement angles on the two particles. The correlator measures the expected product of the two
+            - code [ref=e1782]: ±1
+            - text: outcomes. That the result is the
+            - emphasis [ref=e1783]: exact
+            - text: function
+            - code [ref=e1784]: cos(α − β)
+            - text: "— not merely bounded by 1 or approximately cosine — is the non-classical signature: local hidden variable models can reproduce cosine-shaped correlators only inside a strict Bell-bounded envelope ("
+            - code [ref=e1785]: "|S_CHSH| ≤ 2"
+            - text: ), not at the
+            - code [ref=e1786]: 4 · cos(π/4) = 2√2
+            - text: peak.
+          - paragraph [ref=e1787]: "Standard consistency checks:"
+          - list [ref=e1788]:
+            - listitem [ref=e1789]:
+              - code [ref=e1790]: correlationBell_aligned
+              - text: ":"
+              - code [ref=e1791]: E(α, α) = 1
+              - text: (perfect correlation at aligned measurements).
+            - listitem [ref=e1792]:
+              - code [ref=e1793]: correlationBell_antipodal
+              - text: ":"
+              - code [ref=e1794]: E(α, α + π) = −1
+              - text: (perfect anti-correlation at antipodal measurements).
+            - listitem [ref=e1795]:
+              - code [ref=e1796]: correlationBell_symm
+              - text: ":"
+              - code [ref=e1797]: E(α, β) = E(β, α)
+              - text: (symmetry).
+            - listitem [ref=e1798]:
+              - code [ref=e1799]: correlationBell_abs_le_one
+              - text: ":"
+              - code [ref=e1800]: "|E(α, β)| ≤ 1"
+              - text: (correlator is bounded by 1).
+          - heading "11.6 Theorem 8c — the Tsirelson bound attained" [level=3] [ref=e1801]
+          - paragraph [ref=e1802]: "Define the CHSH-Tsirelson functional:"
+          - code [ref=e1804]:
+            - generic [ref=e1805]: "noncomputable def chshTsirelson (E : ℝ → ℝ → ℝ)"
+            - generic [ref=e1806]: "(a a' b b' : ℝ) : ℝ :="
+            - generic [ref=e1807]: E a b - E a b' + E a' b + E a' b'
+            - generic [ref=e1808]: "noncomputable def chshTsirelsonBell (a a' b b' : ℝ) : ℝ :="
+            - generic [ref=e1809]: chshTsirelson correlationBell a a' b b'
+          - paragraph [ref=e1810]:
+            - strong [ref=e1811]: Sign convention note.
+            - code [ref=e1812]: chshTsirelson
+            - text: puts the negative sign on
+            - code [ref=e1813]: E(a, b')
+            - text: (the first-angle-on-A, second-angle-on-B term). Both sign choices are standard in the CHSH literature — equivalent up to relabelling which angle pair carries the “negative” term; the Tsirelson bound and Bell bound are invariant under the choice. We pick this convention because it aligns with
+            - code [ref=e1814]: chsh_tsirelson_bell
+            - text: ’s explicit witness angles.
+          - paragraph [ref=e1815]:
+            - text: At the canonical Bell-state-optimal angles
+            - code [ref=e1816]: (0, π/2, π/4, 3π/4)
+            - text: ":"
+          - code [ref=e1818]:
+            - generic [ref=e1819]: /-- **Theorem 8c (Tsirelson bound attained).** At canonical
+            - generic [ref=e1820]: angles, CHSH = 2·√2 exactly. -/
+            - generic [ref=e1821]: "theorem paper_chsh_tsirelson_bound :"
+            - generic [ref=e1822]: chshTsirelsonBell 0 (Real.pi / 2) (Real.pi / 4) (3 * Real.pi / 4) =
+            - generic [ref=e1823]: 2 * Real.sqrt 2 :=
+            - generic [ref=e1824]: chsh_tsirelson_bell
+          - paragraph [ref=e1825]:
+            - text: The proof expands the four correlators using
+            - code [ref=e1826]: cos_correlation_theorem
+            - text: "at the chosen angles:"
+          - list [ref=e1827]:
+            - listitem [ref=e1828]:
+              - code [ref=e1829]: E(0, π/4) = cos(−π/4) = √2/2
+            - listitem [ref=e1830]:
+              - code [ref=e1831]: E(0, 3π/4) = cos(−3π/4) = −√2/2
+            - listitem [ref=e1832]:
+              - code [ref=e1833]: E(π/2, π/4) = cos(π/4) = √2/2
+            - listitem [ref=e1834]:
+              - code [ref=e1835]: E(π/2, 3π/4) = cos(−π/4) = √2/2
+          - paragraph [ref=e1836]:
+            - text: Then
+            - code [ref=e1837]: chshTsirelson
+            - text: gives
+            - code [ref=e1838]: √2/2 − (−√2/2) + √2/2 + √2/2 = 4 · (√2/2) = 2√2
+            - text: .
+          - paragraph [ref=e1839]:
+            - strong [ref=e1840]: Physical interpretation.
+            - code [ref=e1841]: 2√2
+            - text: is the
+            - emphasis [ref=e1842]: Tsirelson bound
+            - text: ": the maximum CHSH value attainable by"
+            - emphasis [ref=e1843]: any
+            - text: quantum correlator.
+            - code [ref=e1844]: bellField
+            - text: saturates it at the canonical angles — the Bell state is the extremal quantum correlator. This is the V2-substrate reconstruction of the Tsirelson-optimal Bell state.
+          - heading "11.7 Theorem 8d — classical Bell bound violated" [level=3] [ref=e1845]
+          - paragraph [ref=e1846]: "The immediate corollary:"
+          - code [ref=e1848]:
+            - generic [ref=e1849]: /-- **Theorem 8d (Bell inequality violation).** CHSH > 2. -/
+            - generic [ref=e1850]: "theorem paper_bell_inequality_violation :"
+            - generic [ref=e1851]: chshTsirelsonBell 0 (Real.pi / 2) (Real.pi / 4) (3 * Real.pi / 4) > 2 :=
+            - generic [ref=e1852]: bell_inequality_violation
+          - paragraph [ref=e1853]:
+            - text: "Proof:"
+            - code [ref=e1854]: 2√2 > 2
+            - text: because
+            - code [ref=e1855]: √2 > 1
+            - text: . The classical Bell bound
+            - code [ref=e1856]: "|S_CHSH| ≤ 2"
+            - text: is
+            - emphasis [ref=e1857]: strictly
+            - text: exceeded by
+            - code [ref=e1858]: bellField
+            - text: . No local hidden variable theory can reproduce these correlations — Bell’s theorem holds on the V2 substrate, and
+            - code [ref=e1859]: bellField
+            - text: is an explicit machine-checked witness.
+          - paragraph [ref=e1860]:
+            - text: The bundled consistency corollary
+            - code [ref=e1861]: paper_bell_entanglement_consistency
+            - text: "packages Theorem 8a together with Theorem 8d:"
+            - code [ref=e1862]: bellField
+            - text: is
+            - emphasis [ref=e1863]: both
+            - text: structurally entangled (non-factorisable)
+            - emphasis [ref=e1864]: and
+            - text: observationally entangled (Bell-violating) on the same witness state. The two signatures agree.
+          - heading "11.8 Faithful hypothesis inventory" [level=3] [ref=e1865]
+          - paragraph [ref=e1866]:
+            - text: Theorem 8a through 7d are all
+            - strong [ref=e1867]: unconditional
+            - text: ": no side hypotheses beyond the definitions of"
+            - code [ref=e1868]: bellField
+            - text: ","
+            - code [ref=e1869]: correlationBell
+            - text: ", and"
+            - code [ref=e1870]: chshTsirelson
+            - text: . The Bell state is explicitly constructed; the correlator is explicitly computed; the CHSH value is an explicit
+            - code [ref=e1871]: 2√2
+            - text: "; the inequality is explicit. This is the dramatic theorem-not-axiom shift in the strongest form: no scope caveat."
+          - table [ref=e1872]:
+            - rowgroup [ref=e1873]:
+              - row "Theorem Lean name Hypotheses" [ref=e1874]:
+                - columnheader "Theorem" [ref=e1875]
+                - columnheader "Lean name" [ref=e1876]
+                - columnheader "Hypotheses" [ref=e1877]
+            - rowgroup [ref=e1878]:
+              - row "7a paper_bell_state_exists none" [ref=e1879]:
+                - cell "7a" [ref=e1880]
+                - cell "paper_bell_state_exists" [ref=e1881]:
+                  - code [ref=e1882]: paper_bell_state_exists
+                - cell "none" [ref=e1883]
+              - row "7b paper_cos_correlation none beyond the free parameters α, β" [ref=e1884]:
+                - cell "7b" [ref=e1885]
+                - cell "paper_cos_correlation" [ref=e1886]:
+                  - code [ref=e1887]: paper_cos_correlation
+                - cell "none beyond the free parameters α, β" [ref=e1888]:
+                  - text: none beyond the free parameters
+                  - code [ref=e1889]: α, β
+              - row "7c paper_chsh_tsirelson_bound none (angles are the explicit constants (0, π/2, π/4, 3π/4))" [ref=e1890]:
+                - cell "7c" [ref=e1891]
+                - cell "paper_chsh_tsirelson_bound" [ref=e1892]:
+                  - code [ref=e1893]: paper_chsh_tsirelson_bound
+                - cell "none (angles are the explicit constants (0, π/2, π/4, 3π/4))" [ref=e1894]:
+                  - text: none (angles are the explicit constants
+                  - code [ref=e1895]: (0, π/2, π/4, 3π/4)
+                  - text: )
+              - row "7d paper_bell_inequality_violation none" [ref=e1896]:
+                - cell "7d" [ref=e1897]
+                - cell "paper_bell_inequality_violation" [ref=e1898]:
+                  - code [ref=e1899]: paper_bell_inequality_violation
+                - cell "none" [ref=e1900]
+          - heading "11.9 What Theorem 8 does and does not say" [level=3] [ref=e1901]
+          - paragraph [ref=e1902]:
+            - text: Theorem 8
+            - emphasis [ref=e1903]: is
+            - text: a machine-checked derivation of a Tsirelson-bound- attaining entangled state on a discrete gravitational substrate, with the classical Bell bound strictly violated. To the authors’ knowledge, this is the first such derivation in a proof assistant from a discrete-gravity substrate. Best-effort framing, no exhaustive-survey claim.
+          - paragraph [ref=e1904]:
+            - text: Theorem 8 is
+            - emphasis [ref=e1905]: not
+            - text: a derivation of the Born rule on two-body states — that identification is implicit in the definition of
+            - code [ref=e1906]: correlationBell α β = cos(α − β)
+            - text: as the expected product of
+            - code [ref=e1907]: ±1
+            - text: outcomes, which presupposes the two-qubit measurement apparatus. What Theorem 8 does is
+            - emphasis [ref=e1908]: given
+            - text: the Born interpretation of the Bell amplitudes, derive the cosine correlator and its CHSH consequences. Fully deriving the Born apparatus for two-body states from the substrate is a follow-up workstream.
+          - paragraph [ref=e1909]:
+            - text: Theorem 8 is
+            - emphasis [ref=e1910]: not
+            - text: "an experimental-loophole-free claim: the theorem is about the mathematical structure of the Bell correlator on the V2 lattice, not about any physical realisation. Ruling out detection, locality, and freedom-of-choice loopholes in a physical V2-simulator is a separate empirical question (see Hensen"
+            - emphasis [ref=e1911]: et al.
+            - text: 2015 and Giustina
+            - emphasis [ref=e1912]: et al.
+            - text: 2015 for the experimental closure in nature).
+          - paragraph [ref=e1913]:
+            - text: Theorem 8 is
+            - emphasis [ref=e1914]: not
+            - text: an independent derivation of special relativity or quantum field theory — the lattice Bell state uses non-relativistic single-particle quantisation in each factor. The interplay between Bell-violation and relativistic causal constraints on the V2 substrate is an open research question; see §13 for the discussion.
+          - separator [ref=e1915]
+          - heading "12. Capstone — Grand QM Emergence" [level=2] [ref=e1916]
+          - heading "12.1 The umbrella claim" [level=3] [ref=e1917]
+          - paragraph [ref=e1918]:
+            - text: "Sections 4–11 deliver seven individual theorems, each a machine-checked derivation of a standard-QM postulate from the V2 substrate. Section 12 shows that these are not seven independent results but a single composite statement: for every dynamical snapshot sequence in the"
+            - code [ref=e1919]: HasZeroFunctional
+            - text: regime, for every coarse-grained lattice field, for every finite region and every tick, the
+            - strong [ref=e1920]: eight-conjunct postulate record
+          - code [ref=e1922]:
+            - generic [ref=e1923]: states + superposition + schrödinger + born_rule +
+            - generic [ref=e1924]: interference + heisenberg + measurement + entanglement
+          - paragraph [ref=e1925]:
+            - text: holds simultaneously. This is the
+            - code [ref=e1926]: grand_qm_emergence
+            - text: theorem of
+            - code [ref=e1927]: OmegaTheory/Emergence/QuantumMechanicsCapstone.lean
+            - text: ", and it is the paper’s single umbrella statement: “quantum mechanics emerges from Omega-Theory V2”, formalised as a specific 8-field"
+            - code [ref=e1928]: Prop
+            - text: "-record."
+          - heading "12.2 The QuantumMechanicsPostulates predicate" [level=3] [ref=e1929]:
+            - text: 12.2 The
+            - code [ref=e1930]: QuantumMechanicsPostulates
+            - text: predicate
+          - paragraph [ref=e1931]:
+            - code [ref=e1932]: QuantumMechanicsCapstone.lean
+            - text: introduces a structure
+          - code [ref=e1934]:
+            - generic [ref=e1935]: structure QuantumMechanicsPostulates
+            - generic [ref=e1936]: "(d : DynamicalSnapshotSequence)"
+            - generic [ref=e1937]: "(_hscope : d.HasZeroFunctional)"
+            - generic [ref=e1938]: "(ψ : LatticeComplexField)"
+            - generic [ref=e1939]: "(region : Finset LatticePoint)"
+            - generic [ref=e1940]: "(tick : ℕ) : Prop where"
+            - generic [ref=e1941]: "states : ... -- P1: bounded ℓ² on region"
+            - generic [ref=e1942]: "superposition : ... -- P2: |ψ₁+ψ₂|² = ..."
+            - generic [ref=e1943]: "schrodinger : ... -- P3: Schrödinger bound"
+            - generic [ref=e1944]: "born_rule : ... -- P4: conservation"
+            - generic [ref=e1945]: "interference : ... -- P5: two-slit formula"
+            - generic [ref=e1946]: "heisenberg : ... -- P6: Δx·Δp ≥ ℏ/2"
+            - generic [ref=e1947]: "measurement : ... -- P7: 4-clause collapse"
+            - generic [ref=e1948]: "entanglement : IsEntangled bellField ∧"
+            - generic [ref=e1949]: "chshTsirelsonBell ... > 2 -- P8: Bell + CHSH"
+          - paragraph [ref=e1950]:
+            - text: Each field is the
+            - code [ref=e1951]: Prop
+            - text: "-level statement corresponding to one of the paper’s seven theorems (P8 bundles the two Phase-6C headlines into a single conjunct). P1–P6 depend on the specific state"
+            - code [ref=e1952]: ψ
+            - text: ", region, and tick; P7–P8 quantify over outcome / angle as needed."
+          - paragraph [ref=e1953]:
+            - text: The structure’s hypotheses
+            - code [ref=e1954]: (d, hscope, ψ, region, tick)
+            - text: are the ambient context on which each postulate is evaluated. Under
+            - code [ref=e1955]: HasZeroFunctional
+            - text: ", the substrate is on-regime for P3/P4/P6 (the"
+            - code [ref=e1956]: HasZeroFunctional
+            - text: "-scoped theorems); P5/P7/P8 hold independently of the substrate scope."
+          - heading "12.3 Theorem 8 — the capstone" [level=3] [ref=e1957]
+          - code [ref=e1959]:
+            - generic [ref=e1960]: /-- **THE GRAND QM EMERGENCE THEOREM.** Every postulate of
+            - generic [ref=e1961]: non-relativistic quantum mechanics, plus the entanglement /
+            - generic [ref=e1962]: CHSH postulate, is a machine-checked theorem of OmegaTheory V2
+            - generic [ref=e1963]: in the static-functional regime. -/
+            - generic [ref=e1964]: theorem paper_grand_qm_emergence
+            - generic [ref=e1965]: "(d : DynamicalSnapshotSequence) (hscope : d.HasZeroFunctional)"
+            - generic [ref=e1966]: "(ψ : LatticeComplexField) (region : Finset LatticePoint)"
+            - generic [ref=e1967]: "(tick : ℕ) :"
+            - generic [ref=e1968]: QuantumMechanicsPostulates d hscope ψ region tick :=
+            - generic [ref=e1969]: grand_qm_emergence d hscope ψ region tick
+          - paragraph [ref=e1970]:
+            - strong [ref=e1971]: Provenance of each conjunct.
+            - text: The proof is a
+            - emphasis [ref=e1972]: direct field-by- field citation
+            - text: of the sibling theorems — it introduces no new mathematical content, and each conjunct reduces in a single step (typically
+            - code [ref=e1973]: rfl
+            - text: "-level or one application) to the corresponding workstream theorem:"
+          - table [ref=e1974]:
+            - rowgroup [ref=e1975]:
+              - row "Conjunct Source theorem Source file" [ref=e1976]:
+                - columnheader "Conjunct" [ref=e1977]
+                - columnheader "Source theorem" [ref=e1978]
+                - columnheader "Source file" [ref=e1979]
+            - rowgroup [ref=e1980]:
+              - row "states coarseGrain_info_bounded CoarseGrainingMap.lean" [ref=e1981]:
+                - cell "states" [ref=e1982]:
+                  - code [ref=e1983]: states
+                - cell "coarseGrain_info_bounded" [ref=e1984]:
+                  - code [ref=e1985]: coarseGrain_info_bounded
+                - cell "CoarseGrainingMap.lean" [ref=e1986]:
+                  - code [ref=e1987]: CoarseGrainingMap.lean
+              - row "superposition superposedField_abs_sq Interference.lean" [ref=e1988]:
+                - cell "superposition" [ref=e1989]:
+                  - code [ref=e1990]: superposition
+                - cell "superposedField_abs_sq" [ref=e1991]:
+                  - code [ref=e1992]: superposedField_abs_sq
+                - cell "Interference.lean" [ref=e1993]:
+                  - code [ref=e1994]: Interference.lean
+              - row "schrodinger coarseGrain_satisfies_schrodinger_dynamic SchrodingerFromLattice.lean" [ref=e1995]:
+                - cell "schrodinger" [ref=e1996]:
+                  - code [ref=e1997]: schrodinger
+                - cell "coarseGrain_satisfies_schrodinger_dynamic" [ref=e1998]:
+                  - code [ref=e1999]: coarseGrain_satisfies_schrodinger_dynamic
+                - cell "SchrodingerFromLattice.lean" [ref=e2000]:
+                  - code [ref=e2001]: SchrodingerFromLattice.lean
+              - row "born_rule bornRuleConservation BornRule.lean" [ref=e2002]:
+                - cell "born_rule" [ref=e2003]:
+                  - code [ref=e2004]: born_rule
+                - cell "bornRuleConservation" [ref=e2005]:
+                  - code [ref=e2006]: bornRuleConservation
+                - cell "BornRule.lean" [ref=e2007]:
+                  - code [ref=e2008]: BornRule.lean
+              - row "interference two_slit_interference Interference.lean" [ref=e2009]:
+                - cell "interference" [ref=e2010]:
+                  - code [ref=e2011]: interference
+                - cell "two_slit_interference" [ref=e2012]:
+                  - code [ref=e2013]: two_slit_interference
+                - cell "Interference.lean" [ref=e2014]:
+                  - code [ref=e2015]: Interference.lean
+              - row "heisenberg heisenberg_uncertainty_from_lattice Heisenberg.lean" [ref=e2016]:
+                - cell "heisenberg" [ref=e2017]:
+                  - code [ref=e2018]: heisenberg
+                - cell "heisenberg_uncertainty_from_lattice" [ref=e2019]:
+                  - code [ref=e2020]: heisenberg_uncertainty_from_lattice
+                - cell "Heisenberg.lean" [ref=e2021]:
+                  - code [ref=e2022]: Heisenberg.lean
+              - row "measurement measurement_postulate Measurement.lean" [ref=e2023]:
+                - cell "measurement" [ref=e2024]:
+                  - code [ref=e2025]: measurement
+                - cell "measurement_postulate" [ref=e2026]:
+                  - code [ref=e2027]: measurement_postulate
+                - cell "Measurement.lean" [ref=e2028]:
+                  - code [ref=e2029]: Measurement.lean
+              - row "entanglement bell_inequality_entanglement_consistency Entanglement.lean" [ref=e2030]:
+                - cell "entanglement" [ref=e2031]:
+                  - code [ref=e2032]: entanglement
+                - cell "bell_inequality_entanglement_consistency" [ref=e2033]:
+                  - code [ref=e2034]: bell_inequality_entanglement_consistency
+                - cell "Entanglement.lean" [ref=e2035]:
+                  - code [ref=e2036]: Entanglement.lean
+          - paragraph [ref=e2037]:
+            - text: No postulate is proved twice; the capstone’s novelty is organisational, not mathematical. The value is that
+            - emphasis [ref=e2038]: one
+            - text: top-level statement now stands for the paper’s claim, and downstream consumers can cite a single theorem rather than seven.
+          - heading "12.4 Minkowski specialisation" [level=3] [ref=e2039]
+          - paragraph [ref=e2040]:
+            - text: The sanity check — the capstone holds on the flat dynamical Minkowski vacuum without any side hypothesis — is
+            - code [ref=e2041]: paper_grand_qm_emergence_on_minkowski
+            - text: ":"
+          - code [ref=e2043]:
+            - generic [ref=e2044]: theorem paper_grand_qm_emergence_on_minkowski
+            - generic [ref=e2045]: "(ψ : LatticeComplexField) (region : Finset LatticePoint) (tick : ℕ) :"
+            - generic [ref=e2046]: QuantumMechanicsPostulates minkowskiDynamicalSequence
+            - generic [ref=e2047]: minkowskiDynamicalSequence_hasZeroFunctional ψ region tick :=
+            - generic [ref=e2048]: grand_qm_emergence_on_minkowski ψ region tick
+          - paragraph [ref=e2049]:
+            - text: On the vacuum,
+            - code [ref=e2050]: HasZeroFunctional
+            - text: is discharged automatically (
+            - code [ref=e2051]: minkowskiDynamicalSequence_hasZeroFunctional
+            - text: ), so all eight postulates hold for every
+            - code [ref=e2052]: ψ
+            - text: ", every region, every tick. No scope caveat, no hypothesis selection."
+          - heading "12.5 What the capstone does and does not say" [level=3] [ref=e2053]
+          - paragraph [ref=e2054]:
+            - text: Theorem 8
+            - emphasis [ref=e2055]: is
+            - text: "the single-statement formalisation of “quantum mechanics emerges from Omega-Theory V2”. The content is:"
+            - code [ref=e2056]: QuantumMechanicsPostulates
+            - text: is inhabited for every dynamical- substrate / state / region / tick combination in the
+            - code [ref=e2057]: HasZeroFunctional
+            - text: regime. This is the strongest form of the paper’s central claim.
+          - paragraph [ref=e2058]:
+            - text: Theorem 8 is
+            - emphasis [ref=e2059]: not
+            - text: a new physical mechanism. It introduces no mathematics beyond the seven component theorems. If a reviewer accepts Theorems 1–7 as valid, they must accept Theorem 8 — the capstone is a packaging theorem, not an independent discovery. Equally, if a reviewer rejects any one of Theorems 1–7, the capstone correspondingly falls in one field; the scope of the rejection pinpoints which physical-postulate conjunct is contested.
+          - paragraph [ref=e2060]:
+            - text: Theorem 8 is
+            - emphasis [ref=e2061]: not
+            - text: the entirety of quantum mechanics. The
+            - code [ref=e2062]: QuantumMechanicsPostulates
+            - text: structure codifies the canonical-QM axioms (a specific 8-field list) plus the entanglement / Bell signature. Extensions — N-body entanglement beyond two-body, relativistic QFT, decoherence / pointer-state reconstruction of measurement, unified QM-gravity — are out of scope and flagged in §13.
+          - paragraph [ref=e2063]: To the authors’ knowledge, this is the first complete machine- checked derivation of the postulate set of non-relativistic quantum mechanics from a discrete gravitational substrate in a proof assistant. We do not claim an exhaustive survey of the formalisation literature; the wording is best-effort.
+          - separator [ref=e2064]
+          - heading "13. Open Questions Beyond Phases 1–6" [level=2] [ref=e2065]
+          - blockquote [ref=e2066]:
+            - paragraph [ref=e2067]:
+              - strong [ref=e2068]: Scope note.
+              - text: "The paper’s scope is the seven-theorem chain described in the abstract. Tracking state at the draft timestamp below:"
+            - list [ref=e2069]:
+              - listitem [ref=e2070]:
+                - strong [ref=e2071]: Phase 1 (dynamical snapshot-sequence update rule)
+                - text: —
+                - emphasis [ref=e2072]: landed
+                - text: .
+                - code [ref=e2073]: SnapshotDynamics.lean
+                - text: ", by Polaris (coordination handle"
+                - code [ref=e2074]: dynamics_architect
+                - text: ). Integrated in §4.5.
+              - listitem [ref=e2075]:
+                - strong [ref=e2076]: Phase 2 (dynamical Schrödinger bound)
+                - text: —
+                - emphasis [ref=e2077]: landed
+                - text: under the
+                - code [ref=e2078]: HasZeroFunctional
+                - text: scope.
+                - code [ref=e2079]: coarseGrain_satisfies_schrodinger_dynamic
+                - text: in
+                - code [ref=e2080]: SchrodingerFromLattice.lean
+                - text: ", by"
+                - code [ref=e2081]: schrodinger_prover
+                - text: . Integrated as §5’s headline theorem; structural scope discussed in §5.3. The unconditional generalisation (without
+                - code [ref=e2082]: HasZeroFunctional
+                - text: ) is listed below as open item 3.
+              - listitem [ref=e2083]:
+                - strong [ref=e2084]: Phase 3 (Born rule as a conservation theorem)
+                - text: —
+                - emphasis [ref=e2085]: landed
+                - text: .
+                - code [ref=e2086]: BornRule.lean
+                - text: under the same
+                - code [ref=e2087]: HasZeroFunctional
+                - text: scope, by
+                - code [ref=e2088]: probability_conservator
+                - text: . Integrated as §6 (this paper); compatibility with Phase 4 interference discussed in §6.6 and §8.5.
+              - listitem [ref=e2089]:
+                - strong [ref=e2090]: Phase 4 (two-slit interference)
+                - text: —
+                - emphasis [ref=e2091]: landed
+                - text: .
+                - code [ref=e2092]: Interference.lean
+                - text: /
+                - code [ref=e2093]: two_slit_interference
+                - text: ", by"
+                - code [ref=e2094]: interference_prover
+                - text: . Integrated as §8 (this paper).
+              - listitem [ref=e2095]:
+                - strong [ref=e2096]: Phase 6A (Heisenberg uncertainty principle)
+                - text: —
+                - emphasis [ref=e2097]: landed
+                - text: .
+                - code [ref=e2098]: Heisenberg.lean
+                - text: /
+                - code [ref=e2099]: heisenberg_uncertainty_from_lattice
+                - text: ", by"
+                - code [ref=e2100]: uncertainty_prover
+                - text: . Integrated as §9 (this paper) under the
+                - code [ref=e2101]: CommutatorMatchesMean
+                - text: scope; see §9.3 for the honest scope discussion.
+              - listitem [ref=e2102]:
+                - strong [ref=e2103]: Phase 6B (measurement / collapse postulate)
+                - text: —
+                - emphasis [ref=e2104]: landed
+                - text: .
+                - code [ref=e2105]: Measurement.lean
+                - text: /
+                - code [ref=e2106]: measurement_postulate
+                - text: ", by"
+                - code [ref=e2107]: measurement_prover
+                - text: . Integrated as §10 (this paper); the non-unitarity of collapse is itself a theorem (
+                - code [ref=e2108]: postMeasurement_not_in_coarseGrain_image
+                - text: ", §10.5)."
+              - listitem [ref=e2109]:
+                - strong [ref=e2110]: Phase 6C (entanglement and Bell-inequality violation)
+                - text: —
+                - emphasis [ref=e2111]: landed
+                - text: .
+                - code [ref=e2112]: Entanglement.lean
+                - text: ", by"
+                - code [ref=e2113]: entanglement_architect
+                - text: ", including"
+                - code [ref=e2114]: bellField_isEntangled
+                - text: ","
+                - code [ref=e2115]: cos_correlation_theorem
+                - text: ","
+                - code [ref=e2116]: chsh_tsirelson_bell
+                - text: (Tsirelson bound
+                - code [ref=e2117]: 2·√2
+                - text: attained), and
+                - code [ref=e2118]: bell_inequality_violation
+                - text: (classical bound
+                - code [ref=e2119]: "2"
+                - text: violated). Integrated as §11 (this paper).
+            - paragraph [ref=e2120]:
+              - text: Items that Phases 1–6 are scheduled to resolve and have resolved are not listed below. The enumeration below concerns what remains open
+              - emphasis [ref=e2121]: after
+              - text: the six landed phases, including the explicit hypothesis scopes that Phases 2, 3, 5, 6A, 6B and their companions ship with.
+          - list [ref=e2122]:
+            - listitem [ref=e2123]:
+              - paragraph [ref=e2124]:
+                - strong [ref=e2125]: Einstein side is not yet fully axiom-free.
+                - text: The Einstein tensor emergence theorem
+                - code [ref=e2126]: einstein_with_matter_emergence
+                - text: in
+                - code [ref=e2127]: Emergence/EinsteinEmergence.lean
+                - text: currently uses the HPW axiom as one step. HPW has been proved eliminable on three regimes (flat, linearised, static-spherical vacuum) via the
+                - code [ref=e2128]: HpwEliminableRegime
+                - text: typeclass (
+                - code [ref=e2129]: NOTES_HPW_ELIMINATION.md
+                - text: ); the fully general curved elimination is the companion workstream’s subject. The QM-bridge theorems of the present paper do not depend on HPW, so this is a limitation on the
+                - emphasis [ref=e2130]: gravitational
+                - text: side of the same substrate, not on the wave-mechanical side we derive here.
+            - listitem [ref=e2131]:
+              - paragraph [ref=e2132]:
+                - strong [ref=e2133]: Geometrically-sourced phase is not derived.
+                - text: The phase-carrying map
+                - code [ref=e2134]: coarseGrainWithPhase
+                - text: and its plane-wave adapter (
+                - code [ref=e2135]: planeWavePhase
+                - text: )
+                - emphasis [ref=e2136]: accept
+                - text: a phase function as input. Phase 4 (interference) specialises to a concrete plane-wave phase, which is enough for the superposition / two-slit theorem but does not constitute a derivation of the phase from geometry. A principled derivation — e.g. from the
+                - code [ref=e2137]: connectionForm
+                - text: or
+                - code [ref=e2138]: spinTorsion
+                - text: of the lattice geometry — would close the Aharonov-Bohm case and several other gauge-sensitive predictions. That derivation is not yet written; it is an open workstream separate from Phases 1–6.
+            - listitem [ref=e2139]:
+              - paragraph [ref=e2140]:
+                - strong [ref=e2141]: Unconditional dynamical Schrödinger bound.
+                - text: Phase 2 closes the dynamical Schrödinger-shape inequality under the static-functional hypothesis
+                - code [ref=e2142]: d.HasZeroFunctional
+                - text: ", i.e. on the regime where the metric-Laplacian functional"
+                - code [ref=e2143]: F
+                - text: "vanishes on every iterate. This is structural, not cosmetic: off-regime, where"
+                - code [ref=e2144]: F
+                - text: produces non-trivial per-tick metric change, the coarse-grained field’s per-tick behaviour can no longer be read off from a static-metric identity, and closing the bound requires a
+                - strong [ref=e2145]: KL-linearisation bridge
+                - code [ref=e2146]: I_KL(g + δg) ≈ I_KL(g) + ⟨∂I_KL/∂g, δg⟩
+                - text: that is not formalised in V2. The Phase-2 brief forbids axioms; stating an unconditional dynamical bound without the linearisation bridge would therefore require introducing one. The honest current frontier is the
+                - code [ref=e2147]: HasZeroFunctional
+                - text: "-scoped bound. Formalising the KL linearisation is the follow-on workstream after Phase 4, and should close the same bound on the genuinely-evolving regime with at most an additional Planck-order remainder."
+            - listitem [ref=e2148]:
+              - paragraph [ref=e2149]:
+                - strong [ref=e2150]:
+                  - text: Phase 1’s
+                  - code [ref=e2151]: F = Δ_lat(·)
+                  - text: update is structurally motivated, not derived from the healing-flow PDE.
+                - text: The dynamical update rule of §4.5 evolves each metric component by its own spatial Laplacian. This choice is dictated by the requirement that the coarse-grained evolution carry a Schrödinger
+                - code [ref=e2152]: −iℏ Δ / 2m
+                - text: coefficient on the QM side. It is
+                - emphasis [ref=e2153]: not
+                - text: derived from a weak-field limit of
+                - code [ref=e2154]: OmegaTheory.HealingFlow.Flow
+                - text: — the healing-flow PDE and the Ricci-flow-style Laplacian smoothing operate on different time scales and are, at this stage, two independent structural choices in the formalisation. A follow-up workstream should prove that the Phase 1 update is the weak-field / short-time limit of the full healing-flow PDE; without such a theorem the compatibility between the Einstein side (healing-flow equilibrium ⇒ Einstein equations) and the QM side (healing-flow-compatible update ⇒ Schrödinger evolution) is motivated rather than proved. This is the single most important structural open question on the substrate side.
+            - listitem [ref=e2155]:
+              - paragraph [ref=e2156]:
+                - strong [ref=e2157]: Lattice-Fourier eigenvalue extraction is not yet formalised.
+                - text: §7.3 states, on plane-wave states
+                - code [ref=e2158]: ψ_k = coarseGrainWithPhase s (planeWavePhase k ω) m
+                - text: ", the identity"
+                - code [ref=e2159]: discreteLaplacianC ψ_k (p, n) = λ(k, ℓ_P) · ψ_k (p, n)
+                - text: with
+                - code [ref=e2160]: λ(k, ℓ_P) = −(4/ℓ_P²) · ∑_μ sin²(k_μ · ℓ_P / 2)
+                - text: and the Taylor bound
+                - code [ref=e2161]: "|λ(k, ℓ_P) − (−k²)| = O(ℓ_P² · k⁴)"
+                - text: . Those are pure lattice-Fourier facts and each is a few trigonometric lemmas at most, but at the time of writing none is in the Lean development. Without them, the composition of Theorem 2 (pointwise residue bound) with Theorem 4 (scalar non-relativistic limit via opaque
+                - code [ref=e2162]: K
+                - text: ) is a
+                - emphasis [ref=e2163]: stated
+                - text: composition rather than a machine-checked one. Formalisation is pure follow-up Lean work; no new mathematics is needed. Concretely, the missing theorems are (i)
+                - code [ref=e2164]: discreteLaplacianC_planeWave_eigenvalue
+                - text: ", (ii)"
+                - code [ref=e2165]: planeWave_eigenvalue_Taylor
+                - text: ", and (iii) a paper wrapper binding"
+                - code [ref=e2166]: K := λ(k, ℓ_P)
+                - text: into
+                - code [ref=e2167]: paper_schrodinger_is_nonrel_limit
+                - text: .
+            - listitem [ref=e2168]:
+              - paragraph [ref=e2169]:
+                - strong [ref=e2170]: The mass-shell derivation is tick-counting, not stress-energy.
+                - text: The identity
+                - code [ref=e2171]: E² = (pc)² + (mc²)²
+                - text: is proved in
+                - code [ref=e2172]: DispersionFromLattice.lean
+                - text: as a two-channel tick-counting consistency condition. A more principled derivation from the stress-energy tensor of the healing flow is plausible but not written. Phase 3’s Born-rule conservation theorem may provide partial leverage, but the full stress-energy-sourced mass-shell remains open.
+            - listitem [ref=e2173]:
+              - paragraph [ref=e2174]:
+                - strong [ref=e2175]: Empirical falsifiability is in principle, not in practice.
+                - code [ref=e2176]: NOTES_QM_AS_DISCRETE_GRAVITY.md
+                - text: "§5 documents this honestly: the predicted power-law gate-fidelity curve"
+                - code [ref=e2177]: F(T) = F₀/(1 + αT)
+                - text: differs from the Arrhenius form
+                - code [ref=e2178]: F₀ exp(−E/kT)
+                - text: by a functional-form signature, but the numerical coupling
+                - code [ref=e2179]: α = k_B t_P / (2ℏ) ≈ 3.5 × 10⁻³³ K⁻¹
+                - text: is 28 orders of magnitude below current cryogenic-gate precision. The prediction is a
+                - emphasis [ref=e2180]: structural
+                - text: distinguisher between computational-truncation and thermal-activation mechanisms; it is not a near-term experimental test. The interference theorem of Phase 4 does
+                - emphasis [ref=e2181]: not
+                - text: add a separate near-term empirical handle — it reproduces standard quantum predictions in the non-relativistic regime, which is the correct behaviour.
+            - listitem [ref=e2182]:
+              - paragraph [ref=e2183]:
+                - strong [ref=e2184]: No relativistic Schrödinger / Klein-Gordon derivation.
+                - text: The non-relativistic sector is what Phases 1–4 and 6A/6B close (Phase 6C Bell-violation is two-body non-relativistic). The relativistic counterpart — showing that the coarse-grained field on non-static sequences satisfies a discrete Klein-Gordon-type equation
+                - code [ref=e2185]: (∂_t² − c² Δ + m²c⁴/ℏ²)ψ ≈ 0 + O(l_P)
+                - text: — is explicitly flagged as a non-goal of the present plan and as future work.
+                - code [ref=e2186]: DispersionBridge.lean
+                - text: already exposes the Prop-carrying structure
+                - code [ref=e2187]: KleinGordonFromLatticeData
+                - text: with
+                - code [ref=e2188]: waveEquation
+                - text: as the missing field; closing it is the natural sequel paper.
+            - listitem [ref=e2189]:
+              - paragraph [ref=e2190]:
+                - strong [ref=e2191]: Many-body states beyond two-body Bell states.
+                - text: Phase 6C delivers the two-body Bell state
+                - code [ref=e2192]: bellField
+                - text: and its CHSH-violation signature, but the present formalisation does not cover arbitrary N-body entangled states, reduced-density-matrix dynamics on sub-regions, or multi-body monogamy-of-entanglement statements. Three-or-more-body tensor-product fields and density matrices remain out of scope; they are the natural Phase-7 workstream.
+            - listitem [ref=e2193]:
+              - paragraph [ref=e2194]:
+                - strong [ref=e2195]: Continuous-time limit.
+                - text: All theorems are discrete-tick statements. The smooth
+                - code [ref=e2196]: t_P → 0
+                - text: limit — recovering the continuous Schrödinger PDE rather than its discrete approximant — is left as future work, blocking on a Mathlib-compatible formalisation of tick-indexed limits of complex lattice fields.
+          - paragraph [ref=e2197]:
+            - text: "None of these items invalidates Phases 1–6. They delimit the claim. The paper’s claim is: given the discrete-gravity healing-flow substrate of Omega-Theory V2,"
+            - emphasis [ref=e2198]: all seven
+            - text: of Schrödinger evolution, Born-rule probability conservation, relativistic-to-non-relativistic dispersion, two-slit interference, the Heisenberg uncertainty principle, the measurement / collapse postulate, and Tsirelson-bound-attaining entanglement with CHSH-inequality violation are
+            - emphasis [ref=e2199]: theorems
+            - text: ", not postulates. It is not: Omega-Theory V2 reproduces every phenomenon of quantum mechanics, or of quantum field theory."
+          - paragraph [ref=e2200]: The value of distinguishing these two claims is methodological. A proof-assistant-verified partial result is, in our view, more useful to the community than an unverified complete one, because each open item above is now a concrete next target rather than a vague research programme — and the boundary of “what is proved today” is exactly where a reviewer can focus their critical attention.
+          - separator [ref=e2201]
+          - heading "14. Acknowledgments" [level=2] [ref=e2202]
+          - paragraph [ref=e2203]: "This formalization was produced by a team of AI agents operating on the Omega-Theory V2 codebase, under the direction of the human author of the underlying theory. The individual contributions are:"
+          - list [ref=e2204]:
+            - listitem [ref=e2205]:
+              - strong [ref=e2206]: Altair
+              - text: — coarse-graining map and phase-accepting extension in
+              - code [ref=e2207]: CoarseGrainingMap.lean
+              - text: ", including the defining identity"
+              - code [ref=e2208]: sq_abs_coarseGrain
+              - text: and the finite-region
+              - code [ref=e2209]: ℓ²
+              - text: bound.
+            - listitem [ref=e2210]:
+              - strong [ref=e2211]: Sirius
+              - text: (Phase 2 lead) —
+              - code [ref=e2212]: SchrodingerFromLattice.lean
+              - text: including the complex discrete Laplacian, the static-regime headline bound
+              - code [ref=e2213]: coarseGrain_satisfies_schrodinger_static
+              - text: ", the phase-aware specialisation"
+              - code [ref=e2214]: coarseGrainWithPhase_satisfies_schrodinger_static_zero_phase
+              - text: bridging Altair’s phase-carrying variant to the Schrödinger derivation, and the
+              - strong [ref=e2215]: Phase-2 dynamical lift
+              - code [ref=e2216]: coarseGrain_satisfies_schrodinger_dynamic
+              - text: together with its flat- background and phase-aware corollaries. The
+              - code [ref=e2217]: HasZeroFunctional
+              - text: "- scoping of the dynamical bound — closing the Schrödinger-shape inequality on the"
+              - code [ref=e2218]: DynamicalSnapshotSequence
+              - text: type with the same
+              - code [ref=e2219]: 8ℏ/(m·c·ℓ_P)
+              - text: constant as the static case, under the honest-scoped hypothesis that the Phase-1 metric-Laplacian functional vanishes on every iterate — is Sirius’s Phase-2 headline and the dog-star framing (reliably visible across seasons) is apt for an orchestration that pulls together Altair’s map, Polaris’s dynamics, and Bridger’s dispersion bridge into a single Planck-scale bound.
+            - listitem [ref=e2220]:
+              - strong [ref=e2221]: Bridger
+              - text: —
+              - code [ref=e2222]: DispersionBridge.lean
+              - text: including the closed-form quartic bound
+              - code [ref=e2223]: nonRelativistic_energy_approx
+              - text: (proved algebraically from the elementary identity
+              - code [ref=e2224]: (mc² + p²/(2m))² − E² = p⁴/(4m²)
+              - text: ", no Taylor-series machinery) and the"
+              - code [ref=e2225]: schrodinger_is_nonrel_limit
+              - text: bridge lemma; contributor to
+              - code [ref=e2226]: DispersionFromLattice.lean
+              - text: .
+            - listitem [ref=e2227]:
+              - strong [ref=e2228]: Polaris
+              - text: (Phase 1 lead) —
+              - code [ref=e2229]: SnapshotDynamics.lean
+              - text: including the
+              - code [ref=e2230]: DynamicalSnapshotSequence
+              - text: structure, the Laplacian-of-metric update rule, the
+              - code [ref=e2231]: metric_update_linear_in_t_P
+              - text: control, and the
+              - code [ref=e2232]: minkowskiDynamicalSequence_toSnapshotSequence_eq_flat
+              - text: vacuum- consistency theorem. The pole-star framing — a fixed reference around which the dynamical sky rotates — is apt for an update rule whose static reduction is its vacuum anchor.
+            - listitem [ref=e2233]:
+              - strong [ref=e2234]:
+                - code [ref=e2235]: probability_conservator
+              - text: (Phase 3 lead,
+              - emphasis [ref=e2236]: display name pending
+              - text: ) —
+              - code [ref=e2237]: BornRule.lean
+              - text: including the tick-invariance key lemma
+              - code [ref=e2238]: DynamicalSnapshotSequence.metric_eq_initial_under_hasZero
+              - text: (on-regime reduction to the initial metric), the KL-density corollary
+              - code [ref=e2239]: informationDensityKL_static_under_dynamics
+              - text: ", the pointwise invariance"
+              - code [ref=e2240]: sq_abs_coarseGrainWithPhase_static_under_dynamics
+              - text: that bridges Phase 3 with Phase 4’s
+              - code [ref=e2241]: two_slit_envelope_tick_invariant
+              - text: ", the headline conservation theorem"
+              - code [ref=e2242]: bornRuleConservation
+              - text: and its iterated form
+              - code [ref=e2243]: bornRule_amplitude_sum_invariant
+              - text: ", the Minkowski specialisation"
+              - code [ref=e2244]: bornRule_on_minkowski
+              - text: ", the honest off-regime residue bound"
+              - code [ref=e2245]: bornRule_sum_diff_bound
+              - text: and its KL-density form
+              - code [ref=e2246]: bornRule_sum_diff_bound_KL
+              - text: ", and the consistency corollary"
+              - code [ref=e2247]: bornRule_sum_eq_of_KL_static
+              - text: showing the off-regime bound collapses to equality on KL-static regions. The dual on-regime / off-regime package — exact conservation under
+              - code [ref=e2248]: HasZeroFunctional
+              - text: together with a quantitative residue bound for the general case — is the honest-scoping discipline carried through the paper.
+            - listitem [ref=e2249]:
+              - strong [ref=e2250]:
+                - code [ref=e2251]: interference_prover
+              - text: (Phase 4 lead,
+              - emphasis [ref=e2252]: display name pending
+              - text: ) —
+              - code [ref=e2253]: Interference.lean
+              - text: including the complex-field superposition
+              - code [ref=e2254]: superposedField
+              - text: ", the plane-wave coarse-grained field"
+              - code [ref=e2255]: planeWaveField
+              - text: ", the algebraic heart"
+              - code [ref=e2256]: superposedField_abs_sq
+              - text: ", the cross-term evaluation"
+              - code [ref=e2257]: planeWaveField_conj_product_re
+              - text: ", the headline"
+              - code [ref=e2258]: two_slit_interference
+              - text: and its Boltzmann-weight form
+              - code [ref=e2259]: two_slit_interference_KL
+              - text: ", the canonical visibility"
+              - code [ref=e2260]: double_slit_visibility
+              - text: ", the constructive peak / destructive null corollaries, the Phase-3 compatibility corollary"
+              - code [ref=e2261]: two_slit_envelope_tick_invariant
+              - text: ", and the flat-vacuum sanity check"
+              - code [ref=e2262]: two_slit_on_flat
+              - text: . The explicit choice to host superposition at the complex-field level rather than lifting to
+              - code [ref=e2263]: SnapshotSequence
+              - text: (which lacks a Lorentzian-respecting additive structure) is what makes the headline identity residue-free, and is itself a methodological contribution recorded in the file’s header.
+            - listitem [ref=e2264]:
+              - strong [ref=e2265]:
+                - code [ref=e2266]: uncertainty_prover
+              - text: (Phase 6A lead,
+              - emphasis [ref=e2267]: display name pending
+              - text: ) —
+              - code [ref=e2268]: Heisenberg.lean
+              - text: including the lattice position and momentum operators
+              - code [ref=e2269]: positionOperator
+              - text: ","
+              - code [ref=e2270]: momentumOperator
+              - text: ", the L²-variance definition"
+              - code [ref=e2271]: l2Variance
+              - text: ", the Robertson-cross-term machinery, the exact Robertson inequality"
+              - code [ref=e2272]: robertson_uncertainty_exact
+              - text: ", the"
+              - code [ref=e2273]: CommutatorMatchesMean
+              - text: /
+              - code [ref=e2274]: CommutatorMatchesValue
+              - text: predicates encoding the lattice-continuum commutator bridge honestly, the abstract uncertainty theorem
+              - code [ref=e2275]: heisenberg_uncertainty_abstract
+              - text: ", the canonical-form"
+              - code [ref=e2276]: heisenberg_uncertainty_from_lattice_canonical
+              - text: ", the final position-momentum theorem"
+              - code [ref=e2277]: heisenberg_uncertainty_from_lattice
+              - text: ", and the positive-variance corollaries"
+              - code [ref=e2278]: variance_x_pos_of_heisenberg
+              - text: ","
+              - code [ref=e2279]: variance_p_pos_of_heisenberg
+              - text: .
+            - listitem [ref=e2280]:
+              - strong [ref=e2281]:
+                - code [ref=e2282]: measurement_prover
+              - text: (Phase 6B lead,
+              - emphasis [ref=e2283]: display name pending
+              - text: ) —
+              - code [ref=e2284]: Measurement.lean
+              - text: including the pointwise projector
+              - code [ref=e2285]: measurementProjector
+              - text: and its idempotence, the region-relative ℓ² norm
+              - code [ref=e2286]: regionL2NormSq
+              - text: /
+              - code [ref=e2287]: regionL2Norm
+              - text: ", the renormaliser"
+              - code [ref=e2288]: normaliseCoarseGrain
+              - text: ", the composition"
+              - code [ref=e2289]: postMeasurementState
+              - text: ", the probability functional"
+              - code [ref=e2290]: probability_of_outcome
+              - text: ", the unit-norm corollary"
+              - code [ref=e2291]: postMeasurement_unit_norm
+              - text: ", the support- concentration lemma"
+              - code [ref=e2292]: postMeasurement_support
+              - text: ", the headline four-clause bundle"
+              - code [ref=e2293]: measurement_postulate
+              - text: ", the Phase-3 bridge"
+              - code [ref=e2294]: probability_of_outcome_invariant_under_hasZero
+              - text: ", the crucial non-unitarity witness"
+              - code [ref=e2295]: postMeasurement_not_in_coarseGrain_image
+              - text: ", and the Minkowski-uniform-distribution specialisation"
+              - code [ref=e2296]: probability_of_outcome_flat
+              - text: . The explicit formalisation of “collapse is non-unitary, as a theorem” — rather than a back-pocket remark — is the file’s honest-scoping signature.
+            - listitem [ref=e2297]:
+              - strong [ref=e2298]:
+                - code [ref=e2299]: entanglement_architect
+              - text: (Phase 6C lead,
+              - emphasis [ref=e2300]: display name pending
+              - text: ) —
+              - code [ref=e2301]: Entanglement.lean
+              - text: including the two-body field type
+              - code [ref=e2302]: TwoBodyField
+              - text: ", the tensor-product operation"
+              - code [ref=e2303]: tensorProduct
+              - text: with its bilinearity and abs-sq factorisation lemmas, the
+              - code [ref=e2304]: IsProduct
+              - text: /
+              - code [ref=e2305]: IsEntangled
+              - text: factorisability predicates, the explicit Bell-state construction
+              - code [ref=e2306]: bellField = (|00⟩ + |11⟩)/√2
+              - text: on the lattice with its four amplitude-value lemmas, the structural entanglement theorem
+              - code [ref=e2307]: bellField_isEntangled
+              - text: ", the correlator"
+              - code [ref=e2308]: correlationBell
+              - text: with the headline identity
+              - code [ref=e2309]: cos_correlation_theorem
+              - text: (pure cosine, not merely bounded), the canonical-angle correlator values, the CHSH functional
+              - code [ref=e2310]: chshTsirelson
+              - text: /
+              - code [ref=e2311]: chshTsirelsonBell
+              - text: ", the Tsirelson-bound-attainment"
+              - code [ref=e2312]: chsh_tsirelson_bell = 2·√2
+              - text: ", the classical-Bell-bound violation"
+              - code [ref=e2313]: bell_inequality_violation > 2
+              - text: ", and the consistency bundle"
+              - code [ref=e2314]: bell_inequality_entanglement_consistency
+              - text: . Einstein’s “spooky action at a distance” as a machine-checked theorem of V2 is this workstream’s headline contribution.
+            - listitem [ref=e2315]:
+              - strong [ref=e2316]: Saiph
+              - text: (Phase 6D capstone lead) —
+              - code [ref=e2317]: QuantumMechanicsCapstone.lean
+              - text: including the
+              - code [ref=e2318]: QuantumMechanicsPostulates
+              - text: 8-field structure, the
+              - code [ref=e2319]: grand_qm_emergence
+              - text: umbrella theorem (every QM postulate is a theorem of V2, by direct field-by-field citation of sibling theorems), the Minkowski specialisation
+              - code [ref=e2320]: grand_qm_emergence_on_minkowski
+              - text: ", and the named projection corollaries"
+              - code [ref=e2321]: grand_qm_emergence_bornRule
+              - text: ","
+              - code [ref=e2322]: grand_qm_emergence_entanglement
+              - text: ","
+              - code [ref=e2323]: grand_qm_emergence_interference
+              - text: ". The star-name Saiph (κ Orionis, one of Orion’s four canonical shoulder/knee stars) is apt for a capstone theorem that places the seven sibling theorems into a single asterism. Saiph’s workstream is organisational rather than independent-math: the content is the discovery that all seven conjuncts assemble into a coherent 8-field record with no additional hypotheses beyond the"
+              - code [ref=e2324]: HasZeroFunctional
+              - text: scope already shared by Phases 2, 3, and 6.
+            - listitem [ref=e2325]:
+              - strong [ref=e2326]: Alnilam
+              - text: (paper_draft) —
+              - code [ref=e2327]: QmBridgePaper.lean
+              - text: "(24 paper-level wrapper theorems across Theorems 1–8 plus the capstone) and the present manuscript: the §5 Phase-2 dynamical-bound rewrite with"
+              - code [ref=e2328]: HasZeroFunctional
+              - text: "-scope discussion, the §6 Born-rule section with the shared-scope diagnosis linking Theorems 2 and 3, the §7 non-relativistic limit (retaining the closed-form algebraic proof that no Taylor machinery is invoked), the §8 two-slit interference section with the complex-field-level design note, the new §9–§11 Phase-6 expansion (Heisenberg, Measurement, Entanglement), the §12 Capstone section, and the hypothesis-inventory tables in §5.2, §6.3, §9.4, §10.4, §11.8 that separate this submission from prose physics. The Alnilam framing — the central star of Orion’s Belt, central to a three-star alignment with the Einstein-side and HPW-elimination workstreams on the flanks — is apt for a role that acted as the central connector among the seven theorem-producing workstreams and the Phase 6D capstone."
+          - blockquote [ref=e2329]:
+            - paragraph [ref=e2330]:
+              - strong [ref=e2331]: "[pending]"
+              - text: Altair, Sirius, Bridger, Polaris, Saiph, and Alnilam confirmed their display names 2026-04-14 / 2026-04-15. Phase 3 lead (handle
+              - code [ref=e2332]: probability_conservator
+              - text: ), Phase 4 lead (
+              - code [ref=e2333]: interference_prover
+              - text: ), Phase 6A (
+              - code [ref=e2334]: uncertainty_prover
+              - text: ), Phase 6B (
+              - code [ref=e2335]: measurement_prover
+              - text: ), and Phase 6C (
+              - code [ref=e2336]: entanglement_architect
+              - text: ) shipped their phases 2026-04-14 / 2026-04-15; their chosen display names will be folded in here before submission. paper_draft has similarly not yet chosen a display name.
+          - paragraph [ref=e2337]:
+            - text: Upstream infrastructure was built by earlier agents in the project (
+            - strong [ref=e2338]: Vega
+            - text: ","
+            - strong [ref=e2339]: Rigel
+            - text: ", and others credited in"
+            - code [ref=e2340]: README.md
+            - text: ). The underlying physical theory, the Lean project scaffolding, and editorial direction are due to Norbert Marchewka. Any errors are ours.
+          - paragraph [ref=e2341]: This work was carried out without external grant funding. The Lean proofs have been verified against Mathlib v4.29.0. The source is published with the paper.
+          - separator [ref=e2342]
+          - heading "15. References" [level=2] [ref=e2343]
+          - paragraph [ref=e2344]: (Placeholder list — to be completed with full bibliographic details at submission.)
+          - list [ref=e2345]:
+            - listitem [ref=e2346]:
+              - text: Bombelli, Lee, Meyer, Sorkin.
+              - emphasis [ref=e2347]: Space-time as a causal set.
+              - text: Phys. Rev. Lett. 59 (1987).
+            - listitem [ref=e2348]:
+              - text: de la Peña, Cetto.
+              - emphasis [ref=e2349]: "The Quantum Dice: An Introduction to Stochastic Electrodynamics."
+              - text: Kluwer (1996).
+            - listitem [ref=e2350]:
+              - text: Hildebrandt, Polthier, Wardetzky.
+              - emphasis [ref=e2351]: On the convergence of metric and geometric properties of polyhedral surfaces.
+              - text: Geom. Dedicata 123 (2006).
+            - listitem [ref=e2352]:
+              - text: ‘t Hooft, G.
+              - emphasis [ref=e2353]: The Cellular Automaton Interpretation of Quantum Mechanics.
+              - text: Springer (2016).
+            - listitem [ref=e2354]:
+              - text: Kulkarni, R.
+              - emphasis [ref=e2355]: "The Selection-Stitch Model: A self-healing lattice origin for the Schrödinger equation."
+              - text: AI Journal (February 2026).
+            - listitem [ref=e2356]:
+              - text: Markopoulou, F.
+              - emphasis [ref=e2357]: New directions in background-independent quantum gravity.
+              - text: In
+              - emphasis [ref=e2358]: Approaches to Quantum Gravity
+              - text: ", Cambridge UP (2008)."
+            - listitem [ref=e2359]:
+              - text: Mathlib Community.
+              - emphasis [ref=e2360]: Mathlib4.
+              - link "https://leanprover-community.github.io/" [ref=e2361] [cursor=pointer]:
+                - /url: https://leanprover-community.github.io/
+              - text: .
+            - listitem [ref=e2362]:
+              - text: Moura, L. de; Ullrich, S.
+              - emphasis [ref=e2363]: The Lean 4 Theorem Prover and Programming Language.
+              - text: CADE-28 (2021).
+            - listitem [ref=e2364]:
+              - text: Poplawski, N.
+              - emphasis [ref=e2365]: Big bounce from spin and torsion.
+              - text: Gen. Relativ. Gravit. 44 (2012).
+            - listitem [ref=e2366]:
+              - text: Wolfram, S.
+              - emphasis [ref=e2367]: A Project to Find the Fundamental Theory of Physics.
+              - text: Wolfram Media (2020).
+          - separator [ref=e2368]
+          - paragraph [ref=e2369]:
+            - emphasis [ref=e2370]: "Draft timestamp:"
+            - text: "2026-04-15 (seven-pillar expansion). Paper sections: §1 abstract+preview rewritten to reflect seven-pillar + capstone scope; §3 setup-layer table extended to nine Emergence QM-side source files; §5 rewritten for Phase-2 dynamical bound; new §6 Born Rule as a Conservation Theorem written up from"
+            - code [ref=e2371]: BornRule.lean
+            - text: ; non-rel limit renumbered §6→§7; new §8 Two-Slit Interference written up from
+            - code [ref=e2372]: Interference.lean
+            - text: ; new §9 Heisenberg Uncertainty written up from
+            - code [ref=e2373]: Heisenberg.lean
+            - text: (Phase 6A); new §10 Measurement / Collapse written up from
+            - code [ref=e2374]: Measurement.lean
+            - text: (Phase 6B); new §11 Entanglement & Bell Violation written up from
+            - code [ref=e2375]: Entanglement.lean
+            - text: (Phase 6C); new §12 Capstone — Grand QM Emergence written up from
+            - code [ref=e2376]: QuantumMechanicsCapstone.lean
+            - text: (Phase 6D, Saiph); Open Questions → §13 with six landed-phases scope note; Acknowledgments → §14 extended with Phase 6A/B/C/D leads; References → §15.
+            - emphasis [ref=e2377]: "Lean source tree:"
+            - code [ref=e2378]: chaos-shield/PhysicsPapers/LeanFormalizationV2/
+            - text: .
+            - emphasis [ref=e2379]: "Companion notes:"
+            - code [ref=e2380]: NOTES_QM_AS_DISCRETE_GRAVITY.md
+            - text: ","
+            - code [ref=e2381]: NOTES_HPW_ELIMINATION.md
+            - text: .
+        - link "Back to overview" [ref=e2383] [cursor=pointer]:
+          - /url: /Omega-Theory-Discrete-Spacetime/
+          - img [ref=e2384]
+          - text: Back to overview
+```
+
+# Test source
+
+```ts
+  1   | /**
+  2   |  * Accessibility + visual-quality E2E tests (Playwright).
+  3   |  *
+  4   |  * What this checks:
+  5   |  *   - WCAG violations via axe-core (color contrast, alt-text, heading order,
+  6   |  *     landmark regions, aria labels)
+  7   |  *   - Every <img> has alt-text (critical for screen readers)
+  8   |  *   - Heading hierarchy: exactly one <h1>, no skipped levels
+  9   |  *   - Minimum font size (readable on mobile)
+  10  |  *   - Links have discernible text (not just icons with empty anchors)
+  11  |  *   - Tab order is logical (interactive elements reachable by keyboard)
+  12  |  *
+  13  |  * Uses @axe-core/playwright (install via `npm install --save-dev @axe-core/playwright`).
+  14  |  * Skips gracefully if axe is not installed, so CI doesn't fail pre-install.
+  15  |  */
+  16  | 
+  17  | import { test, expect } from '@playwright/test';
+  18  | 
+  19  | // Dynamic import so tests that don't need axe still run if the dev-dep is missing
+  20  | let AxeBuilder;
+  21  | try {
+  22  |   AxeBuilder = (await import('@axe-core/playwright')).default;
+  23  | } catch (_e) {
+  24  |   AxeBuilder = null;
+  25  | }
+  26  | 
+  27  | const PAGES = {
+  28  |   home: '/',
+  29  |   paperQM: '/papers/paper-qm-from-discrete-gravity/',
+  30  |   appendixF: '/papers/appendix-f-information-flow-conservation/',
+  31  |   cycles: '/cycles/',
+  32  | };
+  33  | 
+  34  | test.describe('WCAG accessibility (axe-core)', () => {
+  35  |   for (const [name, pth] of Object.entries(PAGES)) {
+  36  |     test(`${name} — no serious/critical a11y violations`, async ({ page }) => {
+  37  |       test.skip(
+  38  |         !AxeBuilder,
+  39  |         '@axe-core/playwright not installed; run `npm install --save-dev @axe-core/playwright`'
+  40  |       );
+  41  |       await page.goto(pth);
+  42  |       await page.waitForLoadState('networkidle');
+  43  | 
+  44  |       const results = await new AxeBuilder({ page })
+  45  |         .options({
+  46  |           // Only fail on serious/critical. Minor issues get logged but don't
+  47  |           // block CI — fonts on mobile can trip contrast false positives.
+  48  |           resultTypes: ['violations'],
+  49  |         })
+  50  |         .analyze();
+  51  | 
+  52  |       const hardBlockers = results.violations.filter((v) =>
+  53  |         ['serious', 'critical'].includes(v.impact)
+  54  |       );
+  55  | 
+  56  |       expect(
+  57  |         hardBlockers,
+  58  |         `axe serious/critical violations on ${pth}: ${hardBlockers
+  59  |           .map((v) => `${v.id} (${v.nodes.length})`)
+  60  |           .join(', ')}`
+  61  |       ).toEqual([]);
+  62  |     });
+  63  |   }
+  64  | });
+  65  | 
+  66  | test.describe('images have alt text', () => {
+  67  |   for (const [name, pth] of Object.entries(PAGES)) {
+  68  |     test(`${name} — no <img> without alt`, async ({ page }) => {
+  69  |       await page.goto(pth);
+  70  |       const missing = await page.$$eval('img', (imgs) =>
+  71  |         imgs
+  72  |           .filter((i) => !i.hasAttribute('alt'))
+  73  |           .map((i) => i.getAttribute('src') || '(no src)')
+  74  |       );
+  75  |       expect(missing, `<img> elements missing alt: ${missing.join(', ')}`).toEqual([]);
+  76  |     });
+  77  |   }
+  78  | });
+  79  | 
+  80  | test.describe('heading hierarchy', () => {
+  81  |   test('home has exactly one <h1>', async ({ page }) => {
+  82  |     await page.goto('/');
+  83  |     const h1Count = await page.locator('h1').count();
+  84  |     expect(h1Count, 'exactly one <h1> per page (W3C HTML best practice)').toBe(1);
+  85  |   });
+  86  | 
+  87  |   test('a paper page has a single <h1>', async ({ page }) => {
+  88  |     await page.goto(PAGES.paperQM);
+  89  |     const h1Count = await page.locator('h1').count();
+> 90  |     expect(h1Count, 'paper pages should have exactly one <h1>').toBe(1);
+      |                                                                 ^ Error: paper pages should have exactly one <h1>
+  91  |   });
+  92  | 
+  93  |   test('no skipped heading levels (h1 -> h3 without h2)', async ({ page }) => {
+  94  |     await page.goto(PAGES.paperQM);
+  95  |     const levels = await page.$$eval('h1, h2, h3, h4, h5, h6', (hs) =>
+  96  |       hs.map((h) => parseInt(h.tagName.slice(1), 10))
+  97  |     );
+  98  |     const skips = [];
+  99  |     for (let i = 1; i < levels.length; i++) {
+  100 |       if (levels[i] > levels[i - 1] + 1) {
+  101 |         skips.push(`h${levels[i - 1]} -> h${levels[i]} at index ${i}`);
+  102 |       }
+  103 |     }
+  104 |     expect(skips, `skipped heading levels: ${skips.join(', ')}`).toEqual([]);
+  105 |   });
+  106 | });
+  107 | 
+  108 | test.describe('readable typography', () => {
+  109 |   test('body text is at least 14px on desktop', async ({ page }) => {
+  110 |     await page.goto('/');
+  111 |     const fontSizePx = await page.evaluate(() => {
+  112 |       const el = document.querySelector('main, body');
+  113 |       return parseFloat(getComputedStyle(el).fontSize);
+  114 |     });
+  115 |     expect(
+  116 |       fontSizePx,
+  117 |       `body text too small (${fontSizePx}px) — readability risk`
+  118 |     ).toBeGreaterThanOrEqual(14);
+  119 |   });
+  120 | });
+  121 | 
+  122 | test.describe('links are discernible', () => {
+  123 |   test('no <a> with empty href or empty text', async ({ page }) => {
+  124 |     await page.goto('/');
+  125 |     const bad = await page.$$eval('a', (as) =>
+  126 |       as
+  127 |         .filter((a) => {
+  128 |           const href = a.getAttribute('href');
+  129 |           const text = (a.textContent || '').trim();
+  130 |           const aria = a.getAttribute('aria-label');
+  131 |           const hasImg = !!a.querySelector('img[alt]');
+  132 |           // OK if: href present AND (text OR aria-label OR img-with-alt)
+  133 |           return !href || (!text && !aria && !hasImg);
+  134 |         })
+  135 |         .map((a) => a.outerHTML.slice(0, 120))
+  136 |     );
+  137 |     expect(bad, `<a> elements with no discernible label: ${bad.join(' | ')}`).toEqual([]);
+  138 |   });
+  139 | });
+  140 | 
+  141 | test.describe('tab-reachable interactive elements', () => {
+  142 |   test('first tab press focuses an interactive element', async ({ page }) => {
+  143 |     await page.goto('/');
+  144 |     await page.keyboard.press('Tab');
+  145 |     const focused = await page.evaluate(() => {
+  146 |       const el = document.activeElement;
+  147 |       if (!el || el === document.body) return null;
+  148 |       return { tag: el.tagName, href: el.getAttribute('href'), text: el.textContent?.slice(0, 40) };
+  149 |     });
+  150 |     expect(focused, 'first Tab should focus a real interactive element, not document.body').not.toBeNull();
+  151 |   });
+  152 | });
+  153 | 
+```

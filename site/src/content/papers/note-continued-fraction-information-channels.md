@@ -9,7 +9,7 @@ order: 70
 
 ## F.1 Motivation
 
-This appendix establishes a connection between the information-theoretic classification of mathematical constants (developed in the companion work *"Information-Theoretic Classification of Transcendental Constants"*, [LevelOfIrratotionalityOfPi/](../LevelOfIrratotionalityOfPi/README.md)) and the principle of information flow conservation in physical systems.
+This appendix establishes a connection between the information-theoretic classification of mathematical constants (developed in the companion work *"Information-Theoretic Classification of Transcendental Constants"*, which planned to live in a `LevelOfIrratotionalityOfPi/` tree that never shipped — see [`../LeanFormalizationV2/OmegaTheory/Irrationality/`](../LeanFormalizationV2/OmegaTheory/Irrationality/) for the Lean-side formalization that took its place) and the principle of information flow conservation in physical systems.
 
 The central observation is: **the continued fraction expansion of a mathematical constant functions as an information channel**, and the properties of this channel (capacity, entropy rate, mixing time) determine whether the constant is "self-encoding" or "opaque." This distinction has implications for the role of transcendental constants in physical theories.
 
@@ -75,7 +75,7 @@ We note this as a structural observation, not a formal theorem, but it suggests 
 
 ## F.6 Implications for the Omega Framework
 
-Within the broader Omega Theory framework (see [Main Paper](../papers/Main-Paper-Postulates.md)), the dichotomy between self-encoding and opaque constants may relate to the distinction between:
+Within the broader Omega Theory framework (see [Main Paper](../Main-Paper-Postulates.md)), the dichotomy between self-encoding and opaque constants may relate to the distinction between:
 
 - **Algebraic/structural quantities** (coupling constants, symmetry dimensions) that are determined by internal consistency — analogous to self-encoding constants whose digits determine themselves.
 
@@ -98,9 +98,7 @@ This dichotomy is a new structural result in the classification of transcendenta
 
 ## References
 
-See [Module 07 — References](../LevelOfIrratotionalityOfPi/07-References.md) for the complete bibliography.
-
-Key references for this appendix:
+Key references for this appendix (the planned `LevelOfIrratotionalityOfPi/07-References.md` companion bibliography was never written; core refs listed inline below):
 
 - Rokhlin [1961]: Entropy of the Gauss map
 - Wirsing [1974]: Exponential mixing and the Gauss–Kuzmin–Wirsing constant
@@ -109,4 +107,4 @@ Key references for this appendix:
 
 ---
 
-*Return to: [Physics Papers README](../README.md) | [Main Classification](../LevelOfIrratotionalityOfPi/README.md)*
+*Return to: [Physics Papers README](../README.md) · [↑ chaos-shield root](../../README.md)*

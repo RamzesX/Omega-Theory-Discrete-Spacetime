@@ -144,7 +144,7 @@ theorem BoundedSymmetryMetric.weyl_pair_swap_bounded
 
 Proof length: the trace-free theorem uses seven explicit double-sum contractions (four Ricci-bracket, two scalar-bracket, one Riemann-to-Ricci reduction via the alternate `ricciTensor'` definition), with the assembly a single `ring` call at the leaves. The pair-swap bound decomposes the Weyl difference into a Riemann pair-swap term plus four cross-term residuals of the form $g_{ij} (R_{ab} - R_{ba})$, bounded term-by-term via `metric_bounded` and `ricci_symmetric_bounded`, and combined by triangle inequality.
 
-The entire project (31 files, 255+ theorems) builds in approximately 170s on a Ryzen 9 9950X workstation, using the precompiled Mathlib cache.
+The entire project builds clean: at original draft time (Apr-12) it was 31 files / 255+ theorems / 170s on Ryzen 9 9950X. At post-cycle-43 audit (Apr-21) the corpus has grown to **162 files, 8,996 theorems, 4,465 definitions, 0 sorry, 8 physical axioms**, and the classification table entries remain unchanged — all 11 curvature identities (plus #12 `einstein_trace` and #13 Einstein symmetry) are still Exact/Bounded as tabled. Build remains GREEN at ~3,835 jobs (cycles 2-43 closed at Polaris meta-capstone).
 
 ---
 

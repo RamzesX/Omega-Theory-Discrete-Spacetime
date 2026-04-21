@@ -12,7 +12,13 @@ const {
   description = "Discrete Spacetime and Mass as Geometric Reshaping - A unified physics framework, mechanically verified in Lean 4.",
   ogImage,
 } = Astro.props;
-const baseUrl = import.meta.env.BASE_URL;
+// Normalize base to always end with `/` so template-string concat like
+// `${baseUrl}favicon.svg` can never produce `/chaos-shieldfavicon.svg`
+// (the infamous missing-slash regression). Astro 6 normally enforces this
+// via `trailingSlash: 'always'`, but we belt-and-braces it here so any future
+// config change can't reintroduce the bug.
+const rawBase = import.meta.env.BASE_URL;
+const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 ---
 
 <!DOCTYPE html>

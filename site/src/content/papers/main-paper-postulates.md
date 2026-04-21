@@ -16,10 +16,23 @@ order: 1
 ## Abstract
 
 > ### 🔐 Lean-Verified Postulate → Theorem Index
-> All five derived principles below have machine-checked witnesses in the Lean 4 / Mathlib v4.29.0 formalisation (commit `ff825d5`, **3818 jobs GREEN, 0 sorry, 8 physical axioms**). Signature theorems:
+> All five derived principles below have machine-checked witnesses in the Lean 4 / Mathlib v4.29.0 formalisation (post cycle 43, 2026-04-21, **3 835 jobs GREEN, 0 sorry, 8 physical axioms**).
+>
+> **Three-way corpus split (live-audited on the Neo4j `math` container, 2026-04-21):**
+>
+> | Layer | Theorems | Role |
+> |---|---:|---|
+> | **Omega-Lean** (proved, machine-checked) | **8,996** | What this paper cites. |
+> | **Graph** (discovery frontier, not yet proved) | **175** `:TheoremCandidate` (70 OPEN) + **53** paper-worthy `:GraphFinding` | Cycle-44+ backlog; items flagged **OPEN** below. |
+> | **Mathlib** (foundation) | **175,137** | Every proof above composes against this backbone (3.28 M cross-namespace `APPLIES` edges). |
+>
+> Signature theorems:
 >
 > | Principle / claim | Lean witness | File · line |
 > |---|---|---|
+> | **Grand meta-capstone v2** (cycle 43 Polaris, paper abstract, four-channel π / e / √2 / Catalan-G + 8-axiom audit + sterile-neutrino 4th-generation bijection) | [`omega_theory_v2_final_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607) | `Predictions/OmegaTheoryGrandCapstoneV2.lean:607` |
+> | **Grand capstone** (cycle 23 Cor Caroli, three-channel partition) | [`omega_theory_grand_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstone.lean#L271) | `Predictions/OmegaTheoryGrandCapstone.lean:271` |
+> | **m_μ / m_e = λ_√2 / λ_e** EXACT Connes-eigenvalue identity (cycle 30 Avior) — matter-sector capstone | [`mass_ratio_e_mu_from_sqrt2_e_channel_ratio`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ConnesDFYukawaMass.lean#L449) · [`connes_DF_yukawa_mass_first_matter_capstone_in_V2`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ConnesDFYukawaMass.lean#L686) | `Emergence/ConnesDFYukawaMass.lean:449` |
 > | **QM emergence** from 8 constants | [`grand_qm_emergence`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/QuantumMechanicsCapstone.lean#L368) | `Emergence/QuantumMechanicsCapstone.lean:368` |
 > | **Vacuum Einstein equations** (7 regimes, HPW deleted) | [`vacuum_einstein_emergence`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/EinsteinEmergence.lean#L50) | `Emergence/EinsteinEmergence.lean:50` |
 > | **Irrationality ⇒ QM uncertainty** (the Pi Hunch) | [`irrationality_implies_quantum_uncertainty`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Probe/PiAndOmegaStructure.lean#L100) | `Probe/PiAndOmegaStructure.lean:100` |
@@ -38,7 +51,7 @@ order: 1
 > | **Gate fidelity is power-law** (Diraq 2024 ✅) | [`gateFidelity_is_powerLaw`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/Predictions.lean#L100) | `Emergence/Predictions.lean:100` |
 > | **Dark-energy w = −1** | [`darkEnergyEquationOfState_w`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/CosmologicalConstant.lean#L129) | `Emergence/CosmologicalConstant.lean:129` |
 >
-> Full cross-reference: [`LEAN_VERIFIED_CLAIMS.md`](./LEAN_VERIFIED_CLAIMS.md) · Roadmap of open targets (cycles 24–43): [`LeanFormalizationV2/ROADMAP_CYCLES_24_43.md`](./LeanFormalizationV2/ROADMAP_CYCLES_24_43.md).
+> Full cross-reference: [`research/LEAN_VERIFIED_CLAIMS.md`](./research/LEAN_VERIFIED_CLAIMS.md) · Roadmap of open targets (cycles 24–43): [`LeanFormalizationV2/ROADMAP_CYCLES_24_43.md`](./LeanFormalizationV2/ROADMAP_CYCLES_24_43.md).
 
 ---
 
@@ -47,6 +60,10 @@ We present a unified framework resting on a single foundational claim: **spaceti
 The framework makes concrete experimental predictions validated by recent data: quantum error rates scale with action density ρ_S = NkT/V (not temperature alone), producing power-law temperature dependence T^(-2.5) as observed in Diraq/Nature 2024 spin qubit experiments—definitively inconsistent with Arrhenius exponential scaling. A key application resolves the apparent paradox of gravitational redshift: photons do not "lose energy" to gravity but rather encode geometric witness information—the redshift records the spacetime traversed while total information is conserved. We provide falsifiable predictions and reference detailed appendices for full mathematical development.
 
 **Keywords**: Quantum gravity, discrete spacetime, geometric reshaping, mass origin, information conservation, action density, quantum computing errors, gravitational redshift
+
+> ### 🧭 The 4-channel / 4-class postulate-foundation (cycle-44+ research)
+>
+> The four-channel partition (π / e / √2 / Catalan G) underpins the Pi-Hunch generation ordering in Principle 2. Cycle-44+ research [IrrationalityClasses/](LeanFormalizationV2/OmegaTheory/IrrationalityClasses/) (14 design memos, Rasalas μ Leonis 2026-04-21) formalises the rigorous **four-class separation theorem** for these four constants, and identifies the 31 sub-theorems needed. At classical Mahler classification {A, S, T, U} the naive "four distinct classes" claim is FALSE (π, e, possibly G all in S); the refined `TruncOrigin = {Algebraic, EFunction, GFunctionTranscendental, ConjecturallyIrrational}` partition *does* provably give four cells. **Catalan G irrationality itself is a classical open problem** (Zudilin 2019). Full design: [`06_separation_theorem.md`](LeanFormalizationV2/OmegaTheory/IrrationalityClasses/06_separation_theorem.md). Master plan: [`11_master_plan_skeleton.md`](LeanFormalizationV2/OmegaTheory/IrrationalityClasses/11_master_plan_skeleton.md). **% physics formalised: ≈ 72%.**
 
 ---
 
@@ -649,9 +666,16 @@ Physics emerges from the algebraic space Ω generated by:
 
 **The Standard Model constitutes the algebraic structure of reality. Spacetime is the Standard Model expressed geometrically.**
 
-> ✅ **Lean-verified** (gauge couplings derived from substrate, Connes A_F = ℂ⊕ℍ⊕M₃(ℂ) backbone): [`weakCouplingFromSubstrate_pos`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ErrorGaugeSU2.lean#L385) · [`strongCouplingFromSubstrate_pos`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ErrorGaugeSU3.lean#L376) · [`dirac_eigenvalues_are_yukawa_couplings`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/DiracFSpectrum.lean#L456) · QM signature: [`grand_qm_emergence`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/QuantumMechanicsCapstone.lean#L368)
+> ✅ **Lean-verified** (gauge couplings derived from substrate, Connes A_F = ℂ⊕ℍ⊕M₃(ℂ) backbone, cycle 24 electroweak unification, cycle 29 SU(3) closure):
+> - [`weakCouplingFromSubstrate_pos`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ErrorGaugeSU2.lean#L385)
+> - [`strongCouplingFromSubstrate_pos`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ErrorGaugeSU3.lean#L376)
+> - [`dirac_eigenvalues_are_yukawa_couplings`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/DiracFSpectrum.lean#L456)
+> - [`substrate_electroweak_unification_theorem`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ElectroweakUnification.lean#L168) *(Castor cycle 24)*
+> - [`SU3_color_from_three_irrationals`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/SU3ColorAndNonAbelianF.lean#L218) *(Tiaki cycle 29)*
+> - QM signature: [`grand_qm_emergence`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/QuantumMechanicsCapstone.lean#L368)
+> - Grand unified assembly: [`omega_theory_grand_unified_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Capstones/OmegaTheoryGrandUnifiedCapstone.lean#L201) *(composes all six Ω generators)*
 >
-> ⚠️ **PLANNED** (cycle 24 Top-3 must-prove #1): `sm_gauge_group_from_error_algebra_aut` — SU(3)×SU(2)×U(1) = Aut(Ω-error-algebra) as a single theorem. See [`ROADMAP_CYCLES_24_43.md`](./LeanFormalizationV2/ROADMAP_CYCLES_24_43.md).
+> ⚠️ **OPEN** — A single headline theorem `sm_gauge_group_from_error_algebra_aut` stating `SU(3) × SU(2) × U(1) = Aut(Ω-error-algebra)` as one composite identity is not yet in the corpus. Tracked as cycle-44+ candidate; the physical content is already covered piecewise by the six anchors above plus `OmegaTheoryGrandUnifiedCapstone`. See the `:TheoremCandidate` graph filter for candidate naming.
 
 *Full development*: Complete Framework document.
 
@@ -661,13 +685,19 @@ Physics emerges from the algebraic space Ω generated by:
 
 ### 10.1 Absolute Predictions
 
-| Prediction | Current Status | Falsification Criterion |
-|------------|----------------|------------------------|
-| No 4th generation fermions | No evidence | Any 4th generation discovery |
-| CPT exactly conserved | 10⁻¹⁸ limit | Any CPT violation |
-| d_eff = 2 at Planck scale | CDT confirms | d_eff ≠ 2 observed |
-| Error ∝ T^(power-law) | Diraq 2024 confirms | Arrhenius exponential observed |
-| Error depends on N, V | Configuration data supports | N, V independence |
+| Prediction | Current Status | Falsification Criterion | Lean witness |
+|------------|----------------|------------------------|---|
+| No 4th *charged* generation fermions | No evidence | Any 4th charged-family discovery | [`three_irrationals_three_generations_pi_hunch_crown_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/GenerationOrdering.lean#L273) |
+| 4 channels include sterile ν (Catalan-G) | Compatible with KATRIN envelope | Sterile-ν falls outside mass window | [`extended_pi_hunch_4channels_paper_headline`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/SterileNeutrinoFromFourthIrrational.lean#L455) · [`sterile_neutrino_mass_window_witness`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/SterileNeutrinoFromFourthIrrational.lean#L372) |
+| CPT exactly conserved | 10⁻¹⁸ limit | Any CPT violation | **OPEN** — no direct CPT theorem yet. Cycle 44+ candidate `cpt_from_substrate_discreteness` tracked in `:TheoremCandidate`. |
+| d_eff = 2 at Planck scale | CDT / AS / LQG all indicate 2 | d_eff ≠ 2 observed | [`d_eff_eq_two_iff`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/DimensionalFlow.lean#L132) |
+| Error ∝ T^(power-law) | Diraq 2024 confirms ✅ | Arrhenius exponential observed | [`gateFidelity_is_powerLaw`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/Predictions.lean#L100) |
+| Error depends on N, V | Configuration data supports | N, V independence | (A.6 of Complete-Framework) |
+| GW carries only tensor modes (no scalar/vector) | LIGO/Virgo consistent | Scalar or vector GW mode discovery | [`GWPolarizationModes.all_nonTensor_forbidden`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/GWPolarizationModes.lean#L268) · [`polarizationCount_eq_two`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/GWPolarizationModes.lean#L195) |
+| Strong CP θ < 10⁻¹⁰ without axion | Substrate beats experiment from N ≥ 6 | Axion-scale θ_QCD observed | [`strong_cp_substrate_beats_experiment_from_N6`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/StrongCPThetaBound.lean#L208) |
+| Proton decays in √2-channel at τ_p ~ 10³⁴⁻³⁶ yr | Super-K limit τ_p > 10³⁴ ✓ | τ_p > 10³⁸ or wrong channel | [`proton_decay_first_GUT_exclusion_in_V2`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/ProtonDecayLowerBound.lean#L446) · [`proton_decay_channel_is_sqrt2`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/ProtonDecayLowerBound.lean#L395) |
+| Ω_total = 1 exactly (no missing budget) | Planck + DESI compatible | Any non-unity Ω total | [`omega_total_equals_one`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/OmegaTotalClosure.lean#L260) |
+| Hubble tension is substrate-real (> 5σ) | SH0ES/Planck at > 5σ ✓ | Tension resolves via systematics | [`hubble_tension_exceeds_5sigma`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/HubbleConstantFit.lean#L226) · [`hubble_tension_eight_sigma_from_substrate_de_gain_rate`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/HubbleTensionFromSubstrateDEGain.lean#L301) |
 
 ### 10.2 Quantitative Predictions
 

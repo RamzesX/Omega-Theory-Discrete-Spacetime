@@ -27,6 +27,13 @@
  *   7. No unexpected `integrity=` on CDN <link> tags outside a whitelist
  *      (SRI hashes are known-breaky; BaseLayout already removed the KaTeX
  *      one — this prevents reintroduction).
+ *   8. Regression guard: no root-relative href/src pointing to the legacy
+ *      sibling-repo base `/Omega-Theory-Discrete-Spacetime` appears anywhere
+ *      in dist HTML (walked recursively). Substring-level check so even a
+ *      template-concat bug like `/Omega-Theory-Discrete-Spacetimefavicon.svg`
+ *      is caught. Legitimate external URLs
+ *      (https://github.com/RamzesX/Omega-Theory-Discrete-Spacetime) are
+ *      whitelisted because the check only matches leading-slash forms.
  *
  * Node stdlib only — no npm deps.
  */
@@ -227,6 +234,66 @@ if (!existsSync(indexHtmlPath)) {
         'use a verified hash or omit the integrity attribute.'
     );
   }
+}
+
+// --- Check 8: Legacy-base regression guard (walks every emitted .html) ---
+// Commit 7b0f236 moved `base` from `/Omega-Theory-Discrete-Spacetime` (the
+// sibling Jekyll repo's slug) to `/chaos-shield`. Any reappearance of the old
+// slug as a ROOT-RELATIVE href/src means either a template regressed to a
+// hardcoded path OR a concat bug produced `/<base><file>` with no separator.
+// Legitimate external URLs like `https://github.com/RamzesX/Omega-Theory-...`
+// are allowed — we only forbid the leading-slash form.
+const FORBIDDEN_BASE = '/Omega-Theory-Discrete-Spacetime';
+function walkHtml(dir) {
+  const out = [];
+  for (const entry of readdirSync(dir)) {
+    const p = join(dir, entry);
+    const st = statSync(p);
+    if (st.isDirectory()) {
+      // Skip _astro/ — it contains hashed CSS/JS, no markup.
+      if (entry === '_astro') continue;
+      out.push(...walkHtml(p));
+    } else if (entry.endsWith('.html')) {
+      out.push(p);
+    }
+  }
+  return out;
+}
+try {
+  const htmlFiles = walkHtml(distDir);
+  const leakRe =
+    /(?:href|src)\s*=\s*["']\/Omega-Theory-Discrete-Spacetime[^"']*["']/gi;
+  const leaks = new Map(); // file -> Set<url>
+  for (const file of htmlFiles) {
+    const body = readFileSync(file, 'utf8');
+    let lm;
+    while ((lm = leakRe.exec(body)) !== null) {
+      const url = lm[0].match(/["']([^"']+)["']/)[1];
+      if (!leaks.has(file)) leaks.set(file, new Set());
+      leaks.get(file).add(url);
+    }
+  }
+  if (leaks.size > 0) {
+    const lines = [];
+    let total = 0;
+    for (const [file, urls] of leaks) {
+      const rel = file.slice(distDir.length + 1);
+      for (const u of urls) {
+        lines.push(`    ${rel}: ${u}`);
+        total++;
+      }
+    }
+    fail(
+      `Regression: ${total} root-relative href/src pointing to legacy base ` +
+        `"${FORBIDDEN_BASE}" (the old sibling-repo slug). Every one will 404. ` +
+        `Fix: use \`${'${baseUrl}<path>'}\` with baseUrl from import.meta.env.BASE_URL, ` +
+        'or absolute https:// URLs for external targets. Offending hrefs:\n' +
+        lines.slice(0, 30).join('\n') +
+        (lines.length > 30 ? `\n    ... (+${lines.length - 30} more)` : '')
+    );
+  }
+} catch (err) {
+  fail(`Legacy-base scan failed: ${err.message}`);
 }
 
 // --- Report ---------------------------------------------------------------

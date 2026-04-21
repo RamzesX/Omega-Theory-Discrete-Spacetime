@@ -37,7 +37,9 @@ order: 20
 > | Synchrotron dual | `synchrotron_grav_redshift_parity` | `Emergence/SynchrotronRadiationCost.lean` (Dschubba) |
 > | Electron becomes photon-like | `electron_becomes_photonlike_in_strong_gravity` | `Emergence/ElectronGravityMassShift.lean` (Diphda) |
 >
-> Build status: 3678 jobs GREEN, 0 sorry, 0 new axioms (still 8 physical constants).
+> Build status (2026-04-21): **3,835 jobs GREEN, 0 sorry, 0 new axioms (still 8 physical constants); 8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph**.
+>
+> **⚠ 2026-04-21 SUPERSEDED NOTICE.** Content of this draft has been rolled into the published paper [`papers/Paper-Dark-Energy-Preview-v1.md`](../papers/Paper-Dark-Energy-Preview-v1.md) (preview v1.6, cycles 14–16 added). This appendix stays as the working scratchpad; cite the preview paper for external use.
 
 ---
 
@@ -199,7 +201,7 @@ It is also **not equivalent to**:
 
 The **closest neighbor** is Kumar et al. QSD 2025 (arXiv pre-print, coherence-locked phase lattice), which reaches a similar substrate-bookkeeping conclusion but without Lean formalization, without the 8-axiom scaffold, and without PDG-matching downstream predictions (Koide, W mass).
 
-OmegaTheory's distinguishing feature: **the full chain Lean-verified at 3678 build jobs GREEN with 0 sorry and 0 new axioms**. Every claim in this appendix is a theorem in Neo4j-indexed source; every dependency traceable.
+OmegaTheory's distinguishing feature: **the full chain Lean-verified at 3,835 build jobs GREEN with 0 sorry and 0 new axioms (8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph as of 2026-04-21)**. Every claim in this appendix is a theorem in Neo4j-indexed source; every dependency traceable.
 
 ---
 

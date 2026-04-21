@@ -8,7 +8,7 @@ order: 22
 # Appendix J — Comprehensive Experimental Catalog (Consolidated)
 
 > ### 🔐 Lean-Verified Predictions (2026-04-20)
-> All predictions below are **formally stated in Lean 4**; every row links to the committed theorem on GitHub (branch `main`, commit `ff825d5`, **3818 jobs GREEN, 0 sorry, 8 physical axioms**). Quick index of the most consequential:
+> All predictions below are **formally stated in Lean 4**; every row links to the committed theorem on GitHub (branch `main`, **3,835 jobs GREEN, 0 sorry, 8 physical axioms; 8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph** as of 2026-04-21; cite commit hash at submission). Quick index of the most consequential:
 >
 > | Prediction | Lean theorem (clickable) | File · line |
 > |---|---|---|
@@ -23,7 +23,7 @@ order: 22
 > | Diraq 2024 power-law fidelity ✅ (verified Nature 627:772) | [`gateFidelity_is_powerLaw`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/Predictions.lean#L100) | `Emergence/Predictions.lean:100` |
 > | Pi-Hunch mass ordering δ_π > δ_e > δ_√2 | [`pi_hunch_mass_ordering`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/PiHunchMassOrdering.lean#L164) | `Predictions/PiHunchMassOrdering.lean:164` |
 >
-> Build: **3818 jobs GREEN, 0 sorry, 8 physical axioms**. Full cross-reference: [`LEAN_VERIFIED_CLAIMS.md`](./LEAN_VERIFIED_CLAIMS.md). Open Lean-targets (cycles 24-43): [`LeanFormalizationV2/ROADMAP_CYCLES_24_43.md`](./LeanFormalizationV2/ROADMAP_CYCLES_24_43.md).
+> Build (2026-04-21): **3,835 jobs GREEN, 0 sorry, 8 physical axioms; 8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph (cycles 24-43 backlog closed 2026-04-21, 60-theorem Mekbuda wave + Grand Capstone V2 landed)**. Full cross-reference: [`../research/LEAN_VERIFIED_CLAIMS.md`](../research/LEAN_VERIFIED_CLAIMS.md).
 >
 > ⚠️ **Note on `diraq_coherence_floor`**: this name appears in older drafts but the live theorem is [`gateFidelity_is_powerLaw`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/Predictions.lean#L100) in `Emergence/Predictions.lean`. The file `Predictions/DiraqCoherence.lean` does not exist in the current tree.
 

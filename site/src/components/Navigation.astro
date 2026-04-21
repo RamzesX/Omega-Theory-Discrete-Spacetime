@@ -173,7 +173,10 @@ const collapsedSections = new Set(['Appendices']); // long list starts collapsed
   .sidebar {
     width: var(--sidebar-width);
     min-width: var(--sidebar-width);
-    background: rgba(10, 14, 26, 0.82);
+    /* Solid-enough bg: transparent sidebars bleed colors from hero gradient
+       into nav text, killing contrast. 0.98 keeps the subtle blur feel but
+       guarantees AAA contrast for sidebar text against the canvas. */
+    background: rgba(10, 14, 26, 0.98);
     backdrop-filter: blur(12px);
     border-right: 1px solid var(--color-seam);
     display: flex;
@@ -264,9 +267,11 @@ const collapsedSections = new Set(['Appendices']); // long list starts collapsed
     padding: var(--space-xs) var(--space-sm);
     background: none;
     border: none;
-    color: var(--color-text-mut);
-    font-size: 0.7rem;
-    font-weight: 600;
+    /* Was --color-text-mut (#7b8399) — 3.5:1 contrast on dark bg, FAILED
+       WCAG AA. Bumped to --color-text-dim (#b4bacb) = 7.8:1 AAA. */
+    color: var(--color-text-dim);
+    font-size: 0.72rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     cursor: pointer;
@@ -285,19 +290,23 @@ const collapsedSections = new Set(['Appendices']); // long list starts collapsed
   .nav-link {
     display: block;
     padding: 6px var(--space-sm);
-    color: var(--color-text-dim);
-    font-size: 0.86rem;
+    /* Was --color-text-dim (#b4bacb) but against gradient-canvas bleed
+       the effective contrast was still low. Use --color-text (#e9ecf4)
+       as default — ~13:1 on solid cobalt bg, AAA. Hover adds magenta glow. */
+    color: var(--color-text);
+    font-size: 0.88rem;
     text-decoration: none;
     border-left: 2px solid transparent;
     margin-left: var(--space-xs);
     transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
-    line-height: 1.35;
+    line-height: 1.4;
     border-bottom: 0;
   }
 
   .nav-link:hover {
-    color: var(--color-text);
-    border-left-color: var(--color-seam);
+    color: var(--color-magenta);
+    border-left-color: var(--color-magenta-2);
+    background: rgba(200, 110, 255, 0.04);
     border-bottom: 0;
   }
 

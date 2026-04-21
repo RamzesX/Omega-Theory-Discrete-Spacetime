@@ -3290,3 +3290,59 @@ import OmegaTheory.Emergence.MatterAsymmetryAndNoNewPhysics
 -- axioms, 0 new `Prop := True`.  Registered as the FINAL CAPSTONE of
 -- OmegaTheory V2.
 import OmegaTheory.Predictions.OmegaTheoryGrandCapstoneV2
+
+-- IrrationalityClasses (Alrescha α Piscium 2026-04-21, cycle 44 first ship):
+-- **Layer 1 of the 4-class separation theorem** — 7 theorems lifting
+-- Rasalas μ Leonis Phase 0 design memos into actual Lean:
+-- `ic_pi_gt_three_numeric`, `ic_e_lt_pi_numeric`, `ic_sqrt2_lt_e_numeric`,
+-- `ic_pi_ne_e`, `ic_pi_ne_sqrt2`, `ic_e_ne_sqrt2`,
+-- `ic_three_irrationals_pairwise_distinct` (three-way Layer 1 bundle),
+-- plus Layer 2 fragment `ic_sqrt2_is_algebraic` (√2 is algebraic via
+-- X² - 2 ∈ ℚ[X]).  Catalan G bundle deferred to sibling file
+-- `IrrationalityClasses.Catalan` (summability infrastructure).
+-- 0 sorry, 0 new axioms, 0 Prop := True.
+import OmegaTheory.IrrationalityClasses.Basic
+-- Catalan infrastructure (Alrescha scaffolding, bounds work handed off to
+-- wizard wave Alrescha-A).  Defines `catalanTerm`, `catalanG`, and proves
+-- `catalanTerm_pos`, `catalanTerm_antitone`.  Full `catalanG_pos/lt_one`
+-- bounds pending wizard using `Antitone.alternating_series_le_tendsto`.
+import OmegaTheory.IrrationalityClasses.Catalan
+
+-- IrrationalityClasses Separation (Minkar ε Corvi 2026-04-21, cycle 44
+-- wave B):  **Layer 4 — four-origin partition**.  Ships the `TruncOrigin`
+-- inductive {Algebraic, EFunction, GFunctionTranscendental,
+-- ConjecturallyIrrational} with `DecidableEq` and `Repr`, the partial
+-- classifier `truncOriginOf : ℝ → Option TruncOrigin`, four tagging
+-- theorems (`truncOriginOf_{sqrt2, e, pi, catalanG}`), and the headline
+-- 6-conjunct separation bundle `truncOrigin_separation_paper_bundle`.
+-- UNCONDITIONAL after Wave-A (Ruchba δ Cassiopeiae) landed the Catalan
+-- numerical inequalities `ic_{sqrt2,e,pi}_ne_catalanG`.  Answers the
+-- classical-Mahler-fails problem: refined partition via constructor
+-- disjointness produces four genuinely distinct cells even though π, e,
+-- and (likely) G all classically sit in Mahler's S class.
+-- 0 sorry, 0 new axioms, 0 `Prop := True`.
+import OmegaTheory.IrrationalityClasses.Separation
+
+-- Algebra umbrella (Kitalpha α Equulei 2026-04-21, cycle 44 first ship):
+-- **V3-for-Lean graph algebra lifted to Lean 4.**  Four sub-modules
+-- (Entity, Arrow, Selection, Laplacian) formalise the Phase 0 design
+-- memos `OmegaTheoryAlgebra/01..04_*.md`:
+--   * 6 core entity types with height function + Axiom-pure-source /
+--     Namespace-strict-sink polarity theorems.
+--   * 15 typed arrows (4 structural + 5 dependency + 3 type-theoretic +
+--     3 computational) with source/target/category functions and
+--     4 category-count lemmas.
+--   * 7 HARD_BLOCK SelectionRule witnesses as a decidable
+--     `ForbiddenTriple` predicate with consistency theorem
+--     `canonical_triples_are_legal` (the 15 core source/arrow/target
+--     triples are all legal).
+--   * 6×6 Hermitian Magnetic Laplacian 𝔄 in canonical alphabetical order
+--     with `LeanAlgebraLaplacian_isHermitian` structural Hermiticity,
+--     trace 10, and per-diagonal-entry lemmas; Namespace decoupling
+--     proved on both row and column.  Spectral theorem (6 eigenvalues)
+--     registered as :TheoremCandidate BLOCKED_ON_MATHLIB — Mathlib
+--     `Matrix.IsHermitian.eigenvalues` needs RCLike/InnerProductSpace
+--     machinery that is a follow-up module.
+-- Mirrors live Neo4j `LeanAlgebra` namespace 1:1 on the core ontology.
+-- 0 sorry, 0 new axioms, 0 Prop := True.
+import OmegaTheory.Algebra

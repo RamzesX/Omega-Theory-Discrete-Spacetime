@@ -12,7 +12,12 @@
     "preview": "astro preview",
     "astro": "astro",
     "audit": "node scripts/audit-dist.js",
-    "copy-content": "node scripts/copy-content.js"
+    "copy-content": "node scripts/copy-content.js",
+    "test": "npm run test:smoke && npm run audit",
+    "test:smoke": "node --test tests/smoke.test.mjs",
+    "test:e2e": "playwright test",
+    "test:e2e:update-snapshots": "playwright test --update-snapshots",
+    "test:all": "npm run test && npm run test:e2e"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",
@@ -25,6 +30,7 @@
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.48.0",
     "typescript": "^5.9.3"
   },
   "engines": {

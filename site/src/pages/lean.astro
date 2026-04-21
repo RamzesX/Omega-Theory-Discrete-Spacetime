@@ -110,66 +110,32 @@ const GH = 'https://github.com/RamzesX/chaos-shield/tree/main/PhysicsPapers/Lean
     <p class="intro">Each layer depends only on layers above it.</p>
 
     <div class="layer-grid">
-      <div class="layer-card">
-        <div class="layer-num">01</div>
-        <h3>Foundations</h3>
-        <p>ErrorAlgebra · ErrorLieAlgebra · ErrorForms · ErrorHopf</p>
-      </div>
-      <div class="layer-card">
-        <div class="layer-num">02</div>
-        <h3>Spacetime</h3>
-        <p>Lattice · Constants · Operators · CausalLattice</p>
-      </div>
-      <div class="layer-card">
-        <div class="layer-num">03</div>
-        <h3>Tensor</h3>
-        <p>Index-free tensor algebra on Z⁴</p>
-      </div>
-      <div class="layer-card">
-        <div class="layer-num">04</div>
-        <h3>Geometry</h3>
-        <p>Metric → Curvature → Hodge → Poincaré → Maxwell</p>
-      </div>
-      <div class="layer-card">
-        <div class="layer-num">05</div>
-        <h3>Defects</h3>
-        <p>Topological defects + information content</p>
-      </div>
-      <div class="layer-card">
-        <div class="layer-num">06</div>
-        <h3>Conservation</h3>
-        <p>Information · Noether · StressEnergy · Correspondence</p>
-      </div>
-      <div class="layer-card">
-        <div class="layer-num">07</div>
-        <h3>HealingFlow</h3>
-        <p>Lyapunov · LaSalle · Convergence</p>
-      </div>
-      <div class="layer-card">
-        <div class="layer-num">08</div>
-        <h3>Emergence</h3>
-        <p>Einstein · QM Capstone · Higgs · Inflation · DarkMatter · Connes</p>
-      </div>
-      <div class="layer-card highlight">
-        <div class="layer-num">09</div>
-        <h3>Predictions</h3>
-        <p>84 PDG-anchored fits · 14 cycles · GitHub ↗</p>
-      </div>
-      <div class="layer-card">
-        <div class="layer-num">10</div>
-        <h3>Torsion</h3>
-        <p>SpinTorsion · BigBounce (Popławski)</p>
-      </div>
-      <div class="layer-card">
-        <div class="layer-num">11</div>
-        <h3>Irrationality</h3>
-        <p>π / e / √2 truncation · δ_comp(N)</p>
-      </div>
-      <div class="layer-card">
-        <div class="layer-num">12</div>
-        <h3>Variational</h3>
-        <p>GraphAction · DiscreteNoether · InfoGeodesics</p>
-      </div>
+      {([
+        { n: '01', name: 'Foundations',  body: 'ErrorAlgebra · ErrorLieAlgebra · ErrorForms · ErrorHopf', dir: 'Foundations' },
+        { n: '02', name: 'Spacetime',    body: 'Lattice · Constants · Operators · CausalLattice',         dir: 'Spacetime' },
+        { n: '03', name: 'Tensor',       body: 'Index-free tensor algebra on Z⁴',                         dir: 'Tensor' },
+        { n: '04', name: 'Geometry',     body: 'Metric → Curvature → Hodge → Poincaré → Maxwell',         dir: 'Geometry' },
+        { n: '05', name: 'Defects',      body: 'Topological defects + information content',               dir: 'Defects' },
+        { n: '06', name: 'Conservation', body: 'Information · Noether · StressEnergy · Correspondence',   dir: 'Conservation' },
+        { n: '07', name: 'HealingFlow',  body: 'Lyapunov · LaSalle · Convergence',                        dir: 'HealingFlow' },
+        { n: '08', name: 'Emergence',    body: 'Einstein · QM Capstone · Higgs · Inflation · DarkMatter · Connes', dir: 'Emergence' },
+        { n: '09', name: 'Predictions',  body: '84 PDG-anchored fits · 14 cycles',                        dir: 'Predictions', highlight: true },
+        { n: '10', name: 'Torsion',      body: 'SpinTorsion · BigBounce (Popławski)',                     dir: 'Torsion' },
+        { n: '11', name: 'Irrationality',body: 'π / e / √2 truncation · δ_comp(N)',                       dir: 'Irrationality' },
+        { n: '12', name: 'Variational',  body: 'GraphAction · DiscreteNoether · InfoGeodesics',           dir: 'Variational' },
+      ]).map((layer) => (
+        <a
+          class:list={['layer-card', { highlight: layer.highlight }]}
+          href={`https://github.com/RamzesX/chaos-shield/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/${layer.dir}`}
+          target="_blank"
+          rel="noopener"
+          aria-label={`Open ${layer.name} Lean sources on GitHub (new tab)`}
+        >
+          <div class="layer-num">{layer.n}</div>
+          <h3>{layer.name} <span class="layer-ext" aria-hidden="true">↗</span></h3>
+          <p>{layer.body}</p>
+        </a>
+      ))}
     </div>
   </section>
 
@@ -413,12 +379,30 @@ lake build --log-level=error</code></pre>
     border-radius: var(--radius-md);
     padding: var(--space-md);
     transition: all var(--transition-fast);
+    /* Now an <a> — reset link defaults so it still LOOKS like a card */
+    display: block;
+    text-decoration: none;
+    color: inherit;
   }
 
   .layer-card:hover {
     border-color: var(--color-primary);
     transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(200, 110, 255, 0.12);
   }
+
+  .layer-card:focus-visible {
+    outline: 2px solid var(--color-magenta);
+    outline-offset: 2px;
+  }
+
+  .layer-ext {
+    color: var(--color-text-mut);
+    font-size: 0.85em;
+    margin-left: 0.3em;
+    transition: color var(--transition-fast);
+  }
+  .layer-card:hover .layer-ext { color: var(--color-magenta); }
 
   .layer-card.highlight {
     background: linear-gradient(145deg, rgba(255, 215, 64, 0.15), rgba(124, 77, 255, 0.1));

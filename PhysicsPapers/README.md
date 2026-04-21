@@ -64,6 +64,19 @@ Diagrams showing:
 
 ---
 
+### 3.5 Cycle-44+ Research Memos (post grand capstone)
+
+**File**: [`LeanFormalizationV2/OmegaTheory/IrrationalityClasses/`](LeanFormalizationV2/OmegaTheory/IrrationalityClasses/) — 14 design memos (Rasalas, μ Leonis, 2026-04-21):
+
+- `00_motivation.md` through `13_novel_mathematics.md` — 4-class separation theorem design, rigorous classification across Liouville / Roth / Mahler / Shidlovsky / Nesterenko hierarchies.
+- **Headline**: 31 `:TheoremCandidate` registered in Neo4j; 7 provable today, 4 statement-ready, 12 blocked on Mathlib, 4 classically open.
+- **Catalan G irrationality is an OPEN PROBLEM** — documented in `05_catalan_G_class.md`.
+- Master plan: [`11_master_plan_skeleton.md`](LeanFormalizationV2/OmegaTheory/IrrationalityClasses/11_master_plan_skeleton.md) — the "puzzle pieces" view of all Omega Algebra still to ship.
+
+**Companion**: [`LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md`](LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md) — per-axiom elimination roadmap; 1/24 eliminated so far (HPW, typeclass pattern). Ceiling: 8 physical axioms.
+
+**Companion**: [`LeanFormalizationV2/NOVEL_MATHEMATICS.md`](LeanFormalizationV2/NOVEL_MATHEMATICS.md) — 32 pieces of novel mathematics catalogued (error algebra, Pi-Hunch primitive, Magnetic-Laplacian pipeline).
+
 ### 4. Technical Appendices
 
 | Letter | Title | Key Content |

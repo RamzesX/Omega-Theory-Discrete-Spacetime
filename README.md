@@ -45,20 +45,22 @@ This simple question started it all.
 
 34 autonomous agent cycles (10 – 43) shipped Jan – Apr 2026. Cycle 43 (Polaris) closed the 60-theorem Mekbuda backlog and delivered the **grand capstone v2**: [`omega_theory_v2_final_meta_capstone`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607) uniting the cycle-23 `omega_theory_grand_capstone` with the full three-channel (π / e / √2) Standard-Model-plus-cosmology partition and the fourth Catalan-G sterile channel.
 
-### Corpus split: OmegaTheory V2 vs. integrated Mathlib
+### Three-way corpus split — what's **proved**, what's **open in graph**, what's **Mathlib foundation**
 
-Omega-Theory is not an isolated corpus — every one of **our 8 996 theorems** is typed against the ~175 K-theorem **Mathlib v4.29.0** backbone, with **3.3 M cross-namespace composition edges** linking the two. The numbers that matter, side by side:
+The project has **three distinct tiers of mathematical content**, and we report all three everywhere:
 
-| Metric | OmegaTheoryV2 (own) | Mathlib (integrated) | V2 build total |
-|---|---:|---:|---:|
-| Theorems | **8 996** | 175 137 | **184 133** |
-| Definitions | **4 465** | 32 917 | **37 382** |
-| Axioms | **24** (8 physical + 15 Hermite-Padé research + 1 `π_transcendental`) | 6 | 30 |
-| Lean files | ~211 structured (`OmegaTheory/`) | 7 869 | ~8 080 |
-| Sorry / admit | **0** | 0 | **0** |
-| Build jobs | — | — | **3 835 green** |
+| Tier | What it means | Theorems | Defs | Axioms |
+|---|---|---:|---:|---:|
+| 🔷 **Omega Lean** (proved in our code) | compiled, 0 sorry, on every `lake build` | **8 996** | **4 465** | 24 total (paper: **8 physical**) |
+| 🔶 **Graph frontier** (discovered, waiting) | `:TheoremCandidate` + `:GraphFinding` in Neo4j, not yet Lean-proved | **166** open (60 Mekbuda CLOSED) | — | — |
+| 🔹 **Mathlib foundation** (what we build on) | integrated via imports + ~3.3 M cross-namespace edges | 175 137 | 32 917 | 6 |
+| **Total in build** | everything `lake build` certifies | **184 133** | **37 382** | **30** |
 
-All 184 133 theorems recompile on every `lake build`. The paper-facing story is **8 physical axioms** — the 15 Hermite-Padé axioms are clearly labelled conjectural number-theory lemmas sealed inside `Irrationality/HermitePade/`, and `Real.pi_transcendental` is waiting on Mathlib's Lindemann–Weierstrass port.
+- **What we proved** (🔷): every one of the 8 996 OmegaTheoryV2 theorems has full proof_body + source_span, compiles GREEN, 0 sorry.
+- **What graph analytics found** (🔶): the Magnetic Laplacian + Leiden pipeline surfaced **166 candidate theorems** (12 predicted bridges, 7 missing duals, Catalan-G mass derivation, Kempf β/γ/δ pathways, Pi-Hunch frontier) + **44 paper-worthy `:GraphFinding`** empirical observations + **32 `:GrothendieckRecipe`** reproducible experiments + **677 `:SubsystemNavigator`** Leiden communities (Q = 0.89).
+- **What we take from Mathlib** (🔹): the full 175 K-theorem library is our proof foundation — not redeclared, cited via imports. The **3.28 M cross-namespace edges** (2.03 M Omega → Mathlib + 1.25 M Mathlib → Omega) make the integration auditable in Neo4j.
+
+The paper-facing axiom story is **8 physical axioms** (c, ℏ, G_N, k_B + positivity). The remaining 16 are Hermite-Padé / Siegel-Shidlovskii / Lindemann-Weierstrass **placeholders** waiting on upstream Mathlib — each deletes the day Mathlib ships it (cf. §"Axiom debt" below).
 
 ### Neo4j knowledge graph (integration receipts)
 
@@ -68,11 +70,73 @@ All 184 133 theorems recompile on every `lake build`. The paper-facing story is 
 | Total edges | **3 949 420** |
 | OmegaTheoryV2 → Mathlib edges | **2 029 334** |
 | Mathlib → OmegaTheoryV2 edges | **1 253 787** |
-| `GraphFinding` nodes | 95 (44 paper_worthy) |
-| `TheoremCandidate` nodes | 144 |
-| `SubsystemNavigator` nodes | 677 (Leiden communities over the full 244 K-node corpus, modularity Q ≈ 0.45) |
+| `GraphFinding` nodes | **88** (44 paper_worthy) |
+| `TheoremCandidate` nodes — **still waiting to prove** | **166** (Mekbuda's 60-theorem backlog **CLOSED**; 106 remain open = Navi MP-k bridges + Connes/Kempf gaps + Catalan-G mass derivation + Pi-Hunch frontier) |
+| `SubsystemNavigator` nodes | 677 (Leiden over 184K-node corpus, post-capstone **Q = 0.89 at γ = 0.5**) |
+| `GrothendieckRecipe` nodes | 32 (reproducible Cypher + GDS experiments) |
 | Cycles shipped | **34 (cycles 10 – 43)** |
 | Headline predictions | **~130** (cycles 9 – 43) |
+
+### 🧮 Source-level vs environment reality-check (no graph)
+
+For transparency — numbers above come from the Lean `Environment` (via `lake exe dump_decls`). The corresponding *author-written* content, counted directly from `.lean` files with `grep`:
+
+| | OmegaTheoryV2 source | env (above) | Δ | Explanation |
+|---|---:|---:|---:|---|
+| Theorems + lemmas | **7 107** | 8 996 | +1 889 | env adds auto-generated helpers (`.casesOn`, `._eq_1`, `.injEq`, `match_*`) |
+| Definitions | **2 129** | 4 465 | +2 336 | env includes structure projections + instance synthesises |
+| Axioms | 25 | 24 | — | match (−1 alias) |
+| `.lean` files | 428 | — | — | includes Meta/Probe/capstones beyond the 211 "structured" paper-facing files |
+
+→ **Author-written proof content: 7 107 theorems/lemmas + 2 129 definitions = 9 236 source declarations.** The env total of 13 461 just adds Lean's elaboration bookkeeping.
+
+### 🧬 Novel mathematics we invented (not in Mathlib)
+
+OmegaTheory-native constructs the graph retains with no Mathlib parent — these are ours:
+
+| Concept | Lean file(s) | Graph nodes |
+|---|---|---:|
+| `computationalUncertainty N` (Leibniz-bound δ_comp — the Pi-Hunch primitive) | `Irrationality/Uncertainty.lean` | — |
+| `ErrorAlgebra`, `ErrorLieAlgebra`, `ErrorForms`, `ErrorHopf` (error-graded substrate algebra) | `Foundations/Error*.lean` | — |
+| `IrrationalChannel4` (π / e / √2 / Catalan-G enum + bijection to 4 generations) | `Predictions/SterileNeutrinoFromFourthIrrational.lean` | 22 |
+| `catalanGTruncError`, `catalan_g_channel_distinct_from_three` | ibid. | — |
+| `BabyUniverse`, `ReservoirBounceInterface` (Popławski bounce + DE → sterile-ν bridge) | `Torsion/BigBounce.lean`, `Emergence/DarkEnergyToBabyUniverse.lean` | 103 + 13 |
+| `HealingFlow`, `healingFlow_drives_inflation`, `functional_zero_implies_equilibrium` | `HealingFlow/*.lean` | 187 |
+| `pi_hunch_mass_ordering`, `irrationality_implies_quantum_uncertainty`, Nashira kernel `δ^(4/7)/(−ln δ)` | `Irrationality/*`, `Emergence/LeptonMassFromIrrationals.lean`, `Predictions/PiHunchQuantitative.lean` | 38 |
+| `HpwEliminableRegime` (7-regime general-relativity eliminator, HPW axiom **deleted** 2026-04-17) | `Emergence/Hpw*.lean` | 22 |
+| `ConnesDFExtended`, `OmegaCapstoneV2Bundle` (cycle-43 capstone structure) | `Emergence/ConnesCalibrationAndFourChannels.lean`, `Predictions/OmegaTheoryGrandCapstoneV2.lean` | 12 + 15 |
+| 55-node sterile-neutrino sector (Catalan-G dark matter) | `Predictions/SterileNeutrinoFromFourthIrrational.lean` + 20 cycle-sequels | 55 |
+| `MagneticLaplacian_Lean` 6×6 Hermitian at g = 1/4 (V3-for-Lean paper's central object) | `.neo4j/lean_magnetic_laplacian.cypher` + empirical verify | 1 + 15 components |
+| 3-level `SubsystemNavigator` / `EntityNavigator` / `NavigationMaster` ontology | `.neo4j/bootstrap_omegatheory.cypher` | 677 + 18 + 1 |
+
+None of these appear in Mathlib — they form the OmegaTheoryAlgebra backbone documented in [`PhysicsPapers/OmegaTheoryAlgebra/`](PhysicsPapers/OmegaTheoryAlgebra/).
+
+> **32 pieces of novel mathematics — [`NOVEL_MATHEMATICS.md`](PhysicsPapers/LeanFormalizationV2/NOVEL_MATHEMATICS.md).** Full catalogue (2026-04-21, Rasalas μ Leonis): error algebra tower, Pi-Hunch computational-uncertainty primitive, Magnetic-Laplacian theorem-corpus pipeline, baby-universe structure, 4-channel / 4-generation bijection, heat-kernel Seeley-DeWitt coefficients. **6 are Mathlib-upstream candidates.**
+
+### 🧭 Four-class irrationality separation (cycle-44+ puzzle piece)
+
+The 4-channel / 4-generation partition (π / e / √2 / Catalan-G) demands that the four constants inhabit four distinct irrationality classes. **At the Mahler {A, S, T, U} classification this is FALSE** (π, e, possibly G all conjecturally S-class). We refine to a constructor-disjoint **4-origin partition** `TruncOrigin = {Algebraic, EFunction, GFunctionTranscendental, ConjecturallyIrrational}` which provably gives four distinct cells. Catalan G irrationality itself is an **OPEN CLASSICAL PROBLEM** (Zudilin 2019).
+
+- Full design memos (14 files): [`PhysicsPapers/LeanFormalizationV2/OmegaTheory/IrrationalityClasses/`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/IrrationalityClasses/)
+- Headline integer: **31 `:TheoremCandidate` nodes** registered in the graph (7 provable today · 4 statement-ready · 12 blocked on Mathlib · 4 classically open/conjectural).
+- Master plan skeleton (the "puzzle-pieces view"): [`11_master_plan_skeleton.md`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/IrrationalityClasses/11_master_plan_skeleton.md).
+- **% of physics formalised (rough, methodology in `10_proof_count.md`): ≈ 72%** (23 / 32 paper-worthy domain slots fully proved, 2 partial, 7 frontier).
+- Axiom elimination methodology: [`AXIOM_ELIMINATION_METHODOLOGY.md`](PhysicsPapers/LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md) — 1 / 24 eliminated (HPW), 16 / 24 eliminable on upstream Mathlib progress, 8 / 24 definitional (physical constants).
+
+**Goal statement, reproduced for tracking.** *"Create the Omega algebra that completely describes physics — or as much as we can prove."* We are collecting puzzle pieces, one provable sub-theorem at a time. The four-class separation is the cycle-44+ irrationality piece.
+
+### 📜 Axiom debt — what we declare as `axiom` today is proof work tomorrow
+
+The **24 axioms** split into three camps:
+
+| Camp | Count | Policy |
+|---|---:|---|
+| **Physical constants** | 8 | `c, ℏ, G_N, k_B` + positivity. Genuine inputs. Never provable. |
+| **Upstream Mathlib debt** (`Real.pi_transcendental`, 15 × Hermite-Padé / Siegel-Shidlovskii / Lindemann-Weierstrass) | 16 | Declared `axiom` **as placeholders** while Mathlib catches up. Each carries a comment naming the upstream target (`Mathlib.NumberTheory.Transcendental.*`). When Mathlib ships it, we **delete the axiom and port the proof** — and every cycle using it auto-upgrades to an unconditional theorem. This builds a living ledger of "axioms paid back". |
+
+HPW (`hpw_laplacian_ricci_convergence`) followed the same pattern and was **DELETED 2026-04-17** after all 7 regimes became HPW-eliminable. The Hermite-Padé block is the next candidate family. The paper-facing story correctly stays at **8 physical axioms** — the rest is transparently labelled temporary bookkeeping, not new physics.
+
+This **axiom → theorem lifecycle** is itself a contribution: the repo doubles as a catalogue of "proof debts we owe to Mathlib" with explicit target names, making the formalization's convergence to the mathematical ideal auditable.
 
 ### 🏆 Lean-Verified Highlights (what this project actually proves)
 
@@ -171,7 +235,7 @@ Plus **~120 additional headline theorems** from cycles 9-43 (see `PhysicsPapers/
 
 ### 🔗 Lean-Verified Predictions — direct GitHub badges
 
-Each badge below links to the exact line of the committed theorem on `main`. Build provenance: **3 835 jobs GREEN / 0 sorry / 8 physical axioms** (post-cycle-43, 2026-04-21). Full cross-reference: [`PhysicsPapers/LEAN_VERIFIED_CLAIMS.md`](PhysicsPapers/LEAN_VERIFIED_CLAIMS.md). Cycles 24-43 index: [`ROADMAP_CYCLES_24_43.md`](PhysicsPapers/LeanFormalizationV2/ROADMAP_CYCLES_24_43.md).
+Each badge below links to the exact line of the committed theorem on `main`. Build provenance: **3 835 jobs GREEN / 0 sorry / 8 physical axioms** (post-cycle-43, 2026-04-21). Full cross-reference: [`PhysicsPapers/research/LEAN_VERIFIED_CLAIMS.md`](PhysicsPapers/research/LEAN_VERIFIED_CLAIMS.md). Cycles 24-43 index: [`ROADMAP_CYCLES_24_43.md`](PhysicsPapers/LeanFormalizationV2/ROADMAP_CYCLES_24_43.md).
 
 **Grand meta-capstone (paper abstract, cycle 43 Polaris):**
 
@@ -381,7 +445,7 @@ Unlike typical physics papers, Omega-Theory includes **10,000+ lines of Lean 4 p
 
 **8 physical axioms (by design, not sorry)**: c, c_pos, ℏ, ℏ_pos, G_N, G_N_pos, k_B, k_B_pos — the only non-derived inputs apart from Mathlib. Plus 1 `Real.pi_transcendental` awaiting Mathlib's Lindemann–Weierstrass (not a project axiom in the long run) and **15 Hermite-Padé research axioms** sealed inside `Irrationality/HermitePade/` (conjectural number-theory lemmas, clearly labelled as open mathematics not physics). Graph audit confirms **24 `Axiom` nodes total** in the OmegaTheoryV2 namespace; the paper-facing story remains "8 physical axioms".
 
-[**→ V2 Formalization**](PhysicsPapers/LeanFormalizationV2/) | [**→ V2 README**](PhysicsPapers/LeanFormalizationV2/README.md) | [**→ V2 Build**](PhysicsPapers/LeanFormalizationV2/BUILD.md)
+[**→ V2 Formalization**](PhysicsPapers/LeanFormalizationV2/) | [**→ V2 README**](PhysicsPapers/LeanFormalizationV2/README.md) | [**→ V2 Status**](PhysicsPapers/LeanFormalizationV2/STATUS.md)
 
 ---
 

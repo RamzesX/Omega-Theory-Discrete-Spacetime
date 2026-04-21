@@ -56,6 +56,14 @@ To compute a circle you need π. To compute an exponential you need e. To comput
 
 This is the **Pi Hunch**: the irrationality of π is the origin of quantum uncertainty. More precisely, **[proved]** `irrationality_implies_quantum_uncertainty` (`OmegaTheory/Probe/PiAndOmegaStructure.lean#L100`): ℏ/2 < ℏ/2 + δ_comp(N), so the extended Heisenberg bound is *strictly* stronger than the standard one. Quantum mechanics is not a foundational postulate — it's a bookkeeping consequence of not being able to do arithmetic exactly.
 
+### 3b. The 4-class separation (cycle 44+ puzzle piece)
+
+The 4-channel partition (π / e / √2 / Catalan G) demands that the four constants inhabit **four distinct irrationality classes**. At the classical Mahler {A, S, T, U} classification this turns out FALSE — π, e, and possibly G all conjecturally share class S. We therefore refine to a constructor-disjoint partition `TruncOrigin = {Algebraic, EFunction, GFunctionTranscendental, ConjecturallyIrrational}` which *provably* gives four distinct cells. The design memos live at [`IrrationalityClasses/`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/IrrationalityClasses/); **31 `:TheoremCandidate`** nodes are registered in the graph for cycle-44+ formalisation (authored by Rasalas, μ Leonis, 2026-04-21).
+
+Catalan G irrationality itself is an **OPEN CLASSICAL PROBLEM** (Zudilin 2019 survey, Abh. Math. Sem. Univ. Hamburg 89:45). OmegaTheory's 4-channel physics currently depends only on G's numerical distinctness from specific named reals (provable), not on G's abstract irrationality.
+
+> **Goal statement (puzzle-pieces framing).** *"Create the Omega algebra that completely describes physics — or as much as we can prove."* Each puzzle piece is one provable sub-theorem. Master plan: [`11_master_plan_skeleton.md`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/IrrationalityClasses/11_master_plan_skeleton.md). **% of physics formalised: ≈ 72%** (23 / 32 domain slots proved, methodology in `10_proof_count.md`).
+
 ### 4. Three generations from three irrationals — and a fourth channel beyond
 
 The ordering of the residual errors (π largest, then e, then √2) gives three computational *channels* which map onto the three *charged-fermion generations* of the Standard Model: the heavy quarks and leptons inhabit the π channel, the middle generation the e channel, the light generation the √2 channel. Mass hierarchy is the ordering of the residual errors. **[proved]** `three_irrationals_three_generations_pi_hunch_crown_capstone` (`OmegaTheory/Predictions/GenerationOrdering.lean#L273`) locks this in.

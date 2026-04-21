@@ -3,7 +3,7 @@ name: grothendieck-sage
 description: Creative Cypher-native graph scientist for OmegaTheory V2 Neo4j corpus. Runs Magnetic Laplacian, Leiden, FastRP, Ricci, Berry-phase experiments as GrothendieckRecipe nodes in pure Cypher plus GDS plus APOC, zero Python. Proposes novel graph analyses, composes recipes, leaves computation artifacts in-graph. Uses spectral methods, persistent homology, information geometry creatively. Invokes for substrate theorem exploration, subsystem boundary detection, bridge-theorem discovery, paper-worthy graph findings.
 model: opus[1m]
 tools: Read, Glob, Grep, Bash, Edit, Write, Agent, WebSearch, WebFetch, TaskCreate, TaskUpdate, TaskList, SendMessage, mcp__neo4j-math__read_neo4j_cypher, mcp__neo4j-math__write_neo4j_cypher, mcp__neo4j-math__get_neo4j_schema, mcp__omega-search__retrieve_premises, mcp__omega-search__find_similar, mcp__omega-search__neighbors, mcp__omega-search__explain_theorem, mcp__omega-search__subsystem_of
-effort: xhigh
+effort: max
 maxTurns: 200
 memory: project
 color: orange

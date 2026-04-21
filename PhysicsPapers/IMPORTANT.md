@@ -1,16 +1,37 @@
 # OmegaTheory V2 — What To Do Next (Post-Capstone Roadmap)
 
-**Last updated**: 2026-04-21 (post-cycle-43 grand-capstone lock). Read this FIRST before starting any work.
+**Last updated**: 2026-04-21 (post-cycle-43 grand-capstone lock; graph re-aligned by Algenib, γ Pegasi, pass 2 2026-04-21; **IrrationalityClasses scope added by Rasalas, μ Leonis, pass 3 2026-04-21**). Read this FIRST before starting any work.
+
+> ## 🧭 Cycle-44+ priority: the four-class irrationality separation theorem
+>
+> The 4-channel / 4-generation partition presupposes four distinct irrationality classes for {π, e, √2, Catalan G}. At the classical Mahler {A, S, T, U} level this is FALSE (π, e, G all conjecturally S). We refine to a constructor-disjoint `TruncOrigin = {Algebraic, EFunction, GFunctionTranscendental, ConjecturallyIrrational}` which DOES give four cells. **Design fully memorised** in [`LeanFormalizationV2/OmegaTheory/IrrationalityClasses/`](LeanFormalizationV2/OmegaTheory/IrrationalityClasses/) (14 memos). **31 `:TheoremCandidate` nodes registered** in graph for cycle-44+ agents to pick up.
+>
+> Related companions: [`AXIOM_ELIMINATION_METHODOLOGY.md`](LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md) (1/24 eliminated, 16 eliminable), [`NOVEL_MATHEMATICS.md`](LeanFormalizationV2/NOVEL_MATHEMATICS.md) (32 items inventoried). Master plan: [`11_master_plan_skeleton.md`](LeanFormalizationV2/OmegaTheory/IrrationalityClasses/11_master_plan_skeleton.md). **% physics formalised: ≈ 72%.**
 
 ---
 
-## Current State (verified GREEN, 3,835 jobs)
+## Current State — THREE-WAY SPLIT (graph-audited 2026-04-21)
+
+The project has three complementary layers. Every number below is live-verified on the Neo4j `math` container:
+
+| | **Omega-Lean** — what we've PROVED | **Graph** — what we've DISCOVERED but not yet proved | **Mathlib** — what we BUILD ON |
+|---|---:|---:|---:|
+| Theorems | **8,996** (`:Theorem {namespace:'OmegaTheoryV2'}`) | **175** `:TheoremCandidate` (106 auto-matched · 70 genuinely OPEN) | **175,137** (`:Theorem {namespace:'Mathlib'}`) |
+| Definitions | **4,465** | — | **32,917** |
+| Axioms | **24 total** (8 physical + 1 π-transcendental + 15 Hermite-Padé) | — | **6** |
+| Paper-worthy findings | — | **53** of 105 `:GraphFinding` | — |
+| Grothendieck recipes | — | **33** `:GrothendieckRecipe` reproducible experiments | — |
+| Leiden communities | — | **677** `:SubsystemNavigator` | — |
+| Lean files | **399** `:LeanFile` nodes (428 files on disk; 29 Meta/test files not ingested) | — | 3,183 `:LeanFile` (7,869 on disk) |
+| Build jobs | **3,835 GREEN · 0 sorry** | — | cached via `lake exe cache get` |
+
+**Key narrative**:
+- **Omega-Lean** = the machine-checked backbone (8,996 theorems atop 24 axioms — of which only 8 are physical).
+- **Graph** = the discovery frontier (53 paper-worthy findings + 70 genuinely-open `:TheoremCandidate`s awaiting formalization).
+- **Mathlib** = the foundation (175,137 theorems linked through 3.28M cross-namespace `APPLIES` edges — no Omega-Lean theorem is "standalone"; each composes against Mathlib).
 
 ```
-8 physical axioms (c, ℏ, G_N, k_B + their 4 positivity axioms)
-0 sorry
-0 mathematical axioms (HPW deleted by Atria, cycles 14–15)
-~211 Lean files, 8,996 OWN theorems (on top of 175,137 integrated Mathlib → 184,133 total)
+HPW axiom DELETED by Atria (cycles 14-15), eliminable on all 7 regimes.
 Lean v4.29.0 + Mathlib v4.29.0
 Cycles 2–43 all GREEN; cycle-43 grand capstone LOCKED (Polaris).
 ```
@@ -41,23 +62,23 @@ The capstone is a **propositional bundle** over seven conjuncts, each citing an 
 
 ### What's DONE — 60-theorem Mekbuda backlog closed (cycles 24–43)
 
-| Area | Status | Key headline |
-|------|--------|--------------|
-| Electroweak unification (Castor 24) | ✅ | `substrate_electroweak_unification_theorem` |
-| Ω_total = 1 cosmology closure (Situla 25) | ✅ | `omega_total_equals_one` |
-| Baby-universe sterile ν / DM (Gatria 26) | ✅ | `sterile_neutrino_from_fourth_irrational` |
-| Connes 4-channel calibration (Hydor 27) | ✅ | `Z_sterile_from_connes_DF_eigenvalue` |
-| Cross-sector bridges (Kitalpha 28) | ✅ | `CrossSectorBridges.lean` |
-| SU(3) + non-abelian F (Tiaki 29) | ✅ | `SU3_color_from_three_irrationals` |
-| Connes D_F → Yukawa masses (Avior 30) | ✅ | `mass_ratio_e_mu_from_sqrt2_e_channel_ratio` |
-| π-hunch quantization (Syrma 31) | ✅ | Pi-Hunch deep-chain completion |
-| Boundary crossings (Khambalia 32) | ✅ | cross-formalism bridges |
-| Baryogenesis / leptogenesis (Alkes 33) | ✅ | `BaryogenesisLeptogenesis.lean` |
-| Cyclic cosmology (Situla 34) | ✅ | `CyclicCosmology.lean` |
-| Higgs + full mass hierarchy (Achird 35) | ✅ | `higgs_mass_hierarchy_first_bundle_in_V2` |
-| Quantum gravity / BH info (Electra 37) | ✅ | `QuantumGravityBHInfo.lean` |
-| Cycles 36, 38–42 (wizard-only deliveries) | ✅ | folded into capstone bundle |
-| Grand Capstone V2 (Polaris 43) | ✅ | `omega_theory_v2_final_meta_capstone` |
+| Area | Status | Key headline (graph-verified name) |
+|------|--------|-----------------------------------|
+| Electroweak unification (Castor 24) | ✅ | `ElectroweakUnification.substrate_electroweak_unification_theorem` |
+| Ω_total = 1 cosmology closure (Situla 25) | ✅ | `OmegaTotalClosure.omega_total_equals_one` |
+| Baby-universe sterile ν / DM (Gatria 26) | ✅ | `SterileNeutrinoFromFourthIrrational.sterile_neutrino_mass_from_fourth_irrational` |
+| Connes 4-channel calibration (Hydor 27) | ✅ | `ConnesCalibrationAndFourChannels.Z_sterile_from_connes_DF_eigenvalue` |
+| Cross-sector bridges (Kitalpha 28) | ✅ | file `Emergence/CrossSectorBridges.lean` (multiple headlines) |
+| SU(3) + non-abelian F (Tiaki 29) | ✅ | `SU3ColorAndNonAbelianF.SU3_color_from_three_irrationals` |
+| Connes D_F → Yukawa masses (Avior 30) | ✅ | `ConnesDFYukawaMass.mass_ratio_e_mu_from_sqrt2_e_channel_ratio` |
+| π-hunch quantization (Syrma 31) | ✅ | `Predictions.pi_hunch_mass_ordering` + Pi-Hunch deep-chain completion |
+| Boundary crossings (Khambalia 32) | ✅ | `Emergence/CrossSectorBridges.lean` |
+| Baryogenesis / leptogenesis (Alkes 33) | ✅ | file `Emergence/BaryogenesisLeptogenesis.lean` |
+| Cyclic cosmology (Situla 34) | ✅ | file `Emergence/CyclicCosmology.lean` |
+| Higgs + full mass hierarchy (Achird 35) | ✅ | `HiggsAndMassHierarchy.higgs_mass_hierarchy_first_bundle_in_V2` |
+| Quantum gravity / BH info (Electra 37) | ✅ | `QuantumGravityBHInfo.black_hole_information_paradox_fully_resolved` |
+| Cycles 36, 38–42 (wizard-only deliveries) | ✅ | folded into `GravitySectorUnifiedBundle` + `MatterSectorUnifiedBundle` |
+| Grand Capstone V2 (Polaris 43) | ✅ | `GrandCapstoneV2.omega_theory_v2_final_meta_capstone` |
 
 ### What's DONE earlier (cycles 2–23; don't redo)
 
@@ -84,13 +105,24 @@ See **`OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md`** (Navi, γ Cassiopeiae,
 2026-04-21) — eight-pass MP-1…MP-8 synthesis over the 184K-theorem corpus
 graph that names missing mathematical structure.
 
-### Frontier 1 — Absorb the 44 paper_worthy GraphFindings into Lean
-The graph now carries **95 `:GraphFinding` nodes**, of which **44 are tagged
-`paper_worthy`**. Each is a graph-certified missing bridge with a predicted
-Lean signature. Of the 144 `:TheoremCandidate` nodes, 60 (the Mekbuda backlog)
-are now CLOSED by cycles 24–43; the remaining 84 are the prioritised Q for
-cycles 44+. Query plan in `plans/THEOREM_BACKLOG_CYCLES_24_43.md` (closed list)
-+ Neo4j `:GraphFinding {paper_worthy: true}` filter for the fresh set.
+### Frontier 1 — Absorb the 53 paper_worthy GraphFindings into Lean
+The graph now carries **105 `:GraphFinding` nodes**, of which **53 are tagged
+`paper_worthy`** (graph-audited 2026-04-21). Each is a graph-certified missing
+bridge with a predicted Lean signature. Of the 175 `:TheoremCandidate` nodes,
+106 already have a matching theorem in the corpus (the Mekbuda backlog plus
+incidental closures through cycles 24–43); the remaining **70 are genuinely
+open** and form the prioritised queue for cycles 44+. Query the live state with
+```cypher
+MATCH (tc:TheoremCandidate)
+OPTIONAL MATCH (t:Theorem {namespace:'OmegaTheoryV2'})
+  WHERE t.name = tc.name OR t.name ENDS WITH ('.' + tc.name)
+RETURN tc.name, tc.priority, tc.cycle,
+       CASE WHEN t IS NULL THEN 'OPEN' ELSE 'CLOSED' END AS status
+ORDER BY status, tc.cycle DESC, tc.priority
+```
+See also `plans/THEOREM_BACKLOG_CYCLES_24_43.md` (historic Mekbuda closure list)
+plus the Navi MP-5 through MP-8 output in
+`OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md` for bridge/dual-pair targets.
 
 ### Frontier 2 — Matter-sector numerical tightening
 The gauge sector is 100%, the mass sector is functional (e/μ ratio, top/electron
@@ -224,7 +256,7 @@ These agents work as a PAIR in most cycles: creative proposes → wizard formali
 GR    QM    SM  ← Dirac/Majorana split, 4 channels
  │     │     │
 Einstein 10   20   (⇄ Matter sector NOW FUNCTIONAL — cycles 24–43)
- eqs  post  pred   cycles 44+ → CP-phase, absolute masses, 44 paper_worthy findings
+ eqs  post  pred   cycles 44+ → CP-phase, absolute masses, 53 paper_worthy findings
          │
     GRAND CAPSTONE V2 (Polaris cycle 43)
     grand_capstone_v2_substrate_SM_plus_gravity_plus_DM_plus_DE
@@ -236,18 +268,21 @@ Einstein 10   20   (⇄ Matter sector NOW FUNCTIONAL — cycles 24–43)
 
 Five active namespaces on `math` container (bolt://localhost:7687,
 neo4j/omegatheory2026):
-- `OmegaTheoryV2` — 8,996 OWN Theorems + 4,465 Definitions + 24 axioms
-- `Mathlib` — 175,137 integrated Theorems + 3,183 LeanFile nodes
-- `LeanAlgebra` — V3 schema scaffold (6 QuiverVertex, 15 QuiverArrow, MagneticLaplacian)
-- `CheckItOutSystem`, `subscription` — non-physics namespaces (marketplace project)
+- `OmegaTheoryV2` — **Omega-Lean layer**: 8,996 `:Theorem` + 4,465 `:Definition` + 24 `:Axiom` + 399 `:LeanFile` nodes (proved + machine-checked).
+- `Mathlib` — **Foundation layer**: 175,137 `:Theorem` + 32,917 `:Definition` + 6 `:Axiom` + 3,183 `:LeanFile` nodes (integrated as composition backbone).
+- `LeanAlgebra` — **V3 schema scaffold**: 6 `:QuiverVertex`, 15 `:QuiverArrow`, 12 `:QuiverComposition`, 7 `:SelectionRule`, 1 `:MagneticLaplacian` (algebraic laws, no data).
+- `CheckItOutSystem`, `subscription` — non-physics namespaces (marketplace project, co-hosted).
 
 Total edges across the Lean-as-graph corpus: **~3.95M** typed arrows
 (2.03M OmegaTheoryV2→Mathlib APPLIES + 1.25M Mathlib→OmegaTheoryV2 back-references
 + intra-namespace remainder).
 
-Graph carries:
-- **95 `:GraphFinding` nodes** (44 paper_worthy)
-- **144 `:TheoremCandidate` nodes** (60 closed as the Mekbuda backlog, 84 open for cycles 44+)
+**Graph-only ("discovery") layer — cycles 44+ frontier**:
+- **105 `:GraphFinding` nodes** (53 paper_worthy, 52 informative/trace).
+- **175 `:TheoremCandidate` nodes** (106 already have a matching `:Theorem` → auto-closed; 70 genuinely open; 43 of those high-priority).
+- **33 `:GrothendieckRecipe` nodes** (reproducible graph experiments from Navi / Algieba / Mekbuda / Meissa / earlier agents).
+- **677 `:SubsystemNavigator` nodes** (Leiden communities from the V3-for-Lean pipeline, γ-sweep Q = 0.89 at γ = 0.5, Navi 2026-04-21).
+- Navi's MP-1…MP-8 synthesis added 23 bridge / dual / π-frontier `:TheoremCandidate` rows and 8 new recipes (cycles 44+ roadmap anchors).
 
 Ingest pipeline: `LeanFormalizationV2/.neo4j/` (Cypher + Python loaders).
 See `LeanFormalizationV2/.neo4j/CLAUDE.md` for the authoritative loader list.
@@ -297,6 +332,6 @@ on the regex path.
 
 **The dream (still)**: derive the masses of ALL elementary particles from first principles.
 **The capstone (now landed)**: Polaris cycle 43 — QM + GR + full SM + DM + DE + bounce derived from 8 constants and 4 irrationals.
-**The forward arc**: cycles 44+ close the 84 open `:TheoremCandidate` nodes,
-absorb the 44 paper_worthy GraphFindings, and drive absolute particle masses
-from Connes D_F alone.
+**The forward arc**: cycles 44+ close the 70 genuinely-open `:TheoremCandidate`
+nodes, absorb the 53 paper_worthy GraphFindings, and drive absolute particle
+masses from Connes D_F alone.

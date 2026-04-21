@@ -57,6 +57,13 @@
 ### Supporting Documents
 16. [`unified-theory-diagram.md`](PhysicsPapers/unified-theory-diagram.md) - **Visual Architecture**: Complete 11-level framework diagram
 17. [`Complete-Omega-Theory-Unified-Framework.md`](PhysicsPapers/Complete-Omega-Theory-Unified-Framework.md) - **Full Technical Treatment**: 50+ pages comprehensive development
+
+### Cycle-44+ Research (2026-04-21)
+18. [`IrrationalityClasses/`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/IrrationalityClasses/) — **The 4-class separation theorem** (Rasalas, μ Leonis). 14 design memos rigorously classifying {π, e, √2, Catalan G} across Liouville / Roth / Mahler / Shidlovsky hierarchies. Headline: 31 `:TheoremCandidate` registered. Catalan G irrationality is a classical open problem.
+19. [`AXIOM_ELIMINATION_METHODOLOGY.md`](PhysicsPapers/LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md) — **Per-axiom elimination roadmap** covering all 24 axioms. 1 eliminated so far (HPW, 2026-04-17, typeclass pattern), 16 eliminable, 8 definitional.
+20. [`NOVEL_MATHEMATICS.md`](PhysicsPapers/LeanFormalizationV2/NOVEL_MATHEMATICS.md) — **32 pieces of novel mathematics** catalogued: error-algebra tower, Pi-Hunch primitive, baby-universe structure, Magnetic-Laplacian theorem-corpus pipeline (V3-for-Lean). 6 are candidate Mathlib upstream contributions.
+
+> **Goal statement (puzzle-pieces framing).** *"Create the Omega algebra that completely describes physics — or as much as we can prove."* We are collecting puzzle pieces one provable sub-theorem at a time. Master plan skeleton: [`11_master_plan_skeleton.md`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/IrrationalityClasses/11_master_plan_skeleton.md). % of physics formalised: ≈ 72% (see `10_proof_count.md`).
 18. [`README-Document-Structure.md`](PhysicsPapers/README.md) - **Reading Guide**: Document hierarchy and reading order
 
 ### Lean 4 Formalization
@@ -65,7 +72,7 @@
 - Planck relations, Christoffel symmetry, metric compatibility
 - Fourth Noether Law (information conservation)
 - Newton-Raphson precision bounds
-- See [`LeanFormalization/README.md`](PhysicsPapers/LeanFormalization/README.md) for details
+- See [`LeanFormalizationV2/README.md`](PhysicsPapers/LeanFormalizationV2/README.md) for details
 
 ### Lean 4 Formalization V2 (April 2026, primary, post cycle 43)
 [`LeanFormalizationV2/`](PhysicsPapers/LeanFormalizationV2/) — **Mathlib v4.29.0**, ~211 structured files, **0 sorry · 8 physical axioms · 3 835 build jobs GREEN**.
@@ -121,7 +128,7 @@ Ten headline deliverables from the autonomous agent pipeline (cycles 2 through 8
 | 41-42 | Ruchbah | Matter-antimatter asymmetry + no new physics |
 | **43** | **Polaris** | **`omega_theory_v2_final_meta_capstone`** (paper abstract) |
 
-Plus **~120 supporting theorems** (cycles 2-43) in `Predictions/*.lean` + `Emergence/*.lean`. Full cross-reference: [`README.md`](README.md) → *Lean-Verified Highlights* and [`PhysicsPapers/LEAN_VERIFIED_CLAIMS.md`](PhysicsPapers/LEAN_VERIFIED_CLAIMS.md).
+Plus **~120 supporting theorems** (cycles 2-43) in `Predictions/*.lean` + `Emergence/*.lean`. Full cross-reference: [`README.md`](README.md) → *Lean-Verified Highlights* and [`PhysicsPapers/research/LEAN_VERIFIED_CLAIMS.md`](PhysicsPapers/research/LEAN_VERIFIED_CLAIMS.md).
 
 ## Quantum Security
 

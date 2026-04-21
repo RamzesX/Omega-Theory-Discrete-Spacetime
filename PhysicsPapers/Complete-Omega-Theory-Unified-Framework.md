@@ -14,11 +14,28 @@
 >
 > - **0 sorry · 8 physical axioms · 3 835 build jobs GREEN**
 > - **34 autonomous agent cycles (10 – 43) shipped Jan – Apr 2026**
-> - Corpus split: **8 996 OmegaTheoryV2 theorems · 4 465 definitions · 399 Lean files** + **175 137 integrated Mathlib theorems** = **184 133** theorems compiling together, linked by 3.28 M cross-namespace composition edges
 > - **Grand meta-capstone v2** (cycle 43 Polaris, paper abstract): [`omega_theory_v2_final_meta_capstone`](LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean) — composes the cycle-23 `omega_theory_grand_capstone` with the four-channel (π / e / √2 / Catalan-G) Standard-Model + cosmology + sterile-neutrino partition and the 8-physical-axiom audit.
 > - **Paper targets**: PRL letter (2026-06) → Foundations of Physics long form (2026-10) → NeurIPS 2026 / ICLR 2027 (V3-for-Lean methodology paper)
 >
 > Cycle index: [`LeanFormalizationV2/ROADMAP_CYCLES_24_43.md`](LeanFormalizationV2/ROADMAP_CYCLES_24_43.md). Jump to the [Anchor Index](#anchor-index--40-primary-lean-witnesses) below for a one-scroll overview of every graph-anchored claim in this document.
+
+### Three-way corpus split (live graph audit 2026-04-21)
+
+The paper rests on three complementary layers — **what we proved** (Omega-Lean), **what the graph uncovered but is not yet proved** (discovery frontier), and **what we build on** (Mathlib foundation). Every number below is live-verified on the Neo4j `math` container.
+
+| Layer | Theorems | Definitions | Axioms | Extras |
+|---|---:|---:|---:|---|
+| **Omega-Lean** (proved + machine-checked) | **8,996** | **4,465** | **24** (8 physical + 1 π-trans. + 15 HermitePadé) | 399 Lean files, 3 835 build jobs green |
+| **Graph** (discovery frontier, not yet proved) | **175** `:TheoremCandidate` (106 auto-matched · **70 genuinely OPEN**) | — | — | **105** `:GraphFinding` (**53** paper_worthy), **33** `:GrothendieckRecipe`, **677** `:SubsystemNavigator` |
+| **Mathlib** (foundation) | **175,137** | 32,917 | 6 | 3,183 Lean files; linked by 3.28 M cross-namespace `APPLIES` edges |
+
+Omega-Lean is not standalone: every one of the 8,996 own theorems types against the 175,137-theorem Mathlib backbone through the cross-namespace edges. The 70 genuinely-open `:TheoremCandidate`s + 53 paper-worthy `:GraphFinding`s define the cycle-44+ agenda.
+
+### 🧭 Cycle-44+ added 2026-04-21 — IrrationalityClasses scope
+
+The framework diagram (Level 6–7 particle classification, Level 11 predictions) rests on a four-channel partition {π, e, √2, Catalan G}. A rigorous **four-class separation theorem** for these constants is registered as a cycle-44+ research scope — 14 design memos in [`LeanFormalizationV2/OmegaTheory/IrrationalityClasses/`](LeanFormalizationV2/OmegaTheory/IrrationalityClasses/). Headline: at the classical Mahler {A, S, T, U} classification the nominal claim "four distinct classes" is FALSE (π, e, possibly G all share class S); we refine to a constructor-disjoint `TruncOrigin` partition which provably gives four distinct cells. **31 `:TheoremCandidate`** nodes registered. **Catalan G irrationality is OPEN** (Zudilin 2019).
+
+**Companions**: [`AXIOM_ELIMINATION_METHODOLOGY.md`](LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md), [`NOVEL_MATHEMATICS.md`](LeanFormalizationV2/NOVEL_MATHEMATICS.md) (32 items). Master plan: [`11_master_plan_skeleton.md`](LeanFormalizationV2/OmegaTheory/IrrationalityClasses/11_master_plan_skeleton.md). **% physics formalised: ≈ 72%.**
 
 ---
 

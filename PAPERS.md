@@ -30,30 +30,30 @@
 1. [`Main-Paper-Postulates.md`](PhysicsPapers/Main-Paper-Postulates.md) - **Postulational Summary**: Central thesis, four principles, "How This Started"
 
 ### Preview Releases
-1a. [`Paper-Dark-Energy-Preview-v1.md`](PhysicsPapers/Paper-Dark-Energy-Preview-v1.md) — **NEW (April 2026, v1.0 preview)**: Dark energy as integrated photon-redshift cost; three-term ledger ΔM★ + ΔE_γ + Δρ_DE = 0; w = −1 as conditional variance identity. Lean-anchored headline theorems cited inline. Refined **v1.1** expected within seven days. Authors: Marchewka & Claude Opus 4.7 "Gratis".
+1a. [`Paper-Dark-Energy-Preview-v1.md`](PhysicsPapers/papers/Paper-Dark-Energy-Preview-v1.md) — **NEW (April 2026, v1.0 preview)**: Dark energy as integrated photon-redshift cost; three-term ledger ΔM★ + ΔE_γ + Δρ_DE = 0; w = −1 as conditional variance identity. Lean-anchored headline theorems cited inline. Refined **v1.1** expected within seven days. Authors: Marchewka & Claude Opus 4.7 "Gratis".
 
 ### Core Mechanism
-2. [`KeyInsight-Irrationals-Action-Thresholds.md`](PhysicsPapers/KeyInsight-Irrationals-Action-Thresholds.md) - **CRITICAL**: How π, e, √2 create uncertainty under computational deadlines
+2. [`KeyInsight-Irrationals-Action-Thresholds.md`](PhysicsPapers/papers/KeyInsight-Irrationals-Action-Thresholds.md) - **CRITICAL**: How π, e, √2 create uncertainty under computational deadlines
 
 ### Technical Appendices
-3. [`Appendix-A-Action-Density-and-Quantum-Errors.md`](PhysicsPapers/Appendix-A-Action-Density-and-Quantum-Errors.md) - **Action-Threshold Physics**: Time emerges from S = nℏ
-4. [`Appendix-B-Quantum-Computing-Temperature-Limits.md`](PhysicsPapers/Appendix-B-Quantum-Computing-Temperature-Limits.md) - **Quantum Computing Limits**: Cooling = buying computational time
-5. [`Appendix-C-Catalog-Of-Evolution-Functionals.md`](PhysicsPapers/Appendix-C-Catalog-Of-Evolution-Functionals.md) - **Evolution Functionals**: 39 Perelman-inspired functionals
-6. [`Appendix-D-Topological-Surgery-And-Information-Healing.md`](PhysicsPapers/Appendix-D-Topological-Surgery-And-Information-Healing.md) - **Topological Surgery**: Two-tier healing, Lyapunov stability
-7. [`Appendix-E-Quantum-Entanglement-Dimensional-Theory.md`](PhysicsPapers/Appendix-E-Quantum-Entanglement-Dimensional-Theory.md) - **Quantum Entanglement**: D_ent as topologically unstable wormholes, Lyapunov collapse mechanism
-8. [`appendix-E-visual-diagrams.md`](PhysicsPapers/appendix-E-visual-diagrams.md) - **Visual Diagrams**: Stability landscapes, collapse mechanism diagrams
-9. [`Appendix-F-Information-Flow-Conservation.md`](PhysicsPapers/Appendix-F-Information-Flow-Conservation.md) - **Information Conservation**: Fourth Noether law ∂_μJ^μ_I = 0
-10. [`Appendix-G-Graviton-Predictions.md`](PhysicsPapers/Appendix-G-Graviton-Predictions.md) - **Graviton Predictions**: E_g = E_P/2, 2.32 bits geometric message
-11. [`Appendix-H-Renormalization-Correspondence.md`](PhysicsPapers/Appendix-H-Renormalization-Correspondence.md) - **Renormalization**: UV cutoff as discrete spacetime signature
-12. [`Appendix-I-Experimental-Tests.md`](PhysicsPapers/Appendix-I-Experimental-Tests.md) - **Experimental Tests**: 30+ validation protocols
-13. [`Appendix-LorentzDopplerEquivalence.md`](PhysicsPapers/Appendix-LorentzDopplerEquivalence.md) - **Lorentz-Doppler**: Time dilation as wave mechanics
-14. [`Appendix-P-Einstein-Cartan-Torsion-Integration.md`](PhysicsPapers/Appendix-P-Einstein-Cartan-Torsion-Integration.md) - **Einstein-Cartan Torsion**: Poplawski synthesis, spin generates torsion, Big Bounce
-15. [`Appendix-S-Stable-Wormholes-And-Chronology-Protection.md`](PhysicsPapers/Appendix-S-Stable-Wormholes-And-Chronology-Protection.md) - **Stable Wormholes**: Three-tier classification, chronology protection
+3. [`Appendix-A-Action-Density-and-Quantum-Errors.md`](PhysicsPapers/appendices/Appendix-A-Action-Density-and-Quantum-Errors.md) - **Action-Threshold Physics**: Time emerges from S = nℏ
+4. [`Appendix-B-Quantum-Computing-Temperature-Limits.md`](PhysicsPapers/appendices/Appendix-B-Quantum-Computing-Temperature-Limits.md) - **Quantum Computing Limits**: Cooling = buying computational time
+5. [`Appendix-C-Catalog-Of-Evolution-Functionals.md`](PhysicsPapers/appendices/Appendix-C-Catalog-Of-Evolution-Functionals.md) - **Evolution Functionals**: 39 Perelman-inspired functionals
+6. [`Appendix-D-Topological-Surgery-And-Information-Healing.md`](PhysicsPapers/appendices/Appendix-D-Topological-Surgery-And-Information-Healing.md) - **Topological Surgery**: Two-tier healing, Lyapunov stability
+7. [`Appendix-E-Quantum-Entanglement-Dimensional-Theory.md`](PhysicsPapers/appendices/Appendix-E-Quantum-Entanglement-Dimensional-Theory.md) - **Quantum Entanglement**: D_ent as topologically unstable wormholes, Lyapunov collapse mechanism
+8. [`appendix-E-visual-diagrams.md`](PhysicsPapers/diagrams/appendix-E-visual-diagrams.md) - **Visual Diagrams**: Stability landscapes, collapse mechanism diagrams
+9. [`Appendix-F-Information-Flow-Conservation.md`](PhysicsPapers/appendices/Appendix-F-Information-Flow-Conservation.md) - **Information Conservation**: Fourth Noether law ∂_μJ^μ_I = 0
+10. [`Appendix-G-Graviton-Predictions.md`](PhysicsPapers/appendices/Appendix-G-Graviton-Predictions.md) - **Graviton Predictions**: E_g = E_P/2, 2.32 bits geometric message
+11. [`Appendix-H-Renormalization-Correspondence.md`](PhysicsPapers/appendices/Appendix-H-Renormalization-Correspondence.md) - **Renormalization**: UV cutoff as discrete spacetime signature
+12. [`Appendix-I-Experimental-Tests.md`](PhysicsPapers/appendices/Appendix-I-Experimental-Tests.md) - **Experimental Tests**: 30+ validation protocols
+13. [`Appendix-LorentzDopplerEquivalence.md`](PhysicsPapers/appendices/Appendix-LorentzDopplerEquivalence.md) - **Lorentz-Doppler**: Time dilation as wave mechanics
+14. [`Appendix-P-Einstein-Cartan-Torsion-Integration.md`](PhysicsPapers/appendices/Appendix-P-Einstein-Cartan-Torsion-Integration.md) - **Einstein-Cartan Torsion**: Poplawski synthesis, spin generates torsion, Big Bounce
+15. [`Appendix-S-Stable-Wormholes-And-Chronology-Protection.md`](PhysicsPapers/appendices/Appendix-S-Stable-Wormholes-And-Chronology-Protection.md) - **Stable Wormholes**: Three-tier classification, chronology protection
 
 ### Supporting Documents
 16. [`unified-theory-diagram.md`](PhysicsPapers/unified-theory-diagram.md) - **Visual Architecture**: Complete 11-level framework diagram
 17. [`Complete-Omega-Theory-Unified-Framework.md`](PhysicsPapers/Complete-Omega-Theory-Unified-Framework.md) - **Full Technical Treatment**: 50+ pages comprehensive development
-18. [`README-Document-Structure.md`](PhysicsPapers/README-Document-Structure.md) - **Reading Guide**: Document hierarchy and reading order
+18. [`README-Document-Structure.md`](PhysicsPapers/README.md) - **Reading Guide**: Document hierarchy and reading order
 
 ### Lean 4 Formalization
 [`LeanFormalization/`](PhysicsPapers/LeanFormalization/) - **Machine-verified proofs** in Lean 4 with Mathlib v4.13.0

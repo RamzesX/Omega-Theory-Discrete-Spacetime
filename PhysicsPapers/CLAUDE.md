@@ -36,6 +36,43 @@ PhysicsPapers/
 ~/.elan/bin/lake exe cache get                              # Mathlib cache
 ```
 
+## Neo4j ingest pipeline — USE THESE SCRIPTS, DO NOT ROLL YOUR OWN
+
+Full ground-truth pipeline lives in `~/lean-v2/.neo4j/`. See
+`LeanFormalizationV2/.neo4j/CLAUDE.md` for details. Two Lean metaprograms
+produce the env dumps; two Python loaders MERGE them into the `math` container
+(bolt://localhost:7687, neo4j/omegatheory2026). Never regex-parse `.lean`
+files for graph work — Mirfak measured the regex path drops 46 % of fresh
+theorems.
+
+```bash
+cd ~/lean-v2
+~/.elan/bin/lake build --log-level=error          # must be GREEN first
+~/.elan/bin/lake exe dump_declarations --out .neo4j/declarations_from_env_v2.jsonl
+~/.elan/bin/lake exe dump_arrows --out .neo4j/arrows_from_env_cycleN.jsonl --include-mathlib
+cd .neo4j
+python3 load_declarations_env_v2.py               # Naos: MERGE Theorem/Def/Axiom
+python3 load_arrows_from_env_v2.py                # Rasalhague: APOC-batched arrows
+python3 reembed_qwen3_delta.py                    # Qwen3-8B embeddings (:7999)
+```
+
+**Key files (never rewrite from scratch — extend them):**
+- `OmegaTheory/Meta/DumpDeclarations.lean` (Schedar) — env declaration dumper
+- `OmegaTheory/Meta/DumpArrows.lean` (Sheratan) — 12-arrow typed env extractor
+- `.neo4j/load_declarations_env_v2.py` (Naos) — delta declaration loader
+- `.neo4j/load_arrows_parallel.py` — **SOTA parallel loader** 16-worker × batched UNWIND (~500× faster than sequential; 10-17k edges/s)
+- `.neo4j/load_arrows_from_env_v2.py` (Rasalhague) — legacy sequential APOC loader (slow, keep for debugging)
+- `.neo4j/reembed_qwen3_delta.py` — Qwen3-Embedding-8B BF16 GPU embedder
+
+**CRITICAL: nodes must use fully-qualified names** (`module + "." + short_name`) to match dump_arrows output. Post-hoc rename fix in `.neo4j/CLAUDE.md`.
+
+**DO NOT use** `.neo4j/extractors/lean_arrow_extractor.py` (regex, deprecated)
+for production graph work. It's kept for fallback when Lean env is broken.
+
+Embedder endpoints:
+- `http://localhost:7999/v1/embeddings` — Qwen3-8B BF16 GPU (dim 4096)
+- `http://localhost:7997/rerank` — Qwen3-Reranker-8B CPU
+
 ## HARD RULES for all work
 1. **0 sorry** in Lean — absolutely never
 2. **0 new axioms** — project has exactly 8 physical constants

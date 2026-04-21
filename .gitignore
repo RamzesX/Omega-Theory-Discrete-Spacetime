@@ -28,10 +28,34 @@ venv/
 *.tmp
 *.temp
 
-# Lean build artifacts
+# Lean build artifacts (V1 + V2)
 /PhysicsPapers/LeanFormalization/.lake/
 /PhysicsPapers/LeanFormalization/build/
 /PhysicsPapers/LeanFormalization/lake-packages/
+/PhysicsPapers/LeanFormalizationV2/.lake/
+/PhysicsPapers/LeanFormalizationV2/build/
+/PhysicsPapers/LeanFormalizationV2/lake-packages/
+/PhysicsPapers/LeanFormalizationV2/*.olean
+
+# Claude agent session artifacts — per-run state, not permanent record
+**/.claude/agent-memory/
+**/.claude/plans/
+**/.claude/settings.local.json
+**/.claude/memory/
+# Keep shared agent definitions + project instructions
+!**/.claude/agents/
+!**/.claude/commands/
+!**/.claude/CLAUDE.md
+
+# Neo4j dump artifacts (regenerable via `lake exe dump_arrows`)
+/PhysicsPapers/LeanFormalizationV2/.neo4j/arrows_from_env*.jsonl
+/PhysicsPapers/LeanFormalizationV2/.neo4j/declarations_from_env*.jsonl
+/PhysicsPapers/LeanFormalizationV2/.neo4j/__pycache__/
+/PhysicsPapers/LeanFormalizationV2/.neo4j/load_arrows_cycle*.py
+
+# Tmp scripts
+/tmp/*.py
+/tmp/*.log
 
 # MkDocs - copied content (source of truth is root folders)
 /docs/PhysicsPapers/

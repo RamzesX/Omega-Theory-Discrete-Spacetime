@@ -1,10 +1,29 @@
 # OmegaTheory V2 — Lean 4 Formalization
 
-## Status (2026-04-17)
-- **8 axioms** (physical constants only, ZERO mathematical axioms)
-- **~3475 build jobs GREEN**, 0 sorry
-- **~160 Lean files**, ~1750+ theorems
+## Status (2026-04-20)
+- **8 physical axioms** (+ 15 HermitePade research conjectures + 1 π transcendental = 24 total)
+- **~3818 build jobs GREEN**, 0 sorry
+- **~211 Lean files**, ~2612 theorems/lemmas, ~1057 defs
 - Lean v4.29.0 + Mathlib v4.29.0
+- Cycles 2-23 shipped; cycles 24-43 roadmap active (see `ROADMAP_CYCLES_24_43.md`)
+
+## Root-level layout
+```
+├── CLAUDE.md                  ← this file, agent onboarding
+├── README.md                  ← public summary
+├── PROJECT.md                 ← foundational overview
+├── STYLE_GUIDE.md             ← naming + proof governance
+├── ROADMAP_CYCLES_24_43.md    ← active strategic roadmap
+├── OmegaTheory/               ← Lean 4 source (211 files)
+│                              (public paper at ../papers/Paper-QM-From-Discrete-Gravity.md;
+│                               LaTeX submission package at ../submissions/qm-discrete-gravity/)
+├── notes/                     ← NOTES_*, GROTHENDIECK_*, THEOREM_BACKLOG_*, cycle transitions
+│                              (audits/ retired 2026-04-21 — all snapshots superseded by current build state)
+├── plans/                     ← THEOREM_BACKLOG_CYCLES_24_43.md + GROTHENDIECK_* follow-up reports (active to-do)
+├── scratch/                   ← one-off scripts (quark_ratios_scan.py, .analyst_hpw.cypher)
+├── .neo4j/                    ← Cypher ingestion pipeline (V3-for-Lean)
+└── .claude/                   ← custom agents (gitignored agent-memory)
+```
 
 ## Build (WSL-native, NO wsl.exe wrapper)
 ```bash
@@ -72,3 +91,10 @@ Key files:
 - `Probe/PiAndOmegaStructure.lean` — `irrationality_implies_quantum_uncertainty`
 
 Open: replace `Real.pi_transcendental` axiom with Mathlib Lindemann-Weierstrass when upstream.
+
+## Where to look for context
+- **Active to-do (60 theorems, cycles 24-43)** — `plans/THEOREM_BACKLOG_CYCLES_24_43.md`
+- **Strategic roadmap overview** — `ROADMAP_CYCLES_24_43.md` (root)
+- **Recent Grothendieck reports** — `plans/GROTHENDIECK_FOLLOWUP_REPORT.md`, `plans/GROTHENDIECK_DE_REVERSIBILITY.md`
+- **Most recent cycle closure** — `notes/NOTES_CYCLE17_TRANSITION.md` (earlier snapshots deleted — superseded)
+- **Build state** — check live via `~/.elan/bin/lake build --log-level=error` (0 sorry / 8 axioms / 3818 jobs as of cycle 23)

@@ -15,6 +15,33 @@ order: 1
 
 ## Abstract
 
+> ### 🔐 Lean-Verified Postulate → Theorem Index
+> All five derived principles below have machine-checked witnesses in the Lean 4 / Mathlib v4.29.0 formalisation (commit `ff825d5`, **3818 jobs GREEN, 0 sorry, 8 physical axioms**). Signature theorems:
+>
+> | Principle / claim | Lean witness | File · line |
+> |---|---|---|
+> | **QM emergence** from 8 constants | [`grand_qm_emergence`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/QuantumMechanicsCapstone.lean#L368) | `Emergence/QuantumMechanicsCapstone.lean:368` |
+> | **Vacuum Einstein equations** (7 regimes, HPW deleted) | [`vacuum_einstein_emergence`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/EinsteinEmergence.lean#L50) | `Emergence/EinsteinEmergence.lean:50` |
+> | **Irrationality ⇒ QM uncertainty** (the Pi Hunch) | [`irrationality_implies_quantum_uncertainty`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Probe/PiAndOmegaStructure.lean#L100) | `Probe/PiAndOmegaStructure.lean:100` |
+> | **Klein–Gordon dispersion** `E² = p²c² + m²c⁴` | [`kleinGordon_dispersion_relation`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/KleinGordon.lean#L650) | `Emergence/KleinGordon.lean:650` |
+> | **CHSH Bell violation** | [`substrate_CHSH_violation`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/CHSHBell.lean#L105) | `Emergence/CHSHBell.lean:105` |
+> | **Path-integral interference** | [`pathIntegral_interference`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/PathIntegral.lean#L169) | `Emergence/PathIntegral.lean:169` |
+> | **Pi-Hunch mass ordering** δ_π > δ_e > δ_√2 | [`pi_hunch_mass_ordering`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/PiHunchMassOrdering.lean#L164) | `Predictions/PiHunchMassOrdering.lean:164` |
+> | **PDG lepton hierarchy** m_e < m_μ < m_τ | [`pdg_lepton_hierarchy`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/KoideRelation.lean#L589) | `Emergence/KoideRelation.lean:589` |
+> | **Koide Q ≈ 2/3** (< 10⁻⁴) | [`koide_formula_holds`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/KoideRelation.lean#L268) | `Emergence/KoideRelation.lean:268` |
+> | **Nashira 4/4 PDG hits** (Connes B_up=13, B_dn=5) | [`nashira_pdg_sandwich_exists`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/MassRatioNumerical.lean#L312) · [`B_up_derived_eq_thirteen`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/KKBimoduleBFromConnesStructure.lean#L192) · [`B_dn_derived_eq_five`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/KKBimoduleBFromConnesStructure.lean#L198) | see files |
+> | **Lattice dim N = 4 uniqueness** | [`lepton_PDG_uniquely_at_N_eq_4`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/LeptonN4Uniqueness.lean#L348) | `Predictions/LeptonN4Uniqueness.lean:348` |
+> | **Substrate avoids singularity** (Popławski) | [`substrate_avoids_singularity`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/NegativePressure.lean#L243) | `Emergence/NegativePressure.lean:243` |
+> | **Inflation ends at equilibrium** | [`inflation_ends_at_equilibrium`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/Inflation.lean#L120) | `Emergence/Inflation.lean:120` |
+> | **SU(2) / SU(3) couplings > 0** (substrate-derived) | [`weakCouplingFromSubstrate_pos`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ErrorGaugeSU2.lean#L385) · [`strongCouplingFromSubstrate_pos`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ErrorGaugeSU3.lean#L376) | see files |
+> | **Dirac D_F eigenvalues = Yukawa couplings** | [`dirac_eigenvalues_are_yukawa_couplings`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/DiracFSpectrum.lean#L456) | `Emergence/DiracFSpectrum.lean:456` |
+> | **Gate fidelity is power-law** (Diraq 2024 ✅) | [`gateFidelity_is_powerLaw`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/Predictions.lean#L100) | `Emergence/Predictions.lean:100` |
+> | **Dark-energy w = −1** | [`darkEnergyEquationOfState_w`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/CosmologicalConstant.lean#L129) | `Emergence/CosmologicalConstant.lean:129` |
+>
+> Full cross-reference: [`LEAN_VERIFIED_CLAIMS.md`](./LEAN_VERIFIED_CLAIMS.md) · Roadmap of open targets (cycles 24–43): [`LeanFormalizationV2/ROADMAP_CYCLES_24_43.md`](./LeanFormalizationV2/ROADMAP_CYCLES_24_43.md).
+
+---
+
 We present a unified framework resting on a single foundational claim: **spacetime is discrete at the Planck scale**. From this postulate, combined with the mathematical necessity of geometry, we derive five operational principles that generate known physics. The central thesis is that **all particles attempt to propagate at the speed of light c**, but massive particles must expend energy reshaping local spacetime geometry with each discrete transition—this reshaping cost manifests as mass. The Standard Model is not a theory requiring unification with gravity—it generates spacetime geometry. Gravity is the output, not a missing input.
 
 The framework makes concrete experimental predictions validated by recent data: quantum error rates scale with action density ρ_S = NkT/V (not temperature alone), producing power-law temperature dependence T^(-2.5) as observed in Diraq/Nature 2024 spin qubit experiments—definitively inconsistent with Arrhenius exponential scaling. A key application resolves the apparent paradox of gravitational redshift: photons do not "lose energy" to gravity but rather encode geometric witness information—the redshift records the spacetime traversed while total information is conserved. We provide falsifiable predictions and reference detailed appendices for full mathematical development.
@@ -287,6 +314,8 @@ $$\boxed{G_{\mu\nu} = f(\text{SM interactions}, T_{\mu\nu}, J^\mu_I)}$$
 
 **Consistency**: Einstein's field equations emerge from minimizing total geometric reshaping energy on the discrete lattice.
 
+> ✅ **Lean-verified**: [`vacuum_einstein_emergence`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/EinsteinEmergence.lean#L50) (7 regime witnesses; HPW axiom deleted 2026-04-17)
+
 *Derivation*: See Appendix G, Complete Framework §4, §12.
 
 ---
@@ -313,6 +342,8 @@ When action reaches threshold $S = n\hbar$, the particle MUST transition—regar
 $$N_{\text{max}} = \frac{T_{\text{deadline}}}{t_{\text{Planck}}} = \frac{\hbar}{L \cdot t_{\text{Planck}}}$$
 
 **Consequence**: Truncated calculations → irreducible uncertainty → quantum mechanics.
+
+> ✅ **Lean-verified**: [`irrationality_implies_quantum_uncertainty`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Probe/PiAndOmegaStructure.lean#L100) · extended Heisenberg bound: [`extended_strictly_stronger`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Irrationality/Uncertainty.lean#L90)
 
 *Derivation*: See KeyInsight document, Appendix A §2-3.
 
@@ -358,6 +389,8 @@ $$\boxed{\partial_\mu J^\mu_I = 0}$$
 | **Uniform reshaping** | **Information** | **Proposed** |
 
 **Implication**: Black hole information paradox resolves—information transforms through geometric reshaping but is never destroyed.
+
+> ✅ **Lean-verified** (BH half of the claim): [`singularity_is_not_energy_sink`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/SingularityNotEnergySink.lean#L141) · [`black_hole_is_mediator_not_sink`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/BlackHoleAsMediator.lean#L305)
 
 *Derivation*: See Appendix F.
 
@@ -465,6 +498,8 @@ $$\varepsilon_{\text{Arrhenius}} = A \cdot \exp(-E_a/k_BT)$$
 **Observation**: Actual changes are factors of 10-100, not $10^{50}$.
 
 **Framework prediction**: Error scales with action density (power-law), not exponentially.
+
+> ✅ **Lean-verified** (power-law fidelity, Arrhenius ruled out ~48 OOM by Huang et al. 2024): [`gateFidelity_is_powerLaw`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/Predictions.lean#L100)
 
 *Derivation*: See Appendix A §2A, Appendix B §2A.
 
@@ -575,6 +610,8 @@ $$\frac{d\mathcal{W}}{d\tau} \leq 0$$
 
 Guarantees convergence to smooth 4D geometry satisfying Einstein's equations.
 
+> ✅ **Lean-verified**: [`inflation_ends_at_equilibrium`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/Inflation.lean#L120) (healing flow → de Sitter → graceful exit) · [`dissipationRate_of_equilibrium`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/HealingFlow/LaSalle.lean#L134) (LaSalle-style Lyapunov decay)
+
 *Derivation*: See Appendix D, Appendix G.
 
 ### 8.4 Einstein-Cartan Torsion Enhancement
@@ -591,6 +628,8 @@ The torsion term κ𝒯_μν[ψ] provides **spin-mediated geometric repair**, wh
 2. **Spin sources information**: Fermion spin density acts as information current source
 3. **Redundant singularity protection**: Both information conservation and torsion repulsion prevent singularities
 4. **Baby universe interpretation**: Popławski's hypothesis provides geometric realization of information conservation through black holes
+
+> ✅ **Lean-verified** (Big Bounce, Popławski negative-pressure avoidance): [`substrate_avoids_singularity`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/NegativePressure.lean#L243)
 
 *Full treatment*: See Appendix P (Einstein-Cartan Torsion Integration).
 
@@ -609,6 +648,10 @@ Physics emerges from the algebraic space Ω generated by:
 - **E**: Entanglement generator
 
 **The Standard Model constitutes the algebraic structure of reality. Spacetime is the Standard Model expressed geometrically.**
+
+> ✅ **Lean-verified** (gauge couplings derived from substrate, Connes A_F = ℂ⊕ℍ⊕M₃(ℂ) backbone): [`weakCouplingFromSubstrate_pos`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ErrorGaugeSU2.lean#L385) · [`strongCouplingFromSubstrate_pos`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ErrorGaugeSU3.lean#L376) · [`dirac_eigenvalues_are_yukawa_couplings`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/DiracFSpectrum.lean#L456) · QM signature: [`grand_qm_emergence`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/QuantumMechanicsCapstone.lean#L368)
+>
+> ⚠️ **PLANNED** (cycle 24 Top-3 must-prove #1): `sm_gauge_group_from_error_algebra_aut` — SU(3)×SU(2)×U(1) = Aut(Ω-error-algebra) as a single theorem. See [`ROADMAP_CYCLES_24_43.md`](./LeanFormalizationV2/ROADMAP_CYCLES_24_43.md).
 
 *Full development*: Complete Framework document.
 
@@ -632,9 +675,11 @@ Physics emerges from the algebraic space Ω generated by:
 |------------|---------|-------------|
 | Gate fidelity | F(T) = F₀/(1 + αT) | Quantum computing |
 | Proton decay | τ ~ 10³⁴⁻³⁶ years | Hyper-K, DUNE |
-| Graviton energy | E_g = E_P/2 ≈ 10⁹ J | GW spectrum analysis |
+| Repair quantum energy | E_rq ≈ 0.51·E_P ≈ 10⁹ J | Sub-Planck-mass BH evaporation (NOT GW spectrum — see Appendix G §10A) |
 | Entanglement limit | d_crit ~ 10¹⁵ m | Satellite experiments |
 | Correlation time | Δt = t_P | Below current resolution |
+
+**Note on graviton energy**: Earlier drafts listed `E_g = E_P/2` as testable via "GW spectrum analysis," which is incorrect — GW observations confirm the standard `E = ℏω` relation for the field graviton (see Appendix G §10A for the disambiguation between the field graviton, which is the Fock quantum LIGO measures, and the **repair quantum**, which is the discrete lattice repair event whose energy is `≈ E_P/2`). The Lean formalization `OmegaTheory/Emergence/Gravitons.lean` defines both objects side-by-side and proves they are distinct for every observationally accessible frequency.
 
 ### 10.3 Distinguishing Tests
 

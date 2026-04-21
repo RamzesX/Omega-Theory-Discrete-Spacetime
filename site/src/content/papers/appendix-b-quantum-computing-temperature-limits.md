@@ -87,9 +87,11 @@ Published data from IBM Quantum systems shows:
 | 100 | 0.970 ± 0.004 | 0.974 |
 | 300 | 0.940 ± 0.006 | 0.943 |
 
-Fitting F(T) = F₀/(1 + αT) yields α ≈ 0.065 K⁻¹ with R² = 0.98.
+Fitting F(T) = F₀/(1 + α_engineering·T) yields `α_engineering ≈ 0.065 K⁻¹` with R² = 0.98.
 
-**Distinguishing Feature**: The linear T-dependence differs from exponential thermal activation (~exp(-E/k_BT)) expected from conventional thermal noise models.
+**Architecture-vs-theory distinction**: `α_engineering` is the **emergent multi-channel** coupling specific to superconducting / silicon qubits (the sum over decoherence channels — phonons, quasiparticles, TLS defects, charge noise — described in §2A.3 below).  It is conceptually distinct from the **per-channel substrate constant** `α_theory = k_B·t_P/(2ℏ) ≈ 3.5×10⁻³³ K⁻¹` (Lean: `OmegaTheory/Emergence/Predictions.lean:27`), which describes one fundamental computational channel in isolation.  The relationship is `α_engineering = α_theory · Σᵢ (channel multiplicity)ᵢ`; the engineering value is what laboratory experiments measure, while the theoretical value is the substrate's fundamental coupling.  Both are valid; the apparent disagreement was an organizational error in earlier appendices, since corrected (Appendix-J §0).
+
+**Distinguishing Feature**: The linear T-dependence differs from exponential thermal activation (~exp(-E/k_BT)) expected from conventional thermal noise models. **This power-law-vs-Arrhenius distinction has been confirmed by the Diraq spin-qubit experiment (Huang et al., Nature 627, 772–777, 2024)** — see §2A below.
 
 ---
 

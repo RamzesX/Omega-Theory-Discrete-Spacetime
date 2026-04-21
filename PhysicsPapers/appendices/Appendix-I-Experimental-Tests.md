@@ -1,10 +1,3 @@
----
-title: "Appendix I: Experimental Tests"
-description: "21 testable predictions"
-category: "Appendices"
-order: 19
----
-
 # Experimental Tests for the Discrete Spacetime Framework
 
 ## A Comprehensive Program with Quantitative Feasibility Analysis

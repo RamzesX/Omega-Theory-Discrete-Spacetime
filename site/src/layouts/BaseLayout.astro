@@ -39,8 +39,8 @@ const baseUrl = import.meta.env.BASE_URL;
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
 
-  <!-- KaTeX CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66 voices" crossorigin="anonymous">
+  <!-- KaTeX CSS (integrity hash removed — was corrupted, causing browser to reject stylesheet and break all math rendering) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

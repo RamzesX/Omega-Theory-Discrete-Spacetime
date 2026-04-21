@@ -1,1 +1,0 @@
-- [Agent experimental-preds Apr 19](agent_experimental_preds.md) — shipped 3 falsifiability files (W1 / ILL-VCN / DESI) totalling 1059 L GREEN, 0 sorry, 0 new axioms; Pierre-Auger-pattern consistency theorems

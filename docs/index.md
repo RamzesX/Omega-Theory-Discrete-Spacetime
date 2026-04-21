@@ -138,16 +138,16 @@ $$\boxed{\Lambda = \ell_P \cdot \mathbb{Z}^4 \implies \text{Everything}}$$
     | [Main Paper](PhysicsPapers/Main-Paper-Postulates.md) | Central thesis and principles |
     | [Visual Diagrams](PhysicsPapers/unified-theory-diagram.md) | 11 levels of ASCII visualization |
     | [Complete Framework](PhysicsPapers/Complete-Omega-Theory-Unified-Framework.md) | Full technical treatment |
-    | [Key Insight](PhysicsPapers/KeyInsight-Irrationals-Action-Thresholds.md) | How irrationals create uncertainty |
+    | [Key Insight](PhysicsPapers/papers/KeyInsight-Irrationals-Action-Thresholds.md) | How irrationals create uncertainty |
 
 === "Key Appendices"
 
     | Appendix | Topic |
     |----------|-------|
-    | [D - Topological Surgery](PhysicsPapers/Appendix-D-Topological-Surgery-And-Information-Healing.md) | Healing flow, Lyapunov stability |
-    | [F - Fourth Noether Law](PhysicsPapers/Appendix-F-Information-Flow-Conservation.md) | Information conservation |
-    | [S - Stable Wormholes](PhysicsPapers/Appendix-S-Stable-Wormholes-And-Chronology-Protection.md) | Why time travel is impossible |
-    | [P - Einstein-Cartan](PhysicsPapers/Appendix-P-Einstein-Cartan-Torsion-Integration.md) | Torsion, Big Bounce |
+    | [D - Topological Surgery](PhysicsPapers/appendices/Appendix-D-Topological-Surgery-And-Information-Healing.md) | Healing flow, Lyapunov stability |
+    | [F - Fourth Noether Law](PhysicsPapers/appendices/Appendix-F-Information-Flow-Conservation.md) | Information conservation |
+    | [S - Stable Wormholes](PhysicsPapers/appendices/Appendix-S-Stable-Wormholes-And-Chronology-Protection.md) | Why time travel is impossible |
+    | [P - Einstein-Cartan](PhysicsPapers/appendices/Appendix-P-Einstein-Cartan-Torsion-Integration.md) | Torsion, Big Bounce |
 
 === "Mathematics"
 

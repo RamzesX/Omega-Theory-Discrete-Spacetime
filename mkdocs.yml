@@ -159,29 +159,29 @@ nav:
   - Home: index.md
 
   - "Ω-Theory":
-    - "Overview": PhysicsPapers/README-Document-Structure.md
+    - "Overview": PhysicsPapers/README.md
     - "Main Paper": PhysicsPapers/Main-Paper-Postulates.md
     - "Visual Diagrams": PhysicsPapers/unified-theory-diagram.md
     - "Complete Framework": PhysicsPapers/Complete-Omega-Theory-Unified-Framework.md
-    - "Key Insight: Irrationals": PhysicsPapers/KeyInsight-Irrationals-Action-Thresholds.md
+    - "Key Insight: Irrationals": PhysicsPapers/papers/KeyInsight-Irrationals-Action-Thresholds.md
 
     - "Appendices":
-      - "A: Action Density": PhysicsPapers/Appendix-A-Action-Density-and-Quantum-Errors.md
-      - "B: Quantum Computing": PhysicsPapers/Appendix-B-Quantum-Computing-Temperature-Limits.md
-      - "C: Evolution Functionals": PhysicsPapers/Appendix-C-Catalog-of-Evolution-Functionals.md
-      - "D: Topological Surgery": PhysicsPapers/Appendix-D-Topological-Surgery-And-Information-Healing.md
-      - "E: Entanglement": PhysicsPapers/Appendix-E-Quantum-Entanglement-Dimensional-Theory.md
-      - "E: Visual Diagrams": PhysicsPapers/appendix-E-visual-diagrams.md
-      - "F: Information Conservation": PhysicsPapers/Appendix-F-Information-Flow-Conservation.md
-      - "G: Graviton Predictions": PhysicsPapers/Appendix-G-Graviton-Predictions.md
-      - "H: Renormalization": PhysicsPapers/Appendix-H-Renormalization-Correspondence.md
-      - "I: Experimental Tests": PhysicsPapers/Appendix-I-Experimental-Tests.md
-      - "Lorentz-Doppler": PhysicsPapers/Appendix-LorentzDopplerEquivalence.md
-      - "P: Einstein-Cartan Torsion": PhysicsPapers/Appendix-P-Einstein-Cartan-Torsion-Integration.md
-      - "S: Stable Wormholes": PhysicsPapers/Appendix-S-Stable-Wormholes-And-Chronology-Protection.md
+      - "A: Action Density": PhysicsPapers/appendices/Appendix-A-Action-Density-and-Quantum-Errors.md
+      - "B: Quantum Computing": PhysicsPapers/appendices/Appendix-B-Quantum-Computing-Temperature-Limits.md
+      - "C: Evolution Functionals": PhysicsPapers/appendices/Appendix-C-Catalog-of-Evolution-Functionals.md
+      - "D: Topological Surgery": PhysicsPapers/appendices/Appendix-D-Topological-Surgery-And-Information-Healing.md
+      - "E: Entanglement": PhysicsPapers/appendices/Appendix-E-Quantum-Entanglement-Dimensional-Theory.md
+      - "E: Visual Diagrams": PhysicsPapers/diagrams/appendix-E-visual-diagrams.md
+      - "F: Information Conservation": PhysicsPapers/appendices/Appendix-F-Information-Flow-Conservation.md
+      - "G: Graviton Predictions": PhysicsPapers/appendices/Appendix-G-Graviton-Predictions.md
+      - "H: Renormalization": PhysicsPapers/appendices/Appendix-H-Renormalization-Correspondence.md
+      - "I: Experimental Tests": PhysicsPapers/appendices/Appendix-I-Experimental-Tests.md
+      - "Lorentz-Doppler": PhysicsPapers/appendices/Appendix-LorentzDopplerEquivalence.md
+      - "P: Einstein-Cartan Torsion": PhysicsPapers/appendices/Appendix-P-Einstein-Cartan-Torsion-Integration.md
+      - "S: Stable Wormholes": PhysicsPapers/appendices/Appendix-S-Stable-Wormholes-And-Chronology-Protection.md
 
     - "Advanced":
-      - "Erdős Lagrangian": PhysicsPapers/ErdosLagrangianUnification.md
+      - "Erdős Lagrangian": PhysicsPapers/notes/ErdosLagrangianUnification.md
 
   - "Lean Proofs":
     - "Overview": PhysicsPapers/LeanFormalization/README.md

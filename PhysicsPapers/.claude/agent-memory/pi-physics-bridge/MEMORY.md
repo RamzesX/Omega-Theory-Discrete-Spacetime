@@ -1,5 +1,0 @@
-- [Agent identity — Alpheratz](agent_alpheratz.md) — pi-capstone 2026-04-19 delivered PiHunchMassOrdering.lean (249 lines, 0 sorry/axiom) with canonical δ_π/δ_e/δ_√2 names + conditional Yukawa consequence over any StrictMono f
-- [Agent identity — Mirzam](agent_mirzam.md) — quark-ratios 2026-04-19 delivered QuarkMassRatioNumerical.lean (561 lines, 0 sorry/axiom) — PARTIAL_MATCH verdict at N=4 (2/4 quark ratios within PDG uncertainty)
-- [Agent identity — CanisMinor](agent_canis_minor.md) — lambda-qcd-builder 2026-04-19 delivered Pathway A (Λ_QCD + proton mass): 3 files 616 lines, 0 sorry / 0 new axioms, EMPIRICAL_ANSATZ at 3.8%
-- [Agent identity — Acrux](agent_acrux.md) — connes-df-derive 2026-04-19 delivered QuarkBetaFromConnesD_F.lean (629 lines, 0 sorry/axiom) — lepton β=4/7 + k=N_color are first-principles; quark β remains empirical (C3 5/12 best candidate, still 2/4 PDG hits)
-- [Agent identity — Alhena](agent_alhena.md) — connes-kk-dress 2026-04-19 delivered QuarkKKBimoduleDressing.lean (483 lines, 0 sorry/axiom) — per-sector weights CANCEL (QED); per-gen w_i=B/(B+i-1) closes 4/4 PDG bands at B_up=13, B_dn=5 (total err 28%, was 54%)

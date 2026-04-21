@@ -1,73 +1,90 @@
 ---
-// Ensure baseUrl has trailing slash
 const rawBase = import.meta.env.BASE_URL;
 const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 ---
 
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Discrete Spacetime Physics</div>
+  <div class="hero-left">
+    <div class="hero-badge">Discrete spacetime physics · Lean 4 verified</div>
 
     <h1 class="hero-title">
-      <span class="omega">Ω</span>mega-Theory
+      <span class="omega">Ω</span><span class="title-rest">mega-Theory</span>
     </h1>
 
     <p class="hero-subtitle">
-      Mass as Geometric Reshaping of Discrete Spacetime
+      Mass as geometric reshaping of a discrete ℤ⁴ Planck lattice.
     </p>
 
-    <div class="hero-equation">
-      <div class="equation-box">
-        <span class="equation-label">The Single Postulate</span>
-        <div class="equation">
-          Λ = ℓ<sub>P</sub> · Z<sup>4</sup>
-        </div>
-        <span class="equation-desc">Spacetime is a discrete Z⁴ lattice at Planck scale</span>
-      </div>
-    </div>
-
     <p class="hero-description">
-      A unified physics framework deriving <strong>all fundamental forces</strong>,
-      <strong>particle masses</strong>, and <strong>cosmological constants</strong>
-      from a single geometric postulate. Includes <strong>10,000+ lines</strong>
-      of Lean 4 machine-verified proofs.
+      From a single postulate and three irrational constants (π, <em>e</em>, √2),
+      we derive the Standard Model mass hierarchy, CKM/PMNS mixing, Higgs sector,
+      gravitational dynamics, and cosmological parameters. <strong>Every claim
+      is machine-verified.</strong>
     </p>
 
     <div class="hero-cta">
-      <a href={`${baseUrl}papers/main-paper-postulates/`} class="btn btn-primary">
-        <span>Read the Paper</span>
+      <a href={`${baseUrl}cycles/`} class="btn btn-primary">
+        <span>See 14 cycles · 84 predictions</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M3 8h10M9 4l4 4-4 4"/>
         </svg>
       </a>
-      <a href={`${baseUrl}papers/unified-theory-diagram/`} class="btn btn-outline">
-        <span>Visual Overview</span>
+      <a href={`${baseUrl}papers/main-paper-postulates/`} class="btn btn-outline">
+        <span>Read the paper</span>
       </a>
     </div>
 
     <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-value">17</span>
-        <span class="stat-label">Physics Papers</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">21</span>
-        <span class="stat-label">Testable Predictions</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">10K+</span>
-        <span class="stat-label">Lines of Lean Proofs</span>
-      </div>
+      <div class="stat"><span class="stat-value">3 818</span><span class="stat-label">build jobs GREEN</span></div>
+      <div class="stat"><span class="stat-value">84</span><span class="stat-label">PDG predictions</span></div>
+      <div class="stat"><span class="stat-value">0</span><span class="stat-label">sorry</span></div>
+      <div class="stat"><span class="stat-value">8</span><span class="stat-label">physical axioms</span></div>
     </div>
   </div>
 
-  <div class="hero-visual">
-    <div class="lattice-animation">
-      <div class="lattice-grid">
-        {Array.from({ length: 25 }).map((_, i) => (
-          <div class="lattice-point" style={`animation-delay: ${i * 0.1}s`}></div>
-        ))}
+  <div class="hero-right">
+    <div class="equation-card">
+      <span class="equation-label">Single postulate</span>
+      <div class="equation">
+        Λ = ℓ<sub>P</sub> · ℤ<sup>4</sup>
       </div>
+      <span class="equation-desc">Spacetime is a discrete ℤ⁴ lattice at Planck scale.</span>
+    </div>
+
+    <div class="channel-card">
+      <span class="channel-label">Three irrationals ↔ three generations</span>
+      <svg viewBox="0 0 240 240" class="channel-svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="hr-pi">
+            <stop offset="0" stop-color="#ff5252" stop-opacity="1"/>
+            <stop offset="1" stop-color="#ff5252" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="hr-e">
+            <stop offset="0" stop-color="#ffd740" stop-opacity="1"/>
+            <stop offset="1" stop-color="#ffd740" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="hr-s2">
+            <stop offset="0" stop-color="#00e676" stop-opacity="1"/>
+            <stop offset="1" stop-color="#00e676" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="90" cy="100" r="58" fill="url(#hr-pi)" opacity="0.6"/>
+        <circle cx="150" cy="100" r="58" fill="url(#hr-e)" opacity="0.6"/>
+        <circle cx="120" cy="155" r="58" fill="url(#hr-s2)" opacity="0.6"/>
+        <g font-family="JetBrains Mono, monospace" font-weight="700" text-anchor="middle">
+          <text x="70"  y="95"  font-size="28" fill="#fff">π</text>
+          <text x="170" y="95"  font-size="22" fill="#fff">e</text>
+          <text x="120" y="170" font-size="22" fill="#fff">√2</text>
+        </g>
+        <g font-family="Inter, sans-serif" font-size="10" text-anchor="middle" fill="#cfcfe0">
+          <text x="70"  y="68">gen 3 · heavy</text>
+          <text x="172" y="68">gen 2 · middle</text>
+          <text x="120" y="200">gen 1 · light</text>
+        </g>
+      </svg>
+      <span class="channel-caption">
+        δ<sub>comp</sub>(N) = ℓ<sub>P</sub> · 4/(2N+3) &nbsp;|&nbsp; 3/(N+1)! &nbsp;|&nbsp; 2<sup>-2<sup>N</sup></sup>
+      </span>
     </div>
   </div>
 </section>
@@ -75,65 +92,137 @@ const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 <style>
   .hero {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3xl);
-    padding: var(--space-3xl) 0;
-    min-height: 80vh;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-2xl);
+    padding: var(--space-2xl) 0 var(--space-xl);
     align-items: center;
   }
 
   .hero-badge {
     display: inline-block;
-    padding: var(--space-xs) var(--space-md);
-    background: rgba(124, 77, 255, 0.2);
-    border: 1px solid var(--color-primary);
+    padding: 4px 12px;
+    background: rgba(0, 230, 118, 0.15);
+    border: 1px solid rgba(0, 230, 118, 0.4);
     border-radius: 100px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    color: var(--color-primary-light);
-    margin-bottom: var(--space-lg);
+    font-family: var(--font-mono);
+    color: var(--color-success);
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.02em;
   }
 
   .hero-title {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 700;
-    line-height: 1.1;
-    margin: 0 0 var(--space-md);
+    line-height: 1;
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-display);
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+  }
+
+  .omega {
+    font-size: 5rem;
+    font-weight: 800;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .omega {
-    font-size: 5rem;
-    font-weight: 800;
+  .title-rest {
+    color: var(--color-text);
   }
 
   .hero-subtitle {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--color-secondary);
-    margin: 0 0 var(--space-xl);
+    margin: 0 0 var(--space-lg);
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  .hero-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xl);
+    max-width: 34rem;
+  }
+
+  .hero-description em {
+    color: var(--color-accent);
     font-style: italic;
   }
 
-  .hero-equation {
-    margin: var(--space-xl) 0;
+  .hero-cta {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    flex-wrap: wrap;
   }
 
-  .equation-box {
-    background: linear-gradient(135deg, rgba(124, 77, 255, 0.15), rgba(0, 212, 255, 0.1));
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    max-width: 34rem;
+  }
+
+  .stat {
+    text-align: left;
+    padding: var(--space-sm) 0;
+    border-left: 3px solid var(--color-primary);
+    padding-left: var(--space-sm);
+  }
+
+  .stat:nth-child(1) { border-color: var(--color-success); }
+  .stat:nth-child(2) { border-color: var(--color-accent); }
+  .stat:nth-child(3) { border-color: var(--color-secondary); }
+  .stat:nth-child(4) { border-color: var(--color-primary); }
+
+  .stat-value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--color-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+
+  /* Right side cards */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    align-items: stretch;
+  }
+
+  .equation-card {
+    background: linear-gradient(135deg, rgba(124, 77, 255, 0.22), rgba(0, 212, 255, 0.12));
     border: 1px solid var(--color-primary);
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
     text-align: center;
-    box-shadow: var(--shadow-glow);
+    box-shadow: 0 8px 24px rgba(124, 77, 255, 0.2);
   }
 
   .equation-label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-text-muted);
@@ -142,127 +231,77 @@ const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
   .equation {
     font-family: var(--font-math);
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     color: var(--color-accent);
-    margin: var(--space-md) 0;
-    text-shadow: 0 0 30px rgba(255, 215, 64, 0.3);
+    margin: var(--space-sm) 0;
+    text-shadow: 0 0 28px rgba(255, 215, 64, 0.35);
+    line-height: 1;
   }
 
   .equation-desc {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--color-text-dim);
   }
 
-  .hero-description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-xl);
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: var(--space-md);
-    margin-bottom: var(--space-2xl);
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: var(--space-xl);
-  }
-
-  .stat {
+  .channel-card {
+    background: rgba(10, 10, 15, 0.55);
+    border: 1px solid rgba(124, 77, 255, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
     text-align: center;
   }
 
-  .stat-value {
+  .channel-label {
     display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--color-primary-light);
-  }
-
-  .stat-label {
-    font-size: 0.8rem;
-    color: var(--color-text-dim);
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xs);
   }
 
-  .hero-visual {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .channel-svg {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
   }
 
-  .lattice-animation {
-    width: 300px;
-    height: 300px;
-    position: relative;
-  }
-
-  .lattice-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 40px;
-    padding: 20px;
-  }
-
-  .lattice-point {
-    width: 12px;
-    height: 12px;
-    background: var(--color-primary);
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
-    box-shadow: 0 0 20px var(--color-primary);
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-      opacity: 0.7;
-    }
-    50% {
-      transform: scale(1.5);
-      opacity: 1;
-    }
+  .channel-caption {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-text-dim);
+    margin-top: 4px;
+    line-height: 1.4;
   }
 
   @media (max-width: 1024px) {
     .hero {
       grid-template-columns: 1fr;
-      text-align: center;
-      min-height: auto;
-      padding: var(--space-2xl) 0;
+      text-align: left;
     }
 
     .hero-title {
-      font-size: 2.5rem;
-    }
-
-    .omega {
       font-size: 3rem;
     }
 
+    .omega {
+      font-size: 3.4rem;
+    }
+
     .hero-subtitle {
-      font-size: 1.2rem;
-    }
-
-    .equation {
-      font-size: 1.8rem;
-    }
-
-    .hero-cta {
-      justify-content: center;
+      font-size: 1.1rem;
     }
 
     .hero-stats {
-      justify-content: center;
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
-    .hero-visual {
-      display: none;
-    }
+  @media (max-width: 600px) {
+    .hero-title { font-size: 2.4rem; }
+    .omega { font-size: 2.8rem; }
+    .equation { font-size: 1.8rem; }
   }
 </style>

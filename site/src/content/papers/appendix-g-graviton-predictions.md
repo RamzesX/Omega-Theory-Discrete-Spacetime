@@ -100,16 +100,9 @@ This is precisely the structure of a spin-2 field with helicities ±2ℏ. □
 
 $$I_{\text{graviton}} = \log_2(N_{\text{states}}) = \log_2(5) \approx 2.32 \text{ bits}$$
 
-*Derivation*: In 4D spacetime with symmetric tensor structure:
-- Total components: 10
-- Gauge freedom: -4
-- Transverse condition: -4
-- Trace removal: -1
-- Physical states: 5 (2 propagating + 3 gauge-fixed)
+*Derivation*: A repair instruction selects one of **5 distinct lattice reshaping templates** — the minimal alphabet needed to specify a local geometric repair on the discrete lattice. The cardinality is `log₂(5) ≈ 2.32` bits. This is **not** a Fock-state counting argument (symmetric 4×4 tensor has 10 components, TT gauge leaves 2 physical polarizations — gauge-fixed states are not physical information). The 5 templates are a discrete-model structural choice, not a gauge-counting artifact.
 
-Each graviton encodes one of 5 possible spacetime deformation patterns.
-
-**Interpretation**: 2.32 bits is the **minimum information** needed to specify a local geometric repair. This is why gravitons are the quanta of geometric healing—they carry the smallest possible repair instruction.
+**Interpretation**: 2.32 bits is the **minimum information** needed to specify a single repair instruction on the Planck lattice. In the OmegaTheory framing, this quantity characterizes the *repair quantum* — the granular unit of geometric healing — not the field-graviton Fock quantum. See §10A for the disambiguation.
 
 ---
 
@@ -239,7 +232,9 @@ Observable effects:
 
 ### 6.2 Dispersion from Irrational Corrections
 
-The dispersion relation acquires corrections:
+**Scope note**: the dispersion relation below applies to **field gravitons** — the massless spin-2 Fock quanta that aggregate into classical gravitational waves LIGO measures. It does **not** apply to repair quanta (see §10A), which are per-cell-per-tick lattice events with no continuous-frequency mode structure.
+
+The field-graviton dispersion relation acquires corrections:
 
 $$\omega^2 = c^2 k^2 \times \left[1 + (\ell_p k)^2 \times \delta(\pi, e, \sqrt{2})\right]$$
 
@@ -553,17 +548,23 @@ Regions with anomalous irrational computation (high δ(π,e,√2)) should show e
 
 ---
 
-## 10A. Quantitative Graviton Energetics: The Fixed Energy Derivation
+## 10A. Quantitative Graviton Energetics: The Repair Quantum Energy Derivation
+
+**Terminology disambiguation** (2026 revision): §3.2 above defines gravitons as standard massless spin-2 Fock quanta (`E = ℏω`, dispersion `ω = c|k|`) — the objects LIGO measures. The present section §10A deals with a *different* object that the OmegaTheory framework also calls a "graviton": the **repair quantum**, a discrete lattice repair event carrying Planck-scale energy because it is the granular unit of geometric healing, not a wave-like excitation. These coexist and count different things. The `E_P/2 ≈ 10⁹ J` energy derived below is the **repair quantum energy**, not the field-graviton energy. GW150914 contains both `~10⁷⁷` field gravitons (standard Fock bookkeeping, `E = ℏω`) AND `~5×10³⁸` repair quanta (OmegaTheory bookkeeping, `E_rq = E_P/2`). Both bookkeepings are valid for their own objects.
+
+For the Lean formalization of both objects side-by-side, see `OmegaTheory/Emergence/Gravitons.lean`.
 
 ### 10A.1 The Core Question
 
 The graviton's role is **topological**: it stitches spacetime to ensure information flow is not disrupted. Therefore, its energy must be derived from the **information it carries**, not from thermodynamic considerations.
 
-### 10A.2 Graviton Energy from Information Content
+### 10A.2 Repair Quantum Energy from Information Content
 
-**Theorem 10A.1** (Fixed Graviton Energy): Every graviton carries the same energy:
+**Theorem 10A.1** (Fixed Repair Quantum Energy): Every repair quantum carries the same energy:
 
-$\boxed{E_g = \frac{E_P}{2} \approx 10^9 \text{ J}}$
+$\boxed{E_{rq} = \frac{E_P}{2} \approx 10^9 \text{ J}}$
+
+This does NOT apply to field gravitons (§3.2), which carry the standard `E = ℏω` and are the objects LIGO measures. The derivation below gives the energy of the discrete lattice repair event, not the energy of a propagating spin-2 field quantum.
 
 *Derivation from Holographic Principle*:
 
@@ -583,24 +584,26 @@ $\frac{E_g}{E_P} = \frac{I_g}{I_{\max}} = \frac{2.32}{4.53} \approx 0.51$
 
 $E_g = 0.51 \times E_P \approx \frac{E_P}{2} \approx 10^9 \text{ J}$ □
 
-**Critical Distinction**: This derivation gives a **fixed, constant** energy for every graviton. The earlier temperature-dependent formula $E_g \sim k_B T$ was **incorrect**—it conflated thermodynamic information-energy relations with the quantum energy of a fundamental repair operation.
+**Critical Distinction** (2026 revision): This derivation gives a **fixed, constant** energy for every **repair quantum**. It does **not** override the standard field-graviton relation `E = ℏω` (§3.2), which remains valid for the Fock-quantum object LIGO measures. The two are distinct objects: the repair quantum is the granular unit of discrete-lattice geometric healing; the field graviton is a wave-like Fock excitation. Earlier drafts conflated these and claimed `E_g = E_P/2` for the field graviton — that conflation is now resolved by the disambiguation at the top of §10A.
 
-### 10A.3 Observable Frequencies vs. Graviton Energy
+The earlier temperature-dependent formula $E_{rq} \sim k_B T$ was also incorrect — it conflated thermodynamic information-energy relations with the Planck-scale energy of a fundamental repair operation.
 
-**Corollary 10A.1** (Frequency-Energy Decoupling): Observable gravitational wave frequencies describe **patterns** of gravitons, not individual graviton energies.
+### 10A.3 Observable Frequencies and Repair Quantum Counts
 
-| Observation | Frequency | What it means |
-|-------------|-----------|---------------|
-| LIGO GW150914 | 100 Hz | Pattern repetition rate |
-| Pulsar timing | 10⁻⁹ Hz | Long-wavelength pattern |
-| Primordial GW | 10⁻¹⁸ Hz | Cosmological pattern |
+**Corollary 10A.1** (Two-Channel Bookkeeping): Observable gravitational wave data admits two independent counts — one for field-graviton Fock quanta, one for repair quanta. Both are valid for their respective objects.
 
-**For GW150914**:
+| Observation | Frequency | Field-graviton (Fock) reading | Repair quantum (OmegaTheory) reading |
+|-------------|-----------|-------------------------------|--------------------------------------|
+| LIGO GW150914 | 100 Hz | `~10⁷⁷` Fock quanta at `ℏω ~ 10⁻³² J` | `~5×10³⁸` repair events at `E_P/2 ~ 10⁹ J` |
+| Pulsar timing | 10⁻⁹ Hz | long-wavelength Fock modes | same repair-event count per radiated mass-energy |
+| Primordial GW | 10⁻¹⁸ Hz | cosmological pattern | ditto |
+
+**For GW150914** (both bookkeepings):
 - Total energy radiated: $\sim 3 M_\odot c^2 \approx 5 \times 10^{47}$ J
-- Graviton energy: $E_g = E_P/2 \approx 10^9$ J
-- **Number of gravitons**: $N_g = \frac{5 \times 10^{47}}{10^9} \approx 5 \times 10^{38}$
+- **Field-graviton count** (standard Fock, `E = ℏω`): $N_\text{Fock} = E_\text{rad}/(\hbar\omega) \approx 5 \times 10^{47}/(10^{-32}) \approx 5 \times 10^{79}$
+- **Repair quantum count** (OmegaTheory, `E_{rq} = E_P/2`): $N_{rq} = E_\text{rad}/(E_P/2) \approx 5 \times 10^{47}/10^9 \approx 5 \times 10^{38}$
 
-These $5 \times 10^{38}$ gravitons are arranged in a coherent pattern with 100 Hz modulation. The frequency describes the pattern, not the energy of individual quanta.
+These are counts of **different objects** in the same event, not competing answers to the same question. The `~10⁷⁷` Fock quanta account for the classical GW strain LIGO measures (linearized-GR / coherent-state limit); the `~5×10³⁸` repair quanta account for the discrete lattice repair events needed to preserve information conservation during the inspiral. Neither bookkeeping refutes the other.
 
 ### 10A.4 Empirical Confirmation: Absence of Micro-Black Holes
 
@@ -730,18 +733,19 @@ $m \cdot \delta \cdot \frac{R}{R_P} \geq \frac{M_P}{2} \approx 10^{-8} \text{ kg
 3. Compare to threshold: $10^{-120} / 10^9 \sim 10^{-129}$ (129 orders of magnitude too small!)
 4. Diffusive healing prevents accumulation—defects heal as fast as they form. □
 
-### 10A.9 Gravitational Waves Reinterpreted
+### 10A.9 Gravitational Waves: Two-Channel Bookkeeping
 
-**For GW150914**:
+**For GW150914** — both bookkeepings are valid for their respective objects:
 
-| Quantity | Old interpretation | New interpretation |
-|----------|-------------------|--------------------|
-| Wave frequency | 100 Hz | Pattern modulation rate |
-| Graviton energy | $E = hf \sim 10^{-32}$ J | $E_g = E_P/2 \sim 10^9$ J |
-| Number of gravitons | $\sim 10^{79}$ | $\sim 5 \times 10^{38}$ |
-| Physical picture | Many soft gravitons | Fewer hard gravitons in pattern |
+| Quantity | Field-graviton channel (§3.2) | Repair-quantum channel (§10A) |
+|----------|-------------------------------|-------------------------------|
+| Object counted | massless spin-2 Fock quantum | discrete lattice repair event |
+| Energy per object | $E = \hbar\omega \sim 10^{-32}$ J at 100 Hz | $E_{rq} = E_P/2 \sim 10^9$ J, frequency-independent |
+| Dispersion relation | $\omega = c\lvert k\rvert$ (§6.2 applies) | no continuous-frequency mode structure |
+| Number in GW150914 | $N_\text{Fock} \sim 10^{79}$ soft Fock quanta | $N_{rq} \sim 5 \times 10^{38}$ repair events |
+| What LIGO measures | classical strain from coherent Fock superposition | (not directly accessible with current instruments) |
 
-The gravitational wave is a **coherent pattern** of $\sim 10^{38}$ Planck-energy gravitons, not $\sim 10^{79}$ soft gravitons.
+**The gravitational wave LIGO observes is** the classical coherent-state limit of the $\sim 10^{79}$ field gravitons. Simultaneously, the discrete lattice executes $\sim 5 \times 10^{38}$ repair events during the inspiral to preserve information conservation — but these are lattice-level computational events, not quanta of a propagating field. Earlier drafts of this appendix conflated the two by calling both "gravitons" and claiming `E_g = E_P/2` literally refuted the LIGO bookkeeping; that conflation is now resolved.
 
 ### 10A.10 Hawking Radiation as Threshold Crossing
 

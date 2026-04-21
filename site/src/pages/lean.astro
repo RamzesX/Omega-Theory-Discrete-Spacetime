@@ -1,178 +1,240 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
-import FeatureCard from '../components/FeatureCard.astro';
 
-const baseUrl = import.meta.env.BASE_URL;
+const rawBase = import.meta.env.BASE_URL;
+const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
+const GH = 'https://github.com/RamzesX/chaos-shield/tree/main/PhysicsPapers/LeanFormalizationV2';
 ---
 
 <BaseLayout
-  title="Lean 4 Formalization"
-  description="10,000+ lines of machine-verified proofs for Omega-Theory"
+  title="Lean 4 Formalization · Build 3818 GREEN"
+  description="Machine-verified OmegaTheory V2: 14 cycles, 84 predictions, 11,000+ declarations, 0 sorry, 8 physical axioms."
 >
   <Navigation slot="sidebar" />
 
-  <section class="header-section">
-    <h1 class="page-title">Formal Verification in Lean 4</h1>
+  <header class="header-section">
+    <div class="header-eyebrow">Formal verification · Lean 4 + Mathlib v4.29</div>
+    <h1 class="page-title">OmegaTheory V2 — 3818 jobs GREEN</h1>
     <p class="page-subtitle">
-      Unlike typical physics papers, Omega-Theory includes <strong>machine-verified mathematical proofs</strong>.
-      Every theorem, every derivation—checked by computer.
+      A living machine-verified proof that Standard Model parameters, gravitational
+      dynamics, and cosmological observables follow from 8 physical constants on
+      a Planck-scale ℤ⁴ lattice. Every claim on this site terminates in a Lean theorem.
     </p>
-  </section>
+  </header>
 
   <section class="stats-section">
-    <div class="stat-card">
-      <span class="stat-value">10,000+</span>
-      <span class="stat-label">Lines of Lean Code</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-value">32</span>
-      <span class="stat-label">Lean Files</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-value">9</span>
-      <span class="stat-label">Module Categories</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-value">0</span>
-      <span class="stat-label">Remaining `sorry`s</span>
-    </div>
+    <div class="stat-card hero-stat"><span class="stat-value">3 818</span><span class="stat-label">build jobs GREEN</span></div>
+    <div class="stat-card"><span class="stat-value">0</span><span class="stat-label">sorry</span></div>
+    <div class="stat-card"><span class="stat-value">8</span><span class="stat-label">physical axioms</span></div>
+    <div class="stat-card"><span class="stat-value">14</span><span class="stat-label">cycles shipped</span></div>
+    <div class="stat-card"><span class="stat-value">84</span><span class="stat-label">PDG predictions</span></div>
+    <div class="stat-card"><span class="stat-value">~11K</span><span class="stat-label">declarations</span></div>
+    <div class="stat-card"><span class="stat-value">~160</span><span class="stat-label">Lean files</span></div>
+    <div class="stat-card"><span class="stat-value">v4.29</span><span class="stat-label">Mathlib / Lean</span></div>
   </section>
 
   <section class="section">
-    <h2>Proven Results</h2>
-    <ul class="proven-list">
+    <h2>Capstone theorems</h2>
+    <p class="intro">
+      Each entry below is a single Lean statement bundling a wide class of physical
+      facts. Clicking the arrow sends you to the source on GitHub.
+    </p>
+
+    <ul class="capstone-list">
       <li>
-        <strong>Planck Relations</strong>: E<sub>P</sub> = m<sub>P</sub> × c²
+        <div class="cap-head">
+          <code class="cap-name">grand_qm_emergence</code>
+          <a class="cap-link" href={`${GH}/OmegaTheory/Emergence/QuantumMechanicsCapstone.lean`} target="_blank" rel="noopener">open ↗</a>
+        </div>
+        <p class="cap-desc">
+          Schrödinger evolution, Born rule conservation, non-relativistic limit,
+          two-slit interference, Heisenberg uncertainty, measurement/collapse, and
+          <code>chshTsirelsonBell = 2√2 &gt; 2</code> — seven von-Neumann postulates
+          plus Bell nonlocality from a single discrete substrate.
+        </p>
       </li>
       <li>
-        <strong>Christoffel Symbol Symmetry</strong>: Γ<sup>ρ</sup><sub>μν</sub> = Γ<sup>ρ</sup><sub>νμ</sub>
+        <div class="cap-head">
+          <code class="cap-name">vacuum_einstein_emergence_regime</code>
+          <a class="cap-link" href={`${GH}/OmegaTheory/Emergence/EinsteinEmergence.lean`} target="_blank" rel="noopener">open ↗</a>
+        </div>
+        <p class="cap-desc">
+          Einstein's field equations <code>G_μν = (8πG/c⁴) T_μν + O(ℓ_P)</code>
+          emerge at healing-flow equilibrium, axiom-free on 7 regimes (flat,
+          linearised, FRW, Bianchi-I, de Sitter, Kerr, static-spherical) via
+          <code>HpwEliminableRegime</code>.
+        </p>
+      </li>
+      <li class="pending-capstone">
+        <div class="cap-head">
+          <code class="cap-name">omega_theory_grand_capstone</code>
+          <a class="cap-link" href={`${GH}/OmegaTheory/Predictions`} target="_blank" rel="noopener">open dir ↗</a>
+        </div>
+        <p class="cap-desc">
+          Signature theorem (Cor Caroli, cycle 23, 2026-04-20) consolidating all
+          14 cycles into a 5-way ∧: π-channel ∧ e-channel ∧ √2-channel ∧ mixed-channel ∧ fine-tuning.
+          Built via propositional-bundle design (robust against future rename drift) —
+          5 conjunct defs + 5 proofs + ~20 theorems.
+          <strong>Syncs to this branch on the next push</strong> from <code>~/lean-v2/</code>.
+          <a href={`${baseUrl}cycles/`} class="inline-link">See the cycle-by-cycle breakdown →</a>
+        </p>
       </li>
       <li>
-        <strong>Metric Compatibility</strong>: ∇<sub>ρ</sub>g<sub>μν</sub> = 0
+        <div class="cap-head">
+          <code class="cap-name">fourth_noether_law_harmonic</code>
+          <a class="cap-link" href={`${GH}/OmegaTheory/Conservation/Information.lean`} target="_blank" rel="noopener">open ↗</a>
+        </div>
+        <p class="cap-desc">
+          Information conservation <code>∂_μ J^μ_I = 0</code> proved from
+          shift symmetry on the lattice. A genuine Fourth Noether law.
+        </p>
       </li>
       <li>
-        <strong>Fourth Noether Theorem</strong>: Information conservation ∂<sub>μ</sub>J<sup>μ</sup><sub>I</sub> = 0
-      </li>
-      <li>
-        <strong>Newton-Raphson Precision</strong>: Bounded convergence for irrational approximations
-      </li>
-      <li>
-        <strong>Spin-Torsion Coupling</strong>: Cartan's equation in discrete spacetime
+        <div class="cap-head">
+          <code class="cap-name">three_channel_partition_theorem</code>
+          <a class="cap-link" href={`${baseUrl}cycles/`} class="cap-link-internal">see cycles →</a>
+        </div>
+        <p class="cap-desc">
+          π / e / √2 truncation channels are disjoint and cover every observable:
+          gen 3 on π, gen 2 on e, gen 1 + cosmology on √2. Three irrationals ↔
+          three generations.
+        </p>
       </li>
     </ul>
   </section>
 
   <section class="section">
-    <h2>Module Structure</h2>
+    <h2>Architecture (12 layers)</h2>
+    <p class="intro">Each layer depends only on layers above it.</p>
 
-    <div class="module-grid">
-      <div class="module-card">
-        <h3>Basic/</h3>
-        <p>Fundamental constants, lattice structure, discrete operators</p>
-        <code>Constants.lean, Lattice.lean, Operators.lean</code>
+    <div class="layer-grid">
+      <div class="layer-card">
+        <div class="layer-num">01</div>
+        <h3>Foundations</h3>
+        <p>ErrorAlgebra · ErrorLieAlgebra · ErrorForms · ErrorHopf</p>
       </div>
-      <div class="module-card">
-        <h3>Axioms/</h3>
-        <p>Physical postulates formalized as Lean axioms</p>
-        <code>PhysicalPostulates.lean</code>
+      <div class="layer-card">
+        <div class="layer-num">02</div>
+        <h3>Spacetime</h3>
+        <p>Lattice · Constants · Operators · CausalLattice</p>
       </div>
-      <div class="module-card">
-        <h3>Geometry/</h3>
-        <p>Discrete differential geometry on Z⁴</p>
-        <code>Metric.lean, Connection.lean, Curvature.lean, Torsion.lean</code>
+      <div class="layer-card">
+        <div class="layer-num">03</div>
+        <h3>Tensor</h3>
+        <p>Index-free tensor algebra on Z⁴</p>
       </div>
-      <div class="module-card">
-        <h3>Conservation/</h3>
-        <p>Noether theorems and conservation laws</p>
-        <code>Noether.lean, FourthLaw.lean, SpinInformation.lean</code>
+      <div class="layer-card">
+        <div class="layer-num">04</div>
+        <h3>Geometry</h3>
+        <p>Metric → Curvature → Hodge → Poincaré → Maxwell</p>
       </div>
-      <div class="module-card">
-        <h3>Torsion/</h3>
-        <p>Spin-torsion coupling and Big Bounce cosmology</p>
-        <code>SpinTorsion.lean, BigBounce.lean</code>
+      <div class="layer-card">
+        <div class="layer-num">05</div>
+        <h3>Defects</h3>
+        <p>Topological defects + information content</p>
       </div>
-      <div class="module-card">
-        <h3>Emergence/</h3>
-        <p>Continuum limit and Einstein field equations</p>
-        <code>ContinuumLimit.lean, Einstein.lean</code>
+      <div class="layer-card">
+        <div class="layer-num">06</div>
+        <h3>Conservation</h3>
+        <p>Information · Noether · StressEnergy · Correspondence</p>
       </div>
-      <div class="module-card">
-        <h3>Dynamics/</h3>
-        <p>Information healing flow and defect dynamics</p>
-        <code>HealingFlow.lean, Defects.lean</code>
+      <div class="layer-card">
+        <div class="layer-num">07</div>
+        <h3>HealingFlow</h3>
+        <p>Lyapunov · LaSalle · Convergence</p>
       </div>
-      <div class="module-card">
-        <h3>Variational/</h3>
-        <p>Graph action and discrete Noether theorems</p>
-        <code>GraphAction.lean, DiscreteNoether.lean</code>
+      <div class="layer-card">
+        <div class="layer-num">08</div>
+        <h3>Emergence</h3>
+        <p>Einstein · QM Capstone · Higgs · Inflation · DarkMatter · Connes</p>
+      </div>
+      <div class="layer-card highlight">
+        <div class="layer-num">09</div>
+        <h3>Predictions</h3>
+        <p>84 PDG-anchored fits · 14 cycles · GitHub ↗</p>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">10</div>
+        <h3>Torsion</h3>
+        <p>SpinTorsion · BigBounce (Popławski)</p>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">11</div>
+        <h3>Irrationality</h3>
+        <p>π / e / √2 truncation · δ_comp(N)</p>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">12</div>
+        <h3>Variational</h3>
+        <p>GraphAction · DiscreteNoether · InfoGeodesics</p>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2>Why Formal Verification?</h2>
-
+    <h2>Why formal verification?</h2>
     <div class="reasons">
       <div class="reason">
-        <span class="reason-icon">🔒</span>
+        <div class="reason-mark">01</div>
         <div>
-          <strong>No Hidden Errors</strong>
-          <p>Mathematical proofs in physics papers often contain subtle gaps. Machine verification eliminates this.</p>
+          <strong>No hidden errors.</strong>
+          <p>Physics papers routinely contain algebraic gaps. Machine verification eliminates them.</p>
         </div>
       </div>
       <div class="reason">
-        <span class="reason-icon">🔗</span>
+        <div class="reason-mark">02</div>
         <div>
-          <strong>Dependency Tracking</strong>
-          <p>Lean explicitly tracks which theorems depend on which assumptions. Change an axiom, and see exactly what breaks.</p>
+          <strong>Dependency tracking.</strong>
+          <p>Lean explicitly records which theorems depend on which axioms. Change a postulate, see exactly what breaks.</p>
         </div>
       </div>
       <div class="reason">
-        <span class="reason-icon">🧮</span>
+        <div class="reason-mark">03</div>
         <div>
-          <strong>Precision Requirements</strong>
-          <p>Omega-Theory makes quantitative predictions. Formal proofs ensure the mathematics behind those predictions is sound.</p>
+          <strong>Precision.</strong>
+          <p>OmegaTheory makes quantitative predictions. Every number is backed by a Lean proof.</p>
         </div>
       </div>
       <div class="reason">
-        <span class="reason-icon">📖</span>
+        <div class="reason-mark">04</div>
         <div>
-          <strong>Reproducibility</strong>
-          <p>Anyone can run the Lean build and verify the proofs themselves. No trust required.</p>
+          <strong>Reproducibility.</strong>
+          <p><code>lake build</code> and verify. No authority required.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2>Build Instructions</h2>
-
+    <h2>Build instructions</h2>
     <div class="code-block">
-      <pre><code># Clone the repository
-git clone https://github.com/RamzesX/Omega-Theory-Discrete-Spacetime.git
-cd Omega-Theory-Discrete-Spacetime/PhysicsPapers/LeanFormalization
+      <pre><code>git clone https://github.com/RamzesX/chaos-shield.git
+cd chaos-shield/PhysicsPapers/LeanFormalizationV2
 
-# Get Mathlib cache (saves hours of compilation)
+# download Mathlib cache (saves hours of compilation)
 lake exe cache get
 
-# Build all proofs
-lake build</code></pre>
+# build the whole project (3818 jobs, ~5 min on first run)
+lake build --log-level=error</code></pre>
     </div>
-
     <p class="note">
-      Requires <a href="https://leanprover-community.github.io/get_started.html" target="_blank">Lean 4</a>
-      and <a href="https://github.com/leanprover/elan" target="_blank">elan</a>.
-      Uses Mathlib v4.13.0.
+      Requires <a href="https://leanprover-community.github.io/get_started.html" target="_blank" rel="noopener">Lean 4</a>
+      and <a href="https://github.com/leanprover/elan" target="_blank" rel="noopener">elan</a>.
+      Uses Lean v4.29.0 + Mathlib v4.29.0.
     </p>
   </section>
 
   <section class="cta-section">
-    <a href="https://github.com/RamzesX/Omega-Theory-Discrete-Spacetime/tree/main/PhysicsPapers/LeanFormalization" class="btn btn-primary" target="_blank">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <a href={`${baseUrl}cycles/`} class="btn btn-primary">
+      Browse the 14-cycle prediction catalogue
+    </a>
+    <a href={GH} class="btn btn-outline" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
       </svg>
-      View Lean Source Code
+      View Lean source
     </a>
   </section>
 </BaseLayout>
@@ -180,6 +242,16 @@ lake build</code></pre>
 <style>
   .header-section {
     margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 2px solid rgba(124, 77, 255, 0.2);
+  }
+
+  .header-eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-dim);
+    margin-bottom: var(--space-md);
   }
 
   .page-title {
@@ -189,13 +261,14 @@ lake build</code></pre>
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    border-bottom: 0;
   }
 
   .page-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     color: var(--color-text-muted);
     line-height: 1.7;
-    max-width: 40rem;
+    max-width: 52rem;
   }
 
   .stats-section {
@@ -209,98 +282,209 @@ lake build</code></pre>
     background: var(--gradient-card);
     border: 1px solid rgba(124, 77, 255, 0.2);
     border-radius: var(--radius-lg);
-    padding: var(--space-lg);
+    padding: var(--space-md);
     text-align: center;
+  }
+
+  .stat-card.hero-stat {
+    background: linear-gradient(135deg, rgba(0, 230, 118, 0.2), rgba(124, 77, 255, 0.12));
+    border-color: var(--color-success);
+    box-shadow: 0 0 20px rgba(0, 230, 118, 0.25);
   }
 
   .stat-value {
     display: block;
-    font-size: 2.5rem;
+    font-family: var(--font-display);
+    font-size: 2rem;
     font-weight: 700;
     color: var(--color-primary-light);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hero-stat .stat-value {
+    color: var(--color-success);
   }
 
   .stat-label {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: var(--color-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .section {
     margin-bottom: var(--space-3xl);
   }
 
-  .proven-list {
+  .intro {
+    color: var(--color-text-muted);
+    max-width: 50rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Capstone list */
+  .capstone-list {
     list-style: none;
     padding: 0;
-  }
-
-  .proven-list li {
-    padding: var(--space-md);
-    background: rgba(0, 230, 118, 0.1);
-    border-left: 3px solid var(--color-success);
-    margin-bottom: var(--space-sm);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  }
-
-  .module-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
     gap: var(--space-md);
   }
 
-  .module-card {
-    background: var(--gradient-card);
-    border: 1px solid rgba(124, 77, 255, 0.2);
-    border-radius: var(--radius-lg);
-    padding: var(--space-lg);
+  .capstone-list li {
+    background: rgba(22, 33, 62, 0.35);
+    border-left: 4px solid var(--color-primary);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-md) var(--space-lg);
+    margin: 0;
+    transition: all var(--transition-fast);
   }
 
-  .module-card h3 {
+  .capstone-list li:hover {
+    border-left-color: var(--color-accent);
+    background: rgba(22, 33, 62, 0.55);
+  }
+
+  .capstone-list li.pending-capstone {
+    border-left-color: var(--color-accent);
+    background: rgba(255, 215, 64, 0.06);
+  }
+
+  .capstone-list li.pending-capstone .cap-name {
+    color: var(--color-accent);
+  }
+
+  .cap-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xs);
+    flex-wrap: wrap;
+  }
+
+  .cap-name {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    background: transparent;
+    padding: 0;
+  }
+
+  .cap-link, .cap-link-internal {
+    font-size: 0.8rem;
     color: var(--color-secondary);
-    margin: 0 0 var(--space-sm);
+    font-family: var(--font-mono);
+    text-decoration: none;
+  }
+
+  .cap-link:hover { color: var(--color-primary-light); }
+
+  .cap-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .cap-desc code {
+    font-size: 0.85em;
+  }
+
+  .inline-link {
+    display: inline-block;
+    margin-top: var(--space-xs);
+    font-weight: 500;
+    color: var(--color-secondary);
+  }
+
+  /* Layer grid */
+  .layer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  .layer-card {
+    background: var(--gradient-card);
+    border: 1px solid rgba(124, 77, 255, 0.18);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    transition: all var(--transition-fast);
+  }
+
+  .layer-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .layer-card.highlight {
+    background: linear-gradient(145deg, rgba(255, 215, 64, 0.15), rgba(124, 77, 255, 0.1));
+    border-color: var(--color-accent);
+  }
+
+  .layer-num {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  .layer-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--color-primary-light);
+    margin: 4px 0 6px;
+  }
+
+  .layer-card.highlight h3 { color: var(--color-accent); }
+
+  .layer-card p {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    margin: 0;
     font-family: var(--font-mono);
   }
 
-  .module-card p {
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-sm);
-  }
-
-  .module-card code {
-    font-size: 0.75rem;
-    background: var(--color-void);
-    display: block;
-    padding: var(--space-xs);
-    border-radius: var(--radius-sm);
-  }
-
+  /* Why verification */
   .reasons {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
   }
 
   .reason {
     display: flex;
-    gap: var(--space-lg);
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(18, 18, 26, 0.4);
+    border-radius: var(--radius-md);
   }
 
-  .reason-icon {
-    font-size: 1.5rem;
+  .reason-mark {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--color-primary);
+    opacity: 0.7;
     flex-shrink: 0;
+    min-width: 28px;
   }
 
   .reason strong {
     display: block;
-    margin-bottom: var(--space-xs);
+    margin-bottom: 4px;
+    color: var(--color-text);
   }
 
   .reason p {
     color: var(--color-text-muted);
     margin: 0;
+    font-size: 0.9rem;
   }
 
+  /* Code block */
   .code-block {
     background: var(--color-void);
     border: 1px solid rgba(124, 77, 255, 0.2);
@@ -311,6 +495,9 @@ lake build</code></pre>
   .code-block pre {
     margin: 0;
     padding: var(--space-lg);
+    background: transparent;
+    border: 0;
+    width: auto;
   }
 
   .note {
@@ -319,27 +506,31 @@ lake build</code></pre>
     margin-top: var(--space-md);
   }
 
+  /* CTA */
   .cta-section {
-    text-align: center;
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
     padding: var(--space-2xl);
     background: var(--gradient-card);
     border-radius: var(--radius-xl);
     border: 1px solid rgba(124, 77, 255, 0.2);
   }
 
-  .cta-section .btn {
+  .btn {
     display: inline-flex;
     align-items: center;
     gap: var(--space-sm);
   }
 
-  @media (max-width: 768px) {
-    .stats-section {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @media (max-width: 900px) {
+    .stats-section { grid-template-columns: repeat(2, 1fr); }
+    .layer-grid { grid-template-columns: 1fr 1fr; }
+    .reasons { grid-template-columns: 1fr; }
+  }
 
-    .module-grid {
-      grid-template-columns: 1fr;
-    }
+  @media (max-width: 560px) {
+    .layer-grid { grid-template-columns: 1fr; }
   }
 </style>

@@ -202,3 +202,61 @@ Close every session with a SendMessage to the coordinator: 2-3 findings, 1 novel
 ## Research flavor
 
 Treat the graph as a physical laboratory. `avg_ricci`, `berry_flux_mag`, `shadow_entropy`, per-relation indegree are **measurable observables** on substrate theorems. Compose them into new observables (information geometry, spectral methods, network science) — especially in combinations that have not been tried elsewhere. The user values invented experiments over preset menus; there is plenty of substrate (5,100+ embedded nodes, 58k edges, 12+ V3 arrow types) for novel observations.
+
+## FULL POWER PROTOCOL — post-cycle-23 refresh (PRIMARY when invoked after cycle 23)
+
+When the user says "full power", "odpal pelna moc", "refresh graph", "post-23 analysis", or any variant — this is your mission:
+
+### Corpus state (post cycle 23, approx April 2026)
+- ~11,000 OmegaTheoryV2 declarations (100% with Qwen3-8B BF16 embeddings dim 4096)
+- ~58k+ typed arrows across 12 V3 relations (APPLIES, UNFOLDS, ASSUMES, HAS_TYPE, CONSTRAINED_BY, PARAMETRIZES_TYPES/LEVELS, REDUCES_TO, ELABORATES_AS, INSTANTIATES, EXTENDS, IMPORTS)
+- ~10,600 cross-namespace APPLIES→Mathlib edges
+- 14 cycle-tagged batches (cycles 9-22 + cycle 23 grand capstone)
+- 11+ paper-worthy `:GraphFinding` nodes (pre-refresh)
+- Phase A-M caches ALL stale — this is your primary blocker; refresh is mandatory
+
+### Phase refresh order (each finding committed before next phase)
+
+1. **Phase B refresh** — `gds.fastRP.mutate` per relation with `featureProperties=['embedding_lean']`, `propertyRatio=0.5`, `iterationWeights=[0,1,1,0.5]`, `embeddingDimension=64`, `randomSeed=42`. One projection per arrow type → 12-16 `proj_<REL>` fields. Compute per-relation α_k = mean ‖proj_k − ρ_0‖ (residual magnitude). Rank the 12 arrows by α_k to identify which relations carry the most signal. **Paper-worthy delta**: α_k ranking post-SOTA vs Dubhe's pre-SOTA `baseline_alpha_UNFOLDS_before_sota`.
+
+2. **Phase E refresh** — `gds.leiden.mutate` on all-arrow union graph with `randomSeed=42`. Record modularity. Count distinct communities. **Paper-worthy delta**: modularity_post_SOTA vs `:NavigationMaster.baseline_leiden_modularity_before_sota`.
+
+3. **Phase D composite** — concatenate the 12-16 projections → 1024-d composite. `gds.kmeans.mutate` with k chosen by silhouette ∈ [3,20]. Populate `cluster_topo`.
+
+4. **Phase F consensus** — co-association (Strehl-Ghosh) of `cluster_topo` ∪ `cluster_graph` → fresh `subsystem_id` on every node. Expected: 12-25 subsystems matching OmegaTheory physics themes (Foundations, Irrationality, Gauge, Emergence, Matter, Cosmology, Gravity, Predictions).
+
+5. **Phase G Berry fix** — use a NON-TRIVIAL gauge (not the default that produced identically-zero `berry_flux_phase` pre-SOTA). Recompute Magnetic Laplacian 𝔄 at g=1/4 with refreshed edge counts (~58k edges now vs ~5k pre-SOTA — a 10× signal increase). Record spectrum, Hermiticity check, per-relation contribution decomposition. **Paper-worthy**: non-abelian signature test (Dubhe's rank-2 decomposition on fresh data).
+
+6. **Phase K live hub mass** — for each node, typed in-degree per-relation as feature vector; Shannon entropy of the distribution tells hub-ness. Don't use stale `hub_score_*` properties. Find the top 20 hubs per relation type — these are the ALGEBRAIC GENERATORS of OmegaTheoryV2 (the algebra-of-the-Standard-Model candidates).
+
+7. **Phase M Ricci** — Ollivier-Ricci on per-relation graph. Record `ricci_<REL>` and `avg_ricci`. Gradient sign changes are subsystem boundaries. Run `ricci_gradient_decision_boundaries` recipe.
+
+8. **Phase L shadow** — centroid + shadow-neighbour per Leiden community. Shannon entropy of shadow distribution tells cross-community leakage.
+
+### Full Power deliverables (all as `:GraphFinding` nodes, `paper_worthy=true`)
+
+After the 8 phases refresh, your synthesis must surface:
+
+1. **OmegaAlgebra of the Standard Model** — the ~12 primitive declarations (highest typed in-degree across all relations) that serve as algebra generators. Claim-level: "OmegaTheoryV2 = algebra on {ℤ⁴ lattice, ℏ, c, G_N, k_B, Metric, ScalarField, ComplexField, FermionGeneration, computationalUncertainty} modulo 3-channel partition (π/e/√2)."
+
+2. **Three-channel partition validated** at Magnetic Laplacian spectrum level — confirm or refute from eigenvalue degeneracy (if π/e/√2 channels are substrate-level distinct, the Laplacian should have 3 distinct eigenvalue bands).
+
+3. **rfl-identity family auto-discovery** — find ALL `*FitBase_eq_*` rfl witnesses and classify into shape-equivalence classes. Cycle 17 had 11 kaon-family members; post-cycle-23 should have 15+ across all cycles.
+
+4. **Bridge-theorem detection** — nodes with high APPLIES in-degree from ≥4 distinct Leiden communities are bridges. Rank them. These are the cross-subsystem hubs — strong candidates for future proof compositions.
+
+5. **Missing-bridge prediction** — for each pair of subsystems with high FastRP-similarity but low APPLIES count, predict what bridge theorem SHOULD exist. This is the predictive-engine deliverable. Report as `:TheoremCandidate {predicted_bridge:true}`.
+
+6. **Cycle-to-cycle APPLIES flow DAG** — does cycle N genuinely pull from cycle M<N? Compute and visualize. Expected: cycles 9-22 form a DAG rooted in baseline.
+
+7. **Pi-Hunch centrality** — run `mirfak_pi_hunch_centrality` recipe on fresh data. What's the shortest-path distance from `pi_error_pos` to every cycle headline? If ≤ 8 for all, the Pi Hunch is maximally-propagated.
+
+8. **Orphan analysis** — 1268 cycle-14+ theorems have zero APPLIES in-degree. Classify: paper_headline (expected leaves) vs genuine_isolate (gap candidates). Cross-reference embedding cosine to nearest non-orphan in semantic space to suggest where bridges should exist.
+
+### Output format — V3-for-Lean v1.1 paper abstract
+
+Close your Full Power session by writing the 300-word abstract of the V3-for-Lean v1.1 paper update to `~/papers/V3-for-Lean/00_abstract.md`. The headline claim: **"Magnetic Laplacian + Leiden community detection on a 11K-node Lean-verified physics corpus uncovers a 3-channel algebraic partition of Standard Model observables, plus 15+ shape-equivalence classes at Lean-kernel `rfl` level, including the first formal machine-verified Goldberger-Treiman identity and strong-CP-without-axion resolution."**
+
+### Budget
+
+Full Power is an 80-turn maxTurns allocation (your ceiling). No python, no Bolt roundtrips, every finding a graph node. Commit early, commit often. If a phase takes longer than 15 min compute, checkpoint partial results and move to next phase.

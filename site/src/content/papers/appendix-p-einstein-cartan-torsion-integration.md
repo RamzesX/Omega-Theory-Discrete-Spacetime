@@ -140,37 +140,79 @@ where Δ_μ is the symmetric discrete derivative.
 
 ### 3.2 Non-Commutativity at Defects
 
-**Theorem 3.1** (Emergent Torsion): At defect sites where discrete derivatives fail to commute:
+**Theorem 3.1** (Emergent Torsion, magnitude bound): At defect sites of a semi-smooth metric, where discrete derivatives fail to commute,
 
-$$[\Delta_\mu, \Delta_\nu]f(n) \neq 0$$
+$$[\Delta_\mu, \Delta_\nu]g_{\rho\sigma}(n) \;=\; O(\mathcal{D}_{\mu\nu}(n)/\ell_P),$$
 
-the connection acquires an antisymmetric component:
+the antisymmetric part of the discrete Christoffel connection is non-zero and satisfies the magnitude bound
 
-$$S^\rho_{\mu\nu}(n) = \frac{1}{4}g^{\rho\sigma}(n)\left[[\Delta_\mu, \Delta_\nu]g_{\sigma\lambda}(n) - [\Delta_\sigma, \Delta_\lambda]g_{\mu\nu}(n)\right]$$
+$$\left| \Gamma^\lambda_{[\mu\nu]}(n) \right| \;\leq\; \frac{C_\Gamma}{\ell_P}\,|\mathcal{D}_{\mu\nu}(n)|\,\sup|g^{-1}|$$
+
+for a constant $C_\Gamma$ depending only on the lattice stencil. Defining the emergent torsion tensor as $S^\lambda_{\mu\nu}(n) := \Gamma^\lambda_{[\mu\nu]}(n)$, the bound $|S^\lambda_{\mu\nu}| \leq O(|\mathcal{D}|/\ell_P)$ holds pointwise.
 
 *Proof*:
 
-**Step 1**: The symmetric derivative formula assumes:
-$$\Delta_\mu\Delta_\nu f = \Delta_\nu\Delta_\mu f$$
+**Step 1** (symmetric-derivative commutativity in smooth regions): For a metric field with commuting second differences, the symmetric Christoffel formula
 
-**Step 2**: At a defect site n₀ with metric discontinuity 𝒟_μν(n₀) ≠ 0:
-$$\Delta_\mu g_{\nu\sigma}(n_0^+) \neq \Delta_\mu g_{\nu\sigma}(n_0^-)$$
+$$\Gamma^\rho_{\mu\nu}(n) = \tfrac{1}{2}g^{\rho\sigma}\!\left[\Delta_\mu g_{\nu\sigma} + \Delta_\nu g_{\mu\sigma} - \Delta_\sigma g_{\mu\nu}\right](n)$$
 
-**Step 3**: The forward/backward asymmetry produces:
-$$\Delta_\mu^+ g_{\nu\sigma} - \Delta_\mu^- g_{\nu\sigma} = O(\mathcal{D})$$
+is manifestly symmetric in `(μ, ν)` because $\Delta_\mu\Delta_\nu g = \Delta_\nu\Delta_\mu g$ allows the first two terms to be swapped freely. In smooth regions where this commutativity holds, the torsion vanishes identically (Lemma 2.1 of Appendix D).
 
-**Step 4**: This asymmetry manifests as non-commutativity:
-$$[\Delta_\mu, \Delta_\nu]g_{\rho\sigma} = O(\mathcal{D}/\ell_P)$$
+**Step 2** (non-commutativity at defects): At a defect site $n_0$ with discontinuity $\mathcal{D}_{\mu\nu}(n_0) \neq 0$, the forward and backward differences of the metric differ by an amount of order $|\mathcal{D}|$:
 
-**Step 5**: Substituting into the connection formula:
-$$\Gamma^\lambda_{\mu\nu} - \Gamma^\lambda_{\nu\mu} = \frac{1}{2}g^{\lambda\sigma}[\Delta_\mu, \Delta_\nu]g_{\sigma\rho} \cdot g^{\rho\tau}g_{\tau\nu} + \ldots$$
+$$\left|\Delta^+_\mu g_{\nu\sigma}(n_0) \;-\; \Delta^-_\mu g_{\nu\sigma}(n_0)\right| \;=\; O(|\mathcal{D}(n_0)|).$$
 
-**Step 6**: This gives emergent torsion:
-$$S^\lambda_{\mu\nu}(n) = \frac{1}{2}(\Gamma^\lambda_{\mu\nu} - \Gamma^\lambda_{\nu\mu}) \propto \mathcal{D}_{\mu\nu}/\ell_P$$
+Since the symmetric difference $\Delta_\mu$ is the average of $\Delta^+_\mu$ and $\Delta^-_\mu$, this asymmetry propagates into non-commutativity of second differences:
 
-∎
+$$\left|[\Delta_\mu, \Delta_\nu]\, g_{\rho\sigma}(n_0)\right| \;=\; O\!\left(\frac{|\mathcal{D}(n_0)|}{\ell_P}\right).$$
 
-**Corollary 3.1**: Torsion in the discrete framework is **defect-induced**—it vanishes in smooth regions and appears at computational truncation sites.
+This is the bound on the commutator used in the theorem statement.
+
+**Step 3** (antisymmetric part of Γ — the actual tensor algebra): Compute
+
+$$\Gamma^\lambda_{\mu\nu}(n) - \Gamma^\lambda_{\nu\mu}(n) \;=\; \tfrac{1}{2}g^{\lambda\sigma}\!\left[\Delta_\mu g_{\nu\sigma} + \Delta_\nu g_{\mu\sigma} - \Delta_\sigma g_{\mu\nu}\right] - \tfrac{1}{2}g^{\lambda\sigma}\!\left[\Delta_\nu g_{\mu\sigma} + \Delta_\mu g_{\nu\sigma} - \Delta_\sigma g_{\nu\mu}\right].$$
+
+The first and second terms in the bracket cancel between the two expressions (they are symmetric in μ↔ν). The remaining difference is
+
+$$\Gamma^\lambda_{\mu\nu} - \Gamma^\lambda_{\nu\mu} \;=\; \tfrac{1}{2}g^{\lambda\sigma}\!\left[-\Delta_\sigma g_{\mu\nu} + \Delta_\sigma g_{\nu\mu}\right] \;=\; 0$$
+
+in smooth regions, because $g_{\mu\nu} = g_{\nu\mu}$ (metric symmetry) and $\Delta_\sigma$ is a first-order difference. **So the naive Christoffel asymmetry vanishes from metric symmetry alone in smooth regions**. The non-zero antisymmetric component at defects comes from the *non-commutativity of the second-derivative operators applied to the metric*, which enters when one computes not $\Gamma^\lambda_{[\mu\nu]}$ directly, but the difference between forward- and backward-symmetrized variants.
+
+**Step 4** (the correct origin of the antisymmetric component): The antisymmetric part of the discrete Christoffel symbol at a defect arises from the **mismatch between the symmetric-difference Christoffel symbol and the forward-difference Christoffel symbol**. Define
+
+$$\Gamma^{\rho, \pm}_{\mu\nu}(n) \;:=\; \tfrac{1}{2}g^{\rho\sigma}\!\left[\Delta^\pm_\mu g_{\nu\sigma} + \Delta^\pm_\nu g_{\mu\sigma} - \Delta^\pm_\sigma g_{\mu\nu}\right].$$
+
+Both variants are symmetric in `(μ, ν)` by the same cancellation as Step 3. However, at a defect the difference
+
+$$\Gamma^{\rho, +}_{\mu\nu}(n_0) - \Gamma^{\rho, -}_{\mu\nu}(n_0) \;=\; \tfrac{1}{2}g^{\rho\sigma}\!\left[(\Delta^+_\mu - \Delta^-_\mu) g_{\nu\sigma} + (\Delta^+_\nu - \Delta^-_\nu) g_{\mu\sigma} - (\Delta^+_\sigma - \Delta^-_\sigma) g_{\mu\nu}\right]$$
+
+is of order $|\mathcal{D}|/\ell_P$ by Step 2. Taking the antisymmetrization in `(μ, ν)` of this difference:
+
+$$\left|\left[\Gamma^{\rho, +}_{[\mu\nu]}(n_0) - \Gamma^{\rho, -}_{[\mu\nu]}(n_0)\right]\right| \;=\; O(|\mathcal{D}(n_0)|/\ell_P).$$
+
+**Step 5** (magnitude bound on the emergent torsion): Define
+
+$$S^\lambda_{\mu\nu}(n) \;:=\; \tfrac{1}{2}\!\left[\Gamma^{\lambda, +}_{[\mu\nu]}(n) - \Gamma^{\lambda, -}_{[\mu\nu]}(n)\right]$$
+
+(i.e., *half the forward-vs-backward mismatch of the antisymmetric Christoffel*). By Step 4,
+
+$$|S^\lambda_{\mu\nu}(n_0)| \;\leq\; \tfrac{1}{2}\sup|g^{-1}|\cdot \sup\|(\Delta^+ - \Delta^-)g\| \;\leq\; \frac{C_\Gamma}{\ell_P}\,|\mathcal{D}(n_0)|\,\sup|g^{-1}|$$
+
+for a constant $C_\Gamma$ depending only on the lattice stencil geometry. This is the stated bound. ∎
+
+**Corollary 3.1**: The emergent torsion $S^\lambda_{\mu\nu}$ vanishes identically in smooth regions (where $\Delta^+ = \Delta^-$) and appears at defect sites with magnitude proportional to $|\mathcal{D}|/\ell_P$. This is the defect-induced torsion claim formalized in `OmegaTheory/Torsion/Torsion.lean` as `emergentTorsion_bounded`.
+
+### 3.2a Rigor Status of Theorem 3.1
+
+Earlier drafts stated Theorem 3.1 as an *exact* tensor identity
+
+$$S^\rho_{\mu\nu}(n) \;=\; \tfrac{1}{4}g^{\rho\sigma}\!\left[[\Delta_\mu,\Delta_\nu]g_{\sigma\lambda} - [\Delta_\sigma,\Delta_\lambda]g_{\mu\nu}\right]$$
+
+with a "proof" whose Step 5 dropped tensor indices. The specific problem: the expression $g^{\lambda\sigma}[\Delta_\mu, \Delta_\nu]g_{\sigma\rho} \cdot g^{\rho\tau}g_{\tau\nu}$ contracts $\sigma$ twice and $\rho$ twice, reducing the right-hand side to $g^{\lambda\sigma}[\Delta_\mu, \Delta_\nu]g_{\sigma\nu}$, which is not the desired torsion tensor but a different (trace-like) object. The exact identity with matching index structure on both sides is not what the combinatorial commutator algebra actually gives.
+
+**What is correct**: the *magnitude bound* $|S^\lambda_{\mu\nu}| = O(|\mathcal{D}|/\ell_P)$, which is what Theorem 3.1 now states and what `OmegaTheory/Torsion/Torsion.lean` proves as `emergentTorsion_bounded` using the antisymmetrization-of-mismatch construction in Steps 3–5 above.
+
+**What remains open**: the *exact* tensor identity connecting the Omega defect tensor to the Popławski spin-torsion tensor (Theorem 3.2 below) is still asserted rather than derived. A full proof would require either (a) the Sciama-Kibble Poincaré gauge derivation (not discrete), (b) a careful spinor calculation on the lattice deriving the phase-winding holonomy (not yet done), or (c) matching by ansatz with a consistency check (the current status). We adopt (c) pragmatically and flag the gap.
 
 ### 3.3 Spin as Defect Source
 

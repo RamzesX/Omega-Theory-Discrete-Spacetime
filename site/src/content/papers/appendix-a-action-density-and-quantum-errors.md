@@ -279,7 +279,7 @@ Einstein's field equation thus states that spacetime curvature equals the stress
 **Prediction**: Gate fidelity scales inversely with temperature:
 $$F(T) = \frac{F_0}{1 + \alpha T}$$
 
-where α ≈ 0.065 K⁻¹ for superconducting architectures.
+where `α_engineering ≈ 0.065 K⁻¹` is the **architecture-specific** emergent multi-channel coupling for superconducting / silicon qubits.  This is **not** the per-channel substrate constant `α_theory = k_B·t_P/(2ℏ) ≈ 3.5×10⁻³³ K⁻¹` (Lean: `OmegaTheory/Emergence/Predictions.lean:27`); the relationship is `α_engineering = α_theory · Σᵢ (channel multiplicity)ᵢ` (cf. Appendix-B §2A.3, Appendix-J §0).  The architecture-specific value `≈ 0.065` matches the Diraq Nature-2024 spin-qubit dataset (Appendix-B §2A.2).
 
 **Protocol A: Temperature Scaling Measurement**
 

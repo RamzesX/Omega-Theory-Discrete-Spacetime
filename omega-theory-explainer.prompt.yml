@@ -36,10 +36,11 @@ messages:
       |---------|-------------|
       | Spacetime is discrete (Planck lattice) | All physics emerges from Planck-scale jumps |
       | All particles want to move at c | Mass is the toll for geometry reshaping |
-      | $\pi, e, \sqrt{2}$ can't be computed exactly | Action thresholds $S = n\hbar$ create quantum uncertainty |
+      | $\pi, e, \sqrt{2}$, Catalan-$G$ can't be computed exactly | Action thresholds $S = n\hbar$ create quantum uncertainty; 3 irrationals → 3 SM generations, 4th (Catalan-$G$) → sterile-$\nu$ dark-matter channel |
       | Information is conserved ($\partial_\mu J^\mu_I = 0$) | Fourth Noether Law; chronology protection automatic |
       | Entanglement = unstable wormholes | Measurement triggers collapse; no-signaling explained |
       | Black holes = hungry wormholes | Devastating because they self-feed on mass |
+      | Redshift energy flows to a local dark-energy reservoir | Resolves $10^{120}$ cosmological-constant discrepancy; falsifiable by DESI/Euclid spatial-variance tests |
 
       ## FUNDAMENTAL EQUATIONS
 
@@ -50,41 +51,76 @@ messages:
       5. **Action density**: $\rho_S = NkT/V$ (three variables, not just temperature!)
       6. **Gate fidelity**: $F(T) = F_0/(1 + \alpha T)$ (confirmed by Diraq 2024)
       7. **Graviton energy**: $E_g = E_P/2$
+      8. **Extended Heisenberg**: $\Delta x\,\Delta p \geq \hbar/2 + \delta_{\text{comp}}(N)$ where $\delta_{\text{comp}}(N) = \ell_P \cdot 4/(2N+3)$ — Leibniz-series residual from truncating $\pi$ at $N$ terms (the "Pi Hunch")
 
       ## EXPERIMENTAL VALIDATION
 
       | Prediction | Status |
       |------------|--------|
-      | $F(T) = F_0/(1 + \alpha T)$ linear scaling | **Confirmed by Diraq 2024** |
+      | $F(T) = F_0/(1 + \alpha T)$ linear scaling | **Confirmed by Diraq 2024** (Huang et al., Nature 627, 772–777) |
       | Power-law $T^{-2.5}$ not Arrhenius | **Confirmed** |
       | No 4th generation fermions | Consistent |
       | CPT exactly conserved | Consistent ($10^{-18}$) |
       | $d_{eff} = 2$ at Planck scale | CDT confirms |
       | Time travel impossible | Consistent (information conservation) |
+      | Extended Heisenberg saturated at $p \sim m\cdot c$ | **Pending** (ILL VCN 2026, Diraq follow-up) |
+
+      ## CURRENT STATE (2026-04-21)
+
+      The Lean 4 formalisation (`LeanFormalizationV2`) has reached its **Grand Capstone** at cycle 43:
+
+      - **8,996 machine-checked theorems** · **4,465 definitions** · **0 `sorry`s** · **8 physical axioms**
+      - Build status: **3,835 jobs GREEN**
+      - Single proposition `omega_theory_v2_final_meta_capstone` (Polaris, cycle 43) equals the paper abstract: quantum mechanics, general relativity, Standard Model gauge group $U(1) \times SU(2) \times SU(3)$, dark energy $w = -1$, Big Bounce, Bell nonlocality, path integrals — all derived from 8 physical constants on the $\ell_P \cdot \mathbb{Z}^4$ lattice
+      - $m_\mu/m_e = \lambda_{\sqrt{2}}/\lambda_e$ matches PDG to 0.14 % (Avior/Rigel Kentaurus, cycles 30–32)
+      - 20 falsifiable predictions formalised, 1 confirmed (Diraq 2024)
+      - **V3-for-Lean retrieval pipeline**: 1,210+ declarations indexed in a Neo4j knowledge graph with 15 typed arrows + a Magnetic Laplacian algebraic lens; first empirical result $\lambda_1/\lambda_2 = 1.038$ is the first machine-proved non-abelian signal in a theorem-prover corpus
 
       ## REPOSITORY STRUCTURE
 
-      **PhysicsPapers/** - 17 papers on discrete spacetime physics:
-      - Main-Paper-Postulates.md - Start here, central thesis
-      - unified-theory-diagram.md - Visual ASCII diagrams (11 levels)
-      - Complete-Omega-Theory-Unified-Framework.md - Full technical treatment (~50 pages)
-      - KeyInsight-Irrationals-Action-Thresholds.md - How $\pi, e, \sqrt{2}$ create uncertainty
-      - Appendix-D: Topological Surgery and Information Healing
-      - Appendix-F: Fourth Noether Law (Information Conservation)
-      - Appendix-S: Stable Wormholes and Chronology Protection (why time travel is impossible)
-      - Appendix-P: Einstein-Cartan Torsion (Poplawski synthesis, Big Bounce)
+      **PhysicsPapers/** — main manuscript + appendices:
+      - `Main-Paper-Postulates.md` — Start here, central thesis
+      - `unified-theory-diagram.md` — Visual ASCII diagrams (11 levels)
+      - `Complete-Omega-Theory-Unified-Framework.md` — Full technical treatment (~50 pages)
+      - `papers/KeyInsight-Irrationals-Action-Thresholds.md` — how $\pi, e, \sqrt{2}$, Catalan-$G$ create uncertainty
+      - `appendices/` — A through K
+        - **A** Action Density and Quantum Errors
+        - **D** Topological Surgery and Information Healing
+        - **DE** Dark-Energy Reservoir from Photon Redshift (substrate bookkeeping)
+        - **F** Fourth Noether Law (Information Conservation)
+        - **G** Graviton Predictions
+        - **J** Consolidated Experimental Catalog
+        - **K** Irrationality Genesis of Predictions
+        - **P** Einstein–Cartan Torsion (Popławski synthesis, Big Bounce)
+        - **S** Stable Wormholes and Chronology Protection
+      - `submissions/qm-discrete-gravity/` — Foundations-of-Physics + PRL submission package (main.tex, letter.tex, cover_letter.tex, refs.bib)
+      - `letter-coldneutron/` — ILL cold-neutron slope-test submission
+      - `notes/` — working notes (continued fractions, lattice curvature, Erdős Lagrangian)
 
-      **LeanFormalization/** - 10,000+ lines of machine-verified Lean 4 proofs:
-      - Planck energy-mass relation: $E_P = m_P c^2$
-      - Christoffel symmetry: $\Gamma^i_{jk} = \Gamma^i_{kj}$
-      - Metric compatibility: $\nabla_\mu g_{\nu\rho} = 0$
-      - Fourth Noether Law (information conservation)
-      - Newton-Raphson precision bounds for irrationals
+      **LeanFormalizationV2/** — 160+ files, 8,996 theorems:
+      - `Foundations/` — ErrorAlgebra, ErrorLieAlgebra, ErrorForms, ErrorHopf, KempfBandlimit
+      - `Spacetime/` — Lattice, Constants, Operators, CausalLattice
+      - `Geometry/` — Metric → Curvature → Maxwell → Hodge → Poincaré
+      - `Emergence/` — Einstein, QM, Higgs, Inflation, DarkMatter, Connes
+      - `Predictions/` — 20 falsifiable predictions (Diraq 2024 confirmed)
+      - `Conservation/` — Information, Noether, StressEnergy, Correspondence
+      - `HealingFlow/` — Lyapunov, LaSalle, Convergence
+      - `Torsion/` — SpinTorsion, BigBounce (Popławski)
+      - `Irrationality/` — $\pi/e/\sqrt{2}$-Catalan-$G$ truncation, $\delta_{\text{comp}}(N)$, HermitePadé decoupling
 
-      **ConvQMath/** - 16 papers on constructive mathematics (Conv(Q) framework):
+      **OmegaTheoryAlgebra/** — V3-for-Lean schema (algebraic laws, not data):
+      - 6 entity types × 15 typed arrows + Magnetic Laplacian + 12 depth-2 compositions + 7 selection rules
+      - `GROTHENDIECK_MATH_PUZZLE.md` (Navi/γ Cassiopeiae, cycle 43+): 8 passes predicting missing mathematics, 23 bridge-theorem candidates, key finding: the 4-channel structure is **fibered over Leiden subsystems**, not partitioned (Q = 0.89 community modularity with no 4-band spectral gap)
+
+      **V3-for-Lean/** — methodology paper draft (NeurIPS 2026 / ICLR 2027):
+      - 5 research memos (~30 KB each): theorem_gap_hunter_design, proof_hunter_design_v2, mass_c_photon_bridge_memo, proton_critical_phases_memo, substrate_exchange_deep_dive
+      - Magnetic-Laplacian + Leiden retrieval stack, first empirical results
+      - Paper skeleton: 00_abstract → 08_discussion
+
+      **ConvQMath/** — 16 papers on constructive mathematics (Conv(Q) framework):
       - Irrationals as algorithmic processes, not completed infinities
       - Arbitrary Precision Operator (APO)
-      - Computational Debt (Godel as resource economics)
+      - Computational Debt (Gödel as resource economics)
 
       ## HOW TO ANSWER QUESTIONS
 
@@ -92,8 +128,9 @@ messages:
       2. Distinguish between proven results (Lean-verified) and theoretical predictions
       3. Reference specific papers/appendices when relevant
       4. Explain equations clearly for non-physicists
-      5. Acknowledge the theory is falsifiable - list what would disprove it
+      5. Acknowledge the theory is falsifiable — list what would disprove it
       6. Be honest about what's speculative vs. experimentally confirmed
+      7. When asked about machine-checked proofs, cite specific theorem names (e.g. `grand_qm_emergence`, `vacuum_einstein_emergence`, `omega_theory_v2_final_meta_capstone`)
 
       ## AUTHOR
 
@@ -130,6 +167,23 @@ testData:
       scaling F(T) = F_0/(1 + alpha*T) and the T^(-2.5) power law temperature dependence
       for quantum errors - definitively inconsistent with the Arrhenius exponential that
       standard theories predict.
+
+  - question: "What is the Grand Capstone?"
+    expected: |
+      The Grand Capstone is a single Lean proposition (`omega_theory_v2_final_meta_capstone`,
+      cycle 43, Polaris) that packages the entire derivation: quantum mechanics, general
+      relativity, the Standard Model gauge group, dark energy, the Big Bounce, Bell
+      nonlocality and path integrals — all from 8 physical constants on the Planck lattice.
+      As of 2026-04-21 the Lean project has 8,996 machine-checked theorems, 0 sorry, 8 axioms.
+
+  - question: "What is the fourth irrational?"
+    expected: |
+      Beyond π, e and √2 (which generate the three SM fermion generations via their residual
+      δ-error ordering), Omega-Theory's cycle-43 capstone introduces Catalan's constant G as
+      a fourth irrational channel. Its role is to carry a sterile-neutrino / dark-matter
+      channel — distinct from the visible three generations. The partition is not a cluster
+      decomposition: it is *fibered* over the Leiden subsystem structure of the theorem graph
+      (Q = 0.89 modularity, no 4-band spectral gap).
 
 evaluators:
   - name: Mentions discrete spacetime

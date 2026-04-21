@@ -8,6 +8,27 @@
         "/mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2"
       ],
       "env": {}
+    },
+    "neo4j-math": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "mcp-neo4j-cypher",
+        "--db-url",
+        "bolt://localhost:7687",
+        "--username",
+        "neo4j",
+        "--password",
+        "omegatheory2026",
+        "--database",
+        "neo4j"
+      ],
+      "env": {}
+    },
+    "omega-search": {
+      "type": "sse",
+      "url": "http://localhost:7998/sse",
+      "notes": "Premise retriever + reranker + subsystem tools. Qwen3-Embedding-8B BF16 on :7999 (dim 4096). Qwen3-Reranker-8B CPU on :7997."
     }
   }
 }

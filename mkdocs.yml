@@ -164,28 +164,85 @@ nav:
     - "Visual Diagrams": PhysicsPapers/unified-theory-diagram.md
     - "Complete Framework": PhysicsPapers/Complete-Omega-Theory-Unified-Framework.md
     - "Key Insight: Irrationals": PhysicsPapers/papers/KeyInsight-Irrationals-Action-Thresholds.md
+    - "QM From Discrete Gravity": PhysicsPapers/papers/Paper-QM-From-Discrete-Gravity.md
+    - "Dark Energy Preview": PhysicsPapers/papers/Paper-Dark-Energy-Preview-v1.md
 
     - "Appendices":
       - "A: Action Density": PhysicsPapers/appendices/Appendix-A-Action-Density-and-Quantum-Errors.md
       - "B: Quantum Computing": PhysicsPapers/appendices/Appendix-B-Quantum-Computing-Temperature-Limits.md
       - "C: Evolution Functionals": PhysicsPapers/appendices/Appendix-C-Catalog-of-Evolution-Functionals.md
       - "D: Topological Surgery": PhysicsPapers/appendices/Appendix-D-Topological-Surgery-And-Information-Healing.md
+      - "DE: Dark Energy Reservoir": PhysicsPapers/appendices/Appendix-DE-Dark-Energy-Reservoir-From-Photon-Redshift.md
       - "E: Entanglement": PhysicsPapers/appendices/Appendix-E-Quantum-Entanglement-Dimensional-Theory.md
       - "E: Visual Diagrams": PhysicsPapers/diagrams/appendix-E-visual-diagrams.md
       - "F: Information Conservation": PhysicsPapers/appendices/Appendix-F-Information-Flow-Conservation.md
       - "G: Graviton Predictions": PhysicsPapers/appendices/Appendix-G-Graviton-Predictions.md
       - "H: Renormalization": PhysicsPapers/appendices/Appendix-H-Renormalization-Correspondence.md
       - "I: Experimental Tests": PhysicsPapers/appendices/Appendix-I-Experimental-Tests.md
+      - "J: Experimental Catalog": PhysicsPapers/appendices/Appendix-J-Experimental-Catalog-Consolidated.md
+      - "K: Irrationality Genesis": PhysicsPapers/appendices/Appendix-K-Irrationality-Genesis-Of-Predictions.md
       - "Lorentz-Doppler": PhysicsPapers/appendices/Appendix-LorentzDopplerEquivalence.md
       - "P: Einstein-Cartan Torsion": PhysicsPapers/appendices/Appendix-P-Einstein-Cartan-Torsion-Integration.md
       - "S: Stable Wormholes": PhysicsPapers/appendices/Appendix-S-Stable-Wormholes-And-Chronology-Protection.md
 
-    - "Advanced":
+    - "Notes":
       - "Erdős Lagrangian": PhysicsPapers/notes/ErdosLagrangianUnification.md
+      - "Continued Fractions": PhysicsPapers/notes/Note-Continued-Fraction-Information-Channels.md
+      - "Lattice Curvature": PhysicsPapers/notes/Note-Structure-Preserving-Lattice-Curvature.md
 
-  - "Lean Proofs":
-    - "Overview": PhysicsPapers/LeanFormalization/README.md
-    - "Build Instructions": PhysicsPapers/LeanFormalization/BUILD.md
+    - "Submissions":
+      - "QM / Discrete Gravity (FoP + PRL)": PhysicsPapers/submissions/qm-discrete-gravity/README_SUBMISSION.md
+      - "Cold Neutron Letter (ILL)": PhysicsPapers/letter-coldneutron/Letter-ColdNeutron-ExecutiveSummary.md
+      - "Cold Neutron Cover Letter": PhysicsPapers/letter-coldneutron/Letter-ColdNeutron-CoverLetter.md
+      - "Cold Neutron Methods": PhysicsPapers/letter-coldneutron/Letter-ColdNeutron-SupplementaryMethods.md
+      - "Cold Neutron Slope Test": PhysicsPapers/letter-coldneutron/Letter-ColdNeutron-Slope-Test.md
+
+    - "Research Notes":
+      - "Connes D_F Recipe": PhysicsPapers/research/CONNES_DF_RECIPE.md
+      - "Gauge Theory Research": PhysicsPapers/research/GAUGE_THEORY_RESEARCH.md
+      - "HPW Upgrade Recipe": PhysicsPapers/research/HPW_UPGRADE_RECIPE.md
+      - "Lean-Verified Claims": PhysicsPapers/research/LEAN_VERIFIED_CLAIMS.md
+      - "Matter Sector": PhysicsPapers/research/MATTER_SECTOR_RESEARCH.md
+      - "New Horizons": PhysicsPapers/research/NEW_HORIZONS.md
+      - "Open Theorems": PhysicsPapers/research/OPEN_THEOREMS.md
+
+  - "Lean Formalization":
+    - "V2 Overview": PhysicsPapers/LeanFormalizationV2/README.md
+    - "V2 Plans":
+      - "Grothendieck De-Reversibility": PhysicsPapers/LeanFormalizationV2/plans/GROTHENDIECK_DE_REVERSIBILITY.md
+      - "Grothendieck Followup Report": PhysicsPapers/LeanFormalizationV2/plans/GROTHENDIECK_FOLLOWUP_REPORT.md
+      - "Theorem Backlog (cycles 24–43)": PhysicsPapers/LeanFormalizationV2/plans/THEOREM_BACKLOG_CYCLES_24_43.md
+    - "V1 Archive (legacy)":
+      - "Overview": PhysicsPapers/LeanFormalization/README.md
+      - "Build Instructions": PhysicsPapers/LeanFormalization/BUILD.md
+
+  - "V3-for-Lean (retrieval paper)":
+    - "Achievements + structure": PhysicsPapers/V3-for-Lean/ACHIEVEMENTS.md
+    - "Abstract": PhysicsPapers/V3-for-Lean/00_abstract.md
+    - "Introduction": PhysicsPapers/V3-for-Lean/01_intro.md
+    - "Related Work": PhysicsPapers/V3-for-Lean/02_related_work.md
+    - "Method — Algebra (Hypatia schema)": PhysicsPapers/V3-for-Lean/03_method_algebra.md
+    - "Memos":
+      - "Theorem-Gap Hunter design": PhysicsPapers/V3-for-Lean/theorem_gap_hunter_design.md
+      - "Proof-Hunter design V2": PhysicsPapers/V3-for-Lean/proof_hunter_design_v2.md
+      - "Mass / c / Photon Bridge": PhysicsPapers/V3-for-Lean/mass_c_photon_bridge_memo.md
+      - "Proton Critical Phases": PhysicsPapers/V3-for-Lean/proton_critical_phases_memo.md
+      - "Substrate Exchange Deep Dive": PhysicsPapers/V3-for-Lean/substrate_exchange_deep_dive.md
+
+  - "OmegaTheoryAlgebra":
+    - "README": PhysicsPapers/OmegaTheoryAlgebra/README.md
+    - "Grothendieck Math Puzzle (Navi)": PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md
+    - "01 Entity Types": PhysicsPapers/OmegaTheoryAlgebra/01_entity_types.md
+    - "02 Relationships": PhysicsPapers/OmegaTheoryAlgebra/02_relationships.md
+    - "03 Selection Rules": PhysicsPapers/OmegaTheoryAlgebra/03_selection_rules.md
+    - "04 Magnetic Laplacian": PhysicsPapers/OmegaTheoryAlgebra/04_magnetic_laplacian.md
+    - "05 Cycle Hypotheses": PhysicsPapers/OmegaTheoryAlgebra/05_cycle_hypotheses.md
+    - "06 FastRP Scaling": PhysicsPapers/OmegaTheoryAlgebra/06_fastrp_scaling.md
+    - "07 Single-Lens Rationale": PhysicsPapers/OmegaTheoryAlgebra/07_single_lens_rationale.md
+    - "08 Empirical Spectrum": PhysicsPapers/OmegaTheoryAlgebra/08_empirical_spectrum.md
+    - "09 Subsystem Sanity": PhysicsPapers/OmegaTheoryAlgebra/09_subsystem_sanity.md
+    - "10 Neo4j Schema Map": PhysicsPapers/OmegaTheoryAlgebra/10_neo4j_schema_map.md
+    - "Mathlib theorems without proof_body": PhysicsPapers/OmegaTheoryAlgebra/mathlib_theorems_without_proof_body.md
 
   - "Conv(ℚ) Math":
     - "Overview": ConvQMath/README.md

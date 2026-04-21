@@ -7,11 +7,11 @@ interface Props {
 
 const { type, title, number } = Astro.props;
 
-const icons: Record<string, string> = {
-  theorem: '📐',
+const glyphs: Record<string, string> = {
+  theorem: '▣',
   proof: '∎',
-  definition: '📖',
-  postulate: '⚡',
+  definition: '§',
+  postulate: '◇',
   equation: '∫',
 };
 
@@ -26,8 +26,8 @@ const defaultTitles: Record<string, string> = {
 
 <div class={`box box-${type}`}>
   <div class="box-title">
-    <span class="box-icon">{icons[type]}</span>
-    <span>{title || defaultTitles[type]}{number ? ` ${number}` : ''}</span>
+    <span class="box-icon" aria-hidden="true">{glyphs[type]}</span>
+    <span>{title || defaultTitles[type]}{number ? ` · ${number}` : ''}</span>
   </div>
   <div class="box-content">
     <slot />
@@ -35,82 +35,12 @@ const defaultTitles: Record<string, string> = {
 </div>
 
 <style>
-  .box {
-    margin: var(--space-lg) 0;
-    padding: var(--space-lg);
-    border-radius: var(--radius-md);
-    border-left: 4px solid;
-  }
-
-  .box-title {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: var(--space-sm);
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-
   .box-icon {
+    font-family: var(--font-display);
     font-size: 1.2rem;
+    line-height: 1;
+    color: inherit;
   }
 
-  .box-content {
-    font-size: 0.95rem;
-    line-height: 1.7;
-  }
-
-  .box-content :global(p:last-child) {
-    margin-bottom: 0;
-  }
-
-  .box-theorem {
-    background: var(--box-theorem);
-    border-color: var(--box-theorem-border);
-  }
-
-  .box-theorem .box-title {
-    color: var(--box-theorem-border);
-  }
-
-  .box-proof {
-    background: var(--box-proof);
-    border-color: var(--box-proof-border);
-  }
-
-  .box-proof .box-title {
-    color: var(--box-proof-border);
-  }
-
-  .box-definition {
-    background: var(--box-definition);
-    border-color: var(--box-definition-border);
-  }
-
-  .box-definition .box-title {
-    color: var(--box-definition-border);
-  }
-
-  .box-postulate {
-    background: var(--box-postulate);
-    border-color: var(--box-postulate-border);
-  }
-
-  .box-postulate .box-title {
-    color: var(--box-postulate-border);
-    font-variant: small-caps;
-    letter-spacing: 0.05em;
-  }
-
-  .box-equation {
-    background: var(--box-equation);
-    border-color: var(--box-equation-border);
-    text-align: center;
-  }
-
-  .box-equation .box-title {
-    color: var(--box-equation-border);
-    justify-content: center;
-  }
+  .box-postulate .box-icon { transform: rotate(12deg); display: inline-block; }
 </style>

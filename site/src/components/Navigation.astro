@@ -13,138 +13,189 @@ const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
 const navigation: NavItem[] = [
   {
-    title: "Getting Started",
-    href: "#",
+    title: 'Getting Started',
+    href: '#',
     children: [
-      { title: "Overview", href: baseUrl },
-      { title: "Main Paper", href: `${baseUrl}papers/main-paper-postulates/` },
-      { title: "Visual Summary", href: `${baseUrl}papers/unified-theory-diagram/` },
-    ]
+      { title: 'Overview', href: baseUrl },
+      { title: 'Main Paper', href: `${baseUrl}papers/main-paper-postulates/` },
+      { title: 'Visual Summary', href: `${baseUrl}papers/unified-theory-diagram/` },
+    ],
   },
   {
-    title: "Predictions",
-    href: "#",
+    title: 'Predictions',
+    href: '#',
     children: [
-      { title: "14 Cycles · 84 Predictions", href: `${baseUrl}cycles/` },
-      { title: "Lean Formalization", href: `${baseUrl}lean/` },
-      { title: "Appendix I: Experimental Tests", href: `${baseUrl}papers/appendix-i-experimental-tests/` },
-      { title: "Appendix J: Experimental Catalog", href: `${baseUrl}papers/appendix-j-experimental-catalog-consolidated/` },
-      { title: "Appendix K: Irrationality Genesis", href: `${baseUrl}papers/appendix-k-irrationality-genesis-of-predictions/` },
-      { title: "Cold-Neutron Letter (PRL)", href: `${baseUrl}papers/letter-coldneutron-executivesummary/` },
-    ]
+      { title: '14 Cycles · 84 Predictions', href: `${baseUrl}cycles/` },
+      { title: 'Lean Formalization', href: `${baseUrl}lean/` },
+      { title: 'Appendix I: Experimental Tests', href: `${baseUrl}papers/appendix-i-experimental-tests/` },
+      { title: 'Appendix J: Experimental Catalog', href: `${baseUrl}papers/appendix-j-experimental-catalog-consolidated/` },
+      { title: 'Appendix K: Irrationality Genesis', href: `${baseUrl}papers/appendix-k-irrationality-genesis-of-predictions/` },
+      { title: 'Cold-Neutron Letter (PRL)', href: `${baseUrl}papers/letter-coldneutron-executivesummary/` },
+    ],
   },
   {
-    title: "Core Theory",
-    href: "#",
+    title: 'Core Theory',
+    href: '#',
     children: [
-      { title: "Complete Framework", href: `${baseUrl}papers/complete-omega-theory-unified-framework/` },
-      { title: "Key Insight: Irrationals", href: `${baseUrl}papers/keyinsight-irrationals-action-thresholds/` },
-      { title: "Dark Energy Preview Paper", href: `${baseUrl}papers/paper-dark-energy-preview-v1/` },
-      { title: "Erdős Lagrangian", href: `${baseUrl}papers/erdoslagrangianunification/` },
-    ]
+      { title: 'Complete Framework', href: `${baseUrl}papers/complete-omega-theory-unified-framework/` },
+      { title: 'Key Insight: Irrationals', href: `${baseUrl}papers/keyinsight-irrationals-action-thresholds/` },
+      { title: 'Dark Energy Preview Paper', href: `${baseUrl}papers/paper-dark-energy-preview-v1/` },
+      { title: 'Erdős Lagrangian', href: `${baseUrl}papers/erdoslagrangianunification/` },
+    ],
   },
   {
-    title: "Appendices",
-    href: "#",
+    title: 'Appendices',
+    href: '#',
     children: [
-      { title: "A: Action Density & Quantum Errors", href: `${baseUrl}papers/appendix-a-action-density-and-quantum-errors/` },
-      { title: "B: Quantum Computing Limits", href: `${baseUrl}papers/appendix-b-quantum-computing-temperature-limits/` },
-      { title: "C: Evolution Functionals", href: `${baseUrl}papers/appendix-c-catalog-of-evolution-functionals/` },
-      { title: "D: Topological Surgery", href: `${baseUrl}papers/appendix-d-topological-surgery-and-information-healing/` },
-      { title: "DE: Dark Energy Reservoir", href: `${baseUrl}papers/appendix-de-dark-energy-reservoir-from-photon-redshift/` },
-      { title: "E: Entanglement Theory", href: `${baseUrl}papers/appendix-e-quantum-entanglement-dimensional-theory/` },
-      { title: "E: Visual Diagrams", href: `${baseUrl}papers/appendix-e-visual-diagrams/` },
-      { title: "F: Information Conservation", href: `${baseUrl}papers/appendix-f-information-flow-conservation/` },
-      { title: "G: Graviton Predictions", href: `${baseUrl}papers/appendix-g-graviton-predictions/` },
-      { title: "H: Renormalization", href: `${baseUrl}papers/appendix-h-renormalization-correspondence/` },
-      { title: "I: Experimental Tests", href: `${baseUrl}papers/appendix-i-experimental-tests/` },
-      { title: "J: Experimental Catalog", href: `${baseUrl}papers/appendix-j-experimental-catalog-consolidated/` },
-      { title: "K: Irrationality Genesis", href: `${baseUrl}papers/appendix-k-irrationality-genesis-of-predictions/` },
-      { title: "L: Lorentz-Doppler", href: `${baseUrl}papers/appendix-lorentzdopplerequivalence/` },
-      { title: "P: Einstein-Cartan Torsion", href: `${baseUrl}papers/appendix-p-einstein-cartan-torsion-integration/` },
-      { title: "S: Wormholes & Chronology", href: `${baseUrl}papers/appendix-s-stable-wormholes-and-chronology-protection/` },
-    ]
+      { title: 'A · Action & Quantum Errors', href: `${baseUrl}papers/appendix-a-action-density-and-quantum-errors/` },
+      { title: 'B · QC Temperature Limits', href: `${baseUrl}papers/appendix-b-quantum-computing-temperature-limits/` },
+      { title: 'C · Evolution Functionals', href: `${baseUrl}papers/appendix-c-catalog-of-evolution-functionals/` },
+      { title: 'D · Topological Surgery', href: `${baseUrl}papers/appendix-d-topological-surgery-and-information-healing/` },
+      { title: 'DE · Dark Energy Reservoir', href: `${baseUrl}papers/appendix-de-dark-energy-reservoir-from-photon-redshift/` },
+      { title: 'E · Entanglement Theory', href: `${baseUrl}papers/appendix-e-quantum-entanglement-dimensional-theory/` },
+      { title: 'E · Visual Diagrams', href: `${baseUrl}papers/appendix-e-visual-diagrams/` },
+      { title: 'F · Information Conservation', href: `${baseUrl}papers/appendix-f-information-flow-conservation/` },
+      { title: 'G · Graviton Predictions', href: `${baseUrl}papers/appendix-g-graviton-predictions/` },
+      { title: 'H · Renormalization', href: `${baseUrl}papers/appendix-h-renormalization-correspondence/` },
+      { title: 'I · Experimental Tests', href: `${baseUrl}papers/appendix-i-experimental-tests/` },
+      { title: 'J · Experimental Catalog', href: `${baseUrl}papers/appendix-j-experimental-catalog-consolidated/` },
+      { title: 'K · Irrationality Genesis', href: `${baseUrl}papers/appendix-k-irrationality-genesis-of-predictions/` },
+      { title: 'L · Lorentz-Doppler', href: `${baseUrl}papers/appendix-lorentzdopplerequivalence/` },
+      { title: 'P · Einstein-Cartan Torsion', href: `${baseUrl}papers/appendix-p-einstein-cartan-torsion-integration/` },
+      { title: 'S · Wormholes & Chronology', href: `${baseUrl}papers/appendix-s-stable-wormholes-and-chronology-protection/` },
+    ],
   },
   {
-    title: "Notes",
-    href: "#",
+    title: 'Notes',
+    href: '#',
     children: [
-      { title: "Continued-Fraction Channels", href: `${baseUrl}papers/note-continued-fraction-information-channels/` },
-      { title: "Structure-Preserving Lattice Curvature", href: `${baseUrl}papers/note-structure-preserving-lattice-curvature/` },
-    ]
+      { title: 'Continued-Fraction Channels', href: `${baseUrl}papers/note-continued-fraction-information-channels/` },
+      { title: 'Structure-Preserving Lattice Curvature', href: `${baseUrl}papers/note-structure-preserving-lattice-curvature/` },
+    ],
   },
 ];
 
 const currentPath = Astro.url.pathname;
+const collapsedSections = new Set(['Appendices']); // long list starts collapsed
 ---
 
-<aside class="sidebar">
+<button
+  class="sidebar-toggle"
+  aria-label="Open navigation"
+  aria-controls="site-sidebar"
+  aria-expanded="false"
+>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <line x1="3" y1="12" x2="21" y2="12"></line>
+    <line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+  <span class="visually-hidden">Toggle navigation</span>
+</button>
+
+<aside id="site-sidebar" class="sidebar" aria-label="Primary">
   <div class="sidebar-header">
-    <a href={baseUrl} class="logo">
-      <span class="logo-symbol">Ω</span>
-      <span class="logo-text">Omega-Theory</span>
+    <a href={baseUrl} class="logo" aria-label="Omega-Theory home">
+      <span class="logo-glyph" aria-hidden="true">Ω</span>
+      <span class="logo-lockup">
+        <span class="logo-word">Omega-Theory</span>
+        <span class="logo-tag">discrete spacetime · Lean 4</span>
+      </span>
     </a>
     <ThemeToggle />
   </div>
 
-  <nav class="nav">
-    {navigation.map((section) => (
-      <div class="nav-section">
-        <button class="nav-section-title" aria-expanded="true">
-          {section.title}
-          <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M4.5 6l3.5 3.5L11.5 6" stroke="currentColor" stroke-width="1.5" fill="none"/>
-          </svg>
-        </button>
-        {section.children && (
-          <ul class="nav-items">
-            {section.children.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  class:list={["nav-link", { active: currentPath === item.href }]}
-                >
-                  {item.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    ))}
+  <nav class="nav" aria-label="Site sections">
+    {navigation.map((section) => {
+      const startCollapsed = collapsedSections.has(section.title);
+      return (
+        <div class="nav-section">
+          <button
+            class="nav-section-title"
+            aria-expanded={(!startCollapsed).toString()}
+            data-nav-toggle
+          >
+            <span>{section.title}</span>
+            <svg class="chevron" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.5 6l3.5 3.5L11.5 6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+            </svg>
+          </button>
+          {section.children && (
+            <ul class="nav-items" style={startCollapsed ? 'display:none' : ''}>
+              {section.children.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class:list={['nav-link', { active: currentPath === item.href }]}
+                    aria-current={currentPath === item.href ? 'page' : undefined}
+                  >
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      );
+    })}
   </nav>
 
   <div class="sidebar-footer">
     <a href="https://github.com/RamzesX/chaos-shield" target="_blank" rel="noopener" class="github-link">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
       </svg>
-      <span>GitHub</span>
+      <span>github.com/RamzesX/chaos-shield</span>
     </a>
-    <p class="copyright">© 2024-2026 Norbert Marchewka</p>
+    <p class="copyright">© 2024–2026 Norbert Marchewka · CC-BY 4.0</p>
   </div>
 </aside>
 
 <style>
+  .sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-vellum);
+    border: 1px solid var(--color-seam);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+  }
+
   .sidebar {
     width: var(--sidebar-width);
     min-width: var(--sidebar-width);
-    background: var(--color-space);
-    border-right: 1px solid rgba(124, 77, 255, 0.2);
+    background: rgba(10, 14, 26, 0.82);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid var(--color-seam);
     display: flex;
     flex-direction: column;
     position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
+    z-index: 10;
+  }
+
+  [data-theme="light"] .sidebar {
+    background: rgba(255, 255, 255, 0.85);
   }
 
   .sidebar-header {
-    padding: var(--space-lg);
-    border-bottom: 1px solid rgba(124, 77, 255, 0.2);
+    padding: var(--space-md) var(--space-md) var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--color-seam);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--space-sm);
   }
 
   .logo {
@@ -153,150 +204,180 @@ const currentPath = Astro.url.pathname;
     gap: var(--space-sm);
     text-decoration: none;
     color: var(--color-text);
+    border: 0;
+    min-width: 0;
   }
+  .logo:hover { border: 0; }
 
-  .logo:hover {
-    text-decoration: none;
-  }
-
-  .logo-symbol {
-    font-size: 1.75rem;
+  .logo-glyph {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
     font-weight: 700;
-    background: var(--gradient-primary);
+    line-height: 1;
+    background: var(--grad-magenta-azure);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    flex-shrink: 0;
   }
 
-  .logo-text {
+  .logo-lockup {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .logo-word {
     font-family: var(--font-display);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--color-text);
+  }
+
+  .logo-tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--color-text-mut);
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .nav {
     flex: 1;
-    padding: var(--space-md);
+    padding: var(--space-md) var(--space-sm);
     overflow-y: auto;
   }
 
-  .nav-section {
-    margin-bottom: var(--space-md);
-  }
+  .nav-section { margin-bottom: var(--space-sm); }
 
   .nav-section-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: var(--space-sm) var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
     background: none;
     border: none;
-    color: var(--color-text-muted);
-    font-size: 0.75rem;
+    color: var(--color-text-mut);
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     cursor: pointer;
-    transition: color var(--transition-fast);
+    transition: color var(--t-fast);
+    font-family: var(--font-mono);
   }
 
-  .nav-section-title:hover {
-    color: var(--color-text);
-  }
+  .nav-section-title:hover { color: var(--color-text); }
 
-  .chevron {
-    transition: transform var(--transition-fast);
-  }
+  .chevron { transition: transform var(--t-fast); color: inherit; }
+  .nav-section-title[aria-expanded="false"] .chevron { transform: rotate(-90deg); }
 
-  .nav-section-title[aria-expanded="false"] .chevron {
-    transform: rotate(-90deg);
-  }
-
-  .nav-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+  .nav-items { list-style: none; padding: 0; margin: 4px 0 var(--space-xs); }
+  .nav-items li { margin: 0; }
 
   .nav-link {
     display: block;
-    padding: var(--space-xs) var(--space-md);
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
+    padding: 6px var(--space-sm);
+    color: var(--color-text-dim);
+    font-size: 0.86rem;
     text-decoration: none;
-    border-radius: var(--radius-sm);
-    transition: all var(--transition-fast);
+    border-left: 2px solid transparent;
+    margin-left: var(--space-xs);
+    transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+    line-height: 1.35;
+    border-bottom: 0;
   }
 
   .nav-link:hover {
     color: var(--color-text);
-    background: rgba(124, 77, 255, 0.1);
-    text-decoration: none;
+    border-left-color: var(--color-seam);
+    border-bottom: 0;
   }
 
   .nav-link.active {
-    color: var(--color-primary-light);
-    background: rgba(124, 77, 255, 0.15);
-    border-left: 2px solid var(--color-primary);
+    color: var(--color-magenta);
+    border-left-color: var(--color-magenta);
+    background: rgba(200, 110, 255, 0.06);
   }
 
   .sidebar-footer {
-    padding: var(--space-lg);
-    border-top: 1px solid rgba(124, 77, 255, 0.2);
+    padding: var(--space-md) var(--space-lg);
+    border-top: 1px solid var(--color-seam);
   }
 
   .github-link {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
-    color: var(--color-text-muted);
+    gap: var(--space-xs);
+    color: var(--color-text-mut);
     text-decoration: none;
-    font-size: 0.9rem;
-    margin-bottom: var(--space-sm);
-    transition: color var(--transition-fast);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    margin-bottom: var(--space-xs);
+    transition: color var(--t-fast);
+    border-bottom: 0;
   }
-
-  .github-link:hover {
-    color: var(--color-text);
-    text-decoration: none;
-  }
+  .github-link:hover { color: var(--color-text); border-bottom: 0; }
+  .github-link[target="_blank"]::after { content: ""; }
 
   .copyright {
-    font-size: 0.75rem;
-    color: var(--color-text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    color: var(--color-text-low);
     margin: 0;
+    letter-spacing: 0.03em;
   }
 
   @media (max-width: 1024px) {
+    .sidebar-toggle { display: inline-flex; }
+
     .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-      border-right: none;
-      border-bottom: 1px solid rgba(124, 77, 255, 0.2);
+      position: fixed;
+      top: 0; left: 0;
+      transform: translateX(-100%);
+      transition: transform var(--t-normal);
+      width: min(90vw, 20rem);
+      height: 100vh;
+      box-shadow: var(--shadow-lg);
     }
 
-    .nav {
-      display: none;
-    }
-
-    .sidebar.open .nav {
-      display: block;
+    .sidebar.open {
+      transform: translateX(0);
     }
   }
 </style>
 
 <script>
-  // Toggle nav sections
-  document.querySelectorAll('.nav-section-title').forEach(button => {
-    button.addEventListener('click', () => {
-      const expanded = button.getAttribute('aria-expanded') === 'true';
-      button.setAttribute('aria-expanded', (!expanded).toString());
-      const items = button.nextElementSibling;
-      if (items) {
-        items.style.display = expanded ? 'none' : 'block';
-      }
+  // Section expand/collapse
+  document.querySelectorAll('[data-nav-toggle]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', (!expanded).toString());
+      const items = btn.nextElementSibling as HTMLElement | null;
+      if (items) items.style.display = expanded ? 'none' : 'block';
+    });
+  });
+
+  // Mobile sidebar toggle
+  const toggle = document.querySelector('.sidebar-toggle') as HTMLButtonElement | null;
+  const sidebar = document.getElementById('site-sidebar');
+  toggle?.addEventListener('click', () => {
+    if (!sidebar) return;
+    const isOpen = sidebar.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen.toString());
+  });
+
+  // Close on route change / nav-link click (mobile)
+  document.querySelectorAll('.nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 1024) sidebar?.classList.remove('open');
     });
   });
 </script>

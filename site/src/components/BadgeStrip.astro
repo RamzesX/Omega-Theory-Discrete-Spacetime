@@ -1,0 +1,106 @@
+---
+/**
+ * BadgeStrip — a compact row of build-health badges.
+ * Defaults reflect current project state; override via props when stats change.
+ */
+interface Props {
+  jobs?: string;
+  sorry?: string;
+  axioms?: string;
+  theorems?: string;
+  files?: string;
+  version?: string;
+  compact?: boolean;
+}
+
+const {
+  jobs = '3 819',
+  sorry = '0',
+  axioms = '8',
+  theorems = '2 612',
+  files = '211',
+  version = 'v4.29',
+  compact = false,
+} = Astro.props;
+
+const items = [
+  { label: 'build jobs', value: jobs, tone: 'jade' },
+  { label: 'sorry', value: sorry, tone: 'jade' },
+  { label: 'physical axioms', value: axioms, tone: 'amber' },
+  { label: 'theorems', value: theorems, tone: 'magenta' },
+  { label: 'Lean files', value: files, tone: 'azure' },
+  { label: 'Lean / Mathlib', value: version, tone: 'mono' },
+];
+---
+
+<div class:list={['badge-strip', { compact }]}>
+  {items.map((i) => (
+    <div class={`badge badge-${i.tone}`}>
+      <span class="badge-value">{i.value}</span>
+      <span class="badge-label">{i.label}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .badge-strip {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--space-sm);
+    margin: var(--space-xl) 0;
+    padding: var(--space-md);
+    background: rgba(10, 14, 26, 0.55);
+    border: 1px solid var(--color-seam);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(6px);
+  }
+
+  .badge-strip.compact { padding: var(--space-sm); gap: var(--space-xs); }
+
+  .badge {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-sm) var(--space-md);
+    border-left: 2px solid;
+    min-width: 0;
+  }
+
+  .badge-value {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .badge-label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--color-text-mut);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .badge-jade    { border-left-color: var(--color-jade); }
+  .badge-amber   { border-left-color: var(--color-amber); }
+  .badge-magenta { border-left-color: var(--color-magenta); }
+  .badge-azure   { border-left-color: var(--color-azure); }
+  .badge-mono    { border-left-color: var(--color-text-mut); }
+  .badge-mono .badge-value { font-family: var(--font-mono); font-size: 1.1rem; }
+
+  @media (max-width: 900px) {
+    .badge-strip { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .badge-strip { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

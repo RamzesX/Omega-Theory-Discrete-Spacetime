@@ -10,74 +10,76 @@ export default defineConfig({
   base: '/chaos-shield',
   trailingSlash: 'always',
 
-  integrations: [
-    mdx(),
-  ],
+  integrations: [mdx()],
 
   markdown: {
     remarkPlugins: [
       remarkMath,
-      [remarkRewritePaperLinks, { base: '/chaos-shield' }]
+      [remarkRewritePaperLinks, { base: '/chaos-shield' }],
     ],
     rehypePlugins: [
-      [rehypeKatex, {
-        // KaTeX options
-        strict: false,
-        trust: true,
-        macros: {
-          // Planck units
-          '\\lP': '\\ell_P',
-          '\\tP': 't_P',
-          '\\mP': 'm_P',
-          '\\EP': 'E_P',
+      [
+        rehypeKatex,
+        {
+          strict: false,
+          trust: true,
+          macros: {
+            // Planck units
+            '\\lP': '\\ell_P',
+            '\\tP': 't_P',
+            '\\mP': 'm_P',
+            '\\EP': 'E_P',
 
-          // Operators
-          '\\Tr': '\\operatorname{Tr}',
-          '\\tr': '\\operatorname{tr}',
-          '\\sgn': '\\operatorname{sgn}',
-          '\\Ric': '\\operatorname{Ric}',
+            // Operators
+            '\\Tr': '\\operatorname{Tr}',
+            '\\tr': '\\operatorname{tr}',
+            '\\sgn': '\\operatorname{sgn}',
+            '\\Ric': '\\operatorname{Ric}',
 
-          // Derivatives
-          '\\dd': '\\mathrm{d}',
-          '\\dv': '\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}',
-          '\\pdv': '\\frac{\\partial #1}{\\partial #2}',
+            // Derivatives
+            '\\dd': '\\mathrm{d}',
+            '\\dv': '\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}',
+            '\\pdv': '\\frac{\\partial #1}{\\partial #2}',
 
-          // Bra-ket notation
-          '\\bra': '\\langle #1 |',
-          '\\ket': '| #1 \\rangle',
-          '\\braket': '\\langle #1 | #2 \\rangle',
-          '\\expval': '\\langle #1 \\rangle',
+            // Bra-ket
+            '\\bra': '\\langle #1 |',
+            '\\ket': '| #1 \\rangle',
+            '\\braket': '\\langle #1 | #2 \\rangle',
+            '\\expval': '\\langle #1 \\rangle',
 
-          // Vectors
-          '\\vb': '\\mathbf{#1}',
-          '\\va': '\\vec{\\mathbf{#1}}',
+            // Vectors
+            '\\vb': '\\mathbf{#1}',
+            '\\va': '\\vec{\\mathbf{#1}}',
 
-          // Sets
-          '\\RR': '\\mathbb{R}',
-          '\\CC': '\\mathbb{C}',
-          '\\ZZ': '\\mathbb{Z}',
-          '\\NN': '\\mathbb{N}',
-          '\\QQ': '\\mathbb{Q}',
+            // Sets
+            '\\RR': '\\mathbb{R}',
+            '\\CC': '\\mathbb{C}',
+            '\\ZZ': '\\mathbb{Z}',
+            '\\NN': '\\mathbb{N}',
+            '\\QQ': '\\mathbb{Q}',
 
-          // Information current
-          '\\JI': 'J^\\mu_I',
-          '\\divJ': '\\partial_\\mu J^\\mu_I',
+            // Information current
+            '\\JI': 'J^\\mu_I',
+            '\\divJ': '\\partial_\\mu J^\\mu_I',
 
-          // Common
-          '\\half': '\\frac{1}{2}',
-          '\\order': '\\mathcal{O}\\left(#1\\right)',
-        }
-      }]
+            // Common
+            '\\half': '\\frac{1}{2}',
+            '\\order': '\\mathcal{O}\\left(#1\\right)',
+          },
+        },
+      ],
     ],
+    // Shiki 3 / Astro 6 — tuned for dark physics aesthetic.
     shikiConfig: {
-      theme: 'one-dark-pro',
-      wrap: true
-    }
+      theme: 'github-dark-dimmed',
+      wrap: true,
+      langs: [],
+    },
   },
 
   vite: {
     ssr: {
-      noExternal: ['katex']
-    }
-  }
+      noExternal: ['katex'],
+    },
+  },
 });

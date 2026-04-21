@@ -24,13 +24,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: 'npm'
           cache-dependency-path: site/package-lock.json
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Install dependencies
         working-directory: ./site
@@ -42,8 +42,7 @@ jobs:
 
       - name: Build with Astro
         working-directory: ./site
-        run: |
-          npm run build
+        run: npm run build
         env:
           SITE: ${{ steps.pages.outputs.origin }}
           BASE_URL: ${{ steps.pages.outputs.base_path }}

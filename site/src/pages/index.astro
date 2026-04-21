@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import HeroSection from '../components/HeroSection.astro';
 import FeatureCard from '../components/FeatureCard.astro';
+import BadgeStrip from '../components/BadgeStrip.astro';
 import PhysicsBox from '../components/PhysicsBox.astro';
 
 const rawBase = import.meta.env.BASE_URL;
@@ -18,6 +19,8 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
 
   <HeroSection />
 
+  <BadgeStrip />
+
   <!-- Capstone pillar -->
   <section class="capstone-pillar">
     <div class="capstone-inner">
@@ -27,72 +30,83 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
           <code>omega_theory_grand_capstone</code>
         </h2>
         <p class="capstone-lede">
-          A single Lean statement bundling <strong>84 PDG-consistent
-          predictions</strong> across <strong>14 shipping cycles</strong>:
-          Standard Model masses + CKM/PMNS mixing + Higgs sector + cosmological
-          parameters — all derivable from 3 irrationals (π, <em>e</em>, √2) and
-          healing-flow dynamics on the discrete ℤ⁴ lattice.
+          A single Lean statement bundling <strong>84 PDG-consistent predictions</strong>
+          across <strong>14 shipping cycles</strong>: Standard Model masses +
+          CKM/PMNS mixing + Higgs sector + cosmological parameters — all
+          derivable from 3 irrationals (π, <em>e</em>, √2) and healing-flow
+          dynamics on the discrete ℤ⁴ lattice.
         </p>
         <ul class="capstone-stats">
           <li><b>14</b> cycles shipped · cycles 9–23</li>
-          <li><b>84</b> headline substrate fits · PDG-anchored</li>
-          <li><b>3 818</b> build jobs GREEN · 0 sorry</li>
-          <li><b>8</b> physical axioms · no mathematical axioms</li>
+          <li><b>84</b> headline substrate fits</li>
+          <li><b>3 819</b> build jobs GREEN · 0 sorry</li>
+          <li><b>8</b> physical axioms · 0 mathematical</li>
         </ul>
         <div class="capstone-ctas">
           <a href={`${baseUrl}cycles/`} class="btn btn-primary">Open cycle catalogue</a>
-          <a href={GHLean} class="btn btn-outline" target="_blank" rel="noopener">View Lean source ↗</a>
+          <a href={GHLean} class="btn btn-outline" target="_blank" rel="noopener">View Lean source</a>
         </div>
       </div>
+
       <div class="capstone-right">
-        <div class="mini-stack">
-          <div class="mini-row"><span class="tag tag-pi">π</span><span>heavy (gen 3) · m_t, m_b, m_W, m_Z, λ_H</span></div>
-          <div class="mini-row"><span class="tag tag-e">e</span><span>middle (gen 2) · m_c, m_s, m_K, f_π, |V_cb|</span></div>
-          <div class="mini-row"><span class="tag tag-s2">√2</span><span>light (gen 1 + cosmo) · m_u, m_d, m_ν, Λ, θ_QCD</span></div>
-          <div class="mini-row"><span class="tag tag-mix">π·e</span><span>composed · Jarlskog, λ_H, α_EM(m_Z)</span></div>
-          <div class="mini-row"><span class="tag tag-id">id</span><span>identity · m_H² = 2λv², unitarity triangle</span></div>
+        <div class="channel-stack">
+          <div class="channel-row"><span class="channel-tag tag-pi">π</span><div><strong>heavy · gen 3</strong><span>m_t · m_b · m_W · m_Z · λ_H</span></div></div>
+          <div class="channel-row"><span class="channel-tag tag-e">e</span><div><strong>middle · gen 2</strong><span>m_c · m_s · m_K · f_π · |V_cb|</span></div></div>
+          <div class="channel-row"><span class="channel-tag tag-s2">√2</span><div><strong>light · gen 1 + cosmo</strong><span>m_u · m_d · m_ν · Λ · θ_QCD</span></div></div>
+          <div class="channel-row"><span class="channel-tag tag-mix">π·e</span><div><strong>composed</strong><span>Jarlskog · λ_H · α_EM(m_Z)</span></div></div>
+          <div class="channel-row"><span class="channel-tag tag-id">id</span><div><strong>identity</strong><span>m_H² = 2λv² · unitarity triangle</span></div></div>
         </div>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2 class="section-title">What makes this different</h2>
-    <p class="section-intro">
-      Unlike other quantum-gravity proposals, OmegaTheory starts from one
-      postulate and derives the rest — mechanically checked.
-    </p>
+    <div class="section-header">
+      <span class="eyebrow">§ 01 · What makes this different</span>
+      <h2>One postulate → everything</h2>
+      <p class="section-intro">
+        Unlike other quantum-gravity proposals, OmegaTheory starts from one
+        postulate and derives the rest — mechanically checked.
+      </p>
+    </div>
 
     <div class="card-grid">
       <FeatureCard
         icon="◇"
-        title="One postulate → everything"
-        description="From 'spacetime = discrete ℤ⁴ at Planck scale' derive: cosmological constant, dark energy, black-hole entropy, Standard Model masses, CKM/PMNS."
+        title="Single postulate"
+        accent="magenta"
+        description="From 'spacetime = discrete ℤ⁴ at Planck scale' derive: cosmological constant, dark energy, black-hole entropy, SM masses, CKM/PMNS."
         href={`${baseUrl}papers/main-paper-postulates/`}
       />
       <FeatureCard
         icon="◈"
-        title="84 concrete predictions"
+        title="84 predictions"
+        accent="amber"
         description="Not philosophy — 14 cycles of substrate fits anchored to PDG central values. One already verified (gate fidelity scaling, Diraq 2024)."
         href={`${baseUrl}cycles/`}
       />
       <FeatureCard
         icon="✓"
         title="Machine-verified"
-        description="Every claim is a Lean theorem. 3,818 build jobs, 0 sorry, 8 physical axioms. Run `lake build` and verify."
+        accent="jade"
+        description="Every claim is a Lean theorem. 3,819 build jobs, 0 sorry, 8 physical axioms. Run lake build and verify yourself."
         href={`${baseUrl}lean/`}
       />
       <FeatureCard
-        icon="●"
-        title="No time travel"
-        description="Chronology protection proved as a mathematical theorem. Wormholes can exist; time travel cannot."
+        icon="↯"
+        title="Chronology protection"
+        accent="azure"
+        description="No time travel, proved as a mathematical theorem. Wormholes can exist; time travel cannot. Full derivation in Appendix S."
         href={`${baseUrl}papers/appendix-s-stable-wormholes-and-chronology-protection/`}
       />
     </div>
   </section>
 
   <section class="section">
-    <h2 class="section-title">The single postulate</h2>
+    <div class="section-header">
+      <span class="eyebrow">§ 02 · The thesis</span>
+      <h2>The single postulate</h2>
+    </div>
 
     <PhysicsBox type="postulate" title="Postulate">
       <p>
@@ -104,158 +118,196 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
     <p class="section-text">From this single assumption, the theory derives:</p>
 
     <ul class="derivation-list">
-      <li><strong>Cosmological constant</strong> Λ = 1.1×10⁻⁵² m⁻², on √2-channel at N≈10 (substrate fit <code>Lambda_CC_substrate_fit</code>)</li>
-      <li><strong>Dark energy</strong> w = −1 from photon-coherence reservoir (<code>darkEnergyEquationOfState_w</code>)</li>
-      <li><strong>Black-hole entropy</strong> S = A/4 (<code>bh_entropy_bekenstein</code>)</li>
-      <li><strong>Standard Model mass hierarchy</strong> across 3 generations (<code>three_channel_partition_theorem</code>)</li>
-      <li><strong>Fourth Noether law</strong> — information conservation ∂<sub>μ</sub>J<sup>μ</sup><sub>I</sub> = 0 (<code>fourth_noether_law_harmonic</code>)</li>
-      <li><strong>Strong CP resolution</strong> without axion (<code>strongCPThetaBound</code>, N=6 beats experiment by 10 orders)</li>
+      <li><strong>Cosmological constant</strong> Λ = 1.1×10⁻⁵² m⁻², on √2-channel at N≈10
+        <code>Lambda_CC_substrate_fit</code></li>
+      <li><strong>Dark energy</strong> w = −1 from photon-coherence reservoir
+        <code>darkEnergyEquationOfState_w</code></li>
+      <li><strong>Black-hole entropy</strong> S = A/4
+        <code>bh_entropy_bekenstein</code></li>
+      <li><strong>Standard Model mass hierarchy</strong> across 3 generations
+        <code>three_channel_partition_theorem</code></li>
+      <li><strong>Fourth Noether law</strong> — information conservation ∂<sub>μ</sub>J<sup>μ</sup><sub>I</sub> = 0
+        <code>fourth_noether_law_harmonic</code></li>
+      <li><strong>Strong-CP resolution</strong> without axion (N = 6 beats experiment by 10 orders)
+        <code>strongCPThetaBound</code></li>
     </ul>
   </section>
 
   <section class="section">
-    <h2 class="section-title">Already confirmed</h2>
+    <div class="section-header">
+      <span class="eyebrow">§ 03 · Empirical status</span>
+      <h2>Already confirmed</h2>
+    </div>
 
     <div class="confirm-grid">
       <div class="confirm-card">
-        <div class="confirm-icon">✓</div>
-        <div>
+        <div class="confirm-icon" aria-hidden="true">✓</div>
+        <div class="confirm-body">
           <strong>Gate fidelity scaling (2024)</strong>
           <p>Predicted F(T) = F₀/(1+αT) scaling confirmed by IBM / Google
-          quantum-computer data. Temperature dependence matches discrete-spacetime
-          thermal noise model.</p>
-          <span class="confirm-ref">Diraq · Nature 627, 772-777 (2024)</span>
+             quantum-computer data. Temperature dependence matches discrete-spacetime
+             thermal noise model.</p>
+          <span class="confirm-ref mono">Diraq · Nature 627, 772–777 (2024)</span>
         </div>
       </div>
       <div class="confirm-card">
-        <div class="confirm-icon">✓</div>
-        <div>
-          <strong>Dark energy equation of state</strong>
+        <div class="confirm-icon" aria-hidden="true">✓</div>
+        <div class="confirm-body">
+          <strong>Dark-energy equation of state</strong>
           <p>Predicted w = −1 ± 0.03 from lattice geometry. DESI 2024 measures
-          w = −0.99 ± 0.05 — inside predicted bounds.</p>
-          <span class="confirm-ref">DESI DR1 · 2024</span>
+             w = −0.99 ± 0.05 — inside predicted bounds.</p>
+          <span class="confirm-ref mono">DESI DR1 · 2024</span>
         </div>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2 class="section-title">Reading guide</h2>
-
-    <div class="reading-path">
-      <a href={`${baseUrl}papers/main-paper-postulates/`} class="reading-step">
-        <span class="step-number">1</span>
-        <div class="step-content">
-          <strong>Origin story</strong>
-          <p>Main paper · the single postulate and central thesis</p>
-        </div>
-      </a>
-      <a href={`${baseUrl}papers/unified-theory-diagram/`} class="reading-step">
-        <span class="step-number">2</span>
-        <div class="step-content">
-          <strong>Visual overview</strong>
-          <p>11-level diagram showing how everything connects</p>
-        </div>
-      </a>
-      <a href={`${baseUrl}papers/complete-omega-theory-unified-framework/`} class="reading-step">
-        <span class="step-number">3</span>
-        <div class="step-content">
-          <strong>Complete framework</strong>
-          <p>Full technical treatment with all equations</p>
-        </div>
-      </a>
-      <a href={`${baseUrl}cycles/`} class="reading-step featured">
-        <span class="step-number">4</span>
-        <div class="step-content">
-          <strong>14 cycles · 84 predictions</strong>
-          <p>Cycle-by-cycle substrate fits, each with a GitHub link to the Lean theorem</p>
-        </div>
-      </a>
-      <a href={`${baseUrl}papers/paper-dark-energy-preview-v1/`} class="reading-step">
-        <span class="step-number">5</span>
-        <div class="step-content">
-          <strong>Dark energy preview paper</strong>
-          <p>Draft manuscript: cosmological constant resolved via photon redshift reservoir</p>
-        </div>
-      </a>
-      <a href={`${baseUrl}lean/`} class="reading-step">
-        <span class="step-number">6</span>
-        <div class="step-content">
-          <strong>Lean formalization</strong>
-          <p>Machine-verified capstone theorems · build instructions</p>
-        </div>
-      </a>
+    <div class="section-header">
+      <span class="eyebrow">§ 04 · Where to start</span>
+      <h2>Reading guide</h2>
     </div>
+
+    <ol class="reading-path">
+      <li>
+        <a href={`${baseUrl}papers/main-paper-postulates/`} class="reading-step">
+          <span class="step-number">01</span>
+          <div class="step-content">
+            <strong>Origin story</strong>
+            <span>Main paper · the single postulate and central thesis</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href={`${baseUrl}papers/unified-theory-diagram/`} class="reading-step">
+          <span class="step-number">02</span>
+          <div class="step-content">
+            <strong>Visual overview</strong>
+            <span>11-level diagram showing how everything connects</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href={`${baseUrl}papers/complete-omega-theory-unified-framework/`} class="reading-step">
+          <span class="step-number">03</span>
+          <div class="step-content">
+            <strong>Complete framework</strong>
+            <span>Full technical treatment with all equations</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href={`${baseUrl}cycles/`} class="reading-step featured">
+          <span class="step-number">04</span>
+          <div class="step-content">
+            <strong>14 cycles · 84 predictions</strong>
+            <span>Cycle-by-cycle substrate fits with GitHub links to each Lean theorem</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href={`${baseUrl}papers/paper-dark-energy-preview-v1/`} class="reading-step">
+          <span class="step-number">05</span>
+          <div class="step-content">
+            <strong>Dark-energy preview paper</strong>
+            <span>Cosmological constant resolved via photon redshift reservoir</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href={`${baseUrl}lean/`} class="reading-step">
+          <span class="step-number">06</span>
+          <div class="step-content">
+            <strong>Lean formalization</strong>
+            <span>Machine-verified capstone theorems · build instructions</span>
+          </div>
+        </a>
+      </li>
+    </ol>
   </section>
 
   <section class="section cta-section">
-    <h2 class="section-title">Explore the theory</h2>
+    <h2>Explore the theory</h2>
     <p class="section-intro">
       25 papers · 14 cycles of formal predictions · 11K+ Lean declarations.
     </p>
     <div class="cta-buttons">
       <a href={`${baseUrl}cycles/`} class="btn btn-primary">See 14 cycles</a>
       <a href={`${baseUrl}papers/main-paper-postulates/`} class="btn btn-outline">Start reading</a>
-      <a href={GH} class="btn btn-outline" target="_blank" rel="noopener">View on GitHub ↗</a>
+      <a href={GH} class="btn btn-outline" target="_blank" rel="noopener">View on GitHub</a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  /* Capstone pillar */
+  /* --- Capstone pillar --- */
   .capstone-pillar {
-    margin: var(--space-2xl) 0 var(--space-3xl);
-    padding: var(--space-xl);
-    background: linear-gradient(135deg, rgba(124, 77, 255, 0.18), rgba(0, 212, 255, 0.10), rgba(255, 215, 64, 0.05));
-    border: 1px solid var(--color-primary);
+    margin: var(--space-xl) 0 var(--space-2xl);
+    padding: var(--space-xl) var(--space-xl);
+    background: linear-gradient(140deg, rgba(200, 110, 255, 0.12), rgba(95, 184, 255, 0.05) 55%, rgba(245, 166, 35, 0.04) 100%);
+    border: 1px solid rgba(200, 110, 255, 0.35);
     border-radius: var(--radius-xl);
-    box-shadow: 0 12px 40px rgba(124, 77, 255, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .capstone-pillar::before {
+    content: "";
+    position: absolute;
+    top: -40%; right: -20%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200, 110, 255, 0.15), transparent 70%);
+    pointer-events: none;
   }
 
   .capstone-inner {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
     gap: var(--space-xl);
-    align-items: center;
+    align-items: start;
+    position: relative;
   }
 
   .eyebrow {
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-accent);
-    margin-bottom: var(--space-sm);
+    display: inline-block;
     font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-amber);
+    margin-bottom: var(--space-xs);
   }
 
   .capstone-title {
-    font-size: 1.7rem;
+    font-size: clamp(1.4rem, 2.3vw, 1.8rem);
     margin: 0 0 var(--space-md);
     border: 0;
     padding: 0;
+    line-height: 1.15;
   }
 
   .capstone-title code {
     font-family: var(--font-mono);
-    font-size: 1.4rem;
-    color: var(--color-accent);
+    font-size: 0.88em;
+    color: var(--color-amber);
     background: transparent;
+    border: none;
     padding: 0;
-    font-weight: 700;
+    font-weight: 600;
+    white-space: normal;
     word-break: break-word;
   }
 
   .capstone-lede {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     line-height: 1.65;
-    color: var(--color-text);
+    color: var(--color-text-dim);
     margin-bottom: var(--space-md);
+    max-width: 38rem;
   }
 
-  .capstone-lede em {
-    color: var(--color-accent);
-    font-style: italic;
-  }
+  .capstone-lede em { color: var(--color-amber); font-style: italic; }
+  .capstone-lede strong { color: var(--color-text); }
 
   .capstone-stats {
     list-style: none;
@@ -263,20 +315,19 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
     margin: 0 0 var(--space-lg);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-xs) var(--space-md);
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
+    gap: var(--space-2xs) var(--space-md);
+    font-size: 0.86rem;
+    color: var(--color-text-mut);
   }
 
-  .capstone-stats li {
-    padding: 4px 0;
-  }
+  .capstone-stats li { padding: 3px 0; }
 
   .capstone-stats b {
-    color: var(--color-primary-light);
+    color: var(--color-magenta);
     font-family: var(--font-display);
-    font-size: 1.1em;
+    font-size: 1.05em;
     font-variant-numeric: tabular-nums;
+    font-weight: 700;
   }
 
   .capstone-ctas {
@@ -285,214 +336,270 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
     flex-wrap: wrap;
   }
 
-  .mini-stack {
+  /* --- Channel stack --- */
+  .channel-stack {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
   }
 
-  .mini-row {
+  .channel-row {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    padding: 6px 10px;
-    background: rgba(10, 10, 15, 0.45);
+    padding: 10px 12px;
+    background: rgba(10, 14, 26, 0.5);
+    border: 1px solid var(--color-seam);
     border-radius: var(--radius-md);
-    font-size: 0.83rem;
-    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    color: var(--color-text-mut);
   }
 
-  .mini-row .tag {
+  .channel-row > div {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+    min-width: 0;
+  }
+
+  .channel-row strong {
+    color: var(--color-text);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .channel-row span {
+    color: var(--color-text-mut);
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .channel-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
     font-weight: 700;
-    padding: 3px 9px;
-    border-radius: 100px;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
     border: 1px solid;
     text-align: center;
-    min-width: 40px;
+    min-width: 42px;
+    flex-shrink: 0;
   }
 
-  .tag-pi  { background: rgba(255, 82, 82, 0.2);  color: #ff8585; border-color: #ff5252; }
-  .tag-e   { background: rgba(255, 215, 64, 0.2); color: #ffd740; border-color: #ffd740; }
-  .tag-s2  { background: rgba(0, 230, 118, 0.2);  color: #00e676; border-color: #00e676; }
-  .tag-mix { background: rgba(124, 77, 255, 0.2); color: #b47cff; border-color: #7c4dff; }
-  .tag-id  { background: rgba(0, 212, 255, 0.2);  color: #7fe5ff; border-color: #00d4ff; }
+  .tag-pi  { background: rgba(255, 107, 136, 0.14); color: var(--color-rose); border-color: var(--color-rose); }
+  .tag-e   { background: rgba(245, 166, 35, 0.14);  color: var(--color-amber); border-color: var(--color-amber); font-style: italic; }
+  .tag-s2  { background: rgba(79, 217, 154, 0.14);  color: var(--color-jade);  border-color: var(--color-jade); }
+  .tag-mix { background: rgba(200, 110, 255, 0.14); color: var(--color-magenta); border-color: var(--color-magenta); }
+  .tag-id  { background: rgba(95, 184, 255, 0.14);  color: var(--color-azure);  border-color: var(--color-azure); }
 
-  /* Sections */
+  /* --- Sections --- */
   .section {
     margin-bottom: var(--space-3xl);
   }
 
-  .section-title {
-    font-size: 1.8rem;
-    margin-bottom: var(--space-sm);
+  .section-header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .section-header h2 {
+    border: 0;
+    padding: 0;
+    margin: 4px 0 var(--space-xs);
   }
 
   .section-intro {
-    font-size: 1.05rem;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-xl);
+    font-size: 1.02rem;
+    color: var(--color-text-dim);
+    margin: 0;
     max-width: 42rem;
   }
 
   .section-text {
-    font-size: 1.02rem;
-    line-height: 1.75;
+    font-size: 1rem;
+    line-height: 1.7;
     margin-bottom: var(--space-md);
+    color: var(--color-text-dim);
   }
 
   .derivation-list {
     list-style: none;
     padding: 0;
+    margin-top: var(--space-md);
   }
 
   .derivation-list li {
     position: relative;
-    padding-left: var(--space-xl);
-    margin-bottom: var(--space-sm);
-    line-height: 1.65;
-    font-size: 0.98rem;
+    padding: var(--space-sm) 0 var(--space-sm) var(--space-xl);
+    margin-bottom: 0;
+    line-height: 1.6;
+    font-size: 0.96rem;
+    border-bottom: 1px solid var(--color-seam);
+    color: var(--color-text-dim);
   }
+
+  .derivation-list li:last-child { border-bottom: none; }
 
   .derivation-list li::before {
     content: "→";
     position: absolute;
     left: 0;
-    color: var(--color-secondary);
+    top: var(--space-sm);
+    color: var(--color-magenta);
     font-weight: bold;
+    font-family: var(--font-mono);
   }
+
+  .derivation-list strong { color: var(--color-text); }
 
   .derivation-list code {
-    font-size: 0.85rem;
-    color: var(--color-accent);
-    background: rgba(255, 215, 64, 0.08);
+    margin-left: 6px;
+    font-size: 0.82rem;
+    color: var(--color-amber);
+    background: rgba(245, 166, 35, 0.06);
+    border-color: rgba(245, 166, 35, 0.2);
   }
 
-  /* Confirmed */
+  /* --- Confirmed --- */
   .confirm-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-lg);
+    gap: var(--space-md);
   }
 
   .confirm-card {
     display: flex;
     gap: var(--space-md);
     padding: var(--space-lg);
-    background: rgba(0, 230, 118, 0.08);
-    border: 1px solid rgba(0, 230, 118, 0.3);
-    border-radius: var(--radius-md);
+    background: rgba(79, 217, 154, 0.06);
+    border: 1px solid rgba(79, 217, 154, 0.25);
+    border-radius: var(--radius-lg);
   }
 
   .confirm-icon {
-    font-size: 1.4rem;
-    color: var(--color-success);
+    font-size: 0.9rem;
+    color: var(--color-jade);
     flex-shrink: 0;
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid var(--color-success);
+    border: 1.5px solid var(--color-jade);
     border-radius: 50%;
+    font-weight: 700;
   }
+
+  .confirm-body { flex: 1; min-width: 0; }
 
   .confirm-card strong {
     display: block;
     margin-bottom: 6px;
     color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
   }
 
   .confirm-card p {
-    font-size: 0.92rem;
-    color: var(--color-text-muted);
-    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text-dim);
+    margin: 0 0 var(--space-xs);
     line-height: 1.6;
+    max-width: none;
   }
 
   .confirm-ref {
     display: block;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--color-success);
-    margin-top: 6px;
+    font-size: 0.74rem;
+    color: var(--color-jade);
+    letter-spacing: 0.02em;
   }
 
-  /* Reading path */
+  /* --- Reading path --- */
   .reading-path {
+    list-style: none;
+    counter-reset: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-md);
+    gap: var(--space-sm);
+    padding: 0;
+    margin-top: var(--space-md);
   }
+
+  .reading-path li { margin: 0; }
 
   .reading-step {
     display: flex;
     align-items: center;
     gap: var(--space-md);
-    padding: var(--space-md);
-    background: var(--gradient-card);
-    border: 1px solid rgba(124, 77, 255, 0.2);
+    padding: var(--space-md) var(--space-lg);
+    background: var(--color-vellum);
+    border: 1px solid var(--color-seam);
     border-radius: var(--radius-md);
     text-decoration: none;
     color: inherit;
-    transition: all var(--transition-fast);
+    transition: border-color var(--t-fast), transform var(--t-fast);
+    height: 100%;
+    box-sizing: border-box;
   }
 
   .reading-step:hover {
-    border-color: var(--color-primary);
-    transform: translateY(-2px);
+    border-color: var(--color-magenta);
+    transform: translateX(2px);
     text-decoration: none;
   }
 
   .reading-step.featured {
-    background: linear-gradient(145deg, rgba(255, 215, 64, 0.14), rgba(124, 77, 255, 0.1));
-    border-color: var(--color-accent);
+    background: linear-gradient(140deg, rgba(245, 166, 35, 0.08), rgba(200, 110, 255, 0.06));
+    border-color: rgba(245, 166, 35, 0.35);
   }
 
   .step-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: var(--gradient-primary);
-    border-radius: 50%;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: white;
-    flex-shrink: 0;
     font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text-mut);
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
   }
 
-  .reading-step.featured .step-number {
-    background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
-  }
+  .reading-step.featured .step-number { color: var(--color-amber); }
+  .reading-step:hover .step-number { color: var(--color-magenta); }
+
+  .step-content { display: flex; flex-direction: column; line-height: 1.35; min-width: 0; }
 
   .step-content strong {
     display: block;
-    font-size: 1rem;
+    font-size: 0.98rem;
     margin-bottom: 3px;
     color: var(--color-text);
+    font-family: var(--font-display);
+    font-weight: 600;
   }
 
-  .step-content p {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin: 0;
+  .step-content span {
+    font-size: 0.83rem;
+    color: var(--color-text-mut);
+    line-height: 1.45;
   }
 
+  /* --- CTA section --- */
   .cta-section {
     text-align: center;
     padding: var(--space-2xl);
-    background: var(--gradient-card);
+    background: var(--grad-card);
     border-radius: var(--radius-xl);
-    border: 1px solid rgba(124, 77, 255, 0.2);
+    border: 1px solid var(--color-seam);
   }
+
+  .cta-section h2 { border: 0; padding: 0; margin-top: 0; }
+  .cta-section .section-intro { margin: 0 auto var(--space-md); }
 
   .cta-buttons {
     display: flex;
-    gap: var(--space-md);
+    gap: var(--space-sm);
     justify-content: center;
     margin-top: var(--space-md);
     flex-wrap: wrap;
@@ -505,4 +612,3 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
     .reading-path { grid-template-columns: 1fr; }
   }
 </style>
-</BaseLayout>

@@ -1,7 +1,7 @@
 {
   "name": "omega-theory",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Omega-Theory: Discrete Spacetime and Mass as Geometric Reshaping",
   "author": "Norbert Marchewka",
   "license": "CC-BY-4.0",
@@ -11,19 +11,20 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "audit": "node scripts/audit-dist.js",
     "copy-content": "node scripts/copy-content.js"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.0",
-    "@astrojs/sitemap": "^3.2.0",
-    "astro": "^4.16.0",
-    "fuse.js": "^7.0.0",
-    "katex": "^0.16.11",
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^6.1.8",
+    "fuse.js": "^7.3.0",
+    "katex": "^0.16.45",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
-    "typescript": "^5.6.0"
+    "typescript": "^5.9.3"
   }
 }

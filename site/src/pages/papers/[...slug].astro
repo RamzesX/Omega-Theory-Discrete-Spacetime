@@ -1,21 +1,23 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import PaperLayout from '../../layouts/PaperLayout.astro';
 
 export async function getStaticPaths() {
   const papers = await getCollection('papers');
-  return papers.map((paper) => ({
-    params: { slug: paper.slug },
-    props: { paper },
-  }));
+  return papers
+    .filter((paper) => paper.id && paper.id.length > 0)
+    .map((paper) => ({
+      params: { slug: paper.id },
+      props: { paper },
+    }));
 }
 
 const { paper } = Astro.props;
-const { Content } = await paper.render();
+const { Content } = await render(paper);
 
-// Calculate reading time (rough estimate)
-const words = paper.body.split(/\s+/).length;
-const readingTime = Math.ceil(words / 200) + ' min';
+// Rough reading-time estimate.
+const wordCount = (paper.body ?? '').split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200)) + ' min';
 ---
 
 <PaperLayout

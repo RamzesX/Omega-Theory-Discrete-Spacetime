@@ -7,7 +7,11 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description = "Discrete Spacetime and Mass as Geometric Reshaping - A unified physics framework", ogImage } = Astro.props;
+const {
+  title,
+  description = "Discrete Spacetime and Mass as Geometric Reshaping - A unified physics framework, mechanically verified in Lean 4.",
+  ogImage,
+} = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
@@ -17,12 +21,15 @@ const baseUrl = import.meta.env.BASE_URL;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content={Astro.generator} />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#07090f" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#fafbfd" media="(prefers-color-scheme: light)" />
 
   <!-- SEO -->
   <title>{title} | Omega-Theory</title>
   <meta name="description" content={description} />
   <meta name="author" content="Norbert Marchewka" />
-  <meta name="keywords" content="quantum gravity, discrete spacetime, Planck scale, cosmological constant, dark energy, wormholes, black holes, Lean 4, formal verification" />
+  <meta name="keywords" content="quantum gravity, discrete spacetime, Planck scale, cosmological constant, dark energy, wormholes, black holes, Lean 4, formal verification, Standard Model, irrationals" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -40,26 +47,35 @@ const baseUrl = import.meta.env.BASE_URL;
   <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
 
   <!-- KaTeX CSS (integrity hash removed — was corrupted, causing browser to reject stylesheet and break all math rendering) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Fonts: preconnect + preload for faster first paint -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <script is:inline>
+    // Theme persistence — run before body paints to avoid FOUC.
+    (function () {
+      const stored = localStorage.getItem('theme');
+      const systemLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      const theme = stored || (systemLight ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
   <div class="app-container">
     <slot name="sidebar" />
-    <main class="main-content">
+    <main id="main" class="main-content" tabindex="-1">
       <slot />
     </main>
   </div>
-
-  <script is:inline>
-    // Theme persistence
-    const theme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', theme);
-  </script>
 </body>
 </html>
 
@@ -67,22 +83,41 @@ const baseUrl = import.meta.env.BASE_URL;
   .app-container {
     display: flex;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
   }
 
   .main-content {
-    flex: 1;
-    padding: var(--space-xl) var(--space-2xl);
-    max-width: var(--content-width);
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: var(--space-2xl) var(--space-2xl) var(--space-3xl);
+    max-width: calc(var(--content-width) + var(--space-2xl) * 2);
     margin: 0 auto;
+    outline: none;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -4rem;
+    left: 1rem;
+    padding: 0.5rem 0.9rem;
+    background: var(--color-magenta);
+    color: #fff;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 1000;
+    transition: top var(--t-normal);
+  }
+
+  .skip-link:focus-visible {
+    top: 1rem;
+    outline: none;
   }
 
   @media (max-width: 1024px) {
-    .app-container {
-      flex-direction: column;
-    }
-
-    .main-content {
-      padding: var(--space-lg);
-    }
+    .app-container { flex-direction: column; }
+    .main-content { padding: var(--space-lg) var(--space-md) var(--space-2xl); }
   }
 </style>

@@ -1,70 +1,53 @@
 ---
-// Theme toggle component
+// Theme toggle — dark/light toggle with system preference fallback.
 ---
 
-<button class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
-  <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <circle cx="12" cy="12" r="5"/>
-    <line x1="12" y1="1" x2="12" y2="3"/>
-    <line x1="12" y1="21" x2="12" y2="23"/>
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-    <line x1="1" y1="12" x2="3" y2="12"/>
-    <line x1="21" y1="12" x2="23" y2="12"/>
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+<button class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light theme" data-theme-toggle>
+  <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
   </svg>
-  <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
   </svg>
 </button>
 
 <style>
   .theme-toggle {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    background: rgba(124, 77, 255, 0.1);
-    border: 1px solid rgba(124, 77, 255, 0.3);
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid var(--color-seam);
     border-radius: var(--radius-md);
-    color: var(--color-text);
+    color: var(--color-text-dim);
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+    flex-shrink: 0;
   }
 
   .theme-toggle:hover {
-    background: rgba(124, 77, 255, 0.2);
-    border-color: var(--color-primary);
+    background: var(--color-vellum);
+    border-color: var(--color-magenta);
+    color: var(--color-magenta);
   }
 
-  .sun-icon {
-    display: none;
-  }
+  .sun-icon { display: none; }
+  .moon-icon { display: block; }
 
-  .moon-icon {
-    display: block;
-  }
-
-  :global([data-theme="light"]) .sun-icon {
-    display: block;
-  }
-
-  :global([data-theme="light"]) .moon-icon {
-    display: none;
-  }
+  :global([data-theme="light"]) .sun-icon { display: block; }
+  :global([data-theme="light"]) .moon-icon { display: none; }
 </style>
 
 <script>
-  const toggle = document.querySelector('.theme-toggle');
-
-  toggle?.addEventListener('click', () => {
+  document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
     const html = document.documentElement;
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-    html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    html.style.colorScheme = next;
+    localStorage.setItem('theme', next);
   });
 </script>

@@ -268,7 +268,15 @@ code {
 }
 
 pre {
-  font-family: var(--font-mono);
+  /* Box-drawing-friendly monospace stack.
+     Cascadia Code ships with Windows 11 + macOS terminals and has the most
+     consistent ═ ║ ╔ ╗ ━ ┌ ┐ ├ ┤ widths. DejaVu Sans Mono is the most
+     reliable Linux fallback. JetBrains Mono is our general-purpose code
+     font (kept further down the stack to avoid its mild box-drawing width
+     inconsistencies). */
+  font-family: 'Cascadia Code', 'Cascadia Mono', 'Menlo', 'Consolas',
+               'DejaVu Sans Mono', 'JetBrains Mono', ui-monospace,
+               'SF Mono', 'Fira Code', 'Roboto Mono', monospace;
   font-size: 0.875rem;
   line-height: 1.55;
   background: var(--color-ink);
@@ -285,6 +293,14 @@ pre {
      soft-wrapping at widths less than a monospace character. Users
      scroll horizontally for long lines instead. */
   white-space: pre;
+  /* Kill ligatures (==, =>, !=, <=, ...). Ligatures replace 2-3 glyphs
+     with one wider glyph, breaking column alignment in ASCII art. `calt`
+     is contextual alternates (JetBrains Mono uses it for arrows); `liga`
+     is standard ligatures. Off for both. */
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+  /* Zero letter-spacing so every monospace cell is exactly 1 advance unit. */
+  letter-spacing: 0;
 }
 
 pre code {
@@ -294,6 +310,10 @@ pre code {
   color: var(--color-text);
   white-space: pre;
   font-size: inherit;
+  font-family: inherit;
+  font-feature-settings: inherit;
+  font-variant-ligatures: inherit;
+  letter-spacing: inherit;
 }
 
 /* Astro generates <pre class="astro-code" ...> for Shiki blocks — scope overrides so we don't kill syntax colors */
@@ -302,14 +322,20 @@ pre.astro-code {
   border: 1px solid var(--color-seam);
 }
 
-/* ASCII diagrams (unlabelled pre without shiki class) */
+/* ASCII diagrams.
+   Three selectors match them:
+   1. Explicit <pre class="ascii"> (manual markup).
+   2. Raw <pre> without any Shiki/Prism class (unlabelled md fences).
+   3. Shiki <pre class="astro-code" data-language="plaintext"> — generated
+      by ```<no language> fences in .md (which we use for ASCII art).
+   All three get tighter font-size + line-height so wide box-drawing
+   diagrams fit the paper column. */
 pre.ascii,
-pre:not([class*="language-"]):not(.astro-code) {
-  font-family: 'JetBrains Mono', 'Menlo', 'Roboto Mono', 'Source Code Pro', monospace;
+pre:not([class*="language-"]):not(.astro-code),
+pre.astro-code[data-language="plaintext"],
+pre.astro-code[data-language="txt"] {
   font-size: 0.78rem;
   line-height: 1.4;
-  font-variant-ligatures: none;
-  font-feature-settings: "liga" 0;
 }
 
 /* ----------------------------------------------------------------------------

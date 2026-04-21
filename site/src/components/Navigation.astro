@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import { HEADLINES } from '../data/status.mjs';
 
 interface NavItem {
   title: string;
@@ -25,7 +26,7 @@ const navigation: NavItem[] = [
     title: 'Predictions',
     href: '#',
     children: [
-      { title: '14 Cycles · 84 Predictions', href: `${baseUrl}cycles/` },
+      { title: `${HEADLINES.cyclesShipped} Cycles · ${HEADLINES.ownTheoremsShort} Theorems`, href: `${baseUrl}cycles/` },
       { title: 'Lean Formalization', href: `${baseUrl}lean/` },
       { title: 'Appendix I: Experimental Tests', href: `${baseUrl}papers/appendix-i-experimental-tests/` },
       { title: 'Appendix J: Experimental Catalog', href: `${baseUrl}papers/appendix-j-experimental-catalog-consolidated/` },

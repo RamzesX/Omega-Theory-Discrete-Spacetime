@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
+import { HEADLINES, fmt } from '../data/status.mjs';
 
 const rawBase = import.meta.env.BASE_URL;
 const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
@@ -9,29 +10,29 @@ const GH = 'https://github.com/RamzesX/chaos-shield/tree/main/PhysicsPapers/Lean
 ---
 
 <BaseLayout
-  title="Lean 4 Formalization · Build 3818 GREEN"
-  description="Machine-verified OmegaTheory V2: 14 cycles, 84 predictions, 11,000+ declarations, 0 sorry, 8 physical axioms."
+  title={`Lean 4 Formalization · Build ${HEADLINES.buildJobsFmt} GREEN`}
+  description={`Machine-verified OmegaTheory V2: ${HEADLINES.cyclesShipped} cycles shipped, ${HEADLINES.ownTheoremsShort} own theorems + ${fmt.thousands(HEADLINES.grandTotalTheorems)} total with Mathlib, ${HEADLINES.sorryCount} sorry, ${HEADLINES.physicalAxioms} physical axioms.`}
 >
   <Navigation slot="sidebar" />
 
   <header class="header-section">
     <div class="header-eyebrow">Formal verification · Lean 4 + Mathlib v4.29</div>
-    <h1 class="page-title">OmegaTheory V2 — 3818 jobs GREEN</h1>
+    <h1 class="page-title">OmegaTheory V2 — {HEADLINES.buildJobsFmt} jobs GREEN</h1>
     <p class="page-subtitle">
       A living machine-verified proof that Standard Model parameters, gravitational
-      dynamics, and cosmological observables follow from 8 physical constants on
+      dynamics, and cosmological observables follow from {HEADLINES.physicalAxioms} physical constants on
       a Planck-scale ℤ⁴ lattice. Every claim on this site terminates in a Lean theorem.
     </p>
   </header>
 
   <section class="stats-section">
-    <div class="stat-card hero-stat"><span class="stat-value">3 818</span><span class="stat-label">build jobs GREEN</span></div>
-    <div class="stat-card"><span class="stat-value">0</span><span class="stat-label">sorry</span></div>
-    <div class="stat-card"><span class="stat-value">8</span><span class="stat-label">physical axioms</span></div>
-    <div class="stat-card"><span class="stat-value">14</span><span class="stat-label">cycles shipped</span></div>
-    <div class="stat-card"><span class="stat-value">84</span><span class="stat-label">PDG predictions</span></div>
-    <div class="stat-card"><span class="stat-value">~11K</span><span class="stat-label">declarations</span></div>
-    <div class="stat-card"><span class="stat-value">~160</span><span class="stat-label">Lean files</span></div>
+    <div class="stat-card hero-stat"><span class="stat-value">{HEADLINES.buildJobsFmt}</span><span class="stat-label">build jobs GREEN</span></div>
+    <div class="stat-card"><span class="stat-value">{HEADLINES.sorryCount}</span><span class="stat-label">sorry</span></div>
+    <div class="stat-card"><span class="stat-value">{HEADLINES.physicalAxioms}</span><span class="stat-label">physical axioms</span></div>
+    <div class="stat-card"><span class="stat-value">{HEADLINES.cyclesShipped}</span><span class="stat-label">cycles shipped ({HEADLINES.cyclesRange})</span></div>
+    <div class="stat-card"><span class="stat-value">{HEADLINES.ownTheoremsShort}</span><span class="stat-label">own theorems</span></div>
+    <div class="stat-card"><span class="stat-value">{fmt.thousands(HEADLINES.grandTotalTheorems)}</span><span class="stat-label">total (+ Mathlib)</span></div>
+    <div class="stat-card"><span class="stat-value">{HEADLINES.leanFiles}</span><span class="stat-label">Lean files</span></div>
     <div class="stat-card"><span class="stat-value">v4.29</span><span class="stat-label">Mathlib / Lean</span></div>
   </section>
 
@@ -73,11 +74,11 @@ const GH = 'https://github.com/RamzesX/chaos-shield/tree/main/PhysicsPapers/Lean
           <a class="cap-link" href={`${GH}/OmegaTheory/Predictions`} target="_blank" rel="noopener">open dir ↗</a>
         </div>
         <p class="cap-desc">
-          Signature theorem (Cor Caroli, cycle 23, 2026-04-20) consolidating all
-          14 cycles into a 5-way ∧: π-channel ∧ e-channel ∧ √2-channel ∧ mixed-channel ∧ fine-tuning.
-          Built via propositional-bundle design (robust against future rename drift) —
-          5 conjunct defs + 5 proofs + ~20 theorems.
-          <strong>Syncs to this branch on the next push</strong> from <code>~/lean-v2/</code>.
+          Signature theorem (Cor Caroli, cycle 23, 2026-04-20) consolidating
+          cycles 9–23 into a 5-way ∧: π-channel ∧ e-channel ∧ √2-channel ∧ mixed-channel ∧ fine-tuning.
+          Superseded by <code>omega_theory_v2_final_meta_capstone</code> (Polaris, cycle 43)
+          which bundles all {HEADLINES.cyclesShipped} shipped cycles including Mekbuda's 60-theorem backlog
+          (electroweak, Connes, Yukawa, baryogenesis, cyclic cosmology).
           <a href={`${baseUrl}cycles/`} class="inline-link">See the cycle-by-cycle breakdown →</a>
         </p>
       </li>
@@ -119,7 +120,7 @@ const GH = 'https://github.com/RamzesX/chaos-shield/tree/main/PhysicsPapers/Lean
         { n: '06', name: 'Conservation', body: 'Information · Noether · StressEnergy · Correspondence',   dir: 'Conservation' },
         { n: '07', name: 'HealingFlow',  body: 'Lyapunov · LaSalle · Convergence',                        dir: 'HealingFlow' },
         { n: '08', name: 'Emergence',    body: 'Einstein · QM Capstone · Higgs · Inflation · DarkMatter · Connes', dir: 'Emergence' },
-        { n: '09', name: 'Predictions',  body: '84 PDG-anchored fits · 14 cycles',                        dir: 'Predictions', highlight: true },
+        { n: '09', name: 'Predictions',  body: `PDG-anchored fits · ${HEADLINES.cyclesShipped} cycles`,    dir: 'Predictions', highlight: true },
         { n: '10', name: 'Torsion',      body: 'SpinTorsion · BigBounce (Popławski)',                     dir: 'Torsion' },
         { n: '11', name: 'Irrationality',body: 'π / e / √2 truncation · δ_comp(N)',                       dir: 'Irrationality' },
         { n: '12', name: 'Variational',  body: 'GraphAction · DiscreteNoether · InfoGeodesics',           dir: 'Variational' },

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
+import { HEADLINES, fmt } from '../data/status.mjs';
 
 const rawBase = import.meta.env.BASE_URL;
 const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
@@ -265,7 +266,7 @@ const cycles = [
   {
     cycle: 23,
     title: 'Grand capstone signature',
-    hook: 'Signature theorem: OmegaTheory derives 14 cycles × 6 = 84 PDG-consistent predictions from 8 physical axioms + 3 irrationals.',
+    hook: `Signature theorem: OmegaTheory derives ${HEADLINES.cyclesShipped} formalization cycles of PDG-consistent predictions from ${HEADLINES.physicalAxioms} physical axioms + 4 irrationals.`,
     summary: 'omega_theory_grand_capstone bundles all cycle fits under one roof: Standard Model + cosmology + astrophysics derivable from π/e/√2-truncation residuals plus healing-flow dynamics. 0 sorry, 8 axioms, build 3818 GREEN.',
     rows: [
       { name: 'omega_theory_grand_capstone', observable: 'signature', pdg: '84 predictions', tol: 'Lean-verified', channel: 'derived', agent: 'Cor Caroli', star: 'α² CVn', file: 'OmegaTheoryGrandCapstone.lean' },
@@ -291,27 +292,33 @@ const totalTheorems = cycles.reduce((n, c) => n + c.rows.length, 0);
 ---
 
 <BaseLayout
-  title="14 Cycles · 84 Predictions · Lean-verified"
-  description="Cycle-by-cycle summary of OmegaTheory substrate fits from cycle 9 (numerical scaffolding) through cycle 23 (grand capstone)."
+  title={`${HEADLINES.cyclesShipped} Cycles Shipped · ${HEADLINES.ownTheoremsShort} Theorems · Lean-verified`}
+  description={`Cycle-by-cycle summary of OmegaTheory formalization. ${HEADLINES.cyclesShipped} cycles shipped (${HEADLINES.cyclesRange}); ${cycles.length} cycles with detailed prediction catalogues below (cycles ${cycles[0].cycle}–${cycles[cycles.length-1].cycle}).`}
 >
   <Navigation slot="sidebar" />
 
   <header class="cycles-header">
     <div class="breadcrumb">Formal verification · Predictions catalogue</div>
-    <h1 class="cycles-title">14 cycles · {totalTheorems} predictions · Lean-verified</h1>
+    <h1 class="cycles-title">{HEADLINES.cyclesShipped} cycles shipped · {fmt.int(HEADLINES.ownTheorems)} theorems · Lean-verified</h1>
     <p class="cycles-sub">
-      From cycle 9 (numerical scaffolding, 2026-04-20 morning) through cycle 23 (grand capstone,
-      2026-04-20 evening): every row below is a machine-checked theorem in
-      <code>OmegaTheory/Predictions/</code>, built GREEN at <strong>3818 jobs</strong>,
-      <strong>0 sorry</strong>, <strong>8 physical axioms</strong>. Each row cites
-      its PDG target and the substrate channel (π / e / √2 / composed / identity) that carries it.
+      Cycles <strong>{HEADLINES.cyclesRange}</strong> all landed on <code>main</code>
+      (<strong>{HEADLINES.buildJobsFmt} build jobs GREEN</strong>,
+      <strong>{HEADLINES.sorryCount} sorry</strong>,
+      <strong>{HEADLINES.physicalAxioms} physical axioms</strong>).
+      Catalogued below in detail: cycles <strong>{cycles[0].cycle}–{cycles[cycles.length-1].cycle}</strong>
+      ({cycles.length} cycles, {totalTheorems} headline PDG-anchored fits).
+      Cycles {HEADLINES.firstCycle}–{cycles[0].cycle - 1} (foundational) and
+      {cycles[cycles.length-1].cycle + 1}–{HEADLINES.lastCycle} (Mekbuda's backlog:
+      electroweak, Connes, Yukawa, baryogenesis, capstone) ship as theorems in
+      <a href="https://github.com/RamzesX/chaos-shield/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory" target="_blank" rel="noopener"><code>OmegaTheory/</code></a>.
+      Each row cites its PDG target and the substrate channel (π / e / √2 / composed / identity) that carries it.
     </p>
     <aside class="sync-note">
-      <strong>Sync status.</strong> Cycles 10-23 shipped on the native-ext4 working
-      directory (<code>~/lean-v2/</code>) and will land on the public <code>main</code> branch
-      at the next push. Rows where the Lean file has already synced link directly to
-      GitHub; pending rows link to the <a href={GH_DIR} target="_blank" rel="noopener">Predictions directory</a>
-      and appear italicized below.
+      <strong>Source of truth.</strong> All corpus numbers on this page come from
+      <a href="https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/STATUS.md" target="_blank" rel="noopener"><code>STATUS.md</code></a>,
+      parsed at build time — editing STATUS.md on main updates this page automatically.
+      Detailed rows below link to each Lean file on GitHub; rows awaiting a push fall back
+      to the <a href={GH_DIR} target="_blank" rel="noopener">Predictions directory</a>.
     </aside>
   </header>
 

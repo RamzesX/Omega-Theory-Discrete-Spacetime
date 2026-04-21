@@ -5,16 +5,16 @@ import HeroSection from '../components/HeroSection.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import BadgeStrip from '../components/BadgeStrip.astro';
 import PhysicsBox from '../components/PhysicsBox.astro';
+import { HEADLINES, fmt } from '../data/status.mjs';
 
 const rawBase = import.meta.env.BASE_URL;
 const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
 const GH = 'https://github.com/RamzesX/chaos-shield';
-// Capstone lives on native-ext4 working dir (~/lean-v2/); syncs to main on next push.
 const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions`;
 ---
 
-<BaseLayout title="Discrete Spacetime · 14 Cycles · 84 Predictions">
+<BaseLayout title={`Discrete Spacetime · ${HEADLINES.cyclesShipped} Cycles · ${HEADLINES.ownTheoremsShort} Theorems`}>
   <Navigation slot="sidebar" />
 
   <HeroSection />
@@ -27,20 +27,21 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
       <div class="capstone-left">
         <div class="eyebrow">Signature theorem</div>
         <h2 class="capstone-title">
-          <code>omega_theory_grand_capstone</code>
+          <code>omega_theory_v2_final_meta_capstone</code>
         </h2>
         <p class="capstone-lede">
-          A single Lean statement bundling <strong>84 PDG-consistent predictions</strong>
-          across <strong>14 shipping cycles</strong>: Standard Model masses +
-          CKM/PMNS mixing + Higgs sector + cosmological parameters — all
-          derivable from 3 irrationals (π, <em>e</em>, √2) and healing-flow
+          A single Lean statement bundling <strong>{HEADLINES.cyclesShipped} shipping cycles</strong>
+          of PDG-consistent predictions: Standard Model masses +
+          CKM/PMNS mixing + Higgs sector + cosmological parameters +
+          matter-antimatter asymmetry + dark matter/energy — all
+          derivable from 4 irrationals (π, <em>e</em>, √2, Catalan G) and healing-flow
           dynamics on the discrete ℤ⁴ lattice.
         </p>
         <ul class="capstone-stats">
-          <li><b>14</b> cycles shipped · cycles 9–23</li>
-          <li><b>84</b> headline substrate fits</li>
-          <li><b>3 819</b> build jobs GREEN · 0 sorry</li>
-          <li><b>8</b> physical axioms · 0 mathematical</li>
+          <li><b>{HEADLINES.cyclesShipped}</b> cycles shipped · cycles {HEADLINES.cyclesRange}</li>
+          <li><b>{HEADLINES.ownTheoremsShort}</b> own theorems + {fmt.thousands(HEADLINES.grandTotalTheorems)} total with Mathlib</li>
+          <li><b>{HEADLINES.buildJobsFmt}</b> build jobs GREEN · {HEADLINES.sorryCount} sorry</li>
+          <li><b>{HEADLINES.physicalAxioms}</b> physical axioms · 0 mathematical</li>
         </ul>
         <div class="capstone-ctas">
           <a href={`${baseUrl}cycles/`} class="btn btn-primary">Open cycle catalogue</a>
@@ -80,16 +81,16 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
       />
       <FeatureCard
         icon="◈"
-        title="84 predictions"
+        title={`${HEADLINES.cyclesShipped} cycles of predictions`}
         accent="amber"
-        description="Not philosophy — 14 cycles of substrate fits anchored to PDG central values. One already verified (gate fidelity scaling, Diraq 2024)."
+        description={`Not philosophy — ${HEADLINES.cyclesShipped} cycles of substrate fits anchored to PDG central values. One already verified (gate fidelity scaling, Diraq 2024).`}
         href={`${baseUrl}cycles/`}
       />
       <FeatureCard
         icon="✓"
         title="Machine-verified"
         accent="jade"
-        description="Every claim is a Lean theorem. 3,819 build jobs, 0 sorry, 8 physical axioms. Run lake build and verify yourself."
+        description={`Every claim is a Lean theorem. ${HEADLINES.buildJobsFmt} build jobs, ${HEADLINES.sorryCount} sorry, ${HEADLINES.physicalAxioms} physical axioms. Run lake build and verify yourself.`}
         href={`${baseUrl}lean/`}
       />
       <FeatureCard
@@ -200,7 +201,7 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
         <a href={`${baseUrl}cycles/`} class="reading-step featured">
           <span class="step-number">04</span>
           <div class="step-content">
-            <strong>14 cycles · 84 predictions</strong>
+            <strong>{HEADLINES.cyclesShipped} cycles · {HEADLINES.ownTheoremsShort} theorems</strong>
             <span>Cycle-by-cycle substrate fits with GitHub links to each Lean theorem</span>
           </div>
         </a>
@@ -229,10 +230,10 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
   <section class="section cta-section">
     <h2>Explore the theory</h2>
     <p class="section-intro">
-      25 papers · 14 cycles of formal predictions · 11K+ Lean declarations.
+      25 papers · {HEADLINES.cyclesShipped} cycles of formal predictions · {fmt.thousands(HEADLINES.grandTotalTheorems)} Lean declarations (incl. Mathlib).
     </p>
     <div class="cta-buttons">
-      <a href={`${baseUrl}cycles/`} class="btn btn-primary">See 14 cycles</a>
+      <a href={`${baseUrl}cycles/`} class="btn btn-primary">See {HEADLINES.cyclesShipped} cycles</a>
       <a href={`${baseUrl}papers/main-paper-postulates/`} class="btn btn-outline">Start reading</a>
       <a href={GH} class="btn btn-outline" target="_blank" rel="noopener">View on GitHub</a>
     </div>

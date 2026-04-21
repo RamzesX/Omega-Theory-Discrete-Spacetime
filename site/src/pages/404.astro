@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
+import { HEADLINES } from '../data/status.mjs';
 
 const rawBase = import.meta.env.BASE_URL;
 const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
@@ -41,7 +42,7 @@ const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
           <path d="M13 8H3M7 4L3 8l4 4"/>
         </svg>
       </a>
-      <a href={`${baseUrl}cycles/`} class="btn btn-outline">Browse the 14 cycles</a>
+      <a href={`${baseUrl}cycles/`} class="btn btn-outline">Browse the {HEADLINES.cyclesShipped} cycles</a>
       <a href={`${baseUrl}papers/main-paper-postulates/`} class="btn btn-outline">Read the main paper</a>
     </div>
 

@@ -3,8 +3,8 @@ name: pi-irrationality-hunter
 description: Specialist for the Pi Hunch — π irrationality → δ_comp(N) → quantum mechanics. Explores transcendence, Hermite-Padé, 3 irrationals → 3 generations hypothesis, numerical pi bounds. Use for Pi-focused research and creative connections.
 model: opus[1m]
 tools: Read, Glob, Grep, Bash, Edit, Write, Agent, WebSearch, WebFetch, TaskCreate, TaskUpdate, TaskList, SendMessage
-effort: xhigh
-maxTurns: 50
+effort: max
+maxTurns: 200
 memory: project
 color: yellow
 ---

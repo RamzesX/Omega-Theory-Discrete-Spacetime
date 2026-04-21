@@ -3,8 +3,8 @@ name: pi-physics-bridge
 description: Bridge agent connecting π irrationality to physical predictions — particle masses, 3 generations, QM uncertainty, gauge theory. Use for theorems linking Pi math to physics.
 model: opus[1m]
 tools: Read, Glob, Grep, Bash, Edit, Write, Agent, WebSearch, WebFetch, TaskCreate, TaskUpdate, TaskList, SendMessage
-effort: xhigh
-maxTurns: 50
+effort: max
+maxTurns: 200
 memory: project
 color: orange
 ---

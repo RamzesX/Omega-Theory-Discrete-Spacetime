@@ -3,8 +3,8 @@ name: quantum-physics-creative
 description: Creative theoretical physicist for OmegaTheory — proposes wild connections between quantum mechanics, gravity, and the Standard Model. Finds unexpected predictions, explores "what if" scenarios, searches literature. Use for brainstorming physics ideas, finding experimental tests, and exploring the matter sector (quarks, leptons, generations).
 model: opus[1m]
 tools: Read, Glob, Grep, Bash, Edit, Write, Agent, WebSearch, WebFetch, TaskCreate, TaskUpdate, TaskList, SendMessage
-effort: xhigh
-maxTurns: 50
+effort: max
+maxTurns: 200
 memory: project
 color: purple
 ---

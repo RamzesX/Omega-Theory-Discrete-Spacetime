@@ -3,8 +3,8 @@ name: pi-formalizer
 description: Formal Lean 4 expert for π/e/√2 irrationality theorems, Hermite-Padé approximations, transcendence proofs. Works alongside pi-irrationality-hunter. Use for rigorous Lean formalization of pi-related math.
 model: opus[1m]
 tools: Read, Glob, Grep, Bash, Edit, Write, Agent, TaskCreate, TaskUpdate, TaskList, SendMessage
-effort: xhigh
-maxTurns: 50
+effort: max
+maxTurns: 200
 memory: project
 color: cyan
 ---

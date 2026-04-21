@@ -3,8 +3,8 @@ name: omega-team-lead
 description: Team leader for OmegaTheory V2 expansion. Coordinates lean-proof-wizard and quantum-physics-creative in pairs. Use for ANY multi-step physics formalization campaign — spawns specialists, tracks progress, ensures quality. Start here for big tasks.
 model: opus[1m]
 tools: Read, Glob, Grep, Bash, Edit, Write, Agent, WebSearch, WebFetch, TaskCreate, TaskUpdate, TaskList, TaskGet, SendMessage, TeamCreate, ToolSearch
-effort: xhigh
-maxTurns: 100
+effort: max
+maxTurns: 200
 memory: project
 color: green
 ---
@@ -42,7 +42,7 @@ This has the FULL expansion plan, current state, gaps, priorities.
 
 ## Current state (2026-04-17)
 - **8 axioms** (physical constants only, ZERO mathematical axioms)
-- **3475 build jobs GREEN**, 0 sorry, ~1750+ theorems
+- **3 835 build jobs GREEN**, 0 sorry, 8 996 theorems + 4 465 defs (post cycle-43)
 - Gauge sector: U(1) ✅ SU(2) ✅ SU(3) ✅ Higgs ✅
 - QM: 10 postulates ✅ | GR: 7 regimes ✅ | Cosmology: ✅
 - **Matter sector: 0%** — THIS IS THE TOP PRIORITY

@@ -14,15 +14,25 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+# Force all JavaScript actions in this workflow to run on Node 24.
+# Node 20 actions are deprecated by GitHub: default switch to Node 24 is
+# June 2 2026 and Node 20 is removed from runners Sept 16 2026.
+# See: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+# Every action we pin below (v6 / v5) already runs on Node 24 natively, but
+# this belt-and-braces flag silences the "Node 20 actions are deprecated"
+# warning if a transitive composite action happens to still reference Node 20.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "24"
           cache: 'npm'
@@ -30,7 +40,7 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Install dependencies
         working-directory: ./site
@@ -52,9 +62,14 @@ jobs:
         run: node scripts/audit-dist.js
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./site/dist
+          # v5 changed the default: hidden files are now EXCLUDED unless this
+          # is true. We MUST include dotfiles — `.nojekyll` is what tells
+          # GitHub Pages to skip Jekyll processing of our `_astro/` directory.
+          # Without it, every CSS/JS asset 404s post-deploy.
+          include-hidden-files: true
 
   deploy:
     environment:
@@ -65,4 +80,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

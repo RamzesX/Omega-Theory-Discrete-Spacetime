@@ -65,7 +65,10 @@ const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
 <style>
   .paper {
-    max-width: 46rem;
+    /* 46rem was too tight for ASCII diagrams (80-95 cols typical) and wide
+       tables. 54rem keeps prose line-length ≤ 90 chars (readable) while
+       giving +8rem for diagrams. */
+    max-width: 54rem;
     margin: 0 auto;
   }
 
@@ -155,6 +158,32 @@ const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
   .paper-content :global(.katex-display) {
     overflow-x: auto;
     padding: var(--space-md) var(--space-lg);
+  }
+
+  /* ASCII diagrams + wide code / tables break out of the 54rem prose column
+     — they get the full paper-content width (bounded only by the parent
+     main-content, which leaves ~800-900px of usable width on desktop).
+     For code-fence <pre> with Shiki syntax highlighting this is fine —
+     long code lines still scroll horizontally inside the pre. */
+  .paper-content :global(pre),
+  .paper-content :global(table) {
+    max-width: calc(100% + var(--space-xl) * 2);
+    margin-left: calc(-1 * var(--space-md));
+    margin-right: calc(-1 * var(--space-md));
+  }
+  @media (max-width: 900px) {
+    .paper-content :global(pre),
+    .paper-content :global(table) {
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  /* ASCII art pre (no Shiki language class): smaller font + no syntax
+     background so it reads as a diagram, not code. */
+  .paper-content :global(pre:not([class*="language-"]):not(.astro-code)) {
+    font-size: 0.74rem;
+    line-height: 1.35;
   }
 
   .paper-content :global(figure) {

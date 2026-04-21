@@ -3,6 +3,8 @@
 **Author:** proton-scope (pi-irrationality-hunter thread) | **Date:** 2026-04-19
 **Status:** Planning only. No proof attempt. 0 sorry, 0 axioms added.
 
+> **Post-cycle-43 update (2026-04-21):** cycles 24-43 shipped **ConnesDFYukawaMass** (lepton/quark Yukawa bridge), **HiggsAndMassHierarchy**, **PiHunchQuantitative**, and the **OmegaTheoryGrandCapstoneV2** — but Λ_QCD and the proton bound-state calculation remain unshipped. Pathway A (δ_comp → Λ_QCD, §§4–5 below) is still the recommended next step; §§1–3 audit of QCD infrastructure is unchanged because no QCD/heat-kernel work landed in cycles 24-43. Build: 3,835 jobs green, 0 sorry, 8,996 theorems / 24 axioms / 211 files.
+
 ## 1. Why proton is different from leptons/quarks
 
 Quark Yukawa masses (few MeV to GeV) come from `m = y · v / √2` where `y` is a Yukawa coupling and `v ≈ 246 GeV` the Higgs VEV. Proton mass `m_p ≈ 938 MeV` is **~99% QCD binding energy** (Λ_QCD gluon + chiral condensate `<q̄q> ≈ (250 MeV)³`), with only ~9 MeV from the bare `u,u,d` Yukawa contributions. The proton is a **non-perturbative bound state**, so the derivation pathway is categorically different from `QuarkMassFromIrrationals.lean`.

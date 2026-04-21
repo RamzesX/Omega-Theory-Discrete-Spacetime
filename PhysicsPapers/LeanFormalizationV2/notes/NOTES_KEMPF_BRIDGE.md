@@ -4,6 +4,8 @@
 
 **Type**: Read-only research memo. Literature review + concept mapping + integration pathway proposal. **0 `.lean` files modified**. No Lean edits permitted per mission brief.
 
+> **Post-cycle-43 status (2026-04-21):** Kempf β/γ/δ integration pathways named in §4 are still open — cycles 24-43 shipped Connes+4-channel+GrandCapstoneV2 but did not land a Kempf UV-cutoff theorem or a bandlimited-field bridge in Lean. This memo remains the current starting point. Build: 3,835 jobs green, 0 sorry, 8,996 theorems / 24 axioms / 211 files.
+
 **Purpose**: Systematic comparison of **Achim Kempf's** (UWaterloo / Perimeter) 20-year corpus on information-theoretic quantum gravity with OmegaTheory, identifying: (a) conceptual overlap, (b) integration pathways, (c) formalization-readiness ranking, (d) open questions, (e) citation plan for `PAPER_DRAFT.md`, (f) optional outreach.
 
 **Scope discipline**: Every speculative bridge flagged `SPECULATIVE`. Distinctions between "follows from the algebra" and "speculative analogy" preserved.

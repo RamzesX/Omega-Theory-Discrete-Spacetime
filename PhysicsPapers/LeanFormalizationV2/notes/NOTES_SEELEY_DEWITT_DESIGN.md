@@ -5,6 +5,8 @@
 **Mission**: propose the minimal Seeley-DeWitt (SD) machinery for OmegaTheory that lets the SD-skeleton wizard honestly discharge the 9 `Prop := True` sites left by Mirfak's Cluster A + C cleanup.
 **Constraint**: no new axioms; every definition grounds in existing OmegaTheory primitives (EBHPW scaffold + `HiggsFromError` + `Irrationality.Uncertainty`).
 
+> **Post-cycle-43 status (2026-04-21):** cycles 24-43 shipped `ConnesCalibrationAndFourChannels` and `ConnesDFYukawaMass`, which provide Connes A_F sector calibrations and Yukawa mass bridges but **do not** close the 9 `Prop := True` SD-coefficient sites named below. The "two-site proof-of-concept" (cosmological constant + Einstein-Hilbert) remains the recommended next session. HPW axiom was deleted 2026-04-17, so any references below to "EBHPW" in a scaffold sense are now the post-HPW healing-flow equilibrium scaffold. Build: 3,835 jobs green, 0 sorry, 8,996 theorems / 24 axioms / 211 files.
+
 ---
 
 ## §0 — Executive summary

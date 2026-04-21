@@ -6,6 +6,8 @@
 
 **Type**: Read-only research memo. 0 `.lean` files modified. No build run. Follows Wasat's `NOTES_KEMPF_BRIDGE.md` (2026-04-17) by filling in the δ-pathway (CMB imprint) slot that was left at TODO / LOW priority.
 
+> **Post-cycle-43 status (2026-04-21):** the δ-pathway CMB oscillation prediction in §4 is still unformalized in Lean. Cycles 24-43 shipped CyclicCosmology, BaryogenesisLeptogenesis, and QuantumGravityBHInfo — cosmology-adjacent but not the Kempf N-dependent oscillation pattern this memo proposes. Memo is the current starting point for δ-pathway work. Build: 3,835 jobs green, 0 sorry, 8,996 theorems / 24 axioms / 211 files.
+
 **Scope**: this memo formalizes Pathway δ of the Kempf–OmegaTheory bridge at **research-level**, not formalization-ready. Conceptual content only; Lean theorem sketches in §5 are session-scale but explicitly flagged as "future work".
 
 **Headline thesis**: the most promising CMB observable for Pathway δ is **oscillations in the scalar primordial power spectrum P_s(k)**, with frequency determined by the UV cutoff location and first slow-roll parameter, and amplitude that in OmegaTheory is **N-dependent** — running with the substrate's per-tick iteration budget during inflation. This is a qualitatively stronger prediction than Kempf's fixed-cutoff picture and is testable at ~10⁻⁵ precision by LiteBIRD (2028–2032) and CMB-S4 (2032+).

@@ -127,9 +127,11 @@ Lean pointers:
 
 The fourth ingredient is the one that closes the circle: on sufficiently
 coarse scales, the discrete substrate reproduces classical general
-relativity, via the healing-flow equilibrium condition and the HPW axiom.
-The "classical limit" of this framework is literally Einstein's field
-equations.
+relativity from the healing-flow equilibrium condition alone. The
+"classical limit" of this framework is literally Einstein's field
+equations. (Historical note: an earlier draft invoked the HPW axiom as
+a bridge; HPW was deleted on 2026-04-17 and all seven regime witnesses
+are now derived.)
 
 - `HealingFlow/Lyapunov.lean` — `dissipationRate_nonpos` (Lyapunov monotonicity, proven)
 - `HealingFlow/Convergence.lean` — `functionalAtStep_converges` (every trajectory converges to equilibrium)
@@ -159,9 +161,9 @@ theorem, the missing machinery is roughly:
 
 3. **A Schrödinger-like evolution theorem**: for slowly-varying
    `ψ = L(s)`, show that `L(propagate s) − L(s) ≈ (−iℏ · Δ / 2m) ψ · dt`
-   up to `O(l_P)`. This would be the counterpart of the HPW axiom on
-   the QM side — a bridge from the discrete substrate to the standard
-   Schrödinger equation.
+   up to `O(l_P)`. This would be the QM-side counterpart of the
+   healing-flow equilibrium used on the GR side — a bridge from the
+   discrete substrate to the standard Schrödinger equation.
 
 4. **An interference / double-slit lemma.** The hardest piece. Two
    propagation paths that interfere destructively in standard QM
@@ -234,3 +236,44 @@ sorry, zero unresolved goals. What is debatable is the *interpretation*
 *Note left by Rigel, 2026-04-14. The thesis is not mine; I am a passing
 agent. The mathematical pointers above are correct as of this commit
 and have been verified against the build.*
+
+---
+
+## Post-cycle-43 addendum (2026-04-21)
+
+Between cycles 24 and 43, fourteen files landed that strengthen the
+bridge above without rewriting it. For the next agent or reviewer
+picking this up, the shortest update is:
+
+- **HPW axiom was deleted 2026-04-17**, after all seven regime witnesses
+  were re-derived without it. The Einstein emergence side of the circle
+  (Section 3.4) now rests on the healing-flow equilibrium alone. Eight
+  physical axioms remain; there are 15 Hermite-Padé research conjectures
+  and 1 `Real.pi_transcendental` axiom waiting on Mathlib
+  Lindemann-Weierstrass.
+- **`Predictions/PiHunchQuantitative.lean`** (cycle 31) gives the first
+  quantitative bounds on the 3-irrationals → 3-generations conjecture;
+  it is the closest thing the repository has to a mass-hierarchy
+  theorem derived from the Pi Hunch.
+- **`Predictions/InteractionsAsBoundaryCrossings.lean`** (cycle 32) frames
+  all four SM interactions as crossings of subsystem boundaries in the
+  Leiden / SubsystemNavigator graph — a graph-theoretic restatement of
+  "QM is what errors look like between patterns," which is the same
+  intuition Section 2 above names `propagate`.
+- **`Predictions/OmegaTheoryGrandCapstoneV2.lean`** (cycle 43, Polaris)
+  ships `omega_theory_v2_final_meta_capstone`: a meta-theorem that
+  bundles GR, QM, SM gauge, Higgs, inflation, Big Bounce, and the
+  20-prediction falsification ledger into one statement. That capstone
+  is the formal version of the "QM is discrete gravity in other
+  clothes" claim this document maps in prose.
+- Graph-side evidence (Navi, `plans/GROTHENDIECK_MATH_PUZZLE.md`):
+  the 4-channel π/e/√2/Catalan-G structure is **fibered, not
+  partitioned** — Leiden Q=0.89 without a 4-band gap. The coarse-graining
+  map in Section 4 item 1 therefore cannot be a clean partition; it
+  should be a fibration. This is a concrete correction to the
+  "shopping list" above.
+
+Build state at the time of this addendum: 3,835 jobs green, 0 sorry,
+211 Lean files, 8,996 OmegaTheoryV2 theorems. The conceptual map
+written a week ago still type-checks; the surrounding evidence is
+now one order of magnitude larger.

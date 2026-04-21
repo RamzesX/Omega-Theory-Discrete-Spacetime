@@ -2,9 +2,11 @@
 
 **Author**: scout `gap-hunter-scout` (team member of OmegaTheory V2)
 **Date**: 2026-04-19
-**Status**: pre-implementation design
+**Status**: pre-implementation design (survived cycle-43 reorg, agent still not built)
 **Purpose**: design spec for a long-lived teammate agent `theorem-gap-hunter`
 **Graph state referenced**: OmegaTheoryV2 = 1,900 theorems / 8 axioms / 162 files / 281 Leiden subsystems / 2,482 "never-used" theorems / 35 DUAL_OF pairs / 344 transitive-closure gaps; Mathlib = 175,137 theorems (as of 2026-04-19)
+
+> **Post-cycle-43 status (2026-04-21):** corpus has grown to **8,996 OmegaTheoryV2 theorems / 24 axioms / 211 files / 677 SubsystemNavigators / 86 GraphFindings** — roughly 5× the numbers quoted below. The design (literature review, loop shape, hunter-emit schema) is unchanged; only the scale and the specific "never-used" / "APPLIES-gap" counts in §1 are stale. Re-measure before running this agent for real. Build: 3,835 jobs green, 0 sorry.
 
 ---
 

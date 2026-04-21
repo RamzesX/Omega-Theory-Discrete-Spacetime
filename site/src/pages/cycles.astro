@@ -267,7 +267,7 @@ const cycles = [
     cycle: 23,
     title: 'Grand capstone signature',
     hook: `Signature theorem: OmegaTheory derives ${HEADLINES.cyclesShipped} formalization cycles of PDG-consistent predictions from ${HEADLINES.physicalAxioms} physical axioms + 4 irrationals.`,
-    summary: 'omega_theory_grand_capstone bundles all cycle fits under one roof: Standard Model + cosmology + astrophysics derivable from π/e/√2-truncation residuals plus healing-flow dynamics. 0 sorry, 8 axioms, build 3818 GREEN.',
+    summary: `omega_theory_grand_capstone bundles all cycle fits under one roof: Standard Model + cosmology + astrophysics derivable from π/e/√2-truncation residuals plus healing-flow dynamics. ${HEADLINES.sorryCount} sorry, ${HEADLINES.physicalAxioms} axioms, build ${HEADLINES.buildJobsFmt} GREEN.`,
     rows: [
       { name: 'omega_theory_grand_capstone', observable: 'signature', pdg: '84 predictions', tol: 'Lean-verified', channel: 'derived', agent: 'Cor Caroli', star: 'α² CVn', file: 'OmegaTheoryGrandCapstone.lean' },
       { name: 'three_channel_partition_theorem', observable: 'π ⊔ e ⊔ √2', pdg: 'disjoint', tol: 'structural', channel: 'derived', agent: 'Miram', star: 'η Per', file: 'ThreeChannelPartition.lean' },
@@ -445,16 +445,17 @@ const totalTheorems = cycles.reduce((n, c) => n + c.rows.length, 0);
   <section class="capstone-section">
     <div class="capstone-card">
       <h2 class="capstone-h">
-        <span class="omega">Ω</span> Grand capstone theorem
+        <span class="omega">Ω</span> Grand meta-capstone theorem
       </h2>
       <p class="capstone-sig">
-        <code>omega_theory_grand_capstone : Substrate-fit-bundle _ ∧ PDG-consistency _ ∧ Lean-verified _</code>
+        <code>omega_theory_v2_final_meta_capstone : Substrate-fit-bundle _ ∧ PDG-consistency _ ∧ Lean-verified _</code>
       </p>
       <p class="capstone-body">
-        Bundles all {totalTheorems} headline predictions under a single machine-checked statement:
-        π-, e- and √2-truncation channels, together with healing-flow dynamics on the discrete Planck
-        lattice, reproduce the Standard Model mass hierarchy, CKM/PMNS mixing, Higgs sector, and
-        cosmological parameters — each within PDG tolerances, with 0 sorry and 8 physical axioms.
+        Bundles all {HEADLINES.cyclesShipped} shipped cycles ({HEADLINES.cyclesRange}) under a single machine-checked statement:
+        π-, e-, √2-, and Catalan-G truncation channels, together with healing-flow dynamics on the discrete Planck
+        lattice, reproduce the Standard Model mass hierarchy, CKM/PMNS mixing, Higgs sector, baryogenesis,
+        dark matter/energy, and cosmological parameters — each within PDG tolerances, with {HEADLINES.sorryCount} sorry
+        and {HEADLINES.physicalAxioms} physical axioms.
       </p>
       <div class="capstone-links">
         <a href={GH_DIR} target="_blank" rel="noopener" class="btn btn-primary">
@@ -469,19 +470,19 @@ const totalTheorems = cycles.reduce((n, c) => n + c.rows.length, 0);
 
   <section class="footer-stats">
     <div class="fs-card">
-      <span class="fs-value">14</span><span class="fs-label">cycles shipped</span>
+      <span class="fs-value">{HEADLINES.cyclesShipped}</span><span class="fs-label">cycles shipped</span>
     </div>
     <div class="fs-card">
-      <span class="fs-value">{totalTheorems}</span><span class="fs-label">headline predictions</span>
+      <span class="fs-value">{fmt.int(HEADLINES.ownTheorems)}</span><span class="fs-label">own theorems</span>
     </div>
     <div class="fs-card">
-      <span class="fs-value">3 818</span><span class="fs-label">build jobs GREEN</span>
+      <span class="fs-value">{HEADLINES.buildJobsFmt}</span><span class="fs-label">build jobs GREEN</span>
     </div>
     <div class="fs-card">
-      <span class="fs-value">0</span><span class="fs-label">sorry</span>
+      <span class="fs-value">{HEADLINES.sorryCount}</span><span class="fs-label">sorry</span>
     </div>
     <div class="fs-card">
-      <span class="fs-value">8</span><span class="fs-label">physical axioms</span>
+      <span class="fs-value">{HEADLINES.physicalAxioms}</span><span class="fs-label">physical axioms</span>
     </div>
   </section>
 </BaseLayout>

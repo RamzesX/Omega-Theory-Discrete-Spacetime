@@ -1,8 +1,11 @@
 ---
 /**
  * BadgeStrip — a compact row of build-health badges.
- * Defaults reflect current project state; override via props when stats change.
+ * Defaults pulled live from STATUS.md via src/data/status.mjs — override via
+ * props if a specific page wants to pin a historical snapshot.
  */
+import { HEADLINES, fmt } from '../data/status.mjs';
+
 interface Props {
   jobs?: string;
   sorry?: string;
@@ -14,11 +17,11 @@ interface Props {
 }
 
 const {
-  jobs = '3 819',
-  sorry = '0',
-  axioms = '8',
-  theorems = '2 612',
-  files = '211',
+  jobs    = HEADLINES.buildJobsFmt,
+  sorry   = String(HEADLINES.sorryCount),
+  axioms  = String(HEADLINES.physicalAxioms),
+  theorems = fmt.thousands(HEADLINES.ownTheorems),
+  files   = String(HEADLINES.leanFiles),
   version = 'v4.29',
   compact = false,
 } = Astro.props;

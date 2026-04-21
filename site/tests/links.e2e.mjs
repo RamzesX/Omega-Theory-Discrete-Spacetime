@@ -26,7 +26,7 @@ function isInternal(href, origin) {
 
 test('internal link crawl — every reachable page returns 200', async ({ page, baseURL }) => {
   const origin = new URL(baseURL).origin;
-  const basePath = new URL(baseURL).pathname.replace(/\/$/, ''); // /chaos-shield
+  const basePath = new URL(baseURL).pathname.replace(/\/$/, ''); // /Omega-Theory-Discrete-Spacetime
   const toVisit = new Set(STARTING_URLS);
   const visited = new Set();
   const failures = [];

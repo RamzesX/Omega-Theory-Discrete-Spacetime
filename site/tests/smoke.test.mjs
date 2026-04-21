@@ -26,8 +26,12 @@ import url from 'node:url';
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const SITE_ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(SITE_ROOT, 'dist');
-const EXPECTED_BASE = '/chaos-shield';
-const FORBIDDEN_BASE = '/Omega-Theory-Discrete-Spacetime';
+const EXPECTED_BASE = '/Omega-Theory-Discrete-Spacetime';
+// Forbid the `/chaos-shield` rename probe from cycle-44 (commit 7b0f236).
+// The rename was not completed on GitHub — canonical name stayed
+// Omega-Theory-Discrete-Spacetime. Root-relative `/chaos-shield` refs in
+// emitted HTML would 404 against the real Pages URL.
+const FORBIDDEN_BASES = ['/chaos-shield'];
 
 function walkHtml(dir) {
   const out = [];
@@ -97,27 +101,34 @@ test('no HTML page is suspiciously tiny (< 500 bytes) — catches render failure
   assert.equal(tiny.length, 0, `tiny HTML pages (likely render failure): ${tiny.join(', ')}`);
 });
 
-test('FORBIDDEN: no root-relative href/src uses the legacy sibling-repo slug', () => {
-  // Matches /Omega-Theory-Discrete-Spacetime after a quoted href= or src= attribute.
-  // Does NOT match https://github.com/RamzesX/Omega-Theory-Discrete-Spacetime (no leading /).
-  const leakRe = /(?:href|src)\s*=\s*["']\/Omega-Theory-Discrete-Spacetime[^"']*["']/gi;
+test('FORBIDDEN: no root-relative href/src uses a deprecated repo slug', () => {
+  // If the repo is renamed, add the old value to FORBIDDEN_BASES and this
+  // test catches stragglers. Currently empty — no active forbidden slug.
+  if (FORBIDDEN_BASES.length === 0) return; // nothing to check
   const leaks = [];
-  for (const f of htmlFiles) {
-    const html = fs.readFileSync(f, 'utf8');
-    const matches = html.match(leakRe);
-    if (matches) matches.forEach((m) => leaks.push(`${rel(f)}: ${m}`));
+  for (const slug of FORBIDDEN_BASES) {
+    const leakRe = new RegExp(
+      `(?:href|src)\\s*=\\s*["']${slug.replace(/\//g, '\\/')}[^"']*["']`,
+      'gi'
+    );
+    for (const f of htmlFiles) {
+      const html = fs.readFileSync(f, 'utf8');
+      const matches = html.match(leakRe);
+      if (matches) matches.forEach((m) => leaks.push(`${rel(f)}: ${m}`));
+    }
   }
   assert.equal(leaks.length, 0, `legacy base-path leaks: ${leaks.join(' | ')}`);
 });
 
-test('FORBIDDEN: no "/basefavicon" or similar concat-without-separator bugs', () => {
-  // Catches the specific bug `${base}favicon.svg` with no slash.
-  // If base ever becomes `/foo`, this would produce `/foofavicon.svg`.
-  // We check for the specific past bad values + a generic shape.
+test('FORBIDDEN: no "${base}favicon" concat-without-separator bugs', () => {
+  // Catches `${base}favicon.svg` with no slash (Astro base-path concat bug).
+  // Builds patterns dynamically from EXPECTED_BASE so this test stays correct
+  // across repo renames.
+  const baseNoSlash = EXPECTED_BASE.replace(/^\//, '');
+  const pfx = EXPECTED_BASE.replace(/\//g, '\\/');
   const badPatterns = [
-    /\/Omega-Theory-Discrete-Spacetimefavicon/,
-    /\/chaos-shieldfavicon/,
-    /\/chaos-shield(index|404|papers|cycles|convqmath|lean)[^/"']/,
+    new RegExp(`${pfx}favicon`),  // /basefavicon.svg
+    new RegExp(`${pfx}(index|404|papers|cycles|convqmath|lean)[^/"'_]`),  // /baseindex.html etc.
   ];
   const hits = [];
   for (const f of htmlFiles) {

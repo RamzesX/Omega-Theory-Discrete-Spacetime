@@ -171,14 +171,14 @@ test('site/src/content/papers has at least 10 .md files', () => {
   );
 });
 
-test('astro.config.mjs base must be /chaos-shield', () => {
+test('astro.config.mjs base must be /Omega-Theory-Discrete-Spacetime', () => {
   const cfg = fs.readFileSync(
     path.join(SITE_ROOT, 'astro.config.mjs'),
     'utf8'
   );
   assert.match(
     cfg,
-    /base\s*:\s*['"]\/chaos-shield['"]/,
-    'astro.config.mjs `base` must be exactly "/chaos-shield" — any other value breaks GitHub Pages deploy'
+    /base\s*:\s*['"]\/Omega-Theory-Discrete-Spacetime['"]/,
+    'astro.config.mjs `base` must be exactly "/Omega-Theory-Discrete-Spacetime" — any other value breaks GitHub Pages deploy'
   );
 });

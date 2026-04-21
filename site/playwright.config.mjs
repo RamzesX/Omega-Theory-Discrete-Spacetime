@@ -4,14 +4,14 @@
 //
 //   # A) LIVE (default, simplest — zero local setup)
 //   # Tests run against the deployed GitHub Pages site
-//   BASE_URL=https://ramzesx.github.io/chaos-shield npx playwright test
+//   BASE_URL=https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime npx playwright test
 //
 //   # B) LOCAL DIST (fast, no dev server — serves site/dist/ via Node)
 //   npx playwright test
 //   # Uses webServer below: `node scripts/static-server.mjs`
 //
 //   # C) LOCAL DEV (hot reload — for tests while iterating on Astro source)
-//   BASE_URL=http://localhost:4321/chaos-shield USE_DEV=1 npx playwright test
+//   BASE_URL=http://localhost:4321/Omega-Theory-Discrete-Spacetime USE_DEV=1 npx playwright test
 //   # Start `npm run dev` in another terminal first
 //
 // Environment variables:
@@ -23,7 +23,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const EXPLICIT_BASE = process.env.BASE_URL;
-const BASE_URL = EXPLICIT_BASE || 'http://127.0.0.1:4321/chaos-shield';
+const BASE_URL = EXPLICIT_BASE || 'http://127.0.0.1:4321/Omega-Theory-Discrete-Spacetime';
 const USE_DEV = process.env.USE_DEV === '1';
 const LOCAL_WEBSERVER = !EXPLICIT_BASE && !USE_DEV;
 

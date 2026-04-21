@@ -237,13 +237,14 @@ if (!existsSync(indexHtmlPath)) {
 }
 
 // --- Check 8: Legacy-base regression guard (walks every emitted .html) ---
-// Commit 7b0f236 moved `base` from `/Omega-Theory-Discrete-Spacetime` (the
-// sibling Jekyll repo's slug) to `/chaos-shield`. Any reappearance of the old
-// slug as a ROOT-RELATIVE href/src means either a template regressed to a
-// hardcoded path OR a concat bug produced `/<base><file>` with no separator.
-// Legitimate external URLs like `https://github.com/RamzesX/Omega-Theory-...`
-// are allowed — we only forbid the leading-slash form.
-const FORBIDDEN_BASE = '/Omega-Theory-Discrete-Spacetime';
+// History: commit 7b0f236 attempted base: '/chaos-shield' (rename probe); the
+// rename was not completed on GitHub (canonical name stayed
+// Omega-Theory-Discrete-Spacetime, Pages URL stayed at the old slug). Rolled
+// back. We now forbid the ABANDONED rename slug `/chaos-shield` appearing as
+// a ROOT-RELATIVE href/src — any reappearance means a template/content ref
+// snuck back in. Legitimate `https://github.com/RamzesX/chaos-shield/...`
+// (the current git remote) URLs are allowed — we only forbid leading-slash.
+const FORBIDDEN_BASE = '/chaos-shield';
 function walkHtml(dir) {
   const out = [];
   for (const entry of readdirSync(dir)) {
@@ -261,8 +262,9 @@ function walkHtml(dir) {
 }
 try {
   const htmlFiles = walkHtml(distDir);
+  // Forbid the abandoned rename slug /chaos-shield as a root-relative URL
   const leakRe =
-    /(?:href|src)\s*=\s*["']\/Omega-Theory-Discrete-Spacetime[^"']*["']/gi;
+    /(?:href|src)\s*=\s*["']\/chaos-shield[^"']*["']/gi;
   const leaks = new Map(); // file -> Set<url>
   for (const file of htmlFiles) {
     const body = readFileSync(file, 'utf8');

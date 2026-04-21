@@ -39,7 +39,7 @@ export function remarkRewritePaperLinks(options = {}) {
       const [path, anchor] = href.split('#');
 
       // Rewrite relative paper links to absolute
-      // e.g., "unified-theory-diagram" -> "/chaos-shield/papers/unified-theory-diagram/"
+      // e.g., "unified-theory-diagram" -> "/Omega-Theory-Discrete-Spacetime/papers/unified-theory-diagram/"
       const newPath = `${base}/papers/${path}/`;
       node.url = anchor ? `${newPath}#${anchor}` : newPath;
     });

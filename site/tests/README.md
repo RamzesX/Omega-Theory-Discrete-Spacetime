@@ -23,7 +23,7 @@ Fastest way — no build, no server, no browser download on the server side.
 
 ```bash
 cd site
-BASE_URL=https://ramzesx.github.io/chaos-shield npx playwright test
+BASE_URL=https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime npx playwright test
 ```
 
 Useful when you just pushed to `main` and want to confirm the live deploy isn't broken. Runs in ~2 min (network-bound).
@@ -36,14 +36,14 @@ npm run build              # emit dist/
 npm run test:e2e           # webServer spawns scripts/static-server.mjs
 ```
 
-The Playwright config auto-starts `scripts/static-server.mjs` (a ~40-line Node http server mimicking GitHub Pages' `/chaos-shield` base path). Tears it down when tests finish.
+The Playwright config auto-starts `scripts/static-server.mjs` (a ~40-line Node http server mimicking GitHub Pages' `/Omega-Theory-Discrete-Spacetime` base path). Tears it down when tests finish.
 
 ### C · Against an already-running dev server (hot reload, iterative)
 
 ```bash
 cd site
 npm run dev &             # in one terminal
-BASE_URL=http://localhost:4321/chaos-shield USE_DEV=1 npx playwright test
+BASE_URL=http://localhost:4321/Omega-Theory-Discrete-Spacetime USE_DEV=1 npx playwright test
 ```
 
 Playwright skips the webServer entirely — assumes the URL is already serving. Use when you're editing `src/` and re-running specific tests.
@@ -103,7 +103,7 @@ Trouble shooting matrix — when something breaks, which test would have caught 
 | Regression | Caught by |
 |---|---|
 | 29 leaked `/Omega-Theory-Discrete-Spacetime` hrefs | `smoke.test.mjs` (Check 7) + `audit-dist.js` Check 8 |
-| `/chaos-shieldfavicon.svg` concat bug | `smoke.test.mjs` (Check 8) |
+| `/Omega-Theory-Discrete-Spacetimefavicon.svg` concat bug | `smoke.test.mjs` (Check 8) |
 | A paper's markdown gets dropped by `copy-content.js` | `build.test.mjs` (REQUIRED_ROUTES check) |
 | `astro.config.mjs` base silently changed to wrong value | `build.test.mjs` (base check) + `smoke.test.mjs` (asset-URL check) |
 | KaTeX stops rendering math | `appearance.e2e.mjs` (KaTeX test) |

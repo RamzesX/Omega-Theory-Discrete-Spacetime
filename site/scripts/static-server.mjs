@@ -2,7 +2,7 @@
 /**
  * Minimal static server for `site/dist/` — Playwright webServer target.
  *
- * Serves the built Astro site under the `/chaos-shield` base path exactly
+ * Serves the built Astro site under the `/Omega-Theory-Discrete-Spacetime` base path exactly
  * like GitHub Pages does. No dependencies (just `node:http` + `node:fs`).
  *
  * Why not `astro preview`? On some WSL setups Astro's preview server exits
@@ -22,7 +22,7 @@ import url from 'node:url';
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const DIST = path.resolve(__dirname, '..', 'dist');
 const PORT = Number(process.env.PORT) || 4321;
-const BASE_PATH = process.env.BASE_PATH || '/chaos-shield';
+const BASE_PATH = process.env.BASE_PATH || '/Omega-Theory-Discrete-Spacetime';
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -50,7 +50,7 @@ if (!fs.existsSync(DIST)) {
 const server = http.createServer((req, res) => {
   let p = req.url.split('?')[0];
 
-  // Normalise base prefix — both exact ("/chaos-shield") and subpath
+  // Normalise base prefix — both exact ("/Omega-Theory-Discrete-Spacetime") and subpath
   if (p === BASE_PATH) p = '/';
   else if (p.startsWith(BASE_PATH + '/')) p = p.slice(BASE_PATH.length);
 

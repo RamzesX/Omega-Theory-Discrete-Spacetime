@@ -7,7 +7,7 @@ import { remarkRewritePaperLinks } from './src/plugins/remarkRewritePaperLinks.m
 // https://astro.build/config
 export default defineConfig({
   site: 'https://ramzesx.github.io',
-  base: '/chaos-shield',
+  base: '/Omega-Theory-Discrete-Spacetime',
   trailingSlash: 'always',
 
   integrations: [mdx()],
@@ -15,7 +15,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [
       remarkMath,
-      [remarkRewritePaperLinks, { base: '/chaos-shield' }],
+      [remarkRewritePaperLinks, { base: '/Omega-Theory-Discrete-Spacetime' }],
     ],
     rehypePlugins: [
       [

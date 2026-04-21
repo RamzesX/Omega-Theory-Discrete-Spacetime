@@ -57,7 +57,7 @@ where the factor $\ell_P / t_P = c$ (from $t_P \equiv \ell_P / c$) cancels $\ell
 
 and its floored-$K$ bound form `teleportation_distance_velocity_bound` (line 158).
 
-> ✅ **Lean-verified** (branch `main`, commit `ff825d5`, 3818 jobs GREEN / 0 sorry / 8 physical axioms):
+> ✅ **Lean-verified** (branch `main`, **3,835 jobs GREEN / 0 sorry / 8 physical axioms; 8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph** as of 2026-04-21; cite commit hash at submission):
 > [`teleportation_distance_velocity_identity`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/StochasticTeleportation.lean#L137) ·
 > [`teleportation_distance_velocity_bound`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/StochasticTeleportation.lean#L158) ·
 > [`slope_distinguisher_inv_v`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/StochasticTeleportation.lean#L195) ·
@@ -181,7 +181,7 @@ We have proposed a cold-neutron interferometric slope test at ILL Grenoble VCN a
 
 <a name="penrose1996"></a>**Penrose, R.** "On gravity's role in quantum state reduction." *Gen. Rel. Grav.* **28**, 581–600 (1996). — Comparison models for environmental gravitational decoherence.
 
-<a name="marchewka2026main"></a>**Marchewka, N.** "OmegaTheory V2: emergent spacetime, quantum mechanics, and thermodynamics from an irrationality-truncated lattice substrate." Paper draft, 2026. — Substrate derivation, grand QM emergence theorem, full Lean 4 formalisation (Mathlib v4.29; 1652 theorems, 0 sorry).
+<a name="marchewka2026main"></a>**Marchewka, N.** "OmegaTheory V2: emergent spacetime, quantum mechanics, and thermodynamics from an irrationality-truncated lattice substrate." Paper draft, 2026. — Substrate derivation, grand QM emergence theorem, full Lean 4 formalisation (Mathlib v4.29; 3,835 build jobs GREEN, 0 sorry, 8 physical axioms; 8,996 `:Theorem` nodes in the `OmegaTheoryV2` Neo4j graph as of 2026-04-21).
 
 <a name="marchewka2026appJ"></a>**Marchewka, N.** "Appendix J: Comprehensive Experimental Catalog (Consolidated)." OmegaTheory V2 supplementary material, 2026-04-15. — Full prediction catalog; §1.1 is the extended version of the test proposed in this letter.
 

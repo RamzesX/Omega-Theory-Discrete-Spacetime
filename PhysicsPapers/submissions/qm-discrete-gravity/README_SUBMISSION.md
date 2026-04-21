@@ -205,6 +205,8 @@ acknowledgement so reviewers / future authors can audit them:
 
 ---
 
-Last updated: 2026-04-15. Prepared by `paper_polisher`
-(coordination handle; display name pending) on team
-`omega_legendary_v2`.
+Last updated: 2026-04-21 audit by Team-C. Prepared originally by `paper_polisher`
+(coordination handle; display name pending) on team `omega_legendary_v2`; the
+2026-04-21 pass (Deneb Algedi) updated build state to
+**3,835 jobs GREEN · 0 sorry · 8 physical axioms · 8,996 `:Theorem` nodes** and
+cross-checked 19/19 `paper_*` wrapper names against the Neo4j graph (all present).

@@ -2,7 +2,8 @@
 
 **Status:** draft, paper-in-preparation. Scope expanded from 1-theorem to 7-theorem chain on 2026-04-15 (Option B plan `PLAN_QM_BRIDGE.md` plus Phase 6A/B/C). All seven theorems have landed as of 2026-04-15: Phase 1 dynamical snapshot sequence, Phase 2 dynamical Schrödinger bound under `HasZeroFunctional`, Phase 3 Born-rule conservation, Phase 4 two-slit interference (exact identity, no residue), Phase 6A Heisenberg uncertainty principle under `CommutatorMatchesMean`, Phase 6B measurement/collapse postulate (non-unitarity as a theorem), Phase 6C Tsirelson-bound-attaining entanglement with CHSH > 2.
 **Target venues:** *Physical Review Letters* (4-page letter) or *Nature Physics* (6-page letter), with a long-form companion in *Foundations of Physics*. An interim submission to *Journal of Mathematical Physics* remains admissible if the letter-length venue is not reachable.
-**Formalization:** Lean 4 + Mathlib v4.29.0. Every theorem cited below either is machine-checked today or will be before submission; §§ 5–7 are explicitly labelled with their Phase status.
+**Formalization:** Lean 4 + Mathlib v4.29.0. Every theorem cited below either is machine-checked today or will be before submission; §§ 5–7 are explicitly labelled with their Phase status. All 19 paper-wrapper theorems (`paper_coarseGrain_exists` through `paper_grand_qm_emergence_on_minkowski`) plus the capstone `grand_qm_emergence` are verified against the `:Theorem {namespace:'OmegaTheoryV2'}` nodes in Neo4j (2026-04-21 audit: 19/19 present).
+**Build state (2026-04-21):** 3,835 jobs GREEN · 0 sorry · 8 physical axioms · 8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph.
 **Source tree:** `PhysicsPapers/LeanFormalizationV2/`, commit-hash to be inserted at submission.
 
 ---
@@ -85,7 +86,9 @@ Every theorem builds clean in Lean 4 / Mathlib v4.29.0 with zero `sorry`
 and no new axioms beyond the 8 physical Planck constants and the
 Hildebrandt–Polthier–Wardetzky Laplacian–Ricci correspondence (used only
 on the Einstein side, *not* on the QM bridge; provably eliminable on
-three regimes via the `HpwEliminableRegime` typeclass).
+three regimes via the `HpwEliminableRegime` typeclass). **Build state on
+2026-04-21: 3,835 jobs GREEN, 0 sorry, 8 physical axioms; 8,996 `:Theorem`
+nodes in the `OmegaTheoryV2` Neo4j graph.**
 
 **Differentiator.** Closely related prose proposals exist — Kulkarni's
 February 2026 "Selection-Stitch Model" (*AI Journal*), 't Hooft's

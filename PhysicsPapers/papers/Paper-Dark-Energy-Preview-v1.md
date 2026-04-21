@@ -194,12 +194,12 @@
 
 ## Abstract
 
-We formalise in Lean 4 (Mathlib v4.29.0, 3690+ build jobs verified, 0 `sorry`, 0 mathematical axioms beyond eight physical constants) the claim that dark-energy density `ρ_DE` is the integrated substrate information-cost accumulated by photon redshift across the observable universe's history. The central mechanism is a three-term conservation ledger: the source mass does not change under photon emission (`ΔM_star = 0`), the photon loses energy proportional to accumulated gravitational info-cost (`ΔE_γ = −gravRedshiftCost(path, energy)`), and the dark-energy reservoir absorbs exactly this deficit (`Δρ_DE = −ΔE_γ`). The cosmological constant problem — the ~120 orders of magnitude between observed `ρ_DE ≈ 6 × 10⁻¹⁰ J/m³` and vacuum-energy estimates — dissolves: `ρ_DE` is bookkeeping of photon redshift, not a vacuum zero-point sum. Three paper-testable predictions follow: (a) Keenan–Barger–Cowie void under-density of `ρ_DE` by 5–10%, falsifiable by DESI DR3 + Euclid + Roman; (b) spatial inhomogeneity `δρ_DE/ρ_DE ~ 10⁻⁵`–`10⁻³` correlated with galactic density contrast; (c) dark energy is upstream of Hawking radiation (+1 graph-hop asymmetry), making the black-hole horizon a two-way switch rather than a sink. A surprising derived result: the equation-of-state `w = −1` is graph-analogous to a conditional-variance identity in measure theory — probabilistically rather than cosmologically natural. We situate this work amongst the thermodynamic-gravity (Jacobson 1995), entropic (Verlinde 2011), causal-set (Sorkin), and holographic (Susskind, Bousso) programmes, and identify it as a distinguished member — to our knowledge the first — with complete formal verification of every physical claim.
+We formalise in Lean 4 (Mathlib v4.29.0, **3,835 build jobs verified, 0 `sorry`, 0 mathematical axioms beyond eight physical constants; 8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j corpus as of 2026-04-21**) the claim that dark-energy density `ρ_DE` is the integrated substrate information-cost accumulated by photon redshift across the observable universe's history. The central mechanism is a three-term conservation ledger: the source mass does not change under photon emission (`ΔM_star = 0`), the photon loses energy proportional to accumulated gravitational info-cost (`ΔE_γ = −gravRedshiftCost(path, energy)`), and the dark-energy reservoir absorbs exactly this deficit (`Δρ_DE = −ΔE_γ`). The cosmological constant problem — the ~120 orders of magnitude between observed `ρ_DE ≈ 6 × 10⁻¹⁰ J/m³` and vacuum-energy estimates — dissolves: `ρ_DE` is bookkeeping of photon redshift, not a vacuum zero-point sum. Three paper-testable predictions follow: (a) Keenan–Barger–Cowie void under-density of `ρ_DE` by 5–10%, falsifiable by DESI DR3 + Euclid + Roman; (b) spatial inhomogeneity `δρ_DE/ρ_DE ~ 10⁻⁵`–`10⁻³` correlated with galactic density contrast; (c) dark energy is upstream of Hawking radiation (+1 graph-hop asymmetry), making the black-hole horizon a two-way switch rather than a sink. A surprising derived result: the equation-of-state `w = −1` is graph-analogous to a conditional-variance identity in measure theory — probabilistically rather than cosmologically natural. We situate this work amongst the thermodynamic-gravity (Jacobson 1995), entropic (Verlinde 2011), causal-set (Sorkin), and holographic (Susskind, Bousso) programmes, and identify it as a distinguished member — to our knowledge the first — with complete formal verification of every physical claim.
 
 **Keywords**: dark energy; cosmological constant; Lean 4 formalisation; discrete spacetime; substrate information cost; photon redshift; three-term conservation; KBC void; firewall paradox; Pi Hunch.
 
 > ### 🔐 Lean-Verified Predictions Badge Index
-> Every Lean theorem cited below is resolvable at a stable GitHub URL (branch `main`, commit `ff825d5`, 3818 jobs GREEN / 0 sorry / 8 physical axioms). The full cross-reference is in [`LEAN_VERIFIED_CLAIMS.md`](./LEAN_VERIFIED_CLAIMS.md). Quick index of the §§2–6 ledger:
+> Every Lean theorem cited below is resolvable at a stable GitHub URL (branch `main`, **3,835 jobs GREEN / 0 sorry / 8 physical axioms · 8,996 `:Theorem` nodes in OmegaTheoryV2 Neo4j graph** as of 2026-04-21; cite commit hash at submission). The full cross-reference is in [`LEAN_VERIFIED_CLAIMS.md`](./LEAN_VERIFIED_CLAIMS.md). Quick index of the §§2–6 ledger:
 >
 > | § | Theorem | File · line |
 > |---|---|---|
@@ -248,7 +248,7 @@ This paper presents a substrate-level answer: dark energy is not vacuum energy, 
 
 ### 1.2 Methodological remark
 
-Every physical claim in this paper is backed by a machine-verified Lean 4 theorem. We do not use the word "theorem" loosely. The 3690 build jobs of OmegaTheory V2, with zero `sorry` and zero mathematical axioms beyond eight physical constants (ℓ_P, ℏ, c, G_N, k_B, and three irrationals π, e, √2 required for substrate closure), constitute the strongest formal verification of a physical framework we are aware of. Citation of an individual result by its Lean name (e.g. `photon_redshift_loss_equals_dark_energy_gain`) is a reference to a specific checked file, not a narrative summary.
+Every physical claim in this paper is backed by a machine-verified Lean 4 theorem. We do not use the word "theorem" loosely. **The 3,835 build jobs of OmegaTheory V2 (8,996 `:Theorem` nodes in the `OmegaTheoryV2` Neo4j graph as of 2026-04-21)**, with zero `sorry` and zero mathematical axioms beyond eight physical constants (ℓ_P, ℏ, c, G_N, k_B, and three irrationals π, e, √2 required for substrate closure — with a fourth irrational Catalan-G added in cycle 24-43 for the dark-matter / sterile-neutrino slot), constitute the strongest formal verification of a physical framework we are aware of. Citation of an individual result by its Lean name (e.g. `photon_redshift_loss_equals_dark_energy_gain`) is a reference to a specific checked file, not a narrative summary.
 
 ---
 
@@ -615,7 +615,7 @@ The theorems cited in §§2–6 are machine-verified in Lean 4 (version 4.29.0, 
 - `OmegaTheory/Emergence/CosmologicalConstant.lean` — `darkEnergyEquationOfState_w`.
 - `OmegaTheory/Emergence/CosmologicalConstantProblem.lean` — the 120-order resolution.
 
-Build status at submission: 3690 jobs GREEN, 0 `sorry`, 0 new mathematical axioms beyond the 8 physical constants.
+Build status at submission: **3,835 jobs GREEN, 0 `sorry`, 0 new mathematical axioms beyond the 8 physical constants** (8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph as of 2026-04-21).
 
 The Lean theorem corpus is indexed in a Neo4j knowledge graph (container `math` on bolt://localhost:7687) with full ByT5-1472-d embeddings, per-relation FastRP projections, Magnetic-Laplacian Berry-phase decomposition, and Leiden community detection. The graph analyses underlying §5, §7 were performed by the `grothendieck-sage` Cypher-native teammate framework, agents Mirfak and Alphard (2026-04-19). Methodology will be detailed in a forthcoming companion paper.
 
@@ -748,7 +748,7 @@ curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf 
 lake exe cache get
 lake build --log-level=error
 
-# Expected output: 3690+ jobs GREEN, 0 sorry, 0 new axioms
+# Expected output: 3835+ jobs GREEN, 0 sorry, 0 new axioms (as of 2026-04-21)
 ```
 
 Individual theorems may be verified by reading the corresponding `.lean` file. Each cited theorem name is globally unique in the project namespace.

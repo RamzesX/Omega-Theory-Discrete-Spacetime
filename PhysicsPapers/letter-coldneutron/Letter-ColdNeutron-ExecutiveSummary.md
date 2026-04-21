@@ -4,7 +4,7 @@
 
 ---
 
-**The question.** Does cold-neutron visibility loss come from (a) a discrete-spacetime substrate (OmegaTheory V2) or (b) standard thermal-bath decoherence? They differ by an **integer exponent** in $-\log V$ vs $1/v$ at fixed arm length: substrate slope $+1$ (machine-checked Lean 4 theorem `teleportation_distance_velocity_identity`, 0 sorry, derived from $\ell_P/t_P = c$) vs thermal-bath slope $\geq +2$ (standard second-cumulant expansion). **Shape test, not amplitude test** — no absolute sensitivity floor needed.
+**The question.** Does cold-neutron visibility loss come from (a) a discrete-spacetime substrate (OmegaTheory V2) or (b) standard thermal-bath decoherence? They differ by an **integer exponent** in $-\log V$ vs $1/v$ at fixed arm length: substrate slope $+1$ (machine-checked Lean 4 theorem [`teleportation_distance_velocity_identity`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/StochasticTeleportation.lean#L137), 0 sorry, derived from $\ell_P/t_P = c$; build 2026-04-21: **3,835 jobs GREEN, 8 physical axioms, 8,996 `:Theorem` nodes in `OmegaTheoryV2` graph**) vs thermal-bath slope $\geq +2$ (standard second-cumulant expansion). **Shape test, not amplitude test** — no absolute sensitivity floor needed.
 
 **Why 16σ.** Slope-fit uncertainty $\sigma_{\hat\beta} = \sigma_y\sqrt{12}/(D\,\ln 10\,\sqrt n) \approx 0.064$ for $n=8$ velocity points across $D=1.07$ decades with per-point $\sigma_y \approx 0.12$ (achievable at $\sim 2\times 10^4$ counts/point). Integer gap: $(2-1)/0.064 \approx 15.6\sigma$. Pilot / target / stretch tiers are $\sim 6\sigma / 16\sigma / 24\sigma$ (Supplementary §S5.4, Table S6).
 

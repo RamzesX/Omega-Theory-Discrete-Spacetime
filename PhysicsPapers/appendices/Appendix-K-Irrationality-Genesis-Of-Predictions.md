@@ -1,7 +1,7 @@
 # Appendix K — Irrationality as the Genesis of Quantum Predictions
 
 > ### 🔐 Lean-Verified Theorems in this chain
-> Every row links to the committed theorem on GitHub (branch `main`, commit `ff825d5`, **3818 jobs GREEN, 0 sorry, 8 physical axioms**).
+> Every row links to the committed theorem on GitHub (branch `main`, **3,835 jobs GREEN, 0 sorry, 8 physical axioms; 8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph** as of 2026-04-21; cite commit hash at submission).
 >
 > | Statement | Lean name (clickable) | File · line |
 > |---|---|---|
@@ -33,15 +33,18 @@ This is the central thesis of OmegaTheory V2: *built-in computational errors are
 
 ---
 
-## §2.  The three irrationals and their convergence rates
+## §2.  The three (now four) irrationals and their convergence rates
 
-Lean source: `OmegaTheory/Irrationality/Approximations.lean`.
+Lean source: `OmegaTheory/Irrationality/Approximations.lean` (π, e, √2) and `OmegaTheory/Predictions/SterileNeutrinoFromFourthIrrational.lean` + `OmegaTheory/Emergence/ConnesCalibrationAndFourChannels.lean` (Catalan-G — **added 2026-04-20** as the fourth irrational channel, convergence rate `O(1/N²)` via Catalan's series, and excluded from the three active generations — **matches the sterile-neutrino / 4th-PMNS-column slot**).
+
+> **2026-04-21 update.** The "three irrationals = three generations" slogan is retained for the active SM fermions, but the substrate now admits **four** channels. The fourth channel (Catalan's constant `G`) sits between π and e in convergence speed (`O(1/N²)`), is Lean-verified disjoint from the active three (`catalan_g_channel_distinct_from_three`, `catalan_g_excluded_from_active_three`), and — under Connes calibration — provides the dark-matter / sterile-neutrino slot (`channelToGeneration4_catalan_g_eq_three`, `PMNS_fourth_column_from_catalan_G`, `Ω_DM_sterile_from_catalan_G_eq`). The three-irrationals chain below is the **active-fermion** backbone; the Catalan-G extension is the dark-sector extension on the same mechanism.
 
 | Constant | Truncation method | Per-step error | Convergence class |
 |---|---|---|---|
 | **π** | Leibniz `4 · Σ_{k=0}^{N} (−1)ᵏ/(2k+1)` | `\|truncated_pi N − π\| ≤ 4/(2N+3)` | algebraic — `O(1/N)` |
 | **e** | Taylor `Σ_{k=0}^{N} 1/k!` | `\|truncated_e N − e\| ≤ 1/(N+1)!` | factorial — `O(1/N!)` |
 | **√2** | Newton-Raphson `xₙ₊₁ = (xₙ + 2/xₙ)/2`, x₀=1 | `\|truncated_sqrt2 N − √2\| ≤ ½ · (1/3)^(2ᴺ)` | super-exponential — `O(2^(−2ᴺ))` |
+| **G** (Catalan, 4th — dark sector) | `Σ_{k=0}^{N} (−1)ᵏ/(2k+1)²` | `catalanGTruncError N ≤ 1/(2N+3)²` | quadratic — `O(1/N²)` |
 
 The Lean theorems backing these rates (all proven, no `sorry`):
 - `BoundsLemmas.pi_bound`, `pi_error_tendsto_zero`

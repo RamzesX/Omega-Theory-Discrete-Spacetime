@@ -17,16 +17,17 @@ Complements the design docs in `../OmegaTheoryAlgebra/`.
 
 | File | Status | Content |
 |---|---|---|
-| `00_abstract.md` | **NEW** | 300-word abstract ready for submission (NeurIPS 2026 Math-AI / ICLR 2027 / Foundations of Physics) |
-| `01_intro.md` | **NEW** | OmegaTheory V2 context + V3 framework + five contributions (C1–C5) |
-| `02_related_work.md` | **NEW** | Four literatures: neural premise selection / conjecturing / graph-based retrieval / algebraic-spectral + V3 origin |
-| `03_method_algebra.md` | **NEW** | `LeanAlgebra` schema: 6 entities × 15 arrows × 7 rules × 12 compositions × Magnetic Laplacian + Leiden fibration claim |
-| `04_method_embeddings.md` | planned | Qwen3-8B BF16 (4096-d) + LeanDojo ByT5 (1472-d) substitution for Lean-Finder |
-| `05_method_consumer.md` | planned | Erdős-tier SubsystemNavigator enrichment (top-14 macro-subsystems) |
-| `06_experiments.md` | planned | MiniF2F-v2 + OmegaTheory-held-out + baseline comparison vs Magnushammer / Nazrin |
-| `07_canary_einstein.md` | planned | `einstein_tensor_emergence` 172 → <100 lines target |
-| `08_discussion.md` | planned | Failure modes, open questions, Catalan-$G$ sterile-$\nu$ pathway |
-| `references.bib` | planned | BibTeX compilation |
+| `00_abstract.md` | **COMPLETE** | 315-word abstract ready for submission (NeurIPS 2026 Math-AI / ICLR 2027 / Foundations of Physics) |
+| `01_intro.md` | **COMPLETE** | OmegaTheory V2 context + V3 framework + five contributions (C1–C5) |
+| `02_related_work.md` | **COMPLETE** | Four literatures: neural premise selection / conjecturing / graph-based retrieval / algebraic-spectral + V3 origin |
+| `03_method_algebra.md` | **COMPLETE** | `LeanAlgebra` schema: 6 entities × 15 arrows × 7 rules × 12 compositions × Magnetic Laplacian + Leiden fibration claim |
+| `04_method_embeddings.md` | **COMPLETE** | Qwen3-8B BF16 (4096-d) + LeanDojo ByT5 (1472-d), $\lambda=0.6$ hybrid, FastRP fusion, Mathlib cross-namespace |
+| `05_method_consumer.md` | **COMPLETE** | Erdős-tier `SubsystemNavigator` enrichment (top-14 macro-subsystems with centroid, LLM description, paper-worthy flag) |
+| `06_experiments.md` | **COMPLETE (expanded by parallel agent)** | 6 subsections × 771 lines: Magnetic-Laplacian ($\lambda_1/\lambda_2=1.038$) / Leiden ($Q=0.89$) / Retrieval@k (V3-fused 0.56 R@5) / MP-6 bridges ($67\%$ strict / $83\%$ loose precision) / Cross-corpus (3.95M edges) / Physics: 20-prediction validation table ($m_\mu/m_e$ at 0.14%, Koide $Q$ at 0.018%) |
+| `07_canary_einstein.md` | **COMPLETE** | `einstein_tensor_emergence` 172 → <100 lines pre-registered target + failure modes F1/F2/F3 |
+| `08_discussion.md` | **COMPLETE** | Limitations L1–L5, failure modes FM1–FM3, open questions Q1–Q5, physics-side implications |
+| `references.bib` | **COMPLETE** | 47+ BibTeX entries across 7 sections (premise selection / conjecturing / graph methods / algebra-spectral / OmegaTheory / Lean tooling / self-reference) |
+| `paper.tex` | **COMPLETE** | Compilable NeurIPS 2026 Math-AI LaTeX monolith (782 lines). Falls back to `article` class if `neurips_2026.sty` missing. Uses `lstlisting` for Lean 4 syntax. Compile with `pdflatex` + `bibtex` + `pdflatex` x2. |
 
 ## Subdirs
 

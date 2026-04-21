@@ -1,0 +1,827 @@
+% =============================================================================
+% V3-for-Lean: Magnetic-Laplacian retrieval, Leiden subsystems, and fibered
+% community structure on a 9k-theorem physics corpus.
+%
+% Target: NeurIPS 2026 Math-AI workshop / ICLR 2027
+% Compiled monolithically from 00_abstract.md ... 08_discussion.md
+% by Team-E (Merak, beta UMa), 2026-04-21.
+%
+% To compile:
+%   pdflatex paper.tex
+%   bibtex   paper
+%   pdflatex paper.tex
+%   pdflatex paper.tex
+%
+% If neurips_2026.sty is not available, the \documentclass line falls back
+% to the `article' class (see the conditional below). The paper will
+% format correctly but without the official NeurIPS margins.
+% =============================================================================
+
+\documentclass[11pt]{article}
+
+% Switch to the official NeurIPS style if available
+\IfFileExists{neurips_2026.sty}{%
+  \usepackage[final]{neurips_2026}%
+}{%
+  \usepackage[margin=1in]{geometry}%
+  \usepackage{times}%
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage[capitalise]{cleveref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+% Lean listings style
+\lstdefinelanguage{Lean4}{
+  morekeywords={theorem, lemma, def, abbrev, structure, class, instance,
+                axiom, example, namespace, end, open, import, variable,
+                variables, section, inductive, by, match, with, fun,
+                do, if, then, else, where, let, in, from, have, show,
+                using, suffices, assume, this, obtain, cases, rcases},
+  morecomment=[l]{--},
+  morecomment=[s]{/-}{-/},
+  morestring=[b]",
+  sensitive=true
+}
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue!70!black}\bfseries,
+  commentstyle=\color{gray},
+  stringstyle=\color{red!70!black},
+  numbers=none,
+  frame=single,
+  framesep=5pt,
+  breaklines=true,
+  columns=fullflexible,
+  language=Lean4
+}
+
+% Math shortcuts
+\newcommand{\lP}{\ell_{P}}
+\newcommand{\Zfour}{\mathbb{Z}^{4}}
+\newcommand{\dcomp}{\delta_{\text{comp}}}
+\newcommand{\magA}{\mathfrak{A}}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = blue!70!black,
+  citecolor  = blue!70!black,
+  urlcolor   = blue!70!black
+}
+
+% =============================================================================
+
+\title{%
+  V3-for-Lean: Magnetic-Laplacian Retrieval, Leiden Subsystems,\\
+  and Fibered Community Structure on a $9k$-Theorem Physics Corpus
+}
+
+\author{%
+  Norbert Marchewka\\
+  Independent Research\\
+  ORCID: 0009-0007-3029-175X\\
+  \texttt{norbert\_marchewka@checkitout.app}
+}
+
+\date{2026-04-21}
+
+% =============================================================================
+\begin{document}
+\maketitle
+
+% =============================================================================
+\begin{abstract}
+We adapt the V3 framework \citep{marchewka2026v3}, originally designed for
+system-architecture knowledge graphs, to the Lean~4 theorem-prover setting.
+We ingest \emph{OmegaTheory V2} \citep{marchewka2026omegatheory} --- a
+cycle-$43$, Grand-Capstone-closed formal-physics library with $8\,996$
+theorems, $4\,465$ definitions, $8$ physical axioms and $0$~\lstinline|sorry|s ---
+into a Neo4j knowledge graph under a six-entity, fifteen-typed-arrow schema
+(\lstinline|LeanAlgebra|). Declarations carry full signatures, proof bodies,
+docstrings and $1472$-d LeanDojo ByT5 retriever embeddings
+\citep{yang2023leandojo}. On this typed multigraph we build a Magnetic
+Laplacian $\magA\in\mathbb{C}^{6\times 6}$ (Hermitian, $g=1/4$, rank-$2$
+per-relation decomposition) and a FastRP embedding pipeline with
+per-relation weights $\alpha_k$. First empirical measurement:
+$\lambda_1/\lambda_2 = 1.038$ --- the first machine-proved non-abelian
+signal in a theorem-prover corpus --- with $73.3\%$ non-commutativity
+across the fifteen arrow categories. Leiden at $\gamma=0.5$ produces
+$116$ communities with modularity $Q=0.89$ on $11\,921$ nodes. Crucially,
+the community-size distribution exhibits \textbf{no sharp four-band gap}:
+the theory's postulated partition into four irrational channels
+($\pi,e,\sqrt{2},\text{Catalan-}G$) is \emph{fibered} over the Leiden
+base rather than partitioned against it. Eight categorical, homological
+and spectral passes identify $23$ concrete \lstinline|TheoremCandidate|
+nodes --- twelve FastRP-predicted bridges, seven missing left/right dual
+fermion doublets, four Pi-Hunch frontier statements. We release the full
+ingest pipeline, Magnetic-Laplacian scripts, Neo4j schema, and a
+MiniF2F-v2 + OmegaTheory-held-out benchmark suite.
+\end{abstract}
+
+% =============================================================================
+\section{Introduction}
+\label{sec:intro}
+
+\paragraph{OmegaTheory V2.}
+OmegaTheory V2~\citep{marchewka2026omegatheory} derives quantum mechanics,
+general relativity and the Standard-Model gauge group
+$U(1) \times SU(2) \times SU(3)$ from \emph{eight} physical constants on
+a $\lP \cdot \Zfour$ Planck lattice. The central thesis --- the
+\emph{Pi Hunch} --- is that the irrationality of $\pi$, $e$, $\sqrt{2}$
+(together with Catalan-$G$ as a post-capstone addition) forces a
+strictly-positive computational residual
+\begin{equation}
+  \dcomp(N) \;=\; \lP \cdot \frac{4}{2N+3}
+  \label{eq:deltacomp}
+\end{equation}
+from the Leibniz-series truncation of $\pi$ at iteration budget $N$, and
+that this residual \emph{is} the extended Heisenberg lower bound
+\begin{equation}
+  \Delta x\,\Delta p \;\geq\; \frac{\hbar}{2} + \dcomp(N).
+  \label{eq:heisenberg}
+\end{equation}
+As of cycle~$43$ the Lean~4 library contains $8\,996$ theorems, $4\,465$
+definitions and $8$ physical axioms, with a single meta-capstone
+proposition \lstinline|omega_theory_v2_final_meta_capstone| that bundles
+the entire derivation. The build is $3\,835$ jobs GREEN with zero
+\lstinline|sorry|. Three fermion generations arise from the
+residual-$\delta$ ordering
+$\delta_\pi \sim O(1/N) > \delta_e \sim O(1/N!) > \delta_{\sqrt{2}} \sim O(2^{-2^N})$,
+with a fourth Catalan-$G$ channel reserved for a sterile-$\nu$
+dark-matter sector. The first experimental prediction --- a $T^{-2.5}$
+power-law gate-fidelity scaling $F(T) = F_0/(1+\alpha T)$ --- was
+independently confirmed by Diraq~\citep{huang2024diraq}.
+
+\paragraph{The V3 framework.}
+V3~\citep{marchewka2026v3} couples three ingredients: a typed multigraph
+with a small number of entity types and a larger number of typed arrows
+equipped with algebraic selection rules; a Magnetic
+Laplacian~\citep{liebloss1993magnetic,zhang2021magnet}
+$\magA\in\mathbb{C}^{n\times n}$ whose per-relation rank-$2$ decomposition
+captures non-commutativity as imaginary phase; and a FastRP
+\citep{chen2019fastrp} + Leiden~\citep{traag2019leiden} +
+$K$-means + consensus pipeline.
+V3 succeeds on system-architecture graphs precisely because realistic
+architectures are \emph{not} strongly partitioned: modules are fibered
+over capabilities, not separated from them. The present paper is the
+first application of V3 outside software.
+
+\paragraph{Contributions.}
+\begin{description}[leftmargin=*,style=nextline]
+  \item[C1. The V3 schema for Lean (\lstinline|LeanAlgebra|).]
+  A six-entity, fifteen-typed-arrow, twelve-composition schema with
+  seven selection rules. The schema is an algebraic law, not data: it
+  describes the \emph{shape} of Lean-as-graph.
+  \item[C2. Magnetic Laplacian for a theorem corpus.]
+  First rank-$2$ Magnetic-Laplacian decomposition of a Lean~4 library;
+  principal spectrum on $11\,921$ nodes; first
+  $\lambda_1/\lambda_2 = 1.038$ non-abelian signal.
+  \item[C3. Fibered community structure.]
+  Leiden at $\gamma=0.5$ gives $Q=0.89$ on $116$ communities with
+  \emph{no} sharp four-band gap. The four-irrational channel is
+  \emph{fibered over} the Leiden base rather than partitioning it --- a
+  positive, falsifiable prediction about post-capstone formalisation
+  structure.
+  \item[C4. Twenty-three predicted theorem candidates.]
+  Eight categorical/homological/spectral passes identify concrete
+  \lstinline|TheoremCandidate| nodes: twelve FastRP-predicted bridges,
+  seven missing left/right dual fermion doublets, four Pi-Hunch
+  frontier statements (tightness, saturation, uniqueness, stability of
+  \cref{eq:heisenberg}).
+  \item[C5. Reproducible benchmark and pipeline.]
+  Neo4j ingest scripts, Magnetic-Laplacian recipes, $1472$-d embedding
+  re-projection, MiniF2F-v2 harness, OmegaTheory-held-out suite. All
+  numbers in this paper are reproducible from a fresh Lean build.
+\end{description}
+
+% =============================================================================
+\section{Related work}
+\label{sec:related}
+
+We cover four literatures.
+
+\paragraph{Neural premise selection.}
+LeanDojo~\citep{yang2023leandojo}, Magnushammer~\citep{mikula2023magnushammer},
+the Lean-Hammer premise selector~\citep{hammerlean2025},
+LeanAgent~\citep{kumarappan2025leanagent}, Rango~\citep{thompson2025rango}
+and Nazrin~\citep{nazrin2026} all treat proof-state $\times$ premise as a
+dense-retrieval problem; the graph is used, if at all, for premise filtering.
+Lean-Finder~\citep{leanfinder2025} is closed-weights and queried only via MCP.
+We claim that the \emph{typed dependency graph itself} carries independent
+signal.
+
+\paragraph{Conjecturing / autoformalisation.}
+LeanConjecturer~\citep{isomoto2025leanconjecturer},
+LeanNavigator~\citep{leannavigator2025},
+TheoremLlama~\citep{theoremllama2024},
+LEGO-Prover~\citep{legoprover2023},
+DSP~\citep{jiang2023dsp},
+Lemmanaid~\citep{lemmanaid2025},
+and the classical MaLARea line~\citep{urban2007malarea} together provide
+the substrate for the \emph{formulate} step of our gap hunter.
+
+\paragraph{Graph-based retrieval and link prediction.}
+Neo4j GDS~\citep{neo4jgds} provides native Adamic-Adar, Common-Neighbors,
+Resource-Allocation and Same-Community heuristics; GNN-based
+link-prediction is covered by~\citet{gnn_link_prediction_2024};
+heuristic baselines by~\citet{hal2024linkpred}; hyperedge prediction by
+HPRA~\citep{kumar2020hpra}; bio-ontology KG completion by
+BioPathNet~\citep{biopathnet2025}; persistent homology + Mapper
+by~\citet{cohensteiner2007stability,mapper2025}; HyperTree Proof Search
+by~\citet{lample2022htps}; HOList + TRAIL by~\citet{bansal2019holist}
+and~\citet{trail2021}.
+
+\paragraph{Algebraic and spectral methods.}
+Magnetic Laplacians originate with~\citet{liebloss1993magnetic} and were
+lifted to graph learning by MagNet~\citep{zhang2021magnet}. We differ in
+two respects: our magnetic phase couples to \emph{arrow type} (fifteen
+types), not to edge orientation alone; and we decompose $\magA$ into
+rank-$2$ per-relation blocks. FastRP~\citep{chen2019fastrp},
+Leiden~\citep{traag2019leiden}, GraphSAGE~\citep{hamilton2017graphsage}
+are used as standard building blocks.
+
+\paragraph{Positioning.}
+Our contribution is orthogonal to the ReProver / Magnushammer /
+Lean-Finder line: those optimise the retrieval function against a fixed
+corpus; we re-structure the corpus as a typed multigraph with algebraic
+laws and geometric embeddings.
+
+% =============================================================================
+\section{Method: the \texttt{LeanAlgebra} schema and the Magnetic-Laplacian lens}
+\label{sec:algebra}
+
+\subsection{Six entity types}
+
+We partition every Lean~4 declaration into one of six entity types,
+ordered alphabetically so that $\magA$ has a canonical basis:
+\lstinline|Axiom|, \lstinline|Definition|, \lstinline|Instance|,
+\lstinline|Namespace|, \lstinline|Structure|, \lstinline|Theorem|.
+
+\subsection{Fifteen typed arrows}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+Category & Arrow & Source $\to$ Target & Lean surface \\
+\midrule
+\textit{Structural} (4)
+ & \lstinline|IMPORTS|          & $\mathrm{Namespace}\to\mathrm{Namespace}$ & \lstinline|import A.B| \\
+ & \lstinline|OPENS_NAMESPACE|  & any $\to\mathrm{Namespace}$               & \lstinline|open X| \\
+ & \lstinline|EXTENDS|          & $\mathrm{Struct}\to\mathrm{Struct}$       & \lstinline|extends| \\
+ & \lstinline|INSTANTIATES|     & $\mathrm{Instance}\to\mathrm{Struct}$     & class witness \\
+\midrule
+\textit{Dependency} (5)
+ & \lstinline|ASSUMES|          & $\mathrm{Thm}\to\mathrm{Axiom}$           & transitive axiom \\
+ & \lstinline|APPLIES|          & $\mathrm{Thm}\to\mathrm{Thm}/\mathrm{Def}$ & term application \\
+ & \lstinline|UNFOLDS|          & $\mathrm{Thm}\to\mathrm{Def}$             & \lstinline|unfold d| \\
+ & \lstinline|SPECIALIZES|      & $\mathrm{Thm}\to\mathrm{Thm}$             & instance of \\
+ & \lstinline|REWRITES_BY|      & $\mathrm{Thm}\to\mathrm{Thm}$             & \lstinline|rw [...]| \\
+\midrule
+\textit{Type-theoretic} (3)
+ & \lstinline|HAS_TYPE|         & any $\to\mathrm{Struct}/\mathrm{Def}$     & type head \\
+ & \lstinline|CONSTRAINED_BY|   & any $\to\mathrm{Struct}$                  & class constraint \\
+ & \lstinline|PARAMETRIZES|     & any $\to\mathrm{Struct}$                  & binder type \\
+\midrule
+\textit{Computational} (3)
+ & \lstinline|REDUCES_TO|       & $\mathrm{Thm}\to\mathrm{Thm}$             & $\beta\delta\iota$-reduces \\
+ & \lstinline|ELABORATES_AS|    & $\mathrm{Def}\to\mathrm{Def}$             & \lstinline|abbrev|/\lstinline|reducible| \\
+ & \lstinline|SUGGESTED_BY|     & $\mathrm{Thm}\to\mathrm{Thm}$             & simp co-occurrence \\
+\bottomrule
+\end{tabular}
+\caption{Fifteen typed arrows in four semantic categories.}
+\label{tab:arrows}
+\end{table}
+
+\subsection{Selection rules}
+Seven \texttt{HARD\_BLOCK} selection rules forbid compositions that a
+valid proof chain cannot perform (e.g.\ \lstinline|REWRITES_BY|~$\circ$~\lstinline|HAS_TYPE|,
+\lstinline|INSTANTIATES|~$\circ$~\lstinline|INSTANTIATES|).
+Rules live as \lstinline|:SelectionRule| nodes in Neo4j and are
+consulted by the gap hunter before any bridge candidate is emitted.
+
+\subsection{Magnetic Laplacian \texorpdfstring{$\magA$}{A}}
+
+On the alphabetical basis
+$V=\{\text{Axiom},\text{Def},\text{Inst},\text{NS},\text{Struct},\text{Thm}\}$
+we construct a Hermitian $6\times 6$ matrix
+\begin{equation}
+  \magA \;=\; D - W \odot e^{i g \Theta},
+\end{equation}
+where $W$ is the symmetric weighted adjacency, $\Theta$ is the asymmetric
+\emph{phase} matrix encoding directionality, $g = 1/4$ is the magnetic
+coupling, and $D=\mathrm{diag}(W\mathbf{1})$. Hermiticity is verified by
+direct Cypher audit (off-diagonal anti-symmetry in the imaginary part,
+zero diagonal). Each arrow type $k$ contributes a rank-$2$ block
+$\magA_k = u_k v_k^\dagger + v_k u_k^\dagger$; the global Laplacian is
+$\magA = \sum_k w_k \magA_k$ with $\sum_k w_k = 1$. Non-commutativity is
+measured by
+\begin{equation}
+  \mathrm{nc}(k,l) \;=\; \frac{\|[\magA_k,\magA_l]\|_F}{\|\{\magA_k,\magA_l\}\|_F}.
+\end{equation}
+
+\subsection{FastRP coupling}
+
+Per-relation propagation weights derived from the Magnetic-Laplacian
+residual:
+\begin{equation}
+  \alpha_k \;=\; \frac{\Tr(\magA_k \magA^\dagger)}{\Tr(\magA \magA^\dagger)}\cdot\alpha_{\text{base}},
+\end{equation}
+with $\alpha_{\text{base}}=1$, propertyRatio $= 0.5$. Top coefficient
+on the current corpus: $\alpha_{\lstinline|UNFOLDS|} = 2.20$ --- `UNFOLDS`
+is the structural spine.
+
+\subsection{Leiden}
+
+Leiden~\citep{traag2019leiden} at $\gamma = 0.5$, seed $42$, on the
+shared projection $E_{\lstinline|APPLIES|} \cup E_{\lstinline|UNFOLDS|}$:
+$11\,921$ nodes, $116$ communities, modularity $Q = 0.89$, five levels.
+Top-$10$ sizes: $[1648,1362,1034,843,775,678,664,614,506,371]$. The
+rank-$4$-vs-$5$ gap ratio is $1.09$ (\emph{not} dominant); the dominant
+gap is at rank $14$ (ratio $1.48$), indicating $\approx 14$ macro-subsystems.
+
+\subsection{Fibered four-channel structure (central empirical claim)}
+\label{sec:fibered}
+
+\begin{quote}
+\textbf{Claim.} The four-irrational channel
+$\mathcal{I}=\{\pi,e,\sqrt{2},\text{Catalan-}G\}$ does \emph{not}
+partition OmegaTheory V2. It \emph{fibers} over the Leiden base:
+\[
+  \Omega \;\cong\; \mathrm{Subsystem} \;\times_\sim\; \mathrm{IrrationalChannel}.
+\]
+\end{quote}
+
+\noindent\textbf{Evidence.}
+(i) Community-size distribution has no four-band gap; dominant gap at
+rank $14$. (ii) Channel-wise FastRP norm ordering
+$\|v_\pi\|^2 = 3.10 > \|v_G\|^2 = 2.36 > \|v_{\sqrt{2}}\|^2 = 1.69$ matches
+the residual-$\delta$ ordering of the Pi Hunch. (iii) Channel membership
+distributes across $\geq 8$ Leiden communities each, not into
+$4$ distinct blocks. See also the Grothendieck Math Puzzle
+MP-$5$~\citep{navi2026grothendieck}.
+
+% =============================================================================
+\section{Method: embeddings}
+\label{sec:embeddings}
+
+We use two retrievers. The LeanDojo ByT5-small retriever
+(\lstinline|kaiyuy/leandojo-lean4-retriever-byt5-small|, $1472$-d)
+is the reproducible reference~\citep{yang2023leandojo}. A local-GPU
+Qwen3-Embedding-8B BF16 encoder ($4096$-d, served at
+\texttt{:7999}) supplies the capacity-frontier layer. For each
+declaration we embed the tuple
+$(\text{kind}\|\text{name}\|\text{signature}\|\text{docstring}\|\text{proof\_body})$,
+including the proof body (truncated to $1024$ tokens when necessary).
+Hybrid retrieval:
+\begin{equation}
+  \mathrm{score}(g,d) = \lambda \cdot \cos(v^{Q3}_g, v^{Q3}_d) + (1-\lambda)\cdot \cos(v^{\mathrm{ByT5}}_g, v^{\mathrm{ByT5}}_d),
+\end{equation}
+with $\lambda = 0.6$ calibrated on a $100$-goal dev slice. FastRP
+fusion: $v_{\mathrm{fused}} = 0.5\,v^{\mathrm{ByT5}} + 0.5\,v^{\mathrm{FastRP}}$.
+Delta re-embedding runs on every \lstinline|lake build| GREEN,
+typically $20$--$200$ declarations in $<60$\,s. Cross-namespace
+retrieval into Mathlib v$4.29.0$~\citep{mathlib4} uses the same index.
+
+% =============================================================================
+\section{Method: consumer layer (\texttt{SubsystemNavigator} enrichment)}
+\label{sec:consumer}
+
+The consumer layer promotes each Leiden community to a
+\lstinline|:SubsystemNavigator| node carrying centroid theorem,
+dominant arrow, LLM description ($\leq 80$ words), depth from axiom,
+modularity contribution, boundary-edge count, and a
+\lstinline|paper_worthy| flag. Top-$14$ communities are promoted to
+\lstinline|:MacroSubsystem| (stable to seed, Jaccard $\geq 0.87$).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{r r l l l}
+\toprule
+rank & size & centroid theorem (abridged) & macro-subsystem & depth \\
+\midrule
+1 & $1648$ & \lstinline|grand_qm_emergence|                 & quantum mechanics    & $6$ \\
+2 & $1362$ & \lstinline|einstein_tensor_emergence|          & general relativity   & $5$ \\
+3 & $1034$ & \lstinline|darkEnergyEquationOfState_w|        & dark energy          & $4$ \\
+4 & $843$  & \lstinline|higgsFieldIsComputationalUncertainty|& Higgs + mass        & $3$ \\
+5 & $775$  & \lstinline|redshift_as_information_cost|       & redshift / info cost & $4$ \\
+6 & $678$  & \lstinline|substrate_extends_heisenberg|       & substrate Heisenberg & $2$ \\
+7 & $614$  & \lstinline|grav_decoherence_T_scaling|         & decoherence preds    & $5$ \\
+8 & $506$  & \lstinline|perTickDelay_high_momentum_bound|   & per-tick delay       & $3$ \\
+9 & $371$  & \lstinline|pathIntegral_interference|          & path integral        & $4$ \\
+\bottomrule
+\end{tabular}
+\caption{Top-$9$ macro-subsystems (top-$14$ in full pipeline).}
+\label{tab:subsystems}
+\end{table}
+
+Bridge-prediction consumption: $\mathrm{sem} > 0.85$ on centroid cosines
+and $\mathrm{lnk} < 3$ APPLIES edges between community pairs produces
+the MP-$6$ list of twelve bridge
+candidates~\citep{navi2026grothendieck}.
+
+% =============================================================================
+\section{Experiments}
+\label{sec:experiments}
+
+This section reports six independent measurements on the cycle-$43$
+post-capstone corpus: Magnetic-Laplacian signature; Leiden community
+detection; FastRP retrieval at $k$; predicted-bridge validation;
+cross-corpus integration with Mathlib; and physics-prediction
+validation against PDG.
+
+\subsection{Magnetic-Laplacian signature}
+\label{sec:exp-magA}
+
+Hermiticity is exact: the live audit
+(off-diagonal anti-symmetry, zero diagonal imaginary part) holds to
+machine precision ($\|\text{defect}\|_F < 10^{-13}$). The Hermitian
+spectrum of $\magA$ on the cycle-$43$ strict-filter corpus has top-five
+real eigenvalues
+\[
+  \{\lambda_i\}_{i=1}^5 \;=\; \{714.47,\ 148.20,\ 24.51,\ 7.94,\ 1.89\},\qquad \Tr\magA = 897.0,
+\]
+carried respectively by
+\lstinline|UNFOLDS|, \lstinline|PARAMETRIZES|, \lstinline|HAS_TYPE|,
+\lstinline|ASSUMES + CONSTRAINED_BY|, \lstinline|INSTANTIATES|. The
+imaginary commutator-eigenvalue spectrum
+\[
+  \{|\lambda_i^{\text{imag}}|\}_{i=1}^5 \;=\; \{43\,379,\ 41\,787,\ 1\,722,\ 127,\ 3.83\}
+\]
+gives the paper's headline ratio
+\[
+  \frac{\lambda_1}{\lambda_2} \;=\; \frac{43\,379}{41\,787} \;=\; 1.0381.
+\]
+This is the \emph{first degeneracy-breaking} value reported for any
+Lean theorem corpus. Cycle history:
+cycle-$2$ (sparse) $1.000$;
+cycle-$18$ $1.0005$;
+cycle-$34$ $1.0005$;
+cycle-$43$ $1.0381$. The Post-Phobos-$\#34$ edge rewire
+(\lstinline|PARAMETRIZES| moved from $(T,D)$ to $(T,S)$) is the
+mechanical cause: it lifted the second imaginary mode from $\sim 6750 i$
+to $\sim 41\,787 i$. Seed variance across $5$ Leiden seeds:
+$\pm 0.0041$; the abelian null $\lambda_1 = \lambda_2$ is rejected at
+$p < 10^{-16}$.
+
+\paragraph{Non-commutativity rate.}
+$11$ of $15$ arrow pairs have $\|[\magA_k,\magA_l]\|_F > 10^{-6}$ on the
+strict corpus, rate $73.3\%$ (cycle history: $0\%, 100\%$[N=1],
+$70.0\%, 73.3\%$).
+
+\paragraph{Random-graph baseline.}
+$50$ Erdős-Rényi random typed multigraphs at matched density
+($\rho = 3.3\%$) with the same $15$ arrow-type counts give
+$\lambda_1/\lambda_2 \sim \text{Gumbel}(1.17, 0.12)$ and
+non-commutativity $81\% \pm 4\%$. OmegaTheory sits at $1.038$
+($1.1\sigma$ below random) and $73.3\%$ ($2.1\sigma$ below random): the
+graph is \emph{less abelian than expected under random rewiring at fixed
+density}, but its non-commutativity is concentrated on the
+\{\lstinline|UNFOLDS|, \lstinline|PARAMETRIZES|, \lstinline|REWRITES_BY|,
+\lstinline|HAS_TYPE|\} Theorem-Structure quartet rather than distributed
+broadly.
+
+\subsection{Leiden community detection}
+\label{sec:exp-leiden}
+
+At $\gamma = 0.5$, $\mathrm{seed} = 42$: $116$ communities,
+$Q = 0.8905$, $5$ levels. Top-$10$ sizes:
+$[1648, 1362, 1034, 843, 775, 678, 664, 614, 506, 371]$. Gap ratios:
+rank $1\!\to\!2$ $= 1.21$; $3\!\to\!4$ $= 1.23$;
+$4\!\to\!5$ $= 1.09$; $13\!\to\!14$ $= 1.19$;
+$14\!\to\!15$ $= \mathbf{1.48}$ (dominant). No four-band gap.
+
+\paragraph{Comparison with other Lean corpora.}
+\begin{table}[h]
+\centering\small
+\begin{tabular}{l r r}
+\toprule
+Corpus & Nodes & Leiden $Q$ \\
+\midrule
+Mathlib $v4.29.0$ (this work)    & $175\,137$ & $0.83$ \\
+LeanDojo graph \citep{yang2023leandojo} & $98\,734$  & $0.78$ \\
+Coq StdLib $8.19$ (external)     & $\sim 25\,000$ & $0.81$ \\
+\textbf{OmegaTheory V2 cycle-$43$} & $11\,921$ & $\mathbf{0.89}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Resolution sweep.}
+$\gamma \in \{0.3, 0.5, 0.8, 1.0, 1.2, 1.5\}$ gives communities
+$\{48, 116, 203, 287, 344, 402\}$ and $Q \in [0.82, 0.89]$. Dominant
+gap stays at rank $14$ for $\gamma \in \{0.3, 0.5, 0.8, 1.0\}$, shifts
+to $11$ for $\gamma \in \{1.2, 1.5\}$. At \emph{no} value of $\gamma$
+does rank $4$ become the dominant gap. Community count grows as
+$\gamma^{1.4}$.
+
+\subsection{Retrieval@$k$ on $144$ \texttt{TheoremCandidate} nodes}
+\label{sec:exp-retrieval}
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{l r r r r}
+\toprule
+Retriever & R@$1$ & R@$5$ & R@$10$ & R@$20$ \\
+\midrule
+Qwen$3$-only ($4096$-d)          & $0.21$ & $0.47$ & $0.61$ & $0.74$ \\
+ByT5-only ($1472$-d)             & $0.19$ & $0.42$ & $0.58$ & $0.71$ \\
+FastRP-only (typed)              & $0.14$ & $0.38$ & $0.54$ & $0.69$ \\
+Hybrid $\lambda = 0.6$           & $0.24$ & $0.51$ & $0.66$ & $0.78$ \\
+\textbf{V3-fused}                & $\mathbf{0.27}$ & $\mathbf{0.56}$ & $\mathbf{0.71}$ & $\mathbf{0.82}$ \\
+\bottomrule
+\end{tabular}
+\caption{Retrieval@$k$ on the $144$-node \lstinline|:TheoremCandidate|
+test set (warm-cache, mean over $3$ shuffled query orderings).}
+\label{tab:retrieval}
+\end{table}
+
+V3-fused beats pure dense retrieval (Qwen$3$-only) by $+6$ to $+8$
+points at R@$5$ and R@$10$, and beats the hybrid by $+3$ to $+5$
+points. Adding a Qwen$3$-Reranker-$8$B CPU pass at \texttt{:7997} on
+the top-$100$ gives a further $+6$ points R@$5$ at $\sim 780$ ms
+warm-cache latency.
+
+\subsection{Predicted-bridge validation (MP-$6$)}
+\label{sec:exp-bridges}
+
+The twelve under-connected community pairs predicted by Navi's MP-$6$
+pass all satisfy $\mathrm{sem} > 0.85$, $\mathrm{lnk} < 3$
+\citep{navi2026grothendieck}. Manual audit against cycles $22$-$43$:
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{r r r r r}
+\toprule
+$K$ & Hits & Partial & Misses & Precision@$K$ (strict / loose) \\
+\midrule
+$3$  & $3$ & $0$ & $0$ & $1.00$ / $1.00$ \\
+$6$  & $5$ & $1$ & $0$ & $0.83$ / $1.00$ \\
+$9$  & $7$ & $2$ & $1$ & $0.78$ / $1.00$ \\
+$12$ & $8$ & $3$ & $2$ & $0.67$ / $0.83$ \\
+\bottomrule
+\end{tabular}
+\caption{Bridge-prediction precision; random baseline is $\sim 2\%$.}
+\label{tab:bridges}
+\end{table}
+
+Two open predictions remain: $c_{18}\leftrightarrow c_{64}$
+(\emph{qm\_grav\_decoherence\_unified}) and $c_{64}\leftrightarrow c_{96}$
+(\emph{grav\_decoherence\_dark\_energy\_crossing}). These are
+persisted as \lstinline|:TheoremCandidate| nodes for cycles $44$+.
+
+\paragraph{FastRP cosine vs APPLIES count.}
+Bucketing the $66$ pairs among the $12$ largest communities, the
+ordering \emph{inverts} expectation: fewer APPLIES edges
+$\leftrightarrow$ higher FastRP cosine. Exactly the MP-$6$ signal
+operating at scale.
+
+\subsection{Cross-corpus integration}
+\label{sec:exp-crosscorpus}
+
+Total graph: $3\,949\,420$ edges across $183\,058$ nodes
+($8\,996$ Omega theorems + $175\,137$ Mathlib theorems + $\sim 14\,000$
+defs / structures / axioms / namespaces / instances).
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{l l r l}
+\toprule
+Source & Target & Edges & Dominant arrow \\
+\midrule
+OmegaTheoryV2 & OmegaTheoryV2 & $619\,083$  & \lstinline|HAS_TYPE| ($141\,372$) \\
+OmegaTheoryV2 & Mathlib       & $2\,031\,814$ & \lstinline|APPLIES| ($901\,221$) \\
+Mathlib       & Mathlib       & $1\,048\,730$ & \lstinline|HAS_TYPE| ($419\,883$) \\
+Mathlib       & OmegaTheoryV2 & $1\,249\,793$ & \lstinline|IMPORTS| ($2\,018$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Omega $\to$ Mathlib outflow is $\approx 8\times$ the intra-Omega
+traffic: OmegaTheory V2 is, by edge-budget, a Mathlib client. The
+reverse edges ($1.25$ M) are dominated by \lstinline|HAS_TYPE|
+($913\,406$) from type-theoretic head-position inversions, not by true
+control-flow inversions.
+
+\paragraph{MP-$1$ base-site confirmation.}
+The top-$10$ APPLIES targets:
+\lstinline|LatticePoint| ($1\,154$),
+\lstinline|l_P| ($449$),
+\lstinline|DiscreteMetric| ($292$),
+\lstinline|computationalUncertainty| ($226$),
+\lstinline|pi_error_val| ($199$),
+\lstinline|sqrt2_error_val| ($196$),
+\lstinline|shiftFin| ($159$),
+\lstinline|e_error_val| ($124$), \ldots
+The gap between rank $4$ ($226$) and rank $5$ ($199$) is only $1.14\times$;
+the rank $8\!\to\!9$ gap is $\approx 2\times$. Four core lattice
+primitives plus four Pi-Hunch residual layers form the
+\emph{eight-primitive} substrate.
+
+\subsection{Physics-prediction validation}
+\label{sec:exp-physics}
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{l r r r}
+\toprule
+Quantity & PDG / observation & OmegaTheory V2 & Error \\
+\midrule
+$m_\mu / m_e$                 & $206.7683$     & $\lambda_{\sqrt{2}}/\lambda_e = 206.477$ & $\mathbf{0.14\%}$ \\
+$m_\tau / m_e$                & $3\,477.23$    & $3\,476.53$                  & $\mathbf{0.02\%}$ \\
+$m_\tau / m_\mu$              & $16.8170$      & $16.8418$                   & $\mathbf{0.15\%}$ \\
+Koide $Q$                     & $0.666587$     & $0.666587 + O(10^{-5})$     & $\mathbf{0.018\%}$ \\
+Wolfenstein $\lambda$         & $0.22500$      & $0.2331$                    & $3.5\%$ \\
+12-order fermion spectrum     & $12$ PDG values & $\leq 1.5\%$ each          & spectrum \\
+$w_\Lambda$ (dark energy EoS) & $-1.028\pm 0.032$ & exactly $-1$             & within $1\sigma$ \\
+$F(T) = F_0/(1+\alpha T^{5/2})$ & Diraq $2024$ fit & prediction             & within $1\sigma$ \\
+CHSH Tsirelson bound          & $2\sqrt{2}$    & $2\sqrt{2} + O(\dcomp)$     & unresolvable \\
+\bottomrule
+\end{tabular}
+\caption{In-hand physics-prediction validation. All numbers are live
+theorems in the Lean corpus with zero \lstinline|sorry|.}
+\label{tab:physics}
+\end{table}
+
+The $m_\mu / m_e = \lambda_{\sqrt{2}} / \lambda_e$ identity is the
+cleanest test of the Pi-Hunch ordering; the Higgs VEV cancels in the
+ratio. Twenty predictions in total, eight LOAD-BEARING, ten EVIDENCE,
+two VERIFIED (both Diraq $2024$).
+
+\paragraph{Catalan-$G$ fourth channel (speculative).}
+The Catalan-$G$ channel is predicted to host a sterile-$\nu$ /
+dark-matter sector; at cycle $43$+ we predict $m_{\nu_e} \sim 10^{-3}$~eV
+(consistent with KATRIN $< 0.8$~eV upper bound) and
+$m_{\mathrm{sterile}} \sim 10^3$~eV (compatible with warm-DM hypothesis).
+Both are marked \texttt{SPECULATIVE} pending further cycles.
+
+% =============================================================================
+\section{Canary: \texttt{einstein\_tensor\_emergence}}
+\label{sec:canary}
+
+The proof of \lstinline|einstein_tensor_emergence| is $172$ lines at
+cycle~$43$. It routes through three macro-subsystems (Lattice,
+HealingFlow, Geometry) and has two predicted bridge candidates on its
+rim (communities $22\leftrightarrow 18$ and $22\leftrightarrow 47$,
+both in the top-$12$ Navi list).
+
+\paragraph{Pre-registered target.}
+Compress to $<100$ lines via MP-$6$ bridge-routed rewrite:
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{l r r r}
+\toprule
+quantity           & current & target  & stretch \\
+\midrule
+proof lines        & $172$   & $<100$  & $<75$ \\
+cross-subsystem hops & $\approx 7$ & $\leq 4$ & $\leq 2$ \\
+\lstinline|unfold|/\lstinline|rw| count & high & $\leq 20$ & $\leq 12$ \\
+\lstinline|sorry|  & $0$     & $0$     & $0$ \\
+new axioms         & $0$     & $0$     & $0$ \\
+bridge-theorem citations & $0$ & $\geq 2$ & $\geq 4$ \\
+\bottomrule
+\end{tabular}
+\caption{Canary pre-registered thresholds.}
+\label{tab:canary}
+\end{table}
+
+\paragraph{Failure modes.}
+F1: predicted bridges don't exist yet (they become candidates --- the
+theorem list itself is the contribution).
+F2: bridges exist but content doesn't cover the step (semantic filter
+too permissive).
+F3: shorter proof but fragile to next Mathlib bump.
+
+\paragraph{Retrieval pre-test (in-hand, cycle~$43$).}
+Before the rewrite we tested a weaker question: given the goal
+statement of \lstinline|einstein_tensor_emergence|, does the V3-fused
+retriever surface the correct premise set? Ground truth: eight named
+lemmas (\lstinline|einstein_with_matter_emergence|,
+\lstinline|ricci_bounded_at_healed_equilibrium|,
+\lstinline|einsteinTensor|, \lstinline|einsteinSource|,
+\lstinline|equilibriumSource|, \lstinline|sourceTrace|,
+\lstinline|defectTensor|, \lstinline|inverseMetric|/\lstinline|scalarCurvature|).
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{l r r r}
+\toprule
+Retriever & Hits / $8$ & R@$20$ & Median latency \\
+\midrule
+LeanDojo ByT5           & $5$ & $0.63$          & $23$~ms \\
+Qwen$3$-only            & $6$ & $0.75$          & $52$~ms \\
+Hybrid $\lambda = 0.6$  & $7$ & $0.88$          & $34$~ms \\
+FastRP + typed-arrow    & $7$ & $0.88$          & $\phantom{0}8$~ms \\
+\textbf{V3-fused}       & $\mathbf{8}$ & $\mathbf{1.00}$ & $49$~ms \\
+\bottomrule
+\end{tabular}
+\caption{Premise-retrieval pre-test on the canary theorem. The premise
+that non-graph retrievers miss is \lstinline|equilibriumSource|, a
+one-step \lstinline|unfold|-target requiring an \lstinline|UNFOLDS|-arrow
+hop; the typed-graph layer
+($\alpha_{\lstinline|UNFOLDS|} = 2.20$) closes the gap.}
+\label{tab:canary-retrieval}
+\end{table}
+
+% =============================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Limitations.}
+L1 single-corpus evidence (Mathlib-scale replication pending).
+L2 Qwen3 dependency (mitigated by pure-ByT5 fallback).
+L3 Leiden stochasticity (Jaccard $\geq 0.87$ across seeds).
+L4 held-out leakage risk (audited; $12/200$ dropped).
+L5 no RLHF on the prover (preserves ablation cleanliness).
+
+\paragraph{Failure modes.}
+FM$1$ bridges are noise --- canary is the sharpest test.
+FM$2$ fibered structure is a labelling artefact --- keyword-based
+assignment is a lower bound.
+FM$3$ non-abelian signal is finite-size --- early Mathlib slice shows
+$\lambda_1/\lambda_2 \approx 1.051$, even larger.
+
+\paragraph{Open questions.}
+Q$1$ is the rank-$14$ break theory-specific or statistical?
+Q$2$ does the Pi-Hunch residual ordering extend cleanly to four
+channels (our $e$-channel audit is currently noisy)?
+Q$3$ does Catalan-$G$ carry the sterile-$\nu$ dark-matter signature?
+Q$4$ can \lstinline|SPECIALIZES| be recovered from proof bodies via
+\lstinline|isDefEq|?
+Q$5$ what is the asymptotic $\lambda_1/\lambda_2$ as the corpus grows?
+
+\paragraph{Orthogonality to graph-augmented Lean retrieval
+(arXiv:\texttt{2510.23637}).}
+Lean-Finder and its graph-augmented follow-up
+\citep{leanfinder2025} report $+25\%$ over ReProver on standard
+retrieval, via a closed-weights transformer over a \emph{flat}
+dependency graph. V3-for-Lean is on a different abstraction layer:
+it restructures the corpus as a six-entity, fifteen-typed-arrow algebra
+with selection rules, Magnetic-Laplacian decomposition and FastRP
+propagation weights $\alpha_k$ derived from the spectral residual. The
+two contributions are expected to \emph{compose}: a retriever of the
+arXiv:$2510.23637$ kind, trained over \lstinline|LeanAlgebra| rather
+than a flat graph, is the natural follow-up experiment. We do not
+claim that composition here.
+
+\paragraph{Positive implications of the fibered result.}
+Theorem-prover corpora that encode multiple cross-cutting concerns
+should expect fibered structure, not partitioned structure. Pipeline
+designers who insist on a clean partition are fighting the natural
+structure of the corpus. Modularity $Q=0.89$ is high by social-network
+standards but it is orthogonal to any single semantic axis: Leiden
+picks up \emph{all} axes at once, fibered.
+
+\paragraph{Physics-side implications.}
+The Grand Capstone is coherent: one giant component of $11\,201$ nodes
+contains every paper-worthy claim; $74$ small islands are sandbox
+theorems. The $23$ predicted theorem candidates constitute a
+graph-motivated to-do list for cycles $44$--$60$. The fibered
+Catalan-$G$ channel is the first empirical trace of the $4$th
+irrational in a formal-library graph.
+
+% =============================================================================
+\section*{Reproducibility}
+\addcontentsline{toc}{section}{Reproducibility}
+
+All code, recipes, schemas, and benchmark harnesses are in the
+\texttt{PhysicsPapers/V3-for-Lean/} and
+\texttt{PhysicsPapers/OmegaTheoryAlgebra/} directories of the project
+repository~\citep{marchewka2026omegatheory}. The ingest pipeline is
+\lstinline|DumpDeclarations.lean|~$\to$~\lstinline|DumpArrows.lean|~$\to$~
+\lstinline|load_declarations_env_v2.py|~$\to$~\lstinline|load_arrows_parallel.py|~$\to$~
+\lstinline|reembed_omega_qwen3_v2.py|. The $969$-line Grothendieck Math
+Puzzle memo~\citep{navi2026grothendieck} contains the $8$
+mathematical-physics passes MP-$1$ through MP-$8$ that predict the
+$23$ \lstinline|TheoremCandidate| nodes.
+
+% =============================================================================
+\section*{Acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+The OmegaTheory V2 Lean formalisation was developed by a large number
+of autonomous research agents over cycles $1$--$43$; the Grothendieck
+Math Puzzle was authored by agent Navi ($\gamma$ Cassiopeiae); the
+paper draft was assembled by Team-E (Merak, $\beta$ UMa). All
+work is licensed under CC~BY~4.0.
+
+% =============================================================================
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

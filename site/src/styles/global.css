@@ -279,6 +279,12 @@ pre {
   margin: var(--space-lg) 0;
   box-shadow: var(--shadow-sm);
   tab-size: 2;
+  /* Force `pre` — never `pre-wrap`. ASCII diagrams use box-drawing
+     characters (═ ║ ╔ ╗ ━ ┌ ┐ ├ ┤ ...) that must align across lines.
+     `pre-wrap` (injected by some Shiki configs) breaks alignment by
+     soft-wrapping at widths less than a monospace character. Users
+     scroll horizontally for long lines instead. */
+  white-space: pre;
 }
 
 pre code {

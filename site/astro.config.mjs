@@ -76,7 +76,10 @@ export default defineConfig({
     // Shiki 3 / Astro 6 — tuned for dark physics aesthetic.
     shikiConfig: {
       theme: 'github-dark-dimmed',
-      wrap: true,
+      // wrap: false so long code lines scroll horizontally instead of
+      // soft-wrapping. Critical for ASCII art / box-drawing diagrams —
+      // pre-wrap splits characters like ═║╔╗ mid-line, destroying alignment.
+      wrap: false,
       langs: [],
     },
   },

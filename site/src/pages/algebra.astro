@@ -2,12 +2,18 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import { HEADLINES, fmt } from '../data/status.mjs';
+import grothendieckStatus from '../data/grothendieck-status.json' with { type: 'json' };
+import grothendieckPredictions from '../data/grothendieck-predictions.json' with { type: 'json' };
 
 const rawBase = import.meta.env.BASE_URL;
 const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
 const GH = 'https://github.com/RamzesX/chaos-shield';
 const GH_ALG = `${GH}/tree/main/PhysicsPapers/OmegaTheoryAlgebra`;
+const GH_LEAN = `${GH}/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory`;
+
+// Tag colour lookup (joins predictions.json tags + the auto-assigned LANDED tag).
+const tagMeta = grothendieckPredictions.tags;
 
 // Three-part architecture layout:
 //   1. Headline (what V3-for-Lean is + why Neo4j)
@@ -98,6 +104,72 @@ const designMemos = [
       <div class="headline-ctas">
         <a href={`${baseUrl}papers/grothendieck_math_puzzle/`} class="btn btn-primary">Read on this site</a>
         <a href={`${GH_ALG}/GROTHENDIECK_MATH_PUZZLE.md`} target="_blank" rel="noopener" class="btn btn-outline">View on GitHub</a>
+      </div>
+    </article>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         Live puzzle dashboard — auto-computed from Lean source by
+         scripts/build-grothendieck-status.mjs at build time. As predicted
+         theorems land in OmegaTheory/**.lean, this panel updates on the
+         next `npm run build`. No hand edits.
+         ═══════════════════════════════════════════════════════════════ -->
+    <article class="puzzle-dashboard">
+      <header class="dashboard-head">
+        <div>
+          <span class="dashboard-eyebrow">Live · auto-computed each build</span>
+          <h3>Puzzle status — {grothendieckStatus.summary.totalLanded} / {grothendieckStatus.summary.totalPredictions} predictions landed</h3>
+        </div>
+        <div class="progress-big">
+          <span class="pct">{grothendieckStatus.summary.percentLanded}%</span>
+          <span class="pct-label">closed</span>
+        </div>
+      </header>
+      <div class="progress-bar">
+        <div class="progress-fill" style={`width: ${grothendieckStatus.summary.percentLanded}%`}></div>
+      </div>
+      <p class="dashboard-note">
+        Each MP pass below lists its predicted Lean theorem signatures. The build script
+        greps <code>OmegaTheory/**/*.lean</code> (scanned: {grothendieckStatus.summary.leanFilesScanned} files,
+        {fmt.int(grothendieckStatus.summary.totalDeclarationsIndexed)} declarations indexed)
+        and marks each prediction <span class="tag-chip chip-jade-strong">LANDED</span> if found.
+        <strong>Close a prediction by landing the theorem in Lean;</strong> no hand-edit of this JSON required —
+        the dashboard picks it up automatically on next build.
+      </p>
+      <div class="mp-grid">
+        {grothendieckStatus.perPass.map((pass) => (
+          <details class="mp-block" open={pass.landed_count > 0}>
+            <summary>
+              <span class="mp-id">{pass.id}</span>
+              <span class="mp-title">{pass.title}</span>
+              <span class="mp-count">{pass.landed_count}/{pass.total_count}</span>
+            </summary>
+            <p class="mp-question">{pass.question}</p>
+            <ul class="mp-predictions">
+              {pass.predictions.map((pred) => (
+                <li class:list={['mp-pred', { landed: pred.landed }]}>
+                  <code class="pred-name">
+                    {pred.landed ? (
+                      <a href={`${GH_LEAN}/${(pred.location || '').split(':')[0]}#L${(pred.location || '').split(':')[1]}`}
+                         target="_blank" rel="noopener">{pred.name}</a>
+                    ) : (
+                      <span>{pred.name}</span>
+                    )}
+                  </code>
+                  <span
+                    class={`tag-chip chip-${tagMeta[pred.effectiveTag]?.color ?? 'muted'}`}
+                    title={tagMeta[pred.effectiveTag]?.meaning ?? ''}
+                  >
+                    {tagMeta[pred.effectiveTag]?.label ?? pred.effectiveTag}
+                  </span>
+                  <span class="pred-claim">{pred.claim}</span>
+                  {pred.landed && pred.location && (
+                    <span class="pred-loc">→ <code>{pred.location}</code></span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </details>
+        ))}
       </div>
     </article>
 
@@ -345,4 +417,181 @@ const designMemos = [
     margin-top: 2px;
   }
   .neo4j-ctas { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+
+  /* ── Puzzle-dashboard panel ───────────────────────────────────────── */
+  .puzzle-dashboard {
+    padding: var(--space-xl);
+    margin: var(--space-lg) 0;
+    border: 1px solid var(--color-seam);
+    border-left: 3px solid var(--color-magenta);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(200, 110, 255, 0.06), rgba(95, 184, 255, 0.03));
+  }
+  .dashboard-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+  .dashboard-eyebrow {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-magenta);
+    margin-bottom: var(--space-2xs);
+  }
+  .dashboard-head h3 { margin: 0; font-size: 1.3rem; color: var(--color-text); }
+  .progress-big {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .progress-big .pct {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    background: var(--grad-magenta-azure);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-variant-numeric: tabular-nums;
+  }
+  .progress-big .pct-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-text-mut);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .progress-bar {
+    height: 6px;
+    background: var(--color-seam);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: var(--space-md);
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--grad-magenta-azure);
+    transition: width var(--t-slow);
+    min-width: 2px;
+  }
+  .dashboard-note {
+    font-size: 0.88rem;
+    color: var(--color-text-dim);
+    max-width: none;
+    margin-bottom: var(--space-md);
+  }
+
+  .mp-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+  .mp-block {
+    border: 1px solid var(--color-seam);
+    border-radius: var(--radius-md);
+    background: var(--color-ink);
+    padding: var(--space-sm) var(--space-md);
+    transition: border-color var(--t-fast);
+  }
+  .mp-block[open] {
+    border-color: rgba(200, 110, 255, 0.3);
+  }
+  .mp-block summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    cursor: pointer;
+    font-weight: 500;
+    padding: var(--space-xs) 0;
+    list-style: none;
+  }
+  .mp-block summary::-webkit-details-marker { display: none; }
+  .mp-block summary::before {
+    content: "▸";
+    color: var(--color-text-mut);
+    font-size: 0.7rem;
+    transition: transform var(--t-fast);
+  }
+  .mp-block[open] summary::before { transform: rotate(90deg); }
+  .mp-id {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--color-magenta);
+    font-weight: 600;
+  }
+  .mp-title { flex: 1; color: var(--color-text); font-size: 0.95rem; }
+  .mp-count {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--color-text-mut);
+    padding: 2px 8px;
+    border: 1px solid var(--color-seam);
+    border-radius: var(--radius-sm);
+    font-variant-numeric: tabular-nums;
+  }
+  .mp-question {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--color-text-mut);
+    padding: var(--space-xs) 0;
+    max-width: none;
+  }
+  .mp-predictions {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-xs) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  .mp-pred {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: var(--space-xs) var(--space-sm);
+    align-items: baseline;
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(10, 14, 26, 0.4);
+    border-left: 2px solid var(--color-seam);
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+  }
+  .mp-pred.landed { border-left-color: var(--color-jade); background: rgba(79, 217, 154, 0.06); }
+  .pred-name { font-family: var(--font-mono); font-size: 0.82rem; white-space: nowrap; }
+  .pred-name a { color: var(--color-azure); border-bottom: 0; }
+  .pred-name a:hover { color: var(--color-magenta); border-bottom: 0; }
+  .pred-claim { color: var(--color-text-dim); grid-column: 3 / -1; }
+  .pred-loc { grid-column: 1 / -1; font-size: 0.75rem; color: var(--color-text-mut); }
+  .pred-loc code { font-size: inherit; color: inherit; }
+
+  .tag-chip {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    border: 1px solid currentColor;
+  }
+  .chip-jade        { color: #4fd99a; background: rgba(79, 217, 154, 0.08); }
+  .chip-jade-strong { color: #4fd99a; background: rgba(79, 217, 154, 0.22); font-weight: 600; }
+  .chip-azure       { color: #5fb8ff; background: rgba(95, 184, 255, 0.08); }
+  .chip-magenta     { color: #c86eff; background: rgba(200, 110, 255, 0.08); }
+  .chip-amber       { color: #f5a623; background: rgba(245, 166, 35, 0.08); }
+  .chip-muted       { color: var(--color-text-mut); background: rgba(10, 14, 26, 0.5); }
+
+  @media (max-width: 640px) {
+    .dashboard-head { flex-direction: column; align-items: stretch; }
+    .progress-big { text-align: left; }
+    .progress-big .pct { font-size: 2rem; }
+    .mp-pred { grid-template-columns: 1fr; }
+  }
 </style>

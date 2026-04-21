@@ -1,0 +1,187 @@
+{
+  "$schema": "./grothendieck-predictions.schema.md",
+  "updated": "2026-04-21",
+  "title": "Grothendieck Math Puzzle — live predictions",
+  "source_doc": "PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md",
+  "source_of_truth": "Canonical list of theorem signatures predicted by the 8-pass Grothendieck synthesis (Navi 2026-04-21). Each prediction has a name (Lean identifier), a short claim, and a tag. The site page /algebra/ renders live status by grepping the Lean source tree for each name — closed = identifier found as `theorem NAME` or `lemma NAME` in a .lean file. When a prediction closes, its tag can be bumped from EVIDENCE/SPECULATIVE to LANDED in this file (optional — the grep check is authoritative).",
+  "tags": {
+    "LOAD_BEARING": {
+      "label": "load-bearing",
+      "color": "jade",
+      "meaning": "supported by existing Lean files; theorem already substantially anchored"
+    },
+    "EVIDENCE": {
+      "label": "evidence",
+      "color": "azure",
+      "meaning": "backed by graph computation or empirical spectrum but not yet Lean-proved"
+    },
+    "SPECULATIVE": {
+      "label": "speculative",
+      "color": "magenta",
+      "meaning": "suggestive pattern, requires more data / literature work"
+    },
+    "LITERATURE_ANCHORED_GAP": {
+      "label": "literature-anchored gap",
+      "color": "amber",
+      "meaning": "standard literature construct (Connes, Kempf) not yet in OmegaTheory Lean source"
+    },
+    "LANDED": {
+      "label": "landed",
+      "color": "jade-strong",
+      "meaning": "theorem now exists in the Lean corpus (auto-detected by grep)"
+    }
+  },
+  "passes": [
+    {
+      "id": "MP-1",
+      "title": "Categorical structure of OmegaTheory",
+      "question": "What categorical species does OmegaTheory inhabit? Lawvere theory, Grothendieck fibration, Connes spectral triple, or ∞-topos?",
+      "predictions": [
+        {
+          "name": "omega_theory_is_fibered_category",
+          "claim": "The Theorem→Definition projection is a Grothendieck fibration over the 4-generator base site.",
+          "tag": "EVIDENCE"
+        },
+        {
+          "name": "omega_base_site_has_four_generators",
+          "claim": "The base site of the fibration has exactly four generators: LatticePoint, l_P, DiscreteMetric, computationalUncertainty.",
+          "tag": "EVIDENCE"
+        },
+        {
+          "name": "descent_for_LatticePoint_cover",
+          "claim": "Sheaf descent holds for presheaves F along LatticePoint covers of omegaBaseSite.",
+          "tag": "SPECULATIVE"
+        }
+      ]
+    },
+    {
+      "id": "MP-2",
+      "title": "Homological signature of the theorem-graph",
+      "question": "What is the Betti profile (b₀, b₁, b₂) of the APPLIES/UNFOLDS graph?",
+      "predictions": [
+        {
+          "name": "omega_corpus_giant_component",
+          "claim": "The APPLIES graph has a single giant connected component (b₀ = 1); no isolated theorem clusters.",
+          "tag": "EVIDENCE"
+        },
+        {
+          "name": "irreducible_cycle_HiggsYukawa",
+          "claim": "There is an irreducible cycle localised to the Higgs→Yukawa→mass-hierarchy region, detectable by gds.betweenness centrality.",
+          "tag": "SPECULATIVE"
+        },
+        {
+          "name": "primitivity_of_computationalUncertainty",
+          "claim": "computationalUncertainty is a minimal generator of H_1(omegaTheoremComplex).",
+          "tag": "SPECULATIVE"
+        }
+      ]
+    },
+    {
+      "id": "MP-3",
+      "title": "Connes-style constructs — literature-anchored gaps",
+      "question": "Which standard Connes NCG constructs are missing from our Lean source?",
+      "predictions": [
+        {
+          "name": "spectralTriple_OmegaSubstrate",
+          "claim": "The full finite spectral triple (A_F, H_F, D_F) for the OmegaTheory substrate exists as a Lean structure.",
+          "tag": "LITERATURE_ANCHORED_GAP"
+        },
+        {
+          "name": "connes_reconstruction_for_substrate",
+          "claim": "Connes' reconstruction theorem (spin manifold from spectral triple) applies to the substrate triple.",
+          "tag": "SPECULATIVE"
+        }
+      ]
+    },
+    {
+      "id": "MP-4",
+      "title": "Kempf bandlimit pathway completion",
+      "question": "What is the α / β / γ / δ status of the Kempf bandlimit → UV-cutoff pathway?",
+      "predictions": [
+        {
+          "name": "kempf_2025_curvature_corrected_bandlimit",
+          "claim": "The curvature-corrected Kempf bandlimit identity holds on OmegaTheory's lattice.",
+          "tag": "EVIDENCE"
+        },
+        {
+          "name": "kempf_delta_cmb_oscillation_bridge",
+          "claim": "The δ-pathway linking Kempf bandlimit to CMB oscillation spectra is formalised.",
+          "tag": "SPECULATIVE"
+        }
+      ]
+    },
+    {
+      "id": "MP-5",
+      "title": "The 4-irrational partition — spectral test",
+      "question": "Is the π/e/√2/Catalan-G partition a sharp spectral gap or a continuous fibration?",
+      "predictions": [
+        {
+          "name": "channel_norm_ordering_matches_residual_ordering",
+          "claim": "The Magnetic-Laplacian per-channel norm ordering matches the δ_π > δ_e > δ_G > δ_√2 residual ordering (for N ≥ 5).",
+          "tag": "EVIDENCE"
+        },
+        {
+          "name": "four_channel_fibration_over_subsystem",
+          "claim": "The four-channel structure is a fibration over SubsystemNavigator, not a partition.",
+          "tag": "SPECULATIVE"
+        },
+        {
+          "name": "no_sharp_4_band_gap_in_leiden",
+          "claim": "Leiden community detection at γ = 0.5 finds Q ≈ 0.89 but no sharp 4-band gap — fibration hypothesis over partition.",
+          "tag": "EVIDENCE"
+        }
+      ]
+    },
+    {
+      "id": "MP-6",
+      "title": "FastRP predicted bridge theorems",
+      "question": "Which APPLIES bridges does FastRP kNN predict but Lean source lacks?",
+      "predictions": [
+        {
+          "name": "absorbPhoton",
+          "claim": "Photon absorption APPLIES bridge: photon → substrate-state transition as predicted by FastRP cosine similarity.",
+          "tag": "EVIDENCE"
+        }
+      ]
+    },
+    {
+      "id": "MP-7",
+      "title": "Homotopy-limit / sheaf-descent gaps",
+      "question": "Which one-sided operations (only push/pull, not both) signal missing homotopy-limit structure?",
+      "predictions": [
+        {
+          "name": "subsystem_navigator_homotopy_limit",
+          "claim": "SubsystemNavigator-indexed diagrams admit a homotopy limit in the Omega-category.",
+          "tag": "SPECULATIVE"
+        }
+      ]
+    },
+    {
+      "id": "MP-8",
+      "title": "The Pi Hunch frontier — extended uncertainty",
+      "question": "What is the next rigorous step for ℏ/2 + δ_comp(N)?",
+      "predictions": [
+        {
+          "name": "extendedBound_tightness",
+          "claim": "The extended uncertainty bound ℏ/2 + δ_comp is TIGHT — there is no saturation below δ_comp.",
+          "tag": "SPECULATIVE"
+        },
+        {
+          "name": "extendedBound_saturation",
+          "claim": "A Gaussian minimum-uncertainty state saturates the extended bound exactly at δ_comp.",
+          "tag": "EVIDENCE"
+        },
+        {
+          "name": "extendedBound_uniqueness",
+          "claim": "The extended uncertainty bound is the unique δ_comp-perturbation satisfying Robertson-Schrödinger compatibility.",
+          "tag": "SPECULATIVE"
+        },
+        {
+          "name": "extendedBound_stability",
+          "claim": "The extended bound is stable under RG flow / continuous limits as N → ∞.",
+          "tag": "EVIDENCE"
+        }
+      ]
+    }
+  ]
+}

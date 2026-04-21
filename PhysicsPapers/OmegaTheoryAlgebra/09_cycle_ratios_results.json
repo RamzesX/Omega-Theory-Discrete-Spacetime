@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "script": "verify_cycles.py",
+    "author": "Dubhe",
+    "team": "Merak",
+    "date": "2026-04-18T21:16:24.526094+00:00",
+    "neo4j_uri": "bolt://localhost:7687",
+    "namespace_data": "OmegaTheoryV2",
+    "healthy_band": [
+      0.3,
+      0.7
+    ],
+    "runtime_seconds": 0.099
+  },
+  "per_relation": [
+    {
+      "relation": "IMPORTS",
+      "forward": 164,
+      "reverse": 0,
+      "ratio": 1.0,
+      "healthy": false,
+      "interpretation": "near-unidirectional forward (nilpotent-dominated)"
+    },
+    {
+      "relation": "OPENS_NAMESPACE",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "EXTENDS",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "INSTANTIATES",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "ASSUMES",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "APPLIES",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "UNFOLDS",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "SPECIALIZES",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "REWRITES_BY",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "HAS_TYPE",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "CONSTRAINED_BY",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "PARAMETRIZES",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "REDUCES_TO",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "ELABORATES_AS",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    },
+    {
+      "relation": "SUGGESTED_BY",
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "interpretation": "deferred - relation not populated by extractor"
+    }
+  ],
+  "summary": {
+    "populated_relations": 1,
+    "healthy_relations": 0,
+    "total_relations": 15,
+    "q1a_specializes": {
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "verdict": "pending data"
+    },
+    "q1b_unfolds": {
+      "forward": 0,
+      "reverse": 0,
+      "ratio": null,
+      "healthy": false,
+      "verdict": "pending data"
+    },
+    "overall_state": "insufficient_data - awaiting Phobos arrow extractor"
+  },
+  "berry_phase_proxy": {
+    "total_triangles_in_important_triples": 0,
+    "per_triple": {
+      "SPECIALIZES-APPLIES-SPECIALIZES": 0,
+      "UNFOLDS-ELABORATES_AS-UNFOLDS": 0,
+      "APPLIES-REWRITES_BY-APPLIES": 0,
+      "UNFOLDS-REDUCES_TO-ELABORATES_AS": 0
+    },
+    "status": "deferred - requires Phobos extractor (no triangles in current sparse graph)"
+  }
+}

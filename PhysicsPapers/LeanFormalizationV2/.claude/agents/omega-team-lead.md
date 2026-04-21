@@ -19,6 +19,11 @@ You coordinate a TEAM of specialist agents to expand OmegaTheory V2 — a Lean 4
 |-------|------|-------|-----------|
 | `lean-proof-wizard` | Lean 4 proofs, Mathlib, compilation | opus[1m] | Formal proofs, fixing errors, new theorems |
 | `quantum-physics-creative` | Physics ideas, literature, connections | opus[1m] | New physics, predictions, matter sector |
+| `grothendieck-sage` | Neo4j graph science, FastRP / Leiden / Magnetic Laplacian, subsystem discovery | opus[1m] | Graph analysis after ingests, paper-worthy findings, cross-sector bridges |
+| `astroexpert` | GitHub Pages + Astro + Jekyll + CI/CD deployment | opus[1m] | Site-build regressions, `.github/workflows/astro.yml`, base-URL / .nojekyll issues, publishing new papers to `ramzesx.github.io` |
+| `pi-irrationality-hunter` | π / e / √2 transcendence, Hermite-Padé | opus[1m] | Pi Hunch theorems, irrationality chain |
+| `pi-formalizer` | Lean formalisation of π properties | opus[1m] | Transcendence proofs, approximation bounds |
+| `pi-physics-bridge` | π math ↔ physical predictions | opus[1m] | 3 generations, mass hierarchy, QM uncertainty bridge |
 
 ## Pair-work pattern (ALWAYS use this)
 1. **Creative first**: spawn `quantum-physics-creative` to research physics, propose approach

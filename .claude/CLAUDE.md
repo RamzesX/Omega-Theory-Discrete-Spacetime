@@ -1,157 +1,164 @@
-# Claude Code Project Instructions - Chaos Shield / Omega-Theory
+# Claude Code Project Instructions — Chaos Shield / OmegaTheory V2
 
 ## System Specifications
 
 ```
-Machine: AMD Ryzen 9 9950X (16 cores / 32 threads), 192GB RAM
-WSL2:    160GB RAM, 32 processors, 32GB swap
+Machine: AMD Ryzen 9 9950X (16 cores / 32 threads), 192 GB RAM
+WSL2:    160 GB RAM, 32 processors, 32 GB swap
+GPU:     AMD RX 9060 XT 16 GB (gfx1200, ROCm 7.2.1 + PyTorch 2.9.1)
 ```
 
-## Lean 4 Build Commands (ALWAYS use WSL!)
+## Lean 4 Build — WSL-native, NO `wsl.exe` wrapper
 
-### Quick Build (one-liner)
+This session is already inside WSL; run `lake` and `bash` directly.
+Elan / Lake installed at `~/.elan/bin/`. Toolchain: Lean v4.29.0 + Mathlib v4.29.0.
+
+### Build commands
 ```bash
-wsl.exe bash -c "cd /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalization && ~/.elan/bin/lake exe cache get && ~/.elan/bin/lake build --log-level=error 2>&1"
+# /mnt/c committed tree (slow — mountpoint overhead; use for diffs + commits)
+cd /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2
+~/.elan/bin/lake build --log-level=error
+~/.elan/bin/lake build OmegaTheory.Module --log-level=error   # one module
+~/.elan/bin/lake exe cache get                                # Mathlib cache
+
+# ~/lean-v2 native ext4 (115× faster single-file build — use for iteration)
+cd ~/lean-v2
+~/.elan/bin/lake build --log-level=error
 ```
 
-### Individual Commands
+### `lake update` vs `lake build`
+- `lake update` — only when changing Mathlib version or adding a dependency
+  in `lakefile.toml`. After `lake update`, always `lake exe cache get`.
+- `lake build` — everything else (new imports from existing Mathlib, edits,
+  fixing proofs). Mathlib is already installed; `lake build` just links.
 
-**Get Mathlib Cache (CRITICAL - do first, saves hours):**
-```bash
-wsl.exe bash -c "cd /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalization && ~/.elan/bin/lake exe cache get 2>&1"
-```
+## HARD RULES
+1. **0 sorry** in Lean — absolutely never.
+2. **0 new axioms** — project has exactly 8 physical axioms
+   (c, ℏ, G_N, k_B + 4 positivities). 15 HermitePadé + 1 `Real.pi_transcendental`
+   are tracked separately and are research-track, not paper-story axioms.
+3. **Must compile GREEN** before reporting done. 3,835 jobs / 0 sorry is the
+   post-cycle-43 baseline — do not regress.
+4. **Quality over speed** — iterate on errors until clean.
+5. **Narrower true theorem > false dressed-up claim.**
+6. **Do not write outside chaos-shield** unless the task explicitly targets
+   `~/papers/` or `~/services/` (V3-for-Lean adaptation work).
 
-**Build Project:**
-```bash
-wsl.exe bash -c "cd /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalization && ~/.elan/bin/lake build --log-level=error 2>&1"
-```
-
-**Clean Build:**
-```bash
-wsl.exe bash -c "cd /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalization && ~/.elan/bin/lake clean 2>&1"
-```
-
-## IMPORTANT: When to use `lake update` vs `lake build`
-
-### `lake update` - ONLY when:
-- Changing Mathlib VERSION in lakefile.lean (e.g., v4.13.0 → v4.14.0)
-- Adding NEW DEPENDENCY to lakefile.lean
-- After `lake update` → ALWAYS run `lake exe cache get`
-
-### `lake build` - For everything else:
-- Adding/changing imports from existing Mathlib
-- Editing your own code
-- New imports like `import Mathlib.Topology.MetricSpace.Basic` → just `lake build`
-- Mathlib is already installed, just links the modules
-
-### DO NOT run `lake update` when:
-- Just adding new imports from already-installed Mathlib
-- Just editing Lean files
-- Fixing proofs
-
-## Lake 5.0 Build Options
-
-Lake 5.0 has **automatic parallelism** - no `-j` flag or `LAKE_JOBS` needed!
-
-Useful options:
-- `--log-level=error` - Only show errors (suppress warnings spam)
-- `--log-level=warning` - Show warnings and errors
-- `--quiet` - Hide info logs and progress indicator
-- `--verbose` - Show trace logs
-
-## Important Notes
-
-1. **Never use PowerShell for Lean** - Profile errors and PATH issues
-2. **Always use WSL bash** - elan/lake installed at `~/.elan/bin/`
-3. **Parallelism is automatic** - Lake 5.0 uses all available cores
-4. **MCP lean-lsp tools** - Have path issues mixing WSL/Windows paths; use direct bash instead
-5. **Mathlib version** - v4.29.0, Lean v4.29.0 (check lakefile.lean)
-
-## Project Structure
-
-```
-PhysicsPapers/
-  LeanFormalization/          <- Lean 4 formalization
-    DiscreteSpacetime/        <- Main module
-      Basic/                  - Constants, Lattice, Operators
-      Axioms/                 - Physical postulates
-      Geometry/               - Metric, Connection, Curvature, Torsion
-      Dynamics/               - Healing flow, Defects
-      Conservation/           - Noether, FourthLaw, SpinInformation
-      Torsion/                - SpinTorsion, BigBounce (Poplawski)
-      Emergence/              - ContinuumLimit, Einstein
-      Variational/            - GraphAction, DiscreteNoether, InfoGeodesics
-    lakefile.lean             - Build config, Mathlib version
-    BUILD.md                  - Build instructions
-```
-
-## MCP Tools Available
-
-- `lean_loogle` - Search Mathlib by type signature (works!)
-- `lean_leansearch` - Natural language search (works!)
-- `lean_local_search` - Search local project
-- `lean_diagnostic_messages` - Has path issues, use bash instead
-- `lean_build` - Has path issues, use bash instead
-
-## Agents for Lean Proofs
-
-Use `OpusQuantumGravityLeanProofAssistant` agent for fixing Lean proofs.
-Can spawn multiple in parallel for different files.
-
-## Proof Automation Toolkit (USE THESE FIRST!)
-
+## Proof Automation — USE BEFORE manual proof
 ```lean
--- SEARCH (find proofs automatically — 30s each, searches 210K+ lemmas)
-exact?          -- find ANY matching proof from Mathlib + local theorems
+-- SEARCH
+exact?          -- search Mathlib + local (30 s, most powerful)
 apply?          -- find applicable lemmas
 rw?             -- find rewrite targets
-simp?           -- show which simp lemmas close the goal
+simp?           -- show closing simp lemmas
 
 -- AUTOMATED SOLVERS
-aesop           -- white-box best-first proof search (multi-step)
-grind           -- SMT-style (Lean 4.22+, Gröbner + cutsat)
+aesop           -- white-box best-first proof search
+grind           -- SMT-style (Gröbner + cutsat, Lean 4.22+)
 omega           -- Presburger arithmetic (ℤ/ℕ)
 norm_num        -- numeric normalization
-linarith        -- linear arithmetic
-nlinarith       -- nonlinear arithmetic
-polyrith        -- polynomial arithmetic
-positivity      -- auto-prove 0 < x or 0 ≤ x
-ring            -- ring equalities
-field_simp      -- clear denominators
-decide          -- exhaustive finite check
-native_decide   -- compiled exhaustive check
+linarith / nlinarith / polyrith   -- linear / nonlinear / polynomial
+positivity      -- 0 < x or 0 ≤ x
+ring / field_simp   -- ring equalities / clear denominators
+decide / native_decide   -- exhaustive finite check
 
 -- DOMAIN-SPECIFIC
 fun_prop        -- continuity / differentiability
 gcongr          -- generalized congruence (monotonicity)
-push_cast       -- push coercions (ℕ → ℝ, ℤ → ℝ)
+push_cast       -- push coercions through
 fin_cases       -- case split on Fin n
 ```
 
-### Strategy: try automation BEFORE manual proof
-1. `exact?` → finds existing lemma (30s search)
-2. `aesop` or `grind` → multi-step automation
-3. `simp [lemmas]` → rewriting
-4. `positivity` → any ≥ 0 or > 0 goal
-5. `ring` or `field_simp; ring` → algebraic identities
-6. `linarith` / `nlinarith` → inequalities
-7. `decide` → finite enumeration
-8. Manual only when all above fail
+### Strategy
+1. `exact?` first (30 s search over 210 K+ lemmas + 8,996 OmegaTheory theorems).
+2. `aesop` or `grind` for multi-step.
+3. `simp [lemmas]` or `positivity`.
+4. `ring` / `field_simp; ring` for algebraic identities.
+5. `linarith` / `nlinarith` for inequalities.
+6. `decide` for finite enumeration.
+7. Manual only when all above fail.
 
-### Common manual tactics
-```lean
-div_pos, mul_pos, pow_pos          -- positivity
-div_le_iff₀, div_lt_iff₀          -- division (NOTE: ₀ suffix in v4.29!)
-mul_div_cancel₀                    -- cancellation (needs ne_zero)
-Finset.sum_nonneg, sq_nonneg       -- sums and squares
-Real.sqrt_pos_of_pos               -- square root
+## Mathlib v4.29.0 name changes (CRITICAL)
+- `div_le_iff₀` / `div_lt_iff₀` — note ₀ suffix
+- `mul_div_cancel₀` — needs `ne_zero`
+- `Finset.not_mem_empty` — not `Finset.mem_empty`
+- `Mathlib.Algebra.BigOperators.Group.Finset` (not `.Basic`)
+- `Mathlib.Data.Nat.Cast.Order.Basic`
+- `Mathlib.Data.Int.Basic` removed (Int is in Lean core)
+
+Use `lean_loogle` or `lean_leansearch` to find renamed modules.
+
+## Project Structure
+
+```
+chaos-shield/
+├── PhysicsPapers/
+│   ├── CLAUDE.md                 ← Lean + Neo4j pipeline + post-cycle-43 state
+│   ├── LeanFormalizationV2/      ← Lean 4 source tree (294 .lean files committed)
+│   │   ├── CLAUDE.md             ← V2-specific agent onboarding
+│   │   ├── STYLE_GUIDE.md
+│   │   ├── OmegaTheory/          ← 16 subdirs; largest: Emergence/132, Predictions/40
+│   │   ├── notes/                ← 20 post-triage files
+│   │   ├── plans/                ← active backlog + Grothendieck reports
+│   │   └── .neo4j/               ← Cypher ingest pipeline (V3-for-Lean)
+│   ├── papers/                   ← public papers (QM-From-Discrete-Gravity, DE preview)
+│   ├── submissions/              ← LaTeX submission bundles
+│   └── research/                 ← STRATEGIC_FORMALIZATION_PLAN + recipes
+└── .claude/
+    └── CLAUDE.md                 ← this file
 ```
 
-## Mathlib Import Changes (v4.29.0)
+Native ext4 mirror at `~/lean-v2/` (428 .lean files incl. Meta/ dump executables
++ uncommitted dev files). Use `~/lean-v2` for fast iteration, sync back to
+`/mnt/c` only when ready to commit.
 
-Some modules were renamed/restructured:
-- `Mathlib.Data.Int.Basic` → removed (Int is in Lean core)
-- `Mathlib.Algebra.BigOperators.Group.Finset.Basic` → `Mathlib.Algebra.BigOperators.Group.Finset`
-- `Mathlib.Data.Nat.Cast.Order` → `Mathlib.Data.Nat.Cast.Order.Basic`
+## Status — 2026-04-21 (post cycle-43)
 
-Use `lean_loogle` to find correct module paths when imports fail.
+- **3,835 build jobs GREEN**, 0 sorry
+- **8 physical axioms** (+ 15 HermitePadé + 1 π-transcendental = 24 total)
+- **8,996 OmegaTheoryV2 Theorems** on top of **175,137 Mathlib** = **184,133 total**
+- **Cycles 2–43 all shipped.** Mekbuda's 60-theorem cycles 24–43 backlog CLOSED.
+- **Grand Capstone V2** locked by Polaris (`omega_theory_v2_final_meta_capstone`)
+- **HPW axiom DELETED** 2026-04-17 — all 7 regime witnesses re-derived.
+
+## Neo4j Knowledge Graph
+
+Container `math`, bolt://localhost:7687, neo4j/omegatheory2026. APOC + GDS +
+GenAI plugins loaded. See `PhysicsPapers/CLAUDE.md` for query recipes.
+
+Key namespaces in the graph:
+- `OmegaTheoryV2` — declarations + FastRP embeddings (8,996 own theorems)
+- `Mathlib` — integrated Mathlib v4.29.0 corpus (175,137 theorems)
+- `LeanAlgebra` — V3 schema scaffold (6 vertex types × 15 arrows)
+
+Graph state (live 2026-04-21): 88 `:GraphFinding` (44 paper_worthy) + 166
+`:TheoremCandidate` (52 closed / 113 open / 1 blocked) + 677 `:SubsystemNavigator`.
+
+## Custom agents (`PhysicsPapers/LeanFormalizationV2/.claude/agents/`)
+
+- `omega-team-lead` — coordinates wizard + creative pairs in cycles
+- `lean-proof-wizard` — Lean 4 specialist, all tactics + build commands
+- `quantum-physics-creative` — physics ideas + literature search
+- `grothendieck-sage` — graph synthesis over 184K-theorem Lean + Mathlib graph
+- `pi-irrationality-hunter` — Pi-Hunch specialist (π-truncation, generations)
+- `pi-formalizer` — Lean formalization of π + Hermite–Padé
+- `pi-physics-bridge` — π math → physical predictions
+
+Agents choose their own names from a star catalog (Rigel, Saiph, Alnilam, Vega,
+Polaris, Navi, Mekbuda, Dubhe, Naos, Schedar, Sheratan, etc.) and log identity
+under `.claude/agent-memory/`.
+
+## MCP tools
+- `lean-lsp` — `lean_leansearch`, `lean_loogle`, `lean_local_search`,
+  `lean_goal`, `lean_diagnostic_messages`, `lean_multi_attempt`, etc.
+- `neo4j-math` — `read_neo4j_cypher`, `write_neo4j_cypher`, `get_neo4j_schema`
+- Embedding servers: Qwen3-8B on `:7999` (GPU), reranker on `:7997` (CPU)
+
+## Where to look next
+
+- `PhysicsPapers/CLAUDE.md` — Lean + Neo4j pipeline + cycle 24–43 bundle
+- `PhysicsPapers/LeanFormalizationV2/CLAUDE.md` — V2 agent onboarding + HARD RULES
+- `PhysicsPapers/LeanFormalizationV2/.neo4j/CLAUDE.md` — ingest pipeline
+- `PhysicsPapers/LeanFormalizationV2/STYLE_GUIDE.md` — naming + proof governance
+- `PhysicsPapers/LeanFormalizationV2/plans/` — live backlog + Grothendieck puzzle
+- `PhysicsPapers/LeanFormalizationV2/notes/` — 14 cycle memos + 5 design memos

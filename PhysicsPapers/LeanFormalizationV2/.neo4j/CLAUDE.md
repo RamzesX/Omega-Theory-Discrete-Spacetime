@@ -6,11 +6,12 @@ Edits to `.lean` files on disk never touch the graph until the pipeline runs.
 
 ## Two ground-truth metaprograms (run from `~/lean-v2`)
 
-### 1. `lake exe dump_declarations`
+### 1. `lake exe dump_decls`
 **Source:** `OmegaTheory/Meta/DumpDeclarations.lean` (Schedar, α Cassiopeiae).
-Emits one JSONL record per Lean environment `ConstantInfo`:
+Lake exe name is `dump_decls`, defined in `~/lean-v2/lakefile.toml`. Emits one
+JSONL record per Lean environment `ConstantInfo`:
 ```
-lake exe dump_declarations --out .neo4j/declarations_from_env_v2.jsonl
+lake exe dump_decls --out .neo4j/declarations_from_env_v2.jsonl
 ```
 Fields per record: `name`, `kind` (theorem/lemma/def/axiom/structure/instance),
 `namespace`, `type` (fully elaborated), `value_body` (proof body for theorems /
@@ -24,7 +25,7 @@ Output: ~50–100 MB for the full OmegaTheory + Mathlib env.
 the 63 KB regex extractor at `.neo4j/extractors/lean_arrow_extractor.py`
 (Mirfak showed it drops 46 % of fresh theorems).
 ```
-lake exe dump_arrows --out .neo4j/arrows_from_env_cycle15.jsonl --include-mathlib
+lake exe dump_arrows --out .neo4j/arrows_from_env_cycleN.jsonl --include-mathlib
 ```
 Emits 12 of 15 V3 arrows directly from `Lean.Environment` without re-inspecting
 proofs (the env IS the ground truth — it already typechecked):
@@ -45,8 +46,10 @@ proofs (the env IS the ground truth — it already typechecked):
 - `IMPORTS` — from `env.header.moduleData[i].imports`
 - `OPENS_NAMESPACE` — SKIPPED in v1 (requires Frontend pass)
 
-Last known snapshot: `arrows_from_env_cycle15.jsonl` — 20,674 records,
-3,481 module imports + 17,193 declaration arrow-rows. Mathlib included.
+Last known snapshot: `arrows_from_env_cycle43.jsonl` (Apr 21, 16 MB) — 23,171
+records including module imports + declaration arrow-rows. Mathlib included.
+Earlier cycle snapshots cycle3..cycle42 retained alongside in `~/lean-v2/.neo4j/`
+for provenance.
 
 ## Two ingest loaders (Python + Neo4j driver, not MCP)
 
@@ -65,7 +68,10 @@ Neo4j hits the `name` indexes instead of full-scanning 1M nodes.
 ```
 python3 load_arrows_parallel.py path/to/arrows_from_env_cycleN.jsonl --workers 16 --batch 1000
 ```
-**Measured: 10-17s for 192k edges (10,000-17,000 edges/s).**
+**Measured: 27,000 edges/s after source-shard fix** (md5(src) % N
+partitioning so 16 workers hit disjoint source nodes — zero Neo4j
+deadlocks, zero retries needed). Earlier naive split measured 10-17k
+edges/s with TransientError deadlocks; kept for reference.
 Idempotent via apoc.merge.relationship. CLI flags:
 - `--workers N` (default 16) — concurrent threads
 - `--batch B` (default 2000) — edges per UNWIND call
@@ -102,13 +108,16 @@ idempotency. Use `load_arrows_parallel.py` for production.
 ```
 cd ~/lean-v2
 ~/.elan/bin/lake build --log-level=error          # must be GREEN
-~/.elan/bin/lake exe dump_declarations --out .neo4j/declarations_from_env_v2.jsonl
+~/.elan/bin/lake exe dump_decls --out .neo4j/declarations_from_env_v2.jsonl
 ~/.elan/bin/lake exe dump_arrows --out .neo4j/arrows_from_env_cycleN.jsonl --include-mathlib
 cd .neo4j
 python3 load_declarations_env_v2.py               # MERGE Theorem/Def/Axiom nodes
-python3 load_arrows_from_env_v2.py                # APOC-batched arrow MERGE
+python3 load_arrows_parallel.py arrows_from_env_cycleN.jsonl \
+        --workers 16 --batch 1000                 # SOTA 27k edges/s
 python3 reembed_qwen3_delta.py                    # Qwen3-8B BF16 embeddings (GPU :7999)
 ```
+(`load_arrows_from_env_v2.py` is the legacy sequential loader kept only for
+debugging — do not use for production ingestion.)
 
 ## Embedding servers
 
@@ -117,12 +126,13 @@ python3 reembed_qwen3_delta.py                    # Qwen3-8B BF16 embeddings (GP
 - `http://localhost:7996/v1/embeddings` — Qwen3-Embedding-8B CPU backup.
 - `http://localhost:7997/rerank` — Qwen3-Reranker-8B CPU.
 
-## Historical delta files
+## Historical delta files (in `~/lean-v2/.neo4j/`, one per cycle)
 
 - `arrows_from_env.jsonl` — Apr 19 initial Sheratan dump (no Mathlib)
 - `arrows_from_env_v2.jsonl` — Rasalhague's post-fun-wave delta (Apr 20 00:41)
-- `arrows_from_env_cycle{3..8}.jsonl` — per-cycle snapshots Apr 20
-- `arrows_from_env_cycle15.jsonl` — current, Apr 20 16:01, Mathlib included
+- `arrows_from_env_cycle{3..42}.jsonl` — per-cycle snapshots Apr 20–21
+- `arrows_from_env_cycle43.jsonl` — current, Apr 21 14:17, Mathlib included
+  (23,171 records, 16 MB). Used for Polaris's Grand Capstone V2 ingest.
 
 ## Why this beats regex
 

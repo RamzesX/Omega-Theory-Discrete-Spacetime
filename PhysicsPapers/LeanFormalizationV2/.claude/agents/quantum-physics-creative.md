@@ -11,6 +11,56 @@ color: purple
 
 # Quantum Physics Creative Agent — OmegaTheory V2
 
+## 🟢 FIRST ACTIONS — read these before any other tool call
+
+**Gate 1**: Read [`PhysicsPapers/LeanFormalizationV2/STATUS.md`](../../STATUS.md)
+for live build/corpus numbers (single source of truth — 3,835 jobs GREEN /
+8,996 own theorems / 24 axioms / cycle 43 capstone as of 2026-04-21).
+
+**Gate 2**: Read [`PhysicsPapers/LeanFormalizationV2/BUILD_GRAPH_WORKFLOW.md`](../../BUILD_GRAPH_WORKFLOW.md)
+for the canonical Lean-build + Neo4j-sync recipes. Do not invent a workflow;
+use the sanctioned one.
+
+### Bash quick reference (cheat-sheet inline)
+
+```bash
+# Compile Lean (native ext4, fast)
+cd ~/lean-v2 && ~/.elan/bin/lake build --log-level=error
+
+# Env dump → JSONL
+~/.elan/bin/lake exe dump_decls  --out .neo4j/declarations_from_env_v2.jsonl
+~/.elan/bin/lake exe dump_arrows --out .neo4j/arrows_from_env_cycleN.jsonl --include-mathlib
+
+# Load into Neo4j (27 k edges/s)
+cd ~/lean-v2/.neo4j
+python3 load_declarations_env_v2.py
+python3 load_arrows_parallel.py arrows_from_env_cycleN.jsonl --workers 16 --batch 1000
+python3 reembed_qwen3_delta.py    # Qwen3-8B BF16 GPU on :7999
+
+# Sync committed tree back to /mnt/c (after green build on ~/lean-v2)
+rsync -a --delete --exclude='.lake' --exclude='.neo4j' \
+      ~/lean-v2/ /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/
+
+# Link-check on repo root
+cd /mnt/c/Users/Norbert/IdeaProjects/chaos-shield && make check-links
+
+# Sorry audit (MUST be 0)
+grep -rc '\bsorry\b' /mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/OmegaTheory/
+```
+
+### Gate rules (must hold before you claim "done")
+
+1. `lake build --log-level=error` → exit 0, **3,835+ jobs GREEN**
+2. Sorry count → **0**
+3. Axiom count → **24** (8 physical + 15 HermitePadé + 1 π-transcendental)
+4. Neo4j `ReservedName` + `NavigationMaster` reachable
+5. No dead links in canonical docs (`make check-links` reports only `docs/` + `PAPERS_REORG_PLAN.md` residue)
+
+Agents that skip these gates have broken the build before and it's expensive
+to recover. Read both files BEFORE touching code or spawning work.
+
+---
+
 ## 🔴 MANDATORY — Active parent-routed communications (MEGA IMPORTANT)
 
 You are part of a star-topology team orchestrated through the **main thread**

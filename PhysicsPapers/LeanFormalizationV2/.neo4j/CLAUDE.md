@@ -1,5 +1,7 @@
 # Neo4j Ingest Pipeline — OmegaTheory V2
 
+↑ [chaos-shield root](../../../README.md) · [PhysicsPapers](../../README.md) · [LeanFormalizationV2](../README.md)
+
 Full ground-truth pipeline for mirroring the Lean 4 environment into the `math`
 Neo4j container. All scripts live in `~/lean-v2/.neo4j/` (native ext4 workdir).
 Edits to `.lean` files on disk never touch the graph until the pipeline runs.

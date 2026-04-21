@@ -9,6 +9,8 @@ scope: adapting V3 (Hypatia + Grothendieck + Erdős) from software architecture 
 
 # OmegaTheoryAlgebra
 
+↑ [chaos-shield root](../../README.md) · [PhysicsPapers](../README.md)
+
 Phase 0 design memos for the V3-for-Lean adaptation. The V3 framework (Marchewka 2026) treats a software system as a typed quiver whose path algebra is non-abelian, whose Magnetic Laplacian is Hermitian, and whose FastRP sub-topologies detect subsystems. This family of files re-derives that framework for Lean 4 on top of OmegaTheory V2 (211 files, ~2612 theorems, 24 axioms, 0 sorry, Mathlib v4.29). Each memo is standalone, one concern per file, cited against V3 papers and OmegaTheory source with line numbers.
 
 > **Count conventions (2026-04-18, per Izar/Docs-Nu reconciliation).** Two parallel counts are cited across these memos:

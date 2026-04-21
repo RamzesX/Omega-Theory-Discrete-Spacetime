@@ -1,5 +1,7 @@
 # OmegaTheory V2 — Lean 4 Formalization
 
+↑ [chaos-shield root](../../README.md) · [PhysicsPapers](../README.md)
+
 Machine-verified formalization of Omega-Theory / Chaos Shield discrete quantum gravity.
 
 **Two central results:**

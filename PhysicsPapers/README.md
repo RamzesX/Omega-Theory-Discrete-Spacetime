@@ -1,5 +1,7 @@
 # Ω-Theory: Document Structure and Reading Guide
 
+↑ [chaos-shield root](../README.md) · [INDEX.md (full flat index)](../INDEX.md)
+
 ## Central Thesis
 
 > **All particles attempt to propagate at the speed of light c.**

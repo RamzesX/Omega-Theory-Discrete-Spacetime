@@ -1,6 +1,8 @@
 # Papers & Documentation
 
-> **Lean formalization status (post cycle 43, 2026-04-21)**: **0 sorry · 8 physical axioms · 3 835 build jobs GREEN**. V2 corpus compiles 8 996 own theorems + 175 137 integrated Mathlib theorems = **184 133 theorems** together on Lean 4 + Mathlib v4.29.0. **34 autonomous agent cycles (10 – 43)** shipped Jan – Apr 2026. Grand meta-capstone: [`omega_theory_v2_final_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607).
+> **Corpus scale** (live 2026-04-21): 🔷 **8,996** OmegaTheoryV2 own theorems · 🔶 **175,137** Mathlib integrated · 🔹 **184,133** total. Build: **3,835 jobs GREEN**, 0 sorry, **8 physical axioms** (+ 15 HermitePadé + 1 π-transcendental = 24 total, tracked separately).
+>
+> **34 autonomous agent cycles (10 – 43)** shipped Jan – Apr 2026 on Lean 4 + Mathlib v4.29.0. Grand meta-capstone: [`omega_theory_v2_final_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607).
 
 ## Mathematics: Conv(ℚ) Framework
 
@@ -47,7 +49,7 @@
 9. [`Appendix-F-Information-Flow-Conservation.md`](PhysicsPapers/appendices/Appendix-F-Information-Flow-Conservation.md) - **Information Conservation**: Fourth Noether law ∂_μJ^μ_I = 0
 10. [`Appendix-G-Graviton-Predictions.md`](PhysicsPapers/appendices/Appendix-G-Graviton-Predictions.md) - **Graviton Predictions**: E_g = E_P/2, 2.32 bits geometric message
 11. [`Appendix-H-Renormalization-Correspondence.md`](PhysicsPapers/appendices/Appendix-H-Renormalization-Correspondence.md) - **Renormalization**: UV cutoff as discrete spacetime signature
-12. [`Appendix-I-Experimental-Tests.md`](PhysicsPapers/appendices/Appendix-I-Experimental-Tests.md) - **Experimental Tests**: 30+ validation protocols
+12. ~~[`Appendix-I-Experimental-Tests.md`](PhysicsPapers/appendices/Appendix-I-Experimental-Tests.md)~~ — **RETRACTED** (historical reference only). Superseded by [`Appendix-J-Experimental-Catalog-Consolidated.md`](PhysicsPapers/appendices/Appendix-J-Experimental-Catalog-Consolidated.md) which is the authoritative PDG-comparable catalog with 20+ Lean-verified predictions (1 experimentally verified: Diraq 2024).
 13. [`Appendix-LorentzDopplerEquivalence.md`](PhysicsPapers/appendices/Appendix-LorentzDopplerEquivalence.md) - **Lorentz-Doppler**: Time dilation as wave mechanics
 14. [`Appendix-P-Einstein-Cartan-Torsion-Integration.md`](PhysicsPapers/appendices/Appendix-P-Einstein-Cartan-Torsion-Integration.md) - **Einstein-Cartan Torsion**: Poplawski synthesis, spin generates torsion, Big Bounce
 15. [`Appendix-S-Stable-Wormholes-And-Chronology-Protection.md`](PhysicsPapers/appendices/Appendix-S-Stable-Wormholes-And-Chronology-Protection.md) - **Stable Wormholes**: Three-tier classification, chronology protection
@@ -68,14 +70,15 @@
 ### Lean 4 Formalization V2 (April 2026, primary, post cycle 43)
 [`LeanFormalizationV2/`](PhysicsPapers/LeanFormalizationV2/) — **Mathlib v4.29.0**, ~211 structured files, **0 sorry · 8 physical axioms · 3 835 build jobs GREEN**.
 
-**Corpus split** (graph-verified 2026-04-21):
+**Three-way corpus split** (graph-verified 2026-04-21):
 
-| Metric | OmegaTheoryV2 (own) | Mathlib (integrated) | V2 build total |
-|---|---:|---:|---:|
-| Theorems | **8 996** | 175 137 | **184 133** |
-| Definitions | **4 465** | 32 917 | **37 382** |
-| Axioms | **24** (8 physical + 15 Hermite-Padé + 1 `π_transcendental`) | 6 | 30 |
-| Cross-namespace edges | 2 029 334 Omega→Mathlib + 1 253 787 Mathlib→Omega = **3.28 M integrating edges** | | |
+| Tier | 🔷 Omega Lean (proved) | 🔶 Graph frontier (open) | 🔹 Mathlib (foundation) | Σ build total |
+|---|---:|---:|---:|---:|
+| Theorems | **8 996** | **166** `:TheoremCandidate` | 175 137 | **184 133** |
+| Definitions | **4 465** | — | 32 917 | **37 382** |
+| Axioms | **24** (paper: 8 physical + 15 Hermite-Padé + 1 `π_transcendental`) | — | 6 | 30 |
+| Analytics nodes | — | 44 paper_worthy `:GraphFinding` · 32 `:GrothendieckRecipe` · 677 `:SubsystemNavigator` (Leiden Q = 0.89) | — | — |
+| Cross-namespace edges | 2 029 334 Omega → Mathlib + 1 253 787 Mathlib → Omega = **3.28 M integrating edges** |
 
 Every own theorem is typed against the Mathlib backbone. **34 autonomous agent cycles** (cycles 10 – 43) shipped Jan – Apr 2026, closing with cycle 43 Polaris: [`omega_theory_v2_final_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607) — paper-citable abstract uniting the cycle-23 grand capstone with the four-channel (π, e, √2, Catalan-G) sterile-neutrino signature.
 

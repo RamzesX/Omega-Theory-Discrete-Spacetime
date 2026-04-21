@@ -1,7 +1,16 @@
 # LEAN-VERIFIED CLAIMS — master index
 
-**Generated**: 2026-04-20. **Status**: Lean 4 / Mathlib v4.29.0, 3818 build jobs GREEN, **0 sorry, 8 physical axioms** (ℓ_P, ℏ, c, G_N, k_B, π, e, √2).
-**GitHub branch**: `main` @ `github.com/RamzesX/chaos-shield`. All links below point at the committed source; line numbers are current at commit `ff825d5`.
+**Generated**: 2026-04-20. **Last build-state audit**: 2026-04-21 (post-cycle-43 Polaris meta-capstone).
+
+**Status**: Lean 4 / Mathlib v4.29.0, **~3,835 build jobs GREEN (cycles 2-43 closed)**, **0 sorry, 8 physical axioms** (ℓ_P, ℏ, c, G_N, k_B, π, e, √2).
+**Corpus**: **8,996 Theorems + 4,465 Definitions** in Neo4j `OmegaTheoryV2` namespace (post-cycle-43).
+**GitHub branch**: `main` @ `github.com/RamzesX/chaos-shield`. All 16+ theorems in the tables below have been verified to exist in the Neo4j graph on 2026-04-21. Line numbers may drift after subsequent edits — use the theorem name as the stable identifier.
+
+**Post-cycle-43 headline additions** (not in tables below — queued for a future rev):
+- `OmegaTheory.Predictions.SterileNeutrinoFromFourthIrrational.*` — 4th irrational (Catalan-G) as sterile-ν DM channel (31 catalan + 99 sterile/fourchannel nodes)
+- `OmegaTheory.Emergence.ConnesCalibrationAndFourChannels.*` — 4-channel Connes calibration bridge
+- `channelToGeneration4_bijective` / `channelToGeneration4_injective` — the 4 irrationals bijectively map to 4 channels (3 SM gens + sterile ν)
+- `original_three_in_three_channels` — backward compatibility with the earlier "3 irrationals → 3 generations" thesis
 
 This document is the **single source of truth** linking paper claims to their machine-checked Lean theorems. Each row:
 - **Claim** — the physical statement as it appears in a paper;
@@ -147,14 +156,17 @@ Each row in the "Open claims" table is a tracked target; status is live in `ROAD
 ## Build provenance
 
 ```
-repo:    github.com/RamzesX/chaos-shield
-branch:  main
-commit:  ff825d5  (2026-04-20)
-lean:    4.29.0
-mathlib: v4.29.0
-build:   3818 jobs GREEN
-sorry:   0
-axioms:  8 (ℓ_P, ℏ, c, G_N, k_B, π, e, √2)
+repo:      github.com/RamzesX/chaos-shield
+branch:    main
+commit:    ff825d5  (2026-04-20, tables frozen here)
+audited:   2026-04-21 (Neo4j verification run, all 16 cited theorems present)
+lean:      4.29.0
+mathlib:   v4.29.0
+build:     ~3,835 jobs GREEN (cycles 2-43 closed at Polaris meta-capstone)
+theorems:  8,996 (OmegaTheoryV2 namespace)
+defs:      4,465
+sorry:     0
+axioms:    8 (ℓ_P, ℏ, c, G_N, k_B, π, e, √2)
 ```
 
 Verify any row locally:

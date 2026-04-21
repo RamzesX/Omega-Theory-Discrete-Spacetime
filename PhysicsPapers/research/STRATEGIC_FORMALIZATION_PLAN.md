@@ -1,6 +1,8 @@
 # Strategic Formalization Plan — Omega Theory / Chaos Shield
 
-**Last updated**: 2026-04-12
+**Last content update**: 2026-04-12.
+**Stale-document notice (Apr-21 audit)**: This plan reflects the state **9 days before Polaris meta-capstone** (cycle 43) and is largely **historical**. The "Current State" box below says 40 files / 690 theorems / 9 axioms / 3368 jobs — the live state on 2026-04-21 is **162 files / 8,996 theorems / 8 axioms / ~3,835 jobs**. The 9th axiom (HPW `hpw_laplacian_ricci_convergence`) was **DELETED on 2026-04-17**; see NEW_HORIZONS.md for the modern 8-axiom state. Tasks 1, 2, 3, 4, 7, 8 are DONE (as already annotated below). Tasks 5 (Weyl CQG Note) and 6 (Trilogy paper) remain the valid forward-looking deliverables — the underlying proofs are stable. The "Future tasks" and "Do NOT pursue" tables remain accurate. For the current open-theorems view see `research/OPEN_THEOREMS.md`; for cycle roadmap see `ROADMAP_CYCLES_24_43.md`.
+
 **Repository root**: `/mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/`
 
 ---

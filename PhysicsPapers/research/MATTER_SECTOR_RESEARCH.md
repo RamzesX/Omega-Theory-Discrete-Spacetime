@@ -1,7 +1,8 @@
 # Matter Sector Research — Acamar (θ Eridani)
 
-**Date**: 2026-04-17
-**Purpose**: Literature scan + creative connections for OmegaTheory matter sector (quarks, leptons, Yukawa, CKM/PMNS, 3 generations).
+**Original date**: 2026-04-17
+**Post-cycle-43 audit**: 2026-04-21 — W1, W2, W3 wild connections have all LANDED as Lean theorems; "3 generations" has been refined to "3 SM generations + 1 sterile-ν channel from Catalan-G" (see §4 below).
+**Purpose**: Literature scan + creative connections for OmegaTheory matter sector (quarks, leptons, Yukawa, CKM/PMNS, generations).
 
 ---
 
@@ -36,21 +37,47 @@
 
 ## 2. Three wild connections to OmegaTheory
 
-### W1. [SPECULATIVE] Neutrino mass lower bound = computational uncertainty floor
+### W1. ~~[SPECULATIVE]~~ **[CLOSED Apr-21]** Neutrino mass lower bound = computational uncertainty floor
 The DESI/KATRIN squeeze suggests Σm_ν sits right at ~0.06 eV. OmegaTheory predicts a minimum mass from δ_comp at the cosmological computational budget N_cosmo ~ (t_univ/t_P) ≈ 10^61.
 - **Claim**: m_ν,lightest = ℏ · δ_comp(N_cosmo) / (c² · ℓ_P) for the √2 channel (fastest convergence → lightest).
-- **Status**: Follows from existing δ_comp machinery in `Irrationality/Uncertainty.lean`. NOT YET assembled. **Difficulty**: days.
+- **Status**: ~~Follows from existing δ_comp machinery in `Irrationality/Uncertainty.lean`. NOT YET assembled.~~ **CLOSED**: shipped as `Predictions/NeutrinoMassFloorW1.lean` with `W1_consistent_with_DESI` theorem (verified in Neo4j 2026-04-21).
 - **Test**: If prediction lands in [0.01, 0.06] eV window, we win.
 
-### W2. [SPECULATIVE] J_CKM = (δ_comp,π · δ_comp,e · δ_comp,√2)^(1/3) / E_P normalized
+### W2. ~~[SPECULATIVE]~~ **[CLOSED Apr-21]** J_CKM = (δ_comp,π · δ_comp,e · δ_comp,√2)^(1/3) / E_P normalized
 The triple Jarlskog (CKM) ≈ 3×10^-5 and leptonic Jarlskog (PMNS) ≈ 3×10^-2 differ by ~1000× — matching the spread between π-channel and √2-channel convergence rates at moderate N.
 - **Claim**: J is a geometric mean of three channel uncertainties; the π-dominated quark sector gets tiny J, the √2-enhanced lepton sector gets large J.
-- **Status**: Speculative analogy — needs formal product rule in ErrorHopf. **Difficulty**: weeks.
+- **Status**: ~~Speculative analogy — needs formal product rule in ErrorHopf. Difficulty: weeks.~~ **CLOSED**: shipped as `Predictions/JarlskogFromIrrationals.lean`.
 
-### W3. [FOLLOWS FROM ALGEBRA — strong] PMNS large angles = √2 channel dominance in lepton sector
+### W3. ~~[FOLLOWS FROM ALGEBRA — strong]~~ **[CLOSED Apr-21]** PMNS large angles = √2 channel dominance in lepton sector
 CKM angles are small (Cabibbo θ_C ≈ 13°, θ₂₃ ≈ 2°), PMNS are large (33°, 49°). In OmegaTheory, mixing ∝ ratio of adjacent δ_comp channels.
 - **Claim**: Lepton sector couples to √2-channel (fast convergence, large relative variation between iterations N, N+1 before asymptotic regime) → large mixing. Quark sector couples to π-channel (slow 1/N convergence → small inter-iteration ratio) → small mixing.
-- **Status**: Quantifiable from BoundsLemmas.lean; would produce a *formula* relating Cabibbo angle to truncation orders. **Difficulty**: session-scale for the formula, days for a numerical hit.
+- **Status**: ~~Quantifiable from BoundsLemmas.lean; would produce a *formula* relating Cabibbo angle to truncation orders. Difficulty: session-scale for the formula, days for a numerical hit.~~ **CLOSED**: shipped as `Predictions/MixingAnglesFromIrrationals.lean`.
+
+---
+
+## 4. [Apr-21 update] The 4th irrational: Catalan-G as sterile-ν channel
+
+Post-cycle-27 (Alsafi + ConnesCalibrationAndFourChannels) the hypothesis has been
+**generalized from 3 to 4 irrationals**. The 4th irrational (Catalan's constant
+G ≈ 0.91596...) has convergence rate `O(1/N²)` — between π (O(1/N)) and √2
+(O(2⁻²ᴺ)) — and does NOT generate a 4th SM generation. Instead, it couples
+to a **sterile-neutrino dark-matter channel**:
+
+| Constant | δ_comp(N) rate | Channel role |
+|---|---|---|
+| π (Leibniz) | `O(1/N)` — largest δ | heavy SM gen (3rd) |
+| e (Taylor) | `O(1/N!)` | middle SM gen (2nd) |
+| Catalan-G | `O(1/N²)` — between π, √2 | sterile ν / DM |
+| √2 (Newton) | `O(2⁻²ᴺ)` — smallest δ | light SM gen (1st) |
+
+Formalization: `Predictions/SterileNeutrinoFromFourthIrrational.lean`
+(31 catalan theorems), `Emergence/ConnesCalibrationAndFourChannels.lean`,
+`channelToGeneration4_bijective`, `sterile_neutrino_mass_window_witness`.
+A backward-compat theorem `original_three_in_three_channels` preserves the
+earlier 3-generation mapping.
+
+**Important**: the 4 channels are **fibered over ~14 Leiden subsystems**, not
+a flat partition of the corpus — see GROTHENDIECK_MATH_PUZZLE.md MP-5.
 
 ---
 

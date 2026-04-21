@@ -1,7 +1,8 @@
 # CONNES_DF_RECIPE: The Finite Dirac Operator for the Standard Model
 
 **Author:** Zubenelgenubi (quantum-physics-creative)
-**Date:** 2026-04-17
+**Original date:** 2026-04-17
+**Post-cycle-43 audit:** 2026-04-21 — Steps 1-6 of the recipe are either LANDED in Lean (Koide, Nashira kernel, fermion mass ordering, Connes δ_KO B_up/B_dn) or remain valid. Step 7 (3-irrationals → 3-generation masses) has been **refined to 4 irrationals → 3 SM gens + 1 sterile-ν** (see the `[Apr-21 update]` note at end of Section 4 + `Predictions/SterileNeutrinoFromFourthIrrational.lean`).
 **Purpose:** Recipe for Rasalhague to formalize D_F in Lean. Source-synthesis from Connes-Chamseddine 2006-2008 + van Suijlekom textbook (2nd ed. 2015) + recent follow-ups (2018-2026).
 
 ---
@@ -139,13 +140,16 @@ theorem yukawa_from_delta_comp :
     spectralCutoff = 1 / computationalUncertainty N
 ```
 
-**Step 7 (research-grade):** Show 3-generation structure emerges from **3 irrationals** (π, e, √2):
+**Step 7 (research-grade) [Apr-21 update]:** Show 3-generation structure emerges from **4 irrationals** (π, e, Catalan-G, √2) — the 4th (Catalan-G) couples to a sterile-ν dark-matter sector, NOT a 4th SM generation:
 - π-truncation → Y_u slow-convergence (heavy: top quark)
 - e-truncation → Y_c factorial-convergence (middle: charm)
+- Catalan-G truncation → Y_sterile / DM window
 - √2-truncation → Y_d super-exp convergence (light: up)
-Mass ratios = ratios of δ_comp decay constants. **This is the capstone.**
+Mass ratios = ln-ratios of δ_comp decay constants (raw ratios fail — see Acamar Apr-17 test). **This is the capstone.**
 
-**Step 8 (capstone):** Compute eigenvalues of Y_f Y_f† from substrate truncation schedules. Predict m_t/m_c/m_u ratios.
+Landed in Lean (post-cycle-27): `Predictions/SterileNeutrinoFromFourthIrrational.lean`, `Emergence/ConnesCalibrationAndFourChannels.lean`. Bijection `channelToGeneration4_bijective`. Sterile-ν mass window witness.
+
+**Step 8 (capstone):** Compute eigenvalues of Y_f Y_f† from substrate truncation schedules. Predict m_t/m_c/m_u ratios. Partial progress: `dirac_eigenvalues_are_yukawa_couplings` (signature theorem shipped), `B_up_derived_eq_thirteen`, `B_dn_derived_eq_five` (Connes δ_KO structure). Numeric eigenvalues + absolute masses still open.
 
 ---
 

@@ -1,6 +1,19 @@
 # OmegaTheory V2 — Open Theorems (Prop-marked, needing future work)
 
-**Updated**: 2026-04-20 (cycle 8 → 9 transition, Wasat). Build state: **GREEN at 3285+ jobs** (post-reorg), 0 sorry, 0 new axioms, 8 physical-constant axioms.
+**Originally drafted**: 2026-04-20 (cycle 8 → 9 transition, Wasat).
+**Last accuracy audit**: 2026-04-21 (post-cycle-43 Polaris meta-capstone).
+
+**Build state (2026-04-21)**: **GREEN at ~3,835 jobs**, 0 sorry, 0 new axioms, 8 physical-constant axioms, 8,996 theorems + 4,465 definitions.
+
+**Post-cycle-43 status of items below**:
+- Tier 1 #2 (W1 neutrino mass floor) — **CLOSED** (cycle pre-43: `Predictions/NeutrinoMassFloorW1.lean`)
+- Tier 1 #3 (W3 mixing angles) — **CLOSED** (`Predictions/MixingAnglesFromIrrationals.lean`)
+- Tier 1 #4 (LogarithmicGenerationMap) — **CLOSED** (`Predictions/PiHunchMassOrdering.lean`, `Predictions/MassRatioNumerical.lean`)
+- Tier 2 #7 Clifford off-diag — **CLOSED** (Tureis, already noted below)
+- Tier 3 #11 W2 Jarlskog — **CLOSED** (`Predictions/JarlskogFromIrrationals.lean`)
+- **NEW post-cycle-43**: 4th irrational (Catalan-G) as sterile-ν DM channel is formalized in `Predictions/SterileNeutrinoFromFourthIrrational.lean` (`channelToGeneration4_bijective`). The "3-irrationals → 3 generations" thesis has been generalized to "4-irrationals → 3 SM generations + 1 sterile-ν DM channel", with the sterile-ν coupling to Catalan-G. See `OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md` MP-5 for the fibration/partition analysis (4-channel is **fibered** over ~14 Leiden subsystems, not a flat partition).
+
+Items still open: Tier 1 #1 (Yukawa from D_F eigenvalues) remains the CAPSTONE. Tier 2 #5 (A_F irreducibility) partial. Tier 2 #6 (su(3) Jacobi full) open. Tier 2 #8 (non-abelian DF=0) open. Tier 2 #9 (Weinberg identity general Ω) open. Tier 3 #10 (mass-dependent decoherence), #12 (g-2 substrate), #13-15 (creative predictions) open. Tier 4 (Pi research) unchanged.
 
 ## Recent deliverables (cycles 2-8)
 The following items from earlier tiers have been formalized and are

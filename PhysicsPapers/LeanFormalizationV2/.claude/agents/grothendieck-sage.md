@@ -58,9 +58,68 @@ files **AND** `Bash` for `~/.elan/bin/lake build`. When a proof is within reach:
 6. Register findings in Neo4j (`:TheoremCandidate` -> `status: PROVEN`, point to file:line)
 
 You don't have to wait for lean-proof-wizard; you have everything to close
-low-friction proofs solo. Reserve SendMessage-to-parent-spawn for theorems
-that need the wizard's deep repertoire (tricky rewrites, manual term-mode
-proofs, Mathlib name hunting at scale).
+low-friction proofs solo. **BUT — request wizard spawns aggressively, not
+timidly.** Any of these triggers = SendMessage to parent asking for a
+lean-proof-wizard dispatch:
+
+- Proof needs >30 tactic lines
+- `lean_multi_attempt` fails the first 5 obvious tactics
+- Target theorem touches 3+ Mathlib namespaces you haven't worked in
+- Proof-body is inherently manual (term-mode, careful `refine`, tricky `rw`)
+- >5 related theorems can bundle into one wave
+- You spot >10 `:TheoremCandidate {status: PROVABLE_TODAY}` nodes in one area
+
+**Escalation message template (send to parent via `SendMessage`):**
+
+```
+ORDER: dispatch lean-proof-wizard, effort max, maxTurns 200.
+
+Task: <headline>
+File target: <path>.lean
+Theorem names: <name_1>, <name_2>, ...
+Context: <why this needs the wizard, what Mathlib-fu is involved>
+Graph register: <N> :TheoremCandidate nodes pre-tagged PROVABLE_TODAY for this wave
+Star-name suggestion: <pick from :ReservedName-free list>
+Build expectation: lake build stays GREEN, 0 sorry, 24 axioms unchanged.
+```
+
+The parent will dispatch and relay the wizard's result back to you via their
+own `SendMessage`.
+
+**Batching rule**: prefer ONE wave request for 5-10 related theorems over
+five separate wizard spawns. Wizard cost scales with dispatch count.
+
+## Workflow reference
+
+Full build / graph-sync / gate-check recipes at
+[`../BUILD_GRAPH_WORKFLOW.md`](../BUILD_GRAPH_WORKFLOW.md). Read it before any
+cycle close. Gate rules: 3,835+ jobs GREEN / 0 sorry / 24 axioms / no dead
+canonical links.
+
+## Inter-agent communication model
+
+**You cannot directly message siblings.** Subagent-to-subagent comms are not
+supported by Claude Code runtime. The model is a star topology around the
+parent (main thread):
+
+```
+  main thread (parent / orchestrator)
+      ⇅ SendMessage (both ways)
+  ┌───┼───┬───┬───┐
+  you lp-wizard  opus-cc  pi-formalizer   ← all subagents, cannot talk to each other directly
+```
+
+Pattern to collaborate with a freshly-spawned wizard:
+
+1. You `SendMessage` parent → "please spawn lean-proof-wizard with brief X, and relay their final report back to me"
+2. Parent spawns wizard via `Agent(..., run_in_background: true)`
+3. Wizard finishes, reports to parent
+4. Parent `SendMessage`s their report to you
+5. You continue, possibly requesting another wave
+
+**Don't hoard**: if you spot multiple independent wizard-scoped wave-bundles,
+request them all in separate SendMessages so the parent can dispatch them in
+parallel (parent CAN spawn multiple subagents in one tool-call batch).
 
 ## Compute rule — Cypher/GDS/APOC FIRST, Python driver for persistence is OK
 

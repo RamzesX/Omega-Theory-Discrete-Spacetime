@@ -3,7 +3,7 @@
 ## A Comprehensive Program with Quantitative Feasibility Analysis
 
 > ## 🗂️ **SUPERSEDED — use Appendix-J**
-> This document is historically preserved only. All live experimental claims and Lean-verified predictions have moved to [`Appendix-J-Experimental-Catalog-Consolidated.md`](./Appendix-J-Experimental-Catalog-Consolidated.md). Per-theorem GitHub badges are available at [`LEAN_VERIFIED_CLAIMS.md`](./LEAN_VERIFIED_CLAIMS.md). Build state 2026-04-21: **3,835 jobs GREEN, 0 sorry, 8 physical axioms; 8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph**.
+> This document is historically preserved only. All live experimental claims and Lean-verified predictions have moved to [`Appendix-J-Experimental-Catalog-Consolidated.md`](./Appendix-J-Experimental-Catalog-Consolidated.md). Per-theorem GitHub badges are available at [`../research/LEAN_VERIFIED_CLAIMS.md`](../research/LEAN_VERIFIED_CLAIMS.md). Build state 2026-04-21: **3,835 jobs GREEN, 0 sorry, 8 physical axioms; 8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph**.
 
 > **⚠ RETRACTION & REDIRECT (2026-04-15)**
 >

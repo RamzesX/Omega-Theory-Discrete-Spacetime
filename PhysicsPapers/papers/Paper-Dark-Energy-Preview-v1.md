@@ -199,7 +199,7 @@ We formalise in Lean 4 (Mathlib v4.29.0, **3,835 build jobs verified, 0 `sorry`,
 **Keywords**: dark energy; cosmological constant; Lean 4 formalisation; discrete spacetime; substrate information cost; photon redshift; three-term conservation; KBC void; firewall paradox; Pi Hunch.
 
 > ### 🔐 Lean-Verified Predictions Badge Index
-> Every Lean theorem cited below is resolvable at a stable GitHub URL (branch `main`, **3,835 jobs GREEN / 0 sorry / 8 physical axioms · 8,996 `:Theorem` nodes in OmegaTheoryV2 Neo4j graph** as of 2026-04-21; cite commit hash at submission). The full cross-reference is in [`LEAN_VERIFIED_CLAIMS.md`](./LEAN_VERIFIED_CLAIMS.md). Quick index of the §§2–6 ledger:
+> Every Lean theorem cited below is resolvable at a stable GitHub URL (branch `main`, **3,835 jobs GREEN / 0 sorry / 8 physical axioms · 8,996 `:Theorem` nodes in OmegaTheoryV2 Neo4j graph** as of 2026-04-21; cite commit hash at submission). The full cross-reference is in [`../research/LEAN_VERIFIED_CLAIMS.md`](../research/LEAN_VERIFIED_CLAIMS.md). Quick index of the §§2–6 ledger:
 >
 > | § | Theorem | File · line |
 > |---|---|---|

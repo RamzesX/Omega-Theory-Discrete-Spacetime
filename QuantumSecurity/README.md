@@ -33,7 +33,7 @@ Defense against HNDL (Harvest Now, Decrypt Later) attacks:
 ## Connection to Omega-Theory
 
 These papers apply information-theoretic principles from the physics work:
-- Information conservation (see [Appendix-F](../PhysicsPapers/Appendix-F-Information-Flow-Conservation.md))
+- Information conservation (see [Appendix-F](../PhysicsPapers/appendices/Appendix-F-Information-Flow-Conservation.md))
 - Computational resource constraints
 - Entropy and information density
 

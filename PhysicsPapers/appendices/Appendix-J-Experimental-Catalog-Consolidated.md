@@ -16,7 +16,7 @@
 > | Diraq 2024 power-law fidelity ✅ (verified Nature 627:772) | [`gateFidelity_is_powerLaw`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/Predictions.lean#L100) | `Emergence/Predictions.lean:100` |
 > | Pi-Hunch mass ordering δ_π > δ_e > δ_√2 | [`pi_hunch_mass_ordering`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/PiHunchMassOrdering.lean#L164) | `Predictions/PiHunchMassOrdering.lean:164` |
 >
-> Build (2026-04-21): **3,835 jobs GREEN, 0 sorry, 8 physical axioms; 8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph (cycles 24-43 backlog closed 2026-04-21, 60-theorem Mekbuda wave + Grand Capstone V2 landed)**. Full cross-reference: [`LEAN_VERIFIED_CLAIMS.md`](./LEAN_VERIFIED_CLAIMS.md).
+> Build (2026-04-21): **3,835 jobs GREEN, 0 sorry, 8 physical axioms; 8,996 `:Theorem` nodes in `OmegaTheoryV2` Neo4j graph (cycles 24-43 backlog closed 2026-04-21, 60-theorem Mekbuda wave + Grand Capstone V2 landed)**. Full cross-reference: [`../research/LEAN_VERIFIED_CLAIMS.md`](../research/LEAN_VERIFIED_CLAIMS.md).
 >
 > ⚠️ **Note on `diraq_coherence_floor`**: this name appears in older drafts but the live theorem is [`gateFidelity_is_powerLaw`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/Predictions.lean#L100) in `Emergence/Predictions.lean`. The file `Predictions/DiraqCoherence.lean` does not exist in the current tree.
 

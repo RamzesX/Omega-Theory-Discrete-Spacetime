@@ -17,7 +17,7 @@
 > | Iteration budget anti-monotone in T | [`iterationBudget_decreases_with_T`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Irrationality/Uncertainty.lean#L108) | `Irrationality/Uncertainty.lean:108` |
 > | π transcendence (axiom until Mathlib Lindemann) | `Real.pi_transcendental` | `Irrationality/HermitePade/` |
 >
-> **Build**: all green, 0 sorry. Full cross-reference: [`LEAN_VERIFIED_CLAIMS.md`](./LEAN_VERIFIED_CLAIMS.md).
+> **Build**: all green, 0 sorry. Full cross-reference: [`../research/LEAN_VERIFIED_CLAIMS.md`](../research/LEAN_VERIFIED_CLAIMS.md).
 
 **Status**: 2026-04-19 (updated).  Conceptual bridge between *KeyInsight-Irrationals-Action-Thresholds.md* (which gives the technical mechanism) and *Appendix-J-Experimental-Catalog-Consolidated.md* (which lists the falsifiable predictions).  This appendix exhibits the single causal chain
 

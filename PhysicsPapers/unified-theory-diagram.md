@@ -657,3 +657,25 @@ This document provides a visual overview of the complete Ω-Theory framework, sh
 **Related Papers**: Main paper (Complete-Omega-Theory-Unified-Framework.md), Appendices A-H
 **Keywords**: Omega space, Standard Model, discrete spacetime, ER=EPR, wormholes, information conservation, Noether symmetry
 
+---
+
+## Lean-Verified Capstone Theorems (post cycle 43, 2026-04-21)
+
+Every branch of the diagram above is anchored by a machine-checked theorem in the Lean 4 / Mathlib v4.29.0 formalisation (**3 835 jobs GREEN, 0 sorry, 8 physical axioms**; 8 996 own theorems + 175 137 integrated Mathlib theorems compile together as **184 133 V2 theorems**):
+
+| Diagram node | Lean witness |
+|---|---|
+| Ω = ⟨1, 2, 3⟩ → Standard Model | [`omega_theory_v2_final_meta_capstone`](LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607) · [`omega_theory_grand_capstone`](LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstone.lean#L271) |
+| Discrete lattice → QM emergence | [`grand_qm_emergence`](LeanFormalizationV2/OmegaTheory/Emergence/QuantumMechanicsCapstone.lean#L368) |
+| Discrete lattice → Einstein vacuum | [`vacuum_einstein_emergence`](LeanFormalizationV2/OmegaTheory/Emergence/EinsteinEmergence.lean#L50) |
+| Irrationals (π, e, √2) → uncertainty | [`irrationality_implies_quantum_uncertainty`](LeanFormalizationV2/OmegaTheory/Probe/PiAndOmegaStructure.lean#L100) |
+| Four channels (π / e / √2 / Catalan-G) → generations | [`extended_pi_hunch_4channels_paper_headline`](LeanFormalizationV2/OmegaTheory/Predictions/SterileNeutrinoFromFourthIrrational.lean#L455) |
+| Gauge (SM) → QFT coupling constants | [`weakCouplingFromSubstrate_pos`](LeanFormalizationV2/OmegaTheory/Emergence/ErrorGaugeSU2.lean#L385) · [`strongCouplingFromSubstrate_pos`](LeanFormalizationV2/OmegaTheory/Emergence/ErrorGaugeSU3.lean#L376) · [`substrate_electroweak_unification_theorem`](LeanFormalizationV2/OmegaTheory/Emergence/ElectroweakUnification.lean#L168) |
+| Healing flow → inflation graceful exit | [`inflation_ends_at_equilibrium`](LeanFormalizationV2/OmegaTheory/Emergence/Inflation.lean#L120) |
+| Wormholes → Big Bounce (Popławski) | [`substrate_avoids_singularity`](LeanFormalizationV2/OmegaTheory/Emergence/NegativePressure.lean#L243) · [`de_to_baby_universe_first_bridge_in_V2`](LeanFormalizationV2/OmegaTheory/Emergence/DarkEnergyToBabyUniverse.lean#L730) |
+| D_ent / CHSH Bell violation | [`substrate_CHSH_violation`](LeanFormalizationV2/OmegaTheory/Emergence/CHSHBell.lean#L105) |
+| Connes D_F ↔ Yukawa / matter sector | [`dirac_eigenvalues_are_yukawa_couplings`](LeanFormalizationV2/OmegaTheory/Emergence/DiracFSpectrum.lean#L456) · [`mass_ratio_e_mu_from_sqrt2_e_channel_ratio`](LeanFormalizationV2/OmegaTheory/Emergence/ConnesDFYukawaMass.lean#L449) |
+
+Each Lean link jumps to the exact source line on `main`.
+
+

@@ -1,5 +1,7 @@
 # Papers & Documentation
 
+> **Lean formalization status (post cycle 43, 2026-04-21)**: **0 sorry · 8 physical axioms · 3 835 build jobs GREEN**. V2 corpus compiles 8 996 own theorems + 175 137 integrated Mathlib theorems = **184 133 theorems** together on Lean 4 + Mathlib v4.29.0. **34 autonomous agent cycles (10 – 43)** shipped Jan – Apr 2026. Grand meta-capstone: [`omega_theory_v2_final_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607).
+
 ## Mathematics: Conv(ℚ) Framework
 
 ### Core Essays (00-09)
@@ -63,8 +65,19 @@
 - Newton-Raphson precision bounds
 - See [`LeanFormalization/README.md`](PhysicsPapers/LeanFormalization/README.md) for details
 
-### Lean 4 Formalization V2 (April 2026, primary)
-[`LeanFormalizationV2/`](PhysicsPapers/LeanFormalizationV2/) — **Mathlib v4.29.0**, ~160 files, ~2 967 theorems / lemmas, 1 415 definitions, **0 sorry · 8 physical axioms · 3 536 build jobs GREEN**.
+### Lean 4 Formalization V2 (April 2026, primary, post cycle 43)
+[`LeanFormalizationV2/`](PhysicsPapers/LeanFormalizationV2/) — **Mathlib v4.29.0**, ~211 structured files, **0 sorry · 8 physical axioms · 3 835 build jobs GREEN**.
+
+**Corpus split** (graph-verified 2026-04-21):
+
+| Metric | OmegaTheoryV2 (own) | Mathlib (integrated) | V2 build total |
+|---|---:|---:|---:|
+| Theorems | **8 996** | 175 137 | **184 133** |
+| Definitions | **4 465** | 32 917 | **37 382** |
+| Axioms | **24** (8 physical + 15 Hermite-Padé + 1 `π_transcendental`) | 6 | 30 |
+| Cross-namespace edges | 2 029 334 Omega→Mathlib + 1 253 787 Mathlib→Omega = **3.28 M integrating edges** | | |
+
+Every own theorem is typed against the Mathlib backbone. **34 autonomous agent cycles** (cycles 10 – 43) shipped Jan – Apr 2026, closing with cycle 43 Polaris: [`omega_theory_v2_final_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607) — paper-citable abstract uniting the cycle-23 grand capstone with the four-channel (π, e, √2, Catalan-G) sterile-neutrino signature.
 
 #### Lean-Verified Falsifiable Predictions — Consolidated (Cycles 2-8)
 
@@ -83,7 +96,29 @@ Ten headline deliverables from the autonomous agent pipeline (cycles 2 through 8
 | 9 | Muon g − 2 | `MuonGminus2SubstrateFit.lean` | 8 | Matar | exact 2.51 · 10⁻⁹ |
 | 10 | Grand meta-capstone | `OmegaTheoryGrandUnifiedCapstone.lean` | 7 | Rigil #2 | biconditional proved |
 
-Plus **40+ supporting prediction theorems** from cycles 2-6 in `Predictions/*.lean` (UHECR dispersion, DESI/Euclid, ILL cold neutron, PMNS neutrino floor, Koide, Nashira kernel, lepton N = 4 uniqueness, cosmological constant, Bell CHSH, Klein–Gordon dispersion, Dirac D_F eigenvalue spectrum, etc.). See `README.md` → *Lean-Verified Highlights* for the full list.
+#### Cycle 24-43 Headline Deliverables
+
+| Cycle | Agent | Headline |
+|:-:|---|---|
+| 24 | Castor | Substrate EW unification, Weinberg angle, m_W / m_Z |
+| 25 | Situla | Ω_total = 1 flatness closure |
+| 26 | Gatria | DE → baby-universe bridge (Popławski) |
+| 27 | Matar | Connes D_F 4-eigenvalue spectrum + Catalan-G 4th channel |
+| 28 | Mirach | DM ↔ DE bridge + EM ↔ Weak common origin |
+| 29 | Tiaki | SU(3) color from 3 irrationals + non-abelian F = dA + [A, A] |
+| 30 | Avior | m_μ / m_e = λ_√2 / λ_e EXACT Connes identity |
+| 31 | Errai | Pi Hunch quantitative (lepton + quark ordering) |
+| 32 | Tejat | Interactions as subsystem boundary crossings |
+| 33 | Alkes | Baryogenesis + leptogenesis Catalan-G CP |
+| 34 | Sadalsuud | Cyclic cosmology (inflation from parent DE) |
+| 35 | Achird | Higgs VEV 246 GeV + m_H 125 GeV + 12-order hierarchy |
+| 37 | Electra | BH info paradox 3-channel resolution |
+| 38 | Cursa | Generalized 2nd law + holography |
+| 40 | Mesarthim | Neutrino mass-sum cosmological bound |
+| 41-42 | Ruchbah | Matter-antimatter asymmetry + no new physics |
+| **43** | **Polaris** | **`omega_theory_v2_final_meta_capstone`** (paper abstract) |
+
+Plus **~120 supporting theorems** (cycles 2-43) in `Predictions/*.lean` + `Emergence/*.lean`. Full cross-reference: [`README.md`](README.md) → *Lean-Verified Highlights* and [`PhysicsPapers/LEAN_VERIFIED_CLAIMS.md`](PhysicsPapers/LEAN_VERIFIED_CLAIMS.md).
 
 ## Quantum Security
 

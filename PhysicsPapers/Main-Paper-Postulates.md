@@ -9,10 +9,13 @@
 ## Abstract
 
 > ### 🔐 Lean-Verified Postulate → Theorem Index
-> All five derived principles below have machine-checked witnesses in the Lean 4 / Mathlib v4.29.0 formalisation (commit `ff825d5`, **3818 jobs GREEN, 0 sorry, 8 physical axioms**). Signature theorems:
+> All five derived principles below have machine-checked witnesses in the Lean 4 / Mathlib v4.29.0 formalisation (post cycle 43, 2026-04-21, **3 835 jobs GREEN, 0 sorry, 8 physical axioms**). The V2 build compiles **184 133 theorems together** — 8 996 own theorems in `OmegaTheoryV2` plus 175 137 integrated Mathlib theorems, linked by 3.28 M cross-namespace composition edges. Signature theorems:
 >
 > | Principle / claim | Lean witness | File · line |
 > |---|---|---|
+> | **Grand meta-capstone v2** (cycle 43 Polaris, paper abstract, four-channel π / e / √2 / Catalan-G + 8-axiom audit + sterile-neutrino 4th-generation bijection) | [`omega_theory_v2_final_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607) | `Predictions/OmegaTheoryGrandCapstoneV2.lean:607` |
+> | **Grand capstone** (cycle 23 Cor Caroli, three-channel partition) | [`omega_theory_grand_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstone.lean#L271) | `Predictions/OmegaTheoryGrandCapstone.lean:271` |
+> | **m_μ / m_e = λ_√2 / λ_e** EXACT Connes-eigenvalue identity (cycle 30 Avior) — matter-sector capstone | [`mass_ratio_e_mu_from_sqrt2_e_channel_ratio`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ConnesDFYukawaMass.lean#L449) · [`connes_DF_yukawa_mass_first_matter_capstone_in_V2`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/ConnesDFYukawaMass.lean#L686) | `Emergence/ConnesDFYukawaMass.lean:449` |
 > | **QM emergence** from 8 constants | [`grand_qm_emergence`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/QuantumMechanicsCapstone.lean#L368) | `Emergence/QuantumMechanicsCapstone.lean:368` |
 > | **Vacuum Einstein equations** (7 regimes, HPW deleted) | [`vacuum_einstein_emergence`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Emergence/EinsteinEmergence.lean#L50) | `Emergence/EinsteinEmergence.lean:50` |
 > | **Irrationality ⇒ QM uncertainty** (the Pi Hunch) | [`irrationality_implies_quantum_uncertainty`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Probe/PiAndOmegaStructure.lean#L100) | `Probe/PiAndOmegaStructure.lean:100` |

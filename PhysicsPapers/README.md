@@ -8,6 +8,8 @@
 > 
 > **This reshaping cost manifests as mass.**
 
+> **Status (post cycle 43, 2026-04-21)**: V2 Lean formalization at **3 835 build jobs GREEN, 0 sorry, 8 physical axioms**. **34 autonomous agent cycles (10 – 43)** shipped. The V2 build compiles **184 133 theorems** together (8 996 own + 175 137 integrated Mathlib). Grand meta-capstone: [`omega_theory_v2_final_meta_capstone`](LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607).
+
 ---
 
 ## Reading Order
@@ -97,16 +99,34 @@ Full technical treatment (~50 pages):
 
 ### 6. Lean Formalization
 
-**Active — V2**: [`LeanFormalizationV2/`](LeanFormalizationV2/) (Mathlib v4.29.0)
-- **31 Lean files, 241 theorems, 0 sorry, 5 logical axioms**
-- Planck relations, Christoffel symmetry, Riemann antisymmetry, Einstein flat
-- `fourth_noether_law_harmonic` — **proven** from shift symmetry (was an axiom in V1)
-- `dissipationRate_nonpos` — **proven** dF/dτ ≤ 0 from gradient flow (was an axiom in V1)
-- `einstein_with_matter_emergence` — THE PRIZE: `|2μR - (λD + γ(I−Ī))| ≤ l_P`, modulo HPW 2006 (single external math axiom)
-- `pi_error_bound`, `e_error_bound`, `sqrt2_error_bound` — concrete convergence rates 4/(2N+3), 3/(N+1)!, 1/2^(2^(N−1))
-- `torsionPressure_negative`, `gravitationalPressure_negative` — Popławski bounce setup
-- `extended_gt_heisenberg`, `gateFidelity_is_powerLaw` — novel predictions
-- See [`LeanFormalizationV2/PROJECT.md`](LeanFormalizationV2/PROJECT.md) and [`LeanFormalizationV2/README.md`](LeanFormalizationV2/README.md) for details.
+**Active — V2 (post cycle 43, 2026-04-21)**: [`LeanFormalizationV2/`](LeanFormalizationV2/) (Mathlib v4.29.0)
+
+- **0 sorry · 8 physical axioms · 3 835 build jobs GREEN**
+- **34 autonomous agent cycles (10 – 43) shipped Jan – Apr 2026**
+
+**Corpus split** (Neo4j graph-verified):
+
+| Metric | OmegaTheoryV2 (own) | Mathlib (integrated) | V2 build total |
+|---|---:|---:|---:|
+| Theorems | **8 996** | 175 137 | **184 133** |
+| Definitions | **4 465** | 32 917 | **37 382** |
+| Axioms | **24** (8 physical + 15 Hermite-Padé + 1 `π_transcendental`) | 6 | 30 |
+| Lean files | ~211 structured | 7 869 | ~8 080 |
+| Cross-namespace edges | 2.03M Omega→Mathlib + 1.25M Mathlib→Omega = **3.28M integrating edges** | | |
+
+Every own theorem is typed against Mathlib. The paper-facing story is **8 physical axioms**: c, c_pos, ℏ, ℏ_pos, G_N, G_N_pos, k_B, k_B_pos. The 15 Hermite-Padé axioms are clearly labelled open-mathematics conjectures sealed inside `Irrationality/HermitePade/`; `Real.pi_transcendental` awaits Mathlib's Lindemann–Weierstrass port.
+
+**Signature theorems (paper-citable)**:
+- `omega_theory_v2_final_meta_capstone` — cycle 43 Polaris paper abstract (four-channel π / e / √2 / Catalan-G partition, [line 607](LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607))
+- `omega_theory_grand_capstone` — cycle 23 Cor Caroli three-channel π / e / √2 SM + cosmology
+- `grand_qm_emergence` — QM from 8 constants (10 von Neumann postulates)
+- `vacuum_einstein_emergence` — Einstein equations (7 regimes, HPW axiom deleted 2026-04-17)
+- `irrationality_implies_quantum_uncertainty` — the Pi Hunch central thesis
+- `mass_ratio_e_mu_from_sqrt2_e_channel_ratio` · `connes_DF_yukawa_mass_first_matter_capstone_in_V2` — cycle 30 Avior matter-sector capstone ([`Emergence/ConnesDFYukawaMass.lean:449`](LeanFormalizationV2/OmegaTheory/Emergence/ConnesDFYukawaMass.lean#L449))
+- `de_to_baby_universe_first_bridge_in_V2` — cycle 26 Gatria DE→baby-universe Popławski bridge
+- `extended_pi_hunch_4channels_paper_headline` — Catalan-G 4th irrational → sterile neutrino 4th generation
+
+See [`LeanFormalizationV2/README.md`](LeanFormalizationV2/README.md) and [`LeanFormalizationV2/ROADMAP_CYCLES_24_43.md`](LeanFormalizationV2/ROADMAP_CYCLES_24_43.md) for the full cycle index.
 
 **Historical — V1**: [`LeanFormalization/`](LeanFormalization/) (Mathlib v4.13.0, superseded)
 - 45 files, ~46 sorries, ~47 axioms. Retained for historical reference only.
@@ -126,8 +146,8 @@ Full technical treatment (~50 pages):
               ▼                       ▼                       ▼
    ┌──────────────────┐   ┌──────────────────┐   ┌──────────────────┐
    │ KeyInsight-      │   │ unified-theory-  │   │    Appendices    │
-   │ Irrationals.md   │   │ diagram.md       │   │    A through I   │
-   │ (Mechanism)      │   │ (Visual)         │   │    + Lorentz     │
+   │ Irrationals.md   │   │ diagram.md       │   │    A-I + Lorentz │
+   │ (Mechanism)      │   │ (Visual)         │   │    + P + S       │
    └────────┬─────────┘   └──────────────────┘   └────────┬─────────┘
             │                                             │
             └─────────────────────┬───────────────────────┘

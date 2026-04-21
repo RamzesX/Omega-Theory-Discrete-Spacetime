@@ -65,10 +65,12 @@ const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
 <style>
   .paper {
-    /* 46rem was too tight for ASCII diagrams (80-95 cols typical) and wide
-       tables. 54rem keeps prose line-length ≤ 90 chars (readable) while
-       giving +8rem for diagrams. */
-    max-width: 54rem;
+    /* 46rem (736px) was too tight for ASCII diagrams + wide tables.
+       54rem felt cramped still with 6-column reference tables.
+       60rem (960px) is the classic physics-paper column width — prose line
+       length around 100 chars (upper-readable, but fine for dense physics
+       content) and gives tables/diagrams enough room. */
+    max-width: 60rem;
     margin: 0 auto;
   }
 

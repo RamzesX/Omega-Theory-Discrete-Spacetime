@@ -4,14 +4,15 @@
 - **Paper story**: 8 physical axioms (PRL/FoP framing)
 - **Full axiom count**: 24 total (8 physical + 15 HermitePade research conjectures + 1 π transcendental)
 - **3,835 build jobs GREEN**, 0 sorry
-- **211 Lean files**
+- **294 Lean files** in `OmegaTheory/` (committed tree; `~/lean-v2/` native workdir
+  holds 428 incl. uncommitted dev files + Meta/ dump executables)
 - **8,996 OmegaTheoryV2 Theorems** (OWN) + **175,137 Mathlib** (integrated) = **184,133 total**
 - **4,465 OmegaTheoryV2 Definitions**
 - Lean v4.29.0 + Mathlib v4.29.0
 - **Cycles 2-43 shipped.** Mekbuda's 60-theorem backlog (cycles 24-43) CLOSED.
 - **Grand Capstone V2** landed (Polaris, cycle 43): `omega_theory_v2_final_meta_capstone` at `OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean`
 
-## Cycle-24-43 landings (14 files)
+## Cycle-24-43 landings (16 files, verified on-disk)
 - ElectroweakUnification
 - OmegaTotalClosure
 - DarkEnergyToBabyUniverse
@@ -26,13 +27,12 @@
 - HiggsAndMassHierarchy
 - QuantumGravityBHInfo
 - SecondLawAndHolography
-- CrossCorpusTests
 - MatterAsymmetryAndNoNewPhysics
 - OmegaTheoryGrandCapstoneV2
 
-## Graph state (Neo4j `math` container, namespace `OmegaTheoryV2`)
-- **86** `:GraphFinding` nodes (44 paper_worthy)
-- **166** `:TheoremCandidate` nodes
+## Graph state (Neo4j `math` container, namespace `OmegaTheoryV2`, live 2026-04-21)
+- **88** `:GraphFinding` nodes (44 paper_worthy)
+- **166** `:TheoremCandidate` nodes (52 closed / 113 open / 1 blocked)
 - **677** `:SubsystemNavigator` nodes
 - **Navi's post-cycle-43 finding**: the 4-channel structure is **FIBERED, not PARTITIONED** — Leiden Q=0.89 but no 4-band gap. See `plans/GROTHENDIECK_MATH_PUZZLE.md` (969 lines).
 
@@ -42,15 +42,24 @@
 ├── README.md                  ← public summary
 ├── PROJECT.md                 ← foundational overview
 ├── STYLE_GUIDE.md             ← naming + proof governance
-├── OmegaTheory/               ← Lean 4 source (211 files)
+├── OmegaTheory/               ← Lean 4 source (294 files committed; 16 subdirs,
+│                              │ largest are Emergence/ 132 + Predictions/ 40 + Geometry/ 29)
 │                              (public paper at ../papers/Paper-QM-From-Discrete-Gravity.md;
 │                               LaTeX submission package at ../submissions/qm-discrete-gravity/)
-├── notes/                     ← NOTES_CYCLE*_TRANSITION.md (historical cycle closures)
+├── ROADMAP_CYCLES_24_43.md    ← historic roadmap (retained for provenance, cycles closed)
+├── notes/                     ← 20 files after 2026-04-21 triage:
+│                              │ 14 cycle closures NOTES_CYCLE{24…35,37,43}_*.md,
+│                              │ 5 open-work design memos (Kempf×2, Seeley-DeWitt,
+│                              │   Gap-Hunter, Proton-Mass), NOTES_QM_AS_DISCRETE_GRAVITY
+│                              │ (README-cited companion)
 ├── plans/                     ← active planning docs (backlog + Grothendieck reports + math puzzle)
+├── scratch/                   ← one-off scripts (quark_ratios_scan.py); deleted from
+│                              │ the ~/lean-v2 ext4 workdir but retained in git
 ├── .neo4j/                    ← Cypher ingestion pipeline (V3-for-Lean)
 └── .claude/                   ← custom agents (gitignored agent-memory)
 ```
-(The `scratch/` and `audits/` folders were deleted on 2026-04-20 during the cycle-43 reorg.)
+(The `audits/` folder was deleted on 2026-04-20 during the cycle-43 reorg. `scratch/`
+retained in git as design record.)
 
 ## Build (WSL-native, NO wsl.exe wrapper)
 ```bash
@@ -127,5 +136,8 @@ Open: replace `Real.pi_transcendental` axiom with Mathlib Lindemann-Weierstrass 
 - **Cycle-24-43 theorem backlog (all 60 landed)** — `plans/THEOREM_BACKLOG_CYCLES_24_43.md`
 - **Grothendieck follow-ups** — `plans/GROTHENDIECK_FOLLOWUP_REPORT.md`, `plans/GROTHENDIECK_DE_REVERSIBILITY.md`
 - **Navi's 4-channel puzzle** — `plans/GROTHENDIECK_MATH_PUZZLE.md` (969 lines; FIBERED vs PARTITIONED analysis, Leiden Q=0.89)
-- **Past cycle closures** — `notes/NOTES_CYCLE*_TRANSITION.md`
+- **Past cycle closures** — `notes/NOTES_CYCLE24..43_*.md` (14 files, various suffixes)
+- **Open-work memos** — `notes/NOTES_KEMPF_BRIDGE.md`, `NOTES_KEMPF_DELTA_CMB.md`,
+  `NOTES_SEELEY_DEWITT_DESIGN.md`, `NOTES_GAP_HUNTER_DESIGN.md`, `NOTES_PROTON_MASS_SCOPE.md`
+  (each carries a post-cycle-43 status banner noting their unshipped followups)
 - **Build state** — check live via `~/.elan/bin/lake build --log-level=error` (0 sorry / 24 axioms / 3,835 jobs as of cycle 43)

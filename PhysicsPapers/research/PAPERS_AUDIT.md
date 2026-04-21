@@ -59,7 +59,7 @@ Net result: 38 unique/authoritative files; 4 deleted (redundant or retracted); 3
 
 ### Cluster 7 — Research / WIP (non-overlapping)
 
-- **KEEP ALL**: `GAUGE_THEORY_RESEARCH.md`, `MATTER_SECTOR_RESEARCH.md`, `CONNES_DF_RECIPE.md`, `HPW_UPGRADE_RECIPE.md`
+- **KEEP ALL**: `GAUGE_THEORY_RESEARCH.md`, `MATTER_SECTOR_RESEARCH.md`, `CONNES_DF_RECIPE.md` *(HPW_UPGRADE_RECIPE.md was scoped here but never written — HPW axiom deleted 2026-04-17, recipe superseded by the direct elimination in `HpwEliminableRegime` typeclass)*
 - **ARCHIVE**: `ErdosLagrangianUnification.md` (Nov 25, STALE) — legacy thread
 - **ACTION**: move active ones to `_research-notes/`
 

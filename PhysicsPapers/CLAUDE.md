@@ -76,7 +76,8 @@ PhysicsPapers/
 ├── research/                      ← STRATEGIC_FORMALIZATION_PLAN, GAUGE_THEORY_RESEARCH,
 │                                    MATTER_SECTOR_RESEARCH, CONNES_DF_RECIPE,
 │                                    LEAN_VERIFIED_CLAIMS, NEW_HORIZONS, OPEN_THEOREMS,
-│                                    HPW_UPGRADE_RECIPE, PAPERS_AUDIT, PAPERS_REORG_PLAN
+│                                    PAPERS_AUDIT, PAPERS_REORG_PLAN
+│                                    (HPW_UPGRADE_RECIPE.md was never written — HPW axiom deleted 2026-04-17)
 └── diagrams/                      ← figures, schematics
 ```
 

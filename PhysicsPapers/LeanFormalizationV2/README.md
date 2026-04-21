@@ -19,20 +19,34 @@ Machine-verified formalization of Omega-Theory / Chaos Shield discrete quantum g
    `HasZeroFunctional`. First machine-checked complete derivation of
    non-relativistic QM from a discrete gravitational substrate.
 
-## Status
+## Status (2026-04-21 — post cycle-43)
+
+### Three-way split: proved · open in graph · Mathlib foundation
+
+| Tier | 🔷 Omega Lean (proved) | 🔶 Graph frontier (open) | 🔹 Mathlib (foundation) |
+|---|---:|---:|---:|
+| Theorems | **8 996** env / 7 107 source | **166** `:TheoremCandidate` (Mekbuda 60 CLOSED; 106 open) | 175 137 |
+| Definitions | **4 465** env / 2 129 source | — | 32 917 |
+| Axioms | **24 total** (paper: 8 physical + 15 Hermite-Padé + 1 π_trans) | — | 6 |
+| Structures | 166 | — | 6 576 |
+| Analytics | — | 44 paper_worthy `:GraphFinding` of 88 · 32 `:GrothendieckRecipe` · 677 `:SubsystemNavigator` (Leiden Q = 0.89) | — |
+| Lean files | 211 structured / 428 total | — | 7 869 |
+| Sorry | **0** | — | 0 |
+| Build jobs | **3 835 GREEN** | — | — |
+
+🔷 what we proved · 🔶 what graph found that's waiting · 🔹 what we build on.
+
+### Other status
 
 | | |
 |---|---|
 | Lean / Mathlib | v4.29.0 |
-| Files | ~81 (80 under `OmegaTheory/` + `OmegaTheory.lean`) |
-| Theorems + definitions | ~1450 |
-| Sorry | **0** (all proofs complete, April 15 2026) |
-| Axioms | **9** declared (8 physical constants + HPW) — **HPW is provably replaceable** on 7 regimes (flat, linearised, static-spherical vacuum, FRW cosmological, Bianchi I anisotropic, de Sitter, Kerr) via `HpwEliminableRegime` typeclass; continuum Christoffel/Riemann/Ricci stack now lives in `Geometry/` (Mizar, Apr 15) as the foundation for general-curved HPW closure |
-| Build | **3285+ jobs, clean** (post cycle-8 reorg, Wasat 2026-04-20) |
-| Cycle-9 numerical fits | `OmegaTheory/Predictions/NumericalFitsCycle9.lean` — `neutronProton_massDifference_fits_1p293` (Δm_np = 1.293 MeV ± 0.01), `muOverE_fits_206p77` (m_μ/m_e = 206.77 ± 0.5), `higgsMass_fits_125p1` (m_H = 125.10 ± 0.15 GeV), bundled in `Cycle9NumericalFits` / `pdgCycle9Witness`. Paper-ready empirical ansatzes, pure ℝ, 0 new axioms. |
-| Companion notes | [`notes/NOTES_QM_AS_DISCRETE_GRAVITY.md`](./notes/NOTES_QM_AS_DISCRETE_GRAVITY.md), [`notes/NOTES_HPW_ELIMINATION.md`](./notes/NOTES_HPW_ELIMINATION.md), public paper at [`../papers/Paper-QM-From-Discrete-Gravity.md`](../papers/Paper-QM-From-Discrete-Gravity.md) (submission package in `../submissions/qm-discrete-gravity/`) |
-| Workstreams complete | A (Einstein form) + B (discrete Poincaré H¹=H²=H³=0) + **C1+C2+C3 (all of C)** + HPW 3-regime elimination + **QM-bridge Option-B full 7-theorem suite + capstone** |
-| Paper in draft | [`../papers/Paper-QM-From-Discrete-Gravity.md`](../papers/Paper-QM-From-Discrete-Gravity.md) — 2,510 lines, 15 sections, 13 advertised theorems. Target: *Foundations of Physics* long-form + *PRL* 4-page letter. |
+| Cycles shipped | **34** (cycles 10-43, Jan-Apr 2026) |
+| Grand Capstone V2 | [`omega_theory_v2_final_meta_capstone`](./OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean) — Polaris cycle 43, unites cycle-23 Cor Caroli + full π/e/√2/Catalan-G partition |
+| HPW axiom | **DELETED 2026-04-17** — 7 regimes HPW-eliminable via `HpwEliminableRegime` typeclass (flat, linearised, Schwarzschild, FRW, Bianchi I, de Sitter, Kerr); continuum Christoffel/Riemann/Ricci stack lives in `Geometry/` |
+| Companion notes | [`notes/NOTES_QM_AS_DISCRETE_GRAVITY.md`](./notes/NOTES_QM_AS_DISCRETE_GRAVITY.md) (README-cited, post-cycle-43 addendum included). Public paper at [`../papers/Paper-QM-From-Discrete-Gravity.md`](../papers/Paper-QM-From-Discrete-Gravity.md) (submission package in `../submissions/qm-discrete-gravity/`). *(Earlier `NOTES_HPW_ELIMINATION.md` design memo deleted 2026-04-21 in post-triage; axiom itself was deleted 2026-04-17.)* |
+| Workstreams complete | A (Einstein form) + B (Poincaré lemma) + C1+C2+C3 (continuum geometry) + HPW 7-regime elimination + QM-bridge 7-theorem suite + **cycle 24-43 Mekbuda backlog** (electroweak, Ω_total, DE↔baby-universe, Connes D_F, SU(3), mass ratios, Pi Hunch quantitative, boundary crossings, baryogenesis, cyclic cosmology, Higgs+hierarchy, QG+BH info, 2nd law+holography, cross-corpus, antimatter+no-new-physics, **Grand Capstone V2**) |
+| Papers in draft | [`../papers/Paper-QM-From-Discrete-Gravity.md`](../papers/Paper-QM-From-Discrete-Gravity.md) (2 510 lines) + [`../V3-for-Lean/paper.tex`](../V3-for-Lean/paper.tex) (827-line LaTeX NeurIPS monolith). Targets: *PRL 2026-06* + *FoP 2026-10* + *NeurIPS 2026 Math-AI / ICLR 2027*. |
 
 See [`PROJECT.md`](./PROJECT.md) for the full architecture, axiom inventory,
 flagship theorems, V1 vs V2 comparison, and optional porting work.

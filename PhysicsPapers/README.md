@@ -30,7 +30,7 @@ Summary paper (~20 pages) presenting:
 ---
 
 ### 2. Mechanism Document
-**File**: `KeyInsight-Irrationals-Action-Thresholds.md`
+**File**: [`papers/KeyInsight-Irrationals-Action-Thresholds.md`](papers/KeyInsight-Irrationals-Action-Thresholds.md)
 
 Technical derivation explaining:
 - How irrationals (π, e, √2) create uncertainty
@@ -104,15 +104,18 @@ Full technical treatment (~50 pages):
 - **0 sorry · 8 physical axioms · 3 835 build jobs GREEN**
 - **34 autonomous agent cycles (10 – 43) shipped Jan – Apr 2026**
 
-**Corpus split** (Neo4j graph-verified):
+**Three-way corpus split** (Neo4j graph-verified, 2026-04-21):
 
-| Metric | OmegaTheoryV2 (own) | Mathlib (integrated) | V2 build total |
-|---|---:|---:|---:|
-| Theorems | **8 996** | 175 137 | **184 133** |
-| Definitions | **4 465** | 32 917 | **37 382** |
-| Axioms | **24** (8 physical + 15 Hermite-Padé + 1 `π_transcendental`) | 6 | 30 |
-| Lean files | ~211 structured | 7 869 | ~8 080 |
-| Cross-namespace edges | 2.03M Omega→Mathlib + 1.25M Mathlib→Omega = **3.28M integrating edges** | | |
+| Tier | 🔷 Omega Lean (proved) | 🔶 Graph frontier (open) | 🔹 Mathlib (foundation) | Σ build total |
+|---|---:|---:|---:|---:|
+| Theorems | **8 996** | **166** `:TheoremCandidate` (Mekbuda 60 CLOSED; 106 open: Navi MP-k bridges + Connes/Kempf gaps + Pi-Hunch frontier) | 175 137 | **184 133** |
+| Definitions | **4 465** | — | 32 917 | **37 382** |
+| Axioms | **24** (paper: 8 physical + 15 Hermite-Padé + 1 `π_transcendental`) | — | 6 | 30 |
+| Lean files | ~211 structured | — | 7 869 | ~8 080 |
+| Analytics | — | 44 `:GraphFinding` paper_worthy (88 total) + 32 `:GrothendieckRecipe` + 677 `:SubsystemNavigator` (Leiden Q = 0.89) | — | — |
+| Cross-namespace edges | 2.03 M Omega → Mathlib + 1.25 M Mathlib → Omega = **3.28 M integrating edges** |
+
+**🔷 what we proved · 🔶 what the graph shows we still need to prove · 🔹 what we build on.**
 
 Every own theorem is typed against Mathlib. The paper-facing story is **8 physical axioms**: c, c_pos, ℏ, ℏ_pos, G_N, G_N_pos, k_B, k_B_pos. The 15 Hermite-Padé axioms are clearly labelled open-mathematics conjectures sealed inside `Irrationality/HermitePade/`; `Real.pi_transcendental` awaits Mathlib's Lindemann–Weierstrass port.
 

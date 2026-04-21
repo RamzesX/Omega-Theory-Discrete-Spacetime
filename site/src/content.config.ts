@@ -15,13 +15,12 @@ const papers = defineCollection({
   }),
 });
 
-const convqmath = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/convqmath' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    order: z.number().optional(),
-  }),
-});
+// NOTE: the previous `convqmath` collection was removed 2026-04-21 because its
+// base directory `./src/content/convqmath` never existed — a dead schema.
+// ConvQMath essays live at the repo root `/ConvQMath/` and are surfaced via
+// the hand-written `src/pages/convqmath.astro` page. To restore a data-driven
+// collection, extend `site/scripts/copy-content.js` to mirror `/ConvQMath/*.md`
+// into `./src/content/convqmath/` at build time, then re-add the defineCollection
+// block here.
 
-export const collections = { papers, convqmath };
+export const collections = { papers };

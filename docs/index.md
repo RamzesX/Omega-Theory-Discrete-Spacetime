@@ -6,6 +6,15 @@ hide:
   - toc
 ---
 
+!!! warning "Deprecated MkDocs mirror — 2026-04-21"
+    This tree is a **legacy MkDocs mirror** that predates the Astro migration. The
+    canonical publishing pipeline is now Astro at `/site/` (auto-deploys to GitHub
+    Pages via `.github/workflows/astro.yml` on every push to `main`). Content here
+    may drift from root-level sources — edit the root `PhysicsPapers/` tree, not
+    these copies. Known drift: `docs/QuantumSecurity/README.md` already differs
+    from `/QuantumSecurity/README.md`. Full deprecation/deletion is tracked as a
+    follow-up; for now, treat this tree as read-only reference.
+
 <style>
 .md-typeset h1 {
   display: none;

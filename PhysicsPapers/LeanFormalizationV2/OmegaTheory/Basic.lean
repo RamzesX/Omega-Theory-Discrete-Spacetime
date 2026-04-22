@@ -239,6 +239,10 @@ import OmegaTheory.Predictions.ChristoffelSparsity
 import OmegaTheory.Predictions.SpinFlipRate
 import OmegaTheory.Predictions.GammaRayDispersion
 import OmegaTheory.Predictions.AdditionalPredictions
+-- Grothendieck MP-2 EVIDENCE landed (Ruchbah, iter-3, 2026-04-22): pure
+-- graph-theoretic skeleton of `omega_corpus_giant_component`. The ℕ-shadow of
+-- Mothallah's Neo4j finding (82.3% giant component, 11 261/13 679 nodes).
+import OmegaTheory.Predictions.OmegaCorpusGiantComponent
 import OmegaTheory.Predictions.WarwickGQuEST
 import OmegaTheory.Predictions.NeutrinoMassFloor
 -- Strong CP problem resolution via √2-channel smallness (Sheliak cycle-13, 2026-04-20)

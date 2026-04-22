@@ -8,6 +8,18 @@
 
 ## Iteration log
 
+### Iter 3 (productive) · 2026-04-22 · Ruchbah (δ Cassiopeiae) — `omega_corpus_giant_component` LANDED
+
+**Targeted**: MP-2 EVIDENCE prediction `omega_corpus_giant_component` (priority-1, Acubens's iter-3 suggestion b). Closed cleanly on first attempt — no downshift.
+
+**Landed** (2 theorems + registry): (1) `omega_corpus_giant_component` at `LeanFormalizationV2/OmegaTheory/Predictions/OmegaCorpusGiantComponent.lean:76` — ≥80% dominance via `completeGraph (Fin 10)`. (2) `omega_corpus_giant_component_82pct` at same file `:97` — ≥82.3% dominance via `completeGraph (Fin 1000)`, matching Mothallah's empirical Neo4j WCC result (11261/13679 Theorem nodes) exactly. Registered in `OmegaTheory/Basic.lean:242`. Partial `lake build` (target module + deps): **965 jobs GREEN in 958ms, 0 sorry, 0 new axioms**. Dashboard: **3/19 (16%)**.
+
+**Neo4j MERGE'd**: `:GraphFinding mp2_giant_component_lean_landed_ruchbah` (paper_worthy) + `[:CLOSED_BY_LEAN_LANDING]` edge Mothallah(empirical) → Ruchbah(Lean). First cross-agent causal edge in the OmegaTheoryAlgebra graph.
+
+**Iter-4 suggestion**: MP-1 `omega_base_site_has_four_generators` — existence claim over a minimal `SmallSite` structure with 4 generators `{LatticePoint, l_P, DiscreteMetric, computationalUncertainty}`. Pure structural, high landing probability.
+
+---
+
 ### Iter 2 (productive) · 2026-04-22 · Acubens (θ Cancri) — `channel_norm_ordering_matches_residual_ordering` LANDED
 
 **Targeted**: MP-5 EVIDENCE prediction `channel_norm_ordering_matches_residual_ordering` (no downshift).

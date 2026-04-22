@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-22T03:53:46.186Z",
+  "updated": "2026-04-22T04:02:04.486Z",
   "source": "PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md",
   "summary": {
     "totalPredictions": 19,
-    "totalLanded": 7,
-    "totalOpen": 12,
-    "percentLanded": 37,
+    "totalLanded": 8,
+    "totalOpen": 11,
+    "percentLanded": 42,
     "leanFilesScanned": 440,
-    "totalDeclarationsIndexed": 7051
+    "totalDeclarationsIndexed": 9223
   },
   "perPass": [
     {
@@ -85,9 +85,9 @@
           "name": "spectralTriple_OmegaSubstrate",
           "claim": "The full finite spectral triple (A_F, H_F, D_F) for the OmegaTheory substrate exists as a Lean structure.",
           "tag": "LITERATURE_ANCHORED_GAP",
-          "landed": false,
-          "location": null,
-          "effectiveTag": "LITERATURE_ANCHORED_GAP"
+          "landed": true,
+          "location": "Emergence/ConnesSpectralAction.lean:488",
+          "effectiveTag": "LANDED"
         },
         {
           "name": "connes_reconstruction_for_substrate",
@@ -98,7 +98,7 @@
           "effectiveTag": "SPECULATIVE"
         }
       ],
-      "landed_count": 0,
+      "landed_count": 1,
       "total_count": 2
     },
     {

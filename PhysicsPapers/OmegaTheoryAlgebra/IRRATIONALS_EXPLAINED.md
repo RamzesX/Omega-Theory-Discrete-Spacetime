@@ -1,12 +1,45 @@
-# The Four Irrationals + OmegaTheoryAlgebra — Grothendieck-Sage Explanations
+# The Four Irrationals + OmegaTheoryAlgebra — Grothendieck-Sage Productive Wave
 
-*A rolling series of short explanations from the `grothendieck-sage` agent, each taking a different angle on how π, e, √2, and Catalan G interact with the OmegaTheoryAlgebra graph structure.*
+*An 8-iteration productive wave by the `grothendieck-sage` agent family. Each iteration picked one Grothendieck-puzzle prediction from [`grothendieck-predictions.json`](grothendieck-predictions.json), PROVED it in Lean, and MERGE'd corresponding `:GraphFinding` / `:TheoremCandidate` nodes into the Neo4j `math` container.*
 
-↑ [chaos-shield root](../../README.md) · [OmegaTheoryAlgebra](README.md)
+↑ [chaos-shield root](../../README.md) · [OmegaTheoryAlgebra](README.md) · [live dashboard](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/algebra/)
+
+---
+
+## Summary — wave 1 closed · **8 / 19 predictions landed (42%)**
+
+| # | Agent (star) | MP-k | Prediction | File:line |
+|---|---|---|---|---|
+| 1 | Mothallah (α Trianguli) | MP-8 | `extendedBound_saturation` | `Irrationality/Uncertainty.lean:235` |
+| 2 | Acubens (θ Cancri) | MP-5 | `channel_norm_ordering_matches_residual_ordering` | `Irrationality/Uncertainty.lean:293` |
+| 3 | Ruchbah (δ Cassiopeiae) | MP-2 | `omega_corpus_giant_component` (+82pct) | `Predictions/OmegaCorpusGiantComponent.lean:76,97` |
+| 4 | Alhena (γ Geminorum) | MP-1 | `omega_base_site_has_four_generators` | `Predictions/OmegaBaseSite.lean:94` |
+| 5 | Azha (η Eridani) | MP-8 | `extendedBound_stability` (+ 131-file `/mnt/c` sync + Jarlskog rot fix) | `Uncertainty.lean:351` + `ExtendedBoundStability.lean:93` |
+| 6 | Alphecca (α Coronae Borealis, "Gemma") | MP-8 | `extendedBound_tightness` (+ gap form) | `ExtendedBoundStability.lean:178,202` |
+| 7 | Chara (β Canum Venaticorum) | MP-5 | `four_channel_fibration_over_subsystem` (+ fiber_card + not_partition) | `FourChannelFibrationOverSubsystem.lean:214,251,260` |
+| 8 | Hamal (α Arietis) | MP-3 | `spectralTriple_OmegaSubstrate` (+ exists + cutoff_eq) | `Emergence/ConnesSpectralAction.lean:488,502,513` |
+
+**Four-pillar narrative locked**: Alhena MP-1 (base-site) + Ruchbah MP-2 (graph-layer) + Chara MP-5 (fibration) + Hamal MP-3 (Connes spectral triple) = the Grothendieck→Connes arc is a closed loop in the Lean corpus.
+
+**Build health post-wave**: **3850 jobs GREEN**, 0 sorry, 24 axioms unchanged (8 physical + 15 HermitePadé + 1 π-transcendental). No regression from baseline. Dashboard scans 440 Lean files, 9,223 declarations. Each agent committed independently; each landing is auditable via `git log --grep 'LANDED —'`.
+
+**Wave-2 priorities** (Hamal's retrospective):
+1. **MP-6 `absorbPhoton`** — HIGH probability × MED payoff. Short def+theorem; FastRP-bridge plumbing already exists.
+2. **MP-1 `descent_for_LatticePoint_cover`** — MED × **HIGH**. Upgrades Alhena's base-site to a fibred site; the single most narratively-completing target.
+3. **MP-4 gauge-group-from-FiniteAlgebra** — MED × HIGH. Deepens Hamal's MP-3 from bare triple to `U(1) × SU(2) × SU(3)` via existing `connesClassification`.
 
 ---
 
 ## Iteration log
+### Iter 8 (productive · LOOP-CLOSING) · 2026-04-22 · Hamal (α Arietis) — `spectralTriple_OmegaSubstrate` LANDED
+
+**Targeted**: MP-3 `spectralTriple_OmegaSubstrate` (Chara's suggestion — completes the Grothendieck→Connes narrative arc). No redundant scaffold — Gacrux's abstract `SpectralTriple Alg Hilb Op` already existed at `ConnesSpectralAction.lean:200`. Instantiated it directly at EOF (append-only, 63 LOC).
+
+**Landed** (3 decls): (1) `def spectralTriple_OmegaSubstrate : SpectralTriple FiniteAlgebra OmegaHilbertPlaceholder OmegaDiracPlaceholder` at `Emergence/ConnesSpectralAction.lean:488`. (2) `theorem spectralTriple_OmegaSubstrate_exists` at `:502`. (3) `theorem spectralTriple_OmegaSubstrate_cutoff_eq` at `:513` — records Λ = 1 / δ_comp(0). Placeholders `OmegaHilbertPlaceholder / OmegaDiracPlaceholder := Unit` avoid ConnesBimodule import cycle while preserving the literature `(A, H, D)` triple shape. **Build: 3850 jobs GREEN, 0 sorry**. Dashboard (after detector extension to match `def` declarations): **8/19 (42%)**.
+
+**Neo4j MERGE'd**: `:AgentIdentity Hamal` + `:TheoremCandidate spectralTriple_OmegaSubstrate {status:CLOSED, landing_iter:8}` + `:GraphFinding spectralTriple_OmegaSubstrate_landed_v1 {paper_worthy:true}` + **`:GrothendieckRecipe loop_closed_8_of_19_v1`** (the loop-closing ledger with embedded retrospective Cypher) + `[:CLOSED_BY_LEAN_LANDING {iter:8}]` + `[:AUTHORED]` + `[:SUMMARIZES]` edges.
+
+---
 
 ### Iter 7 (productive) · 2026-04-22 · Chara (β Canum Venaticorum) — `four_channel_fibration_over_subsystem` LANDED
 

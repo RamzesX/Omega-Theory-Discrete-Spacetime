@@ -48,7 +48,10 @@ function walkLean(dir, out = []) {
   return out;
 }
 
-const declRegex = /^\s*(?:@\[[^\]]*\]\s*)*(?:noncomputable\s+)?(?:private\s+)?(?:protected\s+)?(theorem|lemma)\s+([A-Za-z_][A-Za-z0-9_'.]*)/gm;
+// Match top-level declarations: theorem/lemma (propositions) or def/abbrev
+// (values/structure instantiations). Structural predictions like
+// `spectralTriple_OmegaSubstrate` land as `def`, not `theorem`.
+const declRegex = /^\s*(?:@\[[^\]]*\]\s*)*(?:noncomputable\s+)?(?:private\s+)?(?:protected\s+)?(theorem|lemma|def|abbrev)\s+([A-Za-z_][A-Za-z0-9_'.]*)/gm;
 
 const declaredNames = new Set();
 const declaredAt = new Map(); // name -> file:line

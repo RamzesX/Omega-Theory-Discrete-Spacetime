@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-22T03:06:46.553Z",
+  "updated": "2026-04-22T03:12:45.063Z",
   "source": "PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md",
   "summary": {
     "totalPredictions": 19,
-    "totalLanded": 3,
-    "totalOpen": 16,
-    "percentLanded": 16,
-    "leanFilesScanned": 303,
-    "totalDeclarationsIndexed": 4031
+    "totalLanded": 4,
+    "totalOpen": 15,
+    "percentLanded": 21,
+    "leanFilesScanned": 304,
+    "totalDeclarationsIndexed": 4033
   },
   "perPass": [
     {
@@ -27,9 +27,9 @@
           "name": "omega_base_site_has_four_generators",
           "claim": "The base site of the fibration has exactly four generators: LatticePoint, l_P, DiscreteMetric, computationalUncertainty.",
           "tag": "EVIDENCE",
-          "landed": false,
-          "location": null,
-          "effectiveTag": "EVIDENCE"
+          "landed": true,
+          "location": "Predictions/OmegaBaseSite.lean:94",
+          "effectiveTag": "LANDED"
         },
         {
           "name": "descent_for_LatticePoint_cover",
@@ -40,7 +40,7 @@
           "effectiveTag": "SPECULATIVE"
         }
       ],
-      "landed_count": 0,
+      "landed_count": 1,
       "total_count": 3
     },
     {

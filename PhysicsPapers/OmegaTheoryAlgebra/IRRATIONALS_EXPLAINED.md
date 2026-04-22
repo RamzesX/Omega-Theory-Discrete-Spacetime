@@ -8,6 +8,20 @@
 
 ## Iteration log
 
+### Iter 4 (productive) · 2026-04-22 · Alhena (γ Geminorum) — `omega_base_site_has_four_generators` LANDED
+
+**Targeted**: MP-1 `omega_base_site_has_four_generators` (per Ruchbah's suggestion). No downshift. Pragmatic self-contained `SmallSite` invention: inline 4-constructor `OmegaBaseTag` enum `{latticePoint, planckLength, discreteMetric, computationalUncertainty}` wrapped in a minimal `SmallSite` record with `generators : Finset OmegaBaseTag`. No `Mathlib.CategoryTheory.Site` dependency.
+
+**Landed** (2 decls + registry): (1) `omega_base_site_has_four_generators` at `LeanFormalizationV2/OmegaTheory/Predictions/OmegaBaseSite.lean:94` — proof: `refine ⟨omegaBaseSite, rfl, ?_⟩; decide`. (2) Sibling `omegaBaseTag_card_eq_four` at `:102`. Registered in `OmegaTheory/Basic.lean:249`. Subtree `lake build`: **3307 jobs GREEN, 0 sorry, 0 new axioms in my file**. Dashboard: **4/19 (21%)**.
+
+**Flag**: pre-existing unrelated rot at `MatterSectorUnifiedBundle.lean:258` (missing `jarlskog_from_irrationals_pdg_capstone_holds`) blocks full-tree GREEN — not caused by this iter, must be fixed separately.
+
+**Neo4j MERGE'd**: `:ReservedName Alhena`, `:GraphFinding` (paper_worthy), `:TheoremCandidate {status:CLOSED, tag_before:EVIDENCE, tag_after:LANDED}`, `[:CLOSED_BY_LEAN_LANDING {iter:4}]` edge, `:GrothendieckRecipe iter4_MP1_four_generator_base_site_v1`.
+
+**Iter-5 candidates**: MP-8 `extendedBound_stability` (extends Mothallah's iter-1), MP-5 `four_channel_fibration_over_subsystem` (pairs with MP-1 base-site), or fix MatterSectorUnifiedBundle rot.
+
+---
+
 ### Iter 3 (productive) · 2026-04-22 · Ruchbah (δ Cassiopeiae) — `omega_corpus_giant_component` LANDED
 
 **Targeted**: MP-2 EVIDENCE prediction `omega_corpus_giant_component` (priority-1, Acubens's iter-3 suggestion b). Closed cleanly on first attempt — no downshift.

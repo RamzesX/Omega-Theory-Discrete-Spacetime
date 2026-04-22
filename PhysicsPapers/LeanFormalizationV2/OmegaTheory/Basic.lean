@@ -243,6 +243,11 @@ import OmegaTheory.Predictions.AdditionalPredictions
 -- graph-theoretic skeleton of `omega_corpus_giant_component`. The ℕ-shadow of
 -- Mothallah's Neo4j finding (82.3% giant component, 11 261/13 679 nodes).
 import OmegaTheory.Predictions.OmegaCorpusGiantComponent
+-- Grothendieck MP-1 EVIDENCE landed (Alhena, iter-4, 2026-04-22): four-generator
+-- base site of the OmegaTheory Grothendieck fibration.
+-- `omega_base_site_has_four_generators` anchors Navi's MP-1 prediction with a
+-- minimal inline `SmallSite` record and a 4-constructor `OmegaBaseTag` enum.
+import OmegaTheory.Predictions.OmegaBaseSite
 import OmegaTheory.Predictions.WarwickGQuEST
 import OmegaTheory.Predictions.NeutrinoMassFloor
 -- Strong CP problem resolution via √2-channel smallness (Sheliak cycle-13, 2026-04-20)

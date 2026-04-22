@@ -253,6 +253,12 @@ import OmegaTheory.Predictions.OmegaBaseSite
 -- discrete monotone `extendedBound_stability` (in Uncertainty.lean) and
 -- asymptotic `extendedBound_tendsto_hbarHalf` (here).
 import OmegaTheory.Predictions.ExtendedBoundStability
+-- Grothendieck MP-5 EVIDENCE landed (Chara, iter-7, 2026-04-22): four-channel
+-- Grothendieck fibration over the Leiden-subsystem base.
+-- `four_channel_fibration_over_subsystem` witnesses the fibered (not
+-- partitioned) structure of π/e/√2/Catalan-G channels over ~14 major Leiden
+-- subsystems (Navi MP-5 cycles 44+ frontier).
+import OmegaTheory.Predictions.FourChannelFibrationOverSubsystem
 import OmegaTheory.Predictions.WarwickGQuEST
 import OmegaTheory.Predictions.NeutrinoMassFloor
 -- Strong CP problem resolution via √2-channel smallness (Sheliak cycle-13, 2026-04-20)

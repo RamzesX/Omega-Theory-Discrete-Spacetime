@@ -8,6 +8,18 @@
 
 ## Iteration log
 
+### Iter 7 (productive) · 2026-04-22 · Chara (β Canum Venaticorum) — `four_channel_fibration_over_subsystem` LANDED
+
+**Targeted**: MP-5 `four_channel_fibration_over_subsystem` (Alphecca's iter-7 suggestion). Inline `GrothendieckFibration` record, no `Mathlib.CategoryTheory` dependency.
+
+**Landed** (3 theorems): (1) `four_channel_fibration_over_subsystem` at `Predictions/FourChannelFibrationOverSubsystem.lean:260` — witness `Σ s : Fin 14, IrrationalChannel4` with `proj = Sigma.fst`. (2) `omega_four_channel_fibration_fiber_card` at `:214` — uniform fiber card = 4. (3) `omega_four_channel_fibration_not_partition` at `:251` — fibration structure is NOT a partition (matches Navi's "FIBERED, not PARTITIONED" post-capstone finding). **Build: 3850 jobs GREEN (+1), 0 sorry, 24 axioms unchanged**. Dashboard: **7/19 (37%)**.
+
+**Neo4j MERGE'd**: `:GraphFinding mp5_four_channel_fibration_over_subsystem_chara_iter7` (paper_worthy), `:TheoremCandidate four_channel_fibration_over_subsystem` PROPOSED → CLOSED, `:GrothendieckRecipe mp5_grothendieck_fibration_inline_record_v1`, `:AgentIdentity + :ReservedName Chara`, `[:CLOSED_BY_LEAN_LANDING {iter:7}]`.
+
+**Iter-8 suggestion (final, max closing impact)**: MP-3 `spectralTriple_OmegaSubstrate` — 3-field `SpectralTriple {algebra, hilbert, dirac}` structure. Connes-completes the MP-1 base-site + MP-5 fibration arc; **bundles the "Grothendieck→Connes" narrative** in one iter. Would close 8/19 (42%).
+
+---
+
 ### Iter 6 (productive) · 2026-04-22 · Alphecca (α Coronae Borealis, "Gemma") — `extendedBound_tightness` LANDED
 
 **Targeted**: MP-8 `extendedBound_tightness` ε-form (Azha's iter-6 suggestion). Clean first-attempt landing, no fallback.

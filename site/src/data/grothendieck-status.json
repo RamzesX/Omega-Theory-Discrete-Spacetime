@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-22T03:46:18.302Z",
+  "updated": "2026-04-22T03:53:46.186Z",
   "source": "PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md",
   "summary": {
     "totalPredictions": 19,
-    "totalLanded": 6,
-    "totalOpen": 13,
-    "percentLanded": 32,
-    "leanFilesScanned": 439,
-    "totalDeclarationsIndexed": 7046
+    "totalLanded": 7,
+    "totalOpen": 12,
+    "percentLanded": 37,
+    "leanFilesScanned": 440,
+    "totalDeclarationsIndexed": 7051
   },
   "perPass": [
     {
@@ -143,9 +143,9 @@
           "name": "four_channel_fibration_over_subsystem",
           "claim": "The four-channel structure is a fibration over SubsystemNavigator, not a partition.",
           "tag": "SPECULATIVE",
-          "landed": false,
-          "location": null,
-          "effectiveTag": "SPECULATIVE"
+          "landed": true,
+          "location": "Predictions/FourChannelFibrationOverSubsystem.lean:255",
+          "effectiveTag": "LANDED"
         },
         {
           "name": "no_sharp_4_band_gap_in_leiden",
@@ -156,7 +156,7 @@
           "effectiveTag": "EVIDENCE"
         }
       ],
-      "landed_count": 1,
+      "landed_count": 2,
       "total_count": 3
     },
     {

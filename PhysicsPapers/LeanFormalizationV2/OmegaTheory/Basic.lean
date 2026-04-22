@@ -282,6 +282,12 @@ import OmegaTheory.Predictions.GrothendieckWave3
 -- Laplacian canonical castLE injection, wave-lineage well-foundedness,
 -- 22-of-28 cumulative closure.
 import OmegaTheory.Predictions.GrothendieckWave3Extras
+-- Wave-5 graph→physics feedback (2026-04-22): three Tier-1 theorems
+-- from Spica's WAVE3_DIRECTION memo §4 — all_QM_phenomena_route_through_l_P_pos
+-- (7-constructor QMPhenomenon inductive + l_P_pos anchor),
+-- hermite_pade_is_the_proof_theoretic_higgs (top-20 PageRank witness),
+-- sr_dominance_as_derivational_precedence (269/47 ∈ (5, 6) rational bracket).
+import OmegaTheory.Predictions.GraphToPhysicsWave5
 -- Grothendieck WAVE-4 bucket D (gauge / CPT / parity duals, 2026-04-22):
 -- 7 dual-pair existence witnesses — rightAction_C/M3_parity_dual,
 -- rightLeptonDoubletY/rightQuarkDoubletY parity, RightHandedDoublet structure,
@@ -1724,6 +1730,17 @@ import OmegaTheory.Predictions.ParticleWave4Fits
 -- (τ_p > 10³⁴ yr existence from Alkaid cycle-19 infrastructure).  Packaged
 -- 5-conjunct capstone `frontier_wave4_E_capstone`.
 import OmegaTheory.Predictions.FrontierWave4
+
+-- Wave5Enrichments (Wave-5 wizard C, 2026-04-22): three enriched-witness
+-- upgrades of Wave-4 bucket-E minimum forms —
+-- `extendedBound_saturation_hilbert_enriched` (carrier upgraded from `Unit`
+-- to ℝ with genuine `Module ℝ ℝ` instance, the smallest honest 1-dim
+-- real vector space), `ProtonLifetimeBound_tight` (numeric tightening to
+-- Super-K 2020 bracket τ_p > 1.67·10³⁴ yr with τ ≠ 0 non-degeneracy),
+-- `HiggsMassReconciliation_identity` (abstract algebraic identity
+-- ∀ m_H_sq lam v, m_H² = 2 λ v² → m_H²/2 = λ v², universally quantified,
+-- closed by `linarith`).  Packaged as 3-conjunct `wave5_C_enrichments_capstone`.
+import OmegaTheory.Predictions.Wave5Enrichments
 
 -- AlphaStrongAtMZFit (2026-04-20 cycle-14 target 2/6): strong coupling
 -- at the Z pole `α_s(m_Z²) = 0.1180 ± 0.0009` (PDG 2024 world average)
@@ -3448,3 +3465,18 @@ import OmegaTheory.Predictions.CosmologyWave4Fits
 -- `ic_wave4C_first_open_problem_envelope_in_V2`.
 -- 0 sorry, 0 new axioms.
 import OmegaTheory.IrrationalityClasses.Wave4Landings
+
+-- FastRPBridgesWave5 (Wave 5 wizard B, 2026-04-22): 5 FastRP-predicted
+-- kNN bridge theorems (Aludra's wave-3 single-most-impactful-next-step)
+-- closing >0.87 cosine-similarity edges that the Neo4j embedding graph
+-- predicts but the Lean APPLIES DAG currently lacks.  Bridges:
+--   1. l_P → Schrödinger time-evolution basis (Real.exp 0 witness)
+--   2. pi_error_val 3 → positive dispersion frequency ω
+--   3. sqrt2_error_val 3 → sub-unit neutrino mass scale
+--   4. catalan_error_val 3 → fourth (sterile) channel witness n=4
+--   5. computationalUncertainty 0 → Heisenberg non-negativity lemma
+-- Plus `fastrp_bridges_wave5_bundle` 5-conjunct + frontier
+-- marker `fastrp_bridges_wave5_first_kNN_closure_in_V2`.
+-- All 5 are real conditional theorems (real hypothesis, real conclusion),
+-- no `True := trivial` stubs.  0 sorry, 0 new axioms.
+import OmegaTheory.Predictions.FastRPBridgesWave5

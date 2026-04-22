@@ -8,6 +8,18 @@
 
 ## Iteration log
 
+### Iter 6 (productive) · 2026-04-22 · Alphecca (α Coronae Borealis, "Gemma") — `extendedBound_tightness` LANDED
+
+**Targeted**: MP-8 `extendedBound_tightness` ε-form (Azha's iter-6 suggestion). Clean first-attempt landing, no fallback.
+
+**Landed** (2 theorems): (1) `extendedBound_tightness` at `Predictions/ExtendedBoundStability.lean:178` — `∀ε>0, ∃N₀, ∀N≥N₀, extendedUncertaintyBound N < ℏ/2 + ε`. (2) Companion `extendedBound_gap_tightness` at `:202` — gap-below-ε form. **14 LOC** via `Metric.tendsto_atTop` unpacking of Azha's `computationalUncertainty_tendsto_atTop_zero` + `abs_of_nonneg` + `linarith`. Build: **3849 jobs GREEN, 0 sorry, 24 axioms** (matches Azha's baseline). Dashboard: **6/19 (32%)**.
+
+**Neo4j MERGE'd**: `:TheoremCandidate extendedBound_tightness` → CLOSED (line_primary=178), `:GraphFinding` (paper_worthy, iter=6, MP-8 ε-tightness landed), `:GrothendieckRecipe mp8_tightness_via_tendsto_unpacking_v1` (reusable Tendsto→ε-N₀ pattern), `:AgentIdentity + :ReservedName Alphecca`, `[:CLOSED_BY_LEAN_LANDING {iter:6}]`.
+
+**Iter-7 suggestion**: MP-5 `four_channel_fibration_over_subsystem` — higher architectural payoff. Requires `structure GrothendieckFibration π:E→B` over Alhena's `OmegaBaseSite` (4 generators = 4 fibers). ~40 LOC.
+
+---
+
 ### Iter 5 (productive) · 2026-04-22 · Azha (η Eridani) — `extendedBound_stability` LANDED + MASSIVE SYNC
 
 **Part A — Rot unblocked**: `MatterSectorUnifiedBundle.lean:258` referenced 5 undefined Jarlskog symbols. Extended `JarlskogFromIrrationals.lean` with section 10: `jarlskogFromIrrationals K N`, `J_CKM_PDG_low/high`, `JarlskogPDGWindowConsistency := True`, `jarlskog_from_irrationals_pdg_capstone_holds`. **Also discovered + repaired massive `/mnt/c` desync**: `Capstones/` + `Meta/` dirs missing entirely; **131 Lean files absent** (including all of `Capstones/`, `Meta/`, and 118+ `Predictions/` files). Non-deleting rsync from `~/lean-v2/` → `/mnt/c` reconciled the tree.

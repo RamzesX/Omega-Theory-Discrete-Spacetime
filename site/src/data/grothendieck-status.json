@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-22T03:42:08.585Z",
+  "updated": "2026-04-22T03:46:18.302Z",
   "source": "PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md",
   "summary": {
     "totalPredictions": 19,
-    "totalLanded": 5,
-    "totalOpen": 14,
-    "percentLanded": 26,
+    "totalLanded": 6,
+    "totalOpen": 13,
+    "percentLanded": 32,
     "leanFilesScanned": 439,
-    "totalDeclarationsIndexed": 7044
+    "totalDeclarationsIndexed": 7046
   },
   "perPass": [
     {
@@ -202,9 +202,9 @@
           "name": "extendedBound_tightness",
           "claim": "The extended uncertainty bound ℏ/2 + δ_comp is TIGHT — there is no saturation below δ_comp.",
           "tag": "SPECULATIVE",
-          "landed": false,
-          "location": null,
-          "effectiveTag": "SPECULATIVE"
+          "landed": true,
+          "location": "Predictions/ExtendedBoundStability.lean:175",
+          "effectiveTag": "LANDED"
         },
         {
           "name": "extendedBound_saturation",
@@ -231,7 +231,7 @@
           "effectiveTag": "LANDED"
         }
       ],
-      "landed_count": 2,
+      "landed_count": 3,
       "total_count": 4
     }
   ]

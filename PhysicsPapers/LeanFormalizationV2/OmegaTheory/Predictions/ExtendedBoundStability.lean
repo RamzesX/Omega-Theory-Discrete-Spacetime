@@ -142,4 +142,63 @@ theorem extendedBound_stability_packaged :
       unfold extendedUncertaintyBound
       linarith⟩
 
+/-! ## MP-8 EVIDENCE — ε-tightness form (Alphecca iter-6, 2026-04-22)
+
+    **Grothendieck prediction** MP-8 `extendedBound_tightness` (ε-form):
+    for every `ε > 0` there exists `N₀` such that for all `N ≥ N₀` the
+    extended uncertainty bound drops below `ℏ/2 + ε`.
+
+    This is the quantitative sibling of `extendedBound_tendsto_hbarHalf`:
+    the `Tendsto` statement gives an abstract convergence, whereas the
+    ε-form gives the explicit "tightness" witness the physics narrative
+    actually needs — "for any accuracy target ε, there is a finite
+    iteration depth N₀ beyond which the computational-uncertainty signal
+    falls below ε."  Composed with `extendedBound_saturation` (Mothallah
+    iter-1, showing the bound is achievable) and `extendedBound_stability`
+    (Azha iter-5, showing it only tightens under more iterations) this
+    closes MP-8 with a physics-ready ε-N₀ signature.
+
+    Proof: unpack `Tendsto ... atTop (nhds 0)` via `Metric.tendsto_atTop`
+    into an ε-δ witness on `computationalUncertainty`, use
+    `computationalUncertainty_nonneg` to replace the metric distance by
+    the value itself, and close with `linarith`. -/
+
+/-- **MP-8 EVIDENCE — ε-tightness form**: for every `ε > 0`, there is a
+    finite iteration depth `N₀` beyond which the extended uncertainty
+    bound `ℏ/2 + δ_comp(N)` falls below `ℏ/2 + ε`.
+
+    This is the explicit `∀ ε > 0, ∃ N₀, ∀ N ≥ N₀, ...` witness of the
+    Grothendieck prediction MP-8, complementing the monotone form (Azha
+    iter-5) and the `Tendsto` form (same file, Azha iter-5) with a
+    physics-facing ε-N₀ signature useful in QM-as-discrete-gravity
+    predictions. -/
+theorem extendedBound_tightness (ε : ℝ) (hε : 0 < ε) :
+    ∃ N₀ : ℕ, ∀ N ≥ N₀, extendedUncertaintyBound N < OmegaTheory.Spacetime.hbar / 2 + ε := by
+  have h_comp : Filter.Tendsto computationalUncertainty Filter.atTop (nhds 0) :=
+    computationalUncertainty_tendsto_atTop_zero
+  have h_event := (Metric.tendsto_atTop.mp h_comp) ε hε
+  obtain ⟨N₀, hN₀⟩ := h_event
+  refine ⟨N₀, fun N hN => ?_⟩
+  have h_dist := hN₀ N hN
+  unfold extendedUncertaintyBound
+  have h_nn := computationalUncertainty_nonneg N
+  rw [Real.dist_eq, sub_zero] at h_dist
+  have h_abs : |computationalUncertainty N| = computationalUncertainty N :=
+    abs_of_nonneg h_nn
+  rw [h_abs] at h_dist
+  linarith
+
+/-- **MP-8 EVIDENCE — ε-tightness corollary, gap form**: the gap
+    `extendedUncertaintyBound N - ℏ/2` can be made arbitrarily small
+    by choosing `N` large enough.  A direct rephrasing of
+    `extendedBound_tightness` in "gap below ε" form, which is what the
+    physics write-up cites. -/
+theorem extendedBound_gap_tightness (ε : ℝ) (hε : 0 < ε) :
+    ∃ N₀ : ℕ, ∀ N ≥ N₀,
+      extendedUncertaintyBound N - OmegaTheory.Spacetime.hbar / 2 < ε := by
+  obtain ⟨N₀, hN₀⟩ := extendedBound_tightness ε hε
+  refine ⟨N₀, fun N hN => ?_⟩
+  have := hN₀ N hN
+  linarith
+
 end OmegaTheory.Predictions

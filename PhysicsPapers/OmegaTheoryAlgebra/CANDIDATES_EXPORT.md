@@ -26,25 +26,43 @@ docker exec math cypher-shell -u neo4j -p omegatheory2026 -d neo4j --format plai
 
 ---
 
-## Status summary (2026-04-22)
+## Status summary (2026-04-22, post wave 3)
 
 | Status | Count | Meaning |
 |---|--:|---|
-| `PROPOSED` | 45 | open — not yet written in Lean |
+| `PROVEN` | 47 | Lean proof exists, landed pre-wave-1 |
+| `NULL` | 24 | legacy / pre-MP (post-wave-3 triage reduced 84 → 24) |
+| `PROPOSED` | 16 | open — not yet written in Lean (post-wave-3 triage reduced 46 → 16) |
+| `BLOCKED_ON_MATHLIB` | 13 | waiting on upstream Mathlib (e.g. Connes reconstruction, CMB observation types) |
+| `SUPERSEDED_BY_WAVE3` | 12 | deprecated in favor of wave-3 canonical forms, `:SUPERSEDES` edge in graph |
+| `CANDIDATE` | 6 | alt label for proposed, retained for back-compat |
+| `CLOSED` | 6 | landed in Lean (legacy tag pre-`CLOSED_BY_LEAN_LANDING` edge) |
+| `GREEN` / `PROVED_GREEN` | 4 + 1 | landed + build green |
+| `BLOCKED_ON_FRAMEWORK` | 3 | waiting on framework gap (distinct from Mathlib) |
+| `CONJECTURAL` | 2 | research conjecture, no clear approach |
 | `OPEN` | 2 | actively being worked on |
 | `OPEN_PROBLEM` | 1 | hard research problem, no known approach |
-| `PROVEN` | 47 | Lean proof exists, landed pre-wave-1 |
-| `FORMALIZED` | 43 | Lean statement exists (may or may not have proof) |
-| `CLOSED_BY_LEAN_LANDING` | 21 | wave-2 Aludra closures with explicit edge |
-| `FRONTIER_SCAFFOLDED` | 1 | scaffold present, awaiting flesh |
-| `PROVABLE_TODAY` | 1 | agent-tagged as trivial, not yet written |
 | `STATEMENT_READY` | 1 | statement Lean-parseable, proof pending |
+| `PROVABLE_TODAY` | 1 | agent-tagged as trivial, not yet written |
+| `FRONTIER_SCAFFOLDED` | 1 | scaffold present, awaiting flesh |
 | `ALREADY_CLOSED` | 1 | landed under a different name |
-| `GREEN` / `PROVED_GREEN` | 4 + 1 | landed + build green |
-| `BLOCKED_ON_FRAMEWORK` | (few) | waiting on upstream Mathlib / framework gap |
-| (no status set) | 84 | legacy / pre-MP; see WAVE3_DIRECTION.md (upcoming) for triage |
+| `BLOCKED_STATEMENT` | 1 | statement blocked on a missing definition |
+| `DELIVERED` / `DONE` | 1 + 1 | landed + paper deliverable |
 
-**Total: 259 `:TheoremCandidate` nodes.**
+**Total: 310 `:TheoremCandidate` nodes** (was 259 pre-wave-3; +51 from 18 wave-3 landings + new candidates generated + 33 external audit triage).
+
+**Edges `[:CLOSED_BY_LEAN_LANDING]`: 42 distinct candidates closed via explicit edge** (wave-1 ×6 + wave-2 ×21 + wave-3 ×18 minus overlap).
+
+### Wave-by-wave delta
+
+| | Wave-2 (pre-Aludra) | Wave-3 (post-Spica) | Δ |
+|---|--:|--:|--:|
+| Total `:TheoremCandidate` | 259 | 310 | +51 |
+| PROPOSED | 46 | 16 | **-30** |
+| NULL | 84 | 24 | **-60** |
+| CLOSED_BY_LEAN_LANDING (edge) | 21 | 42 | +21 |
+| SUPERSEDED_BY_WAVE3 (new) | 0 | 12 | +12 |
+| BLOCKED_ON_MATHLIB | — | 13 | +13 (newly classified) |
 
 ---
 

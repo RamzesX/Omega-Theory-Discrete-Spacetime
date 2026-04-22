@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-22T08:21:30.873Z",
+  "updated": "2026-04-22T08:49:39.517Z",
   "source": "PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md",
   "summary": {
     "totalPredictions": 28,
-    "totalLanded": 22,
-    "totalOpen": 6,
-    "percentLanded": 79,
-    "leanFilesScanned": 442,
-    "totalDeclarationsIndexed": 9251
+    "totalLanded": 24,
+    "totalOpen": 4,
+    "percentLanded": 86,
+    "leanFilesScanned": 444,
+    "totalDeclarationsIndexed": 9269
   },
   "perPass": [
     {
@@ -310,18 +310,18 @@
           "claim": "95.2% of APPLIES edges have ZERO triangles in OmegaTheoryV2 — Forman-Ricci curvature is extremely negative across the corpus, implying tree-like / hyperbolic proof-graph structure. The global triangle count is only 616 on 184,295 nodes.",
           "tag": "EVIDENCE",
           "discovered_by": "Aludra wave-2 (2026-04-22)",
-          "landed": false,
-          "location": null,
-          "effectiveTag": "EVIDENCE"
+          "landed": true,
+          "location": "Predictions/GrothendieckWave3.lean:238",
+          "effectiveTag": "LANDED"
         },
         {
           "name": "betweenness_pi_hunch_master_gatekeeper",
           "claim": "The top 4 betweenness-centrality nodes on the 184K-corpus are l_P_pos, pi_error_pos, sqrt2_error_pos, computationalUncertainty_pos — EVERY shortest path in the corpus routes through Pi-Hunch / substrate axioms.",
           "tag": "EVIDENCE",
           "discovered_by": "Aludra wave-2 (2026-04-22)",
-          "landed": false,
-          "location": null,
-          "effectiveTag": "EVIDENCE"
+          "landed": true,
+          "location": "Predictions/GrothendieckWave3.lean:261",
+          "effectiveTag": "LANDED"
         },
         {
           "name": "berry_holonomy_only_8_loops",
@@ -342,7 +342,7 @@
           "effectiveTag": "EVIDENCE"
         }
       ],
-      "landed_count": 4,
+      "landed_count": 6,
       "total_count": 8
     }
   ]

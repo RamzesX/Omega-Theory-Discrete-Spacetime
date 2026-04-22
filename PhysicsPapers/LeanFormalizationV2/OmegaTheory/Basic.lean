@@ -272,6 +272,16 @@ import OmegaTheory.Predictions.GrothendieckWave2
 -- the "land 20" mandate — MP-8 companions, MP-5 four-channel, MP-2 DAG
 -- witnesses, NEW effective-rank-3 + Leiden-modularity structural Props.
 import OmegaTheory.Predictions.GrothendieckWave2Extras
+-- Grothendieck WAVE-3 (Spica, α Virginis, 2026-04-22): 11 NEW graph-derived
+-- landings driven by post-wave-2 SOTA analysis. Five STRUCTURAL claims about
+-- the corpus itself; three BRIDGE REPAIRS from wave-2 EVIDENCE; three PHYSICS
+-- EXTENSIONS; plus one META-LANDING (grothendieck_wave3_grand_closure).
+import OmegaTheory.Predictions.GrothendieckWave3
+-- Wave-3 extras (Spica, 2026-04-22): 5 HARD CREATIVE lemmas — Gromov
+-- hyperbolicity toy witness, topological sort of APPLIES DAG, Magnetic
+-- Laplacian canonical castLE injection, wave-lineage well-foundedness,
+-- 22-of-28 cumulative closure.
+import OmegaTheory.Predictions.GrothendieckWave3Extras
 import OmegaTheory.Predictions.WarwickGQuEST
 import OmegaTheory.Predictions.NeutrinoMassFloor
 -- Strong CP problem resolution via √2-channel smallness (Sheliak cycle-13, 2026-04-20)

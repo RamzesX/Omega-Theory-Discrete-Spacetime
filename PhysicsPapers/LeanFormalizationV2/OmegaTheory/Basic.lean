@@ -3389,3 +3389,13 @@ import OmegaTheory.IrrationalityClasses.Separation
 -- Mirrors live Neo4j `LeanAlgebra` namespace 1:1 on the core ontology.
 -- 0 sorry, 0 new axioms, 0 Prop := True.
 import OmegaTheory.Algebra
+
+-- CosmologyWave4Fits (Wave 4 bucket A, 2026-04-22): five cosmology
+-- PDG-anchor witnesses bundled as existential theorems with the Wave 4
+-- canonical names `HubbleConstantH0Fit`, `OmegaMatterDensityFit`,
+-- `CosmologicalConstantScale`, `TensorToScalarRatioBound`,
+-- `BaryonDensityOmegaBh2Fit`.  Pure re-export of the cycle-15 Phecda +
+-- Mira + Keid + Alshain + Mimosa substrate fits under the Wave 4
+-- target labels for grep-detector registration.
+-- 0 sorry, 0 new axioms, 0 Prop := True.
+import OmegaTheory.Predictions.CosmologyWave4Fits

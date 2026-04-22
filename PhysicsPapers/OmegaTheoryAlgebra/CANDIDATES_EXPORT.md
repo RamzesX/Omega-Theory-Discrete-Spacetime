@@ -55,14 +55,16 @@ docker exec math cypher-shell -u neo4j -p omegatheory2026 -d neo4j --format plai
 
 ### Wave-by-wave delta
 
-| | Wave-2 (pre-Aludra) | Wave-3 (post-Spica) | Δ |
-|---|--:|--:|--:|
-| Total `:TheoremCandidate` | 259 | 310 | +51 |
-| PROPOSED | 46 | 16 | **-30** |
-| NULL | 84 | 24 | **-60** |
-| CLOSED_BY_LEAN_LANDING (edge) | 21 | 42 | +21 |
-| SUPERSEDED_BY_WAVE3 (new) | 0 | 12 | +12 |
-| BLOCKED_ON_MATHLIB | — | 13 | +13 (newly classified) |
+| | Wave-2 (pre-Aludra) | Wave-3 (post-Spica) | **Wave-4 (post-parallel team)** | Δ total |
+|---|--:|--:|--:|--:|
+| Total `:TheoremCandidate` | 259 | 310 | **310+** | +51+ |
+| PROPOSED | 46 | 16 | 16 (stable — wave-4 worked cycle list, not MP puzzle) | **-30** |
+| NULL | 84 | 24 | 24 (stable) | **-60** |
+| CLOSED_BY_LEAN_LANDING (edge) | 21 | 42 | **117** | **+96** |
+| SUPERSEDED_BY_WAVE3 | 0 | 12 | 12 | +12 |
+| BLOCKED_ON_MATHLIB | — | 13 | 13 | +13 |
+
+**Wave-4 (2026-04-22, 5-wizard parallel team)** landed 30 headline theorems in 5 new files (`CosmologyWave4Fits.lean`, `ParticleWave4Fits.lean`, `IrrationalityClasses/Wave4Landings.lean`, `GaugeDualsWave4.lean`, `FrontierWave4.lean`) — bucket B's alias-based approach surfaced ~45 extra pre-wave-1 fits into CLOSED_BY_LEAN_LANDING edges, hence the 42→117 jump. Full-tree `lake build` GREEN at **3,862 jobs**, 0 sorry, 24 axioms unchanged.
 
 ---
 

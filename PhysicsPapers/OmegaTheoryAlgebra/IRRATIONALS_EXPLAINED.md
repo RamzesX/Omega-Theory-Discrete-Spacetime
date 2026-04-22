@@ -8,13 +8,15 @@
 
 ## Iteration log
 
-### Iter 2 (productive) · 2026-04-22 — `channel_norm_ordering_matches_residual_ordering` LANDED
+### Iter 2 (productive) · 2026-04-22 · Acubens (θ Cancri) — `channel_norm_ordering_matches_residual_ordering` LANDED
 
-**Targeted**: MP-5 EVIDENCE prediction `channel_norm_ordering_matches_residual_ordering` (Mothallah's suggestion from iter 1).
+**Targeted**: MP-5 EVIDENCE prediction `channel_norm_ordering_matches_residual_ordering` (no downshift).
 
-**Landed**: `OmegaTheory.Irrationality.channel_norm_ordering_matches_residual_ordering` at `LeanFormalizationV2/OmegaTheory/Irrationality/Uncertainty.lean:293`. Formulated as the ℝ-valued "shadow" at N=3: proves `pi_error_val 3 > e_error_val 3 > catalan_error_val 3 > sqrt2_error_val 3` — the Pi Hunch ordering π > e > G > √2 on residual errors. Full Mathlib `norm_num`-style numeric derivation using `(3+1)! = 24`. +94 LOC across `Approximations.lean` (channel-error helpers) and `Uncertainty.lean` (theorem). Dashboard: **2/19 (11%)**.
+**Landed** (3 theorems): (1) `channel_norm_ordering_matches_residual_ordering` at `LeanFormalizationV2/OmegaTheory/Irrationality/Uncertainty.lean:293` — ℝ-valued shadow at N=3, witnessed by `norm_num` on exact rationals: **4/9 > 1/8 > 1/49 > 1/256** (π > e > G > √2). (2) Supporting primitive `catalan_error_val` at `Approximations.lean:248`. (3) Corollary `four_channel_residual_chain_N3` at `Uncertainty.lean:315`. Docstring notes the N≥5 crossover where e factorial overtakes G quadratic. Partial `lake build` (Irrationality + dependents): **3450 jobs GREEN, 0 sorry, 24 axioms unchanged**. Dashboard: **2/19 (11%)**.
 
-**Iter-3 candidates**: MP-6 `absorbPhoton` (FastRP bridge), MP-1 `omega_base_site_has_four_generators` (structural), MP-2 refined b₀ theorem (82.3% giant component).
+**Neo4j MERGE'd**: `:GraphFinding mp5_channel_norm_ordering_landed_acubens` (paper_worthy) + `:GrothendieckRecipe channel_norm_ordering_residual_N3_v1` + `:TheoremCandidate channel_norm_ordering_matches_residual_ordering` (status=CLOSED) + `:ReservedName Acubens`.
+
+**Iter-3 suggestion**: MP-6 `absorbPhoton` (low-hanging dashboard hit, FastRP evidence in Navi's notes).
 
 ---
 

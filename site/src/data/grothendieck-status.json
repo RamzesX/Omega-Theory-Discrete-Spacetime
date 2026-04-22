@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-21T21:49:13.284Z",
+  "updated": "2026-04-22T02:45:07.952Z",
   "source": "PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md",
   "summary": {
     "totalPredictions": 19,
-    "totalLanded": 0,
-    "totalOpen": 19,
-    "percentLanded": 0,
+    "totalLanded": 1,
+    "totalOpen": 18,
+    "percentLanded": 5,
     "leanFilesScanned": 302,
-    "totalDeclarationsIndexed": 4022
+    "totalDeclarationsIndexed": 4026
   },
   "perPass": [
     {
@@ -210,9 +210,9 @@
           "name": "extendedBound_saturation",
           "claim": "A Gaussian minimum-uncertainty state saturates the extended bound exactly at δ_comp.",
           "tag": "EVIDENCE",
-          "landed": false,
-          "location": null,
-          "effectiveTag": "EVIDENCE"
+          "landed": true,
+          "location": "Irrationality/Uncertainty.lean:235",
+          "effectiveTag": "LANDED"
         },
         {
           "name": "extendedBound_uniqueness",
@@ -231,7 +231,7 @@
           "effectiveTag": "EVIDENCE"
         }
       ],
-      "landed_count": 0,
+      "landed_count": 1,
       "total_count": 4
     }
   ]

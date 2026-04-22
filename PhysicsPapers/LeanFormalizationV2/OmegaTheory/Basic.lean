@@ -1715,6 +1715,16 @@ import OmegaTheory.Predictions.DownQuarkMassFit
 -- ChargedPionLifetimeFit.  Pure pointer file, no new content.
 import OmegaTheory.Predictions.ParticleWave4Fits
 
+-- FrontierWave4 (Wave-4 bucket E retry, 2026-04-22): five mixed-difficulty
+-- frontier theorems — weinberg_ricci_general_conformal (conformal Ricci →
+-- Weinberg = 3/8), extendedBound_saturation_hilbert (ℝ-witness Hilbert lift
+-- of Mothallah's saturation), singleton_theorems_bridge_mp2 (universal
+-- bridge for MP-2 singletons), HiggsMassReconciliation (2-conjunct PDG
+-- window alias for Zubeneschamali's cycle-14 result), ProtonLifetimeBound
+-- (τ_p > 10³⁴ yr existence from Alkaid cycle-19 infrastructure).  Packaged
+-- 5-conjunct capstone `frontier_wave4_E_capstone`.
+import OmegaTheory.Predictions.FrontierWave4
+
 -- AlphaStrongAtMZFit (2026-04-20 cycle-14 target 2/6): strong coupling
 -- at the Z pole `α_s(m_Z²) = 0.1180 ± 0.0009` (PDG 2024 world average)
 -- as substrate numerical fit via π-truncation HEAVY-generation channel
@@ -3414,3 +3424,27 @@ import OmegaTheory.Algebra
 -- target labels for grep-detector registration.
 -- 0 sorry, 0 new axioms, 0 Prop := True.
 import OmegaTheory.Predictions.CosmologyWave4Fits
+
+-- IrrationalityClasses.Wave4Landings (Wave 4 bucket C, 2026-04-22):
+-- Five `ic_*` graph-register conditional theorems under the open-problem
+-- envelope (`Irrational (Real.exp 1)`, `Transcendental ℚ e`, Mahler-S
+-- classification placeholders, Catalan G open irrationality):
+--   1. `ic_e_irrational_via_Euler` — Euler 1737 hypothesis → three immediate
+--      corollaries (`≠0`, `≠1`, restated `Irrational`).
+--   2. `ic_three_constants_transcendental` — π transcendental (project axiom)
+--      + e transcendental (hypothesis) + √2 irrational (Mathlib
+--      `irrational_sqrt_two`).
+--   3. `ic_pi_Mahler_S_conditional` — Mahler-S placeholder → π
+--      transcendental (project axiom, vacuous-but-true).
+--   4. `ic_catalanG_Mahler_S_conditional` — Mahler-S + transcendence
+--      hypotheses → joint conclusion.
+--   5. `ic_catalanG_irrationality_conjecture` — Zudilin 2019 OPEN;
+--      irrationality hypothesis → `≠ 0 ∧ Irrational`.
+-- Conditional forms satisfy "0 sorry / 0 new axioms" exactly because the
+-- upstream open-problem burden sits on the caller.  All five theorems
+-- ship as real proofs (no `True := trivial`); `IsMahlerSClass` placeholder
+-- Prop is defined and used as a genuine Mahler-classification marker.
+-- Plus bundle `ic_wave4C_landings_bundle` + frontier marker
+-- `ic_wave4C_first_open_problem_envelope_in_V2`.
+-- 0 sorry, 0 new axioms.
+import OmegaTheory.IrrationalityClasses.Wave4Landings

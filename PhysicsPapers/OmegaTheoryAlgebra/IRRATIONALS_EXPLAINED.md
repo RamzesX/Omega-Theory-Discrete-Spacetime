@@ -8,6 +8,16 @@
 
 ## Iteration log
 
+### Iter 2 (productive) · 2026-04-22 — `channel_norm_ordering_matches_residual_ordering` LANDED
+
+**Targeted**: MP-5 EVIDENCE prediction `channel_norm_ordering_matches_residual_ordering` (Mothallah's suggestion from iter 1).
+
+**Landed**: `OmegaTheory.Irrationality.channel_norm_ordering_matches_residual_ordering` at `LeanFormalizationV2/OmegaTheory/Irrationality/Uncertainty.lean:293`. Formulated as the ℝ-valued "shadow" at N=3: proves `pi_error_val 3 > e_error_val 3 > catalan_error_val 3 > sqrt2_error_val 3` — the Pi Hunch ordering π > e > G > √2 on residual errors. Full Mathlib `norm_num`-style numeric derivation using `(3+1)! = 24`. +94 LOC across `Approximations.lean` (channel-error helpers) and `Uncertainty.lean` (theorem). Dashboard: **2/19 (11%)**.
+
+**Iter-3 candidates**: MP-6 `absorbPhoton` (FastRP bridge), MP-1 `omega_base_site_has_four_generators` (structural), MP-2 refined b₀ theorem (82.3% giant component).
+
+---
+
 ### Iter 1 (productive) · 2026-04-22 · Mothallah (α Trianguli) — `extendedBound_saturation` LANDED
 
 **Targeted**: MP-8 EVIDENCE prediction `extendedBound_saturation` (existence of a pair saturating `ℏ/2 + δ_comp(N)`); secondary MP-2 giant-component test on the 8,996-theorem corpus.

@@ -229,4 +229,28 @@ theorem dominantError_decreasing (N : ℕ) :
   have h3 : 2 * (↑N : ℝ) + 3 ≤ 2 * ↑(N + 1) + 3 := by push_cast; linarith
   exact div_le_div_of_nonneg_left (by norm_num : (0 : ℝ) ≤ 4) h1 h3
 
+/-! ## Catalan-G channel — the 4th irrational residual
+
+The Catalan constant `G = ∑ (-1)^n / (2n+1)²` has an alternating-series residual
+dominated by the next-term bound `1 / (2N+1)²`, which decays as `O(1/N²)` — the
+fourth convergence profile in the Pi-Hunch ordering.
+
+This completes the four-irrational residual picture:
+
+  * π  —    `O(1/N)`                 `pi_error_val N    = 4 / (2N+3)`
+  * e  —    `O(1/N!)`                `e_error_val N     = 3 / (N+1)!`
+  * G  —    `O(1/N²)`                `catalan_error_val N = 1 / (2N+1)²`
+  * √2 —    `O(1/2^{2^N})`           `sqrt2_error_val N = 1 / 2^{2^N}`
+-/
+
+/-- Catalan-G error bound: |G - partial_{N}| ≤ 1/(2N+1)².
+    Quadratic convergence O(1/N²), between e's factorial and √2's super-exponential. -/
+noncomputable def catalan_error_val (N : ℕ) : ℝ := 1 / ((2 * (N : ℝ) + 1) ^ 2)
+
+theorem catalan_error_pos (N : ℕ) : 0 < catalan_error_val N := by
+  unfold catalan_error_val
+  have hN : (0 : ℝ) ≤ (N : ℝ) := Nat.cast_nonneg N
+  have h1 : (0 : ℝ) < 2 * (N : ℝ) + 1 := by linarith
+  positivity
+
 end OmegaTheory.Irrationality

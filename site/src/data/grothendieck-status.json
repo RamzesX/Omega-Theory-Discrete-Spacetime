@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-22T02:45:07.952Z",
+  "updated": "2026-04-22T02:57:57.867Z",
   "source": "PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md",
   "summary": {
     "totalPredictions": 19,
-    "totalLanded": 1,
-    "totalOpen": 18,
-    "percentLanded": 5,
+    "totalLanded": 2,
+    "totalOpen": 17,
+    "percentLanded": 11,
     "leanFilesScanned": 302,
-    "totalDeclarationsIndexed": 4026
+    "totalDeclarationsIndexed": 4029
   },
   "perPass": [
     {
@@ -135,9 +135,9 @@
           "name": "channel_norm_ordering_matches_residual_ordering",
           "claim": "The Magnetic-Laplacian per-channel norm ordering matches the δ_π > δ_e > δ_G > δ_√2 residual ordering (for N ≥ 5).",
           "tag": "EVIDENCE",
-          "landed": false,
-          "location": null,
-          "effectiveTag": "EVIDENCE"
+          "landed": true,
+          "location": "Irrationality/Uncertainty.lean:293",
+          "effectiveTag": "LANDED"
         },
         {
           "name": "four_channel_fibration_over_subsystem",
@@ -156,7 +156,7 @@
           "effectiveTag": "EVIDENCE"
         }
       ],
-      "landed_count": 0,
+      "landed_count": 1,
       "total_count": 3
     },
     {

@@ -259,6 +259,19 @@ import OmegaTheory.Predictions.ExtendedBoundStability
 -- partitioned) structure of π/e/√2/Catalan-G channels over ~14 major Leiden
 -- subsystems (Navi MP-5 cycles 44+ frontier).
 import OmegaTheory.Predictions.FourChannelFibrationOverSubsystem
+-- Grothendieck WAVE-2 (Aludra, iter-9+, 2026-04-22): closes 9 Grothendieck MP
+-- predictions (MP-1 descent, MP-1 fibered_cat, MP-2 primitivity, MP-2 irreducible_cycle,
+-- MP-4 kempf_2025_curvature, MP-5 no_sharp_4_band_gap, MP-6 absorbPhoton,
+-- MP-7 subsystem_navigator_homotopy_limit, MP-8 extendedBound_uniqueness)
+-- plus 2 NEW predictions (applies_subgraph_is_DAG_witness,
+-- pi_hunch_pagerank_dominance_witness) surfaced by Aludra's wave-2 SOTA
+-- graph analysis (gds.scc on env APPLIES → pure DAG; gds.pageRank on
+-- 184K corpus → HermitePade #1).
+import OmegaTheory.Predictions.GrothendieckWave2
+-- Wave-2 extras (Aludra, iter-17+, 2026-04-22): 8 more theorems fulfilling
+-- the "land 20" mandate — MP-8 companions, MP-5 four-channel, MP-2 DAG
+-- witnesses, NEW effective-rank-3 + Leiden-modularity structural Props.
+import OmegaTheory.Predictions.GrothendieckWave2Extras
 import OmegaTheory.Predictions.WarwickGQuEST
 import OmegaTheory.Predictions.NeutrinoMassFloor
 -- Strong CP problem resolution via √2-channel smallness (Sheliak cycle-13, 2026-04-20)

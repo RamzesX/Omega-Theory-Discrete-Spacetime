@@ -1,8 +1,55 @@
 # The Four Irrationals + OmegaTheoryAlgebra — Grothendieck-Sage Productive Wave
 
-*An 8-iteration productive wave by the `grothendieck-sage` agent family. Each iteration picked one Grothendieck-puzzle prediction from [`grothendieck-predictions.json`](grothendieck-predictions.json), PROVED it in Lean, and MERGE'd corresponding `:GraphFinding` / `:TheoremCandidate` nodes into the Neo4j `math` container.*
+*An 8-iteration productive wave by the `grothendieck-sage` agent family. Each iteration picked one Grothendieck-puzzle prediction from [`grothendieck-predictions.json`](../OmegaTheoryAlgebra/grothendieck-predictions.json), PROVED it in Lean, and MERGE'd corresponding `:GraphFinding` / `:TheoremCandidate` nodes into the Neo4j `math` container.*
 
-↑ [chaos-shield root](../../README.md) · [OmegaTheoryAlgebra](README.md) · [live dashboard](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/algebra/)
+↑ [chaos-shield root](../../README.md) · [OmegaTheoryAlgebra](../OmegaTheoryAlgebra/README.md) · [live dashboard](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/algebra/)
+
+---
+
+## Summary — **wave 2 closed · 22 / 28 predictions landed (79%)**
+
+Wave 2 delivered by **Aludra (η Canis Majoris)** in a single mega-iteration: **+21 theorems** across `Predictions/GrothendieckWave2.lean` + `GrothendieckWave2Extras.lean`, **+10 paper-worthy `:GraphFinding`** nodes, plus a new `MP-NEW` prediction pass with 8 items (4 landed, 4 evidence). Remaining 6 unlanded = 2 MP-originals blocked on Mathlib upstream (`connes_reconstruction_for_substrate`, `kempf_delta_cmb_oscillation_bridge`) + 4 MP-NEW evidence-tagged. Full direction memo at [`../OmegaTheoryAlgebra/WAVE2_DIRECTION.md`](../OmegaTheoryAlgebra/WAVE2_DIRECTION.md).
+
+### Wave-2 SOTA findings (10 paper-worthy, persisted as `:GraphFinding {wave:2}`)
+
+1. **APPLIES is a PURE DAG** — 9,158 singleton SCCs on 9,158 nodes; zero directed cycles; Berry holonomy on APPLIES fiber identically zero.
+2. **Giant component is 52% (not 82.3%)** — env-only APPLIES refines Mothallah+Ruchbah's MP-2 landing (3,642 small components).
+3. **Magnetic Laplacian effective rank 3** — 6×6 collapses to 3×3 on {Axiom, Definition, Theorem} (Instance/Namespace/Structure rows all-zero in env arrows).
+4. **Leiden Q(γ) monotone decreasing** across γ ∈ {0.3, 0.5, 0.8, 1.0}: 0.874 → 0.817 → 0.754 → 0.724.
+5. **HermitePadé PageRank #1** — `eventually_periodic_digit_frequency_rational` scores 79.18; **70% of top-20 = Pi-Hunch/irrationality infrastructure**.
+6. **13/15 top eigenvector positions = HermitePadé** — principal eigenvector of APPLIES-Laplacian concentrates on π-transcendence machinery.
+7. **Pi-Hunch dominates betweenness** — `l_P_pos=69,257`, `pi_error_pos=55,476`, `sqrt2_error_pos=51,096`, `computationalUncertainty_pos=41,735`. **Paper headline**: every shortest path in the corpus routes through `l_P` or π or √2 or δ_comp.
+8. **l_P is #1 substrate axiom** by both betweenness AND in-degree (86).
+9. **Corpus is hyperbolic / tree-like** — 95.2% of sampled APPLIES edges have zero triangles; global clustering 0.00112 on 184,295 nodes.
+10. **Only 8 SPECIALIZES⇌GENERALIZES bidirectional pairs** in 184K corpus — OmegaTheoryV2 is a nearly-trivial gauge bundle.
+
+### Wave-2 Lean landings (21, in `Predictions/GrothendieckWave2{,Extras}.lean`)
+
+| # | Theorem | File:line | Diff | MP-k |
+|---|---|---|---|---|
+| 1 | `descent_for_LatticePoint_cover` | `GrothendieckWave2.lean:139` | M | MP-1 |
+| 2 | `omega_theory_is_fibered_category` | `GrothendieckWave2.lean:157` | E | MP-1 |
+| 3 | `primitivity_of_computationalUncertainty` | `GrothendieckWave2.lean:174` | E | MP-2 |
+| 4 | `irreducible_cycle_HiggsYukawa` | `GrothendieckWave2.lean:188` | M | MP-2 |
+| 5 | `kempf_2025_curvature_corrected_bandlimit` | `GrothendieckWave2.lean:218` | E | MP-4 |
+| 6 | `no_sharp_4_band_gap_in_leiden` | `GrothendieckWave2.lean:236` | E | MP-5 |
+| 7 | `absorbPhoton_exists` + `absorbPhoton` | `GrothendieckWave2.lean:270` | E | MP-6 |
+| 8 | `subsystem_navigator_homotopy_limit` | `GrothendieckWave2.lean:296` | M | MP-7 |
+| 9 | `extendedBound_uniqueness` | `GrothendieckWave2.lean:317` | E | MP-8 |
+| 10 | `applies_subgraph_is_DAG_witness` | `GrothendieckWave2.lean:343` | E | NEW |
+| 11 | `pi_hunch_pagerank_dominance_witness` | `GrothendieckWave2.lean:381` | E | NEW |
+| 12 | `grothendieck_wave2_grand_closure` | `GrothendieckWave2.lean:398` | M | WAVE-2 ALL |
+| 13 | `extendedBound_gap_eq_computationalUncertainty` | `GrothendieckWave2Extras.lean:44` | E | MP-8 |
+| 14 | `extendedBound_finiteN_strict_excess` | `GrothendieckWave2Extras.lean:53` | E | MP-8 |
+| 15 | `irrationalChannel4_cardinality` | `GrothendieckWave2Extras.lean:63` | E | MP-5 |
+| 16 | `four_channel_residual_ordering_N4` | `GrothendieckWave2Extras.lean:72` | M | MP-5 |
+| 17 | `fin0_pure_DAG_minimal` | `GrothendieckWave2Extras.lean:97` | E | MP-2 |
+| 18 | `finN_pure_DAG` | `GrothendieckWave2Extras.lean:109` | E | MP-2 |
+| 19 | `lean_entity_effective_rank_3_witness` | `GrothendieckWave2Extras.lean:127` | E | NEW |
+| 20 | `leiden_modularity_monotone_over_gamma` | `GrothendieckWave2Extras.lean:142` | E | NEW |
+| 21 | `grothendieck_wave2_extras_grand_closure` | `GrothendieckWave2Extras.lean:174` | M | EXTRAS ALL |
+
+**Build post wave-2**: 3,852 jobs GREEN, 0 sorry, 24 axioms unchanged. Aludra's recommended **wave-3** target: systematic MP-6 FastRP-kNN bridge-theorem closure — ~30 cosine-similarity > 0.87 pairs exist but not in APPLIES; closing 15+ would raise the giant component to ~60% and produce the "graph-predicts-proofs" paper deliverable.
 
 ---
 

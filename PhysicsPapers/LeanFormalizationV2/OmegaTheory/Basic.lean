@@ -282,6 +282,11 @@ import OmegaTheory.Predictions.GrothendieckWave3
 -- Laplacian canonical castLE injection, wave-lineage well-foundedness,
 -- 22-of-28 cumulative closure.
 import OmegaTheory.Predictions.GrothendieckWave3Extras
+-- Grothendieck WAVE-4 bucket D (gauge / CPT / parity duals, 2026-04-22):
+-- 7 dual-pair existence witnesses — rightAction_C/M3_parity_dual,
+-- rightLeptonDoubletY/rightQuarkDoubletY parity, RightHandedDoublet structure,
+-- absorbPhoton_CPT_dual, backwardFraction_time_reverse_dual.
+import OmegaTheory.Predictions.GaugeDualsWave4
 import OmegaTheory.Predictions.WarwickGQuEST
 import OmegaTheory.Predictions.NeutrinoMassFloor
 -- Strong CP problem resolution via √2-channel smallness (Sheliak cycle-13, 2026-04-20)
@@ -1699,6 +1704,16 @@ import OmegaTheory.Predictions.TopQuarkWidthFit
 -- `down_quark_mass_substrate_fit` + headline alias.  0 sorry, 0 new
 -- axioms.
 import OmegaTheory.Predictions.DownQuarkMassFit
+
+-- Wave-4-B canonical alias bundle (wizard bucket B, 2026-04-22):
+-- top-level discovery names CKMVubFit / DownQuarkMassFit /
+-- UpQuarkMassFit / TopQuarkWidthFit / NeutrinoMassSumBound /
+-- StrongCPThetaBound / fermi_constant_extraction_substrate_fit /
+-- pion_charged_decay_rate_substrate_fit rebound as one-line aliases
+-- onto their primary-statement theorems in Peacock / Anuradha /
+-- Alderamin / TopQuarkWidthFit / Diadem / Sheliak / Arcturus /
+-- ChargedPionLifetimeFit.  Pure pointer file, no new content.
+import OmegaTheory.Predictions.ParticleWave4Fits
 
 -- AlphaStrongAtMZFit (2026-04-20 cycle-14 target 2/6): strong coupling
 -- at the Z pole `α_s(m_Z²) = 0.1180 ± 0.0009` (PDG 2024 world average)

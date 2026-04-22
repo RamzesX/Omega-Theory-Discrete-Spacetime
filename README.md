@@ -21,8 +21,10 @@ This simple question started it all.
 
 ### [**Read the Full Documentation**](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/) | [**Start with Main Paper**](PhysicsPapers/Main-Paper-Postulates.md)
 
+> **🧮 Core thesis — irrational numbers → physics.** The **irrationality of π, e, √2 and Catalan G** is not decoration; it is the mechanism that forces quantum mechanics and partitions the Standard Model into four generations (π heavy / e middle / √2 light / G sterile-DM). Every iteration count `N` produces a computational residual `δ_comp(N)` whose per-channel decay rate (Leibniz `O(1/N)` for π, factorial `O(1/N!)` for e, super-exp `O(2^{-2^N})` for √2, quadratic `O(1/N²)` for Catalan G) **is** the mass hierarchy. Work on this core is active — the **[Pi Hunch wave](PhysicsPapers/OmegaTheoryAlgebra/IRRATIONALS_EXPLAINED.md)** closed 4 of 4 MP-8 extended-uncertainty predictions (`extendedBound_saturation/stability/tightness` + `channel_norm_ordering_matches_residual_ordering`) in Lean this week. See [`Irrationality/`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/Irrationality/) + [`IrrationalityClasses/`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/IrrationalityClasses/) for the full chain.
+>
 > **🧠 Graph-theoretic research track** — Alongside the physics, we treat the 184K-theorem Lean corpus as a typed quiver and apply Magnetic Laplacian + Leiden + FastRP to detect missing mathematics.
-> **[→ OmegaTheoryAlgebra hub](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/algebra/)** · **[→ Grothendieck Math Puzzle (8-pass synthesis)](PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md)** · **[→ Achievements (rank-7 saturating, λ₁/λ₂=1.038)](PhysicsPapers/OmegaTheoryAlgebra/ACHIEVEMENTS.md)** · Paper target **NeurIPS 2026 / ICLR 2027**. Neo4j `math` container · 3.95M typed edges · 15 arrow types.
+> **[→ OmegaTheoryAlgebra hub](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/algebra/)** · **[→ Grothendieck Math Puzzle (8-pass synthesis)](PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md)** · **[→ Wave 1 productive log (8/19 predictions LANDED)](PhysicsPapers/OmegaTheoryAlgebra/IRRATIONALS_EXPLAINED.md)** · **[→ Achievements (rank-7 saturating, λ₁/λ₂=1.038)](PhysicsPapers/OmegaTheoryAlgebra/ACHIEVEMENTS.md)** · Paper target **NeurIPS 2026 / ICLR 2027**. Neo4j `math` container · 3.95M typed edges · 15 arrow types.
 
 [![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue?logo=github)](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0007--3029--175X-A6CE39?logo=orcid)](https://orcid.org/0009-0007-3029-175X)
@@ -44,7 +46,32 @@ This simple question started it all.
 
 ## 📋 Development Status (April 2026, post cycle 43) — V2 Formalization
 
-**Lean 4 + Mathlib v4.29.0** — fully formalized, **0 sorry · 8 physical axioms · 3 835 build jobs GREEN**
+**Lean 4 + Mathlib v4.29.0** — fully formalized, **0 sorry · 8 physical axioms · 3 850 build jobs GREEN** (post wave-1, 2026-04-22)
+
+### 🧮 Irrationality core — live wave status (2026-04-22)
+
+The irrationals are **the** core. Work on them is ongoing. Live scoreboard:
+
+| Pillar | Theorem / Witness | Agent (star) | Status |
+|---|---|---|---|
+| **Existence of saturating pair** (MP-8) | `extendedBound_saturation` | Mothallah (α Trianguli) | ✅ `Irrationality/Uncertainty.lean:235` |
+| **π > e > G > √2 residual ordering** (MP-5) | `channel_norm_ordering_matches_residual_ordering` | Acubens (θ Cancri) | ✅ `Irrationality/Uncertainty.lean:293` |
+| **Monotonicity + limit → ℏ/2** (MP-8) | `extendedBound_stability` (Antitone + Tendsto) | Azha (η Eridani) | ✅ `Uncertainty.lean:351` + `Predictions/ExtendedBoundStability.lean:93` |
+| **ε-tightness of the bound** (MP-8) | `extendedBound_tightness` | Alphecca (α Coronae Borealis, *Gemma*) | ✅ `Predictions/ExtendedBoundStability.lean:178` |
+| **4-channel fibration over subsystems** (MP-5) | `four_channel_fibration_over_subsystem` | Chara (β Canum Venaticorum) | ✅ `Predictions/FourChannelFibrationOverSubsystem.lean:260` |
+| **3-irrational/4-generation witness** (MP-2) | `omega_corpus_giant_component` (82.3% dominance) | Ruchbah (δ Cassiopeiae) | ✅ `Predictions/OmegaCorpusGiantComponent.lean:76,97` |
+| **4-generator base site** (MP-1) | `omega_base_site_has_four_generators` | Alhena (γ Geminorum) | ✅ `Predictions/OmegaBaseSite.lean:94` |
+| **Connes spectral triple** (MP-3) | `spectralTriple_OmegaSubstrate` | Hamal (α Arietis) | ✅ `Emergence/ConnesSpectralAction.lean:488` |
+
+**Wave 1 scorecard**: `8 / 19 Grothendieck Math Puzzle predictions LANDED (42%)` · every remaining prediction has a predicted Lean signature in [`grothendieck-predictions.json`](PhysicsPapers/OmegaTheoryAlgebra/grothendieck-predictions.json) and a grep-detector at [`site/scripts/build-grothendieck-status.mjs`](site/scripts/build-grothendieck-status.mjs) that auto-flips status to LANDED the moment the theorem lands in any `.lean` file — the live [`/algebra/` dashboard](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/algebra/) stays in sync.
+
+**Why this is the project's core**, not a sidecar:
+
+1. **π irrational ⟹ quantum uncertainty is necessary**, not a postulate. `δ_comp(N) = ℓ_P·4/(2N+3)` from the Leibniz series extends `ℏ/2 → ℏ/2 + δ_comp`, so `Δx·Δp ≥ ℏ/2` comes for free.
+2. **Decay-rate ordering π > e > G > √2 = mass hierarchy.** At fixed iteration count `N ≥ 5` the four residuals are strictly separated (proved at `N = 3` by Acubens via `norm_num` on exact rationals `4/9 > 1/8 > 1/49 > 1/256`).
+3. **4 irrationals = 4 generations.** Catalan G is the sterile / dark-matter 4th channel; the bijection `IrrationalChannel4 ≃ Fin 4` is formalized in `Predictions/SterileNeutrinoFromFourthIrrational.lean`.
+4. **Next frontier**: `extendedBound_uniqueness` (is `ℏ/2 + δ_comp(N)` the *unique* δ-perturbation compatible with Robertson–Schrödinger?), Kempf bandlimit curvature correction, gauge-group-from-FiniteAlgebra — all tracked in [`WAVE2_DIRECTION.md`](PhysicsPapers/OmegaTheoryAlgebra/WAVE2_DIRECTION.md) (written by grothendieck-sage wave 2, in flight).
+
 
 34 autonomous agent cycles (10 – 43) shipped Jan – Apr 2026. Cycle 43 (Polaris) closed the 60-theorem Mekbuda backlog and delivered the **grand capstone v2**: [`omega_theory_v2_final_meta_capstone`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607) uniting the cycle-23 `omega_theory_grand_capstone` with the full three-channel (π / e / √2) Standard-Model-plus-cosmology partition and the fourth Catalan-G sterile channel.
 

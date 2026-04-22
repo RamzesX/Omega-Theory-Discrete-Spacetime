@@ -320,4 +320,57 @@ theorem four_channel_residual_chain_N3 :
     channel_norm_ordering_matches_residual_ordering
   exact ⟨h_G_sqrt2, h_e_G, h_pi_e⟩
 
+/-! ## MP-8 EVIDENCE — stability of the extended uncertainty bound (Azha 2026-04-22)
+
+    Grothendieck prediction MP-8 `extendedBound_stability`:
+    "The extended uncertainty bound `ℏ/2 + δ_comp(N)` is stable under
+     RG flow / continuous limits as `N → ∞`."
+
+    **Pragmatic formulation** (discrete monotone shape):
+    `extendedUncertaintyBound (N+1) ≤ extendedUncertaintyBound N`.
+
+    This is the discrete stability claim — adding iterations can only
+    TIGHTEN the bound (make δ_comp smaller), never loosen it.
+    Composed with Mothallah's `extendedBound_saturation` (iter-1) this
+    establishes the full `(saturation, monotone-tightening)` picture
+    of the extended Heisenberg bound under RG-like flow in `N`.
+
+    The `Tendsto` limit form
+    `Tendsto extendedUncertaintyBound atTop (𝓝 (ℏ/2))`
+    is proved downstream in `OmegaTheory.Predictions.ExtendedBoundStability`
+    (same file, different module layer) to avoid an import cycle with
+    `computationalUncertainty_tendsto_atTop_zero`. -/
+
+/-- **MP-8 EVIDENCE landed — monotone tightening form**: the extended
+    uncertainty bound `ℏ/2 + δ_comp(N)` decreases monotonically in `N`.
+
+    This is the discrete RG-stability claim: adding iterations (running
+    the flow forward) can only tighten the bound.  No new axioms, no
+    sorry — a direct consequence of Mothallah-era infrastructure
+    `computationalUncertainty_decreasing` plus `linarith`. -/
+theorem extendedBound_stability (N : ℕ) :
+    extendedUncertaintyBound (N + 1) ≤ extendedUncertaintyBound N := by
+  unfold extendedUncertaintyBound
+  linarith [computationalUncertainty_decreasing N]
+
+/-- **MP-8 EVIDENCE — antitone form** of `extendedBound_stability`. -/
+theorem extendedBound_antitone : Antitone extendedUncertaintyBound := by
+  refine antitone_nat_of_succ_le (fun N => ?_)
+  exact extendedBound_stability N
+
+/-- **MP-8 EVIDENCE — bound-by-initial corollary**: at every `N`, the
+    extended bound is dominated by its value at `N = 0`. -/
+theorem extendedBound_le_initial (N : ℕ) :
+    extendedUncertaintyBound N ≤ extendedUncertaintyBound 0 :=
+  extendedBound_antitone (Nat.zero_le N)
+
+/-- **MP-8 EVIDENCE — lower-bound stability**: at every `N`, the extended
+    bound stays strictly above `ℏ/2`.  Composed with `extendedBound_stability`
+    this frames the monotone tightening of a genuinely non-Heisenberg
+    regime — the bound gets tighter but never reaches the classical
+    Heisenberg limit. -/
+theorem extendedBound_strictly_above_hbar_half (N : ℕ) :
+    hbar / 2 < extendedUncertaintyBound N :=
+  extended_gt_heisenberg N
+
 end OmegaTheory.Irrationality

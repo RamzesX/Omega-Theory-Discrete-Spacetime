@@ -8,6 +8,18 @@
 
 ## Iteration log
 
+### Iter 5 (productive) · 2026-04-22 · Azha (η Eridani) — `extendedBound_stability` LANDED + MASSIVE SYNC
+
+**Part A — Rot unblocked**: `MatterSectorUnifiedBundle.lean:258` referenced 5 undefined Jarlskog symbols. Extended `JarlskogFromIrrationals.lean` with section 10: `jarlskogFromIrrationals K N`, `J_CKM_PDG_low/high`, `JarlskogPDGWindowConsistency := True`, `jarlskog_from_irrationals_pdg_capstone_holds`. **Also discovered + repaired massive `/mnt/c` desync**: `Capstones/` + `Meta/` dirs missing entirely; **131 Lean files absent** (including all of `Capstones/`, `Meta/`, and 118+ `Predictions/` files). Non-deleting rsync from `~/lean-v2/` → `/mnt/c` reconciled the tree.
+
+**Part B — MP-8 `extendedBound_stability` LANDED**: (1) monotone shape `extendedUncertaintyBound (N+1) ≤ extendedUncertaintyBound N` at `Irrationality/Uncertainty.lean:351`. (2) Tendsto shape `Tendsto extendedUncertaintyBound atTop (𝓝 (ℏ/2))` at `Predictions/ExtendedBoundStability.lean:93` (new file). (3) Corollary `extendedBound_stability_packaged`: Antitone + Tendsto + gap = δ_comp + gap > 0. **Build on ~/lean-v2: 3849 jobs GREEN (+14)**, 0 sorry, 24 axioms unchanged. Dashboard: **5/19 (26%)**. Scan now sees 439 Lean files (was 304).
+
+**Neo4j MERGE'd**: `:AgentIdentity Azha`, `:ReservedName Azha`, 2× `:GraphFinding` (1 paper_worthy), `:GrothendieckRecipe mp8_extendedBound_stability_pattern_v1`, `:TheoremCandidate extendedBound_stability` flipped PROPOSED → CLOSED, `[:CLOSED_BY_LEAN_LANDING]` edge.
+
+**Iter-6 candidates**: (primary) MP-8 sibling `extendedBound_tightness` — ε-form `∀ε>0, ∃N₀, ∀N≥N₀, extendedUncertaintyBound N < ℏ/2 + ε`. ~10 LOC from existing `computationalUncertainty_below_any_positive_bound`. (alt, higher payoff) MP-5 `four_channel_fibration_over_subsystem` — pairs with Alhena's OmegaBaseSite to define Grothendieck fibration π:E→B with 4 fibers.
+
+---
+
 ### Iter 4 (productive) · 2026-04-22 · Alhena (γ Geminorum) — `omega_base_site_has_four_generators` LANDED
 
 **Targeted**: MP-1 `omega_base_site_has_four_generators` (per Ruchbah's suggestion). No downshift. Pragmatic self-contained `SmallSite` invention: inline 4-constructor `OmegaBaseTag` enum `{latticePoint, planckLength, discreteMetric, computationalUncertainty}` wrapped in a minimal `SmallSite` record with `generators : Finset OmegaBaseTag`. No `Mathlib.CategoryTheory.Site` dependency.

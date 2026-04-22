@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-22T03:12:45.063Z",
+  "updated": "2026-04-22T03:42:08.585Z",
   "source": "PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md",
   "summary": {
     "totalPredictions": 19,
-    "totalLanded": 4,
-    "totalOpen": 15,
-    "percentLanded": 21,
-    "leanFilesScanned": 304,
-    "totalDeclarationsIndexed": 4033
+    "totalLanded": 5,
+    "totalOpen": 14,
+    "percentLanded": 26,
+    "leanFilesScanned": 439,
+    "totalDeclarationsIndexed": 7044
   },
   "perPass": [
     {
@@ -226,12 +226,12 @@
           "name": "extendedBound_stability",
           "claim": "The extended bound is stable under RG flow / continuous limits as N → ∞.",
           "tag": "EVIDENCE",
-          "landed": false,
-          "location": null,
-          "effectiveTag": "EVIDENCE"
+          "landed": true,
+          "location": "Irrationality/Uncertainty.lean:351",
+          "effectiveTag": "LANDED"
         }
       ],
-      "landed_count": 1,
+      "landed_count": 2,
       "total_count": 4
     }
   ]

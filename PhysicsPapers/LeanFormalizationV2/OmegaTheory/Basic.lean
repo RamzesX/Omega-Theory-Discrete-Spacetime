@@ -248,6 +248,11 @@ import OmegaTheory.Predictions.OmegaCorpusGiantComponent
 -- `omega_base_site_has_four_generators` anchors Navi's MP-1 prediction with a
 -- minimal inline `SmallSite` record and a 4-constructor `OmegaBaseTag` enum.
 import OmegaTheory.Predictions.OmegaBaseSite
+-- Grothendieck MP-8 EVIDENCE landed (Azha, iter-5, 2026-04-22): stability of
+-- the extended uncertainty bound under RG flow.  Two complementary shapes:
+-- discrete monotone `extendedBound_stability` (in Uncertainty.lean) and
+-- asymptotic `extendedBound_tendsto_hbarHalf` (here).
+import OmegaTheory.Predictions.ExtendedBoundStability
 import OmegaTheory.Predictions.WarwickGQuEST
 import OmegaTheory.Predictions.NeutrinoMassFloor
 -- Strong CP problem resolution via √2-channel smallness (Sheliak cycle-13, 2026-04-20)

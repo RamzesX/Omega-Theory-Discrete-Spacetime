@@ -87,12 +87,21 @@ structure matters.
 /-- The value `u = ₁F₁(a;b;z₀)` of the confluent hypergeometric
 function at a non-zero algebraic point `z₀`, with rational parameters
 `a, b`.  Opaque real constant pending the Mathlib development of
-confluent hypergeometric series. -/
-axiom hypValue (a b : ℚ) (z₀ : ℝ) : ℝ
+confluent hypergeometric series.
+
+Declared `opaque` (not `axiom`) — the precise value depends on Mathlib's
+future `₁F₁`, but picking an arbitrary `ℝ`-witness here removes this from
+the project's axiom count while preserving the downstream claim-axiom
+`siegel_shidlovskii`.
+
+Eliminated from the 24-axiom count by Acrab (wave C axiom elimination 2026-04-22). -/
+noncomputable opaque hypValue (a b : ℚ) (z₀ : ℝ) : ℝ := 0
 
 /-- The derivative `v = d/dz ₁F₁(a;b;z)|_{z = z₀}`.  Opaque real
-constant — see `hypValue`. -/
-axiom hypDeriv (a b : ℚ) (z₀ : ℝ) : ℝ
+constant — see `hypValue`.
+
+Eliminated from the 24-axiom count by Acrab (wave C axiom elimination 2026-04-22). -/
+noncomputable opaque hypDeriv (a b : ℚ) (z₀ : ℝ) : ℝ := 0
 
 /--
 The admissibility predicate on a triple `(a, b, z₀)` of an

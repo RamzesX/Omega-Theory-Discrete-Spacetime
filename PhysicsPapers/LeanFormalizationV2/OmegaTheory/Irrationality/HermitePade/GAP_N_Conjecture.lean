@@ -42,6 +42,7 @@
 -/
 
 import Mathlib.RingTheory.AlgebraicIndependent.Defs
+import Mathlib.RingTheory.AlgebraicIndependent.Transcendental
 import Mathlib.RingTheory.Algebraic.Basic
 import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Mathlib.Analysis.SpecialFunctions.Exp
@@ -97,18 +98,33 @@ not algebraic over ℚ.  This is the weaker form sometimes quoted
 alongside the algebraic-independence statement; we expose it here for
 convenient downstream use.
 
-Not proved in this file — stated as an axiom for now, with the
-intention that it will become a theorem once the corollary
-infrastructure (`AlgebraicIndependent → Transcendental` on each
-coordinate via injectivity of `ℚ[X] → MvPolynomial (Fin 3) ℚ`) is
-wired in a follow-up.  Kept separate from `Nesterenko_1996` so the
-*named* axiom bearing Nesterenko's name is exactly the
-algebraic-independence statement and nothing weaker.
--/
-axiom Nesterenko_1996_transcendence :
+Derived from `Nesterenko_1996` via `AlgebraicIndependent.transcendental`
+(Mathlib v4.29 `Mathlib.RingTheory.AlgebraicIndependent.Transcendental`).
+
+**Eliminated as an axiom 2026-04-22 by Acrab (wave C).** Previously
+stated as a separate axiom; now a theorem.  The *named* axiom
+bearing Nesterenko's name is exactly the algebraic-independence
+statement and nothing weaker; individual transcendence is a
+corollary. -/
+theorem Nesterenko_1996_transcendence :
     ¬ IsAlgebraic ℚ (Real.pi : ℝ) ∧
     ¬ IsAlgebraic ℚ (Real.exp Real.pi) ∧
-    ¬ IsAlgebraic ℚ (Real.Gamma (1 / 4 : ℝ))
+    ¬ IsAlgebraic ℚ (Real.Gamma (1 / 4 : ℝ)) := by
+  -- Use `AlgebraicIndependent.transcendental` at each coordinate of the triple.
+  -- `nesterenkoTriple 0 = π`, `... 1 = e^π`, `... 2 = Γ(1/4)`.
+  have h0 : Transcendental ℚ (Real.pi : ℝ) := by
+    have := Nesterenko_1996.transcendental (0 : Fin 3)
+    simp [nesterenkoTriple] at this
+    exact this
+  have h1 : Transcendental ℚ (Real.exp Real.pi) := by
+    have := Nesterenko_1996.transcendental (1 : Fin 3)
+    simp [nesterenkoTriple] at this
+    exact this
+  have h2 : Transcendental ℚ (Real.Gamma (1 / 4 : ℝ)) := by
+    have := Nesterenko_1996.transcendental (2 : Fin 3)
+    simp only [nesterenkoTriple, show ((1 : ℝ) / 4) = (4 : ℝ)⁻¹ by norm_num] at this ⊢
+    exact this
+  exact ⟨h0, h1, h2⟩
 
 /-!
 ### Height function for integer multivariate polynomials

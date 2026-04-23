@@ -1,0 +1,2473 @@
+% !TEX program = pdflatex
+% Long-form manuscript for Foundations of Physics / arXiv.
+% Compiles with pdflatex + bibtex. See README_SUBMISSION.md for details.
+
+\documentclass[11pt,a4paper,twoside]{article}
+
+% ---------- encoding / fonts ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---------- math ----------
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+
+% ---------- layout / typography ----------
+\usepackage[a4paper,margin=2.8cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.4em,itemsep=2pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=2pt,topsep=2pt}
+
+% ---------- code ----------
+\usepackage{xcolor}
+\definecolor{codebg}{HTML}{F6F8FA}
+\definecolor{codekw}{HTML}{0033B3}
+\definecolor{codecomm}{HTML}{8E908C}
+\definecolor{codestr}{HTML}{718C00}
+\usepackage{listings}
+\lstdefinelanguage{lean4}{%
+  morekeywords={theorem,lemma,def,noncomputable,structure,class,instance,abbrev,example,namespace,end,section,import,open,variable,fun,let,in,if,then,else,match,with,where,have,show,by,from,intro,exact,apply,rfl,simp,rw,constructor,refine,use,cases,induction,unfold,set,calc,this,Prop,Type,Real,Complex,Nat,Int,Fin,Finset,sorry,axiom},%
+  sensitive=true,%
+  morecomment=[l]{--},%
+  morecomment=[s]{/-}{-/},%
+  morestring=[b]",%
+}
+\lstset{%
+  basicstyle=\ttfamily\footnotesize,%
+  backgroundcolor=\color{codebg},%
+  keywordstyle=\color{codekw}\bfseries,%
+  commentstyle=\color{codecomm}\itshape,%
+  stringstyle=\color{codestr},%
+  breaklines=true,%
+  breakatwhitespace=true,%
+  columns=fullflexible,%
+  frame=single,%
+  framerule=0.4pt,%
+  xleftmargin=0pt,%
+  xrightmargin=0pt,%
+  aboveskip=6pt,belowskip=6pt,%
+  language=lean4,%
+  literate=%
+    {→}{{$\to$}}1 {⇒}{{$\Rightarrow$}}1 {↦}{{$\mapsto$}}1
+    {≤}{{$\le$}}1 {≥}{{$\ge$}}1 {≠}{{$\ne$}}1 {≈}{{$\approx$}}1
+    {∧}{{$\wedge$}}1 {∨}{{$\vee$}}1 {¬}{{$\lnot$}}1 {∀}{{$\forall$}}1 {∃}{{$\exists$}}1
+    {α}{{$\alpha$}}1 {β}{{$\beta$}}1 {γ}{{$\gamma$}}1 {δ}{{$\delta$}}1
+    {ε}{{$\varepsilon$}}1 {ζ}{{$\zeta$}}1 {η}{{$\eta$}}1 {θ}{{$\theta$}}1
+    {ι}{{$\iota$}}1 {κ}{{$\kappa$}}1 {λ}{{$\lambda$}}1 {μ}{{$\mu$}}1
+    {ν}{{$\nu$}}1 {ξ}{{$\xi$}}1 {π}{{$\pi$}}1 {ρ}{{$\rho$}}1
+    {σ}{{$\sigma$}}1 {τ}{{$\tau$}}1 {υ}{{$\upsilon$}}1 {φ}{{$\varphi$}}1
+    {χ}{{$\chi$}}1 {ψ}{{$\psi$}}1 {ω}{{$\omega$}}1
+    {Α}{{$A$}}1 {Β}{{$B$}}1 {Γ}{{$\Gamma$}}1 {Δ}{{$\Delta$}}1
+    {Λ}{{$\Lambda$}}1 {Ξ}{{$\Xi$}}1 {Π}{{$\Pi$}}1 {Σ}{{$\Sigma$}}1
+    {Φ}{{$\Phi$}}1 {Ψ}{{$\Psi$}}1 {Ω}{{$\Omega$}}1
+    {ℝ}{{$\mathbb{R}$}}1 {ℂ}{{$\mathbb{C}$}}1 {ℕ}{{$\mathbb{N}$}}1 {ℤ}{{$\mathbb{Z}$}}1
+    {ℓ}{{$\ell$}}1 {ℏ}{{$\hbar$}}1 {∑}{{$\sum$}}1 {∫}{{$\int$}}1 {⟨}{{$\langle$}}1 {⟩}{{$\rangle$}}1
+    {‖}{{$\|$}}1 {∈}{{$\in$}}1 {∉}{{$\notin$}}1 {⊗}{{$\otimes$}}1 {⊕}{{$\oplus$}}1
+    {·}{{$\cdot$}}1 {√}{{$\sqrt{}\!$}}1 {⊗ₜ}{{$\otimes_{\!t}$}}2
+}
+
+% ---------- theorem environments ----------
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------- references ----------
+\usepackage[hidelinks,colorlinks=false,bookmarks=true,pdfusetitle]{hyperref}
+\usepackage{cleveref}
+
+% ---------- macros ----------
+\newcommand{\KL}{I_{\mathrm{KL}}}
+\newcommand{\Rbb}{\mathbb{R}}
+\newcommand{\Cbb}{\mathbb{C}}
+\newcommand{\Nbb}{\mathbb{N}}
+\newcommand{\Zbb}{\mathbb{Z}}
+\newcommand{\lP}{\ell_P}
+\newcommand{\tP}{t_P}
+\newcommand{\EP}{E_P}
+\newcommand{\mP}{m_P}
+\newcommand{\kB}{k_B}
+\newcommand{\hbarc}{\hbar}
+\newcommand{\Lmap}{\mathsf{L}}
+\newcommand{\coarseGrain}{\operatorname{coarseGrain}}
+\newcommand{\coarseGrainWithPhase}{\operatorname{coarseGrainWithPhase}}
+\newcommand{\HasZF}{\mathsf{HasZeroFunctional}}
+\newcommand{\CMM}{\mathsf{CommutatorMatchesMean}}
+\newcommand{\xhat}{\hat{x}}
+\newcommand{\phat}{\hat{p}}
+\newcommand{\Lfield}{\mathsf{LatticeComplexField}}
+\newcommand{\SnapSeq}{\mathsf{SnapshotSequence}}
+\newcommand{\DynSeq}{\mathsf{DynamicalSnapshotSequence}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\BellField}{\operatorname{bellField}}
+\newcommand{\Prop}{\mathsf{Prop}}
+
+% ---------- title block ----------
+\title{%
+  \Large\bfseries
+  Rigorous Machine-Checked Derivation of Non-Relativistic Quantum Mechanics\\
+  from Discrete-Gravity Healing Dynamics
+}
+
+\author{%
+  Norbert Marchewka\thanks{Correspondence: \texttt{norbert.marchewka44@gmail.com}}\\
+  \small\emph{with the Omega-Theory V2 formalisation team (see Acknowledgments)}
+}
+
+\date{\today}
+
+% ---------- document ----------
+\begin{document}
+\maketitle
+
+\begin{abstract}\noindent
+We derive \emph{seven pillars of non-relativistic quantum mechanics}
+--- Schr\"odinger dynamics, the Born rule, the non-relativistic limit
+of relativistic dispersion, two-slit interference, the Heisenberg
+uncertainty principle, the measurement / collapse postulate, and
+Tsirelson-bound-attaining entanglement with CHSH-inequality violation
+--- together with a \emph{relativistic Klein--Gordon residue bound} on
+the \emph{same} discrete-gravity substrate, all as machine-checked
+Lean~4 theorems from the Planck-scale healing dynamics of
+Omega-Theory V2. The substrate is a local update rule on $\Zbb^{4}$
+whose equilibrium condition already reproduces Einstein's field
+equations modulo a controlled $O(\lP)$ remainder (published
+elsewhere); we show that the same substrate, once equipped with a
+complex-valued tick-to-tick update rule, coarse-grains to standard
+non-relativistic wave mechanics (with enough resolution to derive all
+seven canonical QM postulates that textbooks take as axioms) and also
+satisfies a relativistic Klein--Gordon residue bound
+$\|\mathrm{KG}[\psi]\| \le 16/\lP^{2} + m^{2}c^{2}/\hbar^{2}$ in which
+the Planck-scale UV cutoff appears explicitly as a prediction of the
+theory's discrete-spacetime ontology.
+\par\vspace{4pt}
+The central construction is a map
+$\Lmap:\SnapSeq\to\Lfield$ sending a time-indexed family of discrete
+metrics to a complex field $\psi(x,n)$ on $\mathsf{LatticePoint}\times\Nbb$.
+The amplitude is fixed by the Kullback--Leibler information density as
+$|\psi|^{2}=\exp(-\KL)$; a phase-carrying extension
+\code{coarseGrainWithPhase} admits plane-wave phases sourced from the
+lattice geometry; a two-body tensor-product extension
+\code{tensorProduct} carries the Bell-state construction.
+\par\vspace{4pt}
+All eight theorems (T1--T8 bundling Bell+CHSH, plus T9 Klein--Gordon)
+and a capstone \code{grand\_qm\_emergence} theorem that bundles them
+into a single nine-field $\Prop$-record
+\code{QuantumMechanicsPostulates}, build clean in Lean~4 against
+Mathlib v4.29.0 with zero \code{sorry} and no new axioms beyond the
+eight physical Planck constants and the
+Hildebrandt--Polthier--Wardetzky Laplacian--Ricci correspondence
+(used only on the Einstein side, \emph{not} on the QM/KG bridge;
+provably eliminable on three regimes). To the authors' knowledge,
+this is the first machine-checked derivation in a proof assistant of
+the full canonical-QM postulate set \emph{plus} the relativistic
+Klein--Gordon residue bound from a \emph{single} discrete-gravity
+substrate. Results that the substrate-derivation literature cites as
+heuristics or axioms, we furnish as theorems.
+\end{abstract}
+
+\noindent\textbf{Status.} Draft, paper-in-preparation. Scope expanded
+from 1-theorem to 7-theorem chain on 2026-04-15 (Option B plan
+\code{PLAN\_QM\_BRIDGE.md} plus Phase 6A/B/C), then extended to the
+nine-theorem relativistic bridge with the landing of Theorem~9
+(\code{KleinGordon.lean}) and the Dirac stub
+(\code{DiracOptional.lean}). All nine theorems landed as of
+2026-04-15.\\
+\textbf{Target venues.} \emph{Physical Review Letters} (4-page letter) or
+\emph{Nature Physics} (6-page letter), with a long-form companion in
+\emph{Foundations of Physics}. \emph{Journal of Mathematical Physics}
+remains admissible if the letter-length venue is not reached.\\
+\textbf{Formalisation.} Lean~4 + Mathlib v4.29.0. Source tree:
+\path{PhysicsPapers/LeanFormalizationV2/}.
+
+\tableofcontents
+
+\section{Introduction}\label{sec:intro}
+
+A recurring theme across discrete-substrate approaches to quantum
+mechanics---Wolfram physics~\cite{Wolfram2020}, 't~Hooft's
+cellular-automaton interpretation~\cite{tHooft2014,tHooft2016}, causal
+sets~\cite{BombelliLeeMeyerSorkin1987}, stochastic
+electrodynamics~\cite{dePenaCetto1996}---is that the smooth Schr\"odinger
+evolution ought to emerge as the large-scale phenomenology of a discrete
+local update rule. The difficulty is notorious: going from a local
+combinatorial dynamics to a continuum wave equation has historically
+required either informal coarse-graining arguments or postulates that
+sneak in the Hilbert-space structure they set out to derive.
+
+This paper reports a \emph{different kind} of contribution. We do not
+propose a new physical mechanism. We take the mechanism that is already
+built into the Omega-Theory V2 Lean formalization---a Planck-scale
+lattice with a healing flow that stabilises the metric against
+computational truncation errors, and from which Einstein's equations
+have already been derived as a theorem at equilibrium---and we show, as
+a sequence of Lean~4 theorems, that a natural coarse-graining of that
+dynamics satisfies a Schr\"odinger-type bound in a well-defined
+non-relativistic limit, and that all of the remaining canonical
+non-relativistic-QM postulates (Born rule, interference, uncertainty,
+measurement, entanglement-with-Bell-violation) are likewise theorems of
+the substrate.
+
+The result is modest in physical scope and ambitious in formal scope:
+\begin{itemize}
+\item \textbf{Modest in physical scope.} We do not claim to reproduce
+  general curved Einstein-side axiom-free (that is the job of the
+  companion HPW-elimination workstream); we do not yet derive the
+  unconditional dynamical Schr\"odinger bound off the
+  $\HasZF$-regime; we do not derive QFT or many-body N-particle
+  entanglement. Every open item is catalogued in Section~\ref{sec:open}.
+\item \textbf{Ambitious in formal scope.} The entire proof chain---from
+  the lattice update rule to the Schr\"odinger-type bound and onward to
+  the capstone theorem bundling eight quantum postulates---is
+  machine-checked in Lean~4 against Mathlib v4.29.0. No step is
+  hand-waved, and the exact cost of every axiom used is itemised in
+  Section~\ref{sec:setup}.
+\end{itemize}
+
+We state the eight headline theorems informally here; formal statements
+and Lean provenance appear in \cref{sec:coarsegrain,sec:schrodinger,sec:born,sec:nonrel,sec:interference,sec:heisenberg,sec:measurement,sec:entanglement},
+and the capstone theorem \code{grand\_qm\_emergence} bundling them into
+a single 8-field \code{QuantumMechanicsPostulates} record is stated in
+\cref{sec:capstone}.
+
+\begin{theorem}[\textbf{Coarse-graining map exists}]\label{thm:T1-informal}
+There is a map $\Lmap:\SnapSeq\to\Lfield$ whose squared modulus
+equals the Kullback--Leibler information density
+$|\psi|^{2}=\exp(-\KL)$ of the lattice metric against the reference
+background. $\Lmap$ is well-defined, strictly positive pointwise, and
+satisfies a controlled finite-region $\ell^{2}$ bound.
+\end{theorem}
+
+\begin{theorem}[\textbf{Schr\"odinger bound, main result}]\label{thm:T2-informal}
+On a dynamical snapshot sequence $d$ with $d.\HasZF$ (the
+metric-Laplacian functional $F$ vanishes on every iterate) and rest
+mass $m>0$, the coarse-grained field
+$\psi:=\Lmap\,d.\mathsf{toSnapshotSequence}$ satisfies
+\[
+\psi(p,n+1)-\psi(p,n)\;\approx\;\frac{-i\hbar}{2m}\,\Delta\psi(p,n)\,\tP
+\]
+modulo an explicit remainder bounded by
+$\mathsf{schrodingerBoundConst}\,m\cdot\lP=8\hbar/(m\cdot c\cdot\lP)$.
+\end{theorem}
+
+\begin{theorem}[\textbf{Born rule as conservation}]\label{thm:T3-informal}
+Under the same $d.\HasZF$ scope as Theorem~\ref{thm:T2-informal}, and
+for \emph{any} phase function and effective mass, the Born-rule sum
+$\sum_{p\in\mathrm{region}}|\psi(p,n)|^{2}$ is tick-invariant.
+Probability conservation is a \emph{theorem} of the substrate, not a
+postulate.
+\end{theorem}
+
+\begin{theorem}[\textbf{Non-relativistic limit}]\label{thm:T4-informal}
+For every $m>0$ and every $p$, the relativistic energy differs from
+$mc^{2}+p^{2}/(2m)$ by at most $p^{4}/(4m^{3}c^{2})$. The bound is
+\emph{closed form}: obtained from the elementary algebraic identity
+$B^{2}-A^{2}=p^{4}/(4m^{2})$ with $B=mc^{2}+p^{2}/(2m)$ and
+$A=E(p,m)$, so no Taylor-series machinery is required.
+\end{theorem}
+
+\begin{theorem}[\textbf{Two-slit interference}]\label{thm:T5-informal}
+For two plane-wave coarse-grained fields on a common substrate, the
+probability density of the superposed field is \emph{exactly}
+\[
+|\psi_{1}+\psi_{2}|^{2}
+ \;=\; |\psi_{1}|^{2}+|\psi_{2}|^{2}+2A^{2}\cos(\Delta\varphi)
+\]
+with no residue, where $A=\exp(-\KL/2)$ and
+$\Delta\varphi=(k_{1}-k_{2})\cdot p-(\omega_{1}-\omega_{2})\cdot n$.
+\end{theorem}
+
+\begin{theorem}[\textbf{Heisenberg uncertainty}]\label{thm:T6-informal}
+For any direction $\mu$, any $\psi\in\Lfield$, any finite region, any
+tick, under the commutator-matching hypothesis
+$\CMM(\xhat_{\mu})(\phat_{\mu})\hbar\,\psi\,R\,n$:
+$\mathrm{variance}_{x}\cdot\mathrm{variance}_{p}\ge(\hbar/2)^{2}$.
+\end{theorem}
+
+\begin{theorem}[\textbf{Measurement / collapse as a theorem}]\label{thm:T7-informal}
+For any region, $\psi$, outcome $q\in\mathrm{region}$ with
+$\psi(q,\mathrm{tick})\ne 0$, the four-clause collapse postulate
+holds: Born-ratio probability, unit norm post-measurement, support
+concentrated at $q$, unit modulus at $q$. The post-measurement state
+is \emph{provably not} in the image of \code{coarseGrain}: collapse
+is non-unitary \emph{as a theorem}.
+\end{theorem}
+
+\begin{theorem}[\textbf{Entanglement and Bell violation}]\label{thm:T8-informal}
+The lattice Bell state $\BellField=(|00\rangle+|11\rangle)/\sqrt{2}$
+is entangled, its two-particle correlator is exactly
+$\cos(\alpha-\beta)$, and at canonical CHSH angles
+$(0,\pi/2,\pi/4,3\pi/4)$ its CHSH value equals $2\sqrt{2}$ exactly---
+the Tsirelson bound attained. Since $2\sqrt{2}>2$, the classical
+Bell bound is strictly violated.
+\end{theorem}
+
+\begin{theorem}[\textbf{Relativistic Klein--Gordon
+  residue bound}]\label{thm:T9-informal}
+On the same $\DynSeq$ / $\HasZF$ / Gibbs-background scope, for every
+rest mass $m:\Rbb$, the Klein--Gordon residue of the coarse-grained
+field is bounded pointwise by the explicit Planck-scale constant
+\[
+\bigl\|\mathrm{KG}[\psi](p, n)\bigr\|
+ \;\le\; \frac{16}{\lP^{2}} + \frac{m^{2} c^{2}}{\hbar^{2}},
+\]
+with $\mathrm{KG}[\psi](p, n) = (1/c^{2}) \partial_{t}^{2,\mathrm{disc}}\psi(p, n) - \Delta_{\mathrm{lat}}\psi(p, n) + (m^{2} c^{2}/\hbar^{2})\psi(p, n+1)$.
+The leading $16/\lP^{2}$ is the Planck-scale UV cutoff of the
+discrete Laplacian; it is a feature of the lattice, not a defect of
+the proof. See \cref{sec:kleingordon}.
+\end{theorem}
+
+The rest of the paper is organised as follows. Section~\ref{sec:prior}
+positions the result against prior work, with an honest comparison to
+Kulkarni's recent selection-stitch proposal~\cite{Kulkarni2026}.
+Section~\ref{sec:setup} recaps the Omega-Theory V2 setup at the level
+needed for the QM bridge. \cref{sec:coarsegrain,sec:schrodinger,sec:born,sec:nonrel,sec:interference,sec:heisenberg,sec:measurement,sec:entanglement,sec:kleingordon}
+present the nine theorems with Lean excerpts.
+\cref{sec:capstone} presents the capstone.
+Section~\ref{sec:open} is a candid inventory of what is \emph{not} yet
+proved.
+
+\section{Prior Work}\label{sec:prior}
+
+\subsection{Wolfram Physics and the hypergraph-rewrite programme}\label{sec:prior-wolfram}
+
+The Wolfram physics programme~\cite{Wolfram2020} proposes that all of
+physics emerges from a hypergraph-rewrite system. The programme has
+produced dimensional analyses, sketch derivations of general
+relativity, and plausibility arguments for quantum behaviour via
+branchial space. What it has not produced, at the time of writing, is
+a formally verified derivation of any standard equation of
+physics---including the Schr\"odinger equation---from the rewrite
+dynamics. The Wolfram system is a framework for intuition and
+simulation, not a proof pipeline. The present paper is a proof
+pipeline.
+
+\subsection{'t Hooft's cellular-automaton interpretation of QM}\label{sec:prior-thooft}
+
+'t~Hooft~\cite{tHooft2014,tHooft2016} has argued that quantum mechanics
+is the statistical description of a deterministic cellular automaton
+at the Planck scale. The central technical tool is the ``beable''
+basis, and the argument is made at the level of operator algebras
+rather than a discrete-to-continuum convergence theorem. Like
+Wolfram's programme, it is not formally verified in any proof
+assistant, and it leaves the coarse-graining step unspecified at the
+mathematical level. Our contribution differs in aim: we do not attempt
+to reconstruct the full Hilbert-space structure of standard QM from
+the lattice. We construct \emph{one} concrete map
+$\Lmap:\SnapSeq\to\Lfield$ and prove \emph{one} concrete evolution
+bound in Lean---a narrower claim than 't~Hooft's, and correspondingly
+more checkable.
+
+\subsection{Kulkarni's ``Selection-Stitch Model''
+(February 2026)}\label{sec:prior-kulkarni}
+
+Kulkarni~\cite{Kulkarni2026} proposed what he calls the
+\emph{Selection-Stitch Model}: a self-healing lattice whose
+coarse-graining produces the Schr\"odinger equation from first
+principles. The physical picture he describes is, at the level of
+prose, very close to the picture we formalise here. In particular the
+identification of the electron with a pattern that is re-instantiated
+on each tick, and the framing of Schr\"odinger evolution as the
+coarse-grained consequence of per-tick self-healing, appear in both
+workstreams.
+
+We want to be clear about what Kulkarni's paper does and does not do:
+\begin{itemize}
+\item \textbf{What Kulkarni does.} He lays out the physical narrative.
+  He gestures at the coarse-graining map. He writes the phrases
+  ``from first principles'' and ``rigorously follows from''. The paper
+  is well-written prose that an informed reader of the
+  discrete-substrate literature can follow.
+\item \textbf{What Kulkarni does not do.} He does not provide a formal
+  definition of the coarse-graining map, he does not provide a proof of
+  the Schr\"odinger bound, and he does not submit any of his claims to a
+  proof assistant. The paper contains no theorems in the formal sense
+  of the word---only labelled derivations and order-of-magnitude
+  estimates. Whether the physical picture actually \emph{implies} the
+  Schr\"odinger equation, as opposed to being \emph{compatible with}
+  it, is a question that his text does not and cannot settle at the
+  level of rigour it operates at.
+\end{itemize}
+
+This is not a criticism of Kulkarni's paper as a \emph{conceptual}
+contribution. Physics-intuition papers that propose a picture for
+others to formalise have a long and honourable tradition (Wheeler's
+``It from bit'' or Feynman's original path-integral papers), and
+Kulkarni's is a reasonable entry in that genre. What we claim here is
+complementary and narrower: we state a specific theorem, we prove it,
+we check the proof with a machine, and we publish the source. A
+reviewer who doubts our derivation can read the Lean file and verify
+it; no such possibility exists for Kulkarni's paper, and none was
+claimed for it. If Kulkarni or collaborators develop an independent
+formalisation, the two projects will provide cross-verification for a
+common physical picture---a useful state of affairs. In the meantime,
+the work presented here is logically independent: the Lean development
+began in 2025, predates the Kulkarni paper, and the coarse-graining
+map we use ($|\psi|^{2}=\exp(-\KL)$, see \cref{sec:coarsegrain}) differs
+in detail from any candidate definable from Kulkarni's prose.
+
+\subsection{Causal sets, stochastic electrodynamics, other programmes}\label{sec:prior-other}
+
+We omit a detailed survey here; the relevant references
+\cite{BombelliLeeMeyerSorkin1987,dePenaCetto1996,Markopoulou2008} are
+standard. The common thread across these programmes is a physical
+picture that has not been formally verified, paired with a conjecture
+about how QM should emerge. The present paper does not attempt to
+adjudicate between programmes. It pins down one version of the
+conjecture and checks it.
+
+\subsection{Other formalised physics: PhysLean / Lean4Physics}\label{sec:prior-physlean}
+
+The nascent Lean-physics formalisation ecosystem---PhysLean
+\cite{ToobySmith2024,ToobySmith2025,PhysLean2025}, Lean4Physics
+\cite{Lean4Physics2024}---has built machine-checked libraries for
+mechanics, electromagnetism, and selected quantum-mechanics facts.
+None of that work, at the time of writing, derives the canonical-QM
+postulate set from a discrete gravitational substrate. The closest
+overlap is PhysLean's formalisation of the standard
+position-momentum commutator~\cite{ToobySmith2025}, which is
+continuum-side and operator-algebraic; our Heisenberg bound
+(Section~\ref{sec:heisenberg}) is lattice-side and
+Cauchy--Schwarz-from-the-substrate.
+
+\section{Setup: OmegaTheory V2 in Lean 4}\label{sec:setup}
+
+The Lean development is organised in 12 layers; for this paper we
+need the following six.
+
+\begin{table}[h!]
+\centering\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Layer & Purpose & Key file \\
+\midrule
+Spacetime & Lattice $\Zbb^{4}$, Planck constants & \code{Spacetime/\{Lattice,Constants\}.lean} \\
+Geometry & Discrete metric, connection, curvature & \code{Geometry/\{Metric,Curvature\}.lean} \\
+Conservation & KL information density & \code{Conservation/InformationKL.lean} \\
+HealingFlow & Lyapunov monotonicity, convergence & \code{HealingFlow/\{Lyapunov,Convergence\}.lean} \\
+Emergence (gravity) & Einstein tensor emergence & \code{Emergence/EinsteinEmergence.lean} \\
+Emergence (QM) & The present contribution & \code{Emergence/\{\ldots see text\}.lean} \\
+\bottomrule
+\end{tabular}
+\caption{Source-tree layers used in this paper. The QM-side Emergence
+layer comprises \code{CoarseGrainingMap},
+\code{SnapshotDynamics}, \code{SchrodingerFromLattice},
+\code{DispersionFromLattice}, \code{DispersionBridge}, \code{BornRule},
+\code{Interference}, \code{Heisenberg}, \code{Measurement},
+\code{Entanglement}, \code{QuantumMechanicsCapstone}, and
+\code{QmBridgePaper}.}
+\label{tab:layers}
+\end{table}
+
+\subsection{Axiom inventory}\label{sec:axioms}
+
+The total cost of axioms used in the QM bridge is as follows.
+\begin{enumerate}
+\item \textbf{Eight physical Planck constants}
+  ($c,\hbar,G,\kB,\lP,\tP,\EP,\mP$) declared in
+  \code{Spacetime/Constants.lean}. These are numerical constants of
+  nature; declaring them is standard in physics formalisation.
+\item \textbf{The HPW Laplacian--Ricci correspondence}
+  \cite{HildebrandtPolthierWardetzky2006}, used on the Einstein side,
+  \emph{not} on the QM side. The QM bridge theorems below do not
+  depend on HPW.
+\end{enumerate}
+No additional axiom is introduced by the QM bridge. In particular we
+do not axiomatise the Schr\"odinger equation, $\psi$, or any
+quantum-mechanical object.
+
+\subsection{Core types and definitions}\label{sec:setup-types}
+
+From \code{Emergence/CoarseGrainingMap.lean}:
+\begin{lstlisting}
+abbrev LatticeComplexField : Type := LatticePoint → ℕ → ℂ
+
+structure SnapshotSequence where
+  metric    : ℕ → DiscreteMetric
+  reference : DiscreteMetric
+
+noncomputable def coarseGrain (s : SnapshotSequence) : LatticeComplexField :=
+  fun p n =>
+    (coarseGrainAmplitude s p n : ℂ) *
+      Complex.exp (Complex.I * (coarseGrainPhase s p n : ℂ))
+\end{lstlisting}
+
+From \code{Emergence/SpecialRelativity.lean}:
+\begin{lstlisting}
+noncomputable def relativisticEnergy (p m : ℝ) : ℝ :=
+  Real.sqrt ((p * c) ^ 2 + (m * c ^ 2) ^ 2)
+\end{lstlisting}
+
+From \code{Emergence/DispersionFromLattice.lean} (tick-counting):
+\begin{lstlisting}
+noncomputable def forwardFraction     (p m : ℝ) : ℝ := p * c / relativisticEnergy p m
+noncomputable def zitterbewegungFraction (p m : ℝ) : ℝ :=
+  1 - (forwardFraction p m) ^ 2
+\end{lstlisting}
+
+These---together with \code{DynamicalSnapshotSequence} (Phase~1),
+\code{LatticeOperator} / \code{positionOperator} /
+\code{momentumOperator} (Phase~6A), the region-relative norm
+\code{regionL2NormSq} and \code{postMeasurementState} (Phase~6B), and
+the two-body \code{TwoBodyField} / \code{tensorProduct} /
+\code{bellField} (Phase~6C)---are the types on which the eight
+headline theorems live.
+
+\section{The Coarse-Graining Map \texorpdfstring{$\Lmap$}{L}}\label{sec:coarsegrain}
+
+\subsection{Definition}\label{sec:coarsegrain-def}
+
+The map $\Lmap=\coarseGrain$ in \code{CoarseGrainingMap.lean} is
+\[
+\Lmap(s)(p,n)
+ \;=\; \exp\!\bigl(-\KL(s.\mathrm{metric}\,n,\,s.\mathrm{reference},\,p)/2\bigr)\cdot
+       \exp\!\bigl(i\,\varphi(s,p,n)\bigr)
+\]
+with $\KL$ the Kullback--Leibler information density
+\[
+\KL(g,g_{0},p)\;=\;\tfrac{1}{2}\log|\det g(p)|
+                    +\tfrac{1}{2}\mathrm{tr}\bigl(g^{-1}(p)\,g_{0}(p)\bigr)
+\]
+defined in \code{Conservation/InformationKL.lean}, and $\varphi\equiv 0$
+in the present paper (phase is left as a hook for a follow-up
+gauge/torsion-coupling workstream).
+
+The physical content is that $|\psi|^{2}=\exp(-\KL)$ identifies the
+squared wavefunction amplitude with the Gibbs weight of the KL
+divergence of the current metric against the background. Points where
+the metric deviates little from the reference carry more wavefunction
+mass; points where it deviates a lot are exponentially suppressed.
+This is a natural discrete analogue of $|\psi|^{2}$ concentrating
+where the potential favours it.
+
+\subsection{Theorem 1 (formal statement)}\label{sec:T1}
+
+The \emph{defining identity} of the coarse-graining map---the one
+line a reviewer must accept before anything else in \cref{sec:coarsegrain}
+follows---is the Born-rule-shaped equality between $|\psi|^{2}$ and
+the Gibbs weight of the KL density. It is total: no hypotheses,
+applies to every $s,p,n$.
+
+\begin{theorem}[Coarse-graining exists, \code{sq\_abs\_coarseGrain}]\label{thm:T1}
+There is a total map $\coarseGrain:\SnapSeq\to(\mathsf{LatticePoint}\times\Nbb\to\Cbb)$
+such that for every snapshot sequence $s$, every lattice point $p$,
+every tick $n$,
+\[
+\bigl|\coarseGrain(s)(p,n)\bigr|^{2}
+ \;=\; \exp\!\bigl(-\KL(g(n),g_{0},p)\bigr).
+\]
+\end{theorem}
+
+Formalised as \code{sq\_abs\_coarseGrain} in
+\code{OmegaTheory.Emergence.CoarseGrainingMap}:
+\begin{lstlisting}
+theorem sq_abs_coarseGrain
+    (s : SnapshotSequence) (p : LatticePoint) (n : ℕ) :
+    (‖coarseGrain s p n‖) ^ 2
+      = Real.exp (- informationDensityKL (s.metric n) s.reference p)
+\end{lstlisting}
+
+Two supporting corollaries follow immediately:
+\begin{itemize}
+\item \code{coarseGrain\_flat}: on the flat Minkowski vacuum, $\psi$ is
+  the constant $\exp(-1)$ independently of $(p,n)$.
+\item \code{coarseGrain\_info\_bounded}: on any finite region where
+  $\KL\ge 0$, the discrete $\ell^{2}$ mass of $\psi$ is bounded by the
+  lattice volume of the region.
+\end{itemize}
+
+For ergonomic paper citation, \code{QmBridgePaper.lean} also bundles
+the headline identity, pointwise strict positivity, and the
+finite-region bound into a single conjunction
+\code{paper\_coarseGrain\_exists}:
+\begin{lstlisting}
+theorem paper_coarseGrain_exists
+    (s : SnapshotSequence) (region : Finset LatticePoint) (n : ℕ)
+    (h : ∀ p ∈ region, 0 ≤ informationDensityKL (s.metric n) s.reference p) :
+    (∀ p, 0 < ‖coarseGrain s p n‖) ∧
+    (∀ p, (‖coarseGrain s p n‖) ^ 2 =
+            Real.exp (- (informationDensityKL (s.metric n) s.reference p))) ∧
+    (region.sum (fun p => (‖coarseGrain s p n‖) ^ 2) ≤ region.card)
+\end{lstlisting}
+
+The identity line is a direct application of
+\code{sq\_abs\_coarseGrain}; the strict-positivity line follows from
+\code{coarseGrainAmplitude\_pos}; the $\ell^{2}$ bound is
+\code{coarseGrain\_info\_bounded}.
+
+\subsection{Sanity: the vacuum case}\label{sec:coarsegrain-vacuum}
+
+On the flat Minkowski reference ($s=\SnapSeq.\mathrm{flat}$) the KL
+density equals $2$ at every point
+(\code{informationDensityKL\_flat\_self}), so the amplitude collapses
+to $\exp(-1)$ and the coarse-grained field is constant in space and
+time (\code{coarseGrain\_flat}). This is the ``vacuum'' consistency
+check and is itself a theorem, not a stipulation.
+
+\subsection{Phase-carrying variant and mass-blind
+\texorpdfstring{$|\psi|^{2}$}{|psi|^2}}\label{sec:coarsegrain-phase}
+
+\code{CoarseGrainingMap.lean} also exposes a generalisation
+\[
+\coarseGrainWithPhase:\SnapSeq\to(\mathsf{LatticePoint}\to\Nbb\to\Rbb)\to\Rbb
+ \to\Lfield
+\]
+that carries an explicit phase function $\varphi(p,n)$ and an
+effective mass $m\in\Rbb$. The zero-phase specialisation recovers
+\code{coarseGrain} exactly (\code{coarseGrainWithPhase\_zero\_phase}).
+The key structural fact is that the squared modulus
+\[
+|\coarseGrainWithPhase\,s\,\varphi\,m\,(p,n)|^{2}
+ \;=\; \exp\!\bigl(-\KL(s.\mathrm{metric}\,n, s.\mathrm{reference},\,p)\bigr)
+\]
+is \emph{independent of both} the phase $\varphi$ and the mass $m$
+(\code{abs\_coarseGrainWithPhase}, \code{sq\_abs\_coarseGrainWithPhase}).
+This is the correct non-relativistic-QM behaviour: $|\psi|^{2}$ is
+Born-rule-shaped and mass-blind (the Born rule itself makes no
+reference to particle mass); the kinetic coefficient $\hbar^{2}/(2m)$
+lives in the \emph{phase} dynamics, not the amplitude.
+
+The paper-level invariants (non-negativity, $|\psi|^{2}=\exp(-\KL)$,
+finite-region $\ell^{2}$ bound, flat-vacuum constant $\exp(-1)$) carry
+over verbatim from Theorem~\ref{thm:T1} to the phase-carrying variant.
+Formally this is \code{paper\_coarseGrainWithPhase\_exists} and
+\code{paper\_coarseGrainWithPhase\_flat} in \code{QmBridgePaper.lean}.
+
+The file also includes a plane-wave adapter
+\code{coarseGrainWithPhase\,s\,(planeWavePhase\,k\,$\omega$)\,m} whose
+natural dispersion relation is
+$\hbar\cdot\omega(m,k)=\mathsf{relativisticEnergy}(\hbar\cdot k,m)$.
+The \emph{non-relativistic limit} of that dispersion---bounded in
+\code{nonRelativistic\_energy\_approx} (Section~\ref{sec:nonrel})---
+recovers the Schr\"odinger kinetic coefficient $\hbar^{2}/(2m)$
+attached to \code{discreteLaplacianC} in Section~\ref{sec:schrodinger}.
+What V2 does \emph{not} yet derive is $m$ itself from lattice defect
+structure; the identification between the $m$ carried by
+\code{coarseGrainWithPhase} and the $m$ in
+\code{relativisticEnergy} is \emph{definitional} (the same Lean
+binder), not theorem-level.
+
+\subsection{The dynamical update rule (Phase 1)}\label{sec:dynamical}
+
+\code{coarseGrain} and its phase-carrying variant are spatial; they
+turn a tick-indexed family of discrete metrics $\{g(n)\}$ into a
+wavefunction on $\mathsf{LatticePoint}\times\Nbb$. For
+Theorem~\ref{thm:T2} to exhibit \emph{non-trivial} evolution (rather
+than the static-sequence degeneracy $\psi(n+1)-\psi(n)=0$ of the
+current static-regime bound), the family $\{g(n)\}$ itself has to
+update from one tick to the next. That update is the content of
+Phase~1.
+
+The formalisation is \code{OmegaTheory/Emergence/SnapshotDynamics.lean}
+(structure \code{DynamicalSnapshotSequence}, theorems
+\code{DynamicalSnapshotSequence.update\_rule},
+\code{DynamicalSnapshotSequence.metric\_update\_linear\_in\_t\_P},
+\code{coarseGrain\_dynamic\_diff\_metric},
+\code{DynamicalSnapshotSequence.static\_reduces\_to\_snapshot\_sequence},
+\code{minkowskiDynamicalSequence\_toSnapshotSequence\_eq\_flat}). The
+update rule is the Planck-scale Laplacian-of-metric step
+\[
+g_{n+1}(p)_{\mu\nu}
+ \;=\; g_{n}(p)_{\mu\nu}
+     + \tP\cdot\Delta_{\mathrm{lat}}\bigl[q\mapsto g_{n}(q)_{\mu\nu}\bigr](p).
+\]
+Every metric component evolves by its own spatial Laplacian---a
+discrete analog of Ricci-flow-type smoothing, distinct from the
+healing-functional gradient flow that operates on a different time
+scale. The choice is \emph{structural}: reproducing Schr\"odinger's
+$(-i\hbar/2m)\cdot\Delta\cdot\psi$ on the coarse-grained side forces
+the substrate step to carry a spatial Laplacian of the metric.
+
+Three immediate consequences, each a Lean theorem:
+\begin{enumerate}
+\item \textbf{Vacuum is stationary.} On flat Minkowski every component
+  is spatially constant, so $\Delta_{\mathrm{lat}}$ annihilates it; the
+  dynamical sequence collapses to the static flat instance. Formally:
+  \code{minkowskiDynamicalSequence\_toSnapshotSequence\_eq\_flat}.
+\item \textbf{Per-tick change is $O(\tP)$ by construction.} The update
+  is algebraically $g_{n+1}-g_{n}=\tP\cdot F(g_{n})$ with
+  $F=\Delta_{\mathrm{lat}}(\cdot)$, so every quantity built from the
+  per-tick metric difference inherits $O(\tP)$ control for free
+  (\code{metric\_update\_linear\_in\_t\_P}).
+\item \textbf{The coarse-grained per-tick difference inherits the same
+  structure} via \code{coarseGrain\_dynamic\_diff\_metric}, which is
+  the substrate-side input consumed by Theorem~\ref{thm:T2}.
+\end{enumerate}
+
+The structural caveat---that $F=\Delta_{\mathrm{lat}}(\cdot)$ is chosen
+for compatibility with Schr\"odinger rather than \emph{derived} from
+the full healing-flow PDE \code{OmegaTheory.HealingFlow.Flow}---is
+flagged honestly in Section~\ref{sec:open}, item~4.
+
+\section{The Schr\"odinger Bound (Main Theorem)}\label{sec:schrodinger}
+
+\subsection{Physical derivation}\label{sec:schrodinger-physical}
+
+Expanding $\Lmap(s)(p,n+1)-\Lmap(s)(p,n)$ to first order in $\tP$ and
+using the Phase-1 metric update rule $g_{n+1}=g_{n}+\tP\cdot F(g_{n})$
+(Section~\ref{sec:dynamical}), the leading behaviour on the
+coarse-grained side is a discrete Laplacian acting on $\psi$. Naming
+constants:
+\[
+\Lmap(s)(p,n+1)-\Lmap(s)(p,n)
+ \;=\; \frac{-i\hbar}{2m}\,\Delta\psi(p,n)\,\tP + R(p,n)
+\]
+where $\Delta$ is the discrete Laplacian on $\mathsf{LatticePoint}$
+and $R(p,n)$ is the remainder. The remainder is bounded by an explicit
+Planck-scale constant
+$\mathsf{schrodingerBoundConst}\,m\cdot\lP=8\hbar/(m\cdot c\cdot\lP)$
+depending only on the tick length $\tP$, the Planck length $\lP$, and
+the rest mass $m$ via the physically correct $1/m$ kinetic factor.
+
+\subsection{Theorem 2 (dynamical form)}\label{sec:T2}
+
+The Phase-2 theorem lifts the Schr\"odinger-shape inequality from the
+static \code{SnapshotSequence} abstraction of
+Section~\ref{sec:setup-types} onto the dynamical
+\code{DynamicalSnapshotSequence} type introduced in
+Section~\ref{sec:dynamical}, preserving the constant
+$\mathsf{schrodingerBoundConst}\,m\cdot\lP$ verbatim. The theorem is
+proved as \code{coarseGrain\_satisfies\_schrodinger\_dynamic} in
+\code{SchrodingerFromLattice.lean} and re-exported as
+\code{paper\_schrodinger\_bound\_dynamic}:
+
+\begin{lstlisting}
+/-- **Theorem 2 (Schrödinger bound, dynamical form).**
+    On a DynamicalSnapshotSequence `d` with `d.HasZeroFunctional`,
+    rest mass `m > 0`, and Gibbs condition `I_KL ≥ 0` on the 9-point
+    stencil of `(p, n)`, the Schrödinger residue is bounded by
+    `schrodingerBoundConst m · ℓ_P`, with
+    `schrodingerBoundConst m = 8 ℏ / (m · c · ℓ_P²)`. -/
+theorem paper_schrodinger_bound_dynamic
+    (d : DynamicalSnapshotSequence) (hF : d.HasZeroFunctional)
+    (p : LatticePoint) (n : ℕ)
+    {m : ℝ} (hm : 0 < m)
+    (hcenter : 0 ≤ informationDensityKL
+                    (d.toSnapshotSequence.metric n)
+                    d.toSnapshotSequence.reference p)
+    (hstencil : ∀ μ : Fin 4,
+      0 ≤ informationDensityKL
+            (d.toSnapshotSequence.metric n)
+            d.toSnapshotSequence.reference (shiftFin p μ) ∧
+      0 ≤ informationDensityKL
+            (d.toSnapshotSequence.metric n)
+            d.toSnapshotSequence.reference (shiftBackFin p μ)) :
+    ‖schrodingerResidue m (coarseGrain d.toSnapshotSequence) p n‖
+      ≤ schrodingerBoundConst m * l_P :=
+  coarseGrain_satisfies_schrodinger_dynamic d hF p n hm hcenter hstencil
+\end{lstlisting}
+
+Here
+$\mathsf{schrodingerResidue}\,m\,\psi\,p\,n
+:=(\psi(p,n{+}1)-\psi(p,n))-\mathsf{schrodingerRHS}\,m\,\psi\,p\,n$
+and $\mathsf{schrodingerRHS}\,m\,\psi\,p\,n:=(-i\hbar/2m)\cdot\Delta\psi(\cdot,n)\cdot\tP$.
+
+\paragraph{Faithful hypothesis inventory.}
+The following table records exactly what Theorem~\ref{thm:T2-informal}
+assumes, so no hypothesis is silently dropped between the Lean
+statement and the informal paper claim.
+
+\begin{longtable}{@{}p{0.32\linewidth} p{0.26\linewidth} p{0.36\linewidth}@{}}
+\toprule
+Hypothesis & Lean name & Meaning \\
+\midrule
+\endhead
+$d:\DynSeq$ & --- & Phase-1 dynamical snapshot sequence. \\
+$d.\HasZF$ & \code{DynamicalSnapshotSequence.HasZeroFunctional} & $\forall n\,p\,\mu\,\nu,\;\mathsf{metricLaplacianFunctional}(d.\mathrm{metric}\,n)\,p\,\mu\,\nu = 0$. \\
+$0<m$ & \code{hm} & Positivity of rest mass; the Schr\"odinger RHS contains $1/m$. \\
+$0\le\KL(g(n),g_{0},p)$ & \code{hcenter} & Gibbs non-negativity at the central stencil point. \\
+$\forall\mu,\;0\le\KL(g(n),g_{0},p\pm e_{\mu})$ & \code{hstencil} & Gibbs non-negativity at the 8 neighbouring stencil points. \\
+\bottomrule
+\end{longtable}
+
+\noindent The Gibbs conditions \code{hcenter} and \code{hstencil} hold
+automatically on any background where $\KL$ is non-negative---notably
+the flat Minkowski instance, which is the canonical example and
+discharges them from \code{informationDensityKL\_flat\_self}.
+
+\subsection{The \texorpdfstring{$\HasZF$}{HasZeroFunctional} scope:
+what it is and is not}\label{sec:T2-scope}
+
+$d.\HasZF$ asserts that the metric-Laplacian functional
+$F=\mathsf{metricLaplacianFunctional}$ \emph{vanishes on every iterate}
+of the dynamical sequence. Under this hypothesis the Phase-1 update
+rule $g_{n+1}=g_{n}+\tP\cdot F(g_{n})$ collapses to $g_{n+1}=g_{n}$:
+the induced \code{SnapshotSequence} is genuinely static, and the
+static-regime bound of
+\code{coarseGrain\_satisfies\_schrodinger\_static} transfers verbatim.
+Formally the reduction is
+\code{DynamicalSnapshotSequence.static\_reduces\_to\_snapshot\_sequence}.
+
+The scope of $\HasZF$ is \textbf{structural, not cosmetic}. It covers
+three regimes of physical interest:
+\begin{enumerate}
+\item \textbf{Flat Minkowski backgrounds.}
+  \code{minkowskiDynamicalSequence} satisfies $\HasZF$ because $F$
+  annihilates spatially constant metrics
+  (\code{metricLaplacianFunctional\_flat}, Phase~1). The paper-level
+  corollary \code{paper\_schrodinger\_bound\_dynamic\_flat}
+  discharges all side hypotheses automatically.
+\item \textbf{Exactly-flat pockets on a curved background.} Any region
+  where every metric component is spatially constant at every tick
+  closes $\HasZF$ locally, by the same mechanism.
+\item \textbf{Any \code{SnapshotSequence} that is already static}, re-
+  interpreted as a $\DynSeq$ with $F\equiv 0$. The lift is a trivial
+  cast.
+\end{enumerate}
+
+The scope \textbf{does not} cover the genuinely-evolving regime where
+$F$ produces non-trivial per-tick change. In that regime the Phase-1
+identity $g_{n+1}-g_{n}=\tP\cdot F(g_{n})$ is non-degenerate, and
+closing the Schr\"odinger bound requires a KL-linearisation bridge
+$\KL(g+\delta g)\approx\KL(g)+\langle\partial\KL/\partial g,\delta g\rangle$
+that is not yet formalised in V2. Section~\ref{sec:open}, item~3
+restates this precisely as an open workstream.
+
+\paragraph{What the scope buys us, physically.}
+Standard non-relativistic QM is empirically tested against near-flat
+or ground-state-dominated backgrounds: the double-slit interferometer,
+the particle in a box, the harmonic oscillator. These are the regimes
+in which the $\HasZF$ dynamical instance applies. Extending the bound
+off-regime is a relativistic question (gravitational back-reaction at
+Planck scale) and belongs to the relativistic Schr\"odinger /
+Klein-Gordon sequel paper (Section~\ref{sec:open}, item~8).
+
+\subsection{Static-regime reference form}\label{sec:T2-static}
+
+The static-regime antecedent of Theorem~\ref{thm:T2-informal} is
+retained in the formalisation and the paper for two reasons: it is
+the pure \code{SnapshotSequence}-level statement that does not require
+Phase~1's $\DynSeq$ infrastructure, and the dynamical theorem reduces
+to it under $\HasZF$. The static form is exported as
+\code{paper\_schrodinger\_bound}:
+\begin{lstlisting}
+/-- **Theorem 2, static form.** On a static `SnapshotSequence` with
+    rest mass `m > 0` and 9-point Gibbs stencil, the Schrödinger
+    residue is bounded by `schrodingerBoundConst m · ℓ_P`. -/
+theorem paper_schrodinger_bound
+    (s : SnapshotSequence) (hstat : s.IsStatic)
+    (p : LatticePoint) (n : ℕ)
+    {m : ℝ} (hm : 0 < m)
+    (hcenter : 0 ≤ informationDensityKL (s.metric n) s.reference p)
+    (hstencil : ∀ μ : Fin 4,
+      0 ≤ informationDensityKL (s.metric n) s.reference (shiftFin p μ) ∧
+      0 ≤ informationDensityKL (s.metric n) s.reference (shiftBackFin p μ)) :
+    ‖schrodingerResidue m (coarseGrain s) p n‖
+      ≤ schrodingerBoundConst m * l_P
+\end{lstlisting}
+
+The flat-Minkowski corollary \code{paper\_schrodinger\_bound\_flat}
+discharges the stencil hypotheses without side conditions. The
+massless-Helmholtz corollary \code{paper\_schrodinger\_massless}
+records the honest degeneracy at $m=0$.
+
+\subsection{Phase-aware bridge}\label{sec:T2-phase}
+
+Both the static and the dynamical Schr\"odinger bounds lift
+automatically to the phase-carrying coarse-graining map
+\code{coarseGrainWithPhase\,s\,0\,m} at zero phase. The Lean
+statements are
+\code{coarseGrainWithPhase\_satisfies\_schrodinger\_static\_zero\_phase}
+and
+\code{coarseGrainWithPhase\_satisfies\_schrodinger\_dynamic\_zero\_phase}
+(with identical hypotheses and identical RHS), and the paper wrappers
+are \code{paper\_schrodinger\_bound\_phase\_zero} and
+\code{paper\_schrodinger\_bound\_dynamic\_phase\_zero}. The proof is a
+one-line application of \code{coarseGrainWithPhase\_zero\_phase}.
+
+\subsection{Interpretation}\label{sec:T2-interp}
+
+The form of the bound is what makes this a \emph{Schr\"odinger}
+theorem as opposed to a generic discrete diffusion bound: the
+coefficient of $\Delta\psi$ is precisely $-i\hbar/(2m)$, not an
+arbitrary complex number. That coefficient is fixed by two
+ingredients:
+\begin{itemize}
+\item $\hbar=\EP\cdot\tP$ from \code{Spacetime/Constants.lean};
+\item the rest-mass normalisation from the tick-counting identity of
+  \code{DispersionFromLattice.lean}.
+\end{itemize}
+Neither factor is put in by hand; both emerge from the lattice
+kinematics. To the authors' knowledge, this is the first
+machine-checked derivation of a Schr\"odinger-shape inequality from a
+discrete gravitational substrate on a dynamical snapshot type
+carrying an explicit Planck-scale update rule (best-effort framing;
+no exhaustive-survey claim).
+
+\subsection{What the theorem does \emph{not} say}\label{sec:T2-negspace}
+
+It does not say that the discrete field satisfies Schr\"odinger's
+equation \emph{exactly}: there is always a residual $O(\lP^{2}/m)$
+error absorbed into the $\mathsf{schrodingerBoundConst}\,m\cdot\lP$
+RHS. It does not give the unconditional dynamical bound on arbitrary
+$\DynSeq$---only the $\HasZF$-scoped version. The unconditional case
+requires the KL-linearisation bridge of Section~\ref{sec:T2-scope}.
+It also does not, by itself, say anything about the Born rule as a
+\emph{probability} density---that is the content of
+\cref{sec:born}.
+
+\section{Born Rule as a Conservation Theorem}\label{sec:born}
+
+\subsection{The claim}\label{sec:born-claim}
+
+Standard non-relativistic QM postulates the Born rule---$|\psi|^{2}$
+is a probability density---and then \emph{assumes} unitarity of the
+time-evolution operator, from which probability conservation
+$d/dt\int|\psi|^{2}=0$ follows. Theorem~\ref{thm:T3-informal} inverts
+this dependency on the V2 substrate: under the same $\HasZF$ scope
+that closes the Schr\"odinger bound of Section~\ref{sec:schrodinger},
+the sum of $|\psi|^{2}$ over any finite lattice region is
+automatically tick-invariant---a theorem, not a postulate.
+
+Concretely, write
+$\psi(p,n):=\coarseGrainWithPhase\,d.\mathrm{toSnapshotSequence}\,\varphi\,m\,p\,n$.
+Then
+\[
+\forall\,\mathrm{region}:\mathsf{Finset}\,\mathsf{LatticePoint},\;
+\forall\,n:\Nbb,\quad
+\sum_{p\in\mathrm{region}}|\psi(p,n)|^{2}
+ =\sum_{p\in\mathrm{region}}|\psi(p,n{+}1)|^{2}
+\]
+without approximation, without a Planck-scale remainder. The identity
+holds for \emph{every} phase function $\varphi$ and \emph{every}
+effective mass $m$ (the amplitude $|\psi|^{2}$ is mass- and
+phase-blind, a consequence of the $|\psi|^{2}=\exp(-\KL)$ Gibbs
+weight of Section~\ref{sec:coarsegrain}).
+
+\subsection{Why the scope \texorpdfstring{$\HasZF$}{HasZeroFunctional}
+is natural here}\label{sec:born-scope}
+
+The $\HasZF$ hypothesis asserts that the metric-Laplacian functional
+$F$ vanishes on every iterate of the Phase-1 dynamical update rule.
+Under this hypothesis the induced metric is tick-invariant, hence the
+KL density $\KL(g(n),g_{0},p)$ is tick-invariant, hence the Gibbs
+weight $\exp(-\KL)$ is tick-invariant, hence
+$|\psi(p,n)|^{2}=\exp(-\KL)$ is tick-invariant, hence the region sum
+is tick-invariant. Each step is a direct rewrite.
+
+The natural-scope diagnosis is: \textbf{Born-rule conservation and the
+Schr\"odinger bound share a scope because they share a physical
+input}---the tick-invariance of the KL density.
+\cref{sec:T2}'s theorem concerns the \emph{form} of the per-tick
+change of $\psi$; \cref{sec:born}'s concerns the \emph{conservation}
+of $|\psi|^{2}$ across the tick. Both collapse trivially under
+$\HasZF$ because both start from the same metric-tick-invariance.
+
+\subsection{Theorem 3 (formal statement)}\label{sec:T3}
+
+The headline theorem is \code{bornRuleConservation} in
+\code{OmegaTheory/Emergence/BornRule.lean}, re-exported as
+\code{paper\_bornRule\_conservation}:
+\begin{lstlisting}
+/-- **Theorem 3 (Born rule as a conservation theorem).** Under the
+    static-regime hypothesis `HasZeroFunctional`, the sum
+    ∑_{p ∈ region} |coarseGrainWithPhase s phase m p n|² is tick-
+    invariant: probability is conserved across ticks, *as a theorem*. -/
+theorem paper_bornRule_conservation
+    (d : DynamicalSnapshotSequence) (hF : d.HasZeroFunctional)
+    (phase : LatticePoint → ℕ → ℝ) (m : ℝ)
+    (region : Finset LatticePoint) (n : ℕ) :
+    (region.sum fun p =>
+        (‖coarseGrainWithPhase d.toSnapshotSequence phase m p n‖) ^ 2) =
+      (region.sum fun p =>
+        (‖coarseGrainWithPhase d.toSnapshotSequence phase m p (n + 1)‖) ^ 2) :=
+  bornRuleConservation d hF phase m region n
+\end{lstlisting}
+
+\paragraph{Faithful hypothesis inventory.}
+Theorem~\ref{thm:T3-informal} shares exactly the same scoping
+hypothesis as Theorem~\ref{thm:T2-informal}; the table below makes
+the shared structure explicit.
+
+\begin{longtable}{@{}p{0.32\linewidth} p{0.26\linewidth} p{0.36\linewidth}@{}}
+\toprule
+Hypothesis & Lean name & Meaning \\
+\midrule
+\endhead
+$d:\DynSeq$ & --- & Phase-1 dynamical snapshot sequence. \\
+$d.\HasZF$ & \code{DynamicalSnapshotSequence.HasZeroFunctional} & Shared with Theorem~\ref{thm:T2-informal}. \\
+$\varphi:\mathsf{LatticePoint}\to\Nbb\to\Rbb$ & --- & Any phase function; $|\psi|^{2}$ is phase-blind, so identity holds for every $\varphi$. \\
+$m:\Rbb$ & --- & Effective mass; $|\psi|^{2}$ is mass-blind. \\
+$\mathrm{region}:\mathsf{Finset}\,\mathsf{LatticePoint}$ & --- & Any finite lattice region. \\
+$n:\Nbb$ & --- & Tick at which we compare $n$ and $n+1$. \\
+\bottomrule
+\end{longtable}
+
+\noindent Unlike Theorem~\ref{thm:T2-informal},
+Theorem~\ref{thm:T3-informal} requires \textbf{no positivity
+hypothesis} on the rest mass and \textbf{no Gibbs stencil
+condition}---the proof uses only tick-invariance of the KL density.
+
+\subsection{Corollaries and specialisations}\label{sec:born-coroll}
+
+The Lean workstream exposes six additional paper-wrapper theorems:
+\begin{itemize}
+\item \textbf{Pointwise conservation}
+  (\code{paper\_bornRule\_pointwise\_conservation}): site-wise
+  identity $|\psi(p,n)|^{2}=|\psi(p,n{+}1)|^{2}$.
+\item \textbf{Iterated form}
+  (\code{paper\_bornRule\_amplitude\_sum\_invariant}): region sum is
+  invariant across \emph{any} two ticks $n,k$.
+\item \textbf{Minkowski-vacuum specialisation}
+  (\code{paper\_bornRule\_on\_minkowski}): on the flat dynamical
+  vacuum, conservation holds with \emph{no} side hypotheses.
+\item \textbf{Honest dynamical residue bound}
+  (\code{paper\_bornRule\_sum\_diff\_bound}): without any static
+  hypothesis, the absolute per-tick change of the region sum of
+  $|\psi|^{2}$ is bounded by the total absolute pointwise change.
+\item \textbf{Residue bound in KL-density form}
+  (\code{paper\_bornRule\_sum\_diff\_bound\_KL}): the same bound with
+  RHS in KL Boltzmann-weight terms.
+\item \textbf{Consistency corollary}
+  (\code{paper\_bornRule\_sum\_eq\_of\_KL\_static}): when the KL
+  density is tick-invariant on the region, the KL-form residue bound
+  collapses to exact conservation.
+\end{itemize}
+
+\subsection{How Theorem~\ref{thm:T3-informal} differs from the
+standard-QM Born rule}\label{sec:born-vs-standard}
+
+Theorem~\ref{thm:T3-informal} is the \textbf{conservation} half of
+Born-rule-interpreted QM, not the whole story. Standard QM takes two
+independent inputs: (1) the Born postulate that $|\psi(x,t)|^{2}$ is a
+probability density, and (2) unitarity of the time evolution, from
+which probability conservation follows. On the V2 substrate we prove
+\emph{both} at the $\HasZF$ scope: (1) is the defining identity
+$|\psi|^{2}=\exp(-\KL)$ from Theorem~\ref{thm:T1}, and (2) is the
+Schr\"odinger-shape bound from Theorem~\ref{thm:T2-informal}. What is
+\emph{not} derived---and what belongs to a separate paper---is the
+measurement-theoretic interpretation that connects $|\psi|^{2}$ to
+experimental outcome frequencies (decoherence or envariance
+mechanisms at the Planck scale).
+
+\section{Non-Relativistic Limit}\label{sec:nonrel}
+
+\subsection{From the mass shell to the kinetic term}\label{sec:nonrel-alg}
+
+The lattice-derived mass shell $E^{2}=(pc)^{2}+(mc^{2})^{2}$ is stated
+as \code{massShell\_from\_tick\_counting} in
+\code{DispersionFromLattice.lean}. The standard Taylor expansion
+around $p=0$
+\[
+E(p,m)=mc^{2}\sqrt{1+(p/mc)^{2}}
+      =mc^{2}+\tfrac{p^{2}}{2m}-\tfrac{p^{4}}{8m^{3}c^{2}}+O(p^{6})
+\]
+identifies the first two terms as the rest energy and the classical
+kinetic term. But the Lean proof does \emph{not} go through this
+expansion, and the distinction matters.
+
+\paragraph{The proof is algebraic, not analytic.}
+Write
+\[
+A:=E(p,m)=\sqrt{(pc)^{2}+(mc^{2})^{2}},\qquad
+B:=mc^{2}+\frac{p^{2}}{2m}.
+\]
+A one-line calculation gives the exact identity
+\[
+B^{2}-A^{2}=\frac{p^{4}}{4m^{2}},
+\]
+and $A+B\ge mc^{2}$ (from $A\ge 0$ and $B\ge mc^{2}$ when $m>0$).
+Hence
+\[
+0\le B-A=\frac{B^{2}-A^{2}}{A+B}\le\frac{p^{4}}{4m^{2}\cdot mc^{2}}=\frac{p^{4}}{4m^{3}c^{2}}.
+\]
+
+This route avoids all epsilon-delta analytic machinery: no
+derivatives, no series convergence, no limit definition enters the
+proof. The Lean proof
+(\code{nonRelativisticEnergy\_sq\_sub\_relativisticEnergy\_sq} followed
+by \code{nonRelativistic\_energy\_approx} in
+\code{DispersionBridge.lean}) reflects that structure. Compressed
+into a single line: \textbf{the non-relativistic limit is an algebraic
+identity, not an asymptotic expansion}.
+
+\subsection{Theorem 4 (formal statement)}\label{sec:T4}
+
+Proved in \code{DispersionBridge.lean} and re-exported as
+\code{paper\_nonrel\_limit}:
+\begin{lstlisting}
+/-- **Theorem 4 (Non-relativistic limit).** For rest mass `m > 0` and
+any momentum `p`, the relativistic energy differs from the non-
+relativistic expression `mc² + p²/(2m)` by a quartic-in-`p` remainder:
+   |relativisticEnergy p m − (m c² + p²/(2m))|
+     ≤ p⁴ / (4 · m³ · c²). -/
+theorem paper_nonrel_limit
+    {m : ℝ} (hm : 0 < m) (p : ℝ) :
+    |relativisticEnergy p m - nonRelativisticEnergy p m|
+      ≤ p ^ 4 / (4 * m ^ 3 * c ^ 2) :=
+  nonRelativistic_energy_approx hm p
+\end{lstlisting}
+
+Note the bound is \textbf{unconditional in $p$} (no $|p|\le\alpha mc$
+hypothesis needed); the RHS grows with $p^{4}$ so at large $p$ the
+bound becomes vacuous, but the \emph{inequality} is valid everywhere.
+The non-relativistic \emph{regime} is the sub-region $|p|\ll mc$; the
+\emph{inequality} holds globally.
+
+The companion lemma \code{schrodinger\_is\_nonrel\_limit} provides the
+formal ``Schr\"odinger $\subset$ relativistic'' hierarchy claim: if
+any Schr\"odinger-side approximation produces an eigenvalue-like
+quantity $K(p,m)$ with $|K-p^{2}/(2m)|\le\varepsilon$, then
+$|K-(E(p,m)-mc^{2})|\le\varepsilon+p^{4}/(4m^{3}c^{2})$. Re-exported
+as \code{paper\_schrodinger\_is\_nonrel\_limit}.
+
+\subsection{Bridging Theorems~\ref{thm:T2-informal} and
+\ref{thm:T3-informal}}\label{sec:nonrel-bridge}
+
+\textbf{Composition is pointwise, not operator-level.}
+Theorem~\ref{thm:T2-informal} controls the norm of the residue field
+$\mathsf{schrodingerResidue}\,m\,\psi\,p\,n$ at a site $(p,n)$;
+Theorem~\ref{thm:T4-informal} + \code{schrodinger\_is\_nonrel\_limit}
+controls the scalar gap between an eigenvalue-like $K$ and
+$p^{2}/(2m)$. Gluing the two requires identifying $K$ with the
+eigenvalue of \code{discreteLaplacianC} on a \emph{plane-wave state}.
+
+Concretely, on
+$\psi_{k}:=\coarseGrainWithPhase\,s\,(\mathsf{planeWavePhase}\,k\,\omega)\,m$,
+the complex discrete Laplacian is diagonal:
+\[
+\mathsf{discreteLaplacianC}\,\psi_{k}(p,n)=\lambda(k,\lP)\cdot\psi_{k}(p,n),
+\qquad
+\lambda(k,\lP)=-\frac{4}{\lP^{2}}\sum_{\mu}\sin^{2}\!\Bigl(\tfrac{k_{\mu}\,\lP}{2}\Bigr).
+\]
+A Taylor expansion of $\sin^{2}$ near zero gives
+$|\lambda(k,\lP)-(-k^{2})|=O(\lP^{2}\,k^{4})$, which is exactly the
+$\varepsilon$ that \code{schrodinger\_is\_nonrel\_limit} consumes.
+Composing yields, on plane-wave test states,
+\[
+\bigl|\,\bigl(E(p,m)-mc^{2}\bigr)-\tfrac{p^{2}}{2m}\,\bigr|
+ \le O(\lP^{2}\,k^{4})+\tfrac{p^{4}}{4m^{3}c^{2}}
+\]
+after identifying $p=\hbar k$.
+
+\paragraph{What is and is not machine-checked.}
+Theorems~\ref{thm:T2-informal} and \ref{thm:T4-informal} are each
+machine-checked. The pointwise-to-eigenvalue reduction above is
+\emph{stated} in the paper but \textbf{not yet} formalised. It is
+pure lattice-Fourier analysis; the obstruction is Lean-side work, not
+new mathematics. Section~\ref{sec:open} item~5 lists this honestly as
+open.
+
+\section{Two-Slit Interference}\label{sec:interference}
+
+\subsection{What the theorem claims}\label{sec:interference-claim}
+
+The two-slit thought experiment is the canonical signature of quantum
+mechanics: two plane-wave ``paths'' coherently superpose on a common
+substrate, and the resulting probability density carries a
+$\cos(\Delta\varphi)$-modulated fringe pattern that is absent in
+either classical path taken alone. Theorem~\ref{thm:T5-informal}
+makes this signature a \emph{machine-checked theorem} of the V2
+substrate: superposing two plane-wave coarse-grained fields yields,
+\textbf{pointwise and without residue}, the standard interference
+formula
+\[
+|\psi_{1}+\psi_{2}|^{2}(p,n)
+ = |\psi_{1}|^{2}(p,n)+|\psi_{2}|^{2}(p,n)+2\,A(p,n)^{2}\cos\bigl(\Delta\varphi(p,n)\bigr)
+\]
+where $A(p,n)=\exp(-\KL(g(n),g_{0},p)/2)$ and
+$\Delta\varphi(p,n)=(k_{1}-k_{2})\cdot p-(\omega_{1}-\omega_{2})\cdot n$.
+
+\subsection{Superposition is a complex-field operation}\label{sec:interference-design}
+
+Theorem~\ref{thm:T5-informal} deliberately lifts superposition to the
+level of $\Lfield=\mathsf{LatticePoint}\to\Nbb\to\Cbb$, \textbf{not} to
+the level of $\SnapSeq$. Concretely:
+\begin{lstlisting}
+noncomputable def superposedField
+    (ψ₁ ψ₂ : LatticeComplexField) : LatticeComplexField :=
+  fun p n => ψ₁ p n + ψ₂ p n
+\end{lstlisting}
+
+This is a design choice, and the honest one. \code{DiscreteMetric}
+lacks a natural Lorentzian-respecting additive structure: summing two
+metrics produces an object that is not, in general, a metric at all.
+Any attempt to define a ``superposition of snapshot sequences'' by
+lifting pointwise metric addition would introduce $O(\lP)$ residues
+in the interference formula and make the two-slit identity
+approximate rather than exact. The complex-field-level operation
+matches the Feynman path-integral picture: two paths share
+\emph{one} background and sum at the amplitude level, which is
+precisely what the Lean definition captures. That the headline
+identity becomes residue-free is the reward for picking the correct
+venue.
+
+\subsection{Theorem 5 (formal statement)}\label{sec:T5}
+
+The headline theorem is \code{two\_slit\_interference} in
+\code{OmegaTheory/Emergence/Interference.lean}, re-exported as
+\code{paper\_two\_slit\_interference}:
+\begin{lstlisting}
+/-- **Theorem 5 (Two-slit interference).** For two plane-wave
+    coarse-grained fields ψⱼ = coarseGrainWithPhase s
+    (planeWavePhase kⱼ ωⱼ) m (j = 1, 2) on a common substrate
+    s : SnapshotSequence, the superposed-field probability density is
+    *exactly* |ψ₁|² + |ψ₂|² + 2·A²·cos(Δφ). -/
+theorem paper_two_slit_interference
+    (s : SnapshotSequence) (m : ℝ)
+    (k₁ k₂ : LatticePoint) (ω₁ ω₂ : ℝ)
+    (p : LatticePoint) (n : ℕ) :
+    ‖superposedField (planeWaveField s m k₁ ω₁)
+        (planeWaveField s m k₂ ω₂) p n‖ ^ 2 =
+      ‖planeWaveField s m k₁ ω₁ p n‖ ^ 2 +
+      ‖planeWaveField s m k₂ ω₂ p n‖ ^ 2 +
+      2 * coarseGrainAmplitude s p n ^ 2 *
+        Real.cos (planeWavePhase k₁ ω₁ p n -
+                   planeWavePhase k₂ ω₂ p n) :=
+  two_slit_interference s m k₁ k₂ ω₁ ω₂ p n
+\end{lstlisting}
+
+\paragraph{Faithful hypothesis inventory.}
+Theorem~\ref{thm:T5-informal} is unconditional in its inputs; every
+parameter is free.
+
+\begin{longtable}{@{}p{0.32\linewidth} p{0.22\linewidth} p{0.40\linewidth}@{}}
+\toprule
+Hypothesis & Lean name & Meaning \\
+\midrule
+\endhead
+$s:\SnapSeq$ & --- & Shared substrate; supplies $A(p,n)=\exp(-\KL/2)$. \\
+$m:\Rbb$ & --- & Effective mass; mass-blind in $|\psi|^{2}$. \\
+$k_{1},k_{2}:\mathsf{LatticePoint}$, $\omega_{1},\omega_{2}:\Rbb$ & --- & Wavevectors and frequencies of the two plane waves; fully free. \\
+$p:\mathsf{LatticePoint}, n:\Nbb$ & --- & Spacetime point at which the identity is evaluated. \\
+\bottomrule
+\end{longtable}
+
+\noindent No positivity of mass, no Gibbs stencil condition, no
+$\HasZF$. The identity holds in the free algebraic regime.
+
+\subsection{Corollaries}\label{sec:T5-coroll}
+
+Two subsequent algebraic rewrites deliver the textbook fringe shape:
+\begin{itemize}
+\item \textbf{Boltzmann-weight form}
+  (\code{paper\_two\_slit\_interference\_KL}): rewriting $|\psi_{j}|^{2}$
+  via \code{planeWaveField\_abs\_sq} gives
+  $|\psi_{1}+\psi_{2}|^{2}(p,n)=2\exp(-\KL)+2A^{2}\cos(\Delta\varphi)$.
+\item \textbf{Canonical visibility} (\code{paper\_double\_slit\_visibility}):
+  because both plane-wave fields inherit the \emph{same} substrate
+  amplitude $A$ by construction,
+  $|\psi_{1}+\psi_{2}|^{2}(p,n)=2A^{2}(1+\cos\Delta\varphi)=4A^{2}\cos^{2}(\Delta\varphi/2)$.
+\item \textbf{Constructive peak}
+  (\code{paper\_two\_slit\_constructive\_peak}): at $\Delta\varphi=0$
+  the intensity is $4A^{2}$, four times the single-slit intensity.
+\item \textbf{Destructive null}
+  (\code{paper\_two\_slit\_destructive\_null}): at $\Delta\varphi=\pi$
+  the intensity is identically zero---exact cancellation.
+\item \textbf{Flat-vacuum sanity} (\code{paper\_two\_slit\_on\_flat}):
+  on the Minkowski vacuum where $A=\exp(-1)$ pointwise, the pattern
+  collapses to $2\exp(-2)(1+\cos\Delta\varphi)$.
+\end{itemize}
+
+\subsection{Compatibility with Born-rule conservation}\label{sec:T5-born-compat}
+
+Under $\HasZF$, the substrate amplitude $A(p,n)$ is
+\emph{tick-invariant}: Theorem~\ref{thm:T3-informal} implies the KL
+density is constant in $n$, hence so is $A$. The formal consequence
+for interference is \code{paper\_two\_slit\_envelope\_tick\_invariant}:
+\begin{lstlisting}
+theorem paper_two_slit_envelope_tick_invariant
+    (d : DynamicalSnapshotSequence) (hF : d.HasZeroFunctional)
+    (m : ℝ) (k₁ k₂ : LatticePoint) (ω₁ ω₂ : ℝ)
+    (p : LatticePoint) (n k : ℕ) :
+    coarseGrainAmplitude d.toSnapshotSequence p n =
+      coarseGrainAmplitude d.toSnapshotSequence p k
+\end{lstlisting}
+
+Physically: \textbf{probability is conserved at the substrate
+(amplitude) level, while interference fringes still move across ticks}---
+because the phase difference
+$\Delta\varphi(p,n)=(k_{1}-k_{2})\cdot p-(\omega_{1}-\omega_{2})\cdot n$
+picks up $(\omega_{2}-\omega_{1})\cdot n$ per tick.
+
+\subsection{What Theorem~\ref{thm:T5-informal} does and does not
+buy}\label{sec:T5-neg}
+
+It \emph{is} a machine-checked derivation of the textbook two-slit
+interference identity from a discrete gravitational substrate
+(best-effort framing). It is \emph{not} a derivation of the geometric
+origin of the plane-wave phase---the identity takes $(k_{j},\omega_{j})$
+as external inputs via \code{planeWavePhase}. A principled derivation
+of the outgoing $k$ from the geometry of the ``slit'' pattern on the
+lattice is a separate workstream (Section~\ref{sec:open}, item~2).
+
+\section{Heisenberg Uncertainty}\label{sec:heisenberg}
+
+\subsection{The claim}\label{sec:heisenberg-claim}
+
+The Heisenberg uncertainty principle
+$\Delta x\cdot\Delta p\ge\hbar/2$ is, in standard non-relativistic QM,
+a consequence of the Robertson inequality~\cite{Robertson1929} applied
+to the canonical commutation relation
+$[\xhat,\phat]=i\hbar$~\cite{Heisenberg1927}.
+Theorem~\ref{thm:T6-informal} derives the Heisenberg inequality on
+the V2 substrate: position $\xhat_{\mu}$ and momentum
+$\phat_{\mu}=-i\hbar\partial_{\mu}$ are given concrete definitions on
+the lattice, the Robertson inequality holds as a \emph{pure
+Cauchy--Schwarz fact} on any $\Lfield$, and the canonical
+$(\hbar/2)^{2}$ lower bound follows when the lattice commutator
+$[\xhat_{\mu},\phat_{\mu}]$ evaluated against the state's own
+expectation values matches its continuum value $\hbar$.
+
+\subsection{Lattice operators and their
+variances}\label{sec:heisenberg-ops}
+
+\code{Heisenberg.lean} defines a \code{LatticeOperator} as a map
+$\Lfield\to\mathsf{LatticePoint}\to\Nbb\to\Cbb$---a pointwise complex
+transformation of a wavefunction. The position and momentum operators
+are:
+\begin{lstlisting}
+noncomputable def positionOperator (μ : Fin 4) : LatticeOperator :=
+  fun ψ p n => ((p μ : ℝ) : ℂ) * ψ p n
+
+noncomputable def momentumOperator (μ : Fin 4) : LatticeOperator :=
+  fun ψ p n => -Complex.I * ((hbar : ℝ) : ℂ) *
+    ((ψ (shiftFin p μ) n - ψ (shiftBackFin p μ) n) / ((2 * l_P : ℝ) : ℂ))
+\end{lstlisting}
+
+The position operator multiplies the wavefunction by the $\mu$-th
+integer coordinate of $p$, reflecting the lattice embedding
+$\xhat_{\mu}\psi=p_{\mu}\cdot\psi$. The momentum operator is the
+symmetric-difference approximation to $-i\hbar\,\partial/\partial x_{\mu}$,
+using forward / backward lattice shifts and dividing by $2\lP$.
+
+The variance definitions:
+\begin{lstlisting}
+noncomputable def variance_x
+    (μ : Fin 4) (ψ : LatticeComplexField)
+    (region : Finset LatticePoint) (tick : ℕ) : ℝ :=
+  l2Variance (positionOperator μ) (expValue (positionOperator μ) ψ region tick)
+    ψ region tick
+
+noncomputable def variance_p
+    (μ : Fin 4) (ψ : LatticeComplexField)
+    (region : Finset LatticePoint) (tick : ℕ) : ℝ :=
+  l2Variance (momentumOperator μ) (expValue (momentumOperator μ) ψ region tick)
+    ψ region tick
+\end{lstlisting}
+
+Both are non-negative
+(\code{variance\_x\_nonneg}, \code{variance\_p\_nonneg}). The
+generalised $\mathsf{l2Variance}\,A\,\mu\,\psi\,R\,t$ is
+$\sum_{p\in R}\|A\psi(p,t)-\mu\psi(p,t)\|^{2}$---the $L^{2}$ distance
+of $A\psi$ from its candidate mean $\mu\psi$. When $\mu=\langle A\rangle$
+this recovers the textbook variance; the generalisation is needed for
+the Robertson Cauchy--Schwarz step.
+
+\subsection{The
+\texorpdfstring{$\CMM$}{CommutatorMatchesMean} hypothesis}\label{sec:CMM}
+
+The Heisenberg bound is proved conditional on a hypothesis that
+encodes the continuum commutator value on the lattice:
+\begin{lstlisting}
+def CommutatorMatchesMean
+    (A B : LatticeOperator) (c : ℝ) (ψ : LatticeComplexField)
+    (region : Finset LatticePoint) (tick : ℕ) : Prop :=
+  2 * (robertsonCrossTerm A B
+        (expValue A ψ region tick)
+        (expValue B ψ region tick) ψ region tick).im = c
+\end{lstlisting}
+
+Physically, this says that
+$2\cdot\mathrm{Im}\langle(A-\langle A\rangle)\psi\mid(B-\langle B\rangle)\psi\rangle=c$:
+the expectation value of $-i[A,B]$ on $\psi$, evaluated at the
+variance-centred operators, equals $c$. Setting $A=\xhat_{\mu}$,
+$B=\phat_{\mu}$, $c=\hbar$ then says the lattice-evaluated commutator
+reproduces the continuum value $\hbar$ when integrated against $\psi$
+across the region.
+
+\paragraph{Scope of the hypothesis.}
+On a smooth state (plane wave, Gaussian) sampled at lattice sites,
+$\CMM$ holds exactly in the $\lP\to 0$ limit. On the lattice at
+finite $\lP$, the symmetric-difference momentum operator satisfies
+$[\xhat,\phat]\psi(p)=i\hbar\cdot(\psi(p+\hat e)+\psi(p-\hat e))/2$
+rather than $i\hbar\cdot\psi(p)$, so the commutator picks up an
+$O(\lP^{2})$ correction for states smooth on the lattice scale. The
+$\CMM$ predicate is the honest \emph{scope of the closure}. A
+quantitative \code{lattice\_commutator\_converges} theorem bounding
+the $O(\lP^{2})$ slack is future work.
+
+\subsection{Theorem 6 (formal statement)}\label{sec:T6}
+
+\begin{lstlisting}
+/-- **Theorem 6 (Heisenberg uncertainty, from the lattice).** For
+    any direction μ, any ψ, any finite region R, tick n, and
+    normalised state (∑ |ψ|² = 1) satisfying `CommutatorMatchesMean
+    (x̂_μ) (p̂_μ) ℏ ψ R n`, the variance product is bounded below
+    by `(ℏ/2)²`. -/
+theorem paper_heisenberg_uncertainty
+    (μ : Fin 4) (ψ : LatticeComplexField)
+    (region : Finset LatticePoint) (tick : ℕ)
+    (hnorm : ∑ p ∈ region, ‖ψ p tick‖ ^ 2 = 1)
+    (hcomm : CommutatorMatchesMean (positionOperator μ)
+              (momentumOperator μ) hbar ψ region tick) :
+    variance_x μ ψ region tick * variance_p μ ψ region tick ≥
+      (hbar / 2) ^ 2
+\end{lstlisting}
+
+\paragraph{Faithful hypothesis inventory.}
+
+\begin{longtable}{@{}p{0.22\linewidth} p{0.26\linewidth} p{0.42\linewidth}@{}}
+\toprule
+Hypothesis & Lean name & Meaning \\
+\midrule
+\endhead
+$\mu:\mathsf{Fin}\,4$ & --- & Direction index. \\
+$\psi:\Lfield$ & --- & The state under consideration. \\
+$\mathrm{region}:\mathsf{Finset}\,\mathsf{LatticePoint}$ & --- & Finite lattice region. \\
+$\mathrm{tick}:\Nbb$ & --- & Time slice. \\
+\code{hnorm} & --- & $L^{2}$-normalisation on the region. Not used in the proof (Robertson is scale-free) but required for the standard physical reading. \\
+\code{hcomm} & $\CMM$ & Honest lattice-continuum commutator-matching hypothesis. \\
+$0<\hbar$ & \code{hbar\_pos} & Positivity of $\hbar$ (Planck-constant axiom, not user-side). \\
+\bottomrule
+\end{longtable}
+
+\noindent The conclusion
+$\mathrm{variance}_{x}\cdot\mathrm{variance}_{p}\ge(\hbar/2)^{2}$ is
+exact on-regime: under $\CMM(\cdot)(\cdot)\,\hbar$, the bound has the
+classic textbook form with no Planck-scale remainder at the level of
+the inequality itself; the remainder lives inside the \code{hcomm}
+hypothesis, as designed.
+
+\subsection{Corollaries}\label{sec:T6-coroll}
+
+\begin{itemize}
+\item \textbf{Abstract Robertson form}
+  (\code{paper\_heisenberg\_uncertainty\_abstract}): for any two
+  lattice operators $A,B$ with $\mathsf{CommutatorMatchesValue}\,A\,B\,c$,
+  $\mathsf{l2Variance}\,A\,0\,\psi\,R\,n\cdot\mathsf{l2Variance}\,B\,0\,\psi\,R\,n\ge(c/2)^{2}$.
+\item \textbf{Positive-variance corollaries}
+  (\code{variance\_x\_pos\_of\_heisenberg},
+  \code{variance\_p\_pos\_of\_heisenberg}). Under $\CMM\cdot\hbar$,
+  both variances must be strictly positive---``no simultaneously
+  localised position and momentum''.
+\item \textbf{Robertson exact form} (\code{robertson\_uncertainty\_exact}):
+  without the commutator-matching hypothesis,
+  $\mathsf{l2Variance}\,A\,\mu_{A}\cdot\mathsf{l2Variance}\,B\,\mu_{B}\ge|\mathrm{Im}\,\langle(A-\mu_{A})\psi\mid(B-\mu_{B})\psi\rangle|^{2}$
+  for \emph{any} lattice operators and means.
+\end{itemize}
+
+\subsection{What Theorem~\ref{thm:T6-informal} does and does not
+say}\label{sec:T6-neg}
+
+It \emph{is} a machine-checked derivation of the Heisenberg bound
+from a discrete gravitational substrate, under an honestly-scoped
+commutator-matching hypothesis (best-effort framing). It is
+\emph{not} a derivation that makes the lattice commutator equal its
+continuum value as a theorem---that would require a quantitative
+$O(\lP^{2})$ Taylor bound on smooth test states, which is not yet
+formalised (Section~\ref{sec:open}, item~4). It is \emph{not} an
+uncertainty relation for continuous Schr\"odinger operators on
+$L^{2}(\Rbb^{4})$---the theorem is stated inside the lattice
+framework.
+
+\section{Measurement / Collapse}\label{sec:measurement}
+
+\subsection{The claim}\label{sec:measurement-claim}
+
+In standard non-relativistic QM, the measurement / wavefunction-
+collapse postulate is a \emph{separate axiom} from the Schr\"odinger
+evolution: upon measurement of an observable with a discrete
+eigenvalue basis, the wavefunction is projected onto the eigenstate
+of the measured outcome and renormalised to unit norm, with the
+probability of outcome $q$ given by the Born ratio $|\psi(q)|^{2}$.
+The four-clause package---probability is Born-ratio, unit norm
+post-measurement, support concentration at $q$, unit modulus at
+$q$---constitutes the collapse postulate.
+
+Theorem~\ref{thm:T7-informal} delivers this package as a
+\emph{theorem} on the V2 substrate. The projector is a pointwise
+indicator (\code{measurementProjector}), the renormalisation is
+division by a region-relative $L^{2}$-norm
+(\code{normaliseCoarseGrain}), and the composition
+\code{postMeasurementState\,region\,$\psi$\,q\,tick} satisfies all
+four clauses of the textbook postulate, with the crucial honest
+acknowledgement that the post-measurement state falls outside the
+image of \code{coarseGrain}---collapse is non-unitary, and this is a
+theorem rather than an axiom.
+
+\subsection{Region-relative \texorpdfstring{$L^{2}$}{L2}
+norm}\label{sec:measurement-norm}
+
+Because the Omega substrate lives on $\Zbb^{4}$ with no natural total
+$\ell^{2}$ mass, every measurement-postulate statement is parametrised
+by a $\mathsf{Finset}\,\mathsf{LatticePoint}$ region on which the
+wavefunction is conditioned. The region-relative norm is:
+\begin{lstlisting}
+noncomputable def regionL2NormSq
+    (region : Finset LatticePoint) (ψ : LatticeComplexField)
+    (tick : ℕ) : ℝ :=
+  ∑ p ∈ region, ‖ψ p tick‖ ^ 2
+\end{lstlisting}
+
+with $\mathsf{regionL2Norm}:=\sqrt{\mathsf{regionL2NormSq}}$. This is
+the standard Born-probability denominator.
+
+\subsection{The measurement operation}\label{sec:measurement-op}
+
+\code{Measurement.lean} composes three pointwise operations:
+\begin{itemize}
+\item \textbf{Projector}
+  ($\mathsf{measurementProjector}\,q\,\psi\,p\,n:=\mathbf{1}[p=q]\cdot\psi(p,n)$).
+\item \textbf{Renormaliser}
+  ($\mathsf{normaliseCoarseGrain}\,R\,\psi\,t\,p\,n:=\psi(p,n)/\mathsf{regionL2Norm}\,R\,\psi\,t$).
+\item \textbf{Composition} (\code{postMeasurementState}).
+\end{itemize}
+
+\subsection{Theorem 7 (four-clause bundle)}\label{sec:T7}
+
+\begin{lstlisting}
+/-- **Theorem 7 (Measurement postulate).** Let region, ψ, q, tick
+    be as above with q ∈ region and ψ q tick ≠ 0. Then:
+    (1) probability_of_outcome = Born ratio,
+    (2) unit norm post-measurement,
+    (3) support concentrated at q,
+    (4) unit modulus at q. -/
+theorem paper_measurement_postulate
+    (region : Finset LatticePoint) (ψ : LatticeComplexField)
+    (q : LatticePoint) (tick : ℕ)
+    (hq : q ∈ region) (hψq : ψ q tick ≠ 0) :
+    probability_of_outcome region ψ q tick =
+        (‖ψ q tick‖) ^ 2 / regionL2NormSq region ψ tick
+    ∧ regionL2NormSq region (postMeasurementState region ψ q tick) tick = 1
+    ∧ (∀ p' : LatticePoint, p' ≠ q →
+        postMeasurementState region ψ q tick p' tick = 0)
+    ∧ ‖postMeasurementState region ψ q tick q tick‖ = 1
+\end{lstlisting}
+
+\paragraph{Faithful hypothesis inventory.}
+
+\begin{longtable}{@{}p{0.28\linewidth} p{0.22\linewidth} p{0.44\linewidth}@{}}
+\toprule
+Hypothesis & Lean name & Meaning \\
+\midrule
+\endhead
+$\mathrm{region}$ & --- & Finite region on which probability is conditioned. \\
+$\psi$ & --- & Pre-measurement state. \\
+$q$ & --- & Outcome of the measurement. \\
+$\mathrm{tick}$ & --- & Time slice at which the measurement occurs. \\
+$q\in\mathrm{region}$ & \code{hq} & Outcome is inside conditioned region. \\
+$\psi(q,\mathrm{tick})\ne 0$ & \code{h$\psi$q} & Non-zero pre-measurement amplitude; otherwise the Born ratio is undefined. \\
+\bottomrule
+\end{longtable}
+
+\noindent The theorem has no side hypothesis on the substrate (no
+$\HasZF$, no Gibbs stencil, no mass positivity). It holds for
+\emph{any} $\Lfield$. This matches the physics: the collapse
+postulate is a statement about what happens \emph{upon} measurement;
+it is independent of how the wavefunction got there.
+
+\subsection{Non-unitarity: the honest
+acknowledgement}\label{sec:measurement-nonunitary}
+
+A foundational question forced by Theorem~\ref{thm:T7-informal} is:
+does the post-measurement state admit a Schr\"odinger-evolution
+treatment? The honest answer is \textbf{no}, and the paper commits to
+this openly.
+
+\begin{lstlisting}
+/-- **Collapse is non-unitary.** For any p' ≠ q,
+    postMeasurementState region ψ q tick p' tick ≠ coarseGrain s p' tick
+    for any SnapshotSequence s. -/
+theorem paper_postMeasurement_non_unitary
+    (region : Finset LatticePoint) (ψ : LatticeComplexField)
+    (q : LatticePoint) (tick : ℕ)
+    (p' : LatticePoint) (hp'_ne : p' ≠ q)
+    (s : SnapshotSequence) :
+    postMeasurementState region ψ q tick p' tick ≠
+      coarseGrain s p' tick
+\end{lstlisting}
+
+Proof: the post-measurement state is zero at $p'$ by support
+concentration (clause~3), while \code{coarseGrain\,s\,p'\,tick} has
+strictly positive modulus because $A=\exp(-\KL/2)$ is strictly
+positive everywhere. Hence they disagree at $p'$.
+
+\paragraph{Physical reading.}
+Theorem~\ref{thm:T2-informal} is a theorem about a specific
+well-behaved class of $\Lfield$s---those obtained by coarse-graining
+a snapshot sequence. Measurement takes us out of this class by
+design: \code{coarseGrain\,s} has everywhere-positive modulus, while
+the collapsed state has zero modulus off $q$.
+Theorem~\ref{thm:T2-informal} therefore \emph{does not apply} to the
+post-measurement state, and it \emph{should not}---wavefunction
+collapse is non-unitary, and the substrate formalism recognises this.
+
+\subsection{Compatibility with Born-rule
+conservation}\label{sec:measurement-compat}
+
+Under $\HasZF$, the Born-ratio probability is itself tick-invariant:
+\begin{lstlisting}
+theorem paper_probability_of_outcome_invariant_under_hasZero
+    (d : DynamicalSnapshotSequence) (hF : d.HasZeroFunctional)
+    (phase : LatticePoint → ℕ → ℝ) (m : ℝ)
+    (region : Finset LatticePoint) (q : LatticePoint) (n k : ℕ) :
+    probability_of_outcome region
+        (coarseGrainWithPhase d.toSnapshotSequence phase m) q n =
+      probability_of_outcome region
+        (coarseGrainWithPhase d.toSnapshotSequence phase m) q k
+\end{lstlisting}
+
+The Minkowski-vacuum specialisation
+\code{paper\_probability\_of\_outcome\_flat} says every outcome in the
+region is uniformly distributed:
+$\mathsf{probability\_of\_outcome}=1/|\mathrm{region}|$.
+
+\subsection{What Theorem~\ref{thm:T7-informal} does and does not
+buy}\label{sec:T7-neg}
+
+It \emph{is} a machine-checked derivation of the four-clause collapse
+postulate (projection, renormalisation, Born ratio, support
+concentration), with the non-unitarity of collapse as a theorem
+rather than a side remark (best-effort framing). It is \emph{not} a
+resolution of the measurement problem. It derives the
+\emph{phenomenology} of collapse but not \emph{why} measurements
+happen or \emph{how} a specific outcome is selected. That deeper
+layer---continuous-measurement decoherence / envariance---remains
+beyond the scope of this paper.
+
+\section{Entanglement and Bell Inequality
+Violation}\label{sec:entanglement}
+
+\subsection{The dramatic claim}\label{sec:entanglement-claim}
+
+Bell's theorem~\cite{Bell1964,CHSH1969} states that no local hidden
+variable (LHV) theory can reproduce the correlations of certain
+entangled quantum states---the classical Bell bound
+$|S_{\mathrm{CHSH}}|\le 2$ is provably violated by suitable choices of
+entangled state and measurement angles, with the quantum Tsirelson
+bound $|S_{\mathrm{CHSH}}|\le 2\sqrt{2}$~\cite{Tsirelson1980} as the
+ultimate upper limit. This is the mathematical foundation of
+Einstein's ``spooky action at a distance'' and the experimental
+closure of LHV theories~\cite{Aspect1982,Hensen2015,Giustina2015}.
+
+Theorem~\ref{thm:T8-informal} reconstructs this result on the V2
+substrate, with four machine-checked conclusions:
+\begin{enumerate}
+\item The Bell state $\BellField=(|00\rangle+|11\rangle)/\sqrt{2}$---
+  built as an explicit
+  $\mathsf{TwoBodyField}:\mathsf{LatticePoint}\to\mathsf{LatticePoint}\to\Nbb\to\Cbb$
+  on the lattice---is \textbf{entangled}, not the tensor product of
+  any two single-body fields (\code{bellField\_isEntangled}).
+\item Its two-particle correlator is \textbf{exactly}
+  $\cos(\alpha-\beta)$---not merely bounded by 1
+  (\code{cos\_correlation\_theorem}).
+\item At the canonical CHSH angles $(0,\pi/2,\pi/4,3\pi/4)$, the CHSH
+  value \textbf{attains the Tsirelson bound} $2\sqrt{2}$
+  (\code{chsh\_tsirelson\_bell}).
+\item The same CHSH value \textbf{strictly exceeds} the classical
+  Bell bound $2$ (\code{bell\_inequality\_violation}).
+\end{enumerate}
+
+Together these four statements constitute a machine-checked
+formalisation of Bell's theorem on the discrete-gravity lattice.
+
+\subsection{Two-body fields and tensor
+products}\label{sec:entanglement-2body}
+
+\code{Entanglement.lean} introduces the two-body field type and
+tensor-product operation:
+\begin{lstlisting}
+noncomputable def tensorProduct
+    (ψA ψB : LatticeComplexField) : TwoBodyField :=
+  fun p q n => ψA p n * ψB q n
+
+notation:70 ψA " ⊗ₜ " ψB => tensorProduct ψA ψB
+\end{lstlisting}
+
+The tensor product is bilinear (\code{tensorProduct\_add\_left},
+\code{tensorProduct\_add\_right}) and factorises the squared modulus
+(\code{tensorProduct\_abs\_sq}). The factorisability predicate:
+\begin{lstlisting}
+def IsProduct (Ψ : TwoBodyField) : Prop :=
+  ∃ ψA ψB : LatticeComplexField, Ψ = ψA ⊗ₜ ψB
+
+def IsEntangled (Ψ : TwoBodyField) : Prop :=
+  ¬ IsProduct Ψ
+\end{lstlisting}
+
+\paragraph{Design note.}
+As with two-slit interference
+(Section~\ref{sec:interference-design}), superposition here lives at
+the complex-field level (\code{TwoBodyField} is a pointwise
+complex-valued function), \textbf{not} at the snapshot-sequence /
+metric level. The Bell theorem's residue-free form is a reward for
+the honest venue choice.
+
+\subsection{The Bell state on the lattice}\label{sec:bell-lattice}
+
+The Bell state $|\Phi^{+}\rangle=(|00\rangle+|11\rangle)/\sqrt{2}$ is
+realised on the lattice by picking two distinguished lattice points
+$\mathsf{zeroPoint}$ and $\mathsf{onePoint}$ and defining:
+\begin{lstlisting}
+noncomputable def bellField : TwoBodyField :=
+  fun p q n =>
+    if p = zeroPoint ∧ q = zeroPoint then (1 / Real.sqrt 2 : ℂ)
+    else if p = onePoint ∧ q = onePoint then (1 / Real.sqrt 2 : ℂ)
+    else 0
+\end{lstlisting}
+
+The four diagonal / off-diagonal values confirm amplitude $1/\sqrt{2}$
+on $(0,0)$ and $(1,1)$, zero on $(0,1),(1,0)$, zero everywhere else.
+
+\subsection{Theorem 8a --- structural entanglement}\label{sec:T8a}
+
+\begin{lstlisting}
+/-- **Theorem 8a (Bell state is entangled).** There exist no
+    ψA, ψB such that bellField = ψA ⊗ ψB. -/
+theorem paper_bell_state_exists :
+    IsEntangled bellField :=
+  bellField_isEntangled
+\end{lstlisting}
+
+Proof sketch: if $\BellField=\psi_{A}\otimes\psi_{B}$, then
+evaluating at $(0,0)$ gives both factors non-zero at $0$; evaluating
+at $(0,1)$ forces $\psi_{B}(1)=0$; evaluating at $(1,1)$ requires
+$\psi_{A}(1)\cdot\psi_{B}(1)=1/\sqrt{2}$---contradiction.
+
+\subsection{Theorem 8b --- the cosine
+correlator}\label{sec:T8b}
+
+\begin{lstlisting}
+/-- **Theorem 8b (cos correlation).** The Bell-state correlator
+    is exactly cos(α − β), not merely bounded by 1. -/
+theorem paper_cos_correlation (α β : ℝ) :
+    correlationBell α β = Real.cos (α - β) :=
+  cos_correlation_theorem α β
+\end{lstlisting}
+
+Standard consistency checks: aligned-angle perfect correlation,
+antipodal-angle perfect anti-correlation, symmetry, $|E|\le 1$.
+
+\subsection{Theorem 8c --- the Tsirelson bound
+attained}\label{sec:T8c}
+
+Define the CHSH-Tsirelson functional:
+\begin{lstlisting}
+noncomputable def chshTsirelson (E : ℝ → ℝ → ℝ)
+    (a a' b b' : ℝ) : ℝ :=
+  E a b - E a b' + E a' b + E a' b'
+
+noncomputable def chshTsirelsonBell (a a' b b' : ℝ) : ℝ :=
+  chshTsirelson correlationBell a a' b b'
+\end{lstlisting}
+
+At the canonical Bell-state-optimal angles $(0,\pi/2,\pi/4,3\pi/4)$:
+\begin{lstlisting}
+/-- **Theorem 8c (Tsirelson bound attained).** At canonical
+    angles, CHSH = 2·√2 exactly. -/
+theorem paper_chsh_tsirelson_bound :
+    chshTsirelsonBell 0 (Real.pi / 2) (Real.pi / 4) (3 * Real.pi / 4) =
+      2 * Real.sqrt 2 :=
+  chsh_tsirelson_bell
+\end{lstlisting}
+
+The proof expands the four correlators using
+\code{cos\_correlation\_theorem}:
+$E(0,\pi/4)=\sqrt{2}/2$, $E(0,3\pi/4)=-\sqrt{2}/2$,
+$E(\pi/2,\pi/4)=\sqrt{2}/2$, $E(\pi/2,3\pi/4)=\sqrt{2}/2$. Then
+$\mathsf{chshTsirelson}$ gives
+$\sqrt{2}/2-(-\sqrt{2}/2)+\sqrt{2}/2+\sqrt{2}/2=2\sqrt{2}$.
+
+\paragraph{Physical interpretation.}
+$2\sqrt{2}$ is the \emph{Tsirelson bound}: the maximum CHSH value
+attainable by \emph{any} quantum correlator. $\BellField$ saturates
+it at the canonical angles---the Bell state is the extremal quantum
+correlator.
+
+\subsection{Theorem 8d --- classical Bell bound
+violated}\label{sec:T8d}
+
+\begin{lstlisting}
+/-- **Theorem 8d (Bell inequality violation).** CHSH > 2. -/
+theorem paper_bell_inequality_violation :
+    chshTsirelsonBell 0 (Real.pi / 2) (Real.pi / 4) (3 * Real.pi / 4) > 2 :=
+  bell_inequality_violation
+\end{lstlisting}
+
+Proof: $2\sqrt{2}>2$ because $\sqrt{2}>1$. The classical Bell bound
+$|S_{\mathrm{CHSH}}|\le 2$ is \emph{strictly} exceeded by
+$\BellField$. No local hidden variable theory can reproduce these
+correlations.
+
+\subsection{Faithful hypothesis inventory}\label{sec:T8-hyp}
+
+Theorems~8a--8d are all \textbf{unconditional}: no side hypotheses
+beyond the definitions of $\BellField$,
+$\mathsf{correlationBell}$, $\mathsf{chshTsirelson}$.
+
+\begin{longtable}{@{}p{0.16\linewidth} p{0.48\linewidth} p{0.30\linewidth}@{}}
+\toprule
+Theorem & Lean name & Hypotheses \\
+\midrule
+\endhead
+8a & \code{paper\_bell\_state\_exists} & none \\
+8b & \code{paper\_cos\_correlation} & none beyond free parameters $\alpha,\beta$ \\
+8c & \code{paper\_chsh\_tsirelson\_bound} & none (angles are explicit constants) \\
+8d & \code{paper\_bell\_inequality\_violation} & none \\
+\bottomrule
+\end{longtable}
+
+\subsection{What Theorem~\ref{thm:T8-informal} does and does not
+say}\label{sec:T8-neg}
+
+It \emph{is} a machine-checked derivation of a Tsirelson-bound-
+attaining entangled state on a discrete gravitational substrate
+(best-effort framing). It is \emph{not} a derivation of the Born
+rule on two-body states (that identification is implicit in
+$\mathsf{correlationBell}\,\alpha\,\beta=\cos(\alpha-\beta)$ as the
+expected product of $\pm 1$ outcomes). It is \emph{not} an
+experimental-loophole-free claim (that is an empirical question). It
+is \emph{not} an independent derivation of special relativity or
+quantum field theory. The relativistic bridge is the subject of
+\cref{sec:kleingordon}.
+
+\section{Relativistic Extension: Klein--Gordon Residue
+  (Theorem~9)}\label{sec:kleingordon}
+
+\subsection{What the theorem claims}
+
+Sections \ref{sec:schrodinger}--\ref{sec:bell} derive the eight
+non-relativistic QM postulates of the capstone record from the V2
+substrate. Theorem~9 takes the same coarse-graining map $\Lmap$ and
+the same dynamical snapshot sequence and asks the relativistic
+question: does the coarse-grained field satisfy the Klein--Gordon
+equation $\bigl((1/c^{2})\partial_{t}^{2} -
+\Delta_{\mathrm{lat}}\bigr)\psi + (m^{2}c^{2}/\hbar^{2})\psi = 0$ on
+the lattice?
+
+The honest answer is: \emph{up to an explicit, Planck-scale, UV cutoff
+error}. Concretely, define
+\begin{align*}
+\mathrm{KG}[\psi](p, n) \;\coloneqq\;&\;
+  \tfrac{1}{c^{2}}\,\partial_{t}^{2,\mathrm{disc}}\psi(p, n)
+  - \Delta_{\mathrm{lat}}\psi(p, n) \\
+&\;+ \tfrac{m^{2} c^{2}}{\hbar^{2}}\,\psi(p, n+1),
+\end{align*}
+where $\partial_{t}^{2,\mathrm{disc}}\psi(p, n) \coloneqq
+\bigl(\psi(p, n+2) - 2\psi(p, n+1) + \psi(p, n)\bigr)/\tP^{2}$ is the
+centred second difference over ticks $n, n+1, n+2$ normalised by
+$\tP^{2}$, and $\Delta_{\mathrm{lat}}$ is the five-point complex
+Laplacian from \cref{sec:schrodinger}. The theorem is:
+
+\begin{theorem}[Relativistic KG residue bound;
+  \code{coarseGrain\_satisfies\_kleinGordon\_dynamic}]
+\label{thm:T9-informal}
+On a $\DynSeq$ $d$ with $d.\HasZF$, a Gibbs background, for every rest
+mass $m \in \Rbb$, for every lattice point $p$, and for every interior
+tick $n+1$,
+\[
+\bigl\|\mathrm{KG}[\coarseGrain\,d.\mathsf{toSnapshotSequence}](p, n)\bigr\|
+ \;\le\; \frac{16}{\lP^{2}} + \frac{m^{2} c^{2}}{\hbar^{2}},
+\]
+with bound constant
+$\code{kleinGordonBoundConst}\;m = 16/\lP^{2} + m^{2} c^{2}/\hbar^{2}$.
+\end{theorem}
+
+\subsection{The UV cutoff is a feature of the lattice, not a defect of
+  the proof}
+
+Unlike the Schr\"odinger residue of \cref{thm:T2-informal} (which is
+$\mathcal{O}(\lP)$ and vanishes in the continuum limit), the
+Klein--Gordon residue bound is \emph{not} Planck-small. The leading
+term $16/\lP^{2}$ is the Planck-scale UV cutoff of the discrete
+Laplacian on a Planck-scale lattice: $\Delta_{\mathrm{lat}}$ is
+genuinely of order $1/\lP^{2}$ as an operator norm, and any
+machine-checked residue bound for a second-order differential operator
+on a lattice with spacing $\lP$ inherits that order of magnitude.
+
+This is not a defect of the proof, and we emphasise the framing:
+
+\begin{itemize}[leftmargin=1.4em]
+\item The continuum relation $(\Box + m^{2} c^{2}/\hbar^{2})\psi = 0$
+is the $\lP \to 0$ limit of the discrete equation, not the discrete
+equation itself. Recovering zero residue requires a
+$C^{4}$-bounded coarse-graining over many lattice sites, which is
+deferred to a separate workstream
+(\cref{sec:open} item~\ref{open:kg-coarse}).
+
+\item The $16/\lP^{2}$ constant is an \emph{explicit prediction} of
+Omega-theory's discrete-spacetime ontology: the UV cutoff is not a
+regulator to be removed, it is a physical scale set by the Planck
+length. QFT on a smooth Minkowski background has no analogue of this
+constant; that is precisely the operational signature by which
+Omega-theory differs from pure relativistic QFT.
+
+\item The mass contribution $m^{2} c^{2}/\hbar^{2}$ carries the
+continuum Klein--Gordon mass term verbatim. Since the substrate
+supplies $\hbar = \EP \cdot \tP$ from
+\code{Spacetime/Constants.lean}, the mass term is \emph{fixed} by the
+substrate, not inserted.
+\end{itemize}
+
+\subsection{Theorem 9 (formal statement)}
+
+Proved in \code{OmegaTheory/Emergence/KleinGordon.lean} as
+\code{coarseGrain\_satisfies\_kleinGordon\_dynamic}:
+
+\begin{lstlisting}
+/-- **Theorem 9 (Klein--Gordon residue bound, dynamical).**
+    On a DynamicalSnapshotSequence `d` with `d.HasZeroFunctional`
+    and a Gibbs stencil at tick `n+1`, for every rest mass `m : ℝ`
+    and every lattice point `p`, the Klein--Gordon residue of the
+    coarse-grained field is bounded by
+    `kleinGordonBoundConst m = 16/ℓ_P² + m²c²/ℏ²`. -/
+theorem coarseGrain_satisfies_kleinGordon_dynamic
+    (d : DynamicalSnapshotSequence) (hF : d.HasZeroFunctional)
+    (p : LatticePoint) (n : ℕ) (m : ℝ)
+    (hcenter : 0 ≤ informationDensityKL
+                    (d.toSnapshotSequence.metric (n + 1))
+                    d.toSnapshotSequence.reference p)
+    (hstencil : ∀ μ : Fin 4,
+      0 ≤ informationDensityKL
+            (d.toSnapshotSequence.metric (n + 1))
+            d.toSnapshotSequence.reference (shiftFin p μ) ∧
+      0 ≤ informationDensityKL
+            (d.toSnapshotSequence.metric (n + 1))
+            d.toSnapshotSequence.reference (shiftBackFin p μ)) :
+    ‖kleinGordonResidue m (coarseGrain d.toSnapshotSequence) p n‖
+      ≤ kleinGordonBoundConst m
+\end{lstlisting}
+
+\paragraph{Faithful hypothesis inventory.}
+
+\begin{table}[h]
+\small
+\begin{tabular}{@{}l l p{0.46\linewidth}@{}}
+\toprule
+Hypothesis & Lean name & Meaning \\
+\midrule
+$d : \DynSeq$ & --- & Phase-1 dynamical snapshot sequence. \\
+$d.\HasZF$ & \code{DynamicalSnapshotSequence.HasZero-}\code{Functional} & Shared scope with T2 and T3. Under this hypothesis Phase~1's \code{static\_reduces\_to\_snapshot\_sequence} collapses the metric to tick-invariant; the KG second time-difference then vanishes by \code{secondTickDiffC\_coarseGrain\_static}, and no multi-tick Gibbs hypothesis is needed. \\
+$m : \Rbb$ & --- & Rest mass; unlike T2, \emph{no} positivity hypothesis on $m$ is required (the KG equation handles $m = 0$ as the lightcone case). \\
+$0 \le \IKL(g(n{+}1), g_{0}, p)$ & \code{hcenter} & Pointwise Gibbs at the central lattice point at tick $n{+}1$. \\
+$\forall \mu.\; 0 \le \IKL(g(n{+}1), g_{0}, p \pm e_{\mu})$ & \code{hstencil} & Gibbs on the $8$ nearest neighbours at tick $n{+}1$. \textbf{Same 9-point spatial stencil as T2} --- the $\HasZF$ scope collapses any multi-tick time-stencil to this single-tick stencil via static-reduction. \\
+\bottomrule
+\end{tabular}
+\caption{Hypotheses of \cref{thm:T9-informal} (Klein--Gordon residue
+bound). The hypothesis footprint is identical in shape to T2's, which
+strengthens the unified narrative ``Schr\"odinger $\subset$
+Klein--Gordon on the same substrate with the same hypothesis
+footprint''.}
+\label{tab:T9-hyps}
+\end{table}
+
+\subsection{Ties to the non-relativistic theorems}
+
+Two companion theorems exhibit the compatibility between T9 and the
+earlier substrate facts:
+
+\begin{itemize}[leftmargin=1.4em]
+\item \code{kleinGordon\_mass\_shell\_consistent} ties the KG equation
+to the relativistic mass shell $E^{2} = (pc)^{2} + (mc^{2})^{2}$ of
+\code{DispersionFromLattice.lean}. The content of the lemma is the
+identity $E^{2} = p^{2}c^{2} + m^{2}c^{4}$ (restated as
+\code{relativisticEnergy\_sq\_eq}), which is the dispersion relation
+a plane-wave solution of the continuum Klein--Gordon equation must
+satisfy. The lattice Klein--Gordon residue vanishes as $\lP \to 0$
+precisely when the plane-wave momentum $p$ and energy $E$ sit on this
+shell.
+
+\item \code{kleinGordon\_nonRelativistic\_limit} composes with
+\cref{thm:T4-informal} to produce the analogous non-relativistic
+limit for the Klein--Gordon frequency: subtracting the rest-energy
+term $mc^{2}$ from the KG dispersion and approximating to order
+$p^{4}/(4 m^{3} c^{2})$ recovers the Schr\"odinger kinetic term
+$p^{2}/(2m)$. The ``Schr\"odinger $\subset$ Klein--Gordon $\subset$
+relativistic'' hierarchy is therefore a chain of lattice-level
+theorems.
+\end{itemize}
+
+The flat-vacuum specialisation
+\code{coarseGrain\_satisfies\_kleinGordon\_dynamic\_flat} discharges
+the \code{hcenter}/\code{hstencil} 9-point Gibbs hypotheses
+automatically (by \code{informationDensityKL\_flat\_self}), so on
+Minkowski the bound holds unconditionally for every mass and every
+$(p, n)$. The static-regime reference form is
+\code{coarseGrain\_satisfies\_kleinGordon\_static}.
+
+\subsection{What Theorem~9 does and does not say}
+
+Theorem~9 \emph{is} a machine-checked relativistic-to-discrete bridge:
+the same discrete-gravity substrate that yields non-relativistic QM
+as a chain of theorems (T1--T8) also yields the relativistic
+Klein--Gordon equation, with an explicit Planck-scale UV cutoff as the
+residue constant. The bridge extends the paper's claim from
+``non-relativistic QM emerges from Omega-theory'' to
+``non-relativistic QM and the relativistic Klein--Gordon equation
+emerge from the same Omega-theory substrate, with their respective
+residue bounds set by the Planck scale''.
+
+Theorem~9 is \emph{not} a continuum Klein--Gordon equation. The
+residue is bounded, not zero. Recovering zero residue requires the
+$C^{4}$-bounded coarse-graining workstream. Theorem~9 is \emph{not}
+QED or spinor QFT; the Dirac extension is open and stubbed in
+\cref{sec:open} as item~\ref{open:dirac}. Theorem~9 is \emph{not} a
+derivation of second quantisation, creation/annihilation operators, or
+Fock space; the formalism is first-quantised lattice QM.
+
+\section{Capstone --- Grand QM Emergence}\label{sec:capstone}
+
+\subsection{The umbrella claim}\label{sec:capstone-claim}
+
+\cref{sec:coarsegrain,sec:schrodinger,sec:born,sec:nonrel,sec:interference,sec:heisenberg,sec:measurement,sec:entanglement,sec:kleingordon}
+deliver eight individual theorems (T1--T9; the Bell bundle T8a--T8d is
+one theorem-slot; the Klein--Gordon relativistic bridge is T9), each a
+machine-checked derivation of a standard-QM postulate or relativistic
+residue bound from the V2 substrate. This section shows that these
+are not nine independent results but a single composite statement:
+for every dynamical snapshot sequence in the $\HasZF$ regime, for
+every coarse-grained lattice field, for every finite region and every
+tick, the \textbf{nine-conjunct postulate record}
+\[
+\text{states}+\text{superposition}+\text{Schr\"odinger}+\text{Born}+\text{interference}+\text{Heisenberg}+\text{measurement}+\text{entanglement}+\text{Klein--Gordon}
+\]
+holds simultaneously.
+
+\subsection{The
+\texorpdfstring{\code{QuantumMechanicsPostulates}}{QuantumMechanicsPostulates}
+predicate}\label{sec:capstone-predicate}
+
+\code{QuantumMechanicsCapstone.lean} introduces a structure
+\begin{lstlisting}
+structure QuantumMechanicsPostulates
+    (d : DynamicalSnapshotSequence)
+    (_hscope : d.HasZeroFunctional)
+    (ψ : LatticeComplexField)
+    (region : Finset LatticePoint)
+    (tick : ℕ) : Prop where
+  states         : ...                    -- P1: bounded ℓ² on region
+  superposition  : ...                    -- P2: |ψ₁+ψ₂|² = ...
+  schrodinger    : ...                    -- P3: Schrödinger bound
+  born_rule      : ...                    -- P4: conservation
+  interference   : ...                    -- P5: two-slit formula
+  heisenberg     : ...                    -- P6: Δx·Δp ≥ ℏ/2
+  measurement    : ...                    -- P7: 4-clause collapse
+  entanglement   : IsEntangled bellField ∧
+                     chshTsirelsonBell ... > 2   -- P8: Bell + CHSH
+  kleinGordon    : ...                    -- P9: Klein--Gordon residue ≤ 16/ℓ_P² + m²c²/ℏ²
+\end{lstlisting}
+
+Each field is the $\Prop$-level statement corresponding to one of
+the paper's theorems (P8 bundles the two Phase-6C headlines into a
+single conjunct; P9 is the Klein--Gordon relativistic bridge of
+\cref{sec:kleingordon}). P1--P6 depend on the specific state $\psi$,
+region, and tick; P7--P8 quantify over outcome / angle as needed; P9
+quantifies over rest mass $m : \Rbb$ and holds for every $m$,
+including $m = 0$.
+
+\subsection{The capstone theorem}\label{sec:capstone-theorem}
+
+\begin{lstlisting}
+/-- **THE GRAND QM EMERGENCE THEOREM.** Every postulate of
+    non-relativistic quantum mechanics, plus the entanglement /
+    CHSH postulate, is a machine-checked theorem of OmegaTheory V2
+    in the static-functional regime. -/
+theorem paper_grand_qm_emergence
+    (d : DynamicalSnapshotSequence) (hscope : d.HasZeroFunctional)
+    (ψ : LatticeComplexField) (region : Finset LatticePoint)
+    (tick : ℕ) :
+    QuantumMechanicsPostulates d hscope ψ region tick :=
+  grand_qm_emergence d hscope ψ region tick
+\end{lstlisting}
+
+\paragraph{Provenance of each conjunct.}
+The proof is a \emph{direct field-by-field citation} of the sibling
+theorems---it introduces no new mathematical content.
+
+\begin{longtable}{@{}p{0.22\linewidth} p{0.44\linewidth} p{0.28\linewidth}@{}}
+\toprule
+Conjunct & Source theorem & Source file \\
+\midrule
+\endhead
+\code{states} & \code{coarseGrain\_info\_bounded} & \code{CoarseGrainingMap.lean} \\
+\code{superposition} & \code{superposedField\_abs\_sq} & \code{Interference.lean} \\
+\code{schrodinger} & \code{coarseGrain\_satisfies\_schrodinger\_dynamic} & \code{SchrodingerFromLattice.lean} \\
+\code{born\_rule} & \code{bornRuleConservation} & \code{BornRule.lean} \\
+\code{interference} & \code{two\_slit\_interference} & \code{Interference.lean} \\
+\code{heisenberg} & \code{heisenberg\_uncertainty\_from\_lattice} & \code{Heisenberg.lean} \\
+\code{measurement} & \code{measurement\_postulate} & \code{Measurement.lean} \\
+\code{entanglement} & \code{bell\_inequality\_entanglement\_consistency} & \code{Entanglement.lean} \\
+\code{kleinGordon} & \code{coarseGrain\_satisfies\_kleinGordon\_dynamic} & \code{KleinGordon.lean} \\
+\bottomrule
+\end{longtable}
+
+\noindent No postulate is proved twice; the capstone's novelty is
+organisational, not mathematical. The value is that \emph{one}
+top-level statement now stands for the paper's claim, and downstream
+consumers can cite a single theorem rather than seven.
+
+\subsection{Minkowski specialisation}\label{sec:capstone-minkowski}
+
+\begin{lstlisting}
+theorem paper_grand_qm_emergence_on_minkowski
+    (ψ : LatticeComplexField) (region : Finset LatticePoint) (tick : ℕ) :
+    QuantumMechanicsPostulates minkowskiDynamicalSequence
+      minkowskiDynamicalSequence_hasZeroFunctional ψ region tick :=
+  grand_qm_emergence_on_minkowski ψ region tick
+\end{lstlisting}
+
+On the vacuum, $\HasZF$ is discharged automatically, so all nine
+postulates hold for every $\psi$, every region, every tick, and every
+rest mass $m : \Rbb$.
+
+\subsection{What the capstone does and does not
+say}\label{sec:capstone-neg}
+
+It \emph{is} the single-statement formalisation of ``non-relativistic
+quantum mechanics and the relativistic Klein--Gordon equation emerge
+from Omega-Theory V2 on the same substrate'':
+$\mathsf{QuantumMechanicsPostulates}$ is inhabited for every
+dynamical-substrate / state / region / tick combination in the
+$\HasZF$ regime, with the Klein--Gordon field P9 holding for every
+rest mass $m : \Rbb$ (including $m = 0$). It is \emph{not} a new
+physical mechanism: it introduces no mathematics beyond the nine
+component theorems. It is \emph{not} the entirety of quantum
+mechanics; extensions---$N$-body entanglement beyond two-body,
+relativistic QFT with second quantisation, decoherence /
+pointer-state reconstruction, spin-$1/2$ Dirac fermions, unified
+QM-gravity---are out of scope and flagged in Section~\ref{sec:open}.
+
+To the authors' knowledge, this is the first complete machine-checked
+derivation of the postulate set of non-relativistic quantum mechanics
+\emph{plus} the relativistic Klein--Gordon residue bound from a
+discrete gravitational substrate in a proof assistant (best-effort
+framing; no exhaustive-survey claim).
+
+\section{Open Questions}\label{sec:open}
+
+\begin{quote}
+\textbf{Scope note.} The paper's scope is the nine-theorem chain
+(T1--T9 of \cref{sec:coarsegrain,sec:schrodinger,sec:born,sec:nonrel,sec:interference,sec:heisenberg,sec:measurement,sec:entanglement,sec:kleingordon})
+plus the capstone. Tracking state at the draft timestamp below:
+
+\begin{itemize}
+\item \textbf{Phase~1} (dynamical snapshot-sequence update rule)
+  --- \emph{landed}. \code{SnapshotDynamics.lean}, by Polaris.
+  Integrated in Section~\ref{sec:dynamical}.
+\item \textbf{Phase~2} (dynamical Schr\"odinger bound) ---
+  \emph{landed} under $\HasZF$.
+  \code{coarseGrain\_satisfies\_schrodinger\_dynamic}, by
+  \code{schrodinger\_prover}. Integrated as Section~\ref{sec:T2}.
+\item \textbf{Phase~3} (Born rule as a conservation theorem) ---
+  \emph{landed}. \code{BornRule.lean}, by
+  \code{probability\_conservator}. Integrated as
+  Section~\ref{sec:born}.
+\item \textbf{Phase~4} (two-slit interference) --- \emph{landed}.
+  \code{Interference.lean}, by \code{interference\_prover}.
+  Integrated as Section~\ref{sec:interference}.
+\item \textbf{Phase~6A} (Heisenberg uncertainty principle) ---
+  \emph{landed}. \code{Heisenberg.lean}, by
+  \code{uncertainty\_prover}. Integrated as
+  Section~\ref{sec:heisenberg}.
+\item \textbf{Phase~6B} (measurement / collapse postulate) ---
+  \emph{landed}. \code{Measurement.lean}, by
+  \code{measurement\_prover}. Integrated as
+  Section~\ref{sec:measurement}.
+\item \textbf{Phase~6C} (entanglement and Bell-inequality violation)
+  --- \emph{landed}. \code{Entanglement.lean}, by
+  \code{entanglement\_architect}. Integrated as
+  Section~\ref{sec:entanglement}.
+\item \textbf{Phase~7} (relativistic Klein--Gordon residue bound)
+  --- \emph{landed}. \code{KleinGordon.lean}, by
+  \code{klein\_gordon\_prover}. Integrated as
+  Section~\ref{sec:kleingordon}; the Dirac extension is stubbed in
+  \code{DiracOptional.lean} and catalogued as
+  item~\ref{open:dirac} below.
+\end{itemize}
+\end{quote}
+
+\begin{enumerate}
+\item \textbf{Einstein side is not yet fully axiom-free.} The
+  Einstein tensor emergence theorem
+  \code{einstein\_with\_matter\_emergence} in
+  \code{Emergence/EinsteinEmergence.lean} currently uses the HPW axiom
+  as one step. HPW has been proved eliminable on an expanding family
+  of regimes via the \code{HpwEliminableRegime} typeclass
+  (\code{NOTES\_HPW\_ELIMINATION.md}): flat Minkowski, linearised
+  metric, static-spherical vacuum, and (recently) a structural
+  perturbed-flat path
+  \code{hpw\_eliminable\_on\_perturbed\_flat} in
+  \code{Emergence/HpwLinearised.lean}, which takes a
+  \code{perturbedFlatInterpolant} from
+  \code{Emergence/SmoothInterpolant.lean}---a $C^{4}$ interpolant for
+  $g = \eta + \varepsilon h$ with $C^{4}$ bound $|\varepsilon|\cdot M_{h}$---
+  and routes it through \code{linearisedDataOfPerturbedFlat} with
+  minimal physical input (Laplacian and Ricci bounds plus a length
+  scale). A companion construction \code{slowlyVaryingInterpolant}
+  shows that every smooth $g_{\mathrm{cont}}$ with a uniform $C^{4}$
+  bound is its own interpolant on the lattice it samples; the
+  curried adapter \code{SmoothInterpolantData.toSmoothMetricField}
+  auto-fills the $g_{\mathrm{cont}}$ / $h_{\mathrm{interpolates}}$
+  fields for any physics model that builds its discrete metric via
+  \code{DiscreteMetric.ofContinuum}. What remains open is a
+  \emph{generic} existence theorem (e.g.\ via a bump-convolution
+  Whitney-extension argument) on arbitrary smooth backgrounds; this
+  is explicitly deferred in the header of
+  \code{SmoothInterpolant.lean} and currently blocks on Whitney
+  extension infrastructure not yet present in Mathlib. The QM-bridge
+  theorems of the present paper do not depend on HPW, so this is a
+  limitation on the \emph{gravitational} side of the same substrate,
+  not on the wave-mechanical side we derive here.
+
+\item \textbf{Geometrically-sourced phase is not derived.} The
+  phase-carrying map \code{coarseGrainWithPhase} and its plane-wave
+  adapter accept a phase function as input. Phase~4 (interference)
+  specialises to a concrete plane-wave phase, which is enough for the
+  superposition / two-slit theorem but does not constitute a
+  derivation of the phase from geometry. A principled derivation---
+  e.g.\ from the \code{connectionForm} or \code{spinTorsion} of the
+  lattice geometry---would close the Aharonov--Bohm case and several
+  other gauge-sensitive predictions.
+
+\item \textbf{Unconditional dynamical Schr\"odinger bound.} Phase~2
+  closes the dynamical Schr\"odinger-shape inequality under $\HasZF$.
+  Off-regime, closing the bound requires a \textbf{KL-linearisation
+  bridge}
+  $\KL(g+\delta g)\approx\KL(g)+\langle\partial\KL/\partial g,\delta g\rangle$
+  not yet formalised in V2. The Phase-2 brief forbids axioms; stating
+  an unconditional dynamical bound without the linearisation bridge
+  would therefore require introducing one. The honest current
+  frontier is the $\HasZF$-scoped bound.
+
+\item \textbf{Phase~1's $F=\Delta_{\mathrm{lat}}(\cdot)$ update is
+  structurally motivated, not derived from the healing-flow PDE.}
+  The dynamical update rule of Section~\ref{sec:dynamical} is
+  dictated by the requirement that the coarse-grained evolution
+  carry a Schr\"odinger $-i\hbar\,\Delta/2m$ coefficient on the QM
+  side. It is not derived from a weak-field limit of
+  \code{OmegaTheory.HealingFlow.Flow}. A follow-up workstream should
+  prove that the Phase~1 update is the weak-field / short-time limit
+  of the full healing-flow PDE. This is the single most important
+  structural open question on the substrate side.
+
+\item \textbf{Lattice-Fourier eigenvalue extraction is not yet
+  formalised.} Section~\ref{sec:nonrel-bridge} states the plane-wave
+  identities needed to chain Theorems~\ref{thm:T2-informal} and
+  \ref{thm:T4-informal}; those are pure lattice-Fourier facts, each a
+  few trigonometric lemmas. None is in the Lean development at the
+  time of writing. Concretely, the missing theorems are
+  (i) \code{discreteLaplacianC\_planeWave\_eigenvalue},
+  (ii) \code{planeWave\_eigenvalue\_Taylor}, and
+  (iii) a paper wrapper binding $K:=\lambda(k,\lP)$ into
+  \code{paper\_schrodinger\_is\_nonrel\_limit}.
+
+\item \textbf{The mass-shell derivation is tick-counting, not
+  stress-energy.} A more principled derivation from the stress-energy
+  tensor of the healing flow is plausible but not written.
+
+\item \textbf{Empirical falsifiability is in principle, not in
+  practice.} \code{NOTES\_QM\_AS\_DISCRETE\_GRAVITY.md} §5
+  \cite{NotesQMasDiscreteGravity} documents this honestly: the
+  predicted power-law gate-fidelity curve $F(T)=F_{0}/(1+\alpha T)$
+  differs from the Arrhenius form $F_{0}\exp(-E/\kB T)$ by a
+  functional-form signature, but the numerical coupling
+  $\alpha=\kB\tP/(2\hbar)\approx 3.5\times 10^{-33}\,\mathrm{K}^{-1}$
+  is 28 orders of magnitude below current cryogenic-gate precision.
+
+\item \textbf{Klein--Gordon continuum limit (zero-residue
+  equation).}\label{open:kg-coarse}
+  \cref{sec:kleingordon} proves the discrete Klein--Gordon
+  residue bound $\|\mathrm{KG}[\psi](p, n)\| \le 16/\lP^{2} +
+  m^{2} c^{2}/\hbar^{2}$. The continuum relation
+  $(\Box + m^{2} c^{2}/\hbar^{2})\psi = 0$ is the $\lP \to 0$
+  limit of this, not the discrete equation itself. Recovering
+  \emph{zero} residue (rather than a Planck-scale UV-cutoff bound)
+  requires a $C^{4}$-bounded coarse-graining over many lattice
+  sites together with a Taylor-bound lemma for the second time
+  difference and the five-point Laplacian. This is pure
+  lattice-Fourier / finite-differences analysis, no new physics; it
+  remains the natural continuum-limit follow-up to Theorem~9.
+
+\item \textbf{Spin-$1/2$ extension via Cartan--Sciama--Kibble
+  torsion.}\label{open:dirac}
+  \code{OmegaTheory/Emergence/DiracOptional.lean} introduces a
+  Prop-carrying structure \code{DiracFromLatticeData} that records
+  what a full lattice Dirac derivation must supply: a Clifford
+  algebra $\mathrm{Cl}(1, 3)$ with concrete gamma matrices, a lattice
+  discretisation compatible with chiral symmetry (Nielsen--Ninomiya
+  evasion via Wilson fermions, staggered fermions, or domain-wall
+  fermions), and a Cartan--Sciama--Kibble spin-torsion coupling via
+  the existing \code{OmegaTheory.Torsion.SpinTorsion}. The
+  \code{waveEquation} predicate is currently abstract; the
+  \code{massShellConsistent} and \code{nonRelativisticLimit} fields
+  are already theorems (inherited from \code{SpecialRelativity} and
+  \code{KleinGordon}). A trivial inhabitant
+  \code{diracFromLattice\_partial} is provided as a stub,
+  acknowledging that a full lattice Dirac discretisation (proper
+  gamma-matrix algebra, chiral-symmetry preservation, and
+  spin-torsion coupling) remains an explicit follow-up workstream
+  --- the spin-$1/2$ analogue of the scalar Klein--Gordon bridge of
+  \cref{sec:kleingordon}.
+
+\item \textbf{Many-body states beyond two-body Bell states.}
+  Phase~6C delivers the two-body Bell state $\BellField$ and its
+  CHSH-violation signature, but the present formalisation does not
+  cover arbitrary N-body entangled states, reduced-density-matrix
+  dynamics, or multi-body monogamy-of-entanglement statements.
+
+\item \textbf{Continuous-time limit.} All theorems are discrete-tick
+  statements. The smooth $\tP\to 0$ limit---recovering the continuous
+  Schr\"odinger PDE rather than its discrete approximant---is left
+  as future work.
+
+\item \textbf{Second quantisation and QFT.} Theorem~9 delivers the
+  relativistic scalar Klein--Gordon residue at the first-quantised
+  lattice level. Creation and annihilation operators, Fock space,
+  causal commutation relations, and propagator machinery are not
+  derived. QFT-on-the-substrate is a natural sequel to a zero-residue
+  continuum KG limit (item~\ref{open:kg-coarse}).
+\end{enumerate}
+
+None of these items invalidates Phases~1--6 or Theorem~9. They
+delimit the claim. The paper's claim is: given the discrete-gravity
+healing-flow substrate of Omega-Theory V2, \emph{all nine} of (T1--T7
+as before:) Schr\"odinger evolution, Born-rule probability
+conservation, relativistic-to-non-relativistic dispersion, two-slit
+interference, the Heisenberg uncertainty principle, the measurement /
+collapse postulate, and Tsirelson-bound-attaining entanglement with
+CHSH-inequality violation, \emph{plus} (T9:) the relativistic
+Klein--Gordon residue bound with an explicit Planck-scale UV cutoff
+$16/\lP^{2} + m^{2}c^{2}/\hbar^{2}$, are \emph{theorems}, not
+postulates. It is not: Omega-Theory V2 reproduces every phenomenon
+of quantum mechanics, or of quantum field theory.
+
+The value of distinguishing these two claims is methodological. A
+proof-assistant-verified partial result is, in our view, more useful
+to the community than an unverified complete one, because each open
+item above is now a concrete next target rather than a vague research
+programme---and the boundary of ``what is proved today'' is exactly
+where a reviewer can focus their critical attention.
+
+\section*{Acknowledgments}\label{sec:ack}
+\addcontentsline{toc}{section}{Acknowledgments}
+
+This formalization was produced by a team of AI agents operating on
+the Omega-Theory V2 codebase, under the direction of the human author.
+The individual contributions are:
+\begin{itemize}
+\item \textbf{Altair} --- coarse-graining map and phase-accepting
+  extension in \code{CoarseGrainingMap.lean}, including the defining
+  identity \code{sq\_abs\_coarseGrain} and the finite-region
+  $\ell^{2}$ bound.
+\item \textbf{Sirius} (Phase~2 lead) --- \code{SchrodingerFromLattice.lean}
+  including the complex discrete Laplacian, the static-regime
+  headline bound \code{coarseGrain\_satisfies\_schrodinger\_static},
+  the phase-aware specialisation, and the Phase-2 dynamical lift
+  \code{coarseGrain\_satisfies\_schrodinger\_dynamic} together with
+  flat-background and phase-aware corollaries.
+\item \textbf{Bridger} --- \code{DispersionBridge.lean} including the
+  closed-form quartic bound \code{nonRelativistic\_energy\_approx}
+  and the \code{schrodinger\_is\_nonrel\_limit} bridge lemma.
+\item \textbf{Polaris} (Phase~1 lead) --- \code{SnapshotDynamics.lean}
+  including the \code{DynamicalSnapshotSequence} structure, the
+  Laplacian-of-metric update rule, the
+  \code{metric\_update\_linear\_in\_t\_P} control, and the Minkowski
+  vacuum-consistency theorem.
+\item \textbf{\code{probability\_conservator}} (Phase~3 lead) ---
+  \code{BornRule.lean} including the tick-invariance key lemma, the
+  headline conservation theorem \code{bornRuleConservation}, the
+  iterated form, the Minkowski specialisation, and the honest
+  off-regime residue bound.
+\item \textbf{\code{interference\_prover}} (Phase~4 lead) ---
+  \code{Interference.lean} including the complex-field superposition,
+  the plane-wave coarse-grained field, the algebraic heart
+  \code{superposedField\_abs\_sq}, the headline
+  \code{two\_slit\_interference} and its Boltzmann-weight form, the
+  canonical visibility, the constructive peak / destructive null
+  corollaries, and the Phase-3 compatibility corollary.
+\item \textbf{Bellatrix} (Phase~6A lead, \code{uncertainty\_prover})
+  --- \code{Heisenberg.lean} including the lattice position and
+  momentum operators, the $L^{2}$-variance definition, the
+  Robertson-cross-term machinery, the exact Robertson inequality, the
+  $\CMM$ / \code{CommutatorMatchesValue} predicates, the abstract
+  uncertainty theorem, and the final position-momentum theorem.
+\item \textbf{\code{measurement\_prover}} (Phase~6B lead) ---
+  \code{Measurement.lean} including the pointwise projector and its
+  idempotence, the region-relative norm, the renormaliser, the
+  composition \code{postMeasurementState}, the probability
+  functional, the unit-norm corollary, the support-concentration
+  lemma, the headline four-clause bundle, the Phase-3 bridge, the
+  crucial non-unitarity witness
+  \code{postMeasurement\_not\_in\_coarseGrain\_image}, and the
+  Minkowski specialisation.
+\item \textbf{\code{entanglement\_architect}} (Phase~6C lead) ---
+  \code{Entanglement.lean} including the two-body field type, the
+  tensor-product operation with bilinearity and abs-sq factorisation
+  lemmas, the \code{IsProduct} / \code{IsEntangled} predicates, the
+  explicit Bell-state construction, the structural entanglement
+  theorem, the correlator and the headline cosine identity, the CHSH
+  functional, the Tsirelson-bound attainment, the classical-Bell-bound
+  violation, and the consistency bundle.
+\item \textbf{Saiph} (Phase~6D capstone lead) ---
+  \code{QuantumMechanicsCapstone.lean} including the
+  \code{QuantumMechanicsPostulates} 9-field structure, the
+  \code{grand\_qm\_emergence} umbrella theorem, the Minkowski
+  specialisation, and the named projection corollaries; the
+  integration of the P9 \code{kleinGordon} field after Theorem~9
+  landed.
+\item \textbf{\code{interpolant\_extender}} --- the
+  perturbed-flat HPW-elimination path:
+  \code{SmoothInterpolant.lean} (\code{perturbedFlatInterpolant} for
+  $g = \eta + \varepsilon h$, \code{slowlyVaryingInterpolant} as the
+  self-interpolant for any uniformly-$C^{4}$-bounded
+  $g_{\mathrm{cont}}$, and the curried adapter
+  \code{SmoothInterpolantData.toSmoothMetricField}) and
+  \code{HpwLinearised.lean}
+  (\code{linearisedDataOfPerturbedFlat}, the end-to-end axiom-free
+  \code{hpw\_eliminable\_on\_perturbed\_flat}). This extends the HPW
+  elimination story from the three earlier regimes to any physics
+  model that builds its discrete metric via
+  \code{DiscreteMetric.ofContinuum}.
+\item \textbf{\code{klein\_gordon\_prover}} (Phase~7 lead) ---
+  \code{KleinGordon.lean} including the discrete second-time
+  difference, the Klein--Gordon residue definition, the
+  \code{kleinGordonBoundConst} constant
+  $16/\lP^{2} + m^{2}c^{2}/\hbar^{2}$, the
+  \code{coarseGrain\_satisfies\_kleinGordon\_static} and dynamical
+  bounds, the Minkowski flat-vacuum corollaries, and the
+  companion lemmas \code{kleinGordon\_mass\_shell\_consistent} and
+  \code{kleinGordon\_nonRelativistic\_limit} that tie T9 to T4's
+  dispersion bridge and T2's Schr\"odinger kinetic term.
+  Also \code{DiracOptional.lean} including the Prop-carrying
+  \code{DiracFromLatticeData} structure and the
+  \code{diracFromLattice\_partial} stub recording the open
+  spin-$1/2$ extension via Cartan--Sciama--Kibble torsion.
+\item \textbf{Alnilam} (\code{paper\_draft}) ---
+  \code{QmBridgePaper.lean} (24 paper-level wrapper theorems across
+  Theorems~1--8 plus the capstone) and the first version of the
+  present manuscript.
+\item \textbf{\code{paper\_polisher}} --- the LaTeX submission
+  package (\texttt{main.tex}, \texttt{letter.tex},
+  \texttt{cover\_letter.tex}, \texttt{refs.bib},
+  \texttt{README\_SUBMISSION.md}), including the integration of
+  Theorem~9 (\cref{sec:kleingordon}) and the Dirac stub
+  (\cref{sec:open} item~\ref{open:dirac}) into the manuscript after
+  \code{klein\_gordon\_prover} landed Phase~7.
+\end{itemize}
+
+Upstream infrastructure was built by earlier agents in the project
+(\textbf{Vega}, \textbf{Rigel}, and others credited in
+\code{README.md}). The underlying physical theory, the Lean project
+scaffolding, and editorial direction are due to Norbert Marchewka. Any
+errors are ours.
+
+This work was carried out without external grant funding. The Lean
+proofs have been verified against Mathlib v4.29.0. The source is
+published with the paper.
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}

@@ -16,3 +16,18 @@ rev = "v4.29.0"
 
 [[lean_lib]]
 name = "OmegaTheory"
+
+# `lake exe dump_arrows` extracts REAL arrows from Lean 4 environment (not regex).
+# See OmegaTheory/Meta/DumpArrows.lean. Author: Sheratan (β Arietis).
+[[lean_exe]]
+name = "dump_arrows"
+root = "OmegaTheory.Meta.DumpArrows"
+supportInterpreter = true
+
+# `lake exe dump_decls` extracts REAL declaration metadata (sig, proof body,
+# docstring, source span) from Lean 4 environment. Replaces catalogue_scan.py.
+# See OmegaTheory/Meta/DumpDeclarations.lean. Author: Schedar (α Cassiopeiae).
+[[lean_exe]]
+name = "dump_decls"
+root = "OmegaTheory.Meta.DumpDeclarations"
+supportInterpreter = true

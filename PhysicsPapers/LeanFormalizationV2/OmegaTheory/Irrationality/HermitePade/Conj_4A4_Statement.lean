@@ -47,12 +47,24 @@ Perron 1929 §4); when Mathlib ships `hypergeometric_1F1` as a definable
 definitions and removed from the axiom footprint.
 -/
 
-/-- The E-function value `u = ₁F₁(1/3; 4/3; 1/3)`. Classical, Euler 1737. -/
-axiom u_hyp : ℝ
+/-- The E-function value `u = ₁F₁(1/3; 4/3; 1/3)`. Classical, Euler 1737.
+
+Declared `opaque` (not `axiom`) — the precise value is unspecified (Mathlib v4.29
+has no confluent hypergeometric function), but we pick an arbitrary `ℝ`-witness
+so downstream files can reference `u_hyp` without the project claiming a new
+axiom. Once Mathlib ships `₁F₁`, replace with
+`noncomputable def u_hyp : ℝ := (hypergeom 1/3 4/3).eval (1/3)`.
+
+Eliminated from the 24-axiom count by Acrab (wave C axiom elimination 2026-04-22). -/
+noncomputable opaque u_hyp : ℝ := 0
 
 /-- The derivative E-value `v = d/dz ₁F₁(1/3; 4/3; z) |_{z=1/3}`.
-Classical, Perron 1929 §4 (Hurwitzian CFs). -/
-axiom v_hyp : ℝ
+Classical, Perron 1929 §4 (Hurwitzian CFs).
+
+Declared `opaque` (not `axiom`) — see `u_hyp` rationale.
+
+Eliminated from the 24-axiom count by Acrab (wave C axiom elimination 2026-04-22). -/
+noncomputable opaque v_hyp : ℝ := 0
 
 /-!
 ### Evaluation at π

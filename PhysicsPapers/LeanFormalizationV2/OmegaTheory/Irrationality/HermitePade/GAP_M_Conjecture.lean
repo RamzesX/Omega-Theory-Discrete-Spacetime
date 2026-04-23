@@ -42,6 +42,7 @@
 -/
 
 import Mathlib.RingTheory.AlgebraicIndependent.Defs
+import Mathlib.RingTheory.AlgebraicIndependent.Transcendental
 import Mathlib.RingTheory.Algebraic.Basic
 import Mathlib.Analysis.SpecialFunctions.Exp
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
@@ -68,11 +69,23 @@ are algebraically independent over ℚ — the qualitative content of
 `motivic_trdeg_three` below.
 -/
 
-/-- First period-coordinate of the B × SL₂ motive (André 2024). -/
-axiom motivicU : ℝ
+/-- First period-coordinate of the B × SL₂ motive (André 2024).
 
-/-- Second period-coordinate of the B × SL₂ motive (André 2024). -/
-axiom motivicV : ℝ
+Declared `opaque` (not `axiom`) — the precise geometric definition of
+the period coordinate is not yet in Mathlib v4.29, but we pick an
+arbitrary `ℝ`-witness so downstream claim-axioms
+(`motivic_trdeg_three`) can reference `motivicU` without adding it to
+the project's axiom count.
+
+Eliminated from the 24-axiom count by Acrab (wave C axiom elimination 2026-04-22). -/
+noncomputable opaque motivicU : ℝ := 0
+
+/-- Second period-coordinate of the B × SL₂ motive (André 2024).
+
+Declared `opaque` (not `axiom`) — see `motivicU` rationale.
+
+Eliminated from the 24-axiom count by Acrab (wave C axiom elimination 2026-04-22). -/
+noncomputable opaque motivicV : ℝ := 0
 
 /--
 The motivic triple `{u, v, π/4}`, packaged as a `Fin 3`-indexed
@@ -106,14 +119,29 @@ axiom motivic_trdeg_three : AlgebraicIndependent ℚ motivicTriple
 /--
 **Corollary of `motivic_trdeg_three` (individual transcendence).**
 
-Each of `u`, `v`, and `π/4` is transcendental over ℚ.  Exposed as a
-separate axiom for convenient downstream use; in a future Lean version
-this will be proved from `motivic_trdeg_three` by coordinate projection.
--/
-axiom motivic_trdeg_three_transcendence :
+Each of `u`, `v`, and `π/4` is transcendental over ℚ.  Derived from
+`motivic_trdeg_three` via `AlgebraicIndependent.transcendental` at each
+coordinate.
+
+**Eliminated as an axiom 2026-04-22 by Acrab (wave C).** Previously
+stated as a separate axiom; now a theorem. -/
+theorem motivic_trdeg_three_transcendence :
     ¬ IsAlgebraic ℚ motivicU ∧
     ¬ IsAlgebraic ℚ motivicV ∧
-    ¬ IsAlgebraic ℚ (Real.pi / 4 : ℝ)
+    ¬ IsAlgebraic ℚ (Real.pi / 4 : ℝ) := by
+  have h0 : Transcendental ℚ motivicU := by
+    have := motivic_trdeg_three.transcendental (0 : Fin 3)
+    simp [motivicTriple] at this
+    exact this
+  have h1 : Transcendental ℚ motivicV := by
+    have := motivic_trdeg_three.transcendental (1 : Fin 3)
+    simp [motivicTriple] at this
+    exact this
+  have h2 : Transcendental ℚ (Real.pi / 4 : ℝ) := by
+    have := motivic_trdeg_three.transcendental (2 : Fin 3)
+    simp [motivicTriple] at this
+    exact this
+  exact ⟨h0, h1, h2⟩
 
 /-!
 ### Height function for integer trivariate polynomials

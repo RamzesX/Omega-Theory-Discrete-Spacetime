@@ -8,15 +8,6 @@ on:
     paths:
       - 'lean-toolchain'
 
-# Force all JavaScript actions in this workflow to run on Node 24.
-# Node 20 actions are deprecated by GitHub: default switch to Node 24 is
-# June 2 2026 and Node 20 is removed from runners Sept 16 2026.
-# See: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
-# lean-release-tag@v1 is a bash composite (no Node), but this flag is kept
-# for defence-in-depth in case the action gains a JS dependency upstream.
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
-
 jobs:
   lean-release-tag:
     name: Add Lean release tag

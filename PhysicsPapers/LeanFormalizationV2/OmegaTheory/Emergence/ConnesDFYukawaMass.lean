@@ -249,22 +249,44 @@ private theorem nashiraKernel_sqrt2_pos {N : ℕ} (hN : 2 ≤ N) :
     0 < nashiraKernel (sqrt2_error_val N) :=
   nashiraKernel_pos (sqrt2_error_pos N) (sqrt2_error_lt_one (by omega))
 
+/-- For every `N ≥ 2`, the Catalan-G truncation error is strictly below one.
+    Proof: `catalanGTruncError N = 1/(2N+1)² ≤ 1/25 < 1` when `N ≥ 2`. -/
+theorem catalanGTruncError_lt_one {N : ℕ} (hN : 2 ≤ N) :
+    catalanGTruncError N < 1 := by
+  unfold catalanGTruncError
+  have hN_R : (2 : ℝ) ≤ (N : ℝ) := by exact_mod_cast hN
+  have hden_pos : (0 : ℝ) < 2 * (N : ℝ) + 1 := by linarith
+  have hsq_pos : (0 : ℝ) < (2 * (N : ℝ) + 1) ^ 2 := by positivity
+  have hlt : (1 : ℝ) < (2 * (N : ℝ) + 1) ^ 2 := by nlinarith
+  rw [div_lt_one hsq_pos]
+  exact hlt
+
+/-- Positivity helper for the Nashira kernel at the Catalan-G channel.
+    Requires `N ≥ 2` so that `catalanGTruncError N ∈ (0, 1)` holds for
+    `nashiraKernel_pos` (the kernel requires `δ < 1` for `−log δ > 0`). -/
+private theorem nashiraKernel_catalan_pos {N : ℕ} (hN : 2 ≤ N) :
+    0 < nashiraKernel (catalanGTruncError N) :=
+  nashiraKernel_pos (catalanGTruncError_pos N) (catalanGTruncError_lt_one hN)
+
 /-- **Canonical DF eigenvalue spectrum at truncation budget `N ≥ 2`.**
 
-    The three active eigenvalues are the Nashira kernel values at the
-    per-channel δ, matching Sadr's `leptonMassFromNashira`.  The
-    Catalan-G slot carries the unit eigenvalue from Matar's cycle-27
-    minimal positive anchor. -/
+    The four active eigenvalues are the Nashira kernel values at the
+    per-channel δ, matching Sadr's `leptonMassFromNashira` for
+    π / e / √2 and extending the Catalan-G slot from Matar's cycle-27
+    unit-anchor `λ_catalan := 1` to the per-N-calibrated Nashira value
+    `λ_catalan := nashiraKernel (catalanGTruncError N)`. This closes
+    Wave-A LOAD_BEARING target #1 — every sterile-neutrino / DM
+    prediction now has a δ-tied Catalan eigenvalue, not a hardcoded 1. -/
 noncomputable def canonicalDFSpectrum {N : ℕ} (hN : 2 ≤ N) :
     DFEigenvalueSpectrum where
   lambda_pi      := nashiraKernel (pi_error_val N)
   lambda_e       := nashiraKernel (e_error_val N)
   lambda_sqrt2   := nashiraKernel (sqrt2_error_val N)
-  lambda_catalan := 1
+  lambda_catalan := nashiraKernel (catalanGTruncError N)
   lambda_pi_pos      := nashiraKernel_pi_pos hN
   lambda_e_pos       := nashiraKernel_e_pos hN
   lambda_sqrt2_pos   := nashiraKernel_sqrt2_pos hN
-  lambda_catalan_pos := by norm_num
+  lambda_catalan_pos := nashiraKernel_catalan_pos hN
 
 /-- **Pi-Hunch strict ordering in the canonical spectrum.**
 
@@ -332,8 +354,33 @@ theorem canonicalDFSpectrum_lambda_e_eq {N : ℕ} (hN : 2 ≤ N) :
 theorem canonicalDFSpectrum_lambda_sqrt2_eq {N : ℕ} (hN : 2 ≤ N) :
     (canonicalDFSpectrum hN).lambda_sqrt2 = nashiraKernel (sqrt2_error_val N) := rfl
 
+/-- **Wave-A LOAD_BEARING #1 landing** —
+    `canonicalDFSpectrum_lambda_catalan_via_catalanKernel`.
+
+    The canonical DF spectrum's Catalan-G eigenvalue is the Nashira
+    mass kernel of the Catalan-G truncation error at budget `N`.
+    This replaces the earlier hard-coded unit anchor (Matar cycle-27)
+    with a δ-tied value, making every downstream sterile-neutrino /
+    dark-matter prediction depend on the concrete truncation budget
+    rather than an unrelated constant.
+
+    Proof: `rfl` by definition of `canonicalDFSpectrum` (post Wave-A
+    edit). The `hN : 2 ≤ N` parameter is retained for signature
+    symmetry with `canonicalDFSpectrum_lambda_{pi,e,sqrt2}_eq` even
+    though the `rfl` itself does not use it — we need `hN` to
+    construct the term `canonicalDFSpectrum hN` in the first place. -/
+theorem canonicalDFSpectrum_lambda_catalan_via_catalanKernel {N : ℕ}
+    (hN : 2 ≤ N) :
+    (canonicalDFSpectrum hN).lambda_catalan =
+      nashiraKernel (catalanGTruncError N) := rfl
+
+/-- Alias for backward compatibility. The earlier
+    `canonicalDFSpectrum_lambda_catalan_eq` promised `= 1`; after
+    Wave-A it promises `= nashiraKernel (catalanGTruncError N)`. -/
 theorem canonicalDFSpectrum_lambda_catalan_eq {N : ℕ} (hN : 2 ≤ N) :
-    (canonicalDFSpectrum hN).lambda_catalan = 1 := rfl
+    (canonicalDFSpectrum hN).lambda_catalan =
+      nashiraKernel (catalanGTruncError N) :=
+  canonicalDFSpectrum_lambda_catalan_via_catalanKernel hN
 
 /-! ## §4. THEOREM 30.2 — `yukawa_coupling_from_DF_eigenvalue_ratio`
 

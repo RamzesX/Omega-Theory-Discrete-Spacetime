@@ -253,6 +253,15 @@ import OmegaTheory.Predictions.OmegaBaseSite
 -- discrete monotone `extendedBound_stability` (in Uncertainty.lean) and
 -- asymptotic `extendedBound_tendsto_hbarHalf` (here).
 import OmegaTheory.Predictions.ExtendedBoundStability
+-- Wave-A LOAD_BEARING #2 (Homam, 2026-04-23): non-trivial uniqueness of
+-- `extendedUncertaintyBound` via Gaussian-shadow saturation constraint.
+-- Replaces Aludra wave-2 tautology with a saturation-based characterization.
+import OmegaTheory.Irrationality.ExtendedBoundUniqueness
+-- Wave-A EVIDENCE #3 (Homam, 2026-04-23): Gaussian minimum-uncertainty
+-- saturation of the extended Heisenberg bound.  Upgrades Mothallah
+-- `extendedBound_saturation` with a local Gaussian predicate + uniqueness
+-- of the symmetric σ_x = σ_p saturator at each N.
+import OmegaTheory.Irrationality.GaussianSaturation
 -- Grothendieck MP-5 EVIDENCE landed (Chara, iter-7, 2026-04-22): four-channel
 -- Grothendieck fibration over the Leiden-subsystem base.
 -- `four_channel_fibration_over_subsystem` witnesses the fibered (not
@@ -3076,6 +3085,35 @@ import OmegaTheory.Emergence.SU3ColorAndNonAbelianF
 -- Vub_PDG, Vub_PDG_pos).  0 sorry, 0 new axioms, 0 new `Prop := True`.
 import OmegaTheory.Emergence.ConnesDFYukawaMass
 
+-- Wave-B, cycle-44 theorem 1 — Yukawa ↔ Spectral-Action bridge
+-- (Alkalurops 2026-04-22).  Closes Grothendieck-sage's HIGHEST-
+-- LEVERAGE c18 ↔ c22 corpus gap (QM / YukawaMatrix ↔ ConnesDF /
+-- channel_mass, currently zero APPLIES edges at 1/2/3-hop).  Adds:
+--   * `channelOfGeneration : FermionGeneration → IrrationalChannel4`
+--     (active-channel section of Zosma's `channelToGeneration4`);
+--   * `DFEigenvalue_ordering` Prop (Pi-Hunch `λ_sqrt2 < λ_e < λ_pi`);
+--   * `DiracOperatorFromDFEigenvalueSpectrum` (c22 → c18 functor);
+--   * `fermionMassFromDFSpectrum`  (generation-level mass);
+--   * THEOREM `yukawa_spectral_action_recovers_fermion_masses_bridge`
+--     pairing Pi-Hunch ordering with the Connes identification
+--     `fermion_mass = channel_mass` at each generation.
+-- 0 sorry, 0 new axioms, 0 new `Prop := True`.
+import OmegaTheory.Emergence.YukawaSpectralActionBridge
+
+-- Wave-B, cycle-44 theorem 2 — right-handed lepton doublet CP-dual
+-- completion (Alkalurops 2026-04-22).  Closes Grothendieck-sage's
+-- MP-7 structural gap: left-handed doublet scalar hypercharge
+-- (Algieba's `leftLeptonDoubletY` ℚ = -1/2) had no typed CP-dual
+-- record.  Adds:
+--   * `LeftLeptonDoubletY`  typed record (gen, ℚ-hypercharge, .left);
+--   * `RightLeptonDoubletY` CP-dual (gen, -ℚ-hypercharge, .right);
+--   * `CPT` structural involution on the triple;
+--   * THEOREM `right_handed_lepton_doublet_CP_dual_completion` every
+--     left lepton doublet admits a right-handed CP partner.
+--   * Companion: `LeftQuarkDoubletY`/`RightQuarkDoubletY` + quark CPT.
+-- 0 sorry, 0 new axioms, 0 new `Prop := True`.
+import OmegaTheory.Emergence.FermionContent.RightHandedDoublet
+
 -- Pi-Hunch quantitative — cycle-31 matter-sector four-way capstone
 -- (Errai 2026-04-21, cycle-31 all four targets 29-32):
 -- (31.1) `lepton_mass_ordering_from_pi_hunch` — for every N, there
@@ -3465,6 +3503,22 @@ import OmegaTheory.Predictions.CosmologyWave4Fits
 -- `ic_wave4C_first_open_problem_envelope_in_V2`.
 -- 0 sorry, 0 new axioms.
 import OmegaTheory.IrrationalityClasses.Wave4Landings
+
+-- Wave-B, cycle-44 theorem 3 — Dixmier-trace placeholder interface
+-- (Alkalurops 2026-04-22).  Closes Grothendieck-sage's MP-3
+-- literature-anchored gap: OmegaTheory adopts the Chamseddine-Connes
+-- spectral action S = Tr(f(D/Λ)) but has no Dixmier-trace
+-- regularisation.  Provides a 3-axiom interface `DixTr : (ℕ → ℝ) → ℝ`:
+--   (i)   `DixTr (reference_sequence) = π²/6` on the Basel sequence;
+--   (ii)  vanishes on summable non-reference sequences;
+--   (iii) `heatTrace spec.a4 = DixTr (eigenvalueSequence spec)`
+--         for every SeeleyDeWittCoeffs `spec`.
+-- Honest scope: axiom (ii) carries the "not-equal-to-the-reference"
+-- caveat to avoid the literal `1/(n+1)²-is-summable-∧-sums-to-π²/6`
+-- contradiction.  Full Connes-Dixmier construction (ω-limits on
+-- ℒ^{1,∞}) is research-level future work.
+-- 0 sorry, 0 new axioms, 0 new `Prop := True`.
+import OmegaTheory.IrrationalityClasses.DixmierTracePlaceholder
 
 -- FastRPBridgesWave5 (Wave 5 wizard B, 2026-04-22): 5 FastRP-predicted
 -- kNN bridge theorems (Aludra's wave-3 single-most-impactful-next-step)

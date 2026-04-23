@@ -11,21 +11,11 @@ permissions:
   pages: write # Write access to GitHub Pages
   id-token: write # Write access to ID tokens
 
-# Force all JavaScript actions in this workflow to run on Node 24.
-# Node 20 actions are deprecated by GitHub: default switch to Node 24 is
-# June 2 2026 and Node 20 is removed from runners Sept 16 2026.
-# See: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
-# leanprover-community/docgen-action@v1 composes upload-pages-artifact@v3 and
-# deploy-pages@v4 which are still Node-20 under the hood; this flag forces
-# them forward on the runner and silences the deprecation warning.
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v5
       - uses: leanprover/lean-action@v1
       - uses: leanprover-community/docgen-action@v1

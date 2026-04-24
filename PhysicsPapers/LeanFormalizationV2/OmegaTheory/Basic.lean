@@ -3899,3 +3899,11 @@ import OmegaTheory.Predictions.WBosonMassAbsoluteP3a
 --   `neutrino_delta_m_sq_atmospheric_2_5e_minus_3_eV2_substrate_paper_bundle`
 -- 0 sorry, 0 new axioms; #print axioms on all theorems: Lean core only.
 import OmegaTheory.Predictions.NeutrinoDeltaMSquaredAbsoluteP3d
+
+-- Wave P3e (2026-04-24, hand-written by session lead) — muon g-2 BNL/FNAL
+-- absolute-value certification closing Menkent Atlas v7 top HIGH candidate
+-- `muon_g_minus_2_BNL_FNAL_substrate_fit_numerical_absolute_paper_bundle`
+-- (55 downstream_unblocks). Thin wrapper around Megrez's
+-- MuonGminus2SubstrateFit.lean; adds 5-conjunct paper bundle.
+-- 0 sorry, 0 new axioms.
+import OmegaTheory.Predictions.MuonGminus2AbsoluteP3e

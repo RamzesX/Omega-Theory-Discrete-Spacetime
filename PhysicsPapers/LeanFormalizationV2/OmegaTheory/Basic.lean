@@ -3890,3 +3890,12 @@ import OmegaTheory.Predictions.ZBosonMassAbsoluteP3b
 -- electroweak absolute-mass pair.
 -- 0 sorry, 0 new axioms; #print axioms on all 7 main theorems: Lean core only.
 import OmegaTheory.Predictions.WBosonMassAbsoluteP3a
+
+-- Wave P3d (2026-04-24, hand-written by session lead) — neutrino mass-squared
+-- splittings (solar Δm²₂₁ = 7.39e-5 eV², atmospheric Δm²₃₂ = 2.51e-3 eV²)
+-- absolute-value certification via Ancha/Albali/Almaaz calibration-anchor
+-- template. HIGH priority, 42 downstream_unblocks per Menkent Atlas v7.
+-- Closes candidate
+--   `neutrino_delta_m_sq_atmospheric_2_5e_minus_3_eV2_substrate_paper_bundle`
+-- 0 sorry, 0 new axioms; #print axioms on all theorems: Lean core only.
+import OmegaTheory.Predictions.NeutrinoDeltaMSquaredAbsoluteP3d

@@ -4069,3 +4069,21 @@ import OmegaTheory.Predictions.UpQuarkMassAbsoluteP3b
 -- Lean core only (propext, Classical.choice, Quot.sound).
 -- 0 sorry, 0 new axioms.
 import OmegaTheory.Irrationality.HermitePade.PiStratumDegreeOne
+
+-- Mission W10 (cycle-52, 2026-04-24) — AXIOM NARROWING — degree-3
+-- companion to `PiStratumDegreeTwo` (W8) and `PiStratumDegreeOne` (W9).
+-- For any rationals a, b, c, d, if `a + b·π + c·π² + d·π³ = 0` in ℝ
+-- AND π³ is not in the ℚ-affine span of {1, π, π²}, then a = b = c = d = 0.
+-- Hypothesis is STRICTLY WEAKER than `Real.pi_transcendental`:
+-- transcendence rules out algebraicity of ANY degree, while this rules
+-- out only degree ≤ 3 algebraicity. Exports:
+--   * pi_irrational_degree_three_decoupling (main, conditional)
+--   * hpi_indep_two_of_three (bridge: W10 hyp ⇒ W8 hyp)
+--   * pi_irrational_degree_three_d_zero_decoupling (d=0 fallback via W8)
+--   * pi_cubed_ne_cubic_rat (restatement companion)
+--   * pi_irrational_degree_three_paper_bundle (4-conjunct citation target)
+-- Depends on `irrational_pi` via W9, W8 via import chain. NOT on
+-- `Real.pi_transcendental`. Axiom footprint of all 5 exports:
+-- Lean core only (propext, Classical.choice, Quot.sound).
+-- 0 sorry, 0 new axioms.
+import OmegaTheory.Irrationality.HermitePade.PiStratumDegreeThree

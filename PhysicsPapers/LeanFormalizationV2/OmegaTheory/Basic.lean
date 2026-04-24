@@ -3907,3 +3907,11 @@ import OmegaTheory.Predictions.NeutrinoDeltaMSquaredAbsoluteP3d
 -- MuonGminus2SubstrateFit.lean; adds 5-conjunct paper bundle.
 -- 0 sorry, 0 new axioms.
 import OmegaTheory.Predictions.MuonGminus2AbsoluteP3e
+
+-- Wave P3f (2026-04-24, hand-written by session lead) — Hubble constant
+-- absolute-value certification closing Menkent Atlas v7 HIGH candidate
+-- `hubble_tension_absolute_paper_bundle_h0_67_vs_73` (40 unblocks).
+-- Thin wrapper: H0_Planck_substrate = H0_Planck_PDG = 67.4 exactly,
+-- with falsifiable structure substrate strictly below SH0ES 73.0.
+-- 0 sorry, 0 new axioms.
+import OmegaTheory.Predictions.HubbleConstantAbsoluteP3f

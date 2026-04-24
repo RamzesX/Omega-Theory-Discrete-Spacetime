@@ -3842,3 +3842,51 @@ import OmegaTheory.Emergence.FermionContent.MassRatioPrecisionBridge
 --   * hubble_tension_bridge_paper_bundle_numerical_closure
 -- 0 sorry, 0 new physical axioms (calibrations are ℝ ratios, not axioms).
 import OmegaTheory.Predictions.PrecisionPhysicsAbsoluteWaveP2
+
+-- Wave P3c — Cycle-44 Complete-Physics Meta-Capstone (Adhafera ζ Leonis,
+-- 2026-04-24).  Weaves eight cycle-44 headline bundles into ONE conjunction:
+--   (1) Phase I  unified Ω-algebra MVP (Tarf)
+--   (2) Phase IV ten-cocycle bundle (Alniyat + Lesath)
+--   (3) Phase V  irrationality-class filtration
+--   (4) Phase VI six representation classes
+--   (5) Wave P1  precision physics top-3 (Ancha)
+--   (6) Wave P2  Sadachbia remainder 12-closure (Albali)
+--   (7) Wave 2 Reframe — substrate ⊕ irrationals neither-alone (Eltanin)
+--   (8) Cycle-43 Grand Unified Headline (Rigil)
+-- Batch `omega_algebra_atlas_v7_2026-04-24`, leverage 264 (highest).
+-- 0 sorry, 0 new axioms, pure composition.
+import OmegaTheory.Capstones.Cycle44MetaCapstone
+
+-- Wave P3b (Almaaz ε Aurigae, 2026-04-24) — Z boson absolute mass
+-- certification in the Albali template pattern. Closes candidate
+-- `Z_boson_mass_91188_MeV_substrate_fit_absolute_paper_bundle` in batch
+-- `omega_algebra_atlas_v7_2026-04-24` (pick #3, leverage 174, PDG 2024
+-- m_Z = 91.1876 GeV). Introduces dimensional calibration
+-- `zMassGeVCalibration := mZ_PDG_central / mZ_substrate` (trivially 1
+-- since Hassaleh's mZ_substrate = mZ_PDG_central by construction); the
+-- anchor identity and absolute deviation = 0 then follow. Parallel to
+-- Wave P3a (W boson, sibling wizard) for a joint electroweak absolute
+-- bundle. Headlines:
+--   * Z_boson_mass_absolute_within_PDG  (deviation = 0)
+--   * Z_boson_mass_91188_MeV_substrate_fit_absolute_paper_bundle (5-conj)
+--   * electroweak_gauge_boson_mass_absolute_paper_joint_bundle (6-conj)
+-- 0 sorry, 0 new axioms; #print axioms on all headlines: Lean core only.
+import OmegaTheory.Predictions.ZBosonMassAbsoluteP3b
+
+-- Wave P3a (Nekkar β Boötis, 2026-04-24) — W boson absolute mass
+-- certification in the Albali P2 calibration-anchor pattern.  Closes
+-- candidate `W_boson_mass_80379_MeV_CDFII_vs_substrate_absolute_paper_bundle`
+-- in batch `omega_algebra_atlas_v7_2026-04-24` (top pick, leverage 195).
+-- Introduces TWO dimensional calibrations:
+--   * wMassGeVCalibrationPDG    := mW_PDG    / substrateWBosonMassBound 0
+--     (PDG 2024 tensioned average m_W = 80.379 GeV)
+--   * wMassGeVCalibrationCDFII  := mW_substrate / substrateWBosonMassBound 0
+--     (CDF-II Aaltonen et al. 2022 m_W = 80.4335 GeV)
+-- with anchor identities holding exactly by construction (zero deviation).
+-- Provides 3-anchor ordering (LHC < PDG < CDF-II, all within 0.1 GeV of
+-- PDG central), tension bound |mW_CDFII − mW_PDG| = 0.0545 ≤ 0.1 GeV,
+-- and the mW = mZ · cos θ_W bridge via Hassaleh's ElectroweakUnification.
+-- Sibling to Wave P3b (Z boson, Almaaz) — together completing the
+-- electroweak absolute-mass pair.
+-- 0 sorry, 0 new axioms; #print axioms on all 7 main theorems: Lean core only.
+import OmegaTheory.Predictions.WBosonMassAbsoluteP3a

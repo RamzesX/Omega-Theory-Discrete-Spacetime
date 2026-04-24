@@ -137,6 +137,14 @@ CALL (r, labelName) {
   WITH r WHERE labelName = 'Theorem'
   MERGE (t:Theorem {namespace: 'OmegaTheoryV2', name: r.name})
   ON CREATE SET t.created_at = datetime()
+  // 2026-04-24: content-hash guard. Only bump env_dumped_at (which triggers
+  // re-embed downstream) when signature OR proof_body OR docstring actually
+  // changed vs what's currently stored. Saves ~20 min GPU time per refresh
+  // when most of the dump is byte-identical to prior state.
+  WITH t, r,
+       (t.signature IS NULL OR t.signature <> r.type_pretty
+        OR t.proof_body IS NULL OR t.proof_body <> r.value_pretty
+        OR coalesce(t.docstring, '') <> coalesce(r.docstring, '')) AS contentChanged
   SET t.signature           = r.type_pretty,
       t.proof_body          = r.value_pretty,
       t.docstring           = r.docstring,
@@ -149,13 +157,19 @@ CALL (r, labelName) {
       t.universe_params     = r.universe_params,
       t.num_universe_params = r.num_universe_params,
       t.source              = 'lean_env_v1',
-      t.env_dumped_at       = datetime()
+      t.env_dumped_at       = CASE WHEN contentChanged OR t.env_dumped_at IS NULL
+                                   THEN datetime()
+                                   ELSE t.env_dumped_at END
 }
 CALL (r, labelName) {
   WITH r, labelName
   WITH r WHERE labelName = 'Axiom'
   MERGE (a:Axiom {namespace: 'OmegaTheoryV2', name: r.name})
   ON CREATE SET a.created_at = datetime()
+  WITH a, r,
+       (a.signature IS NULL OR a.signature <> r.type_pretty
+        OR a.proof_body IS NULL OR a.proof_body <> r.value_pretty
+        OR coalesce(a.docstring, '') <> coalesce(r.docstring, '')) AS contentChanged
   SET a.signature           = r.type_pretty,
       a.proof_body          = r.value_pretty,
       a.docstring           = r.docstring,
@@ -168,13 +182,19 @@ CALL (r, labelName) {
       a.universe_params     = r.universe_params,
       a.num_universe_params = r.num_universe_params,
       a.source              = 'lean_env_v1',
-      a.env_dumped_at       = datetime()
+      a.env_dumped_at       = CASE WHEN contentChanged OR a.env_dumped_at IS NULL
+                                   THEN datetime()
+                                   ELSE a.env_dumped_at END
 }
 CALL (r, labelName) {
   WITH r, labelName
   WITH r WHERE labelName = 'Definition'
   MERGE (d:Definition {namespace: 'OmegaTheoryV2', name: r.name})
   ON CREATE SET d.created_at = datetime()
+  WITH d, r,
+       (d.signature IS NULL OR d.signature <> r.type_pretty
+        OR d.proof_body IS NULL OR d.proof_body <> r.value_pretty
+        OR coalesce(d.docstring, '') <> coalesce(r.docstring, '')) AS contentChanged
   SET d.signature           = r.type_pretty,
       d.proof_body          = r.value_pretty,
       d.value               = r.value_pretty,
@@ -188,7 +208,9 @@ CALL (r, labelName) {
       d.universe_params     = r.universe_params,
       d.num_universe_params = r.num_universe_params,
       d.source              = 'lean_env_v1',
-      d.env_dumped_at       = datetime()
+      d.env_dumped_at       = CASE WHEN contentChanged OR d.env_dumped_at IS NULL
+                                   THEN datetime()
+                                   ELSE d.env_dumped_at END
 }
 '''
 

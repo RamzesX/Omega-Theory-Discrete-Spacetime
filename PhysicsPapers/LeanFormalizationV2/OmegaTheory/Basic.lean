@@ -3920,3 +3920,8 @@ import OmegaTheory.Predictions.HubbleConstantAbsoluteP3f
 -- absolute substrate-prediction certification closing Menkent v7 MED
 -- candidate (25 unblocks). Thin wrapper over DESISubstrateSignature.
 import OmegaTheory.Predictions.DESIY10AbsoluteP3g
+
+-- Wave P3j (2026-04-24, hand-written) — vacuum birefringence magnetar
+-- absolute substrate-predicted index-shift value. Closes Menkent v7 MED
+-- candidate (12 unblocks). Magnetar ≥ 10·B_Schwinger → 100× noise floor.
+import OmegaTheory.Predictions.VacuumBirefringenceAbsoluteP3j

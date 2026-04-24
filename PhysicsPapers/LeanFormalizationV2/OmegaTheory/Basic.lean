@@ -3915,3 +3915,8 @@ import OmegaTheory.Predictions.MuonGminus2AbsoluteP3e
 -- with falsifiable structure substrate strictly below SH0ES 73.0.
 -- 0 sorry, 0 new axioms.
 import OmegaTheory.Predictions.HubbleConstantAbsoluteP3f
+
+-- Wave P3g (2026-04-24, hand-written) — DESI Y10 evolving-w dark energy
+-- absolute substrate-prediction certification closing Menkent v7 MED
+-- candidate (25 unblocks). Thin wrapper over DESISubstrateSignature.
+import OmegaTheory.Predictions.DESIY10AbsoluteP3g

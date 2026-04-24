@@ -213,6 +213,38 @@ def three_generations_mass_hierarchy_from_pi_error : Prop := True
 theorem three_generations_mass_hierarchy_from_pi_error_holds :
     three_generations_mass_hierarchy_from_pi_error := trivial
 
+/-- **SUBSTANTIVE form of the FRONTIER marker (cycle-51 W4 closure).**
+
+    Replaces the `Prop := True` marker above with a genuine 5-conjunct
+    bundle: all three channels are positive AND obey the non-strict
+    ordering `sqrt2_error ≤ e_error ≤ pi_error` (at every `N ≥ 2`).
+
+    Conjuncts:
+      1. `pi_error_pos N`       — π-channel is positive;
+      2. `e_error_pos N`        — e-channel is positive;
+      3. `sqrt2_error_pos N`    — √2-channel is positive;
+      4. `sqrt2_error_val N ≤ e_error_val N`
+         — √2 (lightest) is bounded by e (middle);
+      5. `e_error_val N ≤ pi_error_val N`
+         — e (middle) is bounded by π (heaviest).
+
+    Pure composition: `pi_error_pos` / `e_error_pos` / `sqrt2_error_pos`
+    from `Irrationality.Approximations`, plus the non-strict `le_of_lt`
+    forms of Sadr's strict chain `sqrt2_error_lt_e_error` and
+    `e_error_lt_pi_error`. -/
+theorem three_generations_mass_hierarchy_from_pi_error_substantive
+    {N : ℕ} (hN : 2 ≤ N) :
+    0 < pi_error_val N ∧
+    0 < e_error_val N ∧
+    0 < sqrt2_error_val N ∧
+    sqrt2_error_val N ≤ e_error_val N ∧
+    e_error_val N ≤ pi_error_val N :=
+  ⟨pi_error_pos N,
+   e_error_pos N,
+   sqrt2_error_pos N,
+   (sqrt2_error_lt_e_error hN).le,
+   (e_error_lt_pi_error hN).le⟩
+
 /-! ## 6. Paper-citable headline
 
     A single existence statement that a manuscript citation can invoke

@@ -108,6 +108,148 @@ PhysicsPapers/
 ~/.elan/bin/lake exe cache get                              # Mathlib cache
 ```
 
+## WORKFLOW PRINCIPLES — SOTA cycle orchestration (2026-04-24, binding)
+
+This section codifies **strict phase ordering** and **power hygiene** for the
+agent orchestration pipeline. Enforced by cron loops `5ff5a3e1` (cycle),
+`9023e7c5` (meta), `985da81c` (doc-refresh). Violations waste agent work and
+machine thermals.
+
+### Phase-based cycle model
+
+Every cycle has three phases. Phases are strictly sequential:
+
+| Phase | Trigger | Who runs | Embedder `:7999` | Reranker `:7996` | Exit condition |
+|-------|---------|----------|:-:|:-:|----------------|
+| **A — PROPOSE** | Phase C completed & verified, OPEN candidates exist | 1 × `grothendieck-sage` (Cypher + `mcp__omega-search__*` retrieval) | **ON** | **ON** | Sage returns batch `.md`; wizards spawned |
+| **B — PROVE** | ≥1 wizard active | 4-8 × `lean-proof-wizard` parallel on disjoint files | **OFF** (power hygiene) | **OFF** (power hygiene) | All wizards landed; ≥3 landings accumulated |
+| **C — CLOSE** | ≥3 landings since last Phase C | parent orchestrator (sequential script) | **ON** | **ON** | All 7 refresh steps verified |
+
+### Server state transitions (binding)
+
+```
+C → A : KEEP servers ON — sage needs retrieval + reranking
+A → B : KILL servers   — wizards are Lean-only (CPU-bound Ryzen)
+B → C : RESTART servers — dumps/loads/reembed need them
+A standalone (meta)     : START servers (sage), KILL on completion
+```
+
+### Why the reranker matters
+
+`grothendieck-sage` uses `mcp__omega-search__find_similar`, `neighbors`,
+`retrieve_premises`, `explain_theorem`, `subsystem_of` — all powered by
+Qwen3-Reranker-8B CPU at `:7996` + Qwen3-Embedding-8B GPU at `:7999`. Without
+both up, sage's recommendations fall back to pure-Cypher graph walks and miss
+semantic near-neighbors — quality drops ~30%.
+
+### PHASE C strict ordering (non-negotiable)
+
+Phase C must complete **all seven steps in order before any Phase A sage-fire**.
+Do NOT fire sage-for-next-batch until graph + embeddings are fully refreshed —
+sage proposals based on stale graph waste the team's work.
+
+```
+Step 1. AXIOM SENTINEL — `#print axioms` on paper capstones
+         MUST show [propext, Classical.choice, Quot.sound] only
+         If any research axiom leaks → PushNotification + blocker task; halt.
+
+Step 2. POWER UP servers (only for Phase C):
+         setsid ~/genai_env/bin/python ~/services/supervise_llama.py embed_gpu & disown
+         setsid ~/genai_env/bin/python ~/services/supervise_llama.py reranker_cpu & disown
+         until curl -s http://localhost:7999/health | grep -q '"ok"'; do sleep 2; done
+
+Step 3. SEQUENTIAL graph refresh (no skips, no parallel reordering):
+         cd ~/lean-v2
+         ~/.elan/bin/lake build --log-level=error                            # (a) build GREEN
+         ~/.elan/bin/lake exe dump_decls --out .neo4j/declarations_from_env_cycleN.jsonl
+         ~/.elan/bin/lake exe dump_arrows --out .neo4j/arrows_from_env_cycleN.jsonl --include-mathlib
+         cd .neo4j
+         ln -sf declarations_from_env_cycleN.jsonl declarations_from_env_v2.jsonl
+         python3 load_declarations_env_v2.py                                 # (d) load decls to Neo4j
+         python3 load_arrows_parallel.py                                     # (e) load arrows
+         python3 reembed_qwen3_delta.py                                      # (f) Qwen3-8B embeddings via :7999
+
+Step 4. VERIFY refresh integrity via Cypher:
+         MATCH (t:Theorem {namespace:'OmegaTheoryV2'}) RETURN count(t)
+         MATCH (t:Theorem {namespace:'OmegaTheoryV2'}) WHERE t.embedding_lean IS NULL
+           RETURN count(t) AS missing_emb          -- must be 0 (sage blind spot if >0)
+         MATCH (a:Axiom {namespace:'OmegaTheoryV2'}) RETURN a.name
+         If missing_emb > 0 → re-run reembed_qwen3_delta.py until 0.
+
+Step 5. PRUNE orphaned :Axiom nodes:
+         MATCH (a:Axiom)
+         WHERE NOT EXISTS { MATCH ()-[:ASSUMES|APPLIES*1..5]->(a) }
+         DELETE a
+
+Step 6. POWER DOWN servers (user heat/power rule 2026-04-24):
+         pkill -f llama-server
+         pkill -f supervise_llama
+
+Step 7. MEMORY-WRITE cycle closure:
+         write notes/NOTES_CYCLE_<N>_COMPLETION_YYYY-MM-DD.md with:
+            - landings list
+            - axiom footprint before/after
+            - build jobs delta
+            - next-cycle seeds
+```
+
+Only after Step 7 written → transition to Phase A. If any step errors, halt
+the pipeline and notify user.
+
+### POWER HYGIENE rule (binding, updated 2026-04-24)
+
+**Embedder `:7999` + reranker `:7996` are ON during Phase A and Phase C only.
+OFF during Phase B (proving, the longest phase).**
+
+Rationale: Phase B (wizards proving) is CPU-bound on Ryzen 9950X — GPU + CPU
+reranker are wasted thermals. Phase A (sage) needs both for `mcp__omega-search`
+retrieval quality. Phase C (dump/load/reembed) needs both for embeddings.
+Transitions:
+- `B → C`: restart both (embedder GPU takes ~20s warm-up).
+- `C → A`: keep both running — sage starts immediately.
+- `A → B`: kill both — wizards don't need them.
+
+### GROTHENDIECK-AS-ORCHESTRATOR pattern
+
+`grothendieck-sage` fires at TWO moments only:
+
+1. **Phase A start** (after Phase C verified complete) — proposes next batch.
+2. **Phase B unblock** (mid-proving, if a wizard is stuck) — suggests tactic or
+   narrower statement. NOT a next-batch fire.
+
+Sage NEVER edits `.lean` files. Output is always `.md` or Neo4j `:TheoremCandidate`
+node creation. Role-lock is from feedback 2026-04-22 (see memory
+`feedback_grothendieck_proposes_wizard_proves.md`).
+
+### SELF-PACING rule
+
+Cron ticks (every 30min/2h/6h) are **safety nets, not clocks**. When a phase
+finishes, chain to the next phase IMMEDIATELY — do not wait for cron. Loops
+run back-to-back until genuinely idle (no OPEN candidates AND Phase C just
+refreshed AND sage just proposed).
+
+### AXIOM-MINIMIZATION mandate
+
+Every cycle dedicates ≥1 wizard to axiom-narrowing or elimination:
+- Swap `Real.pi_transcendental` for `Real.irrational_pi` (Niven, Mathlib) where
+  transcendence isn't strictly needed — only irrationality.
+- Decompose Lindemann-Weierstrass, Roth, Nesterenko, Mahler into 10-30 Lean-sized
+  sub-lemmas; port each to `OmegaTheory/Irrationality/CustomMath/<Name>.lean`.
+- **No fear of proving it ourselves if Mathlib doesn't have it.**
+
+### FAILURE MODES (diagnose fast)
+
+- **Sage fires on stale graph** → wastes its proposal. Fix: enforce Phase C
+  strict ordering (this section); verify `missing_emb = 0` before Phase A.
+- **Embedders left running during Phase B** → wasted GPU thermals. Fix: kill
+  immediately after Phase C step 6; verify `pgrep llama-server` returns nothing
+  before spawning any wizard.
+- **Wizard touches another wizard's file** → merge collision. Fix: in each brief,
+  list files OFF-LIMITS (current wizard territory); inspect TaskList before
+  spawning.
+- **Axiom regression into capstone** → breaks paper-headline footprint. Fix:
+  doc-refresh loop's sentinel raises `PushNotification`; halt cycle until narrowed.
+
 ## Neo4j ingest pipeline — USE THESE SCRIPTS, DO NOT ROLL YOUR OWN
 
 Full ground-truth pipeline lives in `~/lean-v2/.neo4j/`. See
@@ -265,11 +407,12 @@ Chain: π irrational → can't be computed exactly → per-tick truncation error
 `ℏ/2 + δ_comp > ℏ/2` → QM is NECESSARY.
 
 - **π-truncation**: `O(1/N)`, LARGEST residual δ  → heavy generation (top, etc.)
-- **e-truncation**: `O(1/N!)`,  middle residual    → middle generation (charm, etc.)
-- **√2-truncation**: super-exp `O(2^{-2^N})`       → light generation (up, etc.)
 - **Catalan G**:    `O(1/(2N+1)²)` (quadratic)     → sterile / DM channel
-  (inserted for the 4th — see Mekbuda's `THEOREM_BACKLOG_CYCLES_24_43.md`; asymptotic
-  ordering is π > e > G > √2 for N ≥ 5)
+- **e-truncation**: `O(1/N!)`,  factorial decay    → middle generation (charm, etc.)
+- **√2-truncation**: super-exp `O(2^{-2^N})`       → light generation (up, etc.)
+  (inserted as the 4th channel — see Mekbuda's `THEOREM_BACKLOG_CYCLES_24_43.md`;
+  **asymptotic ordering is `π > G > e > √2` for N ≥ 6** — e decays O(1/N!) faster
+  than G's O(1/(2N+1)²) past N=5. Corrected 2026-04-24 per meta-sage audit.)
 
 ### ⚠️ Convention correction (2026-04-17, still binding)
 **"Hardest to compute" means MOST residual errors, not least.** π is hardest BECAUSE

@@ -1,154 +1,64 @@
 /-
   OmegaTheory.Emergence.SU3JacobiFull
 
-  Rational + √3 decomposition of the Gell-Mann structure constants,
-  closing the Jacobi identity at both the structural-constant and
-  basis-vector levels.
+  Public-facing SU(3) Jacobi theorems.
 
-  The structure constants `su3f` contain both rational entries (±1, ±1/2)
-  and √3-scaled entries (±√3/2 at the two triples involving λ₈).
-  We decompose `su3f = ↑(su3f_rat) + √3 · ↑(su3f_sqrt3)` with both
-  components ℚ-valued; since {1, √3} is ℚ-linearly independent, the
-  vanishing of the Jacobi sum splits into TWO independent ℚ-identities
-  (the rational side absorbs the `3·(√3)² = 3` cross-term). Each of
-  the 4096 basis-quadruple cases is closed via `native_decide` on ℚ.
+  The definitions `su3f_rat`, `su3f_sqrt3`, `jacobiRatSum`, `jacobiSqrt3Sum`,
+  and the decomposition `su3f_decomp` now live in `SU3JacobiDefs` (split out
+  in cycle-49 P3t). This module delivers the ℝ-level structural-constant
+  Jacobi identity `su3f_jacobi_sum_zero` and the basis-level Jacobi identity
+  `su3Bracket_jacobi_basis_all` on all 512 triples.
 
-  This yields:
+  ## P3t — native_decide elimination
 
-  · `su3f_jacobi_sum_zero` — the structural-constant Jacobi identity
-    over `ℝ`, the hard numerical heart of the argument.
+  Previously `jacobi_rat_zero` and `jacobi_sqrt3_zero` were closed by
+  `native_decide`, which forces the `Lean.ofReduceBool` axiom into the
+  closure. In cycle-49 P3t we derived the same identities from the
+  matrix-Lie-algebra embedding via the chain
+    `su3f_jacobi_sum_zero_via_matrix`  (∑ = 0 in ℝ, from Gell-Mann commutator)
+    + `su3f_decomp`                    (ℝ-sum = ↑jacobiRatSum + √3 · ↑jacobiSqrt3Sum)
+    + `rat_sqrt3_linear_independent`   (ℚ-LI of {1, √3}).
+  The axiom footprint of `jacobi_rat_zero`/`jacobi_sqrt3_zero` is now
+  `[propext, Classical.choice, Quot.sound]` — no `Lean.ofReduceBool`.
 
-  · `su3Bracket_jacobi_basis_all` — basis-vector Jacobi on all 512
-    triples `(a, b, c) : (Fin 8)³`.
-
-  The lift from basis-vector Jacobi to general `(X, Y, Z)` is a
-  standard trilinearity argument; we expose it as
-  `su3Bracket_jacobi_via_basis` in conditional form, allowing any
-  consumer that has a trilinearity witness to immediately discharge
-  the `hJ` hypothesis of `mkExactSU3LieAlgebra`.
-
-  Agent: Almach² (γ And), April 17, 2026. No sorry, no new axioms.
+  Agent: Almach² (γ And), April 17, 2026. Cycle-49 refactor preserves
+  everything below §2; §2 theorems now route through SU3JacobiViaMatrix.
+  No sorry, no new axioms.
 -/
 
 import OmegaTheory.Emergence.ErrorGaugeSU3
 import OmegaTheory.Emergence.SU3JacobiHelper
+import OmegaTheory.Emergence.SU3JacobiDefs
+import OmegaTheory.Emergence.SU3JacobiViaMatrix
 import Mathlib.Tactic
 
 namespace OmegaTheory.Emergence.SU3JacobiFull
 
 open OmegaTheory.Emergence.ErrorGaugeSU3
 open OmegaTheory.Emergence.SU3JacobiHelper
+open OmegaTheory.Emergence.SU3JacobiDefs
 open OmegaTheory.Foundations
 
-/-! ## §1. Rational + √3 decomposition of `su3f` -/
+/-! ## §1. Re-export defs for backwards compatibility
 
-/-- Rational part of the Gell-Mann structure constants. -/
-def su3f_rat : Fin 8 → Fin 8 → Fin 8 → ℚ :=
-  fun i j k =>
-    if i = 0 ∧ j = 1 ∧ k = 2 then 1
-    else if i = 1 ∧ j = 2 ∧ k = 0 then 1
-    else if i = 2 ∧ j = 0 ∧ k = 1 then 1
-    else if i = 1 ∧ j = 0 ∧ k = 2 then -1
-    else if i = 0 ∧ j = 2 ∧ k = 1 then -1
-    else if i = 2 ∧ j = 1 ∧ k = 0 then -1
-    else if i = 0 ∧ j = 3 ∧ k = 6 then 1/2
-    else if i = 3 ∧ j = 6 ∧ k = 0 then 1/2
-    else if i = 6 ∧ j = 0 ∧ k = 3 then 1/2
-    else if i = 3 ∧ j = 0 ∧ k = 6 then -(1/2)
-    else if i = 0 ∧ j = 6 ∧ k = 3 then -(1/2)
-    else if i = 6 ∧ j = 3 ∧ k = 0 then -(1/2)
-    else if i = 0 ∧ j = 4 ∧ k = 5 then -(1/2)
-    else if i = 4 ∧ j = 5 ∧ k = 0 then -(1/2)
-    else if i = 5 ∧ j = 0 ∧ k = 4 then -(1/2)
-    else if i = 4 ∧ j = 0 ∧ k = 5 then 1/2
-    else if i = 0 ∧ j = 5 ∧ k = 4 then 1/2
-    else if i = 5 ∧ j = 4 ∧ k = 0 then 1/2
-    else if i = 1 ∧ j = 3 ∧ k = 5 then 1/2
-    else if i = 3 ∧ j = 5 ∧ k = 1 then 1/2
-    else if i = 5 ∧ j = 1 ∧ k = 3 then 1/2
-    else if i = 3 ∧ j = 1 ∧ k = 5 then -(1/2)
-    else if i = 1 ∧ j = 5 ∧ k = 3 then -(1/2)
-    else if i = 5 ∧ j = 3 ∧ k = 1 then -(1/2)
-    else if i = 1 ∧ j = 4 ∧ k = 6 then 1/2
-    else if i = 4 ∧ j = 6 ∧ k = 1 then 1/2
-    else if i = 6 ∧ j = 1 ∧ k = 4 then 1/2
-    else if i = 4 ∧ j = 1 ∧ k = 6 then -(1/2)
-    else if i = 1 ∧ j = 6 ∧ k = 4 then -(1/2)
-    else if i = 6 ∧ j = 4 ∧ k = 1 then -(1/2)
-    else if i = 2 ∧ j = 3 ∧ k = 4 then 1/2
-    else if i = 3 ∧ j = 4 ∧ k = 2 then 1/2
-    else if i = 4 ∧ j = 2 ∧ k = 3 then 1/2
-    else if i = 3 ∧ j = 2 ∧ k = 4 then -(1/2)
-    else if i = 2 ∧ j = 4 ∧ k = 3 then -(1/2)
-    else if i = 4 ∧ j = 3 ∧ k = 2 then -(1/2)
-    else if i = 2 ∧ j = 5 ∧ k = 6 then -(1/2)
-    else if i = 5 ∧ j = 6 ∧ k = 2 then -(1/2)
-    else if i = 6 ∧ j = 2 ∧ k = 5 then -(1/2)
-    else if i = 5 ∧ j = 2 ∧ k = 6 then 1/2
-    else if i = 2 ∧ j = 6 ∧ k = 5 then 1/2
-    else if i = 6 ∧ j = 5 ∧ k = 2 then 1/2
-    else 0
+Consumers previously opened `OmegaTheory.Emergence.SU3JacobiFull` and
+accessed `su3f_rat`, `su3f_sqrt3`, `jacobiRatSum`, `jacobiSqrt3Sum`,
+`su3f_decomp`. Those now live in `SU3JacobiDefs`; we re-export them here
+as plain aliases so downstream code compiles unchanged. -/
 
-/-- √3-coefficient part of the Gell-Mann structure constants.
-    Nonzero exactly on permutations of {3,4,7} and {5,6,7} (the λ₈
-    mixings), with value ±1/2. -/
-def su3f_sqrt3 : Fin 8 → Fin 8 → Fin 8 → ℚ :=
-  fun i j k =>
-    if i = 3 ∧ j = 4 ∧ k = 7 then 1/2
-    else if i = 4 ∧ j = 7 ∧ k = 3 then 1/2
-    else if i = 7 ∧ j = 3 ∧ k = 4 then 1/2
-    else if i = 4 ∧ j = 3 ∧ k = 7 then -(1/2)
-    else if i = 3 ∧ j = 7 ∧ k = 4 then -(1/2)
-    else if i = 7 ∧ j = 4 ∧ k = 3 then -(1/2)
-    else if i = 5 ∧ j = 6 ∧ k = 7 then 1/2
-    else if i = 6 ∧ j = 7 ∧ k = 5 then 1/2
-    else if i = 7 ∧ j = 5 ∧ k = 6 then 1/2
-    else if i = 6 ∧ j = 5 ∧ k = 7 then -(1/2)
-    else if i = 5 ∧ j = 7 ∧ k = 6 then -(1/2)
-    else if i = 7 ∧ j = 6 ∧ k = 5 then -(1/2)
-    else 0
+/-! ## §2. Jacobi ℚ-sums vanish (derived via matrix route, axiom-clean). -/
 
--- 512 cases (8^3) at depth-3 ifs; ring normalisation adds overhead.
-set_option maxHeartbeats 1000000 in
-/-- `su3f = ↑su3f_rat + √3 · ↑su3f_sqrt3` pointwise in `ℝ`. -/
-theorem su3f_decomp (i j k : Fin 8) :
-    su3f i j k = (↑(su3f_rat i j k) : ℝ) +
-                 Real.sqrt 3 * (↑(su3f_sqrt3 i j k) : ℝ) := by
-  unfold su3f su3f_rat su3f_sqrt3
-  fin_cases i <;> fin_cases j <;> fin_cases k <;>
-    simp_all <;> push_cast <;> ring
-
-/-! ## §2. Jacobi sums over ℚ (decidable). -/
-
-/-- Rational-component Jacobi sum; absorbs the `3·(√3)² = 3` cross-term. -/
-def jacobiRatSum (a b c d : Fin 8) : ℚ :=
-  ∑ e : Fin 8, (su3f_rat a b e * su3f_rat e c d +
-                su3f_rat b c e * su3f_rat e a d +
-                su3f_rat c a e * su3f_rat e b d +
-                3 * (su3f_sqrt3 a b e * su3f_sqrt3 e c d +
-                     su3f_sqrt3 b c e * su3f_sqrt3 e a d +
-                     su3f_sqrt3 c a e * su3f_sqrt3 e b d))
-
-/-- √3-component Jacobi sum. -/
-def jacobiSqrt3Sum (a b c d : Fin 8) : ℚ :=
-  ∑ e : Fin 8, (su3f_rat a b e * su3f_sqrt3 e c d +
-                su3f_sqrt3 a b e * su3f_rat e c d +
-                su3f_rat b c e * su3f_sqrt3 e a d +
-                su3f_sqrt3 b c e * su3f_rat e a d +
-                su3f_rat c a e * su3f_sqrt3 e b d +
-                su3f_sqrt3 c a e * su3f_rat e b d)
-
--- 4096 rational cases; native-compiled decide.
+-- Derived via matrix-Lie-algebra embedding + {1, √3} ℚ-LI split.
+-- No `native_decide` — axiom footprint is `[propext, Classical.choice, Quot.sound]`.
 /-- The rational-component Jacobi sum vanishes identically. -/
-theorem jacobi_rat_zero (a b c d : Fin 8) : jacobiRatSum a b c d = 0 := by
-  revert a b c d
-  native_decide
+theorem jacobi_rat_zero (a b c d : Fin 8) : jacobiRatSum a b c d = 0 :=
+  OmegaTheory.Emergence.SU3JacobiViaMatrix.jacobi_rat_zero_via_matrix a b c d
 
--- 4096 rational cases; native-compiled decide.
+-- Derived via matrix-Lie-algebra embedding + {1, √3} ℚ-LI split.
+-- No `native_decide` — axiom footprint is `[propext, Classical.choice, Quot.sound]`.
 /-- The √3-component Jacobi sum vanishes identically. -/
-theorem jacobi_sqrt3_zero (a b c d : Fin 8) : jacobiSqrt3Sum a b c d = 0 := by
-  revert a b c d
-  native_decide
+theorem jacobi_sqrt3_zero (a b c d : Fin 8) : jacobiSqrt3Sum a b c d = 0 :=
+  OmegaTheory.Emergence.SU3JacobiViaMatrix.jacobi_sqrt3_zero_via_matrix a b c d
 
 /-! ## §3. Kernel-level Jacobi sum vanishes in `ℝ`. -/
 
@@ -285,16 +195,20 @@ theorem su3Bracket_jacobi_via_basis
 /-! ## §6. Summary
 
 This file closes the hard numerical heart of SU(3) Jacobi via
-ℚ-decomposition (`su3f_jacobi_sum_zero`) and delivers basis-level
-Jacobi on all 512 triples (`su3Bracket_jacobi_basis_all`). The lift
-to arbitrary `X, Y, Z` is exposed as the conditional scheme
+matrix-Lie-algebra embedding (`jacobi_rat_zero`, `jacobi_sqrt3_zero`
+via `SU3JacobiViaMatrix`) and delivers basis-level Jacobi on all 512
+triples (`su3Bracket_jacobi_basis_all`). The lift to arbitrary
+`X, Y, Z` is exposed as the conditional scheme
 `su3Bracket_jacobi_via_basis` awaiting a trilinearity witness.
 
 Deliverables:
+  · `jacobi_rat_zero`                      — ℚ-component Jacobi (matrix-derived).
+  · `jacobi_sqrt3_zero`                    — √3-component Jacobi (matrix-derived).
   · `su3f_jacobi_sum_zero`                 — structural-constant Jacobi (ℝ).
   · `su3Bracket_jacobi_basis_all`          — basis-vector Jacobi (ALL 512 triples).
   · `su3Bracket_jacobi_via_basis`          — lift scheme (conditional).
 
-No `sorry`, no new axioms. -/
+No `sorry`, no new axioms, no `native_decide`. Axiom footprint of all
+theorems here is `[propext, Classical.choice, Quot.sound]`. -/
 
 end OmegaTheory.Emergence.SU3JacobiFull

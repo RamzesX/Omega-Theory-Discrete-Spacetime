@@ -228,6 +228,96 @@ theorem ic_catalanG_irrationality_conjecture
     catalanG ≠ 0 ∧ Irrational catalanG :=
   ⟨hG.ne_zero, hG⟩
 
+/-! ## 6 · `ic_sqrt2_Mahler_A_class`
+
+    **The cleanest case in the Mahler classification.**  Mahler's 1932
+    partition {A, S, T, U} of ℂ puts the algebraic numbers in class A by
+    *literal definition*:
+
+      > A-class := {x ∈ ℂ : x is algebraic over ℚ}
+
+    (Mahler 1932, *Zur Approximation der Exponentialfunktion und des
+    Logarithmus*, Math. Annalen 107; also Bugeaud, *Approximation by
+    Algebraic Numbers*, Cambridge Tracts 160 (2004), Chapter 3.)
+
+    Unlike the S/T/U cells, class A admits an **immediate Lean formalisation**
+    via `IsAlgebraic ℚ x`.  √2, being a root of `X² − 2 ∈ ℚ[X]`, is the
+    canonical witness.
+
+    We define `IsMahlerAClass` as a definitional alias for `IsAlgebraic ℚ x`
+    (not a placeholder — this IS the Mahler A predicate on reals), and
+    land the unconditional theorem `ic_sqrt2_Mahler_A_class` directly
+    from the wave-3 Layer-2 theorem `ic_sqrt2_is_algebraic`. -/
+
+/-- **Mahler A-class predicate for real numbers.**  A real `x` is in the
+Mahler A-class iff it is algebraic over `ℚ` — this is the definitional
+content of Mahler's class A (Mahler 1932).
+
+Unlike `IsMahlerSClass` (which is a placeholder `Prop := True` awaiting
+the full Mahler {A, S, T, U} framework), `IsMahlerAClass` **is** the
+real Mahler A predicate: the A-class consists exactly of algebraic numbers,
+so the definition `IsMahlerAClass x := IsAlgebraic ℚ x` is rigorous and
+complete, not a stub.
+
+References:
+- Mahler, *J. Reine Angew. Math.* 166 (1932).
+- Bugeaud, *Approximation by Algebraic Numbers*, Cambridge (2004), Ch. 3.
+- `OmegaTheory/IrrationalityClasses/01_classical_hierarchies.md` §5.
+- `OmegaTheory/IrrationalityClasses/04_sqrt2_class.md`. -/
+def IsMahlerAClass (x : ℝ) : Prop := IsAlgebraic ℚ x
+
+/-- **`ic_sqrt2_Mahler_A_class`** — √2 lies in the Mahler A-class.
+
+Unconditional: √2 is algebraic over ℚ (root of `X² − 2 ∈ ℚ[X]`), and
+Mahler's class A is defined as the set of algebraic numbers.  Therefore
+√2 ∈ A.
+
+This is the *cleanest* of the four Mahler-classification targets for the
+OmegaTheory irrationals {π, e, √2, G}: it is the **only one** that is
+fully provable today (no Mathlib gaps, no research axioms, no open
+problems), because the Mahler A-class admits a direct definitional
+handle (`IsAlgebraic ℚ`).
+
+π, e sit conjecturally in class S (Mahler S = "typical transcendental",
+ω ≤ finite), awaiting the Lindemann-Weierstrass + Mahler port.
+Catalan G's class is open (sits in S if transcendental, otherwise A or
+some other cell depending on classical progress).
+
+Proof: direct application of `ic_sqrt2_is_algebraic` (from `Basic.lean`),
+unfolding `IsMahlerAClass` to its definitional content `IsAlgebraic ℚ`.
+
+Registered as `:TheoremCandidate ic_sqrt2_Mahler_A_class` (Neo4j
+`omegatheory_v2_irrationality_classes` scope, Mahler_framework target).
+Historically tagged `BLOCKED_ON_MATHLIB` in the graph register because
+the wider Mahler {A,S,T,U} machinery is not in Mathlib; the A-class leg
+is nevertheless closeable today, which this theorem does. -/
+theorem ic_sqrt2_Mahler_A_class : IsMahlerAClass (Real.sqrt 2) :=
+  ic_sqrt2_is_algebraic
+
+/-- **Mahler A-class is definitionally algebraic.**  A transparent
+equivalence witness, useful when downstream lemmas expect the
+`IsAlgebraic ℚ` form.  Provable by `rfl` since `IsMahlerAClass` unfolds
+to `IsAlgebraic ℚ`. -/
+theorem ic_isMahlerAClass_iff_isAlgebraic (x : ℝ) :
+    IsMahlerAClass x ↔ IsAlgebraic ℚ x := Iff.rfl
+
+/-- **√2 Mahler A-class paper bundle.**  Packages the three first-class
+consequences of √2 ∈ Mahler-A:
+
+  * `IsMahlerAClass (Real.sqrt 2)` — the headline.
+  * `IsAlgebraic ℚ (Real.sqrt 2)` — the defining form.
+  * `Irrational (Real.sqrt 2)` — the Mathlib fact the A-class membership
+    refines (algebraic-and-not-rational = degree ≥ 2).
+
+All three are unconditional, and the bundle is the paper-facing headline
+combining the wave-3 Layer-2 infrastructure with the wave-4 Mahler
+framing. -/
+theorem ic_sqrt2_Mahler_A_class_paper_bundle :
+    IsMahlerAClass (Real.sqrt 2) ∧
+    IsAlgebraic ℚ (Real.sqrt 2) ∧
+    Irrational (Real.sqrt 2) :=
+  ⟨ic_sqrt2_Mahler_A_class, ic_sqrt2_is_algebraic, irrational_sqrt_two⟩
+
 /-! ## 6 · Wave-4-C landing bundle
 
     A single 5-conjunct headline packaging the five wave-4-C deliverables

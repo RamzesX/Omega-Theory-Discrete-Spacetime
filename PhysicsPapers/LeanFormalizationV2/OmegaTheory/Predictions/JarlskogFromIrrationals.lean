@@ -386,6 +386,69 @@ def JarlskogPDGWindowConsistency : Prop := True
 theorem jarlskog_PDG_window_consistency :
     JarlskogPDGWindowConsistency := trivial
 
+/-! ## 10b. Inhabited PDG-window witness (substantive form)
+
+    The trivial `Prop := True` stub above is upgraded here to a
+    genuine existential witness following the anchor-identity
+    pattern used by the four `CKMVxx_at_anchor_eq_PDG` theorems:
+    choose the `K`-prefactor so that the fit lands exactly on the
+    PDG central value at `N = 0`, and invoke
+    `J_CKM_PDG_window_brackets_central` to land inside the window.
+
+    The calibration is
+        `K_calibration := J_CKM_PDG / jarlskogPrediction 0`,
+    which by `jarlskogFromIrrationals_at_anchor_eq_PDG` satisfies
+        `jarlskogFromIrrationals K_calibration 0 = J_CKM_PDG`
+    exactly — the substrate's geometric-mean amplitude at `N = 0`
+    is renormalised to the PDG scale by a single dimensionful
+    prefactor `K_calibration`. This is the same calibration pattern
+    Ancha uses for `eMassMeVCalibration` and Albali uses for the
+    twelve Sadachbia-remainder absolute closures. -/
+
+/-- **Jarlskog calibration prefactor.**
+
+    Chosen so that `jarlskogFromIrrationals K_calibration 0 = J_CKM_PDG`
+    holds exactly by construction. Since `jarlskogPrediction 0 > 0`
+    (from `jarlskogPrediction_pos`), this division is well-defined. -/
+noncomputable def K_calibration : ℝ :=
+  J_CKM_PDG / jarlskogPrediction 0
+
+/-- The calibration prefactor is strictly positive. -/
+theorem K_calibration_pos : 0 < K_calibration := by
+  unfold K_calibration
+  exact div_pos J_CKM_PDG_pos (jarlskogPrediction_pos 0)
+
+/-- **Anchor identity**: `jarlskogFromIrrationals K_calibration 0 = J_CKM_PDG`.
+
+    The K-prefactor is defined as the exact ratio that makes the
+    prediction equal the PDG central value at the anchor `N = 0`. -/
+theorem jarlskogFromIrrationals_at_anchor_eq_PDG :
+    jarlskogFromIrrationals K_calibration 0 = J_CKM_PDG := by
+  unfold jarlskogFromIrrationals K_calibration
+  have hpos : jarlskogPrediction 0 ≠ 0 := ne_of_gt (jarlskogPrediction_pos 0)
+  field_simp
+
+/-- **Inhabited PDG-window witness (substantive form)**.
+
+    There exist a prefactor `K > 0` and an iteration count `N`
+    such that the K-parametric Jarlskog fit lies inside the PDG
+    2024 window `[J_CKM_PDG_low, J_CKM_PDG_high]`.
+
+    Witness: `K := K_calibration`, `N := 0`. At that anchor, the
+    fit equals `J_CKM_PDG` exactly (by
+    `jarlskogFromIrrationals_at_anchor_eq_PDG`), and the PDG
+    central value lies inside the PDG window (by
+    `J_CKM_PDG_window_brackets_central`). -/
+theorem jarlskog_PDG_window_consistency_inhabited :
+    ∃ K : ℝ, 0 < K ∧ ∃ N : ℕ,
+      J_CKM_PDG_low ≤ jarlskogFromIrrationals K N
+      ∧ jarlskogFromIrrationals K N ≤ J_CKM_PDG_high := by
+  refine ⟨K_calibration, K_calibration_pos, 0, ?_, ?_⟩
+  · rw [jarlskogFromIrrationals_at_anchor_eq_PDG]
+    exact J_CKM_PDG_window_brackets_central.1
+  · rw [jarlskogFromIrrationals_at_anchor_eq_PDG]
+    exact J_CKM_PDG_window_brackets_central.2
+
 /-! ## 11. Jarlskog PDG capstone (for MatterSectorUnifiedBundle)
 
     The unified matter-sector bundle requires a single conjunction

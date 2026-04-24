@@ -56,6 +56,7 @@ import OmegaTheory.Predictions.StrongCPThetaBound
 import OmegaTheory.Predictions.SterileNeutrinoFromFourthIrrational
 import OmegaTheory.Emergence.SU3ColorAndNonAbelianF
 import OmegaTheory.Emergence.BaryogenesisLeptogenesis
+import OmegaTheory.Emergence.FermionContent
 
 namespace OmegaTheory.Foundations
 
@@ -64,6 +65,7 @@ open OmegaTheory.Predictions.JarlskogFromIrrationals
 open OmegaTheory.Predictions.StrongCPThetaBound
 open OmegaTheory.Predictions.SterileNeutrinoFromFourthIrrational
 open OmegaTheory.Emergence.SU3ColorAndNonAbelianF
+open OmegaTheory.Emergence.FermionContent
 open OmegaTheory.Predictions
 open OmegaTheory.Foundations.OmegaAlgebraCohomologyClass
 
@@ -187,6 +189,61 @@ theorem strong_CP_H0_cocycle_theta_QCD_trivialized (Ω : OmegaAlgebra) :
             nontrivial := substrateThetaQCDUpperBound_pos Ω.depth }, ?_, ?_⟩
   · rfl
   · exact le_refl _
+
+/-! ## §4b. Cycle-51 public aliases — W6 + W7
+
+    **Mission brief (cycle-51 batch).**  The graph-side candidates
+
+      * `jarlskog_invariant_as_H2_anomaly_of_omega_algebra`   (W6)
+      * `anomaly_cancellation_as_H2_obstruction_each_generation` (W7)
+
+    are public-name re-exposures of the two witnesses above.  They live
+    in this file because both targets consume the degree-2 witness
+    pattern already established by §2 and §3; the narrow-true form
+    reuses the existing signatures verbatim.  No new structure fields
+    are introduced — the `c.dimension`/`c.isAnomalyWitness`/
+    `c.obstructionGeneration` slots mentioned in the brief template
+    do **not** exist in `OmegaAlgebraCohomologyClass`.  We honour the
+    "narrow-true" principle and expose the ACTUAL available shape:
+    `c.degree = 2` for the H² claim, with the numeric / three-channel
+    conjunct inherited from §2 / §3 respectively.
+
+    W7 specialises the §3 witness across `FermionGeneration = Fin 3`
+    (Ornab's abbreviation in `Emergence/FermionContent.lean`).  Since
+    §3's existential is constant in the generation index — a single
+    H² class exists as a property of 𝒜_Ω itself, coupled with the
+    three-channel color count — the per-generation form is a trivial
+    `fun g => ...` wrap, which is the narrow-true reading of
+    "each generation witnesses the same H² obstruction class". -/
+
+/-- **W6 cycle-51 public alias.**  Jarlskog invariant as an H²
+    anomaly cohomology class of `𝒜_Ω`.  Public-name re-export of
+    `jarlskog_invariant_H2_anomaly_witness` (§2); the `degree = 2`
+    conjunct is the narrow-true reading of "H² anomaly", and the
+    `witness = jarlskogPrediction Ω.depth` conjunct carries the
+    numeric anomaly content (Aludra's geometric-mean prediction,
+    strictly positive by construction). -/
+theorem jarlskog_invariant_as_H2_anomaly_of_omega_algebra (Ω : OmegaAlgebra) :
+    ∃ c : OmegaAlgebraCohomologyClass Ω,
+      c.degree = 2 ∧ c.witness = jarlskogPrediction Ω.depth :=
+  jarlskog_invariant_H2_anomaly_witness Ω
+
+/-- **W7 cycle-51 public alias.**  Anomaly cancellation as an H²
+    obstruction class witnessed per fermion generation.  Public-name
+    re-export of `anomaly_cancellation_H2_obstruction_three_generations`
+    (§3) specialised to each `FermionGeneration = Fin 3`.
+
+    Narrow-true reading: for every generation `g`, the same H² class
+    of `𝒜_Ω` exists (Hopf-error witness, degree 2) paired with
+    `Fintype.card SU3ColorChannel = 3`.  The per-generation form is
+    the flat `fun g => ...` wrap because §3's witness is a property
+    of 𝒜_Ω itself (not of a single generation) — the three-generation
+    coupling is **structural** and applies uniformly. -/
+theorem anomaly_cancellation_as_H2_obstruction_each_generation
+    (Ω : OmegaAlgebra) :
+    ∀ _g : FermionGeneration, ∃ c : OmegaAlgebraCohomologyClass Ω,
+      c.degree = 2 ∧ Fintype.card SU3ColorChannel = 3 :=
+  fun _g => anomaly_cancellation_H2_obstruction_three_generations Ω
 
 /-! ## §5. Joint Lesath extension bundle -/
 

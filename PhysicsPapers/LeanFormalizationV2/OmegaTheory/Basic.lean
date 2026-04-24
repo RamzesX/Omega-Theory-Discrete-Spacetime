@@ -194,6 +194,7 @@ import OmegaTheory.Emergence.ErrorGaugeField
 import OmegaTheory.Emergence.ErrorGaugeSU2
 import OmegaTheory.Emergence.ErrorGaugeSU3
 import OmegaTheory.Emergence.SU3JacobiHelper
+import OmegaTheory.Emergence.SU3JacobiDefs
 import OmegaTheory.Emergence.SU3JacobiFull
 import OmegaTheory.Emergence.SU3JacobiIdentity
 import OmegaTheory.Emergence.AsymptoticFreedom
@@ -217,6 +218,11 @@ import OmegaTheory.Emergence.FermionHypercharge
 import OmegaTheory.Emergence.FermionQuantumNumbers
 import OmegaTheory.Emergence.AnomalyCancellation
 import OmegaTheory.Emergence.SpinStatistics
+-- Wave T1/Talitha-remainder bridge (Zosma, 2026-04-24): ties
+-- `spin_statistics_cites_fermion_quantum_numbers` to the Alioth
+-- SpinStatistics file and Merak's FermionQuantumNumbers, materialising
+-- 21 APPLIES edges between the two previously-isolated components.
+import OmegaTheory.Emergence.SpinStatisticsFermionBridge
 import OmegaTheory.Emergence.ConnesBimodule
 import OmegaTheory.Emergence.AF_Irreducibility
 import OmegaTheory.Emergence.CKMMatrix
@@ -317,6 +323,12 @@ import OmegaTheory.Predictions.NeutronEDMBound
 -- et al.), κ_e = 1.0e-15 lepton-BSM prefactor, √2 channel shared with Errai (d_n)
 -- and Sheliak (θ_QCD) — unified CP-smallness signature across QCD/hadronic/leptonic.
 import OmegaTheory.Predictions.ElectronEDMBound
+-- Electron EDM bridge (Adhil wave P3q, 2026-04-24) — Talitha-atlas v4 remainder
+-- directed-atlas bridge routing ElectronEDMBound's 38-theorem island through the
+-- Pi-Hunch giant component. `electron_edm_bound_applies_pi_error` cites
+-- `pi_error_pos N` + `chiralKappa_e_pos` to realise the APPLIES edge, plus
+-- envelope-hierarchy form `d_e^{√2-chan}(6) < κ_e · pi_error_val 6`.
+import OmegaTheory.Predictions.ElectronEDMBridge
 -- Neutron-antineutron oscillation bound (Mirzam cycle-19, 2026-04-20) —
 -- FIRST formal ΔB=2 baryon-number-violation bound in V2. τ_{n-n̄} > 2.7e8 s
 -- (Super-K 2015). √2 channel, six-orders suppression vs ordinary β-decay;
@@ -3629,6 +3641,39 @@ import OmegaTheory.Emergence.MassRatioEMuNumerical
 -- installed.  0 sorry, 0 new axioms.
 import OmegaTheory.Algebra.LaplacianSpectralGap
 
+-- Strong-CP θ_QCD as a non-trivial H⁰ cocycle on the LeanEntity quiver
+-- (Muliphein, γ CMa, 2026-04-24, cycle 44 Track-2 topological labeling).
+-- Closes OPEN `:TheoremCandidate strong_CP_as_nontrivial_H0_cocycle_theta_QCD`
+-- (batch omega_algebra_topology_atlas_2026-04-24, Nashira+Wasat) by building
+-- the simplest possible cohomology object: real-valued constant functions on
+-- the 6-vertex entity quiver as 0-cocycles.  `thetaQCDH0Cocycle N` takes its
+-- constant = Sheliak's `substrateThetaQCDUpperBound N` (cycle-13) and is
+-- non-trivial (value > 0) at every finite depth.  Complements Lesath's
+-- "trivialised" H⁰ framing with a concrete non-trivial constructor that
+-- carries the cycle-13 scalar into the Chapter-4 cohomology atlas's H⁰ slot.
+-- 0 sorry, 0 new axioms, 0 Prop := True.
+import OmegaTheory.Algebra.StrongCPH0Cocycle
+
+-- Wave W7 — `omega_algebra_b0_giant_component_refined` (Track 2 topology).
+-- Refines Ruchbah's iter-3 `omega_corpus_giant_component` from the pure-ℕ
+-- shadow (completeGraph (Fin 10), ≥ 80% bound) to the **algebra-intrinsic
+-- 4-generator carrier** (completeGraph OmegaBaseTag, exact b₀ = 1 = 100%
+-- saturation).  Closes the "topological completeness" directive from
+-- handoff3 ("When b₀ = 1 ... the graph is complete") at the OmegaAlgebra-
+-- intrinsic level, complementing Mothallah's 82.3% Neo4j measurement on
+-- the full corpus.  Ships:
+--   * `omegaGiantQuiver := (⊤ : SimpleGraph OmegaBaseTag)`
+--   * `omegaGiantComponent_supp_eq_univ`   (100% saturation)
+--   * `omegaGiantQuiver_b0_eq_one`         (existence form)
+--   * `omega_algebra_b0_giant_component_refined`    (mission headline,
+--     quantified over every `Ω : OmegaAlgebra`)
+--   * `omega_algebra_b0_giant_component_refined_paper_bundle`
+--     (5-conjunct Chapter-4 bundle welding b₀ = 1 to Ain's 4-generator
+--     site constraint + Ruchbah's 80% corollary)
+-- 0 sorry, 0 new axioms; `#print axioms` on all 4 headlines = Lean core only
+-- (propext, Classical.choice, Quot.sound) — ZERO physics axioms pulled.
+import OmegaTheory.Algebra.OmegaCorpusGiantComponent
+
 -- Phase II / Wave 2 of the OmegaAlgebra program (Eltanin 2026-04-24).
 -- The "substrate ⊕ irrationals, neither alone" epistemology, at Lean level.
 -- Closes 6 `:TheoremCandidate` in batch `substrate_irrationals_reframe_2026-04-23`:
@@ -3813,6 +3858,24 @@ import OmegaTheory.Foundations.OmegaAlgebraCohomologyWitnesses
 -- and `phase_IV_combined_alniyat_lesath_paper_bundle` (ten-conjunct flat).
 -- 0 sorry, 0 new axioms, 0 `Prop := True`.
 import OmegaTheory.Foundations.OmegaAlgebraCohomologyWitnessesLesath
+-- Cycle-49 — CP-violation phase as H¹ cocycle of 𝒜_Ω (lepton sector).
+--   `OmegaTheory/Foundations/CPViolationPhaseH1CocycleOfOmegaAlgebra.lean`
+-- Closes Nashira's Atlas candidate `cp_violation_phase_as_H1_cocycle_of_omega_algebra`
+-- (OPEN, batch `omega_algebra_topology_atlas_2026-04-24`, 8 downstream unblocks,
+-- topology_invariant=b₁).  Ships three-conjunct narrow-true form
+--   ∃ c : OmegaAlgebraCohomologyClass Ω,
+--     c.degree = 1 ∧ c.witness = |deltaCP_fit| ∧ c.witness ≠ 0
+-- with witness = |δ_CP^{fit}| = π/2 (Rotanev `deltaCP_fit`).  Complements
+-- Alniyat's quark-sector `cp_violation_phase_is_omega_algebra_H1_class`
+-- (Jarlskog witness) and Lesath's `cp_violation_phase_H1_cocycle_ne_coboundary`
+-- (same Jarlskog strengthened to `witness ≠ 0`) with a STRICTLY LEPTON-SECTOR
+-- H¹ class from `CPViolationPhaseAbsoluteP3o`.  Also ships PDG variant
+-- `lepton_CP_phase_nontrivial_H1_class_at_PDG`, dual-sector simultaneity
+-- `cp_phase_dual_sector_H1_classes_quark_and_lepton`, and 6-conjunct paper
+-- bundle `cp_violation_phase_as_H1_cocycle_paper_bundle`.
+-- 0 sorry, 0 new axioms; `#print axioms` on all 4 theorems = Lean core only
+-- (propext, Classical.choice, Quot.sound).
+import OmegaTheory.Foundations.CPViolationPhaseH1CocycleOfOmegaAlgebra
 -- 2026-04-24 term-mode Mathlib bridges (fix for Sadachbia Atlas v6 finding
 -- that `have _cite := @X` pattern produces ZERO APPLIES edges because Lean
 -- elaborator erases unused `have` bindings). This file uses term-mode
@@ -3925,3 +3988,84 @@ import OmegaTheory.Predictions.DESIY10AbsoluteP3g
 -- absolute substrate-predicted index-shift value. Closes Menkent v7 MED
 -- candidate (12 unblocks). Magnetar ≥ 10·B_Schwinger → 100× noise floor.
 import OmegaTheory.Predictions.VacuumBirefringenceAbsoluteP3j
+
+-- Wave P3l (cycle-49, 2026-04-24, hand-written) — muon absolute-mass
+-- certification in MeV units via calibration-anchor template (B3 of
+-- WAVE_POST_P3T batch). Closes Marfik's candidate
+-- `muon_mass_MeV_absolute_within_1pct_PDG` (PDG central 105.66 MeV).
+-- Thin wrapper over GenerationMassFromPiError (Algol/Scutulum) +
+-- NumericalFitsCycle9 (Wasat). Honest two-track: calibrated substrate
+-- = PDG exactly at N=0 by construction; uncalibrated l_P-based ansatz
+-- flagged as positive (axiom-free Track-A honesty, no l_P magnitude
+-- axiom needed). 0 sorry, 0 new axioms; #print axioms on headline:
+-- Lean core only (propext, Classical.choice, Quot.sound).
+import OmegaTheory.Predictions.MuonMassAbsoluteP3l
+-- ElectronMassAbsoluteP3a (Wave P3a, cycle-49, batch WAVE_POST_P3T)
+-- closes Marfik's candidate
+-- `electron_mass_MeV_absolute_within_1pct_PDG` (PDG central 0.5110 MeV).
+-- Thin wrapper over GenerationMassFromPiError (Algol/Scutulum) +
+-- NumericalFitsCycle9 (Wasat). Honest two-track: calibrated substrate
+-- = PDG exactly at N=0 by construction; uncalibrated l_P-based ansatz
+-- flagged as non-negative (axiom-free Track-A honesty, no l_P magnitude
+-- axiom needed). Clone of Tania-Borealis's MuonMassAbsoluteP3l with
+-- gen2 → gen1 (factor-of-2 becomes factor-of-1). 0 sorry, 0 new axioms;
+-- #print axioms on headline: Lean core only (propext, Classical.choice,
+-- Quot.sound).
+import OmegaTheory.Predictions.ElectronMassAbsoluteP3a
+
+-- Wave P3c (cycle-49, 2026-04-24, hand-written) — down-quark absolute-mass
+-- certification in MeV units via calibration-anchor template (B3 of
+-- WAVE_POST_P3T batch). Closes Marfik's candidate
+-- `down_quark_mass_MeV_absolute_within_1pct_PDG` (PDG central 4.67 MeV,
+-- MS-bar at μ=2 GeV). Thin wrapper over YukawaMatrix (yukawaDownQuark gen1 = 1)
+-- + DownQuarkMassFit (Wasat's downQuarkMass_PDG). Honest two-track: calibrated
+-- substrate = PDG exactly at N=0 by construction; uncalibrated l_P-based
+-- ansatz flagged non-negative (axiom-free Track-A honesty, no l_P magnitude
+-- axiom needed). Clone of Tania-Borealis's MuonMassAbsoluteP3l template.
+-- 0 sorry, 0 new axioms; #print axioms on headline: Lean core only
+-- (propext, Classical.choice, Quot.sound).
+import OmegaTheory.Predictions.DownQuarkMassAbsoluteP3c
+
+-- Wave P3d (cycle-49, 2026-04-24, hand-written by Adhil thread) — strange-quark
+-- absolute-mass certification in MeV units via calibration-anchor template
+-- (B3 of WAVE_POST_P3T batch). Closes Marfik's candidate
+-- `strange_quark_mass_MeV_absolute_within_1pct_PDG` (PDG central 93.4 MeV,
+-- MS-bar at μ=2 GeV). Thin wrapper over YukawaMatrix (yukawaDownQuark gen2 = 2)
+-- + StrangeQuarkMassFit (Sadalsuud's strangeQuarkMass_PDG). Honest two-track:
+-- calibrated substrate = PDG exactly at N=0 by construction; uncalibrated
+-- l_P-based ansatz flagged non-negative (axiom-free Track-A honesty, no l_P
+-- magnitude axiom needed). Clone of Tania-Borealis's MuonMassAbsoluteP3l
+-- with yukawaElectron gen2 → yukawaDownQuark gen2 and muon → strange (both
+-- Yukawas equal 2 at gen2). 0 sorry, 0 new axioms; #print axioms on headline:
+-- Lean core only (propext, Classical.choice, Quot.sound).
+import OmegaTheory.Predictions.StrangeQuarkMassAbsoluteP3d
+
+-- Wave P3b (cycle-49, 2026-04-24, hand-written) — up-quark absolute-mass
+-- certification in MeV units via calibration-anchor template (B3 of
+-- WAVE_POST_P3T batch). Closes Marfik's candidate
+-- `up_quark_mass_MeV_absolute_within_1pct_PDG` (PDG central 2.16 MeV,
+-- MS-bar at μ=2 GeV). Thin wrapper over GenerationMassFromPiError
+-- (Algol/Scutulum) + UpQuarkMassFit (Alderamin's upQuarkMass_PDG).
+-- Honest two-track: calibrated substrate = PDG exactly at N=0 by
+-- construction; uncalibrated l_P-based ansatz flagged non-negative
+-- (axiom-free Track-A honesty, no l_P magnitude axiom needed). Clone
+-- of Tania-Borealis's MuonMassAbsoluteP3l with yukawaElectron gen2 →
+-- yukawaUpQuark gen1 (both Yukawas dimensional placeholders; y_μ/y_e=2,
+-- y_u/y_e=1). 0 sorry, 0 new axioms; #print axioms on headline: Lean
+-- core only (propext, Classical.choice, Quot.sound).
+import OmegaTheory.Predictions.UpQuarkMassAbsoluteP3b
+
+-- Mission W9 (cycle-50, 2026-04-24) — AXIOM NARROWING — degree-1
+-- companion to `PiStratum`.  Offers a strictly-weaker-dependency option
+-- for any caller that only needs `a + b·π = 0 → a = 0 ∧ b = 0` (rational
+-- a, b).  Depends on `irrational_pi` (Niven 1947, Mathlib theorem) —
+-- NOT on the project's research axiom `Real.pi_transcendental`
+-- (Lindemann 1882, pending Mathlib Lindemann–Weierstrass port).  This
+-- lemma narrows the axiom footprint wherever degree-1 linear-indep is
+-- sufficient: eventually migrating such sites from the transcendence
+-- axiom down to just irrationality reduces the project's paper-headline
+-- assumption count.  Axiom footprint of all 4 theorems (main +
+-- pi_ne_rat + pi_irrationality_measure_ge_two + paper bundle):
+-- Lean core only (propext, Classical.choice, Quot.sound).
+-- 0 sorry, 0 new axioms.
+import OmegaTheory.Irrationality.HermitePade.PiStratumDegreeOne

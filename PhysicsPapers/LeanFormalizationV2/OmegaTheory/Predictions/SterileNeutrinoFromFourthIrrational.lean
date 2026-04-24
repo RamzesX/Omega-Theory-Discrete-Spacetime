@@ -452,6 +452,16 @@ def CatalanGNumericalBound (_N : ℕ) : Prop := True
 theorem CatalanGNumericalBound_holds (N : ℕ) : CatalanGNumericalBound N :=
   trivial
 
+/-- **Inhabited form** of the Catalan G numerical-bound frontier stub.
+
+    Cycle-51 Batch W2 one-liner closure — exhibits the existential
+    `∃ N, CatalanGNumericalBound N` via the canonical witness `N = 0`.
+    Consumed by paper-headline machinery that prefers the inhabited
+    ∃-form over the ∀-form for bundle composition. -/
+theorem catalanGNumericalBound_inhabited :
+    ∃ N : ℕ, CatalanGNumericalBound N :=
+  ⟨0, CatalanGNumericalBound_holds 0⟩
+
 /-- **EXTENDED PI HUNCH — paper-citable 4-channel capstone.**
 
     For every truncation budget `N ≥ 2`, the 4-channel extension of

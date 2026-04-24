@@ -218,4 +218,59 @@ theorem LeanAlgebraLaplacian_Axiom_to_Theorem :
     LeanAlgebraLaplacian ⟨0, by decide⟩ ⟨5, by decide⟩ = Complex.I / 2 := by
   simp [LeanAlgebraLaplacian]
 
+/-! ## Hermiticity apply-witness (Track 2 OmegaAlgebra)
+
+The witness theorem `omega_algebra_laplacian_hermiticity_apply_witness` takes
+the Hermiticity theorem `LeanAlgebraLaplacian_isHermitian` as input and APPLIES
+it via `Matrix.IsHermitian.apply` (`star (A j i) = A i j`) to derive the
+concrete conjugate relation between the two explicit off-diagonal entries
+`𝔄[Theorem, Axiom] = -0.5i` and `𝔄[Axiom, Theorem] = +0.5i`.
+
+This realises the 6×6 Magnetic Laplacian V3-for-Lean schema claim that the
+MagneticLaplacian node (namespace `LeanAlgebra`) is Hermitian in the formal
+Mathlib sense, and that Hermiticity carries concrete consequences at the
+entry level — not just an abstract `IsHermitian` flag. -/
+
+/-- **Track 2 OmegaAlgebra — Hermiticity apply-witness.**
+
+    Takes `LeanAlgebraLaplacian_isHermitian` and APPLIES it via
+    `Matrix.IsHermitian.apply` to the explicit Theorem↔Axiom off-diagonal
+    pair.  The consequence is a concrete equation between `star (-0.5i)`
+    and `+0.5i`, realised at the Mathlib API level (no manual complex
+    arithmetic — the equation is discharged by Hermiticity alone).
+
+    Honest scope: the witness APPLIES `isHermitian.apply` to the pair
+    (i, j) = (⟨0⟩, ⟨5⟩), giving
+      `star (𝔄 ⟨5⟩ ⟨0⟩) = 𝔄 ⟨0⟩ ⟨5⟩`
+    which, combined with the explicit entry values, captures the
+    conjugate-pair relation `star (-0.5i) = +0.5i` on the Magnetic
+    Laplacian itself. -/
+theorem omega_algebra_laplacian_hermiticity_apply_witness :
+    star (LeanAlgebraLaplacian ⟨5, by decide⟩ ⟨0, by decide⟩)
+      = LeanAlgebraLaplacian ⟨0, by decide⟩ ⟨5, by decide⟩ :=
+  LeanAlgebraLaplacian_isHermitian.apply ⟨0, by decide⟩ ⟨5, by decide⟩
+
+/-- **Corollary** — combining the apply-witness with the explicit entry
+    values gives the concrete conjugate identity
+      `star (-0.5i) = +0.5i`
+    as a consequence of Hermiticity alone, routed through Mathlib's
+    `Matrix.IsHermitian.apply`. -/
+theorem omega_algebra_laplacian_hermiticity_conjugate_pair_axiom_theorem :
+    star (- ((1 : ℂ) / 2) * Complex.I) = Complex.I / 2 := by
+  have h := omega_algebra_laplacian_hermiticity_apply_witness
+  rw [LeanAlgebraLaplacian_Theorem_to_Axiom,
+      LeanAlgebraLaplacian_Axiom_to_Theorem] at h
+  exact h
+
+/-- **Paper bundle** — the Magnetic Laplacian satisfies Hermiticity both
+    abstractly (`LeanAlgebraLaplacian.IsHermitian`) and at the explicit-
+    entry level (`star (𝔄 ⟨5⟩ ⟨0⟩) = 𝔄 ⟨0⟩ ⟨5⟩`).  This is the Lean-side
+    sibling of the Neo4j `MagneticLaplacian_Lean` Hermiticity audit. -/
+theorem omega_algebra_laplacian_hermiticity_apply_paper_bundle :
+    LeanAlgebraLaplacian.IsHermitian
+    ∧ (star (LeanAlgebraLaplacian ⟨5, by decide⟩ ⟨0, by decide⟩)
+        = LeanAlgebraLaplacian ⟨0, by decide⟩ ⟨5, by decide⟩) :=
+  ⟨LeanAlgebraLaplacian_isHermitian,
+   omega_algebra_laplacian_hermiticity_apply_witness⟩
+
 end OmegaTheory.Algebra

@@ -156,4 +156,205 @@ theorem gellMann_first_scaffold_landing_in_V2 :
     ∃ (M : Matrix (Fin 3) (Fin 3) ℂ), M = gellMann 0 :=
   ⟨gellMann 0, rfl⟩
 
+/-! ## §5. Row-based commutator lemmas
+
+To keep each proof within standard heartbeat budgets, we split the
+64-case commutator identity into 8 row lemmas, one per fixed `a`.
+Each row lemma closes 8 × 3 × 3 = 72 per-entry subgoals. -/
+
+section GellMannCommutator
+set_option maxHeartbeats 8000000
+
+/-- `√3 · √3 = 3` as a complex number, used to close the √3-cross-term
+    entries where simp cannot reduce `(↑√3)⁻¹ * 3 ↝ ↑√3`. -/
+private lemma sqrt3_mul_sqrt3_cast : (Real.sqrt 3 : ℂ) * (Real.sqrt 3 : ℂ) = 3 := by
+  have h := Real.mul_self_sqrt (show (0:ℝ) ≤ 3 by norm_num)
+  exact_mod_cast h
+
+private theorem gellMann_commutator_row_0 (b : Fin 8) :
+    ⁅gellMann 0, gellMann b⁆ =
+      ∑ c, ((2 * I : ℂ) * ((su3f 0 b c : ℂ))) • gellMann c := by
+  fin_cases b <;>
+    (ext i j; fin_cases i <;> fin_cases j <;>
+      (first
+        | rfl
+        | (unfold gellMann su3f;
+           simp [Ring.lie_def, Matrix.mul_apply, Fin.sum_univ_three,
+                 Fin.sum_univ_eight, Matrix.smul_apply];
+           (try push_cast);
+           (try field_simp);
+           (try ring_nf);
+           first
+             | done
+             | (linear_combination sqrt3_mul_sqrt3_cast)
+             | (linear_combination -sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; done)
+             | (simp [Complex.I_sq]; linear_combination sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; linear_combination -sqrt3_mul_sqrt3_cast))))
+
+private theorem gellMann_commutator_row_1 (b : Fin 8) :
+    ⁅gellMann 1, gellMann b⁆ =
+      ∑ c, ((2 * I : ℂ) * ((su3f 1 b c : ℂ))) • gellMann c := by
+  fin_cases b <;>
+    (ext i j; fin_cases i <;> fin_cases j <;>
+      (first
+        | rfl
+        | (unfold gellMann su3f;
+           simp [Ring.lie_def, Matrix.mul_apply, Fin.sum_univ_three,
+                 Fin.sum_univ_eight, Matrix.smul_apply];
+           (try push_cast);
+           (try field_simp);
+           (try ring_nf);
+           first
+             | done
+             | (linear_combination sqrt3_mul_sqrt3_cast)
+             | (linear_combination -sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; done)
+             | (simp [Complex.I_sq]; linear_combination sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; linear_combination -sqrt3_mul_sqrt3_cast))))
+
+private theorem gellMann_commutator_row_2 (b : Fin 8) :
+    ⁅gellMann 2, gellMann b⁆ =
+      ∑ c, ((2 * I : ℂ) * ((su3f 2 b c : ℂ))) • gellMann c := by
+  fin_cases b <;>
+    (ext i j; fin_cases i <;> fin_cases j <;>
+      (first
+        | rfl
+        | (unfold gellMann su3f;
+           simp [Ring.lie_def, Matrix.mul_apply, Fin.sum_univ_three,
+                 Fin.sum_univ_eight, Matrix.smul_apply];
+           (try push_cast);
+           (try field_simp);
+           (try ring_nf);
+           first
+             | done
+             | (linear_combination sqrt3_mul_sqrt3_cast)
+             | (linear_combination -sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; done)
+             | (simp [Complex.I_sq]; linear_combination sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; linear_combination -sqrt3_mul_sqrt3_cast))))
+
+private theorem gellMann_commutator_row_3 (b : Fin 8) :
+    ⁅gellMann 3, gellMann b⁆ =
+      ∑ c, ((2 * I : ℂ) * ((su3f 3 b c : ℂ))) • gellMann c := by
+  fin_cases b <;>
+    (ext i j; fin_cases i <;> fin_cases j <;>
+      (first
+        | rfl
+        | (unfold gellMann su3f;
+           simp [Ring.lie_def, Matrix.mul_apply, Fin.sum_univ_three,
+                 Fin.sum_univ_eight, Matrix.smul_apply];
+           (try push_cast);
+           (try field_simp);
+           (try ring_nf);
+           first
+             | done
+             | (linear_combination sqrt3_mul_sqrt3_cast)
+             | (linear_combination -sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; done)
+             | (simp [Complex.I_sq]; linear_combination sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; linear_combination -sqrt3_mul_sqrt3_cast))))
+
+private theorem gellMann_commutator_row_4 (b : Fin 8) :
+    ⁅gellMann 4, gellMann b⁆ =
+      ∑ c, ((2 * I : ℂ) * ((su3f 4 b c : ℂ))) • gellMann c := by
+  fin_cases b <;>
+    (ext i j; fin_cases i <;> fin_cases j <;>
+      (first
+        | rfl
+        | (unfold gellMann su3f;
+           simp [Ring.lie_def, Matrix.mul_apply, Fin.sum_univ_three,
+                 Fin.sum_univ_eight, Matrix.smul_apply];
+           (try push_cast);
+           (try field_simp);
+           (try ring_nf);
+           first
+             | done
+             | (linear_combination sqrt3_mul_sqrt3_cast)
+             | (linear_combination -sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; done)
+             | (simp [Complex.I_sq]; linear_combination sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; linear_combination -sqrt3_mul_sqrt3_cast))))
+
+private theorem gellMann_commutator_row_5 (b : Fin 8) :
+    ⁅gellMann 5, gellMann b⁆ =
+      ∑ c, ((2 * I : ℂ) * ((su3f 5 b c : ℂ))) • gellMann c := by
+  fin_cases b <;>
+    (ext i j; fin_cases i <;> fin_cases j <;>
+      (first
+        | rfl
+        | (unfold gellMann su3f;
+           simp [Ring.lie_def, Matrix.mul_apply, Fin.sum_univ_three,
+                 Fin.sum_univ_eight, Matrix.smul_apply];
+           (try push_cast);
+           (try field_simp);
+           (try ring_nf);
+           first
+             | done
+             | (linear_combination sqrt3_mul_sqrt3_cast)
+             | (linear_combination -sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; done)
+             | (simp [Complex.I_sq]; linear_combination sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; linear_combination -sqrt3_mul_sqrt3_cast))))
+
+private theorem gellMann_commutator_row_6 (b : Fin 8) :
+    ⁅gellMann 6, gellMann b⁆ =
+      ∑ c, ((2 * I : ℂ) * ((su3f 6 b c : ℂ))) • gellMann c := by
+  fin_cases b <;>
+    (ext i j; fin_cases i <;> fin_cases j <;>
+      (first
+        | rfl
+        | (unfold gellMann su3f;
+           simp [Ring.lie_def, Matrix.mul_apply, Fin.sum_univ_three,
+                 Fin.sum_univ_eight, Matrix.smul_apply];
+           (try push_cast);
+           (try field_simp);
+           (try ring_nf);
+           first
+             | done
+             | (linear_combination sqrt3_mul_sqrt3_cast)
+             | (linear_combination -sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; done)
+             | (simp [Complex.I_sq]; linear_combination sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; linear_combination -sqrt3_mul_sqrt3_cast))))
+
+private theorem gellMann_commutator_row_7 (b : Fin 8) :
+    ⁅gellMann 7, gellMann b⁆ =
+      ∑ c, ((2 * I : ℂ) * ((su3f 7 b c : ℂ))) • gellMann c := by
+  fin_cases b <;>
+    (ext i j; fin_cases i <;> fin_cases j <;>
+      (first
+        | rfl
+        | (unfold gellMann su3f;
+           simp [Ring.lie_def, Matrix.mul_apply, Fin.sum_univ_three,
+                 Fin.sum_univ_eight, Matrix.smul_apply];
+           (try push_cast);
+           (try field_simp);
+           (try ring_nf);
+           first
+             | done
+             | (linear_combination sqrt3_mul_sqrt3_cast)
+             | (linear_combination -sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; done)
+             | (simp [Complex.I_sq]; linear_combination sqrt3_mul_sqrt3_cast)
+             | (simp [Complex.I_sq]; linear_combination -sqrt3_mul_sqrt3_cast))))
+
+/-- **Full commutator identity**: `⁅λ_a, λ_b⁆ = ∑ c, 2i · f_abc · λ_c`
+    for all 64 pairs, using the Gell-Mann 1962 structure constants.
+    Assembled from the 8 row lemmas via `fin_cases a`. -/
+theorem gellMann_commutator (a b : Fin 8) :
+    ⁅gellMann a, gellMann b⁆ =
+      ∑ c, ((2 * I : ℂ) * ((su3f a b c : ℂ))) • gellMann c := by
+  fin_cases a
+  · exact gellMann_commutator_row_0 b
+  · exact gellMann_commutator_row_1 b
+  · exact gellMann_commutator_row_2 b
+  · exact gellMann_commutator_row_3 b
+  · exact gellMann_commutator_row_4 b
+  · exact gellMann_commutator_row_5 b
+  · exact gellMann_commutator_row_6 b
+  · exact gellMann_commutator_row_7 b
+
+end GellMannCommutator
+
 end OmegaTheory.Emergence.SU3GellMannMatrixEmbedding

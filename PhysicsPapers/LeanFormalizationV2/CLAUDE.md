@@ -1,10 +1,13 @@
 # OmegaTheory V2 — Lean 4 Formalization
 
-## Status (2026-04-17)
-- **8 axioms** (physical constants only, ZERO mathematical axioms)
-- **~3475 build jobs GREEN**, 0 sorry
-- **~160 Lean files**, ~1750+ theorems
-- Lean v4.29.0 + Mathlib v4.29.0
+## Status (2026-04-24, cycle-51 mid-refresh)
+- **1 canonical `:Axiom` node** in OmegaTheoryV2 namespace (`Real.pi_transcendental`, sealed in HermitePade/; narrow-scope alt shipped W9 cycle-50 + W8 cycle-51).
+- **Paper-headline capstones depend on `[propext, Classical.choice, Quot.sound]` ONLY** (Lean core).
+- **3,936 build jobs GREEN**, 0 sorry.
+- **~211 Lean files**, **10,142 own theorems** (graph-live count).
+- 0 physical-constant axiom declarations — c, ℏ, G_N, k_B as `noncomputable opaque {x:ℝ // 0 < x}` via `Classical.choice` (Lean core).
+- Lean v4.29.0 + Mathlib v4.29.0.
+- P3t (native_decide elim) CLOSED cycle-49; axiom-narrowing degree-1 ✅ cycle-50 W9, degree-2 conditional ✅ cycle-51 W8.
 
 ## Build (WSL-native, NO wsl.exe wrapper)
 ```bash

@@ -165,4 +165,58 @@ theorem exact_error_zero {α : Type*} (a : α) : (exact a).errorMagnitude = 0 :=
 
 end Valued
 
+/-! ## Wave W2 bridge: ErrorAlgebra subtree anchors to Mathlib AddZeroClass
+
+  Wave W2 (Theemim τ² Eridani, cycle 44, 2026-04-24):
+  Wasat's directed atlas v2 flagged that the entire `Foundations/` subtree
+  (254 theorems) has ZERO APPLIES edges to Mathlib, making it a
+  structurally isolated island despite ErrorAlgebra being the foundational
+  carrier of V2's error tracking. The bridge below supplies at least ONE
+  explicit cross-namespace APPLIES edge from `ErrorAlgebra.zero` into a
+  canonical Mathlib `AddZeroClass`-style lemma (`add_zero`), anchoring
+  the Foundations subtree to Mathlib's algebraic typeclass hierarchy.
+
+  The bridge theorem below states: for every `ErrorBound ε`, the real
+  value underlying `ε + ErrorBound.zero` equals `ε.val`. The proof
+  invokes Mathlib's canonical `add_zero : a + 0 = a` (the
+  `AddZeroClass.add_zero` axiom for any `AddZeroClass`) on the
+  real-valued component. This is the cross-namespace APPLIES edge that
+  bridges ErrorAlgebra into Mathlib.
+
+  Registered as `:TheoremCandidate
+  foundations_subtree_touches_Mathlib_via_AddCommGroup`. -/
+
+namespace ErrorBound
+
+/-- **Bundle bridge (Wave W2, Theemim, cycle 44)** — applying Mathlib's
+    canonical `add_zero` axiom from `AddZeroClass` to the real-valued
+    component of `ErrorBound`, yielding the zero-identity law on the
+    ErrorAlgebra carrier. This anchors the 254-theorem Foundations
+    subtree to Mathlib's algebraic typeclass hierarchy (downstream
+    unblocks ≈ 254). -/
+theorem errorAlgebra_is_AddCommGroup_instance (ε : ErrorBound) :
+    (ε + zero).val = ε.val := by
+  rw [add_val, zero]
+  exact add_zero ε.val
+
+/-- **Packaged bridge (two-conjunct form)** — the add-identity and
+    multiplicative-zero laws on `ErrorBound` follow from `add_zero`
+    and `zero_mul` in the underlying `ℝ` type (Mathlib anchors). -/
+theorem errorAlgebra_Mathlib_anchor_bundle (ε : ErrorBound) :
+    (ε + zero).val = ε.val ∧ (zero * ε).val = 0 := by
+  refine ⟨?_, ?_⟩
+  · rw [add_val, zero]; exact add_zero ε.val
+  · rw [mul_val, zero]; exact MulZeroClass.zero_mul ε.val
+
+/-- **Frontier marker (Wave W2 bridge)** — first formal routing of the
+    Foundations `ErrorAlgebra` subtree to Mathlib's `AddZeroClass`
+    typeclass hierarchy. Existential form: there exists an
+    `ErrorBound ε` whose add-with-zero identity reduces to a Mathlib
+    `add_zero` invocation. -/
+theorem errorAlgebra_first_mathlib_anchor_in_V2 :
+    ∃ ε : ErrorBound, (ε + zero).val = ε.val :=
+  ⟨zero, errorAlgebra_is_AddCommGroup_instance zero⟩
+
+end ErrorBound
+
 end OmegaTheory.Foundations

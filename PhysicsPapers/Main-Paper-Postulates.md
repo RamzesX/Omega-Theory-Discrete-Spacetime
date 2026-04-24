@@ -9,15 +9,24 @@
 ## Abstract
 
 > ### 🔐 Lean-Verified Postulate → Theorem Index
-> All five derived principles below have machine-checked witnesses in the Lean 4 / Mathlib v4.29.0 formalisation (post cycle 43, 2026-04-21, **3 835 jobs GREEN, 0 sorry, 8 physical axioms**).
+> All five derived principles below have machine-checked witnesses in the Lean 4 / Mathlib v4.29.0 formalisation (cycle-44-extension, 2026-04-24, post Lesath opaque-bundle refactor: **3 901 jobs GREEN, 0 sorry**).
 >
-> **Three-way corpus split (live-audited on the Neo4j `math` container, 2026-04-21):**
+> **Primitive-assumption accounting (honest).** OmegaTheory V2 rests on **5 primitive mathematical assumptions**:
+>
+> - **4 existence postulates** for physical constants: c, ℏ, G_N, k_B each declared as positive reals via `Classical.choice` (bundled as `noncomputable opaque X_bundle : {x : ℝ // 0 < x}`). These replace the 8 pre-cycle-44 `axiom` declarations but MATHEMATICALLY remain existence postulates — no specific numeric value is fixed, all derivations are parametric.
+> - **1 transcendence axiom** (`Real.pi_transcendental`, pending Mathlib Lindemann–Weierstrass port).
+>
+> Plus **4 research axioms** (Siegel-Shidlovskii, Nesterenko 1996, Roth 1955, Mahler framework) isolated in `Irrationality/HermitePade/` as pending mathlib-port placeholders. **Three-way split: `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research`.**
+>
+> *Historical baseline (2026-04-21, post-cycle-43): 3 835 jobs GREEN, 8 physical `axiom` declarations + 15 HermitePadé + 1 π-transcendental = 24 total `axiom` declarations.*
+>
+> **Three-way corpus split (snapshot on Neo4j `math` container, 2026-04-21; counts evolve live):**
 >
 > | Layer | Theorems | Role |
 > |---|---:|---|
-> | **Omega-Lean** (proved, machine-checked) | **8,996** | What this paper cites. |
+> | **Omega-Lean** (proved, machine-checked) | **~9,500** (9,794 declarations in graph post-session; 8,996 Apr-21 baseline) | What this paper cites. |
 > | **Graph** (discovery frontier, not yet proved) | **175** `:TheoremCandidate` (70 OPEN) + **53** paper-worthy `:GraphFinding` | Cycle-44+ backlog; items flagged **OPEN** below. |
-> | **Mathlib** (foundation) | **175,137** | Every proof above composes against this backbone (3.28 M cross-namespace `APPLIES` edges). |
+> | **Mathlib** (foundation) | **~175,127** | Every proof above composes against this backbone (3.28 M cross-namespace `APPLIES` edges). |
 >
 > Signature theorems:
 >
@@ -48,7 +57,7 @@
 
 ---
 
-We present a unified framework in which an **8-axiom discrete Planck-scale substrate**, when forced to compute **four irrationals** (π, e, √2, Catalan-G) via finite-iteration truncation, **jointly** generates quantum uncertainty, the Standard-Model three-generation + one-sterile fermion spectrum, and general-relativistic curvature. **Neither half suffices alone**: a rational substrate has zero truncation residual, and bare irrationals have no physical uncertainty dimension. The machinery is the **multiplication** ℓ_P · 4/(2N+3) — not either factor. From the discreteness postulate, combined with the mathematical necessity of geometry, we derive five operational principles that generate known physics. The central thesis is that **all particles attempt to propagate at the speed of light c**, but massive particles must expend energy reshaping local spacetime geometry with each discrete transition—this reshaping cost manifests as mass. The Standard Model is not a theory requiring unification with gravity—it generates spacetime geometry. Gravity is the output, not a missing input.
+We present a unified framework in which a **discrete Planck-scale substrate grounded in four fundamental constants** (c, ℏ, G_N, k_B — each realised in Lean as a `noncomputable opaque X_bundle : {x : ℝ // 0 < x}`, i.e., a `Classical.choice` witness packaging value + positivity; note that although these are not `axiom` *keywords*, they remain MATHEMATICALLY 4 existence postulates for positive reals, because `Classical.choice` commits to the existence of such a witness even when it doesn't declare a specific numeric value — all derivations are parametric), when forced to compute **four irrationals** (π, e, √2, Catalan-G) via finite-iteration truncation, **jointly** generates quantum uncertainty, the Standard-Model three-generation + one-sterile fermion spectrum, and general-relativistic curvature. *(Historically presented as "8-axiom substrate" — the 4 constants + 4 separate positivity axioms — prior to the 2026-04-24 Lesath bundle refactor; the 2026-04-24 refactor cleans the syntactic foundation but preserves the 4-existence-postulate commitment, giving the honest split `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research`.)* **Neither half suffices alone**: a rational substrate has zero truncation residual, and bare irrationals have no physical uncertainty dimension. The machinery is the **multiplication** ℓ_P · 4/(2N+3) — not either factor. From the discreteness postulate, combined with the mathematical necessity of geometry, we derive five operational principles that generate known physics. The central thesis is that **all particles attempt to propagate at the speed of light c**, but massive particles must expend energy reshaping local spacetime geometry with each discrete transition—this reshaping cost manifests as mass. The Standard Model is not a theory requiring unification with gravity—it generates spacetime geometry. Gravity is the output, not a missing input.
 
 The framework makes concrete experimental predictions validated by recent data: quantum error rates scale with action density ρ_S = NkT/V (not temperature alone), producing power-law temperature dependence T^(-2.5) as observed in Diraq/Nature 2024 spin qubit experiments—definitively inconsistent with Arrhenius exponential scaling. A key application resolves the apparent paradox of gravitational redshift: photons do not "lose energy" to gravity but rather encode geometric witness information—the redshift records the spacetime traversed while total information is conserved. We provide falsifiable predictions and reference detailed appendices for full mathematical development.
 

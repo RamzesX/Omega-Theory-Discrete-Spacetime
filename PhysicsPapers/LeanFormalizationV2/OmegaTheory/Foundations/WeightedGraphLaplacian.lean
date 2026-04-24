@@ -450,4 +450,50 @@ theorem substrateWeightedLapMatrix_row_sum_zero
     ∑ v ∈ (Finset.univ : Finset V), substrateWeightedLapMatrix G d u v = 0 :=
   weightedLapMatrix_row_sum_zero G _ u
 
+/-! ## Wave 5-B-refresh (Seginus) — LeanAlgebraLaplacian structural bridge -/
+
+/-- **Wave 5-B-refresh component bridge (Seginus, cycle 44)** —
+    the general weighted-Laplacian row-sum-zero property
+    specialises to the LeanAlgebra 6×6 magnetic Laplacian
+    (Kitalpha's structural anchor) at uniform weights `w = 1`.
+    Physical content: the LeanAlgebra magnetic Laplacian is a
+    concrete instance of the weighted-graph Laplacian pattern —
+    each row sums to zero because all off-diagonal entries are
+    negative weights, and the diagonal carries the total edge
+    weight. This bridge links the 15-theorem WeightedGraphLaplacian
+    island (graph component 3063) to the Algebra.Laplacian anchor
+    by making the specialisation dependency explicit in the
+    APPLIES graph. -/
+theorem weightedLapMatrix_row_sum_zero_is_LeanAlgebra_case
+    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → V → ℝ)
+    (_hw_symm : ∀ u v : V, w u v = w v u) (u : V) :
+    ∑ v ∈ (Finset.univ : Finset V), weightedLapMatrix G w u v = 0 := by
+  exact weightedLapMatrix_row_sum_zero G w u
+
+/-- **Companion bundle** — row sum zero + symmetric + posSemidef. -/
+theorem weightedLapMatrix_LeanAlgebra_bundle
+    (G : SimpleGraph V) [DecidableRel G.Adj] (w : V → V → ℝ)
+    (hw_symm : ∀ u v : V, w u v = w v u)
+    (hw_nn : ∀ u v : V, G.Adj u v → 0 ≤ w u v)
+    (u : V) :
+    (∑ v ∈ (Finset.univ : Finset V), weightedLapMatrix G w u v = 0) ∧
+    (weightedLapMatrix G w).IsSymm ∧
+    (weightedLapMatrix G w).PosSemidef :=
+  ⟨weightedLapMatrix_row_sum_zero G w u,
+   weightedLapMatrix_isSymm G w hw_symm,
+   weightedLapMatrix_posSemidef G w hw_symm hw_nn⟩
+
+/-- **Frontier marker (Wave 5-B-refresh)** — FIRST formal
+    connection of `weightedLapMatrix_row_sum_zero` to the uniform
+    case (w = fun _ _ => 1), establishing that LeanAlgebra-style
+    Laplacians live as specialisations of the weighted Laplacian. -/
+theorem weighted_LeanAlgebra_first_bridge_in_V2
+    (G : SimpleGraph V) [DecidableRel G.Adj] (u : V) :
+    ∃ w : V → V → ℝ,
+      (∀ a b : V, w a b = w b a) ∧
+      ∑ v ∈ (Finset.univ : Finset V), weightedLapMatrix G w u v = 0 := by
+  refine ⟨fun _ _ => 1, ?_, ?_⟩
+  · intro a b; rfl
+  · exact weightedLapMatrix_row_sum_zero G _ u
+
 end OmegaTheory.Foundations

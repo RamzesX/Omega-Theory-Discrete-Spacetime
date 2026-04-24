@@ -32,13 +32,45 @@ cd ~/lean-v2
 - `lake build` — everything else (new imports from existing Mathlib, edits,
   fixing proofs). Mathlib is already installed; `lake build` just links.
 
+## Server hygiene rule (2026-04-24 — IMPORTANT)
+
+**Kill embedding + reranker servers when no retrieval-using agent is active.**
+
+User's explicit concern: computer heat/power over long sessions. Servers:
+- `:7999` — Qwen3-Embedding-8B GPU (llama.cpp HIP on RX 9060 XT)
+- `:7996` — Qwen3-Reranker-8B CPU (llama.cpp AVX-512 on Ryzen 9950X)
+
+**Kill when idle / Lean-only work:**
+```bash
+pkill -f "llama-server"; pkill -f "supervise_llama"
+```
+
+**Restart on-demand (before dispatching retrieval-heavy waves):**
+```bash
+setsid ~/genai_env/bin/python ~/services/supervise_llama.py embed_gpu > /tmp/sup_emb.log 2>&1 < /dev/null & disown
+setsid ~/genai_env/bin/python ~/services/supervise_llama.py reranker_cpu > /tmp/sup_rer.log 2>&1 < /dev/null & disown
+```
+
+Full memory: `feedback_kill_servers_when_idle_2026-04-24.md`.
+
 ## HARD RULES
 1. **0 sorry** in Lean — absolutely never.
-2. **0 new axioms** — project has exactly 8 physical axioms
-   (c, ℏ, G_N, k_B + 4 positivities). 15 HermitePadé + 1 `Real.pi_transcendental`
-   are tracked separately and are research-track, not paper-story axioms.
-3. **Must compile GREEN** before reporting done. 3,835 jobs / 0 sorry is the
-   post-cycle-43 baseline — do not regress.
+2. **0 new axioms / primitive assumptions.** Honest accounting post-2026-04-24
+   Lesath opaque-bundle refactor:
+   - **0 `axiom` declarations for physical constants** — c, ℏ, G_N, k_B are
+     `noncomputable opaque X_bundle : {x : ℝ // 0 < x}`, Classical.choice from
+     Lean core (NOT `axiom` keyword).
+   - **MATHEMATICALLY still 4 physical existence postulates** (no specific
+     numeric value fixed; derivations parametric).
+   - **+ 1 transcendence axiom** `Real.pi_transcendental` (upstream Mathlib
+     Lindemann–Weierstrass) = **5 primitive assumptions** paper-total.
+   - **+ 4 HermitePadé research axioms** (Siegel-Shidlovskii, Nesterenko 1996,
+     Roth 1955, Mahler framework) = **9 total including research**, sealed in
+     `Irrationality/HermitePade/`.
+   - Three-way split: `0 axiom-declarations · 5 primitive-assumptions · 9 total`.
+3. **Must compile GREEN** before reporting done. **3,901 jobs / 0 sorry** is the
+   cycle-44-extension baseline (up from 3,835 post-cycle-43 / 3,870 post-wave-E).
+   Do not regress.
 4. **Quality over speed** — iterate on errors until clean.
 5. **Narrower true theorem > false dressed-up claim.**
 6. **Do not write outside chaos-shield** unless the task explicitly targets
@@ -70,7 +102,7 @@ fin_cases       -- case split on Fin n
 ```
 
 ### Strategy
-1. `exact?` first (30 s search over 210 K+ lemmas + 8,996 OmegaTheory theorems).
+1. `exact?` first (30 s search over 210 K+ lemmas + ~9,500 OmegaTheory theorems).
 2. `aesop` or `grind` for multi-step.
 3. `simp [lemmas]` or `positivity`.
 4. `ring` / `field_simp; ring` for algebraic identities.
@@ -112,14 +144,32 @@ Native ext4 mirror at `~/lean-v2/` (428 .lean files incl. Meta/ dump executables
 + uncommitted dev files). Use `~/lean-v2` for fast iteration, sync back to
 `/mnt/c` only when ready to commit.
 
-## Status — 2026-04-21 (post cycle-43)
+## Status — 2026-04-24 (cycle-44-extension, post Lesath opaque-bundle refactor)
 
-- **3,835 build jobs GREEN**, 0 sorry
-- **8 physical axioms** (+ 15 HermitePadé + 1 π-transcendental = 24 total)
-- **8,996 OmegaTheoryV2 Theorems** on top of **175,137 Mathlib** = **184,133 total**
-- **Cycles 2–43 all shipped.** Mekbuda's 60-theorem cycles 24–43 backlog CLOSED.
+- **3,901 build jobs GREEN**, 0 sorry
+- **Primitive assumptions (honest accounting):** `0 axiom-declarations · 5
+  primitive-assumptions · 9 total-including-research`
+  - **0 `axiom` declarations for physical constants** — c, ℏ, G_N, k_B realised
+    as `noncomputable opaque X_bundle : {x : ℝ // 0 < x}` via `Classical.choice`
+    (Lean core, NOT `axiom` keyword).
+  - MATHEMATICALLY these 4 opaque bundles remain **existence postulates** for
+    positive reals — no specific numeric value fixed, all derivations parametric.
+  - **+ 1 transcendence axiom** `Real.pi_transcendental` (pending Mathlib
+    Lindemann–Weierstrass) = **5 primitive assumptions** paper-total.
+  - **+ 4 HermitePadé research axioms** (Siegel-Shidlovskii, Nesterenko 1996,
+    Roth 1955, Mahler framework) = **9 total** including research track.
+- **~9,500 OmegaTheoryV2 own theorems** (9,794 declarations in graph post-session)
+  on top of **~175,127 Mathlib** = **~184,627 total**
+- **Cycles 2–43 all shipped** + cycle-44 extension (14 theorems landed,
+  axioms 24→9 via Acrab opaque-conversion pattern, then 9→1 paper-headline via
+  Lesath opaque-bundle refactor on physical constants).
 - **Grand Capstone V2** locked by Polaris (`omega_theory_v2_final_meta_capstone`)
 - **HPW axiom DELETED** 2026-04-17 — all 7 regime witnesses re-derived.
+
+### Historical baseline (2026-04-21, post-cycle-43)
+- 3,835 build jobs GREEN, 0 sorry, 8 physical axioms (+ 15 HermitePadé + 1
+  π-transcendental = 24 total). 8,996 OmegaTheoryV2 own + 175,137 Mathlib =
+  184,133 total.
 
 ## Neo4j Knowledge Graph
 
@@ -127,8 +177,9 @@ Container `math`, bolt://localhost:7687, neo4j/omegatheory2026. APOC + GDS +
 GenAI plugins loaded. See `PhysicsPapers/CLAUDE.md` for query recipes.
 
 Key namespaces in the graph:
-- `OmegaTheoryV2` — declarations + FastRP embeddings (8,996 own theorems)
-- `Mathlib` — integrated Mathlib v4.29.0 corpus (175,137 theorems)
+- `OmegaTheoryV2` — declarations + FastRP embeddings (~9,500 own theorems;
+  9,794 declarations post-session 2026-04-24; 8,996 historical Apr-21 baseline)
+- `Mathlib` — integrated Mathlib v4.29.0 corpus (~175,127 theorems)
 - `LeanAlgebra` — V3 schema scaffold (6 vertex types × 15 arrows)
 
 Graph state (live 2026-04-21): 88 `:GraphFinding` (44 paper_worthy) + 166

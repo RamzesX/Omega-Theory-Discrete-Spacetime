@@ -1,8 +1,8 @@
 # Papers & Documentation
 
-> **Corpus scale** (live 2026-04-21): 🔷 **8,996** OmegaTheoryV2 own theorems · 🔶 **175,137** Mathlib integrated · 🔹 **184,133** total. Build: **3,835 jobs GREEN**, 0 sorry, **8 physical axioms** (+ 15 HermitePadé + 1 π-transcendental = 24 total, tracked separately).
+> **Corpus scale** (2026-04-24, cycle-44-extension post Lesath opaque-bundle refactor): 🔷 **~9,500** OmegaTheoryV2 own theorems · 🔶 **~175,127** Mathlib integrated · 🔹 **~184,627** total. Build: **3,901 jobs GREEN**, 0 sorry. **Honest axiom accounting:** `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research`. The 4 physical existence postulates (c, ℏ, G_N, k_B) are now `noncomputable opaque X_bundle : {x : ℝ // 0 < x}` via `Classical.choice` — 0 `axiom` *declarations* for constants, but MATHEMATICALLY these remain 4 existence postulates for positive reals (no specific numeric value fixed, all derivations parametric). Plus **1 transcendence axiom** `Real.pi_transcendental` = **5 primitive assumptions** paper-total. Plus **4 HermitePadé research axioms** (Siegel-Shidlovskii, Nesterenko 1996, Roth 1955, Mahler framework) = **9 total**. *Historical baseline (2026-04-21): 8,996 own · 184,133 total · 3,835 jobs · 24 `axiom` declarations.*
 >
-> **34 autonomous agent cycles (10 – 43)** shipped Jan – Apr 2026 on Lean 4 + Mathlib v4.29.0. Grand meta-capstone: [`omega_theory_v2_final_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607).
+> **34 autonomous agent cycles (10 – 43) + cycle-44 extension** shipped Jan – Apr 2026 on Lean 4 + Mathlib v4.29.0. Grand meta-capstone: [`omega_theory_v2_final_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607).
 
 ## Mathematics: Conv(ℚ) Framework
 
@@ -60,7 +60,7 @@
 
 ### Cycle-44+ Research (2026-04-21)
 18. [`IrrationalityClasses/`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/IrrationalityClasses/) — **The 4-class separation theorem** (Rasalas, μ Leonis). 14 design memos rigorously classifying {π, e, √2, Catalan G} across Liouville / Roth / Mahler / Shidlovsky hierarchies. Headline: 31 `:TheoremCandidate` registered. Catalan G irrationality is a classical open problem.
-19. [`AXIOM_ELIMINATION_METHODOLOGY.md`](PhysicsPapers/LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md) — **Per-axiom elimination roadmap** covering all 24 axioms. 1 eliminated so far (HPW, 2026-04-17, typeclass pattern), 16 eliminable, 8 definitional.
+19. [`AXIOM_ELIMINATION_METHODOLOGY.md`](PhysicsPapers/LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md) — **Per-axiom elimination roadmap** covering the historical 24 `axiom` declarations. Post 2026-04-24 Lesath refactor, **honest axiom accounting:** `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research`. Of the historical 24 declarations: **19 `axiom` keywords eliminated** (c/ℏ/G_N/k_B + 4 positivities bundled as `Classical.choice` — reducing `axiom`-declarations for constants to 0 but preserving 4 existence postulates mathematically — plus 11 HermitePadé research axioms retired via opaque-conversion pattern + HPW). Remaining primitive assumptions: **5** (4 physical existence postulates via Classical.choice + 1 `Real.pi_transcendental`). Plus **4 HermitePadé research axioms** = **9 total**.
 20. [`NOVEL_MATHEMATICS.md`](PhysicsPapers/LeanFormalizationV2/NOVEL_MATHEMATICS.md) — **32 pieces of novel mathematics** catalogued: error-algebra tower, Pi-Hunch primitive, baby-universe structure, Magnetic-Laplacian theorem-corpus pipeline (V3-for-Lean). 6 are candidate Mathlib upstream contributions.
 
 > **Goal statement (puzzle-pieces framing).** *"Create the Omega algebra that completely describes physics — or as much as we can prove."* We are collecting puzzle pieces one provable sub-theorem at a time. Master plan skeleton: [`11_master_plan_skeleton.md`](PhysicsPapers/LeanFormalizationV2/OmegaTheory/IrrationalityClasses/11_master_plan_skeleton.md). % of physics formalised: ≈ 72% (see `10_proof_count.md`).
@@ -74,20 +74,20 @@
 - Newton-Raphson precision bounds
 - See [`LeanFormalizationV2/README.md`](PhysicsPapers/LeanFormalizationV2/README.md) for details
 
-### Lean 4 Formalization V2 (April 2026, primary, post cycle 43)
-[`LeanFormalizationV2/`](PhysicsPapers/LeanFormalizationV2/) — **Mathlib v4.29.0**, ~211 structured files, **0 sorry · 8 physical axioms · 3 835 build jobs GREEN**.
+### Lean 4 Formalization V2 (April 2026, primary, cycle-44-extension)
+[`LeanFormalizationV2/`](PhysicsPapers/LeanFormalizationV2/) — **Mathlib v4.29.0**, ~211 structured files, **0 sorry · 3 901 build jobs GREEN** (2026-04-24). Honest axiom accounting: `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research` (4 physical existence postulates via `Classical.choice` opaque bundles + 1 `Real.pi_transcendental` + 4 HermitePadé research).
 
-**Three-way corpus split** (graph-verified 2026-04-21):
+**Three-way corpus split** (post session 2026-04-24; graph audit 2026-04-21 baseline):
 
 | Tier | 🔷 Omega Lean (proved) | 🔶 Graph frontier (open) | 🔹 Mathlib (foundation) | Σ build total |
 |---|---:|---:|---:|---:|
-| Theorems | **8 996** | **166** `:TheoremCandidate` | 175 137 | **184 133** |
+| Theorems | **~9 500** (9 794 in graph; Apr-21 baseline 8 996) | **166** `:TheoremCandidate` | ~175 127 | **~184 627** |
 | Definitions | **4 465** | — | 32 917 | **37 382** |
-| Axioms | **24** (paper: 8 physical + 15 Hermite-Padé + 1 `π_transcendental`) | — | 6 | 30 |
+| Axioms | **5 primitive assumptions** (4 physical existence postulates via `Classical.choice` opaque bundles — 0 `axiom` *declarations* for constants — + 1 `Real.pi_transcendental`); **9 total** including 4 Hermite-Padé research | — | 6 | 15 |
 | Analytics nodes | — | 44 paper_worthy `:GraphFinding` · 32 `:GrothendieckRecipe` · 677 `:SubsystemNavigator` (Leiden Q = 0.89) | — | — |
 | Cross-namespace edges | 2 029 334 Omega → Mathlib + 1 253 787 Mathlib → Omega = **3.28 M integrating edges** |
 
-Every own theorem is typed against the Mathlib backbone. **34 autonomous agent cycles** (cycles 10 – 43) shipped Jan – Apr 2026, closing with cycle 43 Polaris: [`omega_theory_v2_final_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607) — paper-citable abstract uniting the cycle-23 grand capstone with the four-channel (π, e, √2, Catalan-G) sterile-neutrino signature.
+Every own theorem is typed against the Mathlib backbone. **34 autonomous agent cycles** (cycles 10 – 43) + **cycle-44 extension** shipped Jan – Apr 2026, closing with cycle 43 Polaris: [`omega_theory_v2_final_meta_capstone`](https://github.com/RamzesX/chaos-shield/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607) — paper-citable abstract uniting the cycle-23 grand capstone with the four-channel (π, e, √2, Catalan-G) sterile-neutrino signature. Cycle-44 extension (Kornephoros/Homam/Alkalurops/Acrab/Alphecca/Ain/Lesath waves) landed 14 theorems and refactored the four physical constants into opaque `Classical.choice` bundles (axioms 8 → 0 on physical constants; 24 → 5 total).
 
 #### Lean-Verified Falsifiable Predictions — Consolidated (Cycles 2-8)
 

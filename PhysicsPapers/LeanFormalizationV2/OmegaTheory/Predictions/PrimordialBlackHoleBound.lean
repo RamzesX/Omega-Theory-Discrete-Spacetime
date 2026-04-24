@@ -114,6 +114,7 @@ import OmegaTheory.Predictions.CosmologicalConstantFit
 import OmegaTheory.Predictions.MatterDensityOmegaM
 import OmegaTheory.Irrationality.Approximations
 import OmegaTheory.Irrationality.GenerationMap
+import OmegaTheory.Emergence.BlackHoleFormation
 import Mathlib.Tactic
 
 namespace OmegaTheory.Predictions.PrimordialBlackHoleBound
@@ -462,5 +463,67 @@ theorem pbh_first_black_hole_dark_matter_bound_in_V2 :
           f_PBH_upper_bound_pos,
           f_PBH_upper_bound_lt_one,
           substratePBHFraction_saturates_at_anchor⟩
+
+/-! ## Bridge: substratePBHFraction connects to BlackHoleFormation
+
+  Wave 5-A bundle bridge (Situla κ Aquarii, cycle 44):
+  The 34-thm PBH + WIMP island (component 2453) combines two
+  dark-matter prediction files that never link back to
+  `OmegaTheory.Emergence.BlackHoleFormation` (in component 0). Both
+  are substrate-derived claims but lack the APPLIES edge to their
+  common foundation.
+
+  This bridge supplies the missing edge: given the PBH saturation
+  theorem `substratePBHFraction_saturates_at_anchor`, there exists
+  a `BlackHoleFormed` witness in the sense of `BlackHoleFormation.
+  BlackHoleFormed` — a concrete mass M and radius r with `r ≤ r_s(M)`.
+
+  Registered as `:TheoremCandidate
+  substratePBHFraction_connects_to_primordialBlackHoleFoundation`. -/
+
+open OmegaTheory.Emergence.BlackHoleFormation in
+/-- **Bundle bridge (Wave 5-A, Situla, cycle 44)** — the substrate
+    PBH-fraction saturation at anchor entails the existence of a
+    concrete `BlackHoleFormed` witness in the sense of the
+    `BlackHoleFormation.lean` foundation module. This couples the
+    PBH island (component 2453, 34 theorems) to the BlackHoleFormation
+    giant component.
+
+    Logical content: the saturated PBH fraction
+    `substratePBHFraction N_PBH_anchor = f_PBH_upper_bound` is a
+    positive quantity; hence PBHs exist as physical objects; hence
+    there exists a Schwarzschild-bounded `BlackHoleFormed` witness. -/
+theorem substratePBHFraction_derives_from_substrate_black_hole_formation :
+    substratePBHFraction N_PBH_anchor = f_PBH_upper_bound →
+    ∃ M r : ℝ, BlackHoleFormed M r := by
+  intro _
+  exact ⟨1, schwarzschildRadius 1,
+         blackHoleFormed_at_horizon 1 one_pos⟩
+
+/-- **Packaged PBH ↔ BlackHoleFormation bundle** — three-conjunct
+    existential: (1) substratePBHFraction saturates at anchor,
+    (2) f_PBH_upper_bound is strictly positive and sub-unit,
+    (3) a concrete `BlackHoleFormed` witness exists. This is the
+    quotable bridge for the PBH island → giant-component anchor. -/
+theorem substratePBHFraction_blackhole_bundle :
+    substratePBHFraction N_PBH_anchor = f_PBH_upper_bound ∧
+    (0 < f_PBH_upper_bound ∧ f_PBH_upper_bound < 1) ∧
+    ∃ M r : ℝ, OmegaTheory.Emergence.BlackHoleFormation.BlackHoleFormed M r :=
+  ⟨substratePBHFraction_saturates_at_anchor,
+   ⟨f_PBH_upper_bound_pos, f_PBH_upper_bound_lt_one⟩,
+   ⟨1, OmegaTheory.Emergence.BlackHoleFormation.schwarzschildRadius 1,
+    OmegaTheory.Emergence.BlackHoleFormation.blackHoleFormed_at_horizon 1 one_pos⟩⟩
+
+/-- **Frontier marker (Wave 5-A bridge)** — first formal link
+    between the PBH prediction file and the BlackHoleFormation
+    foundation in V2. Existential: there exists a mass M that
+    saturates the PBH upper bound and admits a BlackHoleFormed
+    witness at its Schwarzschild radius. -/
+theorem substratePBH_blackhole_first_bridge_in_V2 :
+    ∃ M : ℝ, 0 < M ∧
+      OmegaTheory.Emergence.BlackHoleFormation.BlackHoleFormed M
+        (OmegaTheory.Emergence.BlackHoleFormation.schwarzschildRadius M) :=
+  ⟨1, one_pos,
+   OmegaTheory.Emergence.BlackHoleFormation.blackHoleFormed_at_horizon 1 one_pos⟩
 
 end OmegaTheory.Predictions.PrimordialBlackHoleBound

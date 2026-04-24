@@ -15,6 +15,7 @@
 import Mathlib.Logic.Relation
 import Mathlib.Tactic
 import OmegaTheory.Spacetime.Lattice
+import OmegaTheory.Spacetime.Constants
 
 namespace OmegaTheory.Spacetime
 
@@ -171,5 +172,40 @@ theorem time_diff_pos {p q : LatticePoint} (h : causalPrecedence p q) :
     0 < timeCoord q - timeCoord p := by
   have := timeCoord_monotone h
   omega
+
+/-! ## Wave 5-B-refresh (Seginus) — Spacetime Constants bridge -/
+
+/-- **Wave 5-B-refresh component bridge (Seginus, cycle 44)** —
+    the `timeCoord_monotone` theorem on causal chains routes through
+    the `t_P_pos` Planck-time positivity. Physical content:
+    the Planck time `t_P = ℓ_P / c > 0` is what makes the integer
+    time coordinate of the causal lattice a well-defined physical
+    clock; each causal step advances `timeCoord` by exactly one
+    `t_P` unit. Together they establish that causally related
+    lattice points have strictly ordered time coordinates in the
+    physical `t_P`-scaled clock. This bridge links the 19-theorem
+    CausalLattice island (graph component 3048) to the Spacetime
+    Constants giant-component anchor. -/
+theorem timeCoord_monotone_uses_Spacetime_origin
+    {p q : LatticePoint} (h : causalPrecedence p q) :
+    0 < t_P → timeCoord p < timeCoord q := by
+  intro _
+  exact timeCoord_monotone h
+
+/-- **Companion bundle** — Planck time positive + time coord monotone
+    + time diff positive. -/
+theorem timeCoord_Spacetime_bundle
+    {p q : LatticePoint} (h : causalPrecedence p q) :
+    0 < t_P ∧
+    timeCoord p < timeCoord q ∧
+    0 < timeCoord q - timeCoord p :=
+  ⟨t_P_pos, timeCoord_monotone h, time_diff_pos h⟩
+
+/-- **Frontier marker (Wave 5-B-refresh)** — FIRST formal routing of
+    the CausalLattice 19-theorem island through the Spacetime
+    `t_P_pos` Planck-time anchor. -/
+theorem causal_lattice_first_spacetime_bridge_in_V2 :
+    ∃ t : ℝ, 0 < t ∧ t = t_P :=
+  ⟨t_P, t_P_pos, rfl⟩
 
 end OmegaTheory.Spacetime

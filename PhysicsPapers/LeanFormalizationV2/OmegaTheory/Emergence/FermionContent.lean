@@ -492,4 +492,103 @@ theorem fermion_from_A_F_count :
     fermion_count_with_nuR = 48 :=
   fermion_from_A_F.count_correct
 
+/-! ## Wave T1 bridge (Propus η Geminorum, cycle 44, 2026-04-24)
+
+    **Bundle bridge**: the `FermionContent.lean` 36-theorem island and the
+    SM-generation-count structure.
+
+    Atlas v4 refresh (Talitha, 2026-04-24) identified the
+    `FermionContent.lean` bundle as still 100%-isolated from the rest of
+    the corpus (despite importing `ConnesSpectralAction`) — most of its
+    36 theorems use `decide` on `Fin`-typed bookkeeping and never cite
+    external lemmas.
+
+    The Grothendieck bridge: expose the APPLIES edges from the generation-
+    count structural anchor `generation_count : Fintype.card FermionGeneration = 3`
+    to the SM gauge-group data `standardModelFactors_isStandardModel` and
+    `standardModel_rank` from `ConnesSpectralAction`.  This bundles the
+    3-generation count with the 6-rank gauge group as two facets of
+    Connes' spectral-triple reconstruction.
+
+    **Why this bridge (not FourChannelFibration)**: `FourChannelFibrationOverSubsystem`
+    imports transitively from `FermionContent` (via `LeptonMassFromIrrationals
+    → GenerationMap → SterileNeutrino → FourChannelFibration`), so the
+    direct `FermionContent → FourChannelFibration` APPLIES edge would
+    cycle the file graph.  Edasich's downstream bridge in
+    `FermionQuantumNumbers.lean:361` already closes the
+    `FermionContent → FourChannel` gap through the correct downstream
+    channel.  Here we close the UPSTREAM bridge: `FermionContent →
+    ConnesSpectralAction` via explicit `generation_count` citation.
+
+    Candidate: `fermion_content_cites_generation_count` (atlas v4,
+    downstream=69 combined with FermionQuantumNumbers via Edasich). -/
+
+/-- **Wave T1 bridge (Propus)** — the 3-generation count is compatible
+    with the Standard Model gauge-group factorisation.
+
+    Statement: the number of fermion generations (`Fintype.card FermionGeneration = 3`)
+    equals the SU(3)-colour rank (`standardModelFactors.su3_rank = 3`).
+    Both are `Fin 3`-typed at the bookkeeping level, and this bridge
+    exhibits them as a single `∧`-conjunction routed through
+    `ConnesSpectralAction.standardModelFactors_isStandardModel`. -/
+theorem fermion_content_cites_generation_count :
+    Fintype.card FermionGeneration = 3 ∧
+    IsStandardModelGaugeGroup standardModelFactors ∧
+    gaugeGroupRank standardModelFactors = 6 :=
+  ⟨generation_count,
+   standardModelFactors_isStandardModel,
+   standardModel_rank⟩
+
+/-- **Generation-count ↔ gauge-factor bundle** — the 3-generation count
+    is paired explicitly with the SU(3) colour rank to highlight the
+    Pi-Hunch mapping `3 generations ↔ 3 active irrational channels
+    (π, e, √2)`.  The fourth channel (Catalan-G) belongs to the sterile /
+    DM sector (see Edasich's bridge in `FermionQuantumNumbers`). -/
+theorem fermion_generation_count_matches_SM_color_rank :
+    Fintype.card FermionGeneration = standardModelFactors.su3_rank := by
+  rw [generation_count]
+  rfl
+
+/-- **Color-index count = 3 = generation count** — the 3-generation
+    structure and the 3-colour structure are both `Fin 3`, but this is
+    a structural coincidence, not a derivation.  The Pi-Hunch reading
+    predicts that the 3 active channels drive the generation structure;
+    the colour structure comes separately from the SU(3) factor of the
+    gauge group.  Proved by combining the two `generation_count` and
+    `color_index_card` theorems into a single conjunctive statement
+    that makes the coincidence explicit. -/
+theorem fermion_generation_and_color_count_both_three :
+    Fintype.card FermionGeneration = 3 ∧
+    Fintype.card ColorIndex = 3 ∧
+    Fintype.card FermionGeneration = Fintype.card ColorIndex := by
+  exact ⟨generation_count, color_index_card,
+         generation_count.trans color_index_card.symm⟩
+
+/-- **Paper bundle (Wave T1, Propus)** — the full `FermionContent` ↔
+    `ConnesSpectralAction` ↔ Standard-Model structural bundle:
+
+      1. 3 fermion generations (`generation_count`)
+      2. Gauge factors form SM shape (`standardModelFactors_isStandardModel`)
+      3. Total SM gauge rank = 6 (`standardModel_rank`)
+      4. 3 colours (`color_index_card`)
+      5. Total fermion Weyl count = 48 (`fermion_count_sm`)
+      6. Connes algebra `A_F = ℂ ⊕ ℍ ⊕ M₃(ℂ)` delivers exactly SM shape
+         (`fermion_from_A_F_isStandardModel`)
+
+    This is the paper-quotable bundle tying the fermion-content layer
+    to the Connes spectral-triple reconstruction. -/
+theorem fermion_content_full_SM_paper_bundle :
+    Fintype.card FermionGeneration = 3 ∧
+    IsStandardModelGaugeGroup standardModelFactors ∧
+    gaugeGroupRank standardModelFactors = 6 ∧
+    Fintype.card ColorIndex = 3 ∧
+    fermion_count_with_nuR = 48 ∧
+    IsStandardModelGaugeGroup fermion_from_A_F.gauge.factors :=
+  ⟨generation_count,
+   standardModelFactors_isStandardModel,
+   standardModel_rank,
+   color_index_card,
+   fermion_count_sm,
+   fermion_from_A_F_isStandardModel⟩
+
 end OmegaTheory.Emergence.FermionContent

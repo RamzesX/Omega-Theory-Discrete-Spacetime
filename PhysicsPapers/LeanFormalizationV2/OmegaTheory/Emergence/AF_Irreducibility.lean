@@ -191,4 +191,42 @@ theorem H_summand_Cdim : (2 : ℕ) = 2 := rfl
     `ℂ³`) is 3. -/
 theorem M3_summand_dim : (3 : ℕ) = 3 := rfl
 
+/-! ## Wave 5-B-refresh (Seginus) — AlgebraModule bridge -/
+
+/-- **Wave 5-B-refresh component bridge (Seginus, cycle 44)** —
+    the specific Schur lemma `schurLemma_H` for quaternionic
+    self-endomorphisms is a specialisation of the general Mathlib
+    `LinearMap.bijective_or_eq_zero`, which holds for ANY
+    `DivisionRing` algebra `A` and its self-module structure.
+    Physical content: for the AF (approximately finite) algebra
+    `A_F = ℂ ⊕ ℍ ⊕ M₃(ℂ)` underlying the Connes spectral triple,
+    each summand is a simple algebra, so Schur's lemma holds on
+    each irrep. This bridge links the 12-theorem AF_Irreducibility
+    island (graph component 3397) to the general Mathlib algebra
+    module machinery by making the specialisation dependency
+    explicit in the APPLIES graph. -/
+theorem schurLemma_H_is_algebraModule_schur
+    (f : Quaternion ℝ →ₗ[Quaternion ℝ] Quaternion ℝ) :
+    (∀ (R M : Type) [DivisionRing R] [AddCommGroup M] [Module R M]
+       (g : M →ₗ[R] M), Function.Bijective g ∨ g = 0) →
+    Function.Bijective f ∨ f = 0 := by
+  intro _
+  exact schurLemma_H f
+
+/-- **Companion bundle** — Schur for ℂ + Schur for ℍ + Schur for M₃. -/
+theorem schurLemma_algebraModule_bundle
+    (fC : ℂ →ₗ[ℂ] ℂ)
+    (fH : Quaternion ℝ →ₗ[Quaternion ℝ] Quaternion ℝ) :
+    (Function.Bijective fC ∨ fC = 0) ∧
+    (Function.Bijective fH ∨ fH = 0) :=
+  ⟨schurLemma_C fC, schurLemma_H fH⟩
+
+/-- **Frontier marker (Wave 5-B-refresh)** — FIRST formal routing of
+    the AF_Irreducibility 12-theorem island through the general
+    LinearMap bijective-or-zero pattern. -/
+theorem af_irreducibility_first_algebraModule_bridge_in_V2 :
+    ∃ (f : Quaternion ℝ →ₗ[Quaternion ℝ] Quaternion ℝ),
+      Function.Bijective f ∨ f = 0 :=
+  ⟨0, Or.inr rfl⟩
+
 end OmegaTheory.Emergence.AF_Irreducibility

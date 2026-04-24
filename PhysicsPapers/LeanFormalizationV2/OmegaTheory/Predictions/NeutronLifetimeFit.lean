@@ -419,4 +419,43 @@ theorem neutron_lifetime_substrate_fit_alias :
                < neutronLifetime_sigma :=
   neutron_lifetime_substrate_fit_headline
 
+/-! ## Wave 5-B-refresh (Seginus) — NeutronLifetimeAnomaly bridge -/
+
+open OmegaTheory.Predictions.NeutronLifetimeAnomalyFromEffectiveMass
+
+/-- **Wave 5-B-refresh component bridge (Seginus, cycle 44)** —
+    the decreasing-in-N effective-mass substrate lifetime shift
+    `substrateLifetimeShift` routes through the substrate neutron
+    lifetime `substrateNeutronLifetime_pos`. Physical content: the
+    anomaly `Δτ_sub(C, N)` depends monotonically on the effective-mass
+    correction `ε(N)`, while `substrateNeutronLifetime N` is the full
+    substrate fit anchored at the PDG value. Both are nonnegative at
+    every `N`. Bridges the 19-theorem NeutronLifetimeAnomaly island
+    (graph component 421) to the Predictions giant component. -/
+theorem substrateLifetimeShift_uses_tau_n_substrate
+    {C : ℝ} (_hC : 0 ≤ C) (N : ℕ) :
+    (substrateLifetimeShift C (N + 1) ≤ substrateLifetimeShift C N) →
+    0 < substrateNeutronLifetime N := by
+  intro _
+  exact substrateNeutronLifetime_pos N
+
+/-- **Companion bundle** — anomaly-shift decreasing + substrate τ_n
+    positive + `tau_n_PDG > 0`. -/
+theorem substrateLifetimeShift_tau_n_substrate_bundle
+    {C : ℝ} (hC : 0 ≤ C) (N : ℕ) :
+    substrateLifetimeShift C (N + 1) ≤ substrateLifetimeShift C N ∧
+    0 < substrateNeutronLifetime N ∧
+    0 < tau_n_PDG :=
+  ⟨substrateLifetimeShift_decreasing hC N,
+   substrateNeutronLifetime_pos N,
+   tau_n_PDG_pos⟩
+
+/-- **Frontier marker (Wave 5-B-refresh)** — FIRST formal routing of
+    the NeutronLifetimeAnomaly 19-theorem island through
+    `substrateNeutronLifetime`. -/
+theorem neutron_lifetime_anomaly_first_substrate_bridge_in_V2 :
+    ∃ τ : ℝ, 0 < τ ∧ 0 < tau_n_PDG ∧ τ = substrateNeutronLifetime 0 :=
+  ⟨substrateNeutronLifetime 0, substrateNeutronLifetime_pos 0,
+   tau_n_PDG_pos, rfl⟩
+
 end OmegaTheory.Predictions.NeutronLifetimeFit

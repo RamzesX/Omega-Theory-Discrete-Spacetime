@@ -2,11 +2,21 @@
   OmegaTheory.Spacetime.Constants
 
   Physical constants and their relationships.
-  All constants are axiomatized as positive reals with
-  the known dimensional relationships between them.
 
-  These are the only axioms in the system that assert existence
-  of specific real numbers. Everything else is derived.
+  Each fundamental constant (c, ℏ, G_N, k_B) is introduced as a
+  `noncomputable opaque` bundle `{x : ℝ // 0 < x}` rather than as a pair
+  of axioms.  The opaque construction relies on `Classical.choice` (a
+  Lean core axiom), so **no new user-level axioms are introduced** by
+  these constants.
+
+  Historical note (cycle-44, Lesath 2026-04-24): this file previously
+  declared 8 physical axioms (c, c_pos, hbar, hbar_pos, G_N, G_N_pos,
+  k_B, k_B_pos), following the "opaque bundle" pattern Acrab applied to
+  six HermitePadé conjectures in Wave C.  Downstream code relies only
+  on the positivity theorems (`c_pos`, etc.), not on definitional
+  unfolding of the values, so the refactor is behaviourally transparent.
+
+  Everything else in the theory is derived.
 -/
 
 import Mathlib.Data.Real.Basic
@@ -19,21 +29,29 @@ namespace OmegaTheory.Spacetime
 -- Fundamental constants (independent)
 -- ============================================================
 
-/-- Speed of light c > 0. -/
-axiom c : ℝ
-axiom c_pos : 0 < c
+/-- Speed of light c > 0 (bundled as a positive real via opaque to reduce axiom count).
 
-/-- Reduced Planck constant ℏ > 0. -/
-axiom hbar : ℝ
-axiom hbar_pos : 0 < hbar
+    The opaque declaration relies on `Classical.choice` (a Lean core axiom), not on a
+    user-introduced axiom.  The witness value `1` is arbitrary — downstream code only
+    uses `c_pos` and never unfolds `c` definitionally. -/
+noncomputable opaque c_bundle : {x : ℝ // 0 < x} := ⟨1, one_pos⟩
+noncomputable abbrev c : ℝ := c_bundle.val
+theorem c_pos : 0 < c := c_bundle.property
 
-/-- Gravitational constant G > 0. -/
-axiom G_N : ℝ
-axiom G_N_pos : 0 < G_N
+/-- Reduced Planck constant ℏ > 0 (bundled — see `c_bundle` rationale). -/
+noncomputable opaque hbar_bundle : {x : ℝ // 0 < x} := ⟨1, one_pos⟩
+noncomputable abbrev hbar : ℝ := hbar_bundle.val
+theorem hbar_pos : 0 < hbar := hbar_bundle.property
 
-/-- Boltzmann constant k_B > 0. -/
-axiom k_B : ℝ
-axiom k_B_pos : 0 < k_B
+/-- Gravitational constant G > 0 (bundled — see `c_bundle` rationale). -/
+noncomputable opaque G_N_bundle : {x : ℝ // 0 < x} := ⟨1, one_pos⟩
+noncomputable abbrev G_N : ℝ := G_N_bundle.val
+theorem G_N_pos : 0 < G_N := G_N_bundle.property
+
+/-- Boltzmann constant k_B > 0 (bundled — see `c_bundle` rationale). -/
+noncomputable opaque k_B_bundle : {x : ℝ // 0 < x} := ⟨1, one_pos⟩
+noncomputable abbrev k_B : ℝ := k_B_bundle.val
+theorem k_B_pos : 0 < k_B := k_B_bundle.property
 
 -- ============================================================
 -- Derived Planck units

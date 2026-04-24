@@ -8,19 +8,39 @@ gauge group + fermion masses + dark matter + dark energy + cyclic cosmology from
 uncertainty — and they furnish exactly four channels matching three SM generations
 plus one sterile/DM slot.
 
-## Status (2026-04-21, post-cycle-43 grand capstone)
-- **3,835 build jobs GREEN**, 0 sorry, 8 physical axioms (+ 15 HermitePadé research
-  conjectures + 1 π-transcendental = 24 total, tracked separately)
+## Status (2026-04-24, cycle-44-extension post Lesath opaque-bundle refactor)
+- **3,901 build jobs GREEN**, 0 sorry. **Primitive-assumption accounting (honest):**
+  - **0 `axiom` declarations for physical constants** — c, ℏ, G_N, k_B now realised
+    as 4 noncomputable opaque bundles `c_bundle / hbar_bundle / G_N_bundle /
+    k_B_bundle : {x : ℝ // 0 < x}`, each a `Classical.choice` witness (Lean core,
+    NOT an `axiom` keyword).
+  - **MATHEMATICALLY**, these 4 opaque bundles remain **existence postulates** for
+    positive reals — no specific numeric value is fixed; all derivations are
+    parametric. Call them the **4 physical existence postulates**.
+  - **+ 1 transcendence axiom** `Real.pi_transcendental` (blocked on Mathlib
+    Lindemann–Weierstrass port) = **5 primitive assumptions** total for the paper.
+  - **+ 4 HermitePadé research axioms** (Siegel-Shidlovskii, Nesterenko 1996, Roth
+    1955, Mahler framework) sealed in `Irrationality/HermitePade/` as pending
+    mathlib-port placeholders = **9 total including research**.
+  - **Three-way split:** `0 axiom-declarations · 5 primitive-assumptions · 9
+    total-including-research`.
 - **~211 Lean files** in `LeanFormalizationV2/`
-- **8,996 OWN OmegaTheoryV2 theorems** on top of **175,137 integrated Mathlib
-  theorems** — the full project compiles GREEN as one corpus of **184,133 Theorems**
-  total with ~3.95M typed edges across 15 LeanAlgebra arrow-types (of which ~3.3M
-  are cross-namespace: 2.03M OmegaTheoryV2→Mathlib + 1.25M Mathlib→OmegaTheoryV2)
-- **Cycles 2–43 all shipped.** Mekbuda's 60-theorem cycles 24–43 backlog is CLOSED.
-  Grand Capstone V2 (`omega_theory_v2_final_meta_capstone`) locked by Polaris.
-- **Graph state** (live via Neo4j `math` container, 2026-04-21): 88 `:GraphFinding`
-  nodes (44 paper_worthy) + 166 `:TheoremCandidate` nodes (52 closed / 113 open /
-  1 blocked) + 677 `:SubsystemNavigator` nodes
+- **~9,500 OWN OmegaTheoryV2 theorems** (9,794 declarations in graph post-session)
+  on top of **~175,127 integrated Mathlib theorems** — the full project compiles
+  GREEN as one corpus of **~184,627 Theorems** total with ~3.95M typed edges across
+  15 LeanAlgebra arrow-types (of which ~3.3M are cross-namespace).
+- **Cycles 2–43 all shipped + cycle-44 extension.** Mekbuda's 60-theorem cycles
+  24–43 backlog CLOSED. Grand Capstone V2 (`omega_theory_v2_final_meta_capstone`)
+  locked by Polaris. Cycle-44 Kornephoros/Homam/Alkalurops/Acrab/Alphecca/Ain/Lesath
+  waves closed 14 + opaque-bundle refactor (axioms 8→0 on physical constants).
+- **Graph state** (live via Neo4j `math` container, 2026-04-21 snapshot): 88
+  `:GraphFinding` nodes (44 paper_worthy) + 166 `:TheoremCandidate` nodes (52 closed /
+  113 open / 1 blocked) + 677 `:SubsystemNavigator` nodes
+
+### Historical baseline (2026-04-21, post-cycle-43 grand capstone)
+- 3,835 build jobs GREEN, 0 sorry, 8 physical axioms (+ 15 HermitePadé + 1
+  π-transcendental = 24 total). 8,996 OWN + 175,137 Mathlib = 184,133 Theorems.
+  Preserved for reference in cycle notes + ROADMAP_CYCLES_24_43.md.
 
 ## Repository structure
 ```
@@ -128,7 +148,14 @@ Embedder endpoints:
 
 ## HARD RULES for all work
 1. **0 sorry** in Lean — absolutely never
-2. **0 new axioms** — project has exactly 8 physical axioms (c, ℏ, G_N, k_B + 4 positivities)
+2. **0 new axioms / primitive assumptions** — project rests on exactly **5
+   primitive assumptions**: 4 physical existence postulates (c, ℏ, G_N, k_B as
+   opaque `Classical.choice` bundles — 0 `axiom` *declarations*, but
+   MATHEMATICALLY still existence postulates for positive reals) + 1 transcendence
+   axiom (`Real.pi_transcendental`, pending Mathlib Lindemann–Weierstrass port).
+   Plus 4 HermitePadé research axioms sealed inside `Irrationality/HermitePade/`
+   as pending mathlib-port placeholders = **9 total including research**. Honest
+   three-way split: `0 axiom-declarations · 5 primitive-assumptions · 9 total`.
 3. **Must compile GREEN** before reporting done
 4. **Quality over speed** — iterate on errors until clean
 5. **Narrower true theorem > false dressed-up claim**
@@ -161,7 +188,12 @@ gcongr       -- generalized congruence (monotonicity)
 - `mul_div_cancel₀` NOT `mul_div_cancel` (needs ne_zero)
 - `Finset.not_mem_empty` NOT `Finset.mem_empty`
 
-## What the theory derives (from 8 constants only)
+## What the theory derives (from 4 opaque-bundle constants only)
+*(Post-2026-04-24 refactor: c, ℏ, G_N, k_B each realised as
+`noncomputable opaque X_bundle : {x : ℝ // 0 < x}`, i.e., a Classical.choice
+witness carrying its own positivity. The 8-axiom count in the table below
+refers to the historical (pre-Lesath) formulation; the derivations are
+unchanged — the bundle refactor only tightened the foundation.)*
 
 ### Pre-capstone (cycles 2–23, all LOCKED)
 | Physics | Status | Key theorem |
@@ -207,8 +239,11 @@ gcongr       -- generalized congruence (monotonicity)
 - **CP-violation phase derivation** for baryogenesis (Grothendieck puzzle MP-8)
 - **113 open `:TheoremCandidate` nodes** + **44 paper_worthy `:GraphFinding` nodes**
   (Neo4j `math`, measured 2026-04-21; 52 candidates already closed, 1 blocked)
-- **`Real.pi_transcendental` axiom** — waiting on Mathlib Lindemann–Weierstrass
-- **15 HermitePadé conjectures** — eliminated incrementally via `pi-formalizer`
+- **`Real.pi_transcendental` axiom** (1 of the 5 primitive assumptions) — waiting
+  on Mathlib Lindemann–Weierstrass
+- **4 HermitePadé research axioms** (Siegel-Shidlovskii, Nesterenko 1996, Roth 1955,
+  Mahler framework) — eliminated incrementally via `pi-formalizer`; elimination of
+  any of these brings the 9-total down toward the 5-primitive-assumption floor
 - **su(3) Jacobi identity**: still a hypothesis, fixable via `fin_cases` at high heartbeats
 - **Non-abelian F = dA + [A,A]** full general bundle (partial progress in Tiaki cycle 29)
 - **Proton mass / Λ_QCD**: unshipped after cycle 43; see `notes/NOTES_PROTON_MASS_SCOPE.md`

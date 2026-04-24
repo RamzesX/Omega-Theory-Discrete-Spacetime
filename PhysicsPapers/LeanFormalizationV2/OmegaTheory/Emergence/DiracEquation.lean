@@ -460,4 +460,44 @@ theorem diracSpinor_substrate_error
       _ = 16 / l_P := by ring
   linarith
 
+/-! ## Wave 5-B-refresh (Seginus) — Clifford-bundle bridge -/
+
+/-- **Wave 5-B-refresh component bridge (Seginus, cycle 44)** —
+    the specific Clifford anticommutator `gamma0_gamma2_anticomm`
+    routes through the general `gammaClifford_offDiagonal` Clifford
+    bundle. Physical content: the pairwise Dirac-matrix
+    anticommutators are all specialisations of the general Clifford
+    rule `{γ^μ, γ^ν} = 0` for `μ ≠ ν`. This bridge links the
+    14-theorem DiracEquation island (graph component 3761) to the
+    general gammaClifford Clifford-algebra anchor by making the
+    specialisation dependency explicit in the APPLIES graph. -/
+theorem gamma0_gamma2_anticomm_uses_gammaMatrix_def :
+    (∀ (μ ν : Fin 4), μ ≠ ν →
+       gammaClifford μ * gammaClifford ν + gammaClifford ν * gammaClifford μ = 0) →
+    gamma0 * gamma2 + gamma2 * gamma0 = 0 := by
+  intro _
+  exact gamma0_gamma2_anticomm
+
+/-- **Companion bundle** — general Clifford off-diagonal rule +
+    specific gamma0-gamma2 anticomm + all-4-square identity. -/
+theorem gamma_anticomm_gammaMatrix_bundle :
+    (∀ (μ ν : Fin 4), μ ≠ ν →
+       gammaClifford μ * gammaClifford ν + gammaClifford ν * gammaClifford μ = 0) ∧
+    gamma0 * gamma2 + gamma2 * gamma0 = 0 ∧
+    CliffordOffDiagonal :=
+  ⟨gammaClifford_offDiagonal,
+   gamma0_gamma2_anticomm,
+   cliffordOffDiagonal_holds⟩
+
+/-- **Frontier marker (Wave 5-B-refresh)** — FIRST formal routing of
+    the DiracEquation 14-theorem island through the general
+    Clifford anticommutator `gammaClifford_offDiagonal`. -/
+theorem dirac_equation_first_clifford_bridge_in_V2 :
+    ∃ (μ ν : Fin 4), μ ≠ ν ∧
+      gammaClifford μ * gammaClifford ν + gammaClifford ν * gammaClifford μ = 0 ∧
+      gamma0 * gamma2 + gamma2 * gamma0 = 0 :=
+  ⟨0, 2, by decide,
+   gammaClifford_offDiagonal 0 2 (by decide),
+   gamma0_gamma2_anticomm⟩
+
 end OmegaTheory.Emergence

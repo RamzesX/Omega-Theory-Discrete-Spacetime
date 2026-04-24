@@ -460,4 +460,48 @@ theorem right_handed_doublet_first_CP_dual_completion_in_V2 :
           LeftLeptonDoubletY.mk']
   · rfl
 
+/-! ## Wave 5-B-refresh (Seginus) — canonical left-hypercharge bridge -/
+
+/-- **Wave 5-B-refresh component bridge (Seginus, cycle 44)** —
+    the CPT handedness theorem `CPT_handedness` composes with
+    `LeftLeptonDoubletY.canonical_hypercharge` to give the
+    canonical `RightLeptonDoubletY.fromLeft` hypercharge identity.
+    Physical content: once we apply CPT to the canonical left
+    doublet, we get the canonical right doublet with hypercharge
+    equal to +1/2 (the negation of −1/2). This bridge links the
+    17-theorem RightHandedDoublet island (graph component 1593) to
+    the FermionContent giant-component anchor by making the canonical
+    lepton hypercharge dependency explicit in the APPLIES graph. -/
+theorem CPT_handedness_uses_leftHandedDoublet
+    (gen : FermionGeneration) :
+    (CPT (LeftLeptonDoubletY.canonical gen)).handedness = Handedness.right ∧
+    (LeftLeptonDoubletY.canonical gen).hypercharge = -1/2 ∧
+    (CPT (LeftLeptonDoubletY.canonical gen)).hypercharge = 1/2 := by
+  refine ⟨CPT_handedness _, ?_, ?_⟩
+  · exact LeftLeptonDoubletY.canonical_hypercharge_eq_neg_half gen
+  · rw [CPT_hypercharge, LeftLeptonDoubletY.canonical_hypercharge_eq_neg_half]
+    ring
+
+/-- **Companion bundle** — CPT handedness + left canonical hypercharge
+    + right canonical hypercharge (all at the same generation). -/
+theorem CPT_handedness_leftHandedDoublet_bundle
+    (gen : FermionGeneration) :
+    (CPT (LeftLeptonDoubletY.canonical gen)).handedness = Handedness.right ∧
+    (LeftLeptonDoubletY.canonical gen).hypercharge = -1/2 ∧
+    (RightLeptonDoubletY.canonical gen).hypercharge = 1/2 :=
+  ⟨CPT_handedness _,
+   LeftLeptonDoubletY.canonical_hypercharge_eq_neg_half gen,
+   RightLeptonDoubletY.canonical_hypercharge_eq_half gen⟩
+
+/-- **Frontier marker (Wave 5-B-refresh)** — FIRST formal routing of
+    the RightHandedDoublet 17-theorem island through the canonical
+    LeftLeptonDoubletY hypercharge anchor. -/
+theorem right_handed_doublet_first_canonical_bridge_in_V2 :
+    ∃ (gen : FermionGeneration),
+      (LeftLeptonDoubletY.canonical gen).hypercharge = -1/2 ∧
+      (RightLeptonDoubletY.canonical gen).hypercharge = 1/2 :=
+  ⟨gen1,
+   LeftLeptonDoubletY.canonical_hypercharge_eq_neg_half _,
+   RightLeptonDoubletY.canonical_hypercharge_eq_half _⟩
+
 end OmegaTheory.Emergence.FermionContent.RightHandedDoublet

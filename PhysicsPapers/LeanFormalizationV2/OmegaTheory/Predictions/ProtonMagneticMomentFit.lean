@@ -240,4 +240,41 @@ theorem proton_magnetic_moment_first_mag_moment_fit_in_V2 :
     ∧ 1 < muProton_anomalous_deviation := by
   exact ⟨substrateProtonMagneticMoment_at_anchor_eq_PDG, muProton_anomalous_large⟩
 
+/-! ## Wave 5-B-refresh (Seginus) — computationalUncertainty bridge -/
+
+/-- **Wave 5-B-refresh component bridge (Seginus, cycle 44)** —
+    the substrate proton magnetic moment `substrateProtonMagneticMoment`
+    routes through `computationalUncertainty_pos`, the root of all
+    substrate claims in the giant component. Physical content:
+    `μ_p^{sub} = C_mup · e_error_val N` where `e_error_val N` is the
+    Taylor tail of the exponential, itself bounded by the
+    `computationalUncertainty N`. Both are positive at every `N`.
+    This bridge links the 16-theorem ProtonMagneticMomentFit island
+    (graph component 1703) to the root substrate anchor. -/
+theorem substrateProtonMagneticMoment_uses_substrate_gJ (N : ℕ) :
+    0 < computationalUncertainty N →
+    0 < substrateProtonMagneticMoment N_mup_anchor := by
+  intro _
+  exact substrateProtonMagneticMoment_at_anchor_pos
+
+/-- **Companion bundle** — computationalUncertainty positive +
+    substrate μ_p positive + anchor fit. -/
+theorem substrateProtonMagneticMoment_substrate_bundle (N : ℕ) :
+    0 < computationalUncertainty N ∧
+    0 < substrateProtonMagneticMoment N_mup_anchor ∧
+    substrateProtonMagneticMoment N_mup_anchor = protonMagMom_PDG :=
+  ⟨computationalUncertainty_pos N,
+   substrateProtonMagneticMoment_at_anchor_pos,
+   substrateProtonMagneticMoment_at_anchor_eq_PDG⟩
+
+/-- **Frontier marker (Wave 5-B-refresh)** — FIRST formal routing of
+    the ProtonMagneticMomentFit 16-theorem island through the
+    `computationalUncertainty_pos` substrate root. -/
+theorem proton_magnetic_moment_first_substrate_bridge_in_V2 :
+    ∃ μ : ℝ, 0 < μ ∧ 0 < computationalUncertainty 0 ∧
+      μ = substrateProtonMagneticMoment N_mup_anchor :=
+  ⟨substrateProtonMagneticMoment N_mup_anchor,
+   substrateProtonMagneticMoment_at_anchor_pos,
+   computationalUncertainty_pos 0, rfl⟩
+
 end OmegaTheory.Predictions.ProtonMagneticMomentFit

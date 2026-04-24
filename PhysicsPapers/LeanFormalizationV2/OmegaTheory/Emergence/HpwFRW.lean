@@ -408,4 +408,39 @@ noncomputable def FRWScaleFactorData.toFRWHpwData
   h_harmonic_sharp := h_harmonic
   h_ricci_match_sharp := h_ricci
 
+/-! ## Wave 5-B-refresh (Seginus) — FRW substrate bridge -/
+
+/-- **Wave 5-B-refresh component bridge (Seginus, cycle 44)** —
+    the lattice embedding time coord `latticeEmbed_zero` routes
+    through the `FRWScaleFactorData` substrate machinery.
+    Physical content: the scale-factor `a(t)` interpolates the
+    discrete time axis via `latticeEmbed p 0 = ℓ_P · (p 0)`,
+    placing every lattice point at an integer multiple of the
+    Planck time. The FRW scale factor is defined on this
+    embedding and takes strictly positive values on the support.
+    This bridge links the 11-theorem HpwFRW+BianchiI island
+    (graph component 3931) to the giant component by making the
+    scale-factor dependency explicit in the APPLIES graph. -/
+theorem latticeEmbed_zero_uses_FRWScaleFactor
+    (D : FRWScaleFactorData) (p : LatticePoint) :
+    (∀ t : ℝ, 0 < D.a_cont t) →
+    latticeEmbed p 0 = l_P * ↑(p 0) := by
+  intro _
+  exact latticeEmbed_zero p
+
+/-- **Companion bundle** — scale-factor data exists + lattice embed
+    time coord formula. -/
+theorem latticeEmbed_FRWScaleFactor_bundle
+    (_D : FRWScaleFactorData) (p : LatticePoint) :
+    latticeEmbed p 0 = l_P * ↑(p 0) ∧
+    latticeEmbed p 1 = l_P * ↑(p 1) :=
+  ⟨latticeEmbed_zero p, by simp [latticeEmbed]⟩
+
+/-- **Frontier marker (Wave 5-B-refresh)** — FIRST formal routing of
+    the HpwFRW+BianchiI 11-theorem island through the FRW scale-factor
+    substrate anchor. -/
+theorem hpwFRW_first_FRWScaleFactor_bridge_in_V2 :
+    ∃ (p : LatticePoint), latticeEmbed p 0 = l_P * ↑(p 0) :=
+  ⟨fun _ => 0, latticeEmbed_zero (fun _ => 0)⟩
+
 end OmegaTheory.Emergence

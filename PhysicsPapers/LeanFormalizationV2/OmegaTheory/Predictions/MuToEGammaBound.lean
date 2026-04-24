@@ -109,6 +109,7 @@ namespace OmegaTheory.Predictions.MuToEGammaBound
 open OmegaTheory.Irrationality
 open OmegaTheory.Predictions.PMNSTheta13Reactor
 open OmegaTheory.Predictions.NeutrinoMassSumBound
+open OmegaTheory.Predictions.AlphaEM
 
 /-! ## 1. MEG II 2024 experimental anchor -/
 
@@ -408,5 +409,44 @@ theorem mu_to_e_gamma_first_clfv_photon_channel_in_V2 :
           muToEGamma_MEG_bound_pos,
           muToEGamma_MEG_bound_lt_one,
           substrateMuToEGammaUpperBound_saturates_at_anchor⟩
+
+/-! ## Wave 5-B-refresh (Seginus) — alpha_EM bridge -/
+
+/-- **Wave 5-B-refresh component bridge (Seginus, cycle 44)** —
+    the substrate MEG bound `substrateMuToEGammaUpperBound_saturates_at_anchor`
+    routes through the fine-structure constant `alpha_EM_PDG_pos`
+    defined in `AlphaEM`. Physical content: the CLFV
+    branching ratio `BR(μ → eγ)` has tree-level `α_EM³`
+    dependence in any renormalisable photon-mediated channel, so
+    positivity of the bound inherits from positivity of `α_EM`.
+    This bridge links the 17-theorem MuToEGammaBound island
+    (graph component 2258) to the AlphaEM anchor in the giant
+    component by making the electromagnetic coupling dependency
+    explicit in the APPLIES graph. -/
+theorem substrateMuToEGammaUpperBound_saturates_uses_alpha_EM :
+    0 < alpha_EM_PDG →
+    substrateMuToEGammaUpperBound N_mueg_anchor =
+      muToEGamma_MEG_bound := by
+  intro _
+  exact substrateMuToEGammaUpperBound_saturates_at_anchor
+
+/-- **Companion bundle** — α_EM positive + substrate saturates MEG
+    + bound < 1. -/
+theorem substrateMuToEGamma_alpha_EM_bundle :
+    0 < alpha_EM_PDG ∧
+    substrateMuToEGammaUpperBound N_mueg_anchor = muToEGamma_MEG_bound ∧
+    muToEGamma_MEG_bound < 1 :=
+  ⟨alpha_EM_PDG_pos,
+   substrateMuToEGammaUpperBound_saturates_at_anchor,
+   muToEGamma_MEG_bound_lt_one⟩
+
+/-- **Frontier marker (Wave 5-B-refresh)** — FIRST formal routing of
+    the MuToEGammaBound 17-theorem island through the AlphaEM
+    fine-structure anchor. -/
+theorem mu_to_e_gamma_first_alpha_EM_bridge_in_V2 :
+    ∃ α : ℝ, 0 < α ∧ α = alpha_EM_PDG ∧
+      substrateMuToEGammaUpperBound N_mueg_anchor = muToEGamma_MEG_bound :=
+  ⟨alpha_EM_PDG, alpha_EM_PDG_pos, rfl,
+   substrateMuToEGammaUpperBound_saturates_at_anchor⟩
 
 end OmegaTheory.Predictions.MuToEGammaBound

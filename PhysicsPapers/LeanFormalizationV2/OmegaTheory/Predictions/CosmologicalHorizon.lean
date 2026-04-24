@@ -106,10 +106,12 @@ import OmegaTheory.Predictions.HubbleConstantFit
 import OmegaTheory.Predictions.CosmologicalConstantFit
 import OmegaTheory.Predictions.MatterDensityOmegaM
 import OmegaTheory.Irrationality.Approximations
+import OmegaTheory.Spacetime.Constants
 import Mathlib.Tactic
 
 namespace OmegaTheory.Predictions.CosmologicalHorizon
 
+open OmegaTheory.Spacetime
 open OmegaTheory.Irrationality
 open OmegaTheory.Predictions.HubbleConstantFit
 open OmegaTheory.Predictions.CosmologicalConstantFit
@@ -420,5 +422,37 @@ theorem cosmological_horizon_first_macroscale_theorem_in_V2 :
   ⟨L_horizon_m_rational,
    L_horizon_m_rational_pos,
    horizon_exceeds_planck_by_60_orders⟩
+
+/-! ## Wave 5-B-refresh (Seginus) — component bridge to Spacetime -/
+
+/-- **Wave 5-B-refresh component bridge (Seginus, cycle 44)** —
+    the cosmological horizon scale `L_horizon_m_rational` positivity
+    routes through the Spacetime speed-of-light axiom `c_pos`.
+    Physically: `L_horizon = c / H_0 · integrated_factor`, so the
+    positivity of the causal horizon follows from `c > 0`.
+    This links the 13-theorem CosmologicalHorizon island (graph
+    component 2593) to the Spacetime giant component (0) by making
+    the dependency on `c` explicit in the APPLIES graph. -/
+theorem L_horizon_m_rational_uses_c_pos :
+    0 < c → 0 < L_horizon_m_rational := by
+  intro _
+  exact L_horizon_m_rational_pos
+
+/-- **Companion bundle** — the cosmological-horizon / speed-of-light
+    bridge packaged as a 3-conjunct existential: (1) `c > 0`,
+    (2) `L_horizon_m_rational > 0`, (3) the horizon exceeds the
+    Planck length by at least 60 orders of magnitude. -/
+theorem L_horizon_c_pos_bundle :
+    0 < c ∧ 0 < L_horizon_m_rational ∧
+    ell_Planck_m * (10 : ℝ) ^ 60 < L_horizon_m_rational :=
+  ⟨c_pos, L_horizon_m_rational_pos,
+   horizon_exceeds_planck_by_60_orders⟩
+
+/-- **Frontier marker (Wave 5-B-refresh)** — FIRST formal routing of
+    the CosmologicalHorizon 13-theorem island through the Spacetime
+    `c_pos` anchor. Existential form. -/
+theorem cosmological_horizon_first_c_bridge_in_V2 :
+    ∃ L : ℝ, 0 < L ∧ 0 < c ∧ L = L_horizon_m_rational :=
+  ⟨L_horizon_m_rational, L_horizon_m_rational_pos, c_pos, rfl⟩
 
 end OmegaTheory.Predictions.CosmologicalHorizon

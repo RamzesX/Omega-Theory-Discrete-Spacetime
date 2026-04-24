@@ -1,10 +1,10 @@
 # OmegaTheory — A Friendly Tour
 
-> **Corpus scale** (live 2026-04-21): 🔷 **8,996** OmegaTheoryV2 own theorems · 🔶 **175,137** Mathlib integrated · 🔹 **184,133** total. Build: **3,835 jobs GREEN**, 0 sorry, **8 physical axioms** (+ 15 HermitePadé + 1 π-transcendental = 24 total, tracked separately). *(See §"The three-way split" below for the narrative version of this table.)*
+> **Corpus scale** (2026-04-24, cycle-44-extension post Lesath opaque-bundle refactor): 🔷 **~9,500** OmegaTheoryV2 own theorems · 🔶 **~175,127** Mathlib integrated · 🔹 **~184,627** total. Build: **3,901 jobs GREEN**, 0 sorry. **Honest axiom accounting:** `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research`. The 4 physical constants (c, ℏ, G_N, k_B) are now `noncomputable opaque X_bundle : {x : ℝ // 0 < x}` via `Classical.choice` — 0 `axiom` *declarations* but MATHEMATICALLY 4 existence postulates for positive reals (no specific numeric value fixed, all derivations parametric). Plus **1 transcendence axiom** `Real.pi_transcendental` = **5 primitive assumptions**. Plus **4 HermitePadé research axioms** (Siegel-Shidlovskii, Nesterenko 1996, Roth 1955, Mahler framework) = **9 total**. *Historical baseline (2026-04-21): 8,996 own · 184,133 total · 3,835 jobs · 24 `axiom` declarations. (See §"The three-way split" below for the narrative version of this table.)*
 
 ## What is this project, in one paragraph?
 
-This repository is an attempt to derive all of physics — quantum mechanics, general relativity, the Standard Model of particle physics, dark matter, dark energy, even the Big Bounce — from a single postulate: **spacetime is discrete at the Planck scale**. That alone is not unusual. What makes the project different is that every derivation is formalised in the Lean 4 theorem prover, so the logic can be machine-checked line by line, and the project is built by a swarm of autonomous AI agents running for months on end, co-ordinated through a Neo4j knowledge graph that knows which theorem depends on which. As of 2026-04-21 the corpus compiles **0 sorry** (no proof gaps), rests on **8 physical axioms** (the speed of light, Planck's constant, Newton's G, Boltzmann's k_B and their positivity statements), and extends to **8,996 own theorems** that sit on top of the 175,137-theorem Mathlib v4.29.0 library.
+This repository is an attempt to derive all of physics — quantum mechanics, general relativity, the Standard Model of particle physics, dark matter, dark energy, even the Big Bounce — from a single postulate: **spacetime is discrete at the Planck scale**. That alone is not unusual. What makes the project different is that every derivation is formalised in the Lean 4 theorem prover, so the logic can be machine-checked line by line, and the project is built by a swarm of autonomous AI agents running for months on end, co-ordinated through a Neo4j knowledge graph that knows which theorem depends on which. As of **2026-04-24** the corpus compiles **0 sorry** (no proof gaps) and rests on **5 primitive mathematical assumptions** post-Lesath opaque-bundle refactor — the speed of light, Planck's constant, Newton's G, Boltzmann's k_B are each now a `noncomputable opaque X_bundle : {x : ℝ // 0 < x}` (a `Classical.choice` witness from Lean core, NOT an `axiom` *keyword*; but MATHEMATICALLY these 4 opaque bundles are still existence postulates for positive reals, because Classical.choice doesn't erase an existence commitment — it just packages it), plus 1 transcendence axiom `Real.pi_transcendental` (pending Mathlib Lindemann–Weierstrass port). So the honest three-way split is `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research` (the +4 being HermitePadé research axioms sealed in `Irrationality/HermitePade/`). The corpus extends to **~9,500 own theorems** (9,794 declarations in graph; Apr-21 baseline 8,996) that sit on top of the ~175,127-theorem Mathlib v4.29.0 library.
 
 This document is the friendly front door. It explains what the theory claims, in plain English, and — just as important — explains the *methodology* that got us here: Lean 4 formalisation, graph-augmented theorem proving, autonomous agent cycles, and the new V3-for-Lean retrieval pipeline. Target reader: curious physicist, mathematician, software engineer, or philosopher who isn't necessarily a Lean expert but wants to know what's real, what's speculative, and how it was all built.
 
@@ -18,9 +18,9 @@ The project has three complementary layers. A reader who understands this split 
 
 | Layer | What is it? | Size (live-audited 2026-04-21) | Example |
 |---|---|---:|---|
-| **Omega-Lean** | Theorems we have *proved*, machine-checked in Lean 4 | **8,996** theorems (and 4,465 definitions, 24 axioms) | `vacuum_einstein_emergence` — Einstein's field equations in 7 regimes, zero new assumptions. |
+| **Omega-Lean** | Theorems we have *proved*, machine-checked in Lean 4 | **~9,500** theorems (9,794 declarations post-session 2026-04-24; Apr-21 baseline 8,996) — 4,465 definitions. **5 primitive assumptions** (4 physical existence postulates via `Classical.choice` opaque bundles — 0 `axiom` *declarations* for constants — + 1 `Real.pi_transcendental`); **9 total** including 4 HermitePadé research axioms | `vacuum_einstein_emergence` — Einstein's field equations in 7 regimes, zero new assumptions. |
 | **Graph** | Things the knowledge graph has *discovered* but that we have *not yet proved* | **175** `:TheoremCandidate`s (70 genuinely open) · **105** `:GraphFinding`s (53 paper-worthy) · **33** reproducible `:GrothendieckRecipe`s · **677** Leiden communities | The Grothendieck-sage agents notice a strong topological bridge between two subsystems; they emit a candidate name, a predicted signature, but no proof yet. |
-| **Mathlib** | What we *build on* — the 175,137-theorem foundation | **175,137** theorems + 32,917 definitions, **6 axioms**, integrated via 3.28 M cross-namespace `APPLIES` edges | Every one of our 8,996 theorems types against this backbone; we didn't rebuild real analysis or measure theory. |
+| **Mathlib** | What we *build on* — the ~175,127-theorem foundation | **~175,127** theorems + 32,917 definitions, **6 axioms**, integrated via 3.28 M cross-namespace `APPLIES` edges | Every one of our ~9,500 theorems types against this backbone; we didn't rebuild real analysis or measure theory. |
 
 **The narrative, in one line:** *Omega-Lean is what we've proved, Graph is what we've noticed but not yet proved, Mathlib is the mountain we climbed up on.*
 
@@ -114,11 +114,11 @@ Of the 20+ predictions, **one is experimentally verified** (Diraq 2024), **ten a
 
 ## Part II — *How* this was built: the methodology
 
-This section is for readers who want to know how 8,996 theorems appeared without a 50-person research team. The short answer: **Lean 4 + a Neo4j knowledge graph + autonomous AI agents working in waves**, running continuously from January through April 2026.
+This section is for readers who want to know how ~9,500 theorems (9,794 declarations post-2026-04-24; Apr-21 baseline 8,996) appeared without a 50-person research team. The short answer: **Lean 4 + a Neo4j knowledge graph + autonomous AI agents working in waves**, running continuously from January through April 2026.
 
 ### 1. Lean 4 formalisation
 
-Every physical claim that appears in the paper portfolio lives in `LeanFormalizationV2/OmegaTheory/`. Lean 4 is a dependent-type-theory proof assistant built by Microsoft Research + Mathlib community; Mathlib v4.29.0 provides the mathematical foundation (real analysis, measure theory, algebraic topology, category theory, etc. — 175,137 theorems). Every one of our 8,996 theorems is typed against this backbone through an explicit `APPLIES` relation, traced in the knowledge graph.
+Every physical claim that appears in the paper portfolio lives in `LeanFormalizationV2/OmegaTheory/`. Lean 4 is a dependent-type-theory proof assistant built by Microsoft Research + Mathlib community; Mathlib v4.29.0 provides the mathematical foundation (real analysis, measure theory, algebraic topology, category theory, etc. — ~175,127 theorems). Every one of our ~9,500 theorems is typed against this backbone through an explicit `APPLIES` relation, traced in the knowledge graph.
 
 **Why formalise?** Because physics unification arguments are historically prone to sleight-of-hand: "obviously," "up to a phase," "taking the continuum limit." When you formalise, "obviously" becomes a compilation error. Four specific pieces of friction became key:
 - We tried to unify gravity as a postulated coupling — it wouldn't compile. The offending axiom (HPW — "Heat-Positive-Work") was eventually *deleted* in cycles 14-15 by agent *Atria*, after being eliminated on all 7 cosmological regimes (Minkowski, Schwarzschild, de Sitter, FRW, Bianchi I, etc.). The unification claim survived the deletion — gravity is not a postulated coupling, it is the residual of the healing flow.
@@ -126,7 +126,7 @@ Every physical claim that appears in the paper portfolio lives in `LeanFormaliza
 - We tried to prove strong CP using an axion. Lean refused because axions aren't in the axiom list. We found (cycle 13) that substrate computation beats experiment from N ≥ 6 without needing an axion at all. One fewer particle to search for.
 - We tried to ship the full Einstein equations quickly. Lean exposed 7 distinct regimes where the proofs differed subtly. Handling each individually made the claim far stronger than a blanket "GR follows."
 
-The rules are hard: **0 sorry** (no proof gaps), **0 new axioms** beyond the 8 physical constants, and the full build must compile clean (3,835 jobs GREEN) before any claim is considered shipped.
+The rules are hard: **0 sorry** (no proof gaps), **0 new axiom declarations or primitive assumptions** — post-2026-04-24 the 4 fundamental constants (c, ℏ, G_N, k_B) are opaque `Classical.choice` bundles (removing the `axiom` *keyword* but not the underlying existence postulate, which mathematically remains) rather than fresh `axiom` declarations; combined with `Real.pi_transcendental` we're at `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research` — and the full build must compile clean (**3,901 jobs GREEN** at cycle-44-extension; 3,835 at the 2026-04-21 post-cycle-43 baseline) before any claim is considered shipped.
 
 ### 2. The Neo4j knowledge graph
 
@@ -151,7 +151,7 @@ Beyond dependency bookkeeping, the graph is a *discovery tool*. The V3-for-Lean 
 
 The first time anyone has coupled a **Magnetic Laplacian** (complex-valued, Hermitian) with **Leiden community detection** on a theorem-prover corpus. The schema encodes the 15 typed arrows as complex amplitudes; the g = 1/4 phase turns directed edges into signed eigenfunctions, so we can measure both the *direction* and the *consistency* of proof chains. FastRP embeddings (m = 64 per relation, seed 42) then project the graph into Euclidean space so *similarity between theorems* becomes a floating-point computation.
 
-Leiden then partitions the 8,996-theorem corpus into 677 `:SubsystemNavigator` communities (modularity Q = 0.89 at γ = 0.5, Navi pass 2026-04-21). Each community is a *physics subsystem* in a precise sense: theorems inside a community cite each other heavily, theorems across communities cite each other rarely. The subsystem boundaries are where the graph notices **cross-sector bridges** — places where an OmegaTheory theorem needs Mathlib linear algebra, or where the matter sector reaches into the gravity sector. Cycles 28 (Kitalpha) and 32 (Tejat) chased those boundaries explicitly.
+Leiden then partitions the (as of 2026-04-21) 8,996-theorem corpus (~9,500 at 2026-04-24) into 677 `:SubsystemNavigator` communities (modularity Q = 0.89 at γ = 0.5, Navi pass 2026-04-21). Each community is a *physics subsystem* in a precise sense: theorems inside a community cite each other heavily, theorems across communities cite each other rarely. The subsystem boundaries are where the graph notices **cross-sector bridges** — places where an OmegaTheory theorem needs Mathlib linear algebra, or where the matter sector reaches into the gravity sector. Cycles 28 (Kitalpha) and 32 (Tejat) chased those boundaries explicitly.
 
 ### 4. Autonomous agent cycles
 
@@ -306,9 +306,9 @@ ORDER BY tc.priority, tc.cycle
             CHRONOLOGY     FALSIFIABLE    omega_theory_v2_
             PROTECTION     PREDICTIONS    final_meta_capstone
             (no CTCs)      (Diraq 2024    (cycle 43 Polaris
-                           verified;      3835 jobs green,
-                           10+ more       0 sorry, 8 axioms)
-                           testable)
+                           verified;      3901 jobs green,
+                           10+ more       0 sorry, 0 phys ax
+                           testable)       +1 π-transcendental)
 ```
 
 ---
@@ -369,7 +369,7 @@ The PRL letter package lives at [`PhysicsPapers/letter-coldneutron/`](PhysicsPap
 
 ## The one-line summary
 
-> **A unified theory of physics, derived from the single postulate that spacetime is discrete, formalised in Lean 4 (0 sorry, 8 physical axioms, 3,835 build jobs green, 8,996 own theorems + 175,137 integrated Mathlib theorems), discovered and extended by 120+ autonomous AI agent cycles co-ordinated through a Neo4j knowledge graph, with one experimentally-verified prediction (Diraq 2024) and ~20 more awaiting falsification.**
+> **A unified theory of physics, derived from the single postulate that spacetime is discrete, formalised in Lean 4 (0 sorry, 3,901 build jobs green; honest axiom accounting `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research` post-2026-04-24 Lesath opaque-bundle refactor, where the 5 primitive assumptions are the 4 physical existence postulates for c/ℏ/G_N/k_B via `Classical.choice` opaque bundles + `Real.pi_transcendental`; ~9,500 own theorems + ~175,127 integrated Mathlib theorems = ~184,627 total), discovered and extended by 120+ autonomous AI agent cycles co-ordinated through a Neo4j knowledge graph, with one experimentally-verified prediction (Diraq 2024) and ~20 more awaiting falsification.**
 
 ---
 
@@ -377,7 +377,7 @@ The PRL letter package lives at [`PhysicsPapers/letter-coldneutron/`](PhysicsPap
 
 - **Norbert Marchewka** — principal author, physicist, project lead.
 - **~120 autonomous AI agents** (cycles 10-43, January through April 2026) — every theorem credit lives in the agent-memory directories and `:GrothendieckRecipe` / `:GraphFinding` `created_by` fields.
-- **Mathlib community** — 175,137 theorems' worth of foundation, without which none of this compiles.
+- **Mathlib community** — ~175,127 theorems' worth of foundation, without which none of this compiles.
 - **LeanDojo team** — `kaiyuy/leandojo-lean4-retriever-byt5-small` was the retrieval breakthrough that made the agent pipeline viable.
 - **Qwen team** — Qwen3-Embedding-8B + Qwen3-Reranker-8B power the semantic search layer.
 - **Neo4j + APOC + GDS teams** — the graph database that holds all this state.

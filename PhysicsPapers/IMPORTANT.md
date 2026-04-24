@@ -16,19 +16,19 @@ The project has three complementary layers. Every number below is live-verified 
 
 | | **Omega-Lean** — what we've PROVED | **Graph** — what we've DISCOVERED but not yet proved | **Mathlib** — what we BUILD ON |
 |---|---:|---:|---:|
-| Theorems | **8,996** (`:Theorem {namespace:'OmegaTheoryV2'}`) | **175** `:TheoremCandidate` (106 auto-matched · 70 genuinely OPEN) | **175,137** (`:Theorem {namespace:'Mathlib'}`) |
+| Theorems | **~9,500** (9,794 in graph post-session; 8,996 Apr-21 baseline) (`:Theorem {namespace:'OmegaTheoryV2'}`) | **175** `:TheoremCandidate` (106 auto-matched · 70 genuinely OPEN) | **~175,127** (`:Theorem {namespace:'Mathlib'}`) |
 | Definitions | **4,465** | — | **32,917** |
-| Axioms | **24 total** (8 physical + 1 π-transcendental + 15 Hermite-Padé) | — | **6** |
+| Axioms | **5 primitive assumptions** (4 physical existence postulates via `Classical.choice` opaque bundles — 0 `axiom` *declarations* for constants, but MATHEMATICALLY 4 existence postulates for positive reals — + 1 `Real.pi_transcendental`); **9 total** including 4 HermitePadé research | — | **6** |
 | Paper-worthy findings | — | **53** of 105 `:GraphFinding` | — |
 | Grothendieck recipes | — | **33** `:GrothendieckRecipe` reproducible experiments | — |
 | Leiden communities | — | **677** `:SubsystemNavigator` | — |
 | Lean files | **399** `:LeanFile` nodes (428 files on disk; 29 Meta/test files not ingested) | — | 3,183 `:LeanFile` (7,869 on disk) |
-| Build jobs | **3,835 GREEN · 0 sorry** | — | cached via `lake exe cache get` |
+| Build jobs | **3,901 GREEN · 0 sorry** (cycle-44-extension 2026-04-24; 3,835 at 2026-04-21 baseline) | — | cached via `lake exe cache get` |
 
-**Key narrative**:
-- **Omega-Lean** = the machine-checked backbone (8,996 theorems atop 24 axioms — of which only 8 are physical).
+**Key narrative (post 2026-04-24 Lesath opaque-bundle refactor)** — honest axiom accounting `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research`:
+- **Omega-Lean** = the machine-checked backbone (~9,500 theorems atop **5 primitive assumptions** — 4 physical existence postulates for c/ℏ/G_N/k_B via `Classical.choice` opaque bundles (0 `axiom` *declarations* for constants, but MATHEMATICALLY 4 existence postulates for positive reals; no specific numeric value is fixed, all derivations parametric) + 1 `Real.pi_transcendental`; + 4 HermitePadé research axioms = 9 total).
 - **Graph** = the discovery frontier (53 paper-worthy findings + 70 genuinely-open `:TheoremCandidate`s awaiting formalization).
-- **Mathlib** = the foundation (175,137 theorems linked through 3.28M cross-namespace `APPLIES` edges — no Omega-Lean theorem is "standalone"; each composes against Mathlib).
+- **Mathlib** = the foundation (~175,127 theorems linked through 3.28M cross-namespace `APPLIES` edges — no Omega-Lean theorem is "standalone"; each composes against Mathlib).
 
 ```
 HPW axiom DELETED by Atria (cycles 14-15), eliminable on all 7 regimes.
@@ -149,15 +149,19 @@ packaged at `letter-coldneutron/`). See `notes/NOTES_CYCLE43_GRAND_CAPSTONE.md`
 ## OPEN MATHEMATICAL GAPS (next to close)
 
 ### Gap 1: `Real.pi_transcendental` axiom
-- **Status**: still an axiom, waiting on Mathlib Lindemann–Weierstrass.
+- **Status**: the **5th of the 5 primitive assumptions** (the 4 physical existence postulates for c/ℏ/G_N/k_B are now `Classical.choice` opaque bundles rather than `axiom` declarations, so `Real.pi_transcendental` is the only remaining `axiom`-keyword *primitive assumption* as of 2026-04-24 Lesath refactor); waiting on Mathlib Lindemann–Weierstrass port.
 - **Fix**: monitor Mathlib upstream; swap the axiom for the Mathlib lemma when available.
 
-### Gap 2: HermitePadé research conjectures (15 items)
-- **Status**: used as hypotheses in the Pi-Hunch deep chain, tracked separately.
+### Gap 2: HermitePadé research conjectures (4 items)
+- **Status**: used as hypotheses in the Pi-Hunch deep chain, tracked separately (Siegel-Shidlovskii, Nesterenko 1996, Roth 1955, Mahler framework).
 - **File**: `OmegaTheory/Irrationality/HermitePade/*.lean`.
 - **Fix**: continue the research track; each conjecture closure lowers the
-  "24 total axioms" count (8 physical + 1 π transcendental + 15 HermitePadé)
-  back toward the clean 8-axiom baseline.
+  **9 total axioms** count (5 primitive + 4 HermitePadé) back toward the
+  5-primitive-assumption floor. The 5 primitive assumptions (4 physical existence
+  postulates + `Real.pi_transcendental`) can drop further only when Mathlib
+  ships Lindemann–Weierstrass (then 4) or when a better foundational framework
+  replaces `Classical.choice` opaque bundles for c/ℏ/G_N/k_B.
+  *(Historical: "24 total `axiom` declarations" (8 physical + 1 π-transcendental + 15 HermitePadé) was the 2026-04-21 baseline; the 8 physical `axiom` declarations were retired via opaque `Classical.choice` bundles on 2026-04-24 (reducing declarations to 0 while preserving 4 existence postulates mathematically), and 11 HermitePadé axioms were retired via Acrab's opaque-conversion pattern.)*
 
 ### Gap 3 (CLOSED Apr-17 by Tureis/Dubhe): Clifford off-diagonal
 `gammaClifford_offDiagonal` — all 12 cases unconditional. Kept here only so
@@ -207,8 +211,8 @@ Finset.not_mem_empty  NOT Finset.mem_empty
 
 ### Hard rules
 1. **0 sorry** — absolutely never
-2. **0 new axioms** — project has exactly 8 physical axioms
-3. **Must compile GREEN** before reporting done
+2. **0 new `axiom` declarations / 0 new primitive assumptions** — post-2026-04-24 project sits at **5 primitive assumptions** (4 physical existence postulates for c/ℏ/G_N/k_B via `Classical.choice` opaque bundles — 0 `axiom` *declarations* for physical constants, but MATHEMATICALLY 4 existence postulates remain — + 1 `Real.pi_transcendental`). Honest three-way split: `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research` (+4 HermitePadé).
+3. **Must compile GREEN** before reporting done (3,901 jobs baseline as of cycle-44-extension)
 4. **Register new files** in `OmegaTheory/Basic.lean`
 5. **Quality over speed** — iterate until clean
 
@@ -233,7 +237,7 @@ These agents work as a PAIR in most cycles: creative proposes → wizard formali
 ## ARCHITECTURE OVERVIEW
 
 ```
-8 AXIOMS (c, ℏ, G, k_B + positivity)
+4 OPAQUE CLASSICAL.CHOICE BUNDLES (c, ℏ, G_N, k_B : {x : ℝ // 0 < x})
          │
     ℤ⁴ LATTICE × ErrorAlgebra
          │
@@ -268,8 +272,8 @@ Einstein 10   20   (⇄ Matter sector NOW FUNCTIONAL — cycles 24–43)
 
 Five active namespaces on `math` container (bolt://localhost:7687,
 neo4j/omegatheory2026):
-- `OmegaTheoryV2` — **Omega-Lean layer**: 8,996 `:Theorem` + 4,465 `:Definition` + 24 `:Axiom` + 399 `:LeanFile` nodes (proved + machine-checked).
-- `Mathlib` — **Foundation layer**: 175,137 `:Theorem` + 32,917 `:Definition` + 6 `:Axiom` + 3,183 `:LeanFile` nodes (integrated as composition backbone).
+- `OmegaTheoryV2` — **Omega-Lean layer**: ~9,500 `:Theorem` (9,794 declarations post-session 2026-04-24; 8,996 Apr-21 baseline) + 4,465 `:Definition` + **5** `:Axiom` nodes in graph (down from 24 via Lesath opaque-bundle refactor — the 4 physical existence postulates for c/ℏ/G_N/k_B are now `opaque` definitions, not `:Axiom` nodes, even though they still commit to positive-real existence mathematically; so honest count is **5 primitive-assumptions · 9 total-including-research** where `:Axiom` graph nodes = 5 = 1 `Real.pi_transcendental` + 4 HermitePadé) + 399 `:LeanFile` nodes (proved + machine-checked).
+- `Mathlib` — **Foundation layer**: ~175,127 `:Theorem` + 32,917 `:Definition` + 6 `:Axiom` + 3,183 `:LeanFile` nodes (integrated as composition backbone).
 - `LeanAlgebra` — **V3 schema scaffold**: 6 `:QuiverVertex`, 15 `:QuiverArrow`, 12 `:QuiverComposition`, 7 `:SelectionRule`, 1 `:MagneticLaplacian` (algebraic laws, no data).
 - `CheckItOutSystem`, `subscription` — non-physics namespaces (marketplace project, co-hosted).
 

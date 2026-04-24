@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-22T09:29:07.491Z",
+  "updated": "2026-04-24T07:12:29.477Z",
   "source": "PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md",
   "summary": {
     "totalPredictions": 28,
     "totalLanded": 24,
     "totalOpen": 4,
     "percentLanded": 86,
-    "leanFilesScanned": 449,
-    "totalDeclarationsIndexed": 9325
+    "leanFilesScanned": 486,
+    "totalDeclarationsIndexed": 9836
   },
   "perPass": [
     {
@@ -20,7 +20,7 @@
           "claim": "The Theorem→Definition projection is a Grothendieck fibration over the 4-generator base site.",
           "tag": "EVIDENCE",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:155",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:155",
           "effectiveTag": "LANDED"
         },
         {
@@ -28,7 +28,7 @@
           "claim": "The base site of the fibration has exactly four generators: LatticePoint, l_P, DiscreteMetric, computationalUncertainty.",
           "tag": "EVIDENCE",
           "landed": true,
-          "location": "Predictions/OmegaBaseSite.lean:94",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\OmegaBaseSite.lean:94",
           "effectiveTag": "LANDED"
         },
         {
@@ -38,7 +38,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:140",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:140",
           "effectiveTag": "LANDED"
         },
         {
@@ -48,7 +48,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:155",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:155",
           "effectiveTag": "LANDED"
         }
       ],
@@ -65,7 +65,7 @@
           "claim": "The APPLIES graph has a single giant connected component (b₀ = 1); no isolated theorem clusters.",
           "tag": "EVIDENCE",
           "landed": true,
-          "location": "Predictions/OmegaCorpusGiantComponent.lean:76",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\OmegaCorpusGiantComponent.lean:76",
           "effectiveTag": "LANDED"
         },
         {
@@ -75,7 +75,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:201",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:201",
           "effectiveTag": "LANDED"
         },
         {
@@ -85,7 +85,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:179",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:179",
           "effectiveTag": "LANDED"
         }
       ],
@@ -102,7 +102,7 @@
           "claim": "The full finite spectral triple (A_F, H_F, D_F) for the OmegaTheory substrate exists as a Lean structure.",
           "tag": "LITERATURE_ANCHORED_GAP",
           "landed": true,
-          "location": "Emergence/ConnesSpectralAction.lean:488",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Emergence\\ConnesSpectralAction.lean:488",
           "effectiveTag": "LANDED"
         },
         {
@@ -129,7 +129,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:225",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:225",
           "effectiveTag": "LANDED"
         },
         {
@@ -154,7 +154,7 @@
           "claim": "The Magnetic-Laplacian per-channel norm ordering matches the δ_π > δ_e > δ_G > δ_√2 residual ordering (for N ≥ 5).",
           "tag": "EVIDENCE",
           "landed": true,
-          "location": "Irrationality/Uncertainty.lean:293",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Irrationality\\Uncertainty.lean:293",
           "effectiveTag": "LANDED"
         },
         {
@@ -162,7 +162,7 @@
           "claim": "The four-channel structure is a fibration over SubsystemNavigator, not a partition.",
           "tag": "SPECULATIVE",
           "landed": true,
-          "location": "Predictions/FourChannelFibrationOverSubsystem.lean:255",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\FourChannelFibrationOverSubsystem.lean:255",
           "effectiveTag": "LANDED"
         },
         {
@@ -172,7 +172,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:246",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:246",
           "effectiveTag": "LANDED"
         }
       ],
@@ -191,7 +191,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:277",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:277",
           "effectiveTag": "LANDED"
         }
       ],
@@ -210,7 +210,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:309",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:309",
           "effectiveTag": "LANDED"
         }
       ],
@@ -227,7 +227,7 @@
           "claim": "The extended uncertainty bound ℏ/2 + δ_comp is TIGHT — there is no saturation below δ_comp.",
           "tag": "SPECULATIVE",
           "landed": true,
-          "location": "Predictions/ExtendedBoundStability.lean:175",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\ExtendedBoundStability.lean:175",
           "effectiveTag": "LANDED"
         },
         {
@@ -235,7 +235,7 @@
           "claim": "A Gaussian minimum-uncertainty state saturates the extended bound exactly at δ_comp.",
           "tag": "EVIDENCE",
           "landed": true,
-          "location": "Irrationality/Uncertainty.lean:235",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Irrationality\\Uncertainty.lean:235",
           "effectiveTag": "LANDED"
         },
         {
@@ -245,7 +245,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:331",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:331",
           "effectiveTag": "LANDED"
         },
         {
@@ -253,7 +253,7 @@
           "claim": "The extended bound is stable under RG flow / continuous limits as N → ∞.",
           "tag": "EVIDENCE",
           "landed": true,
-          "location": "Irrationality/Uncertainty.lean:351",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Irrationality\\Uncertainty.lean:351",
           "effectiveTag": "LANDED"
         }
       ],
@@ -272,7 +272,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:356",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:356",
           "effectiveTag": "LANDED"
         },
         {
@@ -282,7 +282,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2.lean:380",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2.lean:380",
           "effectiveTag": "LANDED"
         },
         {
@@ -292,7 +292,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2Extras.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2Extras.lean:140",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2Extras.lean:140",
           "effectiveTag": "LANDED"
         },
         {
@@ -302,7 +302,7 @@
           "landed_by": "Aludra wave-2 (2026-04-22)",
           "file": "OmegaTheory/Predictions/GrothendieckWave2Extras.lean",
           "landed": true,
-          "location": "Predictions/GrothendieckWave2Extras.lean:149",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave2Extras.lean:149",
           "effectiveTag": "LANDED"
         },
         {
@@ -311,7 +311,7 @@
           "tag": "EVIDENCE",
           "discovered_by": "Aludra wave-2 (2026-04-22)",
           "landed": true,
-          "location": "Predictions/GrothendieckWave3.lean:238",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave3.lean:238",
           "effectiveTag": "LANDED"
         },
         {
@@ -320,7 +320,7 @@
           "tag": "EVIDENCE",
           "discovered_by": "Aludra wave-2 (2026-04-22)",
           "landed": true,
-          "location": "Predictions/GrothendieckWave3.lean:261",
+          "location": "C:\\Users\\Norbert\\IdeaProjects\\chaos-shield\\PhysicsPapers\\LeanFormalizationV2\\OmegaTheory\\Predictions\\GrothendieckWave3.lean:261",
           "effectiveTag": "LANDED"
         },
         {

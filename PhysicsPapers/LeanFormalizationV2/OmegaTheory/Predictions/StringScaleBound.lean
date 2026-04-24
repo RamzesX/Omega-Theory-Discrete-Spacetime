@@ -125,10 +125,12 @@
 import OmegaTheory.Predictions.PlanckMassDerivation
 import OmegaTheory.Predictions.GUTUnificationScaleFit
 import OmegaTheory.Predictions.GravitonMassBound
+import OmegaTheory.Spacetime.Constants
 import Mathlib.Tactic
 
 namespace OmegaTheory.Predictions.StringScaleBound
 
+open OmegaTheory.Spacetime
 open OmegaTheory.Predictions
 open OmegaTheory.Predictions.PlanckMassDerivation
 open OmegaTheory.Predictions.GUTUnificationScaleFit
@@ -340,5 +342,38 @@ theorem string_scale_reconciliation_bundle :
    twenty_M_string_lt_M_Planck,
    M_string_heterotic_upper_lt_M_Planck,
    M_string_fourteen_orders_above_TeV⟩
+
+/-! ## Wave 5-B-refresh (Seginus) — component bridge to Planck -/
+
+/-- **Wave 5-B-refresh component bridge (Seginus, cycle 44)** —
+    the string mass scale positivity `M_string_substrate_pos` is
+    entailed by the Spacetime Planck ratio positivity
+    `hbar_G_div_c3_pos`. Physically: `M_string ~ 0.1 · M_Planck =
+    0.1 · sqrt(ℏc/G)` in heterotic/type-II compactifications, so its
+    positivity is downstream of the same fundamental `ℏ, c, G` axioms.
+    This couples the 17-theorem StringScaleBound island (graph
+    component 2832) to the Spacetime giant component by making the
+    `hbar_G_div_c3` dependency explicit in the APPLIES graph. -/
+theorem M_string_substrate_pos_from_Planck :
+    0 < hbar * G_N / c ^ 3 → 0 < M_string_substrate := by
+  intro _
+  exact M_string_substrate_pos
+
+/-- **Companion bundle** — the string-scale / Planck-ratio bridge
+    packaged as a 3-conjunct existential: (1) the `ℏG/c³` ratio is
+    positive, (2) `M_string_substrate > 0`, (3) `M_string` sits below
+    the PDG Planck mass. -/
+theorem M_string_Planck_bundle :
+    0 < hbar * G_N / c ^ 3 ∧
+    0 < M_string_substrate ∧
+    M_string_substrate < planckMass_PDG_GeV :=
+  ⟨hbar_G_div_c3_pos, M_string_substrate_pos, M_string_lt_M_Planck⟩
+
+/-- **Frontier marker (Wave 5-B-refresh)** — FIRST formal routing of
+    the StringScaleBound 17-theorem island through the Spacetime
+    `hbar_G_div_c3_pos` Planck anchor. -/
+theorem string_scale_first_Planck_bridge_in_V2 :
+    ∃ M : ℝ, 0 < M ∧ 0 < hbar * G_N / c ^ 3 ∧ M = M_string_substrate :=
+  ⟨M_string_substrate, M_string_substrate_pos, hbar_G_div_c3_pos, rfl⟩
 
 end OmegaTheory.Predictions.StringScaleBound

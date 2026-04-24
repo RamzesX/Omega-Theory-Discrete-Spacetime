@@ -19,19 +19,29 @@ Machine-verified formalization of Omega-Theory / Chaos Shield discrete quantum g
    `HasZeroFunctional`. First machine-checked complete derivation of
    non-relativistic QM from a discrete gravitational substrate.
 
-## Status
+## Status (2026-04-24, cycle-52 post W10 axiom-narrowing)
 
 | | |
 |---|---|
 | Lean / Mathlib | v4.29.0 |
-| Files | ~81 (80 under `OmegaTheory/` + `OmegaTheory.lean`) |
-| Theorems + definitions | ~1450 |
-| Sorry | **0** (all proofs complete, April 15 2026) |
-| Axioms | **9** declared (8 physical constants + HPW) — **HPW is provably replaceable** on 7 regimes (flat, linearised, static-spherical vacuum, FRW cosmological, Bianchi I anisotropic, de Sitter, Kerr) via `HpwEliminableRegime` typeclass; continuum Christoffel/Riemann/Ricci stack now lives in `Geometry/` (Mizar, Apr 15) as the foundation for general-curved HPW closure |
-| Build | **3454 jobs, clean** |
+| Files | 527 scanned (~211 structured under `OmegaTheory/` + capstones + Meta/ + Probe/) |
+| OmegaTheoryV2 own theorems | **~10 146** (graph-live) |
+| Total corpus in build (OmegaTheoryV2 + Mathlib) | **~185 283** (~175 137 Mathlib) |
+| Sorry | **0** (all proofs complete) |
+| Build jobs | **3 938 GREEN** (cycle-52 post W10 degree-3 axiom-narrowing landing) |
+| Canonical declared `:Axiom` in OmegaTheoryV2 | **1** (`Real.pi_transcendental`, sealed in `Irrationality/HermitePade/`) |
+| Paper-headline capstone axiom footprint | **`[propext, Classical.choice, Quot.sound]`** only (Lean core) |
+| Physical constants (c, ℏ, G_N, k_B) | **0 `axiom` declarations** — realised as `noncomputable opaque X_bundle : {x : ℝ // 0 < x}` via `Classical.choice` (Lean core). MATHEMATICALLY: still 4 existence postulates for positive reals. |
+| Honest primitive-assumption count | **5** (4 physical existence postulates + 1 `Real.pi_transcendental`); **9 total** including 4 Hermite-Padé research axioms |
+| Axiom-narrowing arc (cycles 50-52) | W9 degree-1 ✅ (cycle-50) + W8 degree-2 conditional ✅ (cycle-51) + **W10 degree-3 ✅ (cycle-52, `PiStratumDegreeThree.lean`)** |
+| Cycles shipped | 34 autonomous agent cycles (10–43) + cycle-44 extension + cycles 49–52 axiom-narrowing arc |
+| Predictions landed | **24/28 = 86%** (Grothendieck Math Puzzle, auto-detected via grep-scanner) |
+| Grand meta-capstone | [`omega_theory_v2_final_meta_capstone`](OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607) (Polaris, cycle 43) |
 | Companion notes | [`NOTES_QM_AS_DISCRETE_GRAVITY.md`](./NOTES_QM_AS_DISCRETE_GRAVITY.md), [`NOTES_HPW_ELIMINATION.md`](./NOTES_HPW_ELIMINATION.md), [`PLAN_QM_BRIDGE.md`](./PLAN_QM_BRIDGE.md), [`PLAN_QM_LEGENDARY.md`](./PLAN_QM_LEGENDARY.md), [`PAPER_DRAFT.md`](./PAPER_DRAFT.md) |
-| Workstreams complete | A (Einstein form) + B (discrete Poincaré H¹=H²=H³=0) + **C1+C2+C3 (all of C)** + HPW 3-regime elimination + **QM-bridge Option-B full 7-theorem suite + capstone** |
-| Paper in draft | [`PAPER_DRAFT.md`](./PAPER_DRAFT.md) — 2,476 lines, 15 sections, 13 advertised theorems. Target: *Foundations of Physics* long-form + *PRL* 4-page letter. |
+| Workstreams complete | A (Einstein form) + B (discrete Poincaré H¹=H²=H³=0) + C1+C2+C3 (all of C) + HPW 7-regime elimination + QM-bridge Option-B full 7-theorem suite + capstone + cycles 24–43 Mekbuda backlog (60 thms) + cycle-44 Lesath opaque-bundle refactor + cycles 49–52 axiom-narrowing arc |
+| Paper in draft | [`PAPER_DRAFT.md`](./PAPER_DRAFT.md). Target: *Foundations of Physics* long-form + *PRL* 4-page letter. |
+
+*Historical baselines preserved for reference:* 3 936 jobs GREEN post cycle-51 W8 (2026-04-24 mid-day) · 3 901 jobs GREEN post Lesath opaque-bundle refactor (2026-04-24 early) · 3 850 jobs GREEN post wave-1 (2026-04-22) · 3 835 jobs GREEN post cycle-43 grand capstone (2026-04-21).
 
 See [`PROJECT.md`](./PROJECT.md) for the full architecture, axiom inventory,
 flagship theorems, V1 vs V2 comparison, and optional porting work.

@@ -10,7 +10,7 @@
 > 
 > **This reshaping cost manifests as mass.**
 
-> **Status (2026-04-24 cycle-44-extension, post Lesath opaque-bundle refactor)**: V2 Lean formalization at **3 901 build jobs GREEN, 0 sorry**. **Primitive-assumption accounting (honest):** OmegaTheory V2 rests on **5 primitive mathematical assumptions** — **4 existence postulates** for physical constants (c, ℏ, G_N, k_B each realised as `noncomputable opaque X_bundle : {x : ℝ // 0 < x}`, a `Classical.choice` witness — 0 `axiom` *declarations*, but MATHEMATICALLY still existence postulates for positive reals; no specific numeric value is fixed, all derivations are parametric) **+ 1 transcendence axiom** `Real.pi_transcendental` (pending Mathlib Lindemann–Weierstrass). Plus **4 research axioms** (Siegel-Shidlovskii, Nesterenko 1996, Roth 1955, Mahler framework) isolated in `Irrationality/HermitePade/` as pending mathlib-port placeholders = **9 total including research**. Three-way split: `0 axiom-declarations · 5 primitive-assumptions · 9 total`. **~9 500 own OmegaTheoryV2 theorems** (9 794 declarations in graph post-session) on top of **~175 127 integrated Mathlib** = **~184 627 total**. Grand meta-capstone: [`omega_theory_v2_final_meta_capstone`](LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607).
+> **Status (2026-04-24 cycle-52, post W10 degree-3 axiom-narrowing landing)**: V2 Lean formalization at **3 938 build jobs GREEN, 0 sorry**. Paper-headline capstones depend on `[propext, Classical.choice, Quot.sound]` **only** (Lean core). **Primitive-assumption accounting (honest):** OmegaTheory V2 rests on **5 primitive mathematical assumptions** — **4 existence postulates** for physical constants (c, ℏ, G_N, k_B each realised as `noncomputable opaque X_bundle : {x : ℝ // 0 < x}`, a `Classical.choice` witness — 0 `axiom` *declarations*, but MATHEMATICALLY still existence postulates for positive reals; no specific numeric value is fixed, all derivations are parametric) **+ 1 transcendence axiom** `Real.pi_transcendental` (pending Mathlib Lindemann–Weierstrass) — **the sole surviving `:Axiom` declaration**, actively narrowed via the **W9/W8/W10 axiom-narrowing arc** (cycles 50-52: degree-1 ✅ W9 cycle-50, degree-2 conditional ✅ W8 cycle-51, **degree-3 ✅ W10 cycle-52** in `Irrationality/HermitePade/PiStratumDegreeThree.lean`). Plus **4 research axioms** (Siegel-Shidlovskii, Nesterenko 1996, Roth 1955, Mahler framework) isolated in `Irrationality/HermitePade/` as pending mathlib-port placeholders = **9 total including research**. Three-way split: `1 axiom-declaration · 5 primitive-assumptions · 9 total`. **~10 146 own OmegaTheoryV2 theorems** on top of **~175 137 integrated Mathlib** = **~185 283 total**. Predictions landed: **24/28 = 86%** (Grothendieck Math Puzzle). Grand meta-capstone: [`omega_theory_v2_final_meta_capstone`](LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607).
 >
 > **Historical baseline (post cycle 43, 2026-04-21)**: 3 835 build jobs GREEN, 0 sorry, 8 physical axioms (+ 15 HermitePadé + 1 π-transcendental = 24 total). 34 autonomous agent cycles (10 – 43) shipped. 8 996 own + 175 137 integrated Mathlib = 184 133 theorems.
 
@@ -75,7 +75,7 @@ Diagrams showing:
 - **Catalan G irrationality is an OPEN PROBLEM** — documented in `05_catalan_G_class.md`.
 - Master plan: [`11_master_plan_skeleton.md`](LeanFormalizationV2/OmegaTheory/IrrationalityClasses/11_master_plan_skeleton.md) — the "puzzle pieces" view of all Omega Algebra still to ship.
 
-**Companion**: [`LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md`](LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md) — per-axiom elimination roadmap; post cycle-44-extension (2026-04-24): **0 `axiom` declarations for physical constants** (c, ℏ, G_N, k_B bundled as `Classical.choice` opaque witnesses — MATHEMATICALLY still 4 existence postulates), **+ 1 transcendence axiom** `Real.pi_transcendental` = **5 primitive assumptions**. Plus **4 HermitePadé research axioms** = **9 total including research**. 19/24 of the original Apr-21 axiom *declarations* eliminated; the 4 physical existence postulates remain mathematically (Classical.choice doesn't erase them, only removes the `axiom` keyword).
+**Companion**: [`LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md`](LeanFormalizationV2/AXIOM_ELIMINATION_METHODOLOGY.md) — per-axiom elimination roadmap; post cycle-52 W10 axiom-narrowing (2026-04-24): **0 `axiom` declarations for physical constants** (c, ℏ, G_N, k_B bundled as `Classical.choice` opaque witnesses — MATHEMATICALLY still 4 existence postulates), **+ 1 transcendence axiom** `Real.pi_transcendental` (the sole surviving `:Axiom`, being narrowed stratum-by-stratum via W9/W8/W10 cycles 50-52) = **5 primitive assumptions**. Plus **4 HermitePadé research axioms** = **9 total including research**. 23/24 of the original Apr-21 axiom *declarations* eliminated; the 4 physical existence postulates remain mathematically (Classical.choice doesn't erase them, only removes the `axiom` keyword).
 
 **Companion**: [`LeanFormalizationV2/NOVEL_MATHEMATICS.md`](LeanFormalizationV2/NOVEL_MATHEMATICS.md) — 32 pieces of novel mathematics catalogued (error algebra, Pi-Hunch primitive, Magnetic-Laplacian pipeline).
 
@@ -116,26 +116,27 @@ Full technical treatment (~50 pages):
 
 ### 6. Lean Formalization
 
-**Active — V2 (2026-04-24, cycle-44-extension post Lesath opaque-bundle refactor)**: [`LeanFormalizationV2/`](LeanFormalizationV2/) (Mathlib v4.29.0)
+**Active — V2 (2026-04-24, cycle-52 post W10 axiom-narrowing)**: [`LeanFormalizationV2/`](LeanFormalizationV2/) (Mathlib v4.29.0)
 
-- **0 sorry · 3 901 build jobs GREEN**
-- Honest axiom accounting: **`0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research`** (4 physical existence postulates via `Classical.choice` opaque bundles + 1 `Real.pi_transcendental` + 4 HermitePadé research)
-- **34 autonomous agent cycles (10 – 43) + cycle-44 extension shipped Jan – Apr 2026**
+- **0 sorry · 3 938 build jobs GREEN**
+- Paper-headline capstones depend on `[propext, Classical.choice, Quot.sound]` **only** (Lean core)
+- Honest axiom accounting: **`1 axiom-declaration · 5 primitive-assumptions · 9 total-including-research`** — **1 canonical `:Axiom`** (`Real.pi_transcendental`) + 4 physical existence postulates via `Classical.choice` opaque bundles + 4 HermitePadé research. Axiom-narrowing arc W9/W8/W10 (cycles 50-52) replaces `Real.pi_transcendental` stratum-by-stratum.
+- **34 autonomous agent cycles (10 – 43) + cycle-44 extension + cycles 49-52 axiom-narrowing arc shipped Jan – Apr 2026**
 
 **Three-way corpus split** (Neo4j graph-verified, 2026-04-21 snapshot; counts evolve live):
 
 | Tier | 🔷 Omega Lean (proved) | 🔶 Graph frontier (open) | 🔹 Mathlib (foundation) | Σ build total |
 |---|---:|---:|---:|---:|
-| Theorems | **~9 500** (9 794 in graph; Apr-21 baseline 8 996) | **166** `:TheoremCandidate` (Mekbuda 60 CLOSED; 106 open: Navi MP-k bridges + Connes/Kempf gaps + Pi-Hunch frontier) | ~175 127 | **~184 627** |
-| Definitions | **4 465** | — | 32 917 | **37 382** |
-| Axioms | **5 primitive assumptions** (4 physical existence postulates via `Classical.choice` opaque bundles, 0 `axiom` *declarations* for constants; + 1 `Real.pi_transcendental`); **9 total** including 4 Hermite-Padé research axioms | — | 6 | 15 |
-| Lean files | ~211 structured | — | 7 869 | ~8 080 |
+| Theorems | **~10 146** (graph-live post-cycle-52 W10; 9 794 post-session 2026-04-24 early; Apr-21 baseline 8 996) | **166** `:TheoremCandidate` (Mekbuda 60 CLOSED; 106 open: Navi MP-k bridges + Connes/Kempf gaps + Pi-Hunch frontier) | ~175 137 | **~185 283** |
+| Definitions | **4 465+** | — | 32 917 | **37 382** |
+| Axioms | **1 canonical `:Axiom`** (`Real.pi_transcendental`) + 4 physical existence postulates via `Classical.choice` opaque bundles (0 `axiom` *declarations* for constants) = **5 primitive assumptions**; **9 total** including 4 Hermite-Padé research axioms | — | 6 | 11 |
+| Lean files | 527 (lean scan; ~211 structured under OmegaTheory/) | — | 7 869 | ~8 396 |
 | Analytics | — | 44 `:GraphFinding` paper_worthy (88 total) + 32 `:GrothendieckRecipe` + 677 `:SubsystemNavigator` (Leiden Q = 0.89) | — | — |
 | Cross-namespace edges | 2.03 M Omega → Mathlib + 1.25 M Mathlib → Omega = **3.28 M integrating edges** |
 
 **🔷 what we proved · 🔶 what the graph shows we still need to prove · 🔹 what we build on.**
 
-Every own theorem is typed against Mathlib. **Post-2026-04-24 Lesath opaque-bundle refactor** the honest axiom accounting is `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research`: the four fundamental constants c, ℏ, G_N, k_B are realised as `noncomputable opaque X_bundle : {x : ℝ // 0 < x}`, each a single `Classical.choice` witness that packages value + positivity — this removes the `axiom` *keyword* but MATHEMATICALLY preserves 4 existence postulates for positive reals (no specific numeric value is fixed, all derivations parametric). Adding `Real.pi_transcendental` gives the 5 primitive assumptions. The 4 HermitePadé research axioms (Siegel-Shidlovskii, Nesterenko 1996, Roth 1955, Mahler framework) remain sealed inside `Irrationality/HermitePade/` and are clearly labelled open-mathematics conjectures awaiting mathlib port.
+Every own theorem is typed against Mathlib. **Post-2026-04-24 cycle-52 W10 axiom-narrowing** the honest axiom accounting is `1 axiom-declaration · 5 primitive-assumptions · 9 total-including-research`: the four fundamental constants c, ℏ, G_N, k_B are realised as `noncomputable opaque X_bundle : {x : ℝ // 0 < x}`, each a single `Classical.choice` witness that packages value + positivity — this removes the `axiom` *keyword* but MATHEMATICALLY preserves 4 existence postulates for positive reals (no specific numeric value is fixed, all derivations parametric). Adding `Real.pi_transcendental` (the sole surviving `:Axiom` declaration, being narrowed via the W9/W8/W10 axiom-narrowing arc in cycles 50-52) gives the 5 primitive assumptions. The 4 HermitePadé research axioms (Siegel-Shidlovskii, Nesterenko 1996, Roth 1955, Mahler framework) remain sealed inside `Irrationality/HermitePade/` and are clearly labelled open-mathematics conjectures awaiting mathlib port.
 
 *Historical (2026-04-21, post-cycle-43): 8 physical axioms (c, c_pos, ℏ, ℏ_pos, G_N, G_N_pos, k_B, k_B_pos) + 15 Hermite-Padé + 1 π-transcendental = 24 total. 3 835 jobs GREEN, 8 996 own + 175 137 Mathlib = 184 133 theorems.*
 

@@ -31,3 +31,12 @@ supportInterpreter = true
 name = "dump_decls"
 root = "OmegaTheory.Meta.DumpDeclarations"
 supportInterpreter = true
+
+# `lake exe dump_stale_check` emits JSONL of source .lean files on disk that
+# are NOT reachable from the OmegaTheory umbrella — orphaned modules whose
+# declarations are silently missing from the graph (Menkent Wave P3l).
+# See OmegaTheory/Meta/DumpStaleCheck.lean.
+[[lean_exe]]
+name = "dump_stale_check"
+root = "OmegaTheory.Meta.DumpStaleCheck"
+supportInterpreter = true

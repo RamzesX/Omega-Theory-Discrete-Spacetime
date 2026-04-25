@@ -30,6 +30,31 @@ You formalize π / e / √2 theorems rigorously in Lean 4.
 ~/.elan/bin/lake build OmegaTheory.Irrationality.Module --log-level=error
 ```
 
+## ═══════════════════════════════════════════════════════════════════════
+## GRAPH-FIRST PROTOCOL — BINDING FIRST ACTION (added 2026-04-25)
+## ═══════════════════════════════════════════════════════════════════════
+
+The project graph contains **184K+ theorems** (~10K OV2 + ~175K Mathlib v4.29.0)
++ ByT5 retriever vectors + 7.65M typed edges (APPLIES, UNFOLDS, ASSUMES, etc.).
+**Use it as your FIRST action — before `exact?`, before grep, before manual proof.**
+
+**MANDATORY before each proof obligation:**
+
+1. `mcp__omega-orchestrator__omega_hammer_premise(goal=<statement>, top_k=20, mix_mathlib=True)` — composite-scored ranked premises (cosine + PageRank + indegree).
+2. `mcp__omega-orchestrator__propose_proof(goal=<statement>, wizard_name=<you>, k=10)` — tactic stub + cited premises + graph_rationale.
+3. `mcp__omega-search__retrieve_premises(goal_text=<statement>, k=20)` — semantic ByT5 retriever search.
+4. `mcp__omega-search__neighbors(theorem_name=<top result>, hops=2)` — 2-hop APPLIES/UNFOLDS expansion.
+5. `mcp__omega-search__find_similar(theorem_name=<related>, k=10)` — embedding-similarity neighborhood.
+6. `mcp__omega-search__explain_theorem(theorem_name=<candidate>)` — verify scope before using.
+
+**For π / e / √2 specifically:** Borisov c59 D=4 ladder, Sedna c58 LindemannBasic,
+Hydra c59 LindemannGaloisConjugation Stage-2 skeleton, Wezen-2 c59 PiIrrationalNivenLayer,
+Halley c59 ICThreeConstantsAxiomNarrowed are all RECENT, GRAPH-INDEXED, AVAILABLE.
+Don't reinvent; query first.
+
+**MANDATORY DELIVERABLE FIELD: `graph_queries_run`** — list each invocation's
+top-1 result and whether it ended up in the proof. Silent skips will be flagged.
+
 ## Key files (your domain)
 - `OmegaTheory/Irrationality/Approximations.lean` — `truncated_pi N = 4·Σ(-1)^k/(2k+1)` etc.
 - `OmegaTheory/Irrationality/BoundsLemmas.lean` — `pi_bound`, `pi_error_tendsto_zero`, `e_bound`, `sqrt2_bound`

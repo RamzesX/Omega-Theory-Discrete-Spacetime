@@ -1,21 +1,32 @@
 # Handoff — OmegaTheory V2 / Chaos Shield
 
-**Updated 2026-04-25 mid cycle 60 Sagittarius for the next session (context-budget handoff — Wave 1 ready to dispatch).**
+**Updated 2026-04-25 post cycle 60 Sagittarius Wave 1 + first SOTA warm-path close (context-budget handoff — Wave 2 ready to dispatch).**
 
 ## Where we are RIGHT NOW
 
 | Metric | Value |
 |---|---|
-| Build | **4,024 jobs GREEN** |
+| Build | **4,032 jobs GREEN** (+8 from Wave 1) |
 | Sorry | 0 |
-| Paper-headline axioms | **1** (`Real.pi_transcendental`, Path-A retirement c60-c62) |
+| Paper-headline axioms | **1** (`Real.pi_transcendental`, Path-A retirement progressing — Stage-2 placeholders all 3 filled c60 W11A/B/C) |
 | OV2 theorems | 10,142 |
 | Mathlib theorems | 175,137 |
 | Total graph | 184K theorems + 7.65M typed edges |
-| Last refresh | `refresh_graph-36663ee4` clean, missing_emb=0 |
-| Cache | 247 MB at `~/lean-v2/.neo4j/mathlib_arrows_cached_v4.29.0.jsonl` (SOTA v2 magic header) |
-| Servers | OFF (Phase A→B just done) |
-| Last commit | `d5ac832` (GRAPH-FIRST agent prompt mandate) |
+| Last refresh | `refresh_graph-0e52d194` succeeded **5.6 min** (FIRST TRUE SOTA WARM PATH — vs 21 min c58 = 3.75x faster; dump_arrows 16.7s vs 16 min = **57x**) |
+| Cache | 247 MB at `~/lean-v2/.neo4j/mathlib_arrows_cached_v4.29.0.jsonl` (SOTA v2 magic header live-verified, header_diag.version_match=true) |
+| Servers | OFF (Phase C done) |
+| Last commit | `32219ff` (cycle 60 Wave 1 + first SOTA warm path) |
+
+## Cycle 60 Wave 1 LANDED — 8 wizards (post 5.6 min Phase C)
+
+- **Miranda** (Uranian moon) W11A: `LindemannGaloisConjugationStep.lean` — Plan A galois_conjugation_step_real_definition (d=1+d=2 cases, Hydra placeholder filled)
+- **Electra** (17 Tau Pleiades sister) W11B: `SymmetricSumIntegerWitness.lean` — Plan A+B singleton-rational + bridge for c61
+- **Pleione** (28 Tau "mother of Pleiades") W11C: `AnalyticalBoundUnderConjugation.lean` — Plan A d=1+d=2 sharp B=0
+- **Alnasl** (γ Sagittarii) W1: `CMBAnisotropyPaperBundle.lean` — Plan A 3-conjunct
+- **Mimas** (Saturn II) W2: `BBNHelium4PaperBundle.lean` — Plan A Yp≈0.247 PDG matched
+- **Algedi** (α Capricorni) W3: `ElectronEDMPaperBundle.lean` — Plan B ACME+JILA+no-axion
+- **Enceladus** (Saturn II) W7: `QuarkUDAbsoluteMassConnesDFPaperBundle.lean` — **MAJOR: first absolute quark masses m_u=2.16 MeV + m_d=4.67 MeV PDG 3σ via Connes D_F**
+- **Kaus-Borealis** (λ Sagittarii) W16: `QmBridgePaperCapstone.lean` — **80.5% hit-rate** (33/41 orphans wired)
 
 ## Cycle 60 Phase A done — Kaus-Australis (ε Sagittarii, sage)
 
@@ -29,27 +40,38 @@
 
 User-validated wave-size sweet spot: **15-20 parallel per wave**, NOT 58 at once. Memory: `feedback_wave_size_15_20_not_58_2026-04-25.md`. Full reasoning saved.
 
-### Wave 1 — 8 wizards parallel, disjoint files (READY TO DISPATCH NOW)
+### Wave 1 LANDED — see "Cycle 60 Wave 1 LANDED" section above
 
-Team `omega-cycle-60-wave-1` already created at `~/.claude/teams/omega-cycle-60-wave-1/config.json`. Just spawn 8 Agent calls with `team_name="omega-cycle-60-wave-1"`:
+All 8 wizards delivered Lean core only, 0 sorry, 0 new axioms. Team
+`omega-cycle-60-wave-1` cleaned up. 8 :TheoremCandidate flipped CLOSED_BY_LEAN_LANDING.
+
+### Wave 2a — READY TO DISPATCH (8 wizards parallel)
+
+Create fresh team `omega-cycle-60-wave-2a` and spawn 8 Agent calls:
 
 | Wizard | Track | Target | Brief file (read first) |
 |---|---|---|---|
-| **W11A** | T2 | `galois_conjugation_step_real_definition` | `SAGE_BRIEFING_W11A_galois_conjugation_step_fill_2026-04-25.md` |
-| **W11B** | T2 | `symmetric_sum_integer_witness_partial_fill` | `SAGE_BRIEFING_W11B_symmetric_sum_integer_witness_fill_2026-04-25.md` |
-| **W11C** | T2 | `analytical_bound_under_conjugation_partial_fill` | `SAGE_BRIEFING_W11C_analytical_bound_under_conjugation_fill_2026-04-25.md` |
-| W1 | T1 | `cmb_DeltaT_T_substrate_paper_bundle` | `SAGE_BRIEFING_W1_cmb_anisotropy_paper_bundle_2026-04-25.md` |
-| W2 | T1 | `BBN_Yp_helium4_substrate_paper_bundle` | `SAGE_BRIEFING_W2_bbn_helium4_paper_bundle_2026-04-25.md` |
-| W3 | T1 | `electron_EDM_substrate_paper_bundle` | `SAGE_BRIEFING_W3_electron_edm_paper_bundle_2026-04-25.md` |
-| W7 | T1 | `quark_up_down_absolute_mass_from_connes_DF_paper_bundle` | `SAGE_BRIEFING_W7_connes_DF_quark_absolute_paper_bundle_2026-04-25.md` |
-| W16 | T3 | `qm_bridge_paper_capstone_wrap` | `SAGE_BRIEFING_W16_qm_bridge_paper_capstone_wrap_2026-04-25.md` |
+| W4 | T1 | `newton_G_substrate_paper_bundle` | `SAGE_BRIEFING_W4_newton_constant_paper_bundle_2026-04-25.md` |
+| W5 | T1 | `graviton_ensemble_substrate_paper_bundle` | `SAGE_BRIEFING_W5_graviton_ensemble_paper_bundle_2026-04-25.md` |
+| W6 | T1 | `alphaS_at_MZ_substrate_strict_PDG_paper_bundle` | `SAGE_BRIEFING_W6_alphaS_strict_pdg_paper_bundle_2026-04-25.md` |
+| W8 | T1 | `ckm_vus_vcb_absolute_substrate_paper_bundle` | `SAGE_BRIEFING_W8_ckm_vus_vcb_paper_bundle_2026-04-25.md` |
+| W9 | T1 | `electron_mass_substrate_strict_PDG_1sigma_paper_bundle` | `SAGE_BRIEFING_W9_electron_mass_strict_PDG_paper_bundle_2026-04-25.md` |
+| W12 | T2 | `pi_irrational_degree_five_decoupling` | `SAGE_BRIEFING_W12_pi_stratum_degree_five_2026-04-25.md` |
+| W14 | T2 | `pi_transcendental_blast_radius_audit_dump_csv_v2` | `SAGE_BRIEFING_W14_pi_blast_radius_lean_2026-04-25.md` |
+| W15 | T2 | `ic_three_constants_axiom_narrowed_extension_to_four_constants` | `SAGE_BRIEFING_W15_ic_three_constants_axiom_extension_2026-04-25.md` |
 
-**W11A/W11B/W11C is MANDATORY Wave 1** — Hydra Stage-2 fill triplet, unlocks Path-A retirement of `Real.pi_transcendental` (c60 fill → c61 generalize → c62 derive corollary → axiom 1→0).
+### Wave 2b — after Wave 2a lands + Phase C (8 wizards parallel)
 
-### Wave 2 — 16 wizards split 8+8 (after Wave 1 lands + Phase C)
-
-**Wave 2a (8):** W4 W5 W6 W8 W9 (T1 closure) + W12 W14 W15 (T2 ladder).
-**Wave 2b (8):** W17 W18 W19 W20 W21 W22 W23 W24 (T3 orphan-cluster wraps).
+| Wizard | Track | Target | Brief file |
+|---|---|---|---|
+| W17 | T3 | `hpw_bianchi_I_orphan_capstone_wrap` | `SAGE_BRIEFING_W17_hpw_bianchi_orphan_capstone_2026-04-25.md` |
+| W18 | T3 | `hubble_tension_from_substrate_DE_gain_paper_bundle` | `SAGE_BRIEFING_W18_hubble_tension_paper_bundle_2026-04-25.md` |
+| W19 | T3 | `proton_decay_lower_bound_orphans_capstone` | `SAGE_BRIEFING_W19_proton_decay_orphan_capstone_2026-04-25.md` |
+| W20 | T3 | `operators_capstone_residual_wave_3` | `SAGE_BRIEFING_W20_operators_capstone_residual_wave3_2026-04-25.md` |
+| W21 | T3 | `redshift_orphans_compose_into_capstone` | `SAGE_BRIEFING_W21_redshift_orphan_capstone_2026-04-25.md` |
+| W22 | T3 | `yukawa_orphan_calculation_capstone` | `SAGE_BRIEFING_W22_yukawa_orphan_calc_capstone_2026-04-25.md` |
+| W23 | T3 | `poincare_lemma_orphan_capstone_wave_2_residual` | `SAGE_BRIEFING_W23_poincare_lemma_capstone_2_2026-04-25.md` |
+| W24 | T3 | `correspondence_orphans_compose_into_capstone` | `SAGE_BRIEFING_W24_correspondence_orphan_capstone_2026-04-25.md` |
 
 ### Wave 3 — cycle 61-62 closure
 

@@ -77,6 +77,70 @@ the dual-track menu without volume override.
 
 ---
 
+## 🟣 V3-FOR-LEAN MATHEMATICAL FRAMEWORK — read before topology fire
+
+Your topology gap detection runs on the **V3-for-Lean math machinery**
+(Marchewka 2026, adapted from V3 software-architecture framework). Canonical
+docs at `PhysicsPapers/OmegaTheoryAlgebra/` — read these before designing
+gap-detection queries:
+
+| File | What it gives you |
+|---|---|
+| `01_entity_types.md` | 6 + 2 Lean entity types (Axiom · Theorem · Definition · Structure · Instance · Namespace + Tactic · Attribute @ Level B) with height/role |
+| `02_relationships.md` | 15 core + 5 extended typed arrows (4 structural + 5 dependency + 3 type-theoretic + 3 computational + 2 Level-B + 3 Level-C symmetric pairs) |
+| `03_selection_rules.md` | 7 HARD_BLOCK + 11 derived selection rules — forbidden compositions in the path algebra |
+| `04_magnetic_laplacian.md` | 𝔄 ∈ ℂ^{6×6} (core) and 8×8 (Level B) Hermitian construction at g=1/4 with per-relation rank-2 decomposition |
+| `05_cycle_hypotheses.md` | **SPECIALIZES⇌GENERALIZES** and **UNFOLDS⇌FOLDS** bidirectional 𝔰𝔲(2) candidates; ±i eigenvalue predictions = **Berry-phase** witnesses |
+| `06_fastrp_scaling.md` | m=64 per relation for 243K-node corpus; Johnson-Lindenstrauss bound |
+| `07_single_lens_rationale.md` | Single Qwen3 / ByT5 lens vs V3's 3-lens overlay |
+| `08_empirical_spectrum.md` | Real spectrum data: **λ₁/λ₂ = 1.038 first degeneracy break at rank 7**; **73.3% non-commutativity**; **5-scale hierarchy {43379, 41787, 1722, 127, 3.83}** |
+| `09_subsystem_sanity.md` | Detected subsystems vs expected OmegaTheory themes (Foundations, Irrationality, Gauge, Emergence, Predictions, Conservation) |
+| `10_neo4j_schema_map.md` | Schema → Cypher node/edge mapping in `.neo4j/lean_algebra_*.cypher` |
+| `GROTHENDIECK_MATH_PUZZLE.md` | **Navi's 8-pass synthesis** — frontier puzzle for cycles 60+; full categorical / fibration framing of OV2 graph as a typed quiver path algebra |
+
+**Live graph artifacts you can query** (per Neo4j `OmegaTheoryV2`):
+- `:MagneticLaplacian` (1 node) + `:MagneticLaplacian_component` (15 nodes) — per-relation rank-2 decomposition with imag_part / real_part fields
+- `:GraphFinding` (~95+ nodes, ~36+ paper_worthy) — paper-grade observations from prior sage fires
+- `:GrothendieckRecipe` (~24+ nodes) — reusable Cypher recipes (e.g. `qm_bridge_paper_capstone_density_audit_v1` from cycle 60 Kaus-Australis)
+- `:SubsystemNavigator` (137 nodes) — Leiden community partition, modularity +0.447
+- `:QuiverVertex` (8 nodes) + `:QuiverArrow` (20 typed arrows) + `:QuiverComposition` (12 depth-2 chains) + `:SelectionRule` (7+11) — algebraic scaffold in `LeanAlgebra` namespace
+
+**Topology-gap detection vocabulary** — use these explicit category-theory /
+spectral / Berry-phase signals when proposing briefings:
+
+1. **Fibration detection** — find theorems whose APPLIES base-points cluster
+   into Leiden-distinguishable bundles with vertical-fiber discrepancy. The
+   "fiber" is the set of theorems mapping to a single base subsystem. Gap =
+   missing horizontal-equivalence between fibers (e.g. a SPECIALIZES⇌GENERALIZES
+   pair whose forward direction is in-graph but reverse isn't).
+2. **Berry-phase witness gap** — per `05_cycle_hypotheses.md`, candidate
+   bidirectional 𝔰𝔲(2) cycles SPECIALIZES⇌GENERALIZES + UNFOLDS⇌FOLDS predict
+   ±i eigenvalues in the Magnetic Laplacian rank-2 decomposition. If observed
+   spectrum lacks the predicted ±i pair, that's a missing-cocycle gap.
+3. **Sheaf cohomological obstructions** — H¹ of a covering of OV2 by Leiden
+   subsystems should vanish if the substrate is genuinely globally consistent.
+   Compute Čech 1-cocycles via `QuiverComposition` walks; non-trivial cycles
+   = paper-worthy obstruction findings.
+4. **Rank-7 saturating eigenvalue** — empirical anomaly: λ₁/λ₂ = 1.038 at rank
+   7, not the typical 1.5+ for random graphs. Substrate signature. Each cycle
+   re-measure; drift indicates new orphan-cluster injecting noise.
+5. **Non-commutativity 73.3%** — `[ρ_i, ρ_j] ≠ 0` for 73% of arrow-pair
+   products. Non-abelian path algebra confirmed. Track per-cycle change.
+6. **5-scale hierarchy** — {43379, 41787, 1722, 127, 3.83} eigenvalue magnitudes
+   span 4 orders. Each cycle, verify hierarchy preserved post-landings.
+
+**When you propose a Track-3 briefing** (research/mixed), prefer ones that
+empirically tighten one of these signals — e.g. "wire X orphans into Leiden
+subsystem Y so its in-fiber rank drops from K to K-1" is a paper-worthy
+Track-3 brief.
+
+**Citation discipline:** when a briefing references V3-for-Lean math, cite
+the exact `OmegaTheoryAlgebra/<file>.md` section. The wizard inherits this
+context for their proof — not just "see briefing", but "this composes with
+the rank-2 decomposition of relation k=4 (UNFOLDS) per memo 04 §6".
+
+---
+
 ## 🔴 MANDATORY — Active parent-routed communications (MEGA IMPORTANT)
 
 You are part of a star-topology team orchestrated through the **main thread**

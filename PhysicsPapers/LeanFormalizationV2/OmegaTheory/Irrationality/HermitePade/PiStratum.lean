@@ -44,6 +44,59 @@ replace `axiom` with `theorem` and cite the Mathlib result.
 -/
 axiom Real.pi_transcendental : Transcendental ℚ (Real.pi : ℝ)
 
+/-! ## Research-axiom scoping marker (cycle 58, Libra · Vesta · 2026-04-25)
+
+The axiom `Real.pi_transcendental` above is **research-track only**. The
+paper-headline physics of OmegaTheory V2 (QM extension, GR regimes, SM gauge
+group, Higgs, dark energy w=-1, baryogenesis) does NOT depend on it.
+
+`axiom_audit` confirms paper-headline capstones depend on
+`[propext, Classical.choice, Quot.sound]` only (Lean core):
+
+* `omega_theory_v2_final_meta_capstone`
+* `grand_capstone_v2_substrate_SM_plus_gravity_plus_DM_plus_DE`
+* `irrationality_implies_quantum_uncertainty` (Probe/PiAndOmegaStructure)
+* `four_channel_fibration_over_subsystem` (Chara cycle-44)
+
+The axiom is genuinely needed only by the research-track Hermite–Padé layer:
+
+* `pi_stratum_integer` at fixed degree D ≥ 2 (no paper-headline callsites today)
+* `pi_stratum_vector` (vector form, same dependency chain)
+* `ic_three_constants_transcendental` (research-track 3-conjunct, NOT a
+  paper-headline capstone — see `ic_three_constants_paper_headline_irrationality_only`
+  for the paper-headline form which uses `Real.irrational_pi` (Niven, Mathlib))
+* `ic_pi_Mahler_S_conditional` (research-track conditional, already migrated to
+  `ic_pi_Mahler_S_irrational_unconditional` for axiom-free paper-headline use —
+  see Atria's cycle-53 `IrrationalityClasses/AxiomNarrowing.lean`)
+
+Substrate-thesis irrationality conclusions (Pi Hunch chain) use Mathlib's
+`Real.irrational_pi` (Niven 1947), an outright THEOREM, NOT this axiom — so
+the paper-headline `ℏ/2 + δ_comp > ℏ/2` chain has zero blast-radius from
+`Real.pi_transcendental`.
+
+The axiom is being eliminated incrementally via the multi-cycle
+Lindemann–Weierstrass port (`OmegaTheory/Irrationality/CustomMath/LindemannBasic.lean`
++ Layer-CD companion files; Ganymede's cycle-57 W9
+`OmegaTheory/Irrationality/HermitePade/PiTranscendentalLayerB.lean` lays the
+Galois-bridge framework with `LindemannPremiseRat`/`LindemannPremiseInt`
+hypotheses). Target: cycle 60-62 closure.
+-/
+
+/-- Research-axiom scoping marker for `Real.pi_transcendental`. Inert; included
+for grep-discoverability and `axiom_audit` filtering. The marker carries no
+content — it merely lets downstream tooling identify which axioms are formally
+flagged research-track-only (i.e., not paper-headline-load-bearing). -/
+def Real.pi_transcendental_research_track_marker : Prop := True
+
+/-- Witness that `Real.pi_transcendental` is tagged research-track. The proof is
+trivial (the marker is `True` by definition); the role of this lemma is to be
+the canonical citation target when a downstream module wants to assert "the
+π-transcendence axiom is paper-headline-non-load-bearing per cycle-58 hybrid
+plan." Carries axiom footprint `[propext, Classical.choice, Quot.sound]` only —
+NO dependency on `Real.pi_transcendental` itself. -/
+theorem Real.pi_transcendental_is_research_track :
+    Real.pi_transcendental_research_track_marker := trivial
+
 /--
 **F53 — π-stratum separation (integer scalars).**
 

@@ -215,13 +215,25 @@
       "Bash(kill 30723)",
       "mcp__omega-search__retrieve_premises",
       "Bash(awk '{printf \"CPU=%.1f%% RSS=%.1fGB\\\\n\", $1, $2/1024/1024}')",
-      "Bash(kill -9 7001 sleep 3 echo \"=== Goedel status ===\" ps -p 7001 -o pid --no-headers)"
+      "Bash(kill -9 7001 sleep 3 echo \"=== Goedel status ===\" ps -p 7001 -o pid --no-headers)",
+      "Read(//home/norbert/lean-v2/.claude/agents/**)",
+      "Read(//mnt/c/Users/Norbert/IdeaProjects/chaos-shield/**)",
+      "Read(//home/norbert/lean-v2/**)",
+      "Read(//home/norbert/.claude/**)",
+      "Read(//mnt/c/Users/Norbert/**)",
+      "Bash(crontab -l)"
     ]
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "lean-lsp"
   ],
+  "sandbox": {
+    "enabled": false,
+    "failIfUnavailable": false,
+    "autoAllowBashIfSandboxed": false,
+    "allowUnsandboxedCommands": true
+  },
   "spinnerTipsEnabled": true,
   "prefersReducedMotion": true
 }

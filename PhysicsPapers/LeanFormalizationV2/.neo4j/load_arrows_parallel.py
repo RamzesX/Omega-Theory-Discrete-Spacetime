@@ -9,7 +9,14 @@ Optimizations vs sequential load_arrows_from_env_v2.py:
 - Pre-bucketed by relation type (reduces lock contention — different rels rarely conflict)
 - Skip record filter: --only-cycle N loads only edges from nodes with t.cycle=N
 
-Idempotent via apoc.merge.relationship (same as Rasalhague's).
+Idempotent via apoc.merge.relationship.
+
+**2026-04-25 fix (cycle 55 close):** identityProps was `{source: 'lean_env_v1'}`,
+which only matches existing edges that already carried that property. Older
+edges lacked it → MERGE failed to dedup → every refresh added a parallel
+edge. ~10M+ redundant edges accumulated across the project's history.
+Fix: identityProps `{}` (match purely on src/tgt/type — pure-topology MERGE).
+Plus inline post-load dedup for whichever rel-types were just touched.
 """
 import json, os, sys, time, argparse
 from pathlib import Path
@@ -28,6 +35,10 @@ REL_FIELDS = {
     'parametrizes_levels': 'PARAMETRIZES_LEVELS',
 }
 
+# IDENTITY PROPS = `{}` so MERGE matches purely on (src, tgt, type) topology.
+# Earlier `{source: 'lean_env_v1'}` matched only edges with that property,
+# letting older edges (created before the source convention) duplicate
+# silently every refresh.
 LOAD_QUERY = '''
 UNWIND $batch AS e
 CALL {
@@ -44,14 +55,52 @@ CALL {
   WITH e, src, coalesce(ts, td, ta, tf) AS tgt WHERE tgt IS NOT NULL
   CALL apoc.merge.relationship(
     src, e.rel,
-    {source: 'lean_env_v1'},
-    {created_at: datetime(), env_version: 'parallel_v2'},
-    tgt, {source: 'lean_env_v1'}
+    {},                                                   // identity = src+type+tgt only
+    {source: 'lean_env_v1', env_version: 'parallel_v2',  // onCreate
+     created_at: datetime()},
+    tgt, {last_seen_at: datetime(), source: 'lean_env_v1'}  // onMatch refresh
   ) YIELD rel
   RETURN rel
 }
 RETURN count(rel) AS merged
 '''
+
+
+def dedup_relation_types(driver, rel_types: list[str], batch_size: int = 50000) -> dict:
+    """Post-load cleanup: for each (src, tgt, type) triple with parallel edges,
+    keep one and delete the rest. Idempotent — runs to fixed point.
+
+    Uses APOC iterate so a single 1M-edge clean fits in 50k-edge transactions.
+    """
+    print(f'[dedup] cleaning legacy duplicates for {len(rel_types)} rel types', flush=True)
+    out: list[dict] = []
+    with driver.session() as s:
+        for rt in rel_types:
+            # Cypher injects the rel-type via string interpolation (validated
+            # by the REL_FIELDS map; not user input).
+            cypher = (
+                f"CALL apoc.periodic.iterate("
+                f"  'MATCH (a)-[r:{rt}]->(b) WITH a, b, collect(r) AS rels "
+                f"   WHERE size(rels) > 1 UNWIND rels[1..] AS dup RETURN dup', "
+                f"  'DELETE dup', "
+                f"  {{batchSize: {batch_size}, parallel: false, retries: 2}})"
+                f" YIELD batches, total, errorMessages, timeTaken "
+                f"RETURN batches, total, errorMessages, timeTaken"
+            )
+            t0 = time.monotonic()
+            rec = s.run(cypher).single()
+            elapsed = time.monotonic() - t0
+            n_removed = rec["total"] if rec else 0
+            errs = rec["errorMessages"] if rec else {}
+            out.append({"rel": rt, "duplicates_removed": n_removed,
+                        "elapsed_s": round(elapsed, 1),
+                        "errors": dict(errs) if errs else {}})
+            if n_removed:
+                print(f'  {rt:<22} removed {n_removed} duplicates ({elapsed:.1f}s)',
+                      flush=True)
+    total_removed = sum(r["duplicates_removed"] for r in out)
+    print(f'[dedup] done — {total_removed} duplicate edges removed', flush=True)
+    return {"per_rel": out, "total_removed": total_removed}
 
 
 def stream_edges(jsonl_path):
@@ -199,6 +248,15 @@ def main():
     rate_final = merged_total / max(elapsed, 0.01)
     print(f'\n[parallel-arrows] done. merged={merged_total}/{total_edges} in {elapsed:.1f}s ({rate_final:.0f} edges/s)')
 
+    # ── Inline post-load dedup ───────────────────────────────────────────────
+    # Cleans up legacy duplicates introduced by older loader versions.
+    # No-op on a fresh-from-scratch graph; on a graph with accumulated
+    # duplicates (the cycle-55 finding), it removes them in batches and
+    # converges to fixed point.
+    rel_types_touched = sorted(set(rel_counts.keys()))
+    dedup_result = dedup_relation_types(driver, rel_types_touched, batch_size=50000)
+    duplicates_removed = dedup_result["total_removed"]
+
     with driver.session() as s:
         s.run('''
             MERGE (m:MetaprogramScript {name: 'ParallelLoadArrowsV1'})
@@ -208,11 +266,14 @@ def main():
                 m.input_jsonl = $jsonl,
                 m.jsonl_edges_total = $total,
                 m.edges_merged_into_graph = $merged,
+                m.duplicates_removed_post_load = $dups,
                 m.elapsed_seconds = $elapsed,
                 m.edges_per_second = $rate,
                 m.created_at = datetime()
         ''', w=args.workers, bs=args.batch, jsonl=args.jsonl,
-             total=total_edges, merged=merged_total, elapsed=int(elapsed), rate=int(rate_final))
+             total=total_edges, merged=merged_total,
+             dups=duplicates_removed,
+             elapsed=int(elapsed), rate=int(rate_final))
 
     driver.close()
 

@@ -41,7 +41,14 @@ DRIVER = GraphDatabase.driver('bolt://localhost:7687', auth=('neo4j', 'omegatheo
 
 FETCH = '''
 MATCH (t:Theorem {namespace: 'OmegaTheoryV2'})
-WHERE t.source = 'lean_env_v1'
+WHERE
+  // Source filter widened 2026-04-25 (cycle 56): include t.source IS NULL —
+  // legacy theorems created before the lean_env_v1 convention were silently
+  // skipped (374 zombies found in pre-cycle-56 audit). Now backfilled +
+  // embedding-eligible. The signature-not-null guard prevents embedding
+  // empty strings (which would silently emit zero vectors).
+  (t.source = 'lean_env_v1' OR t.source IS NULL)
+  AND t.signature IS NOT NULL AND trim(t.signature) <> ''
   AND (
     t.embedding_qwen3_8b IS NULL
     OR t.embedding_qwen3_8b_at IS NULL
@@ -49,7 +56,8 @@ WHERE t.source = 'lean_env_v1'
   )
 RETURN t.name AS name,
        t.signature AS sig,
-       coalesce(t.docstring, '') AS doc
+       coalesce(t.docstring, '') AS doc,
+       coalesce(t.proof_body, '') AS proof
 '''
 
 WRITE = '''
@@ -61,6 +69,35 @@ SET t.embedding_qwen3_8b = row.vec,
     t.embedding_model = 'Qwen3-Embedding-8B',
     t.embedding_dim = 4096,
     t.embedder = 'qwen3-8b-bf16'
+'''
+
+# Forward-fill: after the combined embed, automatically populate the three
+# split-field embeddings (signature / proof / docstring) so newly-ingested
+# theorems are immediately ready for Tier 2 retrieval. Skips rows that already
+# have the target field — idempotent re-runs are cheap.
+#
+# Task prompts match reembed_split_fields.py (Qwen3 instruction-aware).
+SPLIT_FIELD_CONFIG = {
+    # field key       (source-property, target-property, crop, task)
+    "signature":       ("sig",   "embedding_signature",  1500,
+                        "Given a Lean 4 theorem signature, encode its "
+                        "type-theoretic content so that semantically "
+                        "equivalent statements produce nearby vectors."),
+    "proof":           ("proof", "embedding_proof",      3500,   # bumped from 2000
+                        "Given a Lean 4 tactic proof body, encode its "
+                        "proof-pattern (tactics used, structural shape, "
+                        "induction type) so analogous proofs produce nearby "
+                        "vectors."),
+    "docstring":       ("doc",   "embedding_docstring",  1000,
+                        "Given a Lean 4 declaration's doc comment, encode "
+                        "the author's stated intent and mathematical meaning."),
+}
+
+WRITE_SPLIT_TEMPLATE = '''
+UNWIND $rows AS row
+MATCH (t:Theorem {namespace: 'OmegaTheoryV2', name: row.name})
+SET t.{target_prop} = row.vec,
+    t.{target_prop}_at = datetime()
 '''
 
 
@@ -138,8 +175,69 @@ def main():
                 print(f'  {done}/{total}  elapsed={elapsed:.0f}s  eta={eta:.0f}s  rate={rate:.1f} emb/s')
                 sys.stdout.flush()
                 last_report = done
-    print(f'[delta-embed] done. Embedded {done} in {time.time()-t0:.1f}s '
-          f'({done/max(time.time()-t0, 0.01):.1f} emb/s)')
+    combined_elapsed = time.time() - t0
+    print(f'[delta-embed] combined field done. Embedded {done} in {combined_elapsed:.1f}s '
+          f'({done/max(combined_elapsed, 0.01):.1f} emb/s)')
+
+    # ── Forward-fill: split-field embeddings (sig/proof/doc) ──────────────
+    # Any theorem we just (re-)embedded for the combined field also needs its
+    # three split embeddings. We skip rows that already have each field
+    # populated, so re-runs after a partial interruption are cheap.
+    print('[delta-embed] forward-filling split-field embeddings ...')
+    for field_key, (src_prop, target_prop, crop, task) in SPLIT_FIELD_CONFIG.items():
+        field_t0 = time.time()
+        # Re-fetch only rows needing this field. Use fresh Cypher per field
+        # so partial earlier work doesn't force re-embedding.
+        with DRIVER.session() as s:
+            split_rows = s.run(f'''
+                MATCH (t:Theorem {{namespace: 'OmegaTheoryV2'}})
+                WHERE t.source = 'lean_env_v1'
+                  AND t.{src_prop if src_prop != "sig" else "signature"} IS NOT NULL
+                  AND trim(t.{src_prop if src_prop != "sig" else "signature"}) <> ''
+                  AND t.{target_prop} IS NULL
+                RETURN t.name AS name,
+                       t.{src_prop if src_prop != "sig" else "signature"} AS text
+            ''').data()
+        if not split_rows:
+            print(f'  [{field_key}] nothing to embed (already populated)')
+            continue
+        print(f'  [{field_key}] embedding {len(split_rows)} theorems (crop={crop})')
+        split_done = 0
+        split_skipped = 0
+        write_cypher = WRITE_SPLIT_TEMPLATE.format(target_prop=target_prop)
+        with httpx.Client() as client:
+            split_batches = [
+                split_rows[i:i + BATCH]
+                for i in range(0, len(split_rows), BATCH)
+            ]
+            for b in split_batches:
+                # Prefix texts with Qwen3 instruction format per field task.
+                texts = [
+                    f"Instruct: {task}\nQuery: {(r['text'] or '')[:crop]}"
+                    for r in b
+                ]
+                try:
+                    vecs = embed_batch(texts, client)
+                except Exception as e:
+                    print(f'    ERROR batch size={len(b)}: {e}; falling back to singles')
+                    vecs = []
+                    for t in texts:
+                        try:
+                            vecs.extend(embed_batch([t], client))
+                        except Exception as e2:
+                            vecs.append(None)
+                            split_skipped += 1
+                to_write = [
+                    {'name': r['name'], 'vec': v}
+                    for r, v in zip(b, vecs) if v is not None
+                ]
+                if to_write:
+                    with DRIVER.session() as s:
+                        s.run(write_cypher, rows=to_write)
+                split_done += len(to_write)
+        print(f'  [{field_key}] done: embedded={split_done} skipped={split_skipped} '
+              f'in {time.time() - field_t0:.1f}s')
+
     DRIVER.close()
 
 

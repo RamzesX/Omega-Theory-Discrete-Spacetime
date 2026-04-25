@@ -1,5 +1,12 @@
 # Claude Code Project Instructions — Chaos Shield / OmegaTheory V2
 
+## Orchestrator MCP
+`omega-orchestrator` MCP exposes 22 tools across 6 buckets: **servers** (lifecycle),
+**graph** (ingest), **embed**, **inspect** (`cycle_state`/`build_status`/`axiom_audit`),
+**jobs** (async), **wizard** (`propose_proof`/`omega_hammer_premise`). Prefer MCP
+over raw shell+Cypher. Hammers use composite scoring only — `rerank` parameter
+removed 2026-04-25.
+
 ## System Specifications
 
 ```
@@ -35,21 +42,13 @@ cd ~/lean-v2
 ## Server hygiene rule (2026-04-24 — IMPORTANT)
 
 **Kill embedding + reranker servers when no retrieval-using agent is active.**
-
 User's explicit concern: computer heat/power over long sessions. Servers:
 - `:7999` — Qwen3-Embedding-8B GPU (llama.cpp HIP on RX 9060 XT)
 - `:7996` — Qwen3-Reranker-8B CPU (llama.cpp AVX-512 on Ryzen 9950X)
 
-**Kill when idle / Lean-only work:**
-```bash
-pkill -f "llama-server"; pkill -f "supervise_llama"
-```
-
-**Restart on-demand (before dispatching retrieval-heavy waves):**
-```bash
-setsid ~/genai_env/bin/python ~/services/supervise_llama.py embed_gpu > /tmp/sup_emb.log 2>&1 < /dev/null & disown
-setsid ~/genai_env/bin/python ~/services/supervise_llama.py reranker_cpu > /tmp/sup_rer.log 2>&1 < /dev/null & disown
-```
+Use `mcp__omega-orchestrator__servers_control(action='start'|'stop'|'status')`
+to manage both servers atomically (multi-pass kill, port-centric status, boot
+grace). The MCP enforces the hygiene rule.
 
 Full memory: `feedback_kill_servers_when_idle_2026-04-24.md`.
 
@@ -200,10 +199,41 @@ Polaris, Navi, Mekbuda, Dubhe, Naos, Schedar, Sheratan, etc.) and log identity
 under `.claude/agent-memory/`.
 
 ## MCP tools
+
+### `omega-orchestrator` (22 tools, 6 buckets — the project's primary MCP)
+
+**Servers (lifecycle):** `servers_control(action=start|stop|status|restart)` ·
+`swap_profile(target_profile)`.
+
+**Graph (ingest):** `ingest_graph(run_dump, run_load, dry_run) → job_id` (async) ·
+`precompute_signals` (sync, ~3s) · `refresh_graph(dry_run) → job_id` (async,
+returns job_id; poll `job_status(id)` for live `progress` field — step name +
+status + elapsed_s — and `job_tail(id, n)` for stdout. Avoid `sync_mode=True`
+unless dry-run; sync blocks the MCP stdio loop and risks disconnect).
+
+**Embed:** `embed_nodes(names, fields)` · `embed_delta(fields, namespace, since)` ·
+`embed_candidates(statuses)`.
+
+**Inspect (read-only):** `candidate_status(filter)` · `build_status()` ·
+`graph_health()` · `cycle_state(running_wizard_count, landings_since_last_refresh)` ·
+`axiom_audit(targets)` · `cache_stats()` · `phase_detect(...)`.
+
+**Jobs (async control):** `job_status(id)` · `job_tail(id, n)` · `job_cancel(id)` · `job_list()`.
+
+**Wizard (retrieval):** `propose_proof(goal, wizard_name, k, namespace)` →
+tactic stub + 5 cited premises + graph_rationale · `omega_hammer_premise(goal, top_k, mix_mathlib)` →
+top-K ranked premises · `upsert_theorem_candidate(...)`.
+
+Both hammers use composite-only scoring (cosine + pagerank + indegree +
+subsys_match); `rerank` parameter removed 2026-04-25 (was ~1s/pair, blocked
+concurrent agents).
+
+### Other MCPs
 - `lean-lsp` — `lean_leansearch`, `lean_loogle`, `lean_local_search`,
   `lean_goal`, `lean_diagnostic_messages`, `lean_multi_attempt`, etc.
 - `neo4j-math` — `read_neo4j_cypher`, `write_neo4j_cypher`, `get_neo4j_schema`
-- Embedding servers: Qwen3-8B on `:7999` (GPU), reranker on `:7997` (CPU)
+- Embedding servers: Qwen3-8B on `:7999` (GPU), reranker on `:7996` (CPU) —
+  managed by `servers_control`.
 
 ## Where to look next
 

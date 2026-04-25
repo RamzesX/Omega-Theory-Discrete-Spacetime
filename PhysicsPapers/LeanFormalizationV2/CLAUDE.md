@@ -1,10 +1,15 @@
 # OmegaTheory V2 — Lean 4 Formalization
 
-## Status (2026-04-24, cycle-51 mid-refresh)
-- **1 canonical `:Axiom` node** in OmegaTheoryV2 namespace (`Real.pi_transcendental`, sealed in HermitePade/; narrow-scope alt shipped W9 cycle-50 + W8 cycle-51).
+## Orchestrator MCP
+`omega-orchestrator` exposes 22 tools (servers / graph / embed / inspect / jobs / wizard).
+Live numbers via `cycle_state()` / `build_status()` / `axiom_audit()`. Hammers
+(`omega_hammer_premise`, `propose_proof`) replace grep+exact? guesswork —
+composite-scored fast path; `rerank` parameter removed 2026-04-25.
+
+## Status (live snapshot — see `cycle_state()` for fresh)
+- **1 canonical `:Axiom` node** (`Real.pi_transcendental`, sealed in HermitePade/).
 - **Paper-headline capstones depend on `[propext, Classical.choice, Quot.sound]` ONLY** (Lean core).
-- **3,936 build jobs GREEN**, 0 sorry.
-- **~211 Lean files**, **10,142 own theorems** (graph-live count).
+- 0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research (post-Lesath 2026-04-24).
 - 0 physical-constant axiom declarations — c, ℏ, G_N, k_B as `noncomputable opaque {x:ℝ // 0 < x}` via `Classical.choice` (Lean core).
 - Lean v4.29.0 + Mathlib v4.29.0.
 - P3t (native_decide elim) CLOSED cycle-49; axiom-narrowing degree-1 ✅ cycle-50 W9, degree-2 conditional ✅ cycle-51 W8.
@@ -15,15 +20,17 @@
 ~/.elan/bin/lake build OmegaTheory.Module --log-level=error  # single module
 ~/.elan/bin/lake exe cache get                     # Mathlib cache (do first)
 ```
+For green-state checks during proof iteration, prefer
+`mcp__omega-orchestrator__build_status()` over re-running `lake build`.
 
 ## HARD RULES for all agents
 1. **0 sorry** — absolutely never
-2. **0 new axioms** — project has exactly 8 physical constants
+2. **0 new axioms** — `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research` (post-Lesath 2026-04-24); see PhysicsPapers/CLAUDE.md HARD RULES for full breakdown
 3. **Must compile GREEN** before reporting done
 4. **Register new files** in `OmegaTheory/Basic.lean`
 5. **Quality over speed** — take time, iterate on errors
 6. **Speak the same language** — follow `STYLE_GUIDE.md` (shared primitives, naming, proof patterns)
-7. **Connect don't duplicate** — grep + `exact?` before writing new theorems
+7. **Connect don't duplicate** — `omega_hammer_premise` / `propose_proof` before writing new theorems
 
 ## Proof Automation — USE BEFORE manual proof
 ```lean
@@ -43,7 +50,7 @@ decide       -- exhaustive finite check
 - `mul_div_cancel₀` not `mul_div_cancel`
 - `Finset.not_mem_empty` not `Finset.mem_empty`
 
-## What the theory derives (from 8 constants)
+## What the theory derives (from 4 opaque-bundle constants — historical "8 constants" framing pre-Lesath)
 - QM: 10 von Neumann postulates (grand_qm_emergence)
 - GR: Einstein equations (7 regime witnesses, HPW axiom deleted)
 - SM gauge: U(1)×SU(2)×SU(3) (from Connes A_F = ℂ⊕ℍ⊕M₃(ℂ))

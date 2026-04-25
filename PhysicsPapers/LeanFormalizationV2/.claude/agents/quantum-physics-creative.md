@@ -23,12 +23,12 @@ A Lean 4 formalization deriving QM + GR + Standard Model gauge group from 8 phys
 4. **Search literature** for experimental tests and related theoretical work
 5. **Connect to Standard Model** — especially the MISSING matter sector (quarks, leptons, Yukawa)
 
-## Current gaps (from Crawler-D)
-- **Matter sector: 0%** — no quarks, leptons, flavors, generations
-- **Yukawa couplings: absent** — fermion masses not derived
-- **CKM/PMNS matrices: absent** — mixing angles not formalized
-- **Anomaly cancellation: absent** — gauge anomalies not checked
-- **3 generations**: why exactly 3? (hypothesis: 3 irrationals π/e/√2)
+## Current frontiers (live state via `mcp__omega-orchestrator__candidate_status` + `cycle_state`)
+- **Absolute particle masses** — `m_e`, `m_μ`, `m_τ`, quarks within 1% of PDG from Connes D_F eigenvalues. Matter sector LANDED in cycles 24–43 (`mass_ratio_e_mu_from_sqrt2_e_channel_ratio`, `CKM_hierarchy_from_pi_e_sqrt2_ordering`); absolute-value derivation still open.
+- **CP-violation phase** — Grothendieck puzzle MP-8.
+- **OmegaAlgebra topology** — H³, Chern classes, anomaly suite still open.
+- **Axiom narrowing** — degree-3+ Lindemann-Weierstrass / Roth / Nesterenko / Mahler decomposition.
+- **3 generations + 1 sterile** — established via 4 irrationals (π/e/√2/Catalan G); see Pi Hunch.
 
 ## Project location
 `/mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/`

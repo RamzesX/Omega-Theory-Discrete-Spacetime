@@ -1,5 +1,12 @@
 # OmegaTheory — Physics Papers & Lean Formalization
 
+## Orchestrator MCP
+`omega-orchestrator` MCP exposes 22 tools across 6 buckets (servers / graph / embed
+/ inspect / jobs / wizard). For any pipeline operation, prefer MCP over raw
+shell+Cypher. Live state via `cycle_state()` / `build_status()` / `axiom_audit()`.
+Hammers (`omega_hammer_premise`, `propose_proof`) use composite scoring only —
+the `rerank` parameter was removed 2026-04-25.
+
 ## Overview
 OmegaTheory derives quantum mechanics, general relativity, and the full Standard Model
 gauge group + fermion masses + dark matter + dark energy + cyclic cosmology from
@@ -148,50 +155,41 @@ Phase C must complete **all seven steps in order before any Phase A sage-fire**.
 Do NOT fire sage-for-next-batch until graph + embeddings are fully refreshed —
 sage proposals based on stale graph waste the team's work.
 
-```
-Step 1. AXIOM SENTINEL — `#print axioms` on paper capstones
-         MUST show [propext, Classical.choice, Quot.sound] only
-         If any research axiom leaks → PushNotification + blocker task; halt.
+**Executable form: `mcp__omega-orchestrator__refresh_graph(dry_run=False)` is
+ASYNC — returns `job_id` instantly, runs all 8 steps (sentinel→build→
+dump_decls→dump_arrows→load_decls→load_arrows→reembed→verify) in a detached
+subprocess, publishes a structured `progress` field on each step, invalidates
+caches on success. Poll via `job_status(id)` / `job_tail(id, n)`. Do NOT pass
+`sync_mode=True` — that blocks the MCP stdio loop for 5-30 min and risks
+child-process disconnect (lesson 2026-04-25). `axiom_audit()` is step 1
+(also folded into the async chant); `servers_control('start'|'stop')` is
+steps 2/6; parent writes the memo for step 7. The cron prompt at
+`~/.claude/commands/cycle-completion-loop.md` is the canonical executor.**
 
-Step 2. POWER UP servers (only for Phase C):
-         setsid ~/genai_env/bin/python ~/services/supervise_llama.py embed_gpu & disown
-         setsid ~/genai_env/bin/python ~/services/supervise_llama.py reranker_cpu & disown
-         until curl -s http://localhost:7999/health | grep -q '"ok"'; do sleep 2; done
+The seven steps (philosophy):
 
-Step 3. SEQUENTIAL graph refresh (no skips, no parallel reordering):
-         cd ~/lean-v2
-         ~/.elan/bin/lake build --log-level=error                            # (a) build GREEN
-         ~/.elan/bin/lake exe dump_decls --out .neo4j/declarations_from_env_cycleN.jsonl
-         ~/.elan/bin/lake exe dump_arrows --out .neo4j/arrows_from_env_cycleN.jsonl --include-mathlib
-         cd .neo4j
-         ln -sf declarations_from_env_cycleN.jsonl declarations_from_env_v2.jsonl
-         python3 load_declarations_env_v2.py                                 # (d) load decls to Neo4j
-         python3 load_arrows_parallel.py                                     # (e) load arrows
-         python3 reembed_qwen3_delta.py                                      # (f) Qwen3-8B embeddings via :7999
-
-Step 4. VERIFY refresh integrity via Cypher:
-         MATCH (t:Theorem {namespace:'OmegaTheoryV2'}) RETURN count(t)
-         MATCH (t:Theorem {namespace:'OmegaTheoryV2'}) WHERE t.embedding_lean IS NULL
-           RETURN count(t) AS missing_emb          -- must be 0 (sage blind spot if >0)
-         MATCH (a:Axiom {namespace:'OmegaTheoryV2'}) RETURN a.name
-         If missing_emb > 0 → re-run reembed_qwen3_delta.py until 0.
-
-Step 5. PRUNE orphaned :Axiom nodes:
-         MATCH (a:Axiom)
-         WHERE NOT EXISTS { MATCH ()-[:ASSUMES|APPLIES*1..5]->(a) }
-         DELETE a
-
-Step 6. POWER DOWN servers (user heat/power rule 2026-04-24):
-         pkill -f llama-server
-         pkill -f supervise_llama
-
-Step 7. MEMORY-WRITE cycle closure:
-         write notes/NOTES_CYCLE_<N>_COMPLETION_YYYY-MM-DD.md with:
-            - landings list
-            - axiom footprint before/after
-            - build jobs delta
-            - next-cycle seeds
-```
+1. **AXIOM SENTINEL** — `axiom_audit(targets=<paper capstones>)` MUST return
+   `[propext, Classical.choice, Quot.sound]` only. If any research axiom leaks
+   → PushNotification + blocker task; halt.
+2. **POWER UP servers** — `servers_control(action='start')` (embedder + reranker;
+   embedder GPU takes ~20s warm-up).
+3. **SEQUENTIAL graph refresh** — `refresh_graph(dry_run=False)` runs in order:
+   `lake build` → `dump_decls` → `dump_arrows --include-mathlib` →
+   `load_declarations_env_v2.py` → `load_arrows_parallel.py` →
+   `reembed_qwen3_delta.py`. No skips, no parallel reordering. Returns
+   `{missing_emb, deltas, axioms}`.
+4. **VERIFY refresh integrity** — `refresh_graph` returns `missing_emb`; **must
+   be 0** (sage blind-spot if >0). If >0, the MCP retries reembed automatically;
+   if still nonzero, halt.
+5. **PRUNE orphaned `:Axiom` nodes** — handled by `refresh_graph` step 5; only
+   nodes unreachable via `ASSUMES|APPLIES*1..5` are removed (Lean-core axioms
+   stay).
+6. **POWER DOWN servers** — `servers_control(action='stop')` (heat/power rule
+   2026-04-24).
+7. **MEMORY-WRITE cycle closure** — parent writes
+   `notes/NOTES_CYCLE_<N>_COMPLETION_YYYY-MM-DD.md` with landings, axiom
+   footprint before/after, build-jobs delta, next-cycle seeds. Parent's job
+   per `parent owns memory` rule; MCP never writes memos.
 
 Only after Step 7 written → transition to Phase A. If any step errors, halt
 the pipeline and notify user.
@@ -201,13 +199,17 @@ the pipeline and notify user.
 **Embedder `:7999` + reranker `:7996` are ON during Phase A and Phase C only.
 OFF during Phase B (proving, the longest phase).**
 
+Enforced by `servers_control(action='stop')` after Phase C step 6 and again
+after Phase A handoff. Verify pre-Phase-B with `servers_control(action='status')`
+— both `healthy: false`.
+
 Rationale: Phase B (wizards proving) is CPU-bound on Ryzen 9950X — GPU + CPU
 reranker are wasted thermals. Phase A (sage) needs both for `mcp__omega-search`
 retrieval quality. Phase C (dump/load/reembed) needs both for embeddings.
 Transitions:
-- `B → C`: restart both (embedder GPU takes ~20s warm-up).
+- `B → C`: `servers_control('start')` (embedder GPU takes ~20s warm-up).
 - `C → A`: keep both running — sage starts immediately.
-- `A → B`: kill both — wizards don't need them.
+- `A → B`: `servers_control('stop')` — wizards don't need them.
 
 ### GROTHENDIECK-AS-ORCHESTRATOR pattern
 
@@ -250,7 +252,7 @@ Every cycle dedicates ≥1 wizard to axiom-narrowing or elimination:
 - **Axiom regression into capstone** → breaks paper-headline footprint. Fix:
   doc-refresh loop's sentinel raises `PushNotification`; halt cycle until narrowed.
 
-## Neo4j ingest pipeline — USE THESE SCRIPTS, DO NOT ROLL YOUR OWN
+## Neo4j ingest pipeline — USE MCP, DO NOT ROLL YOUR OWN
 
 Full ground-truth pipeline lives in `~/lean-v2/.neo4j/`. See
 `LeanFormalizationV2/.neo4j/CLAUDE.md` for details. Two Lean metaprograms
@@ -259,19 +261,9 @@ produce the env dumps; Python loaders MERGE them into the `math` container
 files for graph work — Mirfak measured the regex path drops 46% of fresh
 theorems.
 
-```bash
-cd ~/lean-v2
-~/.elan/bin/lake build --log-level=error          # must be GREEN first
-~/.elan/bin/lake exe dump_decls --out .neo4j/declarations_from_env_v2.jsonl
-~/.elan/bin/lake exe dump_arrows --out .neo4j/arrows_from_env_cycleN.jsonl --include-mathlib
-cd .neo4j
-python3 load_declarations_env_v2.py               # Naos: MERGE Theorem/Def/Axiom
-python3 load_arrows_parallel.py                   # SOTA: 16-worker batched UNWIND (~500× faster)
-python3 reembed_qwen3_delta.py                    # Qwen3-8B embeddings (:7999)
-```
-(Lake exe names are `dump_decls` and `dump_arrows`, per `~/lean-v2/lakefile.toml`.)
+**Executable form (preferred):** `mcp__omega-orchestrator__ingest_graph(run_dump=True, run_load=True)` returns a `job_id`; poll via `job_status` / `job_tail`. Embeddings via `embed_delta(fields=['embedding_lean'])`. **For the full Phase C 7-step chant use `refresh_graph(dry_run=False)` — it is now ASYNC (returns `job_id`, publishes structured live progress); `sync_mode=True` is a legacy escape hatch only and risks MCP stdio disconnect on multi-min runs.**
 
-**Key files (never rewrite from scratch — extend them):**
+**Key files (catalogue — extend them, don't rewrite):**
 - `OmegaTheory/Meta/DumpDeclarations.lean` (Schedar) — env declaration dumper
 - `OmegaTheory/Meta/DumpArrows.lean` (Sheratan) — 12-arrow typed env extractor
 - `.neo4j/load_declarations_env_v2.py` (Naos) — delta declaration loader
@@ -284,9 +276,9 @@ python3 reembed_qwen3_delta.py                    # Qwen3-8B embeddings (:7999)
 **DO NOT use** `.neo4j/extractors/lean_arrow_extractor.py` (regex, deprecated)
 for production graph work. It's kept for fallback when Lean env is broken.
 
-Embedder endpoints:
+Embedder endpoints (managed by `servers_control`):
 - `http://localhost:7999/v1/embeddings` — Qwen3-8B BF16 GPU (dim 4096)
-- `http://localhost:7997/rerank` — Qwen3-Reranker-8B CPU
+- `http://localhost:7996/rerank` — Qwen3-Reranker-8B CPU
 
 ## HARD RULES for all work
 1. **0 sorry** in Lean — absolutely never
@@ -434,10 +426,11 @@ The probe file `OmegaTheory/Probe/PiAndOmegaStructure.lean` attempts the thesis 
 `irrationality_implies_quantum_uncertainty : ℏ/2 < ℏ/2 + computationalUncertainty N`
 
 ## Custom agents (`LeanFormalizationV2/.claude/agents/`)
+All agent definitions are repo-pinned at `LeanFormalizationV2/.claude/agents/`.
 - `omega-team-lead` — coordinates wizard + creative pairs in cycles
 - `lean-proof-wizard` — Lean 4 specialist, all tactics, all build commands
 - `quantum-physics-creative` — wild physics ideas + literature search
-- `grothendieck-sage` — graph synthesis / gap hunting over the 184K-theorem Lean+Mathlib graph
+- `grothendieck-sage` — graph synthesis / gap hunting over the 184K-theorem Lean+Mathlib graph (canonical at `LeanFormalizationV2/.claude/agents/grothendieck-sage.md`; mirrored to `~/.claude/agents/` for global discoverability)
 - `pi-irrationality-hunter` — Pi-Hunch specialist: π-truncation, transcendence, 3-generation hypothesis
 - `pi-formalizer` — Lean formalization of π properties + Hermite–Padé
 - `pi-physics-bridge` — π math → physical predictions (masses, QM, generations)

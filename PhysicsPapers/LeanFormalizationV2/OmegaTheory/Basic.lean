@@ -4446,3 +4446,33 @@ import OmegaTheory.IrrationalityClasses.EFunctionSubstrateBypass
 -- value + Γ(5/4) functional eq + reflection identity at s=1/4 + iterated
 -- functional eq Γ(9/4) = (5/16)·Γ(1/4). 11 declarations, Lean core only.
 import OmegaTheory.Irrationality.HermitePade.NesterenkoSubLemmas
+
+-- ═══════════════════════════════════════════════════════════════════════
+-- Cycle-59 (Scorpius) Phase B Wave 1 batch — 5 wizards landed + 2 perf
+-- (Antares grothendieck-sage delivered 20 briefings; Wave 1 = 6 wizards)
+-- ═══════════════════════════════════════════════════════════════════════
+
+-- W1-yukawa — cycle-59 (Scorpius) Wave 1: YukawaMatrix orphan compose into
+-- precision bridge (Connes D_F → m_e/m_μ absolute). 4 declarations, Lean core.
+import OmegaTheory.Emergence.YukawaMatrixPrecisionBundleCapstone
+
+-- W2-quarkbeta — cycle-59 (Scorpius) Wave 1: quark β-decay compose-into-capstone
+-- via Connes D_F orphan wiring. 4 declarations, Lean core only.
+import OmegaTheory.Predictions.QuarkBetaConnesD_FCapstone
+
+-- Borisov (interstellar comet 2I/Borisov, 2019) — cycle-59 (Scorpius) Wave 1
+-- W9: `pi_stratum_degree_four_decoupling`. Plan A real D=4 ladder rung, conditional
+-- on hpi_indep₄. Extends Callisto's c57 D=1/2/3 ladder. D=1/2/3/4 complete;
+-- mechanical lift to D=5+ proven extensible. 7 declarations, Lean core only.
+import OmegaTheory.IrrationalityClasses.PiStratumDegreeFour
+
+-- W10-LindemannCD — cycle-59 (Scorpius) Wave 1: Wave-2 of multi-cycle
+-- Lindemann–Weierstrass port. Builds on Sedna c58 LindemannBasic skeleton;
+-- Galois-conjugation framework + integer-bound bridge. 14 declarations,
+-- Lean core only (Plan A or Plan B per wizard's choice).
+import OmegaTheory.Irrationality.HermitePade.PiTranscendentalLayerCD
+
+-- W16-spacetime-ops — cycle-59 (Scorpius) Wave 1: Spacetime/Operators 151
+-- isolated theorems compose-into-capstone (residual after Spica² c57 wired
+-- 45/48). NEW capstone, target ≥50/151 orphans wired. 9 declarations, Lean core.
+import OmegaTheory.Spacetime.OperatorsCapstoneResidual

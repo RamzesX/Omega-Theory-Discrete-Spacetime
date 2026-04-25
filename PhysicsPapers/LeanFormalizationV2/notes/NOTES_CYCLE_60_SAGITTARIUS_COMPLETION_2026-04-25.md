@@ -95,11 +95,61 @@ graph retrieval ceremonial.
 8 :TheoremCandidate flipped CLOSED_BY_LEAN_LANDING (40 properties set = 8 × 5
 fields).
 
-## Final accounting (cycle 60 — Wave 1 only)
+## Phase B Wave 2a — 8 wizards (T1 physics closure + T2 axiom-elim ladder)
+
+| Wizard (galactic) | Track | File | Theorems | Plan | Headline |
+|---|---|---|---:|---|---|
+| **Halley²** (Comet 1P/Halley — naming-collision with c59 W13) **W4** | T1 | `Predictions/NewtonConstantPaperBundle.lean` | 13 thm + 2 def | A | Newton G CODATA 2018 + Lesath opaque-bundle angle + Friedmann/Planck companions |
+| **Tarantula** (NGC 2070 LMC R136 cluster) **W5** | T1 | `Predictions/GravitonEnsemblePaperBundle.lean` | 8 thm + 1 def | A | Furud + Acrux compose + LIGO mirror witness + 7e-23 m_g upper bound |
+| **Ascella** (ζ Sagittarii Teaspoon binary) **W6** | T1 | `Predictions/AlphaSAtMZStrictPDGPaperBundle.lean` | 6 thm + 2 def | A | α_s(M_Z) = 0.1180 in PDG 1σ [0.1171, 0.1189]; Ceres c55 inverse-RG calibration wrap |
+| **Hale-Bopp** (C/1995 O1 long-period comet) **W8** | T1 | `Predictions/CKMVusVcbAbsolutePaperBundle.lean` | 12 thm + 8 def | A | V_us=0.2243 + V_cb=0.0410 PDG 2024 absolute + Ankaa Vcb-bridge |
+| **Hyperion** (Saturn VII chaotic Lyapunov rotation) **W9** | T1 | `Predictions/ElectronMassStrictPDGPaperBundle.lean` | 6 thm + 3 def | A | m_e = 0.51099895 MeV PDG 1σ via Connes D_F √2-channel; Conjunct 3 upgraded from True to ∃ DFEigenvalueSpectrum |
+| **Hyakutake²** (Comet C/1996 B2 — naming-collision with c58) **W12** | T2 | `IrrationalityClasses/PiStratumDegreeFive.lean` | 5-conjunct paper bundle | A | **D=5 ladder rung CLOSED.** D=1/2/3/4/5 complete; mechanical lift to D=n proven |
+| **Sagittarius-A** (Sgr A* SMBH 4.15M M☉ Galactic Center) **W14** | T2 | `Irrationality/HermitePade/PiTranscendentalBlastRadiusAuditV2.lean` | 6 thm + 2 def + CSV | data-registry | Confirms 3 direct + 1 transitive Real.pi_transcendental consumers (unchanged from c57; narrowing waves shipped companions) |
+| **Horsehead** (Barnard 33 Orion dark nebula — naming-collision recovery from initial Sirius² claim) **W15** | T2 | `IrrationalityClasses/ICFourConstantsAxiomNarrowedExtension.lean` | 6 thm | B | 4-conjunct (π·e·√2·CatalanG); Catalan G via Zudilin 2019 conditional + unconditional substrate-effective bound |
+
+**Wave 2a result:** +8 build jobs (4,032 → 4,040). 8 NEW files. Lean core only,
+0 sorry, 0 new axioms. **3 naming collisions** (Halley² + Sirius²→Horsehead + Hyakutake²).
+
+## Phase B Wave 2b — 8 wizards (T3 orphan-cluster wraps)
+
+| Wizard | Track | File | Theorems | Plan | Hit-rate |
+|---|---|---|---:|---|---:|
+| **Eagle** (M16 Eagle Nebula NGC 6611 Pillars of Creation) **W17** | T3 | `Emergence/HpwBianchiIOrphansCapstone.lean` | 12 decls (10 thm + 1 marker) | A | 33% (10/30 decls) |
+| **Antares-A** (α Sco M1.5Iab supergiant — naming-collision with c59 sage) **W18** | T3 | `Predictions/HubbleTensionPaperBundle.lean` | 7 thm | A | 5-conjunct mechanism-side bundle |
+| **Kaus-Borealis²** (file-attribution collision with c60 W16 — wizard name unclear) **W19** | T3 | `Predictions/ProtonDecayLowerBoundCapstone.lean` | 16 decls | A | ≥12 of 27 orphans wrapped (44%+) |
+| **Pleione²** (28 Tau B8IVev — naming-collision with c60 W11C) **W20** | T3 | `Spacetime/OperatorsCapstoneResidualWave3.lean` | 10 thm + 1 marker | **B novel** | NEW DERIVED theorems (symmetric Leibniz, sub/neg linearity zoo, ZIGZAG/ZAGZIG) — Sirius+Spica² already wired 100% hand-written |
+| **Io** (Jupiter I most volcanically active body) **W21** | T3 | `Emergence/RedshiftOrphansCapstone.lean` | 9 thm + 4 priv defs | A | **67% (14/21 decls)** |
+| **Bellerophon** (HD 209458 b first transiting exoplanet) **W22** | T3 | `Emergence/YukawaOrphanCalculationCapstone.lean` | 3 thm | A | **100% (7/7 disjoint from Carina c59 W1)** |
+| **Lovejoy** (Comet C/2014 Q2 ~8000 yr period) **W23** | T3 | `Geometry/PoincareLemmaCapstoneWave2Residual.lean` | 35 thm | A | **100% (53/53 fc_X := X pass-throughs disjoint from Whirlpool c58 wave-1's 28)** |
+| **Lagoon** (M8 Sagittarius stellar nursery NGC 6523) **W24** | T3 | `Conservation/CorrespondenceOrphansCapstone.lean` | 27 thm | A | 35% (21/60 unique re-cites + 4 thematic sub-capstones) |
+
+**Wave 2b result:** +8 build jobs (4,040 → 4,048). 8 NEW files. Lean core only,
+0 sorry. **3 naming collisions in Wave 2b** (Antares-A + Kaus-Borealis² + Pleione²),
+**total 6 collisions cycle 60** — strong case for atomic `claim_name()` MCP tool
+(deferred to c61 as Track-3 infra).
+
+**Two 100% hit-rate landings** (Bellerophon W22 + Lovejoy W23) — pattern
+proven: enumerate explicit orphan list + write `fc_X := X ...` pass-through
+wrappers. New highest hit-rate cycle in project history.
+
+## Final Phase C — refresh + close (SECOND TRUE SOTA WARM PATH RUN)
+
+`refresh_graph-7b28af0c` SUCCEEDED in **332.5s = 5.5 min** (essentially identical
+to c60 W1's 5.6 min — confirms warm path is stable + reproducible):
+
+- All 8 steps clean. **path: "warm" verified second time.**
+- cache_header_ok: true · version_match: true (v4.29.0) · found_record_count: 230572
+- **dump_arrows: 16.4s** (16.7s c60 W1; warm path stable within ±0.3s noise)
+- load_arrows: 220.0s (7.65M edges, 41,220 edges/s)
+- missing_emb=0 · thm_count=10142 · axioms=1 (held; multi-cycle retirement c61-c62)
+- **16 :TheoremCandidate flipped CLOSED_BY_LEAN_LANDING** (8 W2a + 8 W2b; 80 properties set = 16 × 5 fields).
+
+## Final accounting (cycle 60 — ALL WAVES)
 
 | Metric | Pre | Post | Δ |
 |---|---:|---:|---:|
-| Build jobs GREEN | 4,024 | **4,032** | +8 |
+| Build jobs GREEN | 4,024 | **4,048** | **+24** (8 W1 + 8 W2a + 8 W2b) |
 | Theorem files (.lean) added | 0 | 8 | +8 |
 | New theorems landed | 0 | ~111 | +111 |
 | **First absolute quark masses** | absent | m_u + m_d (Enceladus) | new |

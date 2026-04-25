@@ -3,8 +3,9 @@
 **Date:** 2026-04-25 (late evening)
 **Build pre-cycle:** 4,011 jobs GREEN (cycle-58 close)
 **Build post-cycle Wave 1:** **4,016 jobs GREEN** (+5 = W1 + W2 + W9 + W10 + W16)
+**Build post-cycle Wave 2:** **4,024 jobs GREEN** (+8 = 7 Wave 2 wizards + 1 SOTA DumpArrows hardening)
 **Sorry:** 0 · **Paper-headline axioms:** 1 (`Real.pi_transcendental` — held; cycle 60-62 Path-A retirement)
-**Graph (post-Wave-1):** 10,142 OV2 + 175,137 Mathlib · refresh `refresh_graph-fddce6d3` *<TBD>* (cold path this cycle, warm next cycle via Larawag + Antares² infra)
+**Graph (post-Wave-2):** 10,142 OV2 + 175,137 Mathlib · refresh `refresh_graph-36663ee4` succeeded in 11.8 min (cold rebuild — legacy v1 cache lacked SOTA magic header → invalidated → rebuilt **with** v2 magic; cycle 60+ true warm path)
 
 ## Hybrid: cycle wizards + INFRA perf wizards
 
@@ -101,7 +102,11 @@ c57 compliance audit.
 | Total refresh_graph time | 21 min (c58) | **12.7 min** (c59) | -8.3 min already on cold path |
 | Mathlib cache file | absent | **247 MB built** at `~/lean-v2/.neo4j/mathlib_arrows_cached_v4.29.0.jsonl` | new infra artifact |
 | Wave-1 wizards landed | 0 | 7 | +7 (5 cycle + 2 infra) |
-| Tests (orchestrator MCP) | 115 | **129** | +14 (Antares² added test_pipeline_cache.py) |
+| Wave-2 wizards landed | 0 | 7 | +7 (Triton, Sirius, Mimosa-2, Larawag-2, Hydra, Wezen-2, Halley) |
+| Tests (orchestrator MCP) | 115 | **157** | +42 (Antares² 14 + parent SOTA hardening 28) |
+| Cycle-59 build delta | 0 | **+13 jobs** (4,011 → 4,024) | total cycle |
+| Cycle-59 new theorems | 0 | **~80** | Wave 1 + Wave 2 combined |
+| Cycle-59 new files | 0 | **12** | 5 W1 + 7 W2 |
 
 ## Pattern lessons (saved to memory)
 
@@ -123,6 +128,59 @@ c57 compliance audit.
 - **Path-A multi-cycle axiom retirement on track** — c58 Sedna (skeleton) →
   c59 W10-LindemannCD (Stage-2 Galois bridge skeleton) → c60-62 (full retirement
   via stage3_pi_transcendental_corollary).
+
+## Phase B Wave 2 — 7 wizards landed (parallel team `omega-cycle-59-wave-2`)
+
+| Wizard (galactic) | Track | File | Theorems | Headline |
+|---|---|---|---:|---|
+| **Triton** (Neptune's largest moon) **W3** | T1 physics | `Predictions/TauLeptonMassPaperBundle.lean` | 4 (142L) | tau_lepton_mass_substrate_paper_bundle (3-conjunct existential) |
+| **Sirius** (α CMa, brightest night-sky star) **W4** | T1 physics | `Predictions/HubbleConstantPaperBundle.lean` | 8 (155L) | **5-conjunct stronger form** (Plan A inline-proposition fix on briefing's compile-bug) |
+| **Mimosa-2** (β Crucis — **NAMING COLLISION** with c56 Mimosa) **W7** | T1 physics | `Predictions/BaryogenesisEtaBPaperBundle.lean` | 3 (161L) | baryogenesis_eta_B_paper_bundle_window |
+| **Larawag-2** (ε Scorpii — **NAMING COLLISION** with c59 Lean perf wizard) **W8** | T1 physics | `Predictions/FineStructureAlphaZeroPaperBundle.lean` | 2 (203L) | fine_structure_alpha_zero_paper_bundle_composed (5 upstream bundles) |
+| **Hydra** (Pluto-II nine-headed serpent) **W11** | T2 axiom-elim | `Irrationality/CustomMath/LindemannGaloisConjugation.lean` | 11+4 (262L) | **Plan B structured API skeleton** — Wave-2 of multi-cycle Lindemann port; 6 anchors for c60-61 fill; concrete Euler hinge `1+e^{iπ}=0` proven |
+| **Wezen-2** (δ Canis Majoris — **NAMING COLLISION** with earlier gauge-theory direction) **W12** | T2 axiom-elim | `Irrationality/CustomMath/PiIrrationalNivenLayer.lean` | 3+1 (51L) | Plan A direct re-export of Niven `Real.irrational_pi` |
+| **Halley** (1P/Halley comet) **W13** | T2 axiom-elim | `IrrationalityClasses/ICThreeConstantsAxiomNarrowed.lean` | 4 (148L) | ic_three_constants_narrowed_to_two_axiom_dependencies (drops 1 of 3 prior axiom consumers) |
+
+**Wave 2 result:** +8 build jobs, 35+5 declarations, 1,122 lines of Lean.
+All paper-headlines depend on Lean core only. **3 naming collisions noted**
+— pattern: agents reuse pool entries because they don't see historical
+reservations atomically.
+
+## Phase C-bis — refresh + close (Wave 2)
+
+- axiom_audit on paper-headline capstones: **clean**, only Lean core.
+- `refresh_graph(dry_run=False)` async — job `refresh_graph-36663ee4` SUCCEEDED in **11.8 min** (707.1s elapsed_s).
+- All 8 steps clean. **`missing_emb=0`** ✓ · thm_count=10142 · axioms=1.
+- **SOTA cache validation worked LIVE**: legacy v1 cache (247,664,301 bytes,
+  no magic header) → `cache_valid: false` → forced cold rebuild →
+  **NEW v2 cache built with header** (247,664,389 bytes, +88 bytes for header).
+  Header verified: `# omega_orchestrator_mcp:mathlib_arrows_cache_v2 mathlib_version=v4.29.0 records=230572`.
+- **Atomic rename verified LIVE**: dump_arrows log shows
+  `[dump_arrows] output atomically renamed: .neo4j/arrows_from_env_jobgraph.jsonl.tmp → .neo4j/arrows_from_env_jobgraph.jsonl`.
+- Step durations: axiom_sentinel 17.5s · lake_build 1.7s · dump_decls 77.6s ·
+  **dump_arrows 390.3s (cold rebuild for SOTA migration)** · load_decls 3.5s ·
+  load_arrows 214.7s (7.65M edges, 41,819 edges/s) · reembed 1.4s · verify clean.
+- Cycle 60 projection: warm path active → dump_arrows ~15-20s →
+  full refresh ~3-4 min (vs 21 min c58 = ~5-7x total speedup).
+
+## SOTA hardening landed parallel to Wave 1 (cycle-59 INFRA, audit follow-up)
+
+User-mandated SOTA audit identified 9 gaps in Larawag + Antares² perf
+implementations. All fixed + tested in this cycle:
+
+- `_atomic_replace_with_fsync()` — fsync(file) + fsync(directory) for crash
+  durability under power failure
+- Magic header sentinel + record count + Mathlib version in cache file
+- `_detect_mathlib_version()` reads `lake-manifest.json` for auto-invalidation
+- Two-pass split with count-mismatch refusal (race-detector)
+- `_is_data_record()` filter (forward-compat for input headers/comments)
+- Concat skips header line; legacy-v1 cache backwards-compatible
+- ov2-only output now also atomic (tmp+rename+fsync)
+- Lean DumpArrows.lean atomic outPath rename (live-verified this Phase C)
+- 28 new resilience tests (14 → 42 cache tests, 129 → 157 full suite, 0 regressions)
+
+Verdict at `notes/INFRA_DUMP_ARROWS_PERF_SOTA_HARDENING_2026-04-25.md`:
+**SOTA-grade — on par with bazel disk cache, exceeds ccache durability.**
 
 ## Next-cycle seeds (Cycle 60 — Sagittarius)
 

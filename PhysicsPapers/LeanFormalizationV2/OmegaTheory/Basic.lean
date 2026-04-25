@@ -4476,3 +4476,67 @@ import OmegaTheory.Irrationality.HermitePade.PiTranscendentalLayerCD
 -- isolated theorems compose-into-capstone (residual after Spica² c57 wired
 -- 45/48). NEW capstone, target ≥50/151 orphans wired. 9 declarations, Lean core.
 import OmegaTheory.Spacetime.OperatorsCapstoneResidual
+
+-- ═══════════════════════════════════════════════════════════════════════
+-- Cycle-59 (Scorpius) Phase B Wave 2 batch — 7 wizards landed
+-- (Antares' index Wave-2 plan: W3 W4 W7 W8 W11 W12 W13)
+-- ═══════════════════════════════════════════════════════════════════════
+
+-- Triton (Neptune's largest moon, retrograde orbit, ~2,706 km, atmosphere)
+-- — cycle-59 W3: `tau_lepton_mass_substrate_paper_bundle`. 3-conjunct
+-- existential composition of Iapetus c57 (TauLeptonMassAbsolute, 1.77686 GeV
+-- exact at N=0) + KoideRelation + LeptonMassFromIrrationals (π heavy-gen
+-- channel). 4 thms, Lean core only. Paper-citation point for tau mass.
+import OmegaTheory.Predictions.TauLeptonMassPaperBundle
+
+-- Sirius (α CMa, brightest night-sky star) — cycle-59 W4:
+-- `hubble_constant_67_4_paper_bundle_within_PDG`. 5-conjunct paper bundle
+-- composing cycle-15 HubbleConstantFit + Triangulum c57 HubbleConstantAbsolute
+-- + Tarazed HubbleTensionFromSubstrateDEGain + HubbleTensionBridge +
+-- Wave-P2 PrecisionPhysicsAbsoluteWaveP2. 8 thms, Lean core only.
+-- Plan A (inline-proposition fix on briefing's compile-bug, ships stronger
+-- 5-conj form than briefing's 3-conj skeleton).
+import OmegaTheory.Predictions.HubbleConstantPaperBundle
+
+-- Mimosa (β Crucis, Becrux, second-brightest Southern Cross — cycle-56's
+-- Mimosa name re-used by cycle-59 wizard; collision noted) — cycle-59 W7:
+-- `baryogenesis_eta_B_paper_bundle_window`. 3-conjunct η_B substrate-
+-- predicted within Planck 2018 window. Composes Alkes c33 positivity +
+-- upper bound + Ruchbah c41 CP envelope. 3 thms, Lean core only.
+import OmegaTheory.Predictions.BaryogenesisEtaBPaperBundle
+
+-- Larawag-2 (ε Scorpii, scorpion's left claw — name collision with c59
+-- Lean DumpArrows perf wizard noted) — cycle-59 W8:
+-- `fine_structure_alpha_zero_paper_bundle_composed`. 5-conjunct composition
+-- of FIVE upstream α_EM bundles: Europa c57 + Dabih c14 + Acrux c55 +
+-- Mizar c44 + Hadar c14. Renamed to `_composed` to avoid collision with
+-- Europa's `fine_structure_alpha_zero_paper_bundle`. 2 thms (1 headline +
+-- 1 frontier), Lean core only.
+import OmegaTheory.Predictions.FineStructureAlphaZeroPaperBundle
+
+-- Hydra (Pluto-II nine-headed serpent moon, fits Scorpius/Hydra theme) —
+-- cycle-59 W11: `lindemann_galois_conjugation_step_skeleton`. Plan B
+-- structured API skeleton — Wave-2 of multi-cycle Lindemann–Weierstrass
+-- port (extends Sedna c58 Stage-1 LindemannBasic). 6 anchors for c60-61
+-- Path-A wizards. Concrete Euler hinge `1 + e^{iπ} = 0` proven (only
+-- non-trivial arithmetic). 11 thms + 4 defs, Lean core only.
+-- Multi-cycle plan: c58 Stage-1 (Sedna) → c59 Stage-2 skeleton (Hydra) →
+-- c60-c61 Stage-2 fill → c62 Stage-3 corollary `Transcendental ℚ Real.pi`
+-- (retires the project axiom).
+import OmegaTheory.Irrationality.CustomMath.LindemannGaloisConjugation
+
+-- Wezen (δ Canis Majoris, supergiant — name collision with earlier gauge
+-- theory direction noted) — cycle-59 W12:
+-- `pi_irrational_only_via_niven_re_export_layer`. Plan A direct re-export
+-- of Mathlib `Real.irrational_pi` (Niven 1947) + `irrational_sqrt_two`.
+-- 3 thms + 1 def, Lean core only. Substrate-thesis-sufficient citation
+-- point — companion to Hyades c58's 3-conjunct paper-headline.
+import OmegaTheory.Irrationality.CustomMath.PiIrrationalNivenLayer
+
+-- Halley (1P/Halley's Comet, ~76 yr period — fitting for cyclic axiom-
+-- narrowing) — cycle-59 W13: `ic_three_constants_narrowed_to_two_axiom_dependencies`.
+-- Routes through Hyades c58's `_irrationality_only` form. Drops 1 of 3
+-- prior `Real.pi_transcendental` consumers (now: Halley + Hyades both
+-- axiom-free; only `ic_three_constants_transcendental` retains research-
+-- track dependency). 4 thms, Lean core only.
+import OmegaTheory.IrrationalityClasses.ICThreeConstantsAxiomNarrowed

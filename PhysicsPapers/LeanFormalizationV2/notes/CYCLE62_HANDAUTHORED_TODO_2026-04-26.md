@@ -47,7 +47,7 @@ Yoneda-orphan ≤ 5.
 | Tier 6 c63 WARM | **single-thread** | 0 | 87 | #47-#133 |
 | Tier 7 c66-c70 COLD | **single-thread** | 0 | 85 | #134-#218 (15 Mathlib-blocked) |
 
-**Current: 64/218 done (29%)**. Session 2026-04-26 evening: +29 hand-authored landings (21 single-Structure + 8 composite capstones).  Target: c70 ≈ 2026-05-08.
+**Current: 72/218 done (33%)**. Session 2026-04-26 evening: +37 hand-authored landings (29 single-Structure + 8 composite capstones).  Latest single-Structure: FullQuantumNumbers, ConservedCurrent, GaugeFactors, InflationEpoch, HpwHypothesis, ObservedLambda, InformationSource, ApproxConservedTensorField. Target: c70 ≈ 2026-05-08.
 
 **Whole project verified contradiction-free at commit `4d61e35`**: full project 4164 jobs GREEN, 0 sorry, 7 axiom declarations all paper-tracked (1 Real.pi_transcendental + 6 research axioms pending Mathlib ports), all composite capstones audited [propext, Classical.choice, Quot.sound] Lean-core only.
 

@@ -47,9 +47,13 @@ Yoneda-orphan ≤ 5.
 | Tier 6 c63 WARM | **single-thread** | 0 | 87 | #47-#133 |
 | Tier 7 c66-c70 COLD | **single-thread** | 0 | 85 | #134-#218 (15 Mathlib-blocked) |
 
-**Current: 89/218 done (41%)**. Session 2026-04-26 evening: +54 hand-authored landings (42 single-Structure + 12 composite capstones).  Latest additions: ParticleWorldline, FRWHpwData, BianchiIHpwData, ErrorMaxwellField, GaugeTransformation, HorizonRegion, BlackHoleSpinInfo, GalacticMassProfile, CosmologicalDensities, CollapsingMatter, KLEquilibriumData, SmoothConnectionData, SmoothMetricFieldReal. Composite capstones: SpectralAction, CyclicCosmology, SMMassRatio, PiHunch, GravityGRMega, SubstrateCosmology, SMConnesBridge, MixingMatrix, GaugeSector, BHThermodynamics, DarkSector, ConservationHealing. Target: c70 ≈ 2026-05-08.
+**Current: 103/218 done (47%)**. Session 2026-04-26 evening: +70 hand-authored landings (56 single-Structure + 14 composite capstones).  Recent additions: SubstrateRegion (first String-data Yoneda), VacuumStaticSphericalData (Schwarzschild HPW, completes 4-regime sharp-`ℓ_P/12` set), UnitarityLedger, WormholeProperties (first Bool-data, `[Quot.sound]`-only), YukawaBundle, SubstrateEntropyState, SaturatingWitness (first ℝ-parameter), SubstrateSpectralConnection, StandardModelFermion, FourthGenerationCandidate (`[Quot.sound]`-only), DynamicalSnapshotSequence, ScaleFactor.
+
+**Composite capstones (14)**: SpectralAction, CyclicCosmology, SMMassRatio, PiHunch, GravityGRMega, SubstrateCosmology, SMConnesBridge, MixingMatrix, GaugeSector, BHThermodynamics, DarkSector, ConservationHealing, HpwElim, MatterSector.
 
 **dump_arrows-validated APPLIES counts**: avg ~14 edges per paper-bundle theorem, max 28 (GravityGR mega composite). True dependencies, not citation-only stubs.
+
+Target: c70 ≈ 2026-05-08.
 
 **Whole project verified contradiction-free at commit `4d61e35`**: full project 4164 jobs GREEN, 0 sorry, 7 axiom declarations all paper-tracked (1 Real.pi_transcendental + 6 research axioms pending Mathlib ports), all composite capstones audited [propext, Classical.choice, Quot.sound] Lean-core only.
 

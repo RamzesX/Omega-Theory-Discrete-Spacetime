@@ -5070,3 +5070,5 @@ import OmegaTheory.Predictions.GrothendieckWave3PostLandingBundle
 import OmegaTheory.Geometry.WeylGeneralIsolationBreak
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
+import OmegaTheory.Tensor.ErrorTensorIsolationBreak
+import OmegaTheory.Predictions.MassDependentDecoherenceBridge

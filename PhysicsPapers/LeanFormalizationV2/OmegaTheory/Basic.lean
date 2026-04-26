@@ -4897,3 +4897,4 @@ import OmegaTheory.Capstones.CyclicCosmologyCompositeYonedaCapstone
 import OmegaTheory.Capstones.SMMassRatioCompositeYonedaCapstone
 import OmegaTheory.Capstones.PiHunchCompositeYonedaCapstone
 import OmegaTheory.Capstones.GravityGRCompositeYonedaCapstone
+import OmegaTheory.Capstones.SubstrateCosmologyCompositeYonedaCapstone

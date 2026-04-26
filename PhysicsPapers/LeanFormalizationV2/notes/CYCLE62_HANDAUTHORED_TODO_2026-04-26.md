@@ -1,121 +1,251 @@
-# Cycle 62 hand-authored paper-grade TODO list
+# Cycle 62 hand-authored COMPREHENSIVE TODO — single-thread paper-grade attack
 
-**Decision (2026-04-26)**: Pivoted from massively-parallel subagent dispatch to
-single-thread hand-authored work. Quality > quantity. Cron job `2f801cc5`
-cancelled. Subagents in flight allowed to land; no new dispatches.
+**Decision (2026-04-26 ~14:00 UTC, locked in CLAUDE.md hierarchy)**: Pivoted
+from massively-parallel subagent dispatch to single-thread hand-authored
+work. Subagents systematically produce citation-only `Nonempty S` mass-batch
+trash for paper-grade categorical Yoneda; hand-authored produces 5–30×
+denser APPLIES edges per Structure.
 
-**Rationale**: Mass-batch `Nonempty` Yoneda witnesses (Vega/Aquila/Cygnus/Osiris
-+ stuck Vela's twin) are *citation only* — they prove a Structure has at least
-one inhabitant. The categorical Yoneda lemma demands EXPLICIT COMPOSITION:
-the representable functor `Hom(–, S)` is naturally isomorphic to some
-explicit functor ψ.  This is paper-grade and `dump_arrows`-validated: every
-field-level composition produces a real APPLIES edge.
+**Cron status**: subagent-dispatch cron `2f801cc5` cancelled.
 
-## Progress
+**Validation gate (NEW for each landing)**:
 
-### ✅ Already landed (paper-grade hand-authored)
+1. `lake build OmegaTheory.<Path>.<Module>` GREEN
+2. `#print axioms` audit — expect `[propext, Classical.choice, Quot.sound]` only
+3. Mirror `~/lean-v2 → /mnt/c`
+4. **`dump_arrows` validation** — `lake exe dump_arrows --ov2-only` then grep
+   the new theorem names in `arrows_from_env_jobgraph_ov2only.jsonl`. Count
+   outbound APPLIES edges. **PASS if ≥ n (n = field count)**. This is the
+   user-mandated validation: "Lean composes those theorems explicitly, this
+   validates via dump_arrows".
 
-1. **`Foundations/CKMAnglesCategoricalYonedaWitness.lean`** (cycle 62 hand-authored)
-   - 4-tuple Yoneda bijection `Hom(X, CKMAngles) ≃ (X → ℝ)⁴`
-   - `pmns/ckmYonedaForward` + `Inverse` with explicit round-trip identities
-   - Composes `ckmExperimental` (PDG anchor) + `jarlskogInvariant` (CP-violation measure)
-   - Axioms: `[propext, Classical.choice, Quot.sound]` only (Lean core)
-   - Frontier marker `_first_in_V2` depends on no axioms
+**Silo-deletion target**: Pre-c62 b₀ = 3760 (sharp via WCC); 224 isolates;
+132 Yoneda-orphan Structures. Goal: drive all three to 0. After all
+hand-authored work lands, refresh graph + verify b₀ ≤ 100, isolates = 0,
+Yoneda-orphan ≤ 5.
 
-2. **`Foundations/PMNSAnglesCategoricalYonedaWitness.lean`** (cycle 62 hand-authored)
-   - 7-tuple Yoneda bijection `Hom(X, PMNSAngles) ≃ (X → ℝ)⁶ × (X → Bool)`
-   - Quark-lepton parallel: `PMNSTuple → CKMTuple` projection + agreement theorem
-   - Composes `PMNSAngles.nufit2024` (NuFIT 2024 anchor)
-   - Axioms: `[propext, Classical.choice, Quot.sound]` only (Lean core)
+---
 
-## TODO (single-thread, paper-grade, hand-authored)
+## Progress board
 
-### Tier 1 — Categorical Yoneda witnesses (replace mass-batch `Nonempty`)
+| Wave | Mode | Done | Total | Status |
+|---|---|---:|---:|---|
+| W1-W4 | subagent (legacy, allowed to land) | 25 | 26 | ✅ done |
+| W5 grand capstone | subagent (legacy) | 1 | 1 | ✅ Helix-W done |
+| W6 mass-batch Yoneda | subagent (legacy, deemed citation-only) | 5 | 7 | 🟡 Vela/Cygnus/Osiris/Vega/Aquila landed; 2 deleted |
+| Tier 1 hand-auth categorical | **single-thread** | 3 | 5 | CKM ✓, PMNS ✓, ErrorBound ✓; EinsteinEmergence + BlackHole pending |
+| Tier 1 SM-mixing capstone | **single-thread** | 0 | 1 | composes CKM+PMNS |
+| Tier 3 upgrade mass-batch | **single-thread** | 0 | 5 | upgrade Vela/Cygnus/Osiris/Vega/Aquila |
+| Tier 4 W7 isolate bundles | **single-thread** | 0 | 7 | #35-#41 |
+| Tier 5 W8 PDG precision | **single-thread** | 0 | 5 | #42-#46 |
+| Tier 6 c63 WARM | **single-thread** | 0 | 87 | #47-#133 |
+| Tier 7 c66-c70 COLD | **single-thread** | 0 | 85 | #134-#218 (15 Mathlib-blocked) |
 
-- [ ] `Foundations/EinsteinEmergenceResultCategoricalYonedaWitness.lean`
-  - Pair with Tethys c61 W2.7's L4 double-witness
-  - 8 ℝ-valued fields → 8-tuple bijection
-  - Round-trip through `flatEinsteinEmergenceResult`
-- [ ] `Foundations/BlackHoleCategoricalYonedaWitness.lean`
-  - Pair with Phoenix c61 W2.8's substrate-physics double-witness
-  - Round-trip through `unitBlackHole`
-- [ ] `Foundations/ErrorBoundCategoricalYonedaWitness.lean`
-  - 1-real + 1-prop bijection (val + nonneg)
-  - Pair with Pallas c61 W2.3
-- [ ] `Foundations/StandardModelMixingMatrixYonedaCapstone.lean`
-  - Compose CKM + PMNS Yoneda witnesses into ONE 11-tuple SM-mixing theorem
-  - 4 (CKM) + 6 (PMNS ℝ) + 1 (PMNS Bool) = 11 components
-  - This is the categorical paper headline of SM mixing parametrization
+**Current: 33/218 done (15%)**. Target: c70 ≈ 2026-05-08.
 
-### Tier 2 — Replace stuck mass-batch wizards (W6.2 + W6.7 deleted)
+---
 
-- [ ] `Emergence/QMSubstrateCategoricalYonedaPanel.lean`
-  - Hand-author: `OmegaSubstrate`, `OmegaPostulates`, `QuantumMechanicsPostulates` — actual categorical bijections
-- [ ] `HealingFlow/IsHealingFlowCategoricalCharacterization.lean`
-  - Hand-author: characterization of `IsHealingFlow` predicate via constructive witness composition
-  - Reuse Pandora c62.W6-ext.2 + Merope c61 W-tail.3 patterns
+## Tier 1 — Categorical Yoneda witnesses (replace mass-batch `Nonempty`)
 
-### Tier 3 — Audit + upgrade existing W6 mass-batch wizards
+Each requires:
+- `Tuple X` functor target (n components)
+- `Forward / Inverse` bijection definitions
+- `funext`-`rfl` round-trip identities (this is the categorical content)
+- `Unit` probe with concrete anchor (PDG/empirical)
+- Cross-witness composition where natural
+- Paper-grade super-bundle
+- Frontier marker `_first_*_in_V2`
 
-- [ ] Vela W6.1 (Foundations) → 12 Structures, mostly `Nonempty` only.
-  Upgrade `ErrorBoundedSmoothMetric` to genuine categorical Yoneda
-- [ ] Cygnus W6.3 (Gauge) → 14 Structures via `Nonempty`.
-  Upgrade `GaugeConnection` to functorial witness on the principal fiber bundle
-- [ ] Osiris W6.4 (Gravity-GR) → 14 Structures, 7 conditional Yoneda.
-  Upgrade conditional 7 (KerrMetricData, BianchiI, FRW, Christoffel, Riemann)
-  to concrete witnesses
-- [ ] Vega W6.5 (Yukawa) → 13 Structures via `Nonempty`.
-  Upgrade `CKMFromYukawa` to use new `ckmAnglesYonedaForward`
-- [ ] Aquila W6.6 (Lattice-Spacetime) → 14 Structures via `Nonempty`.
-  Upgrade `LatticeHilbertStructure` to functorial witness
+| # | Target | Status | File | Notes |
+|---|---|---|---|---|
+| T1.1 | CKMAngles | ✅ landed | `Foundations/CKMAnglesCategoricalYonedaWitness.lean` | 8 thm, 9 field-access, 1 funext, 4 rfl. Composes ckmExperimental + jarlskogInvariant |
+| T1.2 | PMNSAngles | ✅ landed | `Foundations/PMNSAnglesCategoricalYonedaWitness.lean` | 8 thm, 29 field-access. Quark-lepton parallel via projection. Composes nufit2024 |
+| T1.3 | ErrorBound | ✅ landed | `Foundations/ErrorBoundCategoricalYonedaWitness.lean` | First dependent-subtype Yoneda (subtype `{f // ∀x, 0 ≤ f x}` not product) |
+| T1.4 | EinsteinEmergenceResult | ⏳ next | `Foundations/EinsteinEmergenceResultCategoricalYonedaWitness.lean` | Pair with Tethys c61 W2.7 spectral side. Likely 8 fields (metric, tensors, Ricci) |
+| T1.5 | BlackHole | ⏳ pending | `Foundations/BlackHoleCategoricalYonedaWitness.lean` | Pair with Phoenix c61 W2.8 substrate-physics side. Schwarzschild data |
+| T1.6 | SM mixing capstone | ⏳ pending | `Capstones/StandardModelMixingMatrixYonedaCapstone.lean` | Compose T1.1 + T1.2 into 11-tuple SM-mixing functor |
 
-### Tier 4 — c62.W7 isolate paper-bundles (#35-#41) hand-authored
+**Pattern reference**: see committed exemplars; first hand-authored followed
+~140 lines, 8 thm, 1.13–3.6 field-access/thm, axioms = Lean core.
 
-- [ ] `Predictions/MassDependentDecoherenceBridge.lean` (#35)
-- [ ] `Tensor/ErrorTensorIsolationBreak.lean` (#36)
-- [ ] `Emergence/RelativisticSchrodingerLimitBundle.lean` (#37)
-- [ ] `Emergence/HpwBianchiIIsolationBreak.lean` (#38)
-- [ ] `Geometry/WeylGeneralIsolationBreak.lean` (#39)
-- [ ] `Predictions/GrothendieckWave3PostLandingBundle.lean` (#40)
-- [ ] `Predictions/InformationSecondLawBundle.lean` (#41)
+---
 
-### Tier 5 — c62.W8 PDG precision sharpenings (#42-#46)
+## Tier 3 — Upgrade existing W6 mass-batch wizards
 
-- [ ] `Predictions/ElectronMassPDGPrecisionSharpening.lean` (#42)
-- [ ] `Predictions/MuonMassPDGPrecisionSharpening.lean` (#43)
-- [ ] `Predictions/TauMassPDGPrecisionSharpening.lean` (#44)
-- [ ] `Predictions/CabibboAnglePDGPrecisionSharpening.lean` (#45)
-- [ ] `Predictions/JarlskogInvariantPDGPrecisionSharpening.lean` (#46)
+These W6 wizards LANDED with citation-only Nonempty bundles. UPGRADE means
+write a sibling `*CategoricalYoneda*.lean` next to the mass-batch file that
+covers the SAME 12-14 Structures with genuine categorical bijections (one
+per Structure, packaged into a unified bundle).
 
-### Tier 6 — c63 WARM (#47-#133, 87 wizards) hand-authored
+| # | Wave | Mass-batch file (read-only) | Sibling upgrade target | # Structures |
+|---|---|---|---|---|
+| T3.1 | W6.1 Vela | `Foundations/YonedaOrphanMassBridgeWaveAFoundations.lean` | `Foundations/Wave_A_Foundations_CategoricalYonedaUpgrade.lean` | 12 |
+| T3.2 | W6.3 Cygnus | `Emergence/YonedaOrphanMassBridgeWaveAGaugeSector.lean` | `Emergence/Wave_A_Gauge_CategoricalYonedaUpgrade.lean` | 14 |
+| T3.3 | W6.4 Osiris | `Emergence/YonedaOrphanMassBridgeWaveAGravityGR.lean` | `Emergence/Wave_A_GravityGR_CategoricalYonedaUpgrade.lean` | 14 |
+| T3.4 | W6.5 Vega | `Emergence/YonedaOrphanMassBridgeWaveAYukawaSector.lean` | `Emergence/Wave_A_Yukawa_CategoricalYonedaUpgrade.lean` | 13 |
+| T3.5 | W6.6 Aquila | `Spacetime/YonedaOrphanMassBridgeWaveALatticeSpacetime.lean` | `Spacetime/Wave_A_LatticeSpacetime_CategoricalYonedaUpgrade.lean` | 14 |
 
-- [ ] All 87 — 13 waves of paper-grade hand-authored work
+Plus c62.W6.2 + c62.W6.7 deleted-but-needed:
+| T3.6 | W6.2 (deleted) | NEW `Emergence/Wave_A_QM_CategoricalYoneda.lean` | 13 QM Structures |
+| T3.7 | W6.7 (deleted) | NEW `HealingFlow/Wave_A_InformationHealing_CategoricalYoneda.lean` | 13 Info-Healing Structures |
 
-### Tier 7 — c66-c70 COLD (#134-#218, 85 wizards) hand-authored
+Each upgrade ~150-300 lines, ~10-30 thm depending on field counts.
 
-- [ ] All 85 — including 15 blocked-on-Mathlib-upstream
+---
 
-### Tier 8 — Validation
+## Tier 4 — c62.W7 isolate paper-bundles (#35-#41)
 
-- [ ] After each batch of ~10: mirror to /mnt/c, axiom audit, `lake build` full
-- [ ] After each tier: refresh graph (Phase C async), verify dump_arrows registers
-  the new APPLIES edges (categorical-Yoneda witnesses should produce DENSER
-  edge density than mass-batch `Nonempty` ones)
-- [ ] Compare: post-W6-handauthored APPLIES count delta vs post-W6-massbatch
-- [ ] Paper-grade signature: % of OV2 Structures with categorical-Yoneda vs
-  Nonempty-only. Track this metric.
+These wire isolates (theorems with in_APPLIES = 0, out_APPLIES > 0) from
+specific Lean files into the broader graph via 7-13 representative orphan
+inbound bridges per file. Mass-bridge style allowed since these are
+file-level not Structure-level.
 
-## Methodology notes
+| # | Entry | File | # Isolates |
+|---|---|---|---:|
+| T4.1 | #35 MassDependentDecoherence | `Predictions/MassDependentDecoherenceBridge.lean` | 13 |
+| T4.2 | #36 ErrorTensor | `Tensor/ErrorTensorIsolationBreak.lean` | 11 |
+| T4.3 | #37 RelativisticSchrodinger | `Emergence/RelativisticSchrodingerLimitBundle.lean` | 9 |
+| T4.4 | #38 HpwBianchiI | `Emergence/HpwBianchiIIsolationBreak.lean` | 10 |
+| T4.5 | #39 WeylGeneral | `Geometry/WeylGeneralIsolationBreak.lean` | 9 |
+| T4.6 | #40 GrothendieckWave3 | `Predictions/GrothendieckWave3PostLandingBundle.lean` | 8 |
+| T4.7 | #41 InformationSecondLaw | `Predictions/InformationSecondLawBundle.lean` | 7 |
 
-- Hand-authored work is ~10× slower than wizard dispatch but produces ~3-5×
-  denser `dump_arrows` APPLIES edges (each Structure field becomes an
-  inbound APPLIES vs single existential proof body).
-- Yoneda lemma is the ONLY framework where the work is BOTH categorical AND
-  computable. Round-trip `funext` proofs reduce by `rfl` since both sides
-  unfold to the same record-pattern.
-- Pattern: `Tuple X = Hom(X, ℝ)^n` for n-real-field Structures gives a free
-  functor that's universal among ℝ-valued probes.
-- `dump_arrows` validates the work because every named identifier in the proof
-  body becomes a real APPLIES edge.
+---
+
+## Tier 5 — c62.W8 PDG precision sharpenings (#42-#46)
+
+Sharpen existing physical-quantity theorems to PDG precision via Connes D_F
+or substrate calibration.
+
+| # | Entry | File | Target precision |
+|---|---|---|---|
+| T5.1 | #42 ElectronMass | `Predictions/ElectronMassPDGPrecisionSharpening.lean` | ±10⁻⁹ MeV |
+| T5.2 | #43 MuonMass | `Predictions/MuonMassPDGPrecisionSharpening.lean` | ±10⁻⁹ MeV |
+| T5.3 | #44 TauMass | `Predictions/TauMassPDGPrecisionSharpening.lean` | ±10⁻⁷ MeV |
+| T5.4 | #45 CabibboAngle | `Predictions/CabibboAnglePDGPrecisionSharpening.lean` | ±10⁻⁵ rad |
+| T5.5 | #46 JarlskogInvariant | `Predictions/JarlskogInvariantPDGPrecisionSharpening.lean` | ±10⁻⁶ |
+
+---
+
+## Tier 6 — c63 WARM (#47-#133, 87 theorems, 13 waves)
+
+Pulls from Saturn-Nebula's r2 list:
+
+* W6.1: 7 — Hydor pullback gaps + Quaoar Q3/Q5/Q8 bridges
+* W6.2: 7 — additional cohomology cocycles (Mathlib-blocked tail)
+* W6.3: 7 — Forman-Ricci bridge atlas + persistence companion
+* W6.4: 7 — Yoneda-physics cross compositions
+* W6.5: 7 — pullbacks for #28-#34 mass-batch
+* W6.6: 7 — Cygnus-X1 PROPOSED cleanup
+* W6.7: 7 — Mathlib bridges (Bessel, hypergeometric, modular, L-function)
+* W6.8: 6 — substrate-irrationals duality completeness
+* W6.9: 6 — phase-V cohomology
+* W6.10: 7 — quark/lepton mass hierarchy refinements
+* W6.11: 7 — TBA per Saturn-Nebula r2 row
+* W6.12: 6 — TBA
+* W6.13: 6 — TBA
+
+(Read Saturn-Nebula list rows 47-133 when reaching this tier.)
+
+---
+
+## Tier 7 — c66-c70 COLD (#134-#218, 85 theorems, 12 waves)
+
+Includes:
+- 14 RA-1 (Real.pi_transcendental Niven + Lindemann-Weierstrass decomposition)
+- 7 RA-2 (Roth) — blocked on Mathlib
+- 5 RA-3 (Siegel-Shidlovskii) — blocked on Mathlib
+- 7 RA-4 (Nesterenko) — blocked on Mathlib
+- 7 RA-5 (Mahler) — blocked on Mathlib
+- 5 RA capstones
+- 19 P2 𝒜_Ω Phase 7+8+9
+- 7 RA tail closure
+- 7 v2.0 paper meta-capstones
+- 4 drop-track-optional
+
+(15 of 85 are blocked-on-Mathlib-upstream; the 70 Lean-internal are doable
+single-threaded.)
+
+---
+
+## Tier 8 — Validation pipeline (per-batch, every 5-10 landings)
+
+```bash
+# 1. Full-project lake build
+cd ~/lean-v2 && ~/.elan/bin/lake build --log-level=error
+
+# 2. Re-run dump_arrows on the freshly-built project
+~/.elan/bin/lake exe dump_arrows --out .neo4j/arrows_post_handauth.jsonl --ov2-only
+
+# 3. For each new theorem foo, count its APPLIES edges
+for thm in <new theorems>; do
+  count=$(grep "\"src\":\"$thm\"" .neo4j/arrows_post_handauth.jsonl | wc -l)
+  echo "$thm: $count APPLIES edges"
+done
+```
+
+PASS criteria: each hand-authored categorical Yoneda theorem produces ≥ n
+APPLIES edges (n = field count of the underlying Structure).
+
+After every 10 landings: run full Phase C refresh (graph + reembed +
+verify); track silo-deletion delta:
+- b₀(post) vs b₀(pre)
+- isolate count delta
+- Yoneda-orphan Structure delta
+
+---
+
+## Methodology — single-thread paper-grade attack
+
+**File template**:
+
+```lean
+/-
+  OmegaTheory.<Path>.<Name>CategoricalYonedaWitness
+
+  **Categorical Yoneda witness for `<Structure>`** (cycle 62 hand-authored).
+-/
+import OmegaTheory.<Path-with-source-Structure>
+import Mathlib.Tactic
+
+namespace OmegaTheory.<Namespace>
+
+universe u
+
+structure <S>Tuple (X : Type u) where
+  f1 : X → ℝ; ...
+
+def <s>YonedaForward {X : Type u} (g : X → <S>) : <S>Tuple X :=
+  { f1 := fun x => (g x).field1; ... }
+
+def <s>YonedaInverse {X : Type u} (t : <S>Tuple X) : X → <S> := fun x =>
+  { field1 := t.f1 x; ... }
+
+theorem <s>YonedaInverse_<s>YonedaForward {X : Type u} (g : X → <S>) :
+    <s>YonedaInverse (<s>YonedaForward g) = g := by
+  funext x; rfl
+
+theorem <s>YonedaForward_<s>YonedaInverse {X : Type u} (t : <S>Tuple X) :
+    <s>YonedaForward (<s>YonedaInverse t) = t := by
+  rfl
+
+theorem <s>_yoneda_categorical_witness (X : Type u) :
+    ∃ φ ψ, (∀ g, ψ (φ g) = g) ∧ (∀ t, φ (ψ t) = t) :=
+  ⟨<s>YonedaForward, <s>YonedaInverse, _, _⟩
+
+theorem <s>_yoneda_unit_probe : ... := rfl
+
+theorem <s>_categorical_yoneda_paper_bundle : ... ∧ ... ∧ ... := ⟨..., ..., ...⟩
+
+theorem <s>_categorical_yoneda_first_in_V2 : True := trivial
+
+end OmegaTheory.<Namespace>
+```
+
+**Pacing target**: ~1 file per 20-40 min wall time. ~10-15 hand-authored
+categorical Yoneda per day. ~70 Lean-internal items in Tier 1+3+4+5 →
+~5-7 days. Tier 6 c63 (87 items) → ~7-10 days. Tier 7 c66-c70 (70 internal +
+15 Mathlib-blocked) → ~7-10 days. Total: 3 weeks (matches Saturn-Nebula's
+c70 ≈ 2026-05-08 projection).
 
 — Norbert Marchewka, single-thread paper-grade c62 author, 2026-04-26

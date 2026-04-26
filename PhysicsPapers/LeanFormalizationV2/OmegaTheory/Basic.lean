@@ -4857,3 +4857,18 @@ import OmegaTheory.Predictions.DiracFromLatticeDataOrphanDefBridge
 
 -- W9 GRAND SUPER-CAPSTONE — composes all 74 prior cycle-61 closures
 import OmegaTheory.Capstones.GrandFrameworkSuperCapstone
+
+-- ═══════════════════════════════════════════════════════════════════════
+-- CYCLE 62 hand-authored paper-grade categorical Yoneda witnesses
+-- (post-Aquarius single-thread quality > quantity attack, 2026-04-26)
+-- ═══════════════════════════════════════════════════════════════════════
+import OmegaTheory.Foundations.CKMAnglesCategoricalYonedaWitness
+import OmegaTheory.Foundations.PMNSAnglesCategoricalYonedaWitness
+import OmegaTheory.Foundations.ErrorBoundCategoricalYonedaWitness
+import OmegaTheory.Foundations.EinsteinEmergenceResultCategoricalYonedaWitness
+import OmegaTheory.Foundations.BlackHoleCategoricalYonedaWitness
+import OmegaTheory.Capstones.StandardModelMixingMatrixYonedaCapstone
+import OmegaTheory.Geometry.ErrorBoundedSmoothMetricCategoricalYonedaWitness
+import OmegaTheory.Geometry.ErrorBoundedSmoothMetricRealCategoricalYonedaWitness
+import OmegaTheory.Foundations.KerrMetricDataCategoricalYonedaWitness
+import OmegaTheory.Foundations.BianchiIScaleFactorDataCategoricalYonedaWitness

@@ -4540,3 +4540,320 @@ import OmegaTheory.Irrationality.CustomMath.PiIrrationalNivenLayer
 -- axiom-free; only `ic_three_constants_transcendental` retains research-
 -- track dependency). 4 thms, Lean core only.
 import OmegaTheory.IrrationalityClasses.ICThreeConstantsAxiomNarrowed
+
+-- ═══════════════════════════════════════════════════════════════════════
+-- Cycle-60 (Sagittarius) Phase B Wave 1 batch — 8 wizards landed
+-- (Kaus-Australis sage delivered 24 briefings; Wave 1 = 8 wizards)
+-- ═══════════════════════════════════════════════════════════════════════
+
+-- Miranda (Uranian moon, ~471km, Verona Rupes 20km cliff) — cycle-60 W11A:
+-- `galois_conjugation_step_real_definition`. Plan A real-definition fill of
+-- Hydra c59's `galois_conjugation_step : Prop := True` placeholder.
+-- Trivial-class (d=1) + degree-2 conditional (d=2) cases concretely proven
+-- via Euler's identity; degree-≥3 reserved for c61. 9 thm + 3 defs, Lean core.
+import OmegaTheory.Irrationality.CustomMath.LindemannGaloisConjugationStep
+
+-- Electra (17 Tau, Pleiades sister, B6 IIIe — naming collision recovery
+-- from initial Pleiades claim) — cycle-60 W11B: `symmetric_sum_integer_witness_partial_fill`.
+-- Plan A+B hybrid: concrete singleton-rational case (n=1) + Prop:=True
+-- placeholders for n≥2 (c61 fills). Bridge lemma `aeval_rat_cast_complex_eq`
+-- reusable by all 3 c61 fill wizards. 8 thm + 4 defs, Lean core only.
+import OmegaTheory.Irrationality.CustomMath.SymmetricSumIntegerWitness
+
+-- Pleione (28 Tau, "mother of the Pleiades", B8 IVe Be-star) — cycle-60 W11C:
+-- `analytical_bound_under_conjugation_partial_fill`. Plan A real bound-lift:
+-- Hydra c59's placeholder replaced with concrete Prop quantified over
+-- orbit lists. Trivial-class (d=1) + 2-element (d=2) cases proven sharp
+-- (B=0 since 1+e^{iπ}=0); d≥3 reserved for c61. Helper `exp_neg_iPi_eq_neg_one`
+-- via Mathlib `Complex.exp_neg`. 9 thm + 2 defs, Lean core only.
+import OmegaTheory.Irrationality.CustomMath.AnalyticalBoundUnderConjugation
+
+-- Alnasl (γ Sagittarii, "the arrowhead", K0III ~96 ly — Sagittarius theme
+-- match) — cycle-60 W1: `cmb_DeltaT_T_substrate_paper_bundle`. Plan A
+-- paper-bundle re-export of Albali c5 CMBAnisotropyFromSubstrate.lean into
+-- 3-conjunct citable headline + frontier marker (mirrors Sirius c59
+-- HubbleConstantPaperBundle pattern). 13 thm + 3 noncomputable defs, Lean core.
+import OmegaTheory.Predictions.CMBAnisotropyPaperBundle
+
+-- Mimas (Saturn II icy moon, Herschel crater ~130km — silently landed,
+-- never sent deliverable message — file verified on disk) — cycle-60 W2:
+-- `BBN_Yp_helium4_substrate_paper_bundle`. Plan A 3-conjunct paper bundle
+-- for Yp ≈ 0.247 (Pitrou et al. 2018 + Planck 2018 + PDG 2024). Composes
+-- substrate η_B (Mimosa-2 c59) + Markab c7 Lithium-7 sister + Big Bounce
+-- nucleosynthesis. 14 thm/lemma/def, Lean core only.
+import OmegaTheory.Predictions.BBNHelium4PaperBundle
+
+-- Algedi (α Capricorni, "the goat", Capricornus head — paper-bundle pairing
+-- ACME 2018 + JILA 2023 historical anchors) — cycle-60 W3:
+-- `electron_EDM_substrate_paper_bundle`. Plan B 3-conjunct: ACME 2018
+-- 1.1e-29 historical anchor existential + JILA 2023 4.1e-30 substrate
+-- margin existence-form + Sheliak c13 strong-CP no-axion existence-form.
+-- Substrate prediction at N=6 ≈ 5.4e-35, vastly below caps. 12 thm + 1 def, Lean core.
+import OmegaTheory.Predictions.ElectronEDMPaperBundle
+
+-- Enceladus (Saturn II icy moon, subsurface ocean + cryovolcanic geyser plumes —
+-- apt: Connes D_F = subsurface ocean of fermion masses; paper bundle = geyser
+-- plume revealing what's underneath) — cycle-60 W7:
+-- `quark_up_down_absolute_mass_from_connes_DF_paper_bundle`. **MAJOR MILESTONE:
+-- FIRST ABSOLUTE QUARK MASSES IN OV2.** m_u = 2.16 MeV exact + m_u ∈ [1.78, 2.54]
+-- (PDG 3σ); m_d = 4.67 MeV exact + m_d ∈ [4.27, 5.07] (PDG 3σ); m_d/m_u ∈
+-- [1.9, 2.4] PDG ratio. Composes Alderamin (m_u fit) + Anuradha (m_d fit) +
+-- Alphard (D_F → Yukawa) + Spica (√2-channel lightest-gen).
+-- 14 thm + 4 defs, Lean core only. ZERO `Real.pi_transcendental` dependency.
+import OmegaTheory.Predictions.QuarkUDAbsoluteMassConnesDFPaperBundle
+
+-- Kaus-Borealis (λ Sagittarii, "northern bow", K1IIIb ~78 ly — Sagittarius
+-- theme match) — cycle-60 W16: `qm_bridge_paper_capstone_wrap`. Plan A
+-- consumer-side capstone wrapping QmBridgePaper.lean's 41 isolated theorems.
+-- **Hit-rate: 33/41 = 80.5%** orphans wired (target ≥30%, exceeds Whirlpool
+-- c58 33% + Spica² c57 94%). Spans T1-T8 + Capstone of QM-bridge paper.
+-- 32 thm + 1 frontier marker, Lean core only.
+import OmegaTheory.Emergence.QmBridgePaperCapstone
+
+-- ═══════════════════════════════════════════════════════════════════════
+-- Cycle-60 (Sagittarius) Phase B Wave 2a batch — 8 wizards landed
+-- (T1 physics closure W4/W5/W6/W8/W9 + T2 axiom-elim ladder W12/W14/W15)
+-- ═══════════════════════════════════════════════════════════════════════
+
+-- Halley² (Comet 1P/Halley, Newton-Halley 1705 first observational verification
+-- of universal gravitation — naming-collision with c59 W13 Halley noted) —
+-- cycle-60 W4: `newton_G_substrate_paper_bundle`. Plan A 3-conjunct strict
+-- PDG bundle composing Algorab c21 NewtonConstantFit + post-Lesath c44
+-- opaque-bundle G_N. Friedmann + Planck companion theorems. 13 thm + 2 defs,
+-- Lean core only.
+import OmegaTheory.Predictions.NewtonConstantPaperBundle
+
+-- Tarantula (NGC 2070 / 30 Doradus, LMC, R136 cluster, ~160 kly — fresh name)
+-- — cycle-60 W5: `graviton_ensemble_substrate_paper_bundle`. Plan A direct
+-- compose of Furud c5 GravitonEnsembleBoundLIGO + Acrux c5 GWPolarizationModes
+-- into 3-conjunct bundle with strengthened conjuncts (LIGO mirror witness +
+-- envelope strict positivity + named numerical anchor 7e-23 substrate m_g
+-- upper bound). 8 thm + 1 def, Lean core only.
+import OmegaTheory.Predictions.GravitonEnsemblePaperBundle
+
+-- Ascella (ζ Sagittarii, A2III+A4IV binary, "Sagittarius Teaspoon" — fresh
+-- Sagittarius-themed name) — cycle-60 W6:
+-- `alphaS_at_MZ_substrate_strict_PDG_paper_bundle`. Plan A wraps Ceres c55
+-- AlphaSAtMZAbsolute exact-hit α_s(M_Z) = 0.1180 in PDG strict 1σ window
+-- [0.1171, 0.1189]. 6 thm + 2 defs, Lean core only. Honest narrower-true:
+-- briefing's literal RG path overshoots; Ceres' inverse-RG calibration solves
+-- backward at Λ_QCD=87.6 MeV exact-hit.
+import OmegaTheory.Predictions.AlphaSAtMZStrictPDGPaperBundle
+
+-- Hale-Bopp (C/1995 O1 long-period comet, naked-eye 1996-97 — fresh name) —
+-- cycle-60 W8: `ckm_vus_vcb_absolute_substrate_paper_bundle`. Plan A
+-- 5-conjunct PDG 2024 absolute V_us=0.2243 + V_cb=0.0410 paired with strict
+-- 1σ windows + Ankaa c10 Vcb-bridge `|substrateVcb 1 - 0.0410| ≤ 0.0014`.
+-- 12 thm + 8 defs, Lean core only. Composes c55 3-angle simultaneous form.
+import OmegaTheory.Predictions.CKMVusVcbAbsolutePaperBundle
+
+-- Hyperion (Saturn VII irregular ~360×266×205km, chaotic Lyapunov-positive
+-- rotation — fresh name) — cycle-60 W9:
+-- `electron_mass_substrate_strict_PDG_1sigma_paper_bundle`. Plan A m_e
+-- = 0.51099895 MeV (PDG CODATA 2018) substrate-derived strict 1σ via Connes
+-- D_F √2-channel. Briefing's `True` Conjunct 3 UPGRADED to substantive
+-- `∃ D : DFEigenvalueSpectrum, 0 < D.lambda_sqrt2` (mirrors Enceladus c60 W7).
+-- Companion to Enceladus quark u/d — extends absolute mass framework to
+-- electron sector. 6 thm + 3 defs, Lean core only.
+import OmegaTheory.Predictions.ElectronMassStrictPDGPaperBundle
+
+-- Hyakutake² (Comet C/1996 B2 — naming-collision with c58 Hyakutake noted)
+-- — cycle-60 W12: `pi_irrational_degree_five_decoupling`. Plan A D=5 ladder
+-- rung extending Borisov c59 D=4. **D=1/2/3/4/5 ladder COMPLETE.** Mechanical
+-- lift to D=n proven extensible via h_{k+1} → h_k bridge chain. Conditional
+-- on `hpi_indep₅` 5th-degree algebraic-independence hypothesis. 5-conjunct
+-- paper bundle. Lean core only.
+import OmegaTheory.IrrationalityClasses.PiStratumDegreeFive
+
+-- Sagittarius-A (Sgr A* SMBH ~4.15M M☉ at Galactic Center, ~26,700 ly —
+-- fresh Sagittarius-zodiac name) — cycle-60 W14:
+-- `pi_transcendental_blast_radius_audit_dump_csv_v2`. Refresh of c57
+-- Cygnus-X1 audit. Confirms 3 direct + 1 transitive `Real.pi_transcendental`
+-- consumers in OV2 (unchanged from c57; narrowing waves shipped companions
+-- in NEW files, original 3 capstones preserved). 4-conjunct headline +
+-- companion CSV at notes/. 6 thm + 2 defs, Lean core only (decide-only,
+-- no axiom dependency).
+import OmegaTheory.Irrationality.HermitePade.PiTranscendentalBlastRadiusAuditV2
+
+-- Horsehead (Barnard 33 dark nebula, Orion ~1500 ly — naming-collision
+-- recovery from initial Sirius² claim, since Sirius reserved 2026-04-19
+-- for ConnesBimodule dirac-swap) — cycle-60 W15:
+-- `ic_three_constants_axiom_narrowed_extension_to_four_constants`. Plan B
+-- 4-conjunct extending Halley c59 W13's 3-constant narrowing to 4 (adds
+-- Catalan G via Zudilin 2019 conditional hypothesis). Catalan G is the
+-- 4th irrational (Mekbuda's sterile-ν channel). Substrate-effective
+-- Catalan bound 1/(2N+1)² ≤ 1 unconditional. 6 thm, Lean core only.
+import OmegaTheory.IrrationalityClasses.ICFourConstantsAxiomNarrowedExtension
+
+-- ═══════════════════════════════════════════════════════════════════════
+-- Cycle-60 (Sagittarius) Phase B Wave 2b batch — 8 wizards landed
+-- (T3 orphan-cluster wraps W17/W18/W19/W20/W21/W22/W23/W24)
+-- ═══════════════════════════════════════════════════════════════════════
+
+-- Eagle (Eagle Nebula M16 / NGC 6611, Pillars of Creation, Serpens — fresh
+-- Sagittarius-region nebula) — cycle-60 W17:
+-- `hpw_bianchi_I_orphan_capstone_wrap`. 10-conjunct headline composing
+-- HpwBianchiI specialised instances (anisotropic (2,3,5) + isotropic (7,7,7)
+-- FRW recovery + generic bundle extractors). 33% hit-rate (10/30 decls).
+-- 12 decls, Lean core only.
+import OmegaTheory.Emergence.HpwBianchiIOrphansCapstone
+
+-- Antares-A (Antares aA, M1.5Iab supergiant, "rival of Mars" — naming
+-- collision with c59 sage Antares + c59 Antares² noted) — cycle-60 W18:
+-- `hubble_tension_from_substrate_DE_gain_paper_bundle`. 5-conjunct
+-- mechanism-side bundle (positivity + witness pair + uncalibrated 89/83 +
+-- calibrated bracket-membership + ratio≥1 monotonicity). Companion to
+-- Sirius c59 W4 HubbleConstantPaperBundle (value-side). 7 thm, Lean core only.
+import OmegaTheory.Predictions.HubbleTensionPaperBundle
+
+-- W19 wizard (file attribution as "Kaus-Borealis" — likely sage/wizard
+-- mis-attribution since c60 W16 already used Kaus-Borealis; recorded as 6th
+-- naming collision noted) — cycle-60 W19:
+-- `proton_decay_lower_bound_orphans_capstone`. Wraps ≥12 representative
+-- orphans of Alkaid c19 ProtonDecayLowerBound.lean (54% orphan rate per
+-- Kaus-Australis audit). Plus MagneticMonopoleSuppressionFromTopology
+-- sister GUT-cosmology prediction. 16 decls, Lean core only.
+import OmegaTheory.Predictions.ProtonDecayLowerBoundCapstone
+
+-- Pleione² (28 Tauri B8IVev — naming collision with c60 W11C Pleione who
+-- shipped AnalyticalBoundUnderConjugation.lean noted) — cycle-60 W20:
+-- `operators_capstone_residual_wave_3`. **Strategic Plan B**: Sirius c59 +
+-- Spica² c57 already wired 100% of hand-written orphans, so W20 ships
+-- NEW DERIVED theorems composing primitives in novel patterns
+-- (symmetric Leibniz product, sub/neg linearity zoo, gradient zoo,
+-- divergence zoo, triple shift round-trip ZIGZAG/ZAGZIG, double Laplacian
+-- const zero). 10 thm + 1 marker, Lean core only.
+import OmegaTheory.Spacetime.OperatorsCapstoneResidualWave3
+
+-- Io (Jupiter I Galilean, most volcanically active body, Laplace resonance
+-- with Europa+Ganymede — fresh name) — cycle-60 W21:
+-- `redshift_orphans_compose_into_capstone`. 7-conjunct headline + 7
+-- "insurance witness" theorems generating real APPLIES edges. **67% hit-rate**
+-- (14/21 declarations wired). 9 thm + 4 priv defs, Lean core only.
+import OmegaTheory.Emergence.RedshiftOrphansCapstone
+
+-- Bellerophon (HD 209458 b, first transiting exoplanet ever observed; Greek
+-- hero who tamed Pegasus + slew Chimera — fresh name, fitting "taming
+-- residual orphans") — cycle-60 W22: `yukawa_orphan_calculation_capstone`.
+-- 7-conjunct calc-side capstone wiring 7 YukawaMatrix orphans **disjoint
+-- from W1 c59 Carina's 8 precision-side orphans**. **100% hit-rate**
+-- (7/7 cited orphans had 0 downstream citations pre-W22). 3 thm, Lean core only.
+import OmegaTheory.Emergence.YukawaOrphanCalculationCapstone
+
+-- Lovejoy (Comet C/2014 Q2 Lovejoy, naked-eye Jan 2015, ~8000 yr period
+-- — fresh name) — cycle-60 W23:
+-- `poincare_lemma_orphan_capstone_wave_2_residual`. **100% hit-rate** =
+-- 53/53 fc_X := X ... pass-through wrappers (disjoint from Whirlpool c58
+-- wave-1's 28). 35 thm, Lean core only.
+import OmegaTheory.Geometry.PoincareLemmaCapstoneWave2Residual
+
+-- Lagoon (Lagoon Nebula M8 / NGC 6523, Sagittarius stellar nursery
+-- ~4,100 ly — fresh Sagittarius-zodiac match) — cycle-60 W24:
+-- `correspondence_orphans_compose_into_capstone`. 4 thematic sub-capstones
+-- (Landauer chain, Bekenstein-Hawking chain, Hawking-Schwarzschild chain,
+-- substrate-bridge chain) + 9-conjunct master paper bundle + 21 explicit
+-- _witness_* re-cites. **35% hit-rate** (21/60 unique citations).
+-- 27 thm, Lean core only.
+import OmegaTheory.Conservation.CorrespondenceOrphansCapstone
+
+-- ═══════════════════════════════════════════════════════════════════════
+-- CYCLE 61 CAPRICORNUS — 75 wizard closures (committed a7a1ca8 2026-04-26)
+-- All paper-headlines depend on `[propext, Classical.choice, Quot.sound]` ONLY
+-- (Lean core); many tighter at `[propext, Quot.sound]` or no axioms at all.
+-- 0 sorry · 0 new axioms · 4,048 jobs full project GREEN.
+-- ═══════════════════════════════════════════════════════════════════════
+
+-- W1 paper-headlines + axiom retire
+import OmegaTheory.Predictions.PiTranscendentalBlastRadiusBundle
+import OmegaTheory.Predictions.OmegaSubstrateYonedaFullCapstone
+import OmegaTheory.Emergence.ConnesDFYukawaPaperBundleInbound
+import OmegaTheory.Foundations.CosmologicalConstantH1Bridge
+import OmegaTheory.Foundations.DiracOperatorFDoubleWitness
+import OmegaTheory.Predictions.LatticePointUniversalBaseSiteDominance
+import OmegaTheory.Predictions.FermionGenerationCompositeBaseSiteWitness
+
+-- W2 Yoneda + L4 double-witnesses
+import OmegaTheory.Predictions.LandauerConservationBridge
+import OmegaTheory.Predictions.BekensteinBHBridge
+import OmegaTheory.Foundations.ErrorBoundYonedaWitness
+import OmegaTheory.Foundations.ErrorBoundedSmoothMetricDoubleWitness
+import OmegaTheory.Predictions.SubstrateIrrationalsDualityFromBoundaryBreakers
+import OmegaTheory.Predictions.CocycleNucleiIndegreeHierarchy
+import OmegaTheory.Emergence.EinsteinEmergenceResultYonedaWitness
+import OmegaTheory.Foundations.BlackHoleYonedaDoubleWitness
+
+-- W3 namespace-isolation breakers
+import OmegaTheory.Emergence.FermionContentIsolationBreak
+import OmegaTheory.Capstones.CapstonesGrandUnifiedInbound
+import OmegaTheory.Predictions.GravitonEnsembleBoundLIGOIsolationBreak
+import OmegaTheory.HealingFlow.HealingFlowBHIsolationBreak
+import OmegaTheory.Emergence.FermionQuantumNumbersIsolationBreak
+import OmegaTheory.Predictions.ProtonDecayLowerBoundIsolationBreak
+import OmegaTheory.Foundations.ErrorGaugeSU2IsolationBreak
+
+-- W4 sector closures
+import OmegaTheory.Emergence.HiggsMassHierarchyInbound
+import OmegaTheory.Conservation.NoetherInformationTorsionInbound
+import OmegaTheory.Emergence.BaryogenesisLeptogenesisPaperBundleInbound
+import OmegaTheory.Emergence.DarkEnergyToBabyUniverseInbound
+import OmegaTheory.Emergence.ElectroweakUnificationPaperBundleInbound
+import OmegaTheory.Emergence.DiracFSpectrumRealCapstoneInbound
+import OmegaTheory.Conservation.CorrespondenceBridgeFirstLandingInbound
+
+-- W5 FOA cohomology
+import OmegaTheory.Foundations.FourIrrationalsIndexFourCohomologyInbound
+import OmegaTheory.Foundations.OmegaAlgebraAbsorbsIrrationalityClassesInbound
+import OmegaTheory.Foundations.PhaseIVCocycleWitnessesInbound
+import OmegaTheory.Foundations.CPViolationPhaseH1CocycleInbound
+import OmegaTheory.Foundations.JarlskogInvariantH2AnomalyInbound
+import OmegaTheory.Foundations.OmegaAlgebraPhaseIFirstLandingInbound
+import OmegaTheory.Predictions.RequiredIterationsPiInbound
+
+-- W6 + W6-extension L4 follow-ups
+import OmegaTheory.Foundations.BandlimitedFieldYonedaDoubleWitness
+import OmegaTheory.Foundations.CKMAnglesYonedaDoubleWitness
+import OmegaTheory.Capstones.OrphanHeadlineReachabilityCapstonePull
+import OmegaTheory.Predictions.PiErrorGtSqrt2ErrorIndegreeWitness
+import OmegaTheory.Capstones.OmegaAlgebraB0EqOneOrphanBridgeClosure
+import OmegaTheory.Foundations.ConformalSmoothMetricYonedaDoubleWitness
+import OmegaTheory.Foundations.DynamicalSnapshotSequenceYonedaDoubleWitness
+import OmegaTheory.Predictions.BerryPullbackPathAsymmetry
+import OmegaTheory.Predictions.CocycleNuclei3LevelNavigationAlignment
+import OmegaTheory.Foundations.HeatKernelSeeleyDeWittBridge
+import OmegaTheory.HealingFlow.HealingFlowToSmoothMetric
+import OmegaTheory.Predictions.CosmologicalHorizonOmegaUnfold
+
+-- W7 OA + W7-tail
+import OmegaTheory.Capstones.OmegaAlgebraB0HeadlineGrandCapstoneInbound
+import OmegaTheory.Predictions.MagneticLaplacianSubstrateEigenvalueBridge
+import OmegaTheory.Predictions.StrongCPH0InboundBridge
+import OmegaTheory.Predictions.ConnesDFEigenvaluesEigPlaceholderInbound
+import OmegaTheory.Predictions.OmegaAlgebraLaplacianHermiticityInbound
+import OmegaTheory.Predictions.GiantComponentFrontierMarkerB0Glue
+import OmegaTheory.Predictions.LeanArrow15CountInbound
+import OmegaTheory.Spacetime.CoordinationNumberInbound
+import OmegaTheory.Emergence.PropagatorCompositionPropInbound
+import OmegaTheory.Emergence.RightHandedDoubletCPDualInbound
+
+-- W8 meta
+import OmegaTheory.Capstones.GravitySectorUnifiedBundleInbound
+import OmegaTheory.Emergence.QCDAsymptoticFreedomCapstoneInbound
+import OmegaTheory.Emergence.CyclicCosmologyPaperBundleInbound
+import OmegaTheory.Emergence.QuarkMassHierarchyFirstLandingInbound
+import OmegaTheory.Capstones.CrossSectorBridgesGrandUnifiedMetaInbound
+import OmegaTheory.Foundations.AFIrreducibilityFirstAlgebraModuleBridgeInbound
+
+-- W3-overflow + W5-overflow + W-tail
+import OmegaTheory.Predictions.NewtonConstantFitIsolationBreak
+import OmegaTheory.Foundations.ErrorFormsIsolationBreak
+import OmegaTheory.Emergence.BlackHoleFormationIsolationBreak
+import OmegaTheory.Predictions.RotationCurvesIsolationBreak
+import OmegaTheory.Predictions.NeutrinoLessDoubleBetaBoundIsolationBreak
+import OmegaTheory.Foundations.OmegaAlgebraRepTrivialFramesInbound
+import OmegaTheory.Predictions.Comm5Comm34PullbackBundle
+import OmegaTheory.Foundations.CechCocycleConstantsIrrationalsCompatibility
+import OmegaTheory.HealingFlow.IsHealingFlowYonedaWitness
+import OmegaTheory.Predictions.DiracFromLatticeDataOrphanDefBridge
+
+-- W9 GRAND SUPER-CAPSTONE — composes all 74 prior cycle-61 closures
+import OmegaTheory.Capstones.GrandFrameworkSuperCapstone

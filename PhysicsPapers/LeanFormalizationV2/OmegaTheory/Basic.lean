@@ -4895,3 +4895,4 @@ import OmegaTheory.Foundations.PDGLeptonTripletCategoricalYonedaWitness
 import OmegaTheory.Capstones.SpectralActionCompositeYonedaCapstone
 import OmegaTheory.Capstones.CyclicCosmologyCompositeYonedaCapstone
 import OmegaTheory.Capstones.SMMassRatioCompositeYonedaCapstone
+import OmegaTheory.Capstones.PiHunchCompositeYonedaCapstone

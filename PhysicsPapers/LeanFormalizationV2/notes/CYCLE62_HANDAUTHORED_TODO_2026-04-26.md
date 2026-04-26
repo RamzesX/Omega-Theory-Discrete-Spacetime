@@ -33,15 +33,23 @@ Yoneda-orphan ≤ 5.
 | W1-W4 | subagent (legacy, allowed to land) | 25 | 26 | ✅ done |
 | W5 grand capstone | subagent (legacy) | 1 | 1 | ✅ Helix-W done |
 | W6 mass-batch Yoneda | subagent (legacy, deemed citation-only) | 5 | 7 | 🟡 Vela/Cygnus/Osiris/Vega/Aquila landed; 2 deleted |
-| Tier 1 hand-auth categorical | **single-thread** | 3 | 5 | CKM ✓, PMNS ✓, ErrorBound ✓; EinsteinEmergence + BlackHole pending |
-| Tier 1 SM-mixing capstone | **single-thread** | 0 | 1 | composes CKM+PMNS |
+| Tier 1 hand-auth categorical | **single-thread** | 5 | 5 | ✅ CKM, PMNS, ErrorBound, Einstein, BlackHole |
+| Tier 1 SM-mixing capstone | **single-thread** | 1 | 1 | ✅ StandardModelMixingMatrixYonedaCapstone |
 | Tier 3 upgrade mass-batch | **single-thread** | 0 | 5 | upgrade Vela/Cygnus/Osiris/Vega/Aquila |
+| Tier 3 sibling Yonedas | **single-thread** (bonus) | 11 | open | EBSM, EBSM-Real, Kerr, BianchiI, FRW, SmoothInterpolant, Christoffel, Riemann, SemiSmoothMetric, DFEigenvalueSpectrum, BabyUniverseSpectrum |
+| Tier 3 cyclic-cosmology | **single-thread** (bonus) | 3 | 3 | ✅ DarkEnergyReservoir, TorsionBounce, BabyUniverseSpectrum |
+| Tier 3 spectral action | **single-thread** (bonus) | 4 | 4 | ✅ SeeleyDeWitt, CutoffFunctionMoments, GeneralizedLaplacian, A4EssentialSectors |
+| Tier 3 PDG anchors | **single-thread** (bonus) | 4 | 4 | ✅ Cycle9NumericalFits, PDGQuarkRatios, NashiraEmpiricalAnsatz, PDGLeptonTriplet |
+| Tier 3 SM mixing extras | **single-thread** (bonus) | 2 | 2 | ✅ CKMFromYukawa, ConnesDFExtended, plus HealingParams |
+| Tier 3 composite capstones | **single-thread** (bonus, orphan-elim) | 8 | 8 | ✅ SpectralAction, CyclicCosmology, SMMassRatio, PiHunch, GravityGRMega, SubstrateCosmology, SMConnesBridge, MixingMatrix |
 | Tier 4 W7 isolate bundles | **single-thread** | 0 | 7 | #35-#41 |
 | Tier 5 W8 PDG precision | **single-thread** | 0 | 5 | #42-#46 |
 | Tier 6 c63 WARM | **single-thread** | 0 | 87 | #47-#133 |
 | Tier 7 c66-c70 COLD | **single-thread** | 0 | 85 | #134-#218 (15 Mathlib-blocked) |
 
-**Current: 33/218 done (15%)**. Target: c70 ≈ 2026-05-08.
+**Current: 64/218 done (29%)**. Session 2026-04-26 evening: +29 hand-authored landings (21 single-Structure + 8 composite capstones).  Target: c70 ≈ 2026-05-08.
+
+**Whole project verified contradiction-free at commit `4d61e35`**: full project 4164 jobs GREEN, 0 sorry, 7 axiom declarations all paper-tracked (1 Real.pi_transcendental + 6 research axioms pending Mathlib ports), all composite capstones audited [propext, Classical.choice, Quot.sound] Lean-core only.
 
 ---
 

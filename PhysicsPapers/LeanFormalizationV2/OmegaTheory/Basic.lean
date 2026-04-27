@@ -5466,3 +5466,10 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsSu
 -- Combines s34 (explicit formula) + s30 (sum of aroots is rational).
 -- 2 thm, ~50 lines. Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsArootsRational
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 36 — `LindemannPremiseRatProofZeroSubsetSumExists.lean`.
+-- Empty subset gives σ = 0: 0 ∈ subsetSums s, so the zero-filter has
+-- cardinality ≥ 1.  Foundation for the L-W expansion bridge's `0 < m`
+-- hypothesis. 3 thm, ~55 lines. Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofZeroSubsetSumExists

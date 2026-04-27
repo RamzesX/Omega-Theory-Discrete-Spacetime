@@ -5109,3 +5109,5 @@ import OmegaTheory.Capstones.AlgebraOmegaPhase8ForceInteractionsExpansion
 import OmegaTheory.Capstones.AlgebraOmegaPhase9PrecisionExpansion
 import OmegaTheory.Capstones.AlgebraOmegaPhase789FinalClosure
 import OmegaTheory.Predictions.SMPrecision95BarPDGAnchors
+import OmegaTheory.Capstones.SMStructural95BarCapstone
+import OmegaTheory.Capstones.SM95BarYonedaBridges

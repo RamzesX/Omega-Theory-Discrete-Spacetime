@@ -5355,3 +5355,10 @@ import OmegaTheory.Irrationality.HermitePade.PiTranscendentalUnconditional
 -- consequence. Pending T4c.2 axiom flip awaits cycle-64 bridge discharge.
 -- 3 thm + 1 paper bundle. Lean core only. ZERO stubs.
 import OmegaTheory.Capstones.PiTranscendenceAxiomRetirement
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 23 — `LindemannPremiseRatProofBridgeReduction.lean`.
+-- Reduces L-W expansion bridge to high-degree sub-bridge: linear case
+-- (natDeg = 1) discharged via Real.irrational_pi exfalso; natDeg ≥ 2
+-- remains for cycle 64+. 3 thm + 1 def. Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofBridgeReduction

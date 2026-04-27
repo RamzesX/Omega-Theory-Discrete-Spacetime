@@ -5443,3 +5443,11 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPol
 -- needed for unconditional π transcendence. 4 thm, ~75 lines. Lean core
 -- only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPiTransUnderPiSqRational
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 33 — `Capstones/PiTranscendenceAxiomRetirementCycle63Final.lean`.
+-- Cycle-63 final paper-headline capstone with 7 conjunctions documenting
+-- 20+ sessions of progress: bridge → π trans, linear case, L-W chain → False,
+-- π trans under π² ∈ ℚ, esymm rational, sum rational, subsetSumPoly_C aroots
+-- integral. 1 thm + paper bundle. Lean core only. ZERO stubs.
+import OmegaTheory.Capstones.PiTranscendenceAxiomRetirementCycle63Final

@@ -5428,3 +5428,10 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofArootsEsymmR
 -- via esymm 1 = sum (Multiset). 2 thm + 1 helper, ~50 lines.
 -- Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsSumRational
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 31 — `LindemannPremiseRatProofSubsetSumPolyArootsAlgebraic.lean`.
+-- All roots of subsetSumPoly_C (f.aroots ℂ) are integral over ℚ. Composes
+-- s25 (aroots = filtered subsetSums) with s16 (each subset-sum is integral).
+-- 2 thm, ~45 lines.  Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPolyArootsAlgebraic

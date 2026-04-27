@@ -5528,3 +5528,11 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubset
 -- (rational by s29) gives rational coefficient values. 3 thm, ~70 lines.
 -- Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubsetSumPolyCoeffsAlg
+
+-- (cycle 63→64 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 44 — `LindemannPremiseRatProofFormalSubsetSumPolyEval.lean`.
+-- Coefficient evaluation at α : Fin n → ℂ via `MvPolynomial.aeval`. Combined
+-- with s43 (coeff = aeval esymm Q), gives the existence of Q such that
+-- evaluated coefficient = aeval α (esymmAlgEquiv ... Q).val. 2 thm, ~55 lines.
+-- Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubsetSumPolyEval

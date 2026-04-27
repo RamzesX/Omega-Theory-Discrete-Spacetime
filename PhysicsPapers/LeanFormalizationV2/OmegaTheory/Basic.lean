@@ -5372,3 +5372,14 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofBridgeReduct
 -- ((aroots).map exp).sum = -2 = -m. 6 thm + 1 def, ~150 lines.
 -- Lean core only. ZERO stubs. Cycle 64+ remaining: π² ∉ ℚ case.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofBridgePiSqRational
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 25 — `LindemannPremiseRatProofSubsetSumPolyOrbit.lean`.
+-- Establishes orbit-sum identity at the ℂ-poly level for the subset-mult
+-- polynomial: defines subsetSumPoly_C s = product of (X - C σ) over nonzero
+-- subset-sums; proves aroots = nonzero subset-sums (Polynomial Vieta) and
+-- ((aroots).map exp).sum = -m via splitting subsetSums into zero/nonzero
+-- parts + s15's orbit-product-zero. Algebraic core for cycle 64+ which
+-- will lift this to ℤ[X] via fundamental theorem of symmetric polynomials.
+-- 3 thm + 1 def, ~95 lines. Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPolyOrbit

@@ -5330,3 +5330,12 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofWitnessNonze
 -- (subset-mult polynomial, deferred to cycle 64+ via fundamental theorem
 -- of symmetric polynomials).
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofAnalyticalBoundCombined
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 20 — `LindemannPremiseRatProofUnconditional.lean`.
+-- Discharge LindemannPremiseRat (modulo L-W expansion identity bridge):
+-- combines s1 (linear case via Real.irrational_pi) + s19 (deg ≥ 2 conditional
+-- via L-W chain) via case split on pQ.natDegree. Defines
+-- LindemannExpansionIdentityBridge as the named real Prop hypothesis.
+-- 3 thm. Lean core only. ZERO stubs. CONDITIONAL on bridge (cycle 64+).
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofUnconditional

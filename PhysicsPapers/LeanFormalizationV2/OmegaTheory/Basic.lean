@@ -4646,6 +4646,17 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofOrbitConstru
 -- 5 thm, Lean core only. ZERO `Real.pi_transcendental` leak.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofOrbitProduct
 
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 6 — `LindemannPremiseRatProofExpPolyAtIPi.lean`.
+-- Instantiation of Mathlib `LindemannWeierstrass.exp_polynomial_approx`
+-- at the specific complex root r = i·π (via Ganymede c57's re-export
+-- `mathlib_analytical_part_witness_at_pi`). Per-root analytical bound:
+-- ‖n·exp(iπ) - p·aeval(iπ) gp‖ ≤ c^p / (p-1)!. Plus Euler-simplified
+-- form: ‖n + p·aeval(iπ) gp‖ ≤ c^p/(p-1)! (using exp(iπ) = -1, hence
+-- n·(-1) = -n, then negation distributes through norm). 7 thm + 0 def,
+-- Lean core only. ZERO `Real.pi_transcendental` leak.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofExpPolyAtIPi
+
 -- Alnasl (γ Sagittarii, "the arrowhead", K0III ~96 ly — Sagittarius theme
 -- match) — cycle-60 W1: `cmb_DeltaT_T_substrate_paper_bundle`. Plan A
 -- paper-bundle re-export of Albali c5 CMBAnisotropyFromSubstrate.lean into

@@ -4688,6 +4688,17 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofMultiRootSum
 -- Lean core only. ZERO Prop:=True placeholder.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofIntegerExtraction
 
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 10 Phase 1 — `LindemannPremiseRatProofSymmetricSum.lean`.
+-- PROVES the foundational L-W result: for monic `f : ℤ[X]`, the
+-- elementary symmetric polynomials `(f.aroots ℂ).esymm n` are integers,
+-- via `Polynomial.coeff_eq_esymm_roots_of_card` (Vieta's formula) +
+-- `IsAlgClosed.splits` (ℂ alg closed). Uses helper
+-- `neg_one_pow_mul_self : (-1)^n * (-1)^n = 1` to rearrange Vieta's
+-- formula to express esymm directly as `(-1)^n * f.coeff k ∈ ℤ`.
+-- 5 thm + 2 helper, Lean core only. ZERO Prop:=True placeholder.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSymmetricSum
+
 -- Alnasl (γ Sagittarii, "the arrowhead", K0III ~96 ly — Sagittarius theme
 -- match) — cycle-60 W1: `cmb_DeltaT_T_substrate_paper_bundle`. Plan A
 -- paper-bundle re-export of Albali c5 CMBAnisotropyFromSubstrate.lean into

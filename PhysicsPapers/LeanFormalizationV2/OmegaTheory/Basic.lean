@@ -5290,3 +5290,13 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPolynomialEv
 -- and the iπ-orbit case where the sum is 0.  4 thm + 2 paper bundles.
 -- Lean core only.  ZERO stubs.  Entry point for the L-W algebraic identity.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSums
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 16 — `LindemannPremiseRatProofIntegerSubsetSums.lean`.
+-- Galois-symmetric integer poly h with subsetSums roots: for nonzero
+-- f : ℤ[X], builds h : ℤ[X] (via product of minpoly ℚ σ over nonzero
+-- subset-sums + IsLocalization.integerNormalization clearing) such that
+-- h ≠ 0, h.eval 0 ≠ 0, and every nonzero σ ∈ subsetSums (f.aroots ℂ)
+-- is a root of h. 8 thm + 2 paper bundles. Lean core only. ZERO stubs.
+-- Algebraic-side foundation for L-W contradiction (s18-s19+).
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofIntegerSubsetSums

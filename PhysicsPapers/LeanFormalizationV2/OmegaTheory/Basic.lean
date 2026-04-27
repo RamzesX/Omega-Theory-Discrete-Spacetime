@@ -5608,3 +5608,9 @@ import OmegaTheory.Capstones.PiSqrt2LinearIndependence
 -- Session 66 — Uniform π-transcendence forms (re-exports). ℚ[X] root,
 -- ℤ[X] root, ¬ IsAlgebraic — all equivalent forms. Lean core only.
 import OmegaTheory.Capstones.PiTranscendenceUniformConsequences
+
+-- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
+-- Session 67 — 🏆 CYCLE 64 MASTER CAPSTONE 🏆 — single 12-conjunct
+-- paper-headline bundle aggregating all cycle-64 deliverables. Single
+-- citation point for any paper. Lean core only.
+import OmegaTheory.Capstones.Cycle64MasterCapstone

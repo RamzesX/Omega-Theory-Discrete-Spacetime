@@ -17,13 +17,98 @@
 
 > *"What if everything wants to teleport at the speed of light—but we can't, because we have mass, and need to expend energy to reshape the geometry around us?"*
 
+This simple question started it all. **One question, and everything follows.**
+
 ### [📖 Full Documentation (Astro site)](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/) · [📄 Main Paper](PhysicsPapers/Main-Paper-Postulates.md) · [🧮 Lean results by domain](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/lean/) · [🔄 Cycles](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/cycles/)
+
+---
+
+## 🌳 The chain — one question to all of physics
+
+```
+                        DISCRETENESS  (Λ = ℓ_P · Z⁴)
+                                      │
+                ┌─────────────────────┴─────────────────────┐
+                ▼                                           ▼
+     ┌──────────────────────┐                  ┌──────────────────────┐
+     │  Counting requires   │                  │  Geometry requires   │
+     │      INTEGERS        │                  │   π · e · √2 · G     │
+     │                      │                  │   (4 irrationals)    │
+     └──────────────────────┘                  └──────────────────────┘
+                │                                           │
+                ▼                                           ▼
+     ┌──────────────────────┐                  ┌──────────────────────┐
+     │   CONSERVATION       │                  │   COMPUTATIONAL      │
+     │   LAWS               │                  │   DEADLINES          │
+     │   (∂μ Jμ_I = 0)      │                  │   (τ = ℏ/E)          │
+     └──────────────────────┘                  └──────────────────────┘
+                │                                           │
+                └─────────────────────┬─────────────────────┘
+                                      ▼
+                       ┌─────────────────────────────┐
+                       │   FORCED  TRANSITIONS       │
+                       │   AT ACTION THRESHOLD       │
+                       │           S = nℏ            │
+                       └─────────────────────────────┘
+                                      │
+                ┌─────────────────────┼─────────────────────┐
+                ▼                     ▼                     ▼
+       ┌───────────────┐    ┌───────────────┐    ┌───────────────┐
+       │     TIME      │    │  UNCERTAINTY  │    │    HEALING    │
+       │   emerges     │    │   emerges     │    │     FLOW      │
+       │ (tick count)  │    │ (truncation)  │    │   (repair)    │
+       └───────────────┘    └───────────────┘    └───────────────┘
+                │                     │                     │
+                └─────────────────────┼─────────────────────┘
+                                      ▼
+                       ╔═════════════════════════════╗
+                       ║             Ω               ║
+                       ║       = ⟨1, 2, 3⟩           ║
+                       ║   Standard Model IS the     ║
+                       ║   alphabet of reality       ║
+                       ╚═════════════════════════════╝
+                                      │
+                ┌─────────────────────┼─────────────────────┐
+                ▼                     ▼                     ▼
+       ┌───────────────┐    ┌───────────────┐    ┌───────────────┐
+       │   SPACETIME   │    │     GAUGE     │    │    D_ent      │
+       │   (mirror)    │    │   (forces)    │    │  (wormholes)  │
+       └───────────────┘    └───────────────┘    └───────────────┘
+                │                     │                     │
+                └─────────────────────┼─────────────────────┘
+                                      ▼
+                       ╔═════════════════════════════╗
+                       ║    OBSERVED PHYSICS         ║
+                       ║    ═════════════════════    ║
+                       ║    QM + GR + SM UNIFIED     ║
+                       ║                             ║
+                       ║    Lean 4 machine-checked   ║
+                       ║      4462 jobs GREEN        ║
+                       ║      0 sorry · 4 axioms     ║
+                       ╚═════════════════════════════╝
+```
+
+The chain forks once (Counting / Geometry) and rejoins three times (Forced transitions → Ω → Observed physics). Both forks must close: rational substrate gives zero truncation; bare irrationals have no physical scale. The **multiplication** `ℓ_P · 4/(2N+3)` is the machinery — neither factor alone suffices. **Now machine-checked in Lean 4 from substrate up to QM, GR, SM, dark matter, dark energy.**
 
 ---
 
 ## 🏆 Cycle 64 Milestone — `Real.pi_transcendental` AXIOM RETIRED (2026-04-27)
 
-**First Lean 4 formalization of π-transcendence.** Single-day single-thread Opus 4.7 [1M context] session — custom port of Lindemann–Weierstrass. Build **4418 → 4462 jobs GREEN**, paper-headline primitive assumptions **5 → 4**, all paper capstones `[propext, Classical.choice, Quot.sound]` only.
+```
+   BEFORE  (≤ 2026-04-26)                AFTER  (2026-04-27)
+   ──────────────────────                ───────────────────────
+   axiom Real.pi_transcendental    ──▶   theorem Real.pi_transcendental
+     (5 paper assumptions)                  (4 paper assumptions)
+     (pending Mathlib L-W)                  (Lean-core only:
+                                             propext · Classical.choice · Quot.sound)
+
+                          Single-day single-thread autonomous session
+                          Opus 4.7 · 1M context · 60 commits
+                          custom port of Lindemann–Weierstrass
+                          build 4418 → 4462 GREEN · 0 sorry
+```
+
+**First Lean 4 formalization of π-transcendence.** The "geometry requires π" branch of the chain above is now machine-checked all the way down — with the truncation residual `δ_comp(N) = ℓ_P · 4/(2N+3)` from the Leibniz series, this means **π irrational ⟹ quantum uncertainty is necessary** is now a Lean theorem, not a postulate.
 
 → **[Method-note paper](PhysicsPapers/papers/Paper-Pi-Transcendence-Lean4-FirstFormalization.md)** · **[Closure memo](PhysicsPapers/LeanFormalizationV2/notes/NOTES_CYCLE_64_PISCES_T4_AXIOM_RETIREMENT_2026-04-27.md)** · **[Master capstone](PhysicsPapers/LeanFormalizationV2/OmegaTheory/Capstones/Cycle64MasterCapstone.lean)** · **[Coverage audit (13/13 domains)](PhysicsPapers/LeanFormalizationV2/notes/PHYSICS_COVERAGE_AUDIT_2026-04-27.md)**
 

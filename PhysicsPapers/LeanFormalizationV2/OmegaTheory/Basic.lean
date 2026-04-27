@@ -5421,3 +5421,10 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsSy
 -- the rationality of esymm of aroots is one half of the symmetric → integer
 -- chain (other half is fundamental theorem of symmetric polynomials).
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofArootsEsymmRational
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 30 — `LindemannPremiseRatProofSubsetSumsSumRational.lean`.
+-- Sum of aroots of nonzero f : ℤ[X] is rational. Direct corollary of s29
+-- via esymm 1 = sum (Multiset). 2 thm + 1 helper, ~50 lines.
+-- Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsSumRational

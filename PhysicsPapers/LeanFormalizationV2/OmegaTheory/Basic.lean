@@ -5592,3 +5592,9 @@ import OmegaTheory.Capstones.PiTranscendenceConsequences
 -- (π transcendental → π irrational → δ_comp(N) > 0 → QM uncertainty
 -- > ℏ/2) now Lean-core only. Lean core only.
 import OmegaTheory.Capstones.PiHunchUnconditionalCapstone
+
+-- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
+-- Session 64 — Algebraic consequences of π transcendental:
+-- π+α, π-α, π·α (α≠0) all transcendental for any algebraic α.
+-- Specializations to ℚ. Negation of π. Lean core only.
+import OmegaTheory.Capstones.PiTranscendenceAlgebraicConsequences

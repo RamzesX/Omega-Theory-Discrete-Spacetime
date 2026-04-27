@@ -5280,3 +5280,13 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPowerSumInte
 -- 2 thm + 1 helper.  Lean core only.  ZERO stubs.  Foundation for the
 -- L-W contradiction integer construction (cycles 63+).
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPolynomialEvalIntSum
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 15 — `LindemannPremiseRatProofSubsetSums.lean`.
+-- Subset-sum machinery for Lindemann–Weierstrass closure.  Defines
+-- subsetSums (s : Multiset ℂ) := s.powerset.map Multiset.sum, proves
+-- card = 2^card, the Multiset binomial expansion (∏(1+f a) = ∑_T (T.map f).prod
+-- over powerset), specialised to (s.map (1+exp ·)).prod = ((subsetSums s).map exp).sum,
+-- and the iπ-orbit case where the sum is 0.  4 thm + 2 paper bundles.
+-- Lean core only.  ZERO stubs.  Entry point for the L-W algebraic identity.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSums

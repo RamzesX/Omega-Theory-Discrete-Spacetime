@@ -5404,3 +5404,11 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPol
 -- 2 thm. Lean core only. ZERO stubs. Cycle 64 step: each esymm value is
 -- symmetric in s, hence rational when s = f.aroots ℂ for f : ℤ[X].
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPolyCoeffs
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 28 — `LindemannPremiseRatProofSubsetSumsSymmetric.lean`.
+-- Multiset-equality symmetry properties of subsetSums, filter-esymm,
+-- subsetSumPoly_C + card bookkeeping for zero-vs-nonzero filter.  4 thm,
+-- ~75 lines.  Lean core only. ZERO stubs. Trivially-true-but-explicit
+-- symmetry foundations for cycle 64+'s Galois-symmetry proofs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsSymmetric

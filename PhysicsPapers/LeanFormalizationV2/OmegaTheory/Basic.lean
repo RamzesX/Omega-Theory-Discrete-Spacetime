@@ -5100,3 +5100,4 @@ import OmegaTheory.Capstones.MetaYonedaGrandNineAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaLatticeDiscreteAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaGrandTenAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaSelfCompositionTheorem
+import OmegaTheory.Foundations.ErrorLieBracketCategoricalYonedaWitness

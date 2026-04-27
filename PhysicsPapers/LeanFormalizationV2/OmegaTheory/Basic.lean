@@ -5317,3 +5317,16 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPolynomialEv
 -- (s2). 5 thm + 1 paper bundle. Lean core only. ZERO stubs. The Fermat-style
 -- nonzero-witness for the L-W contradiction integer J_p (s19+).
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofWitnessNonzeroModPrime
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 19 — `LindemannPremiseRatProofAnalyticalBoundCombined.lean`.
+-- Combines the L-W chain to derive False under the orbit-product expansion
+-- identity hypothesis: for h : ℤ[X], h ≠ 0, h.eval 0 ≠ 0, m > 0, with
+-- `((h.aroots ℂ).map exp).sum = -m`, derive False via:
+-- (1) exp_polynomial_approx + (2) prime p > threshold + analytic-bound < 1
+-- (s8 decay) + (3) sum bound + linearity + s17 D-scaled + (4) s18 mod-p
+-- nonzero + (5) |J:ℝ| ≥ 1 ∧ |J:ℝ| < 1 contradiction. 3 main thm + helpers.
+-- Lean core only. ZERO stubs. CONDITIONAL on the orbit-product identity
+-- (subset-mult polynomial, deferred to cycle 64+ via fundamental theorem
+-- of symmetric polynomials).
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofAnalyticalBoundCombined

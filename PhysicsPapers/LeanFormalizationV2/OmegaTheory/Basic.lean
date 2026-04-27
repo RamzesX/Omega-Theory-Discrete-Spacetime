@@ -4568,6 +4568,32 @@ import OmegaTheory.Irrationality.CustomMath.SymmetricSumIntegerWitness
 -- via Mathlib `Complex.exp_neg`. 9 thm + 2 defs, Lean core only.
 import OmegaTheory.Irrationality.CustomMath.AnalyticalBoundUnderConjugation
 
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4a — `GeneralOrbitGaloisStep.lean`. Closes Miranda c60's
+-- `galois_conjugation_step_real` + Pleione c60's
+-- `analytical_bound_under_conjugation_real` at full generality (any d ≥ 1)
+-- via the head-factor-is-zero argument: 1 + exp iPi = 0 (Euler) forces
+-- ∏_α (1+exp α) = 0 regardless of orbit length. Subsumes Miranda's d≥3 +
+-- Pleione's general-orbit + Hydra c59's `galois_conjugation_step` &
+-- `analytical_bound_under_conjugation` API placeholders. 11 thm + 0 defs,
+-- Lean core only. Honest narrower-true: list-product form, NOT yet the full
+-- L-W contradiction (LindemannPremiseRat); that is Wave T4b.
+import OmegaTheory.Irrationality.CustomMath.GeneralOrbitGaloisStep
+
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 1 — `LindemannPremiseRatProof.lean`. Discharges the
+-- LINEAR case of Ganymede c57's `LindemannPremiseRat` premise via Mathlib's
+-- `Real.irrational_pi`: for any pQ ∈ ℚ[X] with natDegree ≤ 1 and pQ ≠ 0,
+-- aeval π pQ ≠ 0. Decomposes pQ = C a * X + C b via
+-- `Polynomial.exists_eq_X_add_C_of_natDegree_le_one`; case-splits on a=0
+-- (forces b=0 → pQ=0 contradiction) vs a≠0 (forces π=-b/a∈ℚ, contradicting
+-- `irrational_pi`). Higher-degree (deg ≥ 2) case reserved as Prop:=True
+-- placeholder for cycles 63+ (genuine L-W contradiction proof requires
+-- orbit construction + `MvPolynomial.IsSymmetric.FundamentalTheorem` +
+-- `exp_polynomial_approx`, ~600 lines). Composes Wave T4a's general-orbit
+-- closure into the partial discharge. 8 thm + 1 def, Lean core only.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProof
+
 -- Alnasl (γ Sagittarii, "the arrowhead", K0III ~96 ly — Sagittarius theme
 -- match) — cycle-60 W1: `cmb_DeltaT_T_substrate_paper_bundle`. Plan A
 -- paper-bundle re-export of Albali c5 CMBAnisotropyFromSubstrate.lean into

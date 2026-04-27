@@ -5459,3 +5459,10 @@ import OmegaTheory.Capstones.PiTranscendenceAxiomRetirementCycle63Final
 -- subsetSums (k=1 case) is rational expression in elementary symmetrics of s.
 -- 2 thm, ~70 lines. Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsSumExplicit
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 35 — `LindemannPremiseRatProofSubsetSumsArootsRational.lean`.
+-- Sum of subsetSums of f.aroots ℂ is rational for any nonzero f : ℤ[X].
+-- Combines s34 (explicit formula) + s30 (sum of aroots is rational).
+-- 2 thm, ~50 lines. Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsArootsRational

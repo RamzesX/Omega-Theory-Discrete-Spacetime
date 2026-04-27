@@ -5394,3 +5394,13 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPol
 -- extract each coeff as symmetric polynomial in subset-sums, leading to
 -- fundamental theorem of symmetric polynomials lift to ℤ[X].
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPolyStructure
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 27 — `LindemannPremiseRatProofSubsetSumPolyCoeffs.lean`.
+-- Vieta coefficient extraction: applies Mathlib
+-- `Polynomial.coeff_eq_esymm_roots_of_card` to subsetSumPoly_C using s26's
+-- monicity + degree + roots.card. Gives:
+--   coeff k = (-1)^(natDeg-k) · esymm (natDeg-k) of nonzero subset-sums
+-- 2 thm. Lean core only. ZERO stubs. Cycle 64 step: each esymm value is
+-- symmetric in s, hence rational when s = f.aroots ℂ for f : ℤ[X].
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPolyCoeffs

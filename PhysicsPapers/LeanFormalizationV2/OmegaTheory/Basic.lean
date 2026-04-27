@@ -4699,6 +4699,16 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofIntegerExtra
 -- 5 thm + 2 helper, Lean core only. ZERO Prop:=True placeholder.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSymmetricSum
 
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 11 — `LindemannPremiseRatProofPowerSumInt.lean`.
+-- aeval bridge for `MvPolynomial.psum` (foundation for Multiset-level
+-- Newton's identity): `aeval f (psum σ R k) = ∑ i, (f i)^k`. Plus
+-- Multiset-form variant via `Finset.sum_eq_multiset_sum`. Concrete
+-- step toward bridging Mathlib's `MvPolynomial.psum_eq_mul_esymm_sub_sum`
+-- to Multiset Newton identity for proving general k power sums of
+-- aroots are integers. 2 thm, Lean core only. ZERO sorries, ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPowerSumInt
+
 -- Alnasl (γ Sagittarii, "the arrowhead", K0III ~96 ly — Sagittarius theme
 -- match) — cycle-60 W1: `cmb_DeltaT_T_substrate_paper_bundle`. Plan A
 -- paper-bundle re-export of Albali c5 CMBAnisotropyFromSubstrate.lean into

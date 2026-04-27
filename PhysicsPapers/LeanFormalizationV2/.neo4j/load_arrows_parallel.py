@@ -160,10 +160,28 @@ def worker(driver, batch_id, batch):
             raise
 
 
+def _default_arrows_jsonl() -> Path:
+    """Pick the freshest arrows dump.
+
+    Prefer `arrows_from_env_jobgraph_ov2only.jsonl` (the fresh
+    `lake exe dump_arrows --ov2-only --out` output); fall back to
+    legacy `arrows_from_env_v2.jsonl` symlink.
+
+    Bug 2026-04-27: legacy `_v2.jsonl` was a stale symlink to cycle50,
+    silently bypassing fresh dumps.
+    """
+    base = Path.home() / 'lean-v2/.neo4j'
+    primary = base / 'arrows_from_env_jobgraph_ov2only.jsonl'
+    legacy = base / 'arrows_from_env_v2.jsonl'
+    if primary.exists() and not primary.is_symlink():
+        return primary
+    return legacy
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('jsonl', nargs='?',
-                        default=str(Path.home() / 'lean-v2/.neo4j/arrows_from_env_v2.jsonl'))
+                        default=str(_default_arrows_jsonl()))
     parser.add_argument('--workers', type=int, default=16)
     parser.add_argument('--batch', type=int, default=2000)
     parser.add_argument('--only-rel', type=str, default=None,

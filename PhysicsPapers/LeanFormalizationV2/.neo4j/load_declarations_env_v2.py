@@ -1,17 +1,40 @@
 #!/usr/bin/env python3
-"""Delta-load declarations_from_env_v2.jsonl into Neo4j (MERGE on name).
+"""Delta-load declarations into Neo4j (MERGE on name).
 Non-destructive: only SETs fields if env_dumped_at IS NULL or older than new dump.
 
 Uses per-record implicit transactions to avoid deadlocks with concurrent
 long-running arrows loader. Slow but safe.
 
-Author: Rasalhague (α Ophiuchi), 2026-04-20.
+DEFAULT_JSONL prefers `declarations_from_env_jobgraph.jsonl` (the fresh
+output from `lake exe dump_decls`); falls back to the legacy
+`declarations_from_env_v2.jsonl` symlink for backward compatibility.
+
+Bug 2026-04-27: legacy `_v2.jsonl` was a stale symlink to cycle50,
+silently bypassing fresh dumps. Default switched to `_jobgraph.jsonl`
+to read the real output of dump_decls.
+
+Author: Rasalhague (α Ophiuchi), 2026-04-20; updated 2026-04-27.
 """
 import argparse, json, time, sys
 from pathlib import Path
 from neo4j import GraphDatabase
 
-DEFAULT_JSONL = Path.home() / 'lean-v2/.neo4j/declarations_from_env_v2.jsonl'
+
+def _default_jsonl() -> Path:
+    """Pick the freshest declarations dump.
+
+    Prefer `_jobgraph.jsonl` (the `lake exe dump_decls --out` output).
+    Fall back to `_v2.jsonl` for backward-compat with older flows.
+    """
+    base = Path.home() / 'lean-v2/.neo4j'
+    primary = base / 'declarations_from_env_jobgraph.jsonl'
+    legacy = base / 'declarations_from_env_v2.jsonl'
+    if primary.exists() and not primary.is_symlink():
+        return primary
+    return legacy
+
+
+DEFAULT_JSONL = _default_jsonl()
 URI = 'bolt://localhost:7687'
 AUTH = ('neo4j', 'omegatheory2026')
 

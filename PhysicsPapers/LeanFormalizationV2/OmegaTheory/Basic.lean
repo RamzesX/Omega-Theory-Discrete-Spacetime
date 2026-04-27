@@ -5308,3 +5308,12 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofIntegerSubse
 -- Generalises s14 to non-monic h via D-tracking through Vieta + Newton +
 -- linearity. 7 thm + 2 paper bundles. Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPolynomialEvalScaledIntSum
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 18 — `LindemannPremiseRatProofWitnessNonzeroModPrime.lean`.
+-- Modular-arithmetic core: for prime p > max(m, |n|, |D|), with ¬p∣n, m>0,
+-- D≠0, and any k, M, the integer `-m·n·D^k - p·M ≠ 0`. Mod-p argument via
+-- ZMod p as field (NoZeroDivisors). Plus bridge to integer_bound_contradiction
+-- (s2). 5 thm + 1 paper bundle. Lean core only. ZERO stubs. The Fermat-style
+-- nonzero-witness for the L-W contradiction integer J_p (s19+).
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofWitnessNonzeroModPrime

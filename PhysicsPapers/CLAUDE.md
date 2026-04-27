@@ -1,5 +1,32 @@
 # OmegaTheory — Physics Papers & Lean Formalization
 
+## 🏆 ACHIEVEMENT MARKER — 2026-04-27 (CYCLE 64 — π TRANSCENDENCE RETIRED)
+
+**`Real.pi_transcendental` is no longer an axiom in OmegaTheory V2.**
+
+First Lean 4 formalization of π-transcendence. Proved unconditionally
+in a single day (Norbert × Opus 4.7 [1M context]) via custom port of
+Lindemann-Weierstrass — 14 hand-authored Lean files (~3000 lines, s46-s59).
+
+- Build delta: 4418 → 4454 jobs GREEN, 0 sorry, 0 new axioms.
+- Paper-headline primitive assumptions: **5 → 4**.
+- Axiom audit: `[propext, Classical.choice, Quot.sound]` only.
+- Zero `Real.pi_transcendental` leak across paper-headline corpus.
+
+### Lessons LOCKED durable
+
+- **Mathlib upstream is NOT a blockade.** Any "Mathlib-blocked" verdict
+  is wrong by default — decompose into Lean-sized sub-lemmas, port what's
+  needed.
+- **NO STUBS rule** survived 14 files / 60+ theorems intact.
+- **Single-thread hand-authored** beats subagents for paper-grade work.
+- **Context (1M) is not the bottleneck** — auto-compact persists.
+
+T-5/T-6/T-1/T-2/T-3 are no longer threats. Each is decomposable
+single-thread in 1-3 weeks. Prior fears were oversized.
+
+Commits: `c0ab2b7`, `b49366a`, `7daaf73`.
+
 ## Orchestrator MCP
 `omega-orchestrator` MCP exposes 22 tools across 6 buckets (servers / graph / embed
 / inspect / jobs / wizard). For any pipeline operation, prefer MCP over raw

@@ -5098,3 +5098,4 @@ import OmegaTheory.Capstones.MetaYonedaGrandEightAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaWorldlineAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaGrandNineAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaLatticeDiscreteAxisCapstone
+import OmegaTheory.Capstones.MetaYonedaGrandTenAxisCapstone

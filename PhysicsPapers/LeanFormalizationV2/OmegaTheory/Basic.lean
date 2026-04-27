@@ -5261,3 +5261,12 @@ import OmegaTheory.Capstones.SM95BarTopQuarkBridge
 -- Multiset.powersetCard_eq_empty + aroots_card_eq_natDegree). 2 thm,
 -- Lean core only. ZERO stubs. Foundation for Phase 3 power-sum induction.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPowerSumIntComplete
+
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 13 — `LindemannPremiseRatProofPowerSumIntegerInduction.lean`.
+-- Phase 3: power sums of aroots are integers for ALL k via strong induction
+-- on k.  Combines session 11 (Multiset Newton) + session 12 (esymm-all-k
+-- integers) + IH on lower power sums.  2 thm (induction + headline alias).
+-- Lean core only. ZERO stubs.  Foundation for Phase 4 LindemannPremiseRat
+-- closure.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPowerSumIntegerInduction

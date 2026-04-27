@@ -5412,3 +5412,12 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPol
 -- ~75 lines.  Lean core only. ZERO stubs. Trivially-true-but-explicit
 -- symmetry foundations for cycle 64+'s Galois-symmetry proofs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsSymmetric
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 29 — `LindemannPremiseRatProofArootsEsymmRational.lean`.
+-- esymm of f.aroots ℂ is rational for any nonzero f : ℤ[X].  Proof: s17
+-- gives `D · esymm k ∈ ℤ` (call it M); since D ≠ 0, esymm k = M/D ∈ ℚ.
+-- 2 thm, ~50 lines.  Lean core only. ZERO stubs.  Cycle 64 building block:
+-- the rationality of esymm of aroots is one half of the symmetric → integer
+-- chain (other half is fundamental theorem of symmetric polynomials).
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofArootsEsymmRational

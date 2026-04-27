@@ -5510,3 +5510,11 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubset
 -- Extended properties: leadingCoeff = 1, ≠ 0, index set card = 2^n, nonempty.
 -- 5 thm, ~70 lines. Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubsetSumPolyExt
+
+-- (cycle 63→64 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 42 — `LindemannPremiseRatProofFormalSubsetSumPolySymmetric.lean`.
+-- KEY CYCLE 64 BREAKTHROUGH: each coefficient of formalSubsetSumPoly is a
+-- SYMMETRIC MvPolynomial. Proof: powerset is permutation-invariant under
+-- variable rename via Finset.prod_bij with bijection S ↦ S.image e.
+-- 3 thm, ~95 lines. Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubsetSumPolySymmetric

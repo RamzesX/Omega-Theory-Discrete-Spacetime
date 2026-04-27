@@ -5088,3 +5088,4 @@ import OmegaTheory.Capstones.Cycle62FinalProgressionCapstone
 import OmegaTheory.Capstones.MetaYonedaSubstrateErrorAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaGaugeSectorAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaCosmologyAxisCapstone
+import OmegaTheory.Capstones.MetaYonedaGrandFiveAxisCapstone

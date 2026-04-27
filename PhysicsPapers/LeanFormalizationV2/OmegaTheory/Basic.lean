@@ -5270,3 +5270,13 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPowerSumIntC
 -- Lean core only. ZERO stubs.  Foundation for Phase 4 LindemannPremiseRat
 -- closure.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPowerSumIntegerInduction
+
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 14 — `LindemannPremiseRatProofPolynomialEvalIntSum.lean`.
+-- Phase 4a: linearity to arbitrary g : ℤ[X].  For any monic f : ℤ[X] and
+-- any g : ℤ[X], the sum ((f.aroots ℂ).map (g.aeval ·)).sum is an integer.
+-- Pulls each (g.coeff i : ℂ) out via Multiset.sum_map_mul_left, applies
+-- Phase 3 to each individual power sum, sums the integer combination.
+-- 2 thm + 1 helper.  Lean core only.  ZERO stubs.  Foundation for the
+-- L-W contradiction integer construction (cycles 63+).
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPolynomialEvalIntSum

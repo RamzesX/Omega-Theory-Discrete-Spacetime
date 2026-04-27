@@ -5496,3 +5496,17 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofNonzeroFilte
 -- (filter (·≠0)).card ≤ subsetSums.card - 1. 3 thm, ~65 lines.
 -- Lean core only. ZERO stubs. For cycle 64+ analytical bound argument.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsCardBounds
+
+-- (cycle 63→64 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 40 — `LindemannPremiseRatProofFormalSubsetSumPoly.lean`.
+-- Formal subset-sum polynomial in MvPolynomial: ∏_S (X - C (∑ Y_i)) over
+-- powerset of Fin n. Monic, natDegree = 2^n. Foundation for cycle 64
+-- esymmAlgEquiv application. 3 thm + 1 def, ~75 lines.
+-- Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubsetSumPoly
+
+-- (cycle 63→64 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 41 — `LindemannPremiseRatProofFormalSubsetSumPolyExt.lean`.
+-- Extended properties: leadingCoeff = 1, ≠ 0, index set card = 2^n, nonempty.
+-- 5 thm, ~70 lines. Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubsetSumPolyExt

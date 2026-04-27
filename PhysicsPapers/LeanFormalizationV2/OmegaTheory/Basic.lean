@@ -5598,3 +5598,8 @@ import OmegaTheory.Capstones.PiHunchUnconditionalCapstone
 -- π+α, π-α, π·α (α≠0) all transcendental for any algebraic α.
 -- Specializations to ℚ. Negation of π. Lean core only.
 import OmegaTheory.Capstones.PiTranscendenceAlgebraicConsequences
+
+-- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
+-- Session 65 — π and √2 are ℚ-linearly independent. Foundational fact
+-- for the Pi-Hunch 4-irrational hierarchy. Lean core only.
+import OmegaTheory.Capstones.PiSqrt2LinearIndependence

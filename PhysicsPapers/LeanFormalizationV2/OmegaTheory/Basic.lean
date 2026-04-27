@@ -5094,3 +5094,4 @@ import OmegaTheory.Capstones.MetaYonedaGrandSixAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaConservationInformationAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaGrandSevenAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaMatterContentAxisCapstone
+import OmegaTheory.Capstones.MetaYonedaGrandEightAxisCapstone

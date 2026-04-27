@@ -4594,6 +4594,19 @@ import OmegaTheory.Irrationality.CustomMath.GeneralOrbitGaloisStep
 -- closure into the partial discharge. 8 thm + 1 def, Lean core only.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProof
 
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 2 — `LindemannPremiseRatProofStructural.lean`. Structural
+-- skeleton for deg ≥ 2 case: (a) bidirectional algebraic-lift lemma
+-- `IsAlgebraic ℚ (i*z) ↔ IsAlgebraic ℚ z` via `Complex.isIntegral_rat_I` +
+-- `IsAlgebraic.mul`; (b) integer-bound contradiction principle
+-- `|N : ℝ| < B ∧ B ≤ 1 ∧ N ≠ 0 → False` (Lindemann pigeonhole closure);
+-- (c) conditional main-argument inputs API (Prop := True, cycles 63+ fill).
+-- Genuine structural content (algebraic-lift + integer-bound principle
+-- proven concretely); the symmetric-sum integer-witness specifically for
+-- (minpoly ℚ (i·π)).aroots ℂ + the analytic bound application remain
+-- placeholder. 11 thm + 1 def, Lean core only.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofStructural
+
 -- Alnasl (γ Sagittarii, "the arrowhead", K0III ~96 ly — Sagittarius theme
 -- match) — cycle-60 W1: `cmb_DeltaT_T_substrate_paper_bundle`. Plan A
 -- paper-bundle re-export of Albali c5 CMBAnisotropyFromSubstrate.lean into

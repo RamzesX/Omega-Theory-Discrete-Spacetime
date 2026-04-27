@@ -4620,6 +4620,19 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofStructural
 -- Lean core only. ZERO `Real.pi_transcendental` leak.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofAlgebraicChain
 
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 4 — `LindemannPremiseRatProofOrbitConstruction.lean`.
+-- Concrete orbit construction `lindemannOrbit z := (minpoly ℚ z).aroots ℂ`
+-- via Mathlib `Minpoly.Basic` + `Polynomial.aroots`. Self-membership:
+-- `z ∈ lindemannOrbit z` for algebraic `z` via `minpoly.ne_zero` +
+-- `minpoly.aeval` + `Polynomial.mem_aroots`. Concrete arithmetic fact
+-- `Complex.I * Real.pi ≠ 0` (via Real.pi_pos + Complex.I_ne_zero).
+-- Conditional `iπ ∈ lindemannOrbit iπ` from session 3 chain. Bridge to
+-- session 3 conditional contradiction. Integer-polynomial extraction
+-- (clearing denominators of minpoly ℚ → ℤ) reserved as Prop:=True for
+-- cycle 65+. 9 thm + 1 def + 1 noncomputable def, Lean core only.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofOrbitConstruction
+
 -- Alnasl (γ Sagittarii, "the arrowhead", K0III ~96 ly — Sagittarius theme
 -- match) — cycle-60 W1: `cmb_DeltaT_T_substrate_paper_bundle`. Plan A
 -- paper-bundle re-export of Albali c5 CMBAnisotropyFromSubstrate.lean into

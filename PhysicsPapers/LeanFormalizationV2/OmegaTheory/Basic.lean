@@ -5586,3 +5586,9 @@ import OmegaTheory.Capstones.PiTranscendenceYonedaBridges
 -- transcendental/irrational/∉ℚ for any n ≥ 1. Specializations to π², π³.
 -- Demonstrates immediate power of the cycle-64 keystone. Lean core only.
 import OmegaTheory.Capstones.PiTranscendenceConsequences
+
+-- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
+-- Session 63 — Pi-Hunch UNCONDITIONAL capstone. The OmegaTheory thesis
+-- (π transcendental → π irrational → δ_comp(N) > 0 → QM uncertainty
+-- > ℏ/2) now Lean-core only. Lean core only.
+import OmegaTheory.Capstones.PiHunchUnconditionalCapstone

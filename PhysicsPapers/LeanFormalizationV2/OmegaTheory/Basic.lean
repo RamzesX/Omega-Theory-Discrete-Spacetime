@@ -4671,13 +4671,22 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofRationalAnni
 
 -- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
 -- Wave T4b session 8 — `LindemannPremiseRatProofMultiRootSum.lean`.
--- Multi-root sum norm bound via Multiset induction:
--- `‖∑_{x ∈ s} f(x)‖ ≤ s.card · B` for `‖f(x)‖ ≤ B`. Specialized to L-W
--- per-root analytical bound: `‖∑_{r ∈ orbit} (n·exp(r) - p·aeval(r) gp)‖
--- ≤ orbit.card · c^p/(p-1)!`. Decay-to-zero (factorial dominates
--- exponential) reserved as Prop:=True for cycle 65+ via Mathlib
--- `Real.tendsto_pow_div_factorial_at_top`. 5 thm + 1 def, Lean core only.
+-- Multi-root sum norm bound via Multiset induction +
+-- decay-to-zero PROVEN via Mathlib's
+-- `FloorSemiring.tendsto_mul_pow_div_factorial_sub_atTop`:
+-- `orbit_card · c^p/(p-1)! → 0` as p → ∞ (factorial dominates exponential).
+-- 6 thm, Lean core only. ZERO Prop:=True placeholder for decay step.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofMultiRootSum
+
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 9 — `LindemannPremiseRatProofIntegerExtraction.lean`.
+-- Integer-polynomial extraction PROVEN via Mathlib's
+-- `IsLocalization.integerNormalization` + `_aeval_eq_zero` + `_spec`:
+-- given `q : ℚ[X]` with `q.coeff 0 ≠ 0` and root x in ℂ
+-- (`aeval x q = 0`), derive `f : ℤ[X]` with `f.eval 0 ≠ 0` and
+-- `aeval x f = 0`. Discharges sessions 4 + 7 placeholders. 5 thm,
+-- Lean core only. ZERO Prop:=True placeholder.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofIntegerExtraction
 
 -- Alnasl (γ Sagittarii, "the arrowhead", K0III ~96 ly — Sagittarius theme
 -- match) — cycle-60 W1: `cmb_DeltaT_T_substrate_paper_bundle`. Plan A

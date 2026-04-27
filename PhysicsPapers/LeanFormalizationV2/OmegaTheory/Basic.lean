@@ -5580,3 +5580,9 @@ import OmegaTheory.Capstones.PiTranscendenceAxiomRetirementFinal
 -- 5 nearby OV2 paper-headline theorems. Per workflow rule LOCKED
 -- 2026-04-27 ("Yoneda bridges via find_similar"). Lean core only.
 import OmegaTheory.Capstones.PiTranscendenceYonedaBridges
+
+-- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
+-- Session 62 — concrete consequences of π transcendental: π^n
+-- transcendental/irrational/∉ℚ for any n ≥ 1. Specializations to π², π³.
+-- Demonstrates immediate power of the cycle-64 keystone. Lean core only.
+import OmegaTheory.Capstones.PiTranscendenceConsequences

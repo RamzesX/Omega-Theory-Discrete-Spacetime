@@ -5451,3 +5451,11 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPiTransUnder
 -- π trans under π² ∈ ℚ, esymm rational, sum rational, subsetSumPoly_C aroots
 -- integral. 1 thm + paper bundle. Lean core only. ZERO stubs.
 import OmegaTheory.Capstones.PiTranscendenceAxiomRetirementCycle63Final
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 34 — `LindemannPremiseRatProofSubsetSumsSumExplicit.lean`.
+-- Explicit formula for sum of subsetSums: 2 · (subsetSums s).sum = 2^s.card · s.sum.
+-- Multiset induction. Cycle 64 building block: shows symmetric polynomial in
+-- subsetSums (k=1 case) is rational expression in elementary symmetrics of s.
+-- 2 thm, ~70 lines. Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsSumExplicit

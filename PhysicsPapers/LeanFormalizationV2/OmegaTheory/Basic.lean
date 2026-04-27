@@ -5383,3 +5383,14 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofBridgePiSqRa
 -- will lift this to ℤ[X] via fundamental theorem of symmetric polynomials.
 -- 3 thm + 1 def, ~95 lines. Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPolyOrbit
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 26 — `LindemannPremiseRatProofSubsetSumPolyStructure.lean`.
+-- Structural properties of subsetSumPoly_C: monic (Mathlib
+-- `monic_multisetProd_X_sub_C`), natDegree = card of nonzero subset-sums,
+-- aroots cardinality = natDegree (since ℂ algebraically closed). 4 thm,
+-- ~75 lines. Lean core only. ZERO stubs. Cycle 64 entry: with
+-- monicity + degree, can apply `coeff_eq_esymm_roots_of_card` (Vieta) to
+-- extract each coeff as symmetric polynomial in subset-sums, leading to
+-- fundamental theorem of symmetric polynomials lift to ℤ[X].
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPolyStructure

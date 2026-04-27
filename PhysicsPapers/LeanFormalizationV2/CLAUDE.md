@@ -1,10 +1,85 @@
 # OmegaTheory V2 — Lean 4 Formalization
 
 ## Orchestrator MCP
+
 `omega-orchestrator` exposes 22 tools (servers / graph / embed / inspect / jobs / wizard).
 Live numbers via `cycle_state()` / `build_status()` / `axiom_audit()`. Hammers
 (`omega_hammer_premise`, `propose_proof`) replace grep+exact? guesswork —
 composite-scored fast path; `rerank` parameter removed 2026-04-25.
+
+## ═══════════════════════════════════════════════════════════════════════════════
+## MANDATORY MCP USAGE — LOCKED 2026-04-28 (REASON: massive infra investment, underused)
+## ═══════════════════════════════════════════════════════════════════════════════
+
+The project graph contains **184K+ theorems** (~10K OV2 + ~175K Mathlib v4.29.0)
+with FastRP embeddings, ByT5 retriever (1472-d), Qwen3 embeddings (4096-d),
+and 7.65M typed edges. **NOT USING THIS IS LEAVING THE BIGGEST PROOF-ACCELERATION
+ASSET ON THE TABLE.**
+
+**FOR EVERY proof obligation, EVERY agent MUST run AT LEAST 3 of these BEFORE writing
+any manual proof attempt:**
+
+### Tier-1 (omega-orchestrator)
+1. **`mcp__omega-orchestrator__omega_hammer_premise(goal=<stmt>, top_k=20, mix_mathlib=True)`**
+   → Composite-ranked premises (cosine + PageRank + indegree + subsystem_match)
+2. **`mcp__omega-orchestrator__propose_proof(goal=<stmt>, wizard_name=<you>, k=10)`**
+   → Tactic stub + 5 cited premises + graph_rationale + 4 related theorems
+
+### Tier-2 (omega-search)
+3. **`mcp__omega-search__retrieve_premises(goal_text=<stmt>, k=20)`**
+   → ByT5-retriever semantic search (LeanDojo embedding, 1472-d)
+4. **`mcp__omega-search__find_similar(theorem_name=<related>, k=10)`**
+   → Pure kNN embedding similarity (set rerank=true for cross-encoder filter)
+5. **`mcp__omega-search__neighbors(theorem_name=<parent>, hops=2)`**
+   → 2-hop APPLIES/UNFOLDS expansion — surfaces 1-2 hop premises
+6. **`mcp__omega-search__explain_theorem(theorem_name=<candidate>)`**
+   → Full signature + proof_body + docstring + APPLIES dependents (verify scope)
+7. **`mcp__omega-search__subsystem_of(theorem_name=<family>)`**
+   → Identifies Leiden subsystem (137 SubsystemNavigators) — narrow premise search
+
+### Tier-3 (lean-lsp)
+8. **`mcp__lean-lsp__lean_loogle(query=<type pattern>)`** — Mathlib by signature
+9. **`mcp__lean-lsp__lean_leansearch(query=<NL>)`** — semantic Mathlib (rate-limited 3/30s)
+10. **`mcp__lean-lsp__lean_state_search(file_path, line, column)`** — close-the-goal lemmas
+11. **`mcp__lean-lsp__lean_local_search(query)`** — fast local declaration
+12. **`mcp__lean-lsp__lean_hammer_premise(file_path, line, column)`** — Mathlib premises (rate-limited)
+13. **`mcp__lean-lsp__lean_multi_attempt(file_path, line, snippets)`** — try 3+ tactics in parallel
+
+### Tier-4 (Cypher direct — when text/embedding insufficient)
+14. **`mcp__neo4j-math__read_neo4j_cypher`** — structural queries, Leiden cluster traversal,
+    APPLIES/UNFOLDS path patterns
+
+**ENFORCEMENT**: Every wizard deliverable MUST include a `graph_queries_run` field listing
+which of the 14 tools was invoked, top-1 result for each, and whether it ended up in the
+proof. Skipping silently = parent flags for retrospective review + REWRITE penalty.
+
+**WHY**: Manual `exact?` searches Mathlib only (~210K lemmas, 30s round-trip). The graph
+retrievers see ALL OV2 theorems (~10K including sister wizards' work from minutes ago),
+apply embedding similarity (semantic, not just syntactic), and surface premises by
+structural distance (PageRank in 7.65M-edge typed graph). Skipping this is professional
+malpractice on a project that has invested heavily in this infrastructure.
+
+## BIGGER COMMITS — LOCKED 2026-04-28
+
+Bundle **3-5 related sessions per single git commit**. Reduce git-log churn, reduce
+parent-overhead, increase signal-per-commit. Sessions in a bundle should share a theme
+(e.g., 5 PDG-anchor frontiers, or 4 scaffold pieces of one T-X target).
+
+Commit message format:
+```
+feat(lean): T-X — <theme> bundle (s<N₁>-s<Nₖ>)
+
+Bundle: K sessions covering <theme>.
+- s<N₁>: <file> — <1-line>
+- s<N₂>: <file> — <1-line>
+- ...
+
+Build delta: A → B jobs GREEN.
+graph_queries_run: ≥3 tools per session.
+
+🔒 Lean-core only [propext, Classical.choice, Quot.sound] — ZERO research axioms. NO STUBS.
+Co-Authored-By: Claude <model+context> <noreply@anthropic.com>
+```
 
 ## Status (live snapshot — see `cycle_state()` for fresh)
 - **1 canonical `:Axiom` node** (`Real.pi_transcendental`, sealed in HermitePade/).

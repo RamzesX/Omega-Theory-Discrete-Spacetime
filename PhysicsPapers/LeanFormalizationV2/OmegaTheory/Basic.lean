@@ -5536,3 +5536,11 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubset
 -- evaluated coefficient = aeval α (esymmAlgEquiv ... Q).val. 2 thm, ~55 lines.
 -- Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubsetSumPolyEval
+
+-- (cycle 63→64 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 45 — `LindemannPremiseRatProofMvPolyRationalEval.lean`.
+-- Generic rationality lemma: integer-coefficient MvPolynomial Q evaluated
+-- at rational-valued tuple γ : Fin n → ℂ gives a rational complex number.
+-- Proof: induction on Q via MvPolynomial.induction_on. 2 thm, ~70 lines.
+-- Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofMvPolyRationalEval

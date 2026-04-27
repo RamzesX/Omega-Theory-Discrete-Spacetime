@@ -5480,3 +5480,12 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofZeroSubsetSu
 -- subsetSums.sum = (filter (·≠0)).sum. 3 thm, ~55 lines.
 -- Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofZeroFilterSumZero
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 38 — `LindemannPremiseRatProofNonzeroFilterSumRational.lean`.
+-- Sum of nonzero-filtered subsetSums of f.aroots ℂ is rational. Composes
+-- s35 + s37. k=1 case of "all esymm of nonzero filter is rational" goal.
+-- Note: NOT sufficient for full bridge discharge — that requires Mathlib
+-- MvPolynomial.esymmAlgEquiv for ALL k (genuine cycle 64 work).
+-- 2 thm, ~50 lines. Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofNonzeroFilterSumRational

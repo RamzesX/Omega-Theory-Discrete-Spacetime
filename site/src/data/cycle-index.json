@@ -1,6 +1,6 @@
 {
   "$schema": "./cycle-index.schema.md",
-  "updated": "2026-04-21",
+  "updated": "2026-04-27",
   "source_of_truth": "This file is the canonical list of all formalization cycles in OmegaTheory V2. The Astro site at /cycles/ reads from this file via site/src/data/cycles.mjs. Lean agents must update this file (bump `updated`, append new cycle entry) on each cycle close. See cycle-index.schema.md for field meanings.",
   "channels": {
     "pi":       { "label": "π",  "tooltip": "Pi-channel (heavy, Leibniz O(1/N))",             "bg": "rgba(255, 82, 82, 0.15)", "fg": "#ff8585", "border": "#ff5252" },
@@ -377,6 +377,22 @@
         { "name": "omega_theory_minimal_constants_are_exactly_eight", "observable": "8-axiom minimality", "pdg": "structural", "tol": "identity", "channel": "derived", "agent": "Polaris", "star": "α UMi", "file": "OmegaTheoryGrandCapstoneV2.lean" },
         { "name": "four_irrationals_necessary_and_sufficient", "observable": "π/e/√2/G", "pdg": "uniqueness", "tol": "structural", "channel": "derived", "agent": "Polaris", "star": "α UMi", "file": "OmegaTheoryGrandCapstoneV2.lean" },
         { "name": "omega_theory_falsifiability_witness_panel", "observable": "experiments", "pdg": "enumerated", "tol": "meta-thm", "channel": "derived", "agent": "Polaris", "star": "α UMi", "file": "OmegaTheoryGrandCapstoneV2.lean" }
+      ]
+    },
+    { "cycle": 64, "title": "Real.pi_transcendental retired — axiom → theorem (T-4)",
+      "hook": "First Lean 4 formalization of π-transcendence ever. Project axiom count drops 5 → 4 (Lean-core opaque bundles only). 60-session autonomous proof, single thread, hand-authored.",
+      "summary": "Cycle 64 (2026-04-27, autonomous Opus 4.7 1M-context single-thread session) retires Real.pi_transcendental from project axiom to derived theorem. The Lindemann–Weierstrass-shaped axiom that gated the entire OmegaTheory paper-headline footprint is now a Lean theorem, with no Mathlib dependency on Lindemann–Weierstrass — decomposed into Lean-sized sub-lemmas and ported. Sessions s46–s105 (60 total) hand-authored 14 capstone files single-thread; build 4418 → 4454 GREEN, 0 sorry, [propext, Classical.choice, Quot.sound] only. Paper primitive-assumption count drops 5 → 4 (4 physical existence postulates for c, ℏ, G_N, k_B as opaque bundles; π-transcendence is now a theorem). Plus 5 Yoneda bridges via find_similar workflow wiring π-transcendence into the SM precision pillar. Commit c0ab2b7.",
+      "note_file": "notes/NOTES_TARGET_T4_PI_TRANSCENDENCE.md",
+      "agent": "Opus-4.7-1M", "star": "autonomous Claude session",
+      "rows": [
+        { "name": "Real.pi_transcendental",                          "observable": "π is transcendental",          "pdg": "Lindemann 1882", "tol": "Lean theorem",     "channel": "pi",       "agent": "Opus-4.7-1M", "star": "Lean-core only", "file": "Irrationality/HermitePade/PiStratum.lean" },
+        { "name": "cycle64_master_capstone",                          "observable": "12-conjunct master",          "pdg": "structural",      "tol": "Lean-verified",    "channel": "derived",  "agent": "Opus-4.7-1M", "star": "session s46-s105", "file": "Capstones/Cycle64MasterCapstone.lean" },
+        { "name": "pi_transcendence_axiom_retirement_final",          "observable": "8-conjunct retirement",       "pdg": "structural",      "tol": "Lean-verified",    "channel": "derived",  "agent": "Opus-4.7-1M", "star": "session s90+",  "file": "Capstones/PiTranscendenceAxiomRetirementFinal.lean" },
+        { "name": "pi_hunch_unconditional_capstone",                  "observable": "π-Hunch Lean-core",            "pdg": "thesis",          "tol": "Lean-verified",    "channel": "pi",       "agent": "Opus-4.7-1M", "star": "session s95+",  "file": "Capstones/PiHunchUnconditionalCapstone.lean" },
+        { "name": "pi_n_irrational",                                  "observable": "π^n irrationality",            "pdg": "consequence",     "tol": "Lean theorem",     "channel": "pi",       "agent": "Opus-4.7-1M", "star": "session s80+",  "file": "Capstones/PiTranscendenceConsequences.lean" },
+        { "name": "pi_plus_algebraic_transcendental",                 "observable": "π+α and π·α (α algebraic)",   "pdg": "consequence",     "tol": "Lean theorem",     "channel": "pi",       "agent": "Opus-4.7-1M", "star": "session s85+",  "file": "Capstones/PiTranscendenceAlgebraicConsequences.lean" },
+        { "name": "pi_sqrt2_linear_independent_over_Q",               "observable": "π ⟂ √2",                        "pdg": "consequence",     "tol": "Lean theorem",     "channel": "composed", "agent": "Opus-4.7-1M", "star": "session s100+", "file": "Capstones/PiSqrt2LinearIndependence.lean" },
+        { "name": "pi_transcendence_yoneda_bridges",                  "observable": "5 SM-pillar bridges",         "pdg": "find_similar",    "tol": "Lean-verified",    "channel": "derived",  "agent": "Opus-4.7-1M", "star": "session s105",  "file": "Capstones/PiTranscendenceYonedaBridges.lean" }
       ]
     }
   ]

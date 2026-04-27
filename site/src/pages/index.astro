@@ -12,6 +12,7 @@ const baseUrl = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
 const GH = 'https://github.com/RamzesX/chaos-shield';
 const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Predictions`;
+const GHCapstones = `${GH}/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Capstones`;
 ---
 
 <BaseLayout title={`Discrete Spacetime · ${HEADLINES.cyclesShipped} Cycles · ${HEADLINES.ownTheoremsShort} Theorems`}>
@@ -20,6 +21,57 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
   <HeroSection />
 
   <BadgeStrip />
+
+  <!-- Cycle 64 milestone — Real.pi_transcendental retired (2026-04-27) -->
+  <section class="milestone-banner">
+    <div class="milestone-inner">
+      <div class="milestone-badge">
+        <span class="milestone-trophy" aria-hidden="true">★</span>
+        <span class="milestone-tag">Cycle 64 milestone · 2026-04-27</span>
+      </div>
+      <h2 class="milestone-title">
+        <code>Real.pi_transcendental</code> retired — axiom → theorem
+      </h2>
+      <p class="milestone-lede">
+        First Lean 4 formalization of <strong>π-transcendence</strong> ever
+        landed. The Lindemann–Weierstrass-shaped axiom that gated the entire
+        OmegaTheory paper-headline footprint is now a derived theorem,
+        cutting the project's primitive-assumption count from <b>5 → 4</b>.
+        The remaining four are existence postulates for the four physical
+        constants (c, ℏ, G_N, k_B) realised as Lean-core opaque bundles —
+        no Mathlib gap, no `axiom` keyword, no Classical-choice surprises.
+      </p>
+      <ul class="milestone-stats">
+        <li><b>60</b> autonomous proof sessions (s46–s105)</li>
+        <li><b>14</b> hand-authored Lean files single-thread</li>
+        <li><b>4454</b> build jobs GREEN · 0 sorry</li>
+        <li><b>4 → 4</b> Lean-core axioms only ([propext, Classical.choice, Quot.sound])</li>
+      </ul>
+      <div class="milestone-files">
+        <a href={`${GHCapstones}/Cycle64MasterCapstone.lean`} class="milestone-link" target="_blank" rel="noopener">
+          <code>Cycle64MasterCapstone</code><span>12-conjunct master ↗</span>
+        </a>
+        <a href={`${GHCapstones}/PiTranscendenceAxiomRetirementFinal.lean`} class="milestone-link" target="_blank" rel="noopener">
+          <code>PiTranscendenceAxiomRetirementFinal</code><span>retirement headline ↗</span>
+        </a>
+        <a href={`${GHCapstones}/PiHunchUnconditionalCapstone.lean`} class="milestone-link" target="_blank" rel="noopener">
+          <code>PiHunchUnconditionalCapstone</code><span>π-Hunch Lean-core ↗</span>
+        </a>
+        <a href={`${GHCapstones}/PiTranscendenceConsequences.lean`} class="milestone-link" target="_blank" rel="noopener">
+          <code>PiTranscendenceConsequences</code><span>π^n results ↗</span>
+        </a>
+        <a href={`${GHCapstones}/PiTranscendenceAlgebraicConsequences.lean`} class="milestone-link" target="_blank" rel="noopener">
+          <code>PiTranscendenceAlgebraicConsequences</code><span>π+α, π·α ↗</span>
+        </a>
+        <a href={`${GHCapstones}/PiSqrt2LinearIndependence.lean`} class="milestone-link" target="_blank" rel="noopener">
+          <code>PiSqrt2LinearIndependence</code><span>π ⟂ √2 ↗</span>
+        </a>
+        <a href={`${GHCapstones}/PiTranscendenceYonedaBridges.lean`} class="milestone-link" target="_blank" rel="noopener">
+          <code>PiTranscendenceYonedaBridges</code><span>5 Yoneda bridges ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Capstone pillar -->
   <section class="capstone-pillar">
@@ -248,6 +300,145 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
 </BaseLayout>
 
 <style>
+  /* --- Cycle 64 milestone banner --- */
+  .milestone-banner {
+    margin: var(--space-xl) 0 var(--space-2xl);
+    padding: var(--space-xl);
+    background: linear-gradient(135deg, rgba(245, 166, 35, 0.14), rgba(255, 107, 136, 0.08) 50%, rgba(200, 110, 255, 0.06) 100%);
+    border: 1.5px solid rgba(245, 166, 35, 0.5);
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 32px rgba(245, 166, 35, 0.12);
+  }
+
+  .milestone-banner::after {
+    content: "";
+    position: absolute;
+    bottom: -30%; left: -10%;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(245, 166, 35, 0.18), transparent 70%);
+    pointer-events: none;
+  }
+
+  .milestone-inner { position: relative; }
+
+  .milestone-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .milestone-trophy {
+    font-size: 1.4rem;
+    color: var(--color-amber);
+    filter: drop-shadow(0 0 8px rgba(245, 166, 35, 0.5));
+  }
+
+  .milestone-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-amber);
+    font-weight: 600;
+  }
+
+  .milestone-title {
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    margin: 0 0 var(--space-sm);
+    border: 0;
+    padding: 0;
+    line-height: 1.2;
+  }
+
+  .milestone-title code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    color: var(--color-amber);
+    background: rgba(245, 166, 35, 0.08);
+    border: 1px solid rgba(245, 166, 35, 0.25);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+  }
+
+  .milestone-lede {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text-dim);
+    margin-bottom: var(--space-md);
+    max-width: 50rem;
+  }
+
+  .milestone-lede strong { color: var(--color-amber); }
+  .milestone-lede b { color: var(--color-magenta); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  .milestone-stats {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-md);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2xs) var(--space-md);
+    font-size: 0.86rem;
+    color: var(--color-text-mut);
+  }
+
+  .milestone-stats li { padding: 3px 0; }
+
+  .milestone-stats b {
+    color: var(--color-amber);
+    font-family: var(--font-display);
+    font-size: 1.05em;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+  }
+
+  .milestone-files {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-2xs);
+    margin-top: var(--space-sm);
+  }
+
+  .milestone-link {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 12px;
+    background: rgba(10, 14, 26, 0.45);
+    border: 1px solid rgba(245, 166, 35, 0.2);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: border-color var(--t-fast), transform var(--t-fast);
+  }
+
+  .milestone-link:hover {
+    border-color: var(--color-amber);
+    transform: translateX(2px);
+    text-decoration: none;
+  }
+
+  .milestone-link code {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--color-amber);
+    background: transparent;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .milestone-link span {
+    font-size: 0.7rem;
+    color: var(--color-text-mut);
+    font-family: var(--font-mono);
+  }
+
   /* --- Capstone pillar --- */
   .capstone-pillar {
     margin: var(--space-xl) 0 var(--space-2xl);
@@ -616,6 +807,7 @@ const GHLean = `${GH}/tree/main/PhysicsPapers/LeanFormalizationV2/OmegaTheory/Pr
   @media (max-width: 900px) {
     .capstone-inner { grid-template-columns: 1fr; }
     .capstone-stats { grid-template-columns: 1fr; }
+    .milestone-stats { grid-template-columns: 1fr; }
     .confirm-grid { grid-template-columns: 1fr; }
     .reading-path { grid-template-columns: 1fr; }
   }

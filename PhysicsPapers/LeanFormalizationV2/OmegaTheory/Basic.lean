@@ -5347,3 +5347,11 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofUnconditiona
 -- `Transcendental ℚ Real.pi` modulo the L-W expansion bridge.
 -- 3 thm. Lean core only. ZERO stubs. CONDITIONAL on bridge (cycle 64+).
 import OmegaTheory.Irrationality.HermitePade.PiTranscendentalUnconditional
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 22 — `Capstones/PiTranscendenceAxiomRetirement.lean`.
+-- 4-conjunct paper headline capstone for cycle-63 T-4 deliverable:
+-- bridge → π trans, linear unconditional, L-W chain → False, irrational
+-- consequence. Pending T4c.2 axiom flip awaits cycle-64 bridge discharge.
+-- 3 thm + 1 paper bundle. Lean core only. ZERO stubs.
+import OmegaTheory.Capstones.PiTranscendenceAxiomRetirement

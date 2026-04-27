@@ -227,16 +227,4 @@ theorem general_orbit_galois_step_w_t4a_paper_bundle :
   · exact hydra_galois_conjugation_step_now_subsumed
   · exact hydra_analytical_bound_now_subsumed
 
-/-- **Frontier marker** — first cycle-62 Wave T4a general-orbit
-    Galois-step closure landed in OV2.  Closes Miranda c60's d ≥ 3
-    placeholder + Pleione c60's general-orbit placeholder + Hydra c59's
-    Stage-2 API placeholders, all via the head-factor-is-zero
-    argument. -/
-theorem general_orbit_galois_step_w_t4a_first_landed_in_V2 :
-    True := trivial
-
-/-- **W-T4a closure marker** — ready for Wave T4b
-    (`LindemannPremiseRat` discharge). -/
-theorem general_orbit_galois_step_w_t4a_closed : True := trivial
-
 end OmegaTheory.Irrationality.CustomMath.GeneralOrbitGaloisStep

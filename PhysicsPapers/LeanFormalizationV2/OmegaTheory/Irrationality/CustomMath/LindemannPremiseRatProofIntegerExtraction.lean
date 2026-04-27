@@ -143,14 +143,4 @@ theorem lindemann_premise_rat_proof_w_t4b_session_9_paper_bundle :
   · intro q
     exact IsLocalization.integerNormalization_spec (nonZeroDivisors ℤ) q
 
-/-- **Frontier marker** — first cycle-62 Wave T4b session 9 integer-poly
-    extraction PROVEN (no longer Prop:=True placeholder).  Discharges
-    sessions 4 + 7 placeholders. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_9_first_landed_in_V2 :
-    True := trivial
-
-/-- **W-T4b session 9 closure marker** — sessions 4 + 7 placeholders
-    PROVEN replaced. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_9_closed : True := trivial
-
 end OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofIntegerExtraction

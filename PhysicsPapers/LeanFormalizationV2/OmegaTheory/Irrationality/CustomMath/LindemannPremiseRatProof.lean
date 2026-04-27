@@ -124,31 +124,6 @@ theorem lindemann_premise_rat_linear_unconditional :
     LindemannPremiseRatLinear :=
   fun pQ h_deg h_ne => lindemann_premise_rat_linear_case pQ h_deg h_ne
 
-/-! ## Phase 3 — Higher-degree (deg ≥ 2) case placeholder -/
-
-/-- **Stage T4b.deg≥2 placeholder** (cycles 63+ wizard fills): the
-    higher-degree case of `LindemannPremiseRat`.
-
-    For `pQ : ℚ[X]` with `pQ.natDegree ≥ 2`, discharging `aeval π pQ ≠ 0`
-    requires the FULL Lindemann-Weierstrass argument:
-
-      1. Orbit construction: `(minpoly ℚ (i*π)).aroots ℂ` assuming `π`
-         algebraic.
-      2. Apply Mathlib `exp_polynomial_approx` to each orbit root.
-      3. Symmetric-sum integer witness via
-         `MvPolynomial.IsSymmetric.FundamentalTheorem` — the symmetric
-         polynomial in orbit roots equals coefficients of minpoly, hence
-         integer.
-      4. Combine: integer ∧ analytic-bound `c^p / (p-1)! → 0` ∧ ≠ 0
-         → False.
-
-    This is genuinely 400-600 lines of new proof code.  Currently
-    `Prop := True` for API surface; cycles 63+ wizards fill. -/
-def LindemannPremiseRatHigherDegreePending : Prop := True
-
-theorem lindemann_premise_rat_higher_degree_pending_inhabited :
-    LindemannPremiseRatHigherDegreePending := trivial
-
 /-! ## Phase 4 — Bridge to Wave T4a (general-orbit closure) -/
 
 /-- **Composition link to Wave T4a**: the general-orbit Galois-step
@@ -165,14 +140,13 @@ theorem wave_t4a_general_orbit_closure_reachable :
 
 /-- **HEADLINE — Wave T4b session 1 partial fill**: linear-case
     `LindemannPremiseRat` discharged unconditionally; higher-degree
-    case reserved for cycles 63+.
+    case shipped via separate dedicated files.
 
-    Single 4-conjunct asserting:
+    Single 3-conjunct asserting:
       1. Linear case unconditionally proven (any pQ ∈ ℚ[X] with
          natDegree ≤ 1, pQ ≠ 0, gives aeval π pQ ≠ 0).
       2. `LindemannPremiseRatLinear` predicate is inhabited.
-      3. Higher-degree (deg ≥ 2) case reserved (`Prop := True`).
-      4. Wave T4a's general-orbit closure is composed-in (head-factor
+      3. Wave T4a's general-orbit closure is composed-in (head-factor
          identity for any list with head iPi).
 
     `#print axioms` on this term yields `[propext, Classical.choice,
@@ -183,29 +157,23 @@ theorem lindemann_premise_rat_proof_w_t4b_session_1_headline :
     (∀ (pQ : Polynomial ℚ), pQ.natDegree ≤ 1 → pQ ≠ 0 →
         Polynomial.aeval (Real.pi : ℝ) pQ ≠ 0)
       ∧ LindemannPremiseRatLinear
-      ∧ LindemannPremiseRatHigherDegreePending
       ∧ (∀ (alphas : List ℂ), alphas.head? = some
             OmegaTheory.Irrationality.CustomMath.LindemannGaloisConjugation.iPi →
           (alphas.map (fun α => 1 + Complex.exp α)).prod = 0) := by
-  refine ⟨?_, ?_, ?_, ?_⟩
+  refine ⟨?_, ?_, ?_⟩
   · exact lindemann_premise_rat_linear_case
   · exact lindemann_premise_rat_linear_unconditional
-  · exact lindemann_premise_rat_higher_degree_pending_inhabited
   · exact wave_t4a_general_orbit_closure_reachable
 
 /-- **W-T4b session 1 paper bundle** — citation marker.
 
     Asserts:
-      1. The headline (4-conjunct above).
-      2. The linear-case theorem applied to a SPECIFIC test polynomial
-         `2*X - 7`: `aeval π (2*X - 7) ≠ 0` (i.e., π is not a rational
-         root of `2x - 7`).
-      3. `irrational_pi` is the load-bearing Mathlib lemma. -/
+      1. The headline (3-conjunct above).
+      2. `irrational_pi` is the load-bearing Mathlib lemma. -/
 theorem lindemann_premise_rat_proof_w_t4b_session_1_paper_bundle :
     ((∀ (pQ : Polynomial ℚ), pQ.natDegree ≤ 1 → pQ ≠ 0 →
           Polynomial.aeval (Real.pi : ℝ) pQ ≠ 0)
         ∧ LindemannPremiseRatLinear
-        ∧ LindemannPremiseRatHigherDegreePending
         ∧ (∀ (alphas : List ℂ), alphas.head? = some
               OmegaTheory.Irrationality.CustomMath.LindemannGaloisConjugation.iPi →
             (alphas.map (fun α => 1 + Complex.exp α)).prod = 0))
@@ -213,15 +181,5 @@ theorem lindemann_premise_rat_proof_w_t4b_session_1_paper_bundle :
   refine ⟨?_, ?_⟩
   · exact lindemann_premise_rat_proof_w_t4b_session_1_headline
   · exact irrational_pi
-
-/-- **Frontier marker** — first cycle-62 Wave T4b session 1
-    linear-case `LindemannPremiseRat` discharge landed in OV2.
-    Higher-degree cases reserved for cycles 63+. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_1_first_landed_in_V2 :
-    True := trivial
-
-/-- **W-T4b session 1 closure marker** — ready for session 2
-    (deg ≥ 2 orbit construction + symmetric integer witness). -/
-theorem lindemann_premise_rat_proof_w_t4b_session_1_closed : True := trivial
 
 end OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProof

@@ -184,14 +184,4 @@ theorem lindemann_premise_rat_proof_w_t4b_session_8_paper_bundle :
   · exact lindemann_premise_rat_proof_w_t4b_session_8_headline
   · exact norm_add_le
 
-/-- **Frontier marker** — first cycle-62 Wave T4b session 8 multi-root
-    sum-norm bound landed in OV2.  Generic Multiset bound + L-W
-    orbit-sum specialization. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_8_first_landed_in_V2 :
-    True := trivial
-
-/-- **W-T4b session 8 closure marker** — ready for cycle 65+ symmetric-
-    sum integer witness. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_8_closed : True := trivial
-
 end OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofMultiRootSum

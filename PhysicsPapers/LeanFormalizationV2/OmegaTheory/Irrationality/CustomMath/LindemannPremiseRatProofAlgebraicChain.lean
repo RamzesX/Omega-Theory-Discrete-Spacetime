@@ -121,23 +121,7 @@ theorem lindemann_premise_rat_deg_ge_two_conditional
   obtain ⟨N, B, h_abs, h_B, h_nonzero⟩ := h_int_witness
   exact integer_bound_contradiction N B h_abs h_B h_nonzero
 
-/-- **Wave T4b session 3 conditional deg ≥ 2 (uses session 2 structural
-    main-argument inputs placeholder)**.
-
-    Same as `lindemann_premise_rat_deg_ge_two_conditional` but with the
-    integer-bound witness replaced by the session 2 placeholder
-    `LindemannMainArgumentInputs`.  This is the API that cycles 63+ will
-    extend by replacing `LindemannMainArgumentInputs := True` with a
-    concrete orbit-based witness. -/
-theorem lindemann_premise_rat_deg_ge_two_conditional_via_main_inputs
-    (_h_inputs : LindemannMainArgumentInputs)
-    (h_int_witness : ∃ (N : ℤ) (B : ℝ), |(N : ℝ)| < B ∧ B ≤ 1 ∧ N ≠ 0)
-    (pQ : Polynomial ℚ) (h_ne : pQ ≠ 0)
-    (h_zero : Polynomial.aeval (Real.pi : ℝ) pQ = 0) :
-    False :=
-  lindemann_premise_rat_deg_ge_two_conditional pQ h_ne h_zero h_int_witness
-
-/-! ## Phase 4 — Headline + paper bundle + frontier marker -/
+/-! ## Phase 4 — Headline + paper bundle -/
 
 /-- **HEADLINE — Wave T4b session 3 algebraic-chain composition**.
 
@@ -162,13 +146,11 @@ theorem lindemann_premise_rat_proof_w_t4b_session_3_headline :
       ∧ (∀ (pQ : Polynomial ℚ), pQ ≠ 0 →
           Polynomial.aeval (Real.pi : ℝ) pQ = 0 →
           (∃ (N : ℤ) (B : ℝ), |(N : ℝ)| < B ∧ B ≤ 1 ∧ N ≠ 0) →
-          False)
-      ∧ LindemannMainArgumentInputs := by
-  refine ⟨?_, ?_, ?_, ?_⟩
+          False) := by
+  refine ⟨?_, ?_, ?_⟩
   · exact aeval_pi_complex_zero_of_aeval_pi_real_zero
   · exact isAlgebraic_iPi_of_aeval_pi_real_zero
   · exact lindemann_premise_rat_deg_ge_two_conditional
-  · exact lindemann_main_argument_inputs_pending
 
 /-- **W-T4b session 3 paper bundle** — citation marker. -/
 theorem lindemann_premise_rat_proof_w_t4b_session_3_paper_bundle :
@@ -181,24 +163,10 @@ theorem lindemann_premise_rat_proof_w_t4b_session_3_paper_bundle :
         ∧ (∀ (pQ : Polynomial ℚ), pQ ≠ 0 →
             Polynomial.aeval (Real.pi : ℝ) pQ = 0 →
             (∃ (N : ℤ) (B : ℝ), |(N : ℝ)| < B ∧ B ≤ 1 ∧ N ≠ 0) →
-            False)
-        ∧ LindemannMainArgumentInputs)
+            False))
     ∧ (∀ (z : ℂ), IsAlgebraic ℚ (Complex.I * z) ↔ IsAlgebraic ℚ z) := by
   refine ⟨?_, ?_⟩
   · exact lindemann_premise_rat_proof_w_t4b_session_3_headline
   · exact isAlgebraic_iMul_iff
-
-/-- **Frontier marker** — first cycle-62 Wave T4b session 3 algebraic-chain
-    composition landed in OV2.  Composes session 2's structural skeleton
-    with the aeval cast ℝ → ℂ + IsAlgebraic chain to produce the explicit
-    deg ≥ 2 conditional contradiction principle.  Cycles 63+ will instantiate
-    the integer-bound witness from the actual orbit of i·π. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_3_first_landed_in_V2 :
-    True := trivial
-
-/-- **W-T4b session 3 closure marker** — ready for cycle 63+ orbit
-    construction + symmetric-sum integer witness via Mathlib
-    `MvPolynomial.IsSymmetric.FundamentalTheorem` + `exp_polynomial_approx`. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_3_closed : True := trivial
 
 end OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofAlgebraicChain

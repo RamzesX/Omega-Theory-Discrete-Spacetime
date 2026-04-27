@@ -166,14 +166,4 @@ theorem lindemann_premise_rat_proof_w_t4b_session_5_paper_bundle :
   · exact lindemann_premise_rat_proof_w_t4b_session_5_headline
   · exact OmegaTheory.Irrationality.CustomMath.GeneralOrbitGaloisStep.prod_one_plus_exp_eq_zero_of_head_iPi
 
-/-- **Frontier marker** — first cycle-62 Wave T4b session 5 orbit-product
-    zero composition landed in OV2.  Multiset analog of Wave T4a's
-    list-product zero, lifted to compose with Mathlib's `aroots`. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_5_first_landed_in_V2 :
-    True := trivial
-
-/-- **W-T4b session 5 closure marker** — ready for cycle 65+ symmetric-
-    sum integer witness + analytic bound application. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_5_closed : True := trivial
-
 end OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofOrbitProduct

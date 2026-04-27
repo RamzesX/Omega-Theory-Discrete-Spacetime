@@ -142,54 +142,16 @@ theorem integer_bound_contradiction_strict
     False := by
   exact integer_bound_contradiction N 1 (lt_of_le_of_lt h_abs h_B) (le_refl 1) h_nonzero
 
-/-! ## Phase 3 — Conditional structural main argument -/
-
-/-- **Wave T4b session 2 conditional main-argument hypotheses**.
-
-    Stated as a Prop bundling the three inputs needed to close the
-    deg ≥ 2 case of `LindemannPremiseRat`:
-
-      (i) `IsAlgebraic ℚ (Real.pi : ℂ)` — π is algebraic (the assumption
-          we'll contradict).
-
-      (ii) For some prime p large enough, the symmetric sum
-           `∑_{r ∈ (minpoly ℚ (i·π)).aroots ℂ} (n_p · exp r - p · gp.aeval r)`
-           equals an integer `N_p` with `¬ p ∣ N_p` (so `N_p ≠ 0`).
-
-      (iii) For the same p, `|N_p : ℝ| ≤ d · c^p / (p-1)!` (analytical
-            bound via Mathlib's `exp_polynomial_approx`), and this bound
-            is `< 1` for large enough p.
-
-    Given these three inputs, the L-W contradiction is mechanical via
-    the `integer_bound_contradiction_strict` principle.
-
-    Currently a `Prop := True` API surface.  Cycles 63+ wizards fill the
-    three inputs (each ~150-300 lines of Mathlib symmetric-polynomial +
-    `exp_polynomial_approx` + non-divisibility machinery). -/
-def LindemannMainArgumentInputs : Prop := True
-
-theorem lindemann_main_argument_inputs_pending :
-    LindemannMainArgumentInputs := trivial
-
-/-- **Wave T4b session 2 — bridge to T4b session 1**.
-
-    Re-witness session 1's `LindemannPremiseRatHigherDegreePending` from
-    this structural-skeleton namespace. -/
-theorem t4b_session_1_higher_degree_placeholder_subsumed :
-    LindemannPremiseRatProof.LindemannPremiseRatHigherDegreePending :=
-  LindemannPremiseRatProof.lindemann_premise_rat_higher_degree_pending_inhabited
-
-/-! ## Phase 4 — Headline + paper bundle + frontier marker -/
+/-! ## Phase 3 — Headline + paper bundle -/
 
 /-- **HEADLINE — Wave T4b session 2 structural skeleton**.
 
-    Single 5-conjunct showing the structural-chain content of session 2:
+    Single 4-conjunct showing the structural-chain content of session 2:
 
       1. **Algebraic-lift bidirectional**: `IsAlgebraic ℚ (i*z) ↔ IsAlgebraic ℚ z`.
       2. **Algebraic-lift direction `→`**: `IsAlgebraic ℚ (i*z) → IsAlgebraic ℚ z`.
       3. **Algebraic-lift direction `←`**: `IsAlgebraic ℚ z → IsAlgebraic ℚ (i*z)`.
       4. **Integer-bound contradiction principle**: |N : ℝ| < B ∧ B ≤ 1 ∧ N ≠ 0 → False.
-      5. **Conditional main-argument hypotheses placeholder**: cycles 63+ inhabit.
 
     `#print axioms` on this term yields `[propext, Classical.choice,
     Quot.sound]` only — Lean core triple — confirming **no project
@@ -199,36 +161,22 @@ theorem lindemann_premise_rat_proof_w_t4b_session_2_headline :
     (∀ (z : ℂ), IsAlgebraic ℚ (Complex.I * z) ↔ IsAlgebraic ℚ z)
       ∧ (∀ (z : ℂ), IsAlgebraic ℚ (Complex.I * z) → IsAlgebraic ℚ z)
       ∧ (∀ (z : ℂ), IsAlgebraic ℚ z → IsAlgebraic ℚ (Complex.I * z))
-      ∧ (∀ (N : ℤ) (B : ℝ), |(N : ℝ)| < B → B ≤ 1 → N ≠ 0 → False)
-      ∧ LindemannMainArgumentInputs := by
-  refine ⟨?_, ?_, ?_, ?_, ?_⟩
+      ∧ (∀ (N : ℤ) (B : ℝ), |(N : ℝ)| < B → B ≤ 1 → N ≠ 0 → False) := by
+  refine ⟨?_, ?_, ?_, ?_⟩
   · exact isAlgebraic_iMul_iff
   · exact isAlgebraic_of_iMul_isAlgebraic
   · exact iMul_isAlgebraic_of_isAlgebraic
   · exact integer_bound_contradiction
-  · exact lindemann_main_argument_inputs_pending
 
 /-- **W-T4b session 2 paper bundle** — citation marker. -/
 theorem lindemann_premise_rat_proof_w_t4b_session_2_paper_bundle :
     ((∀ (z : ℂ), IsAlgebraic ℚ (Complex.I * z) ↔ IsAlgebraic ℚ z)
         ∧ (∀ (z : ℂ), IsAlgebraic ℚ (Complex.I * z) → IsAlgebraic ℚ z)
         ∧ (∀ (z : ℂ), IsAlgebraic ℚ z → IsAlgebraic ℚ (Complex.I * z))
-        ∧ (∀ (N : ℤ) (B : ℝ), |(N : ℝ)| < B → B ≤ 1 → N ≠ 0 → False)
-        ∧ LindemannMainArgumentInputs)
-    ∧ LindemannPremiseRatProof.LindemannPremiseRatHigherDegreePending := by
+        ∧ (∀ (N : ℤ) (B : ℝ), |(N : ℝ)| < B → B ≤ 1 → N ≠ 0 → False))
+    ∧ (∀ (N : ℤ) (B : ℝ), |(N : ℝ)| ≤ B → B < 1 → N ≠ 0 → False) := by
   refine ⟨?_, ?_⟩
   · exact lindemann_premise_rat_proof_w_t4b_session_2_headline
-  · exact t4b_session_1_higher_degree_placeholder_subsumed
-
-/-- **Frontier marker** — first cycle-62 Wave T4b session 2 structural
-    skeleton landed in OV2.  Algebraic-lift bidirectional + integer-bound
-    contradiction principle proven concretely; main-argument-inputs
-    placeholder reserved for cycles 63+. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_2_first_landed_in_V2 :
-    True := trivial
-
-/-- **W-T4b session 2 closure marker** — ready for cycle 63+ symmetric-sum
-    integer-witness + analytic-bound-application closure. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_2_closed : True := trivial
+  · exact integer_bound_contradiction_strict
 
 end OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofStructural

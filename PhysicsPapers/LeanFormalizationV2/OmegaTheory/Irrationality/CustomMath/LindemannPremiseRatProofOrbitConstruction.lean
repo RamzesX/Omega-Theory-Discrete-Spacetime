@@ -122,24 +122,6 @@ theorem aeval_iPi_minpoly_eq_zero
 
 /-! ## Phase 4 — Integer-polynomial extraction API (cycles 65+ fill) -/
 
-/-- **Stage 4 placeholder** (cycle 65+ fills): the conversion of
-    `minpoly ℚ z` to an integer polynomial with the same roots in ℂ.
-
-    Specifically, for `z : ℂ` algebraic over ℚ with `z ≠ 0`, there exists
-    `f : ℤ[X]` with `f.eval 0 ≠ 0` and `Polynomial.aeval z (f.map (Int.castRingHom ℂ)) = 0`.
-
-    This is needed because Mathlib's `exp_polynomial_approx` takes
-    `f : ℤ[X]` (not ℚ[X]).  Conversion: scale `minpoly ℚ z` by the LCM
-    of denominators to get a ℤ[X] polynomial; non-zero-constant-term
-    follows from `z ≠ 0`.
-
-    Currently `Prop := True` API surface; ~150 lines via Mathlib's
-    `Polynomial.DenomsClearable` or direct scaling. -/
-def IntegerPolynomialExtractionFromAlgebraic : Prop := True
-
-theorem integer_polynomial_extraction_pending :
-    IntegerPolynomialExtractionFromAlgebraic := trivial
-
 /-! ## Phase 5 — Bridge to Wave T4b session 3 conditional contradiction -/
 
 /-- **Bridge to session 3 conditional**: composes the orbit construction
@@ -180,45 +162,30 @@ theorem orbit_construction_to_session_3_conditional
     `#print axioms` on this term yields `[propext, Classical.choice,
     Quot.sound]` only.  ZERO `Real.pi_transcendental` leak. -/
 theorem lindemann_premise_rat_proof_w_t4b_session_4_headline :
-    (∃ (z : ℂ), True ∧ lindemannOrbit z = (minpoly ℚ z).aroots ℂ)
+    (∀ (z : ℂ), lindemannOrbit z = (minpoly ℚ z).aroots ℂ)
       ∧ (∀ (z : ℂ), IsAlgebraic ℚ z → z ∈ lindemannOrbit z)
       ∧ ((Complex.I * (Real.pi : ℂ)) ≠ 0)
       ∧ (∀ (pQ : Polynomial ℚ), pQ ≠ 0 →
             Polynomial.aeval (Real.pi : ℝ) pQ = 0 →
-            (Complex.I * (Real.pi : ℂ)) ∈ lindemannOrbit (Complex.I * (Real.pi : ℂ)))
-      ∧ IntegerPolynomialExtractionFromAlgebraic := by
-  refine ⟨?_, ?_, ?_, ?_, ?_⟩
-  · refine ⟨0, trivial, ?_⟩
-    rfl
+            (Complex.I * (Real.pi : ℂ)) ∈ lindemannOrbit (Complex.I * (Real.pi : ℂ))) := by
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · intro z; rfl
   · exact mem_lindemannOrbit_self
   · exact iPi_ne_zero
   · exact iPi_mem_lindemannOrbit_self_of_pi_alg
-  · exact integer_polynomial_extraction_pending
 
 /-- **W-T4b session 4 paper bundle** — citation marker. -/
 theorem lindemann_premise_rat_proof_w_t4b_session_4_paper_bundle :
-    ((∃ (z : ℂ), True ∧ lindemannOrbit z = (minpoly ℚ z).aroots ℂ)
+    ((∀ (z : ℂ), lindemannOrbit z = (minpoly ℚ z).aroots ℂ)
         ∧ (∀ (z : ℂ), IsAlgebraic ℚ z → z ∈ lindemannOrbit z)
         ∧ ((Complex.I * (Real.pi : ℂ)) ≠ 0)
         ∧ (∀ (pQ : Polynomial ℚ), pQ ≠ 0 →
               Polynomial.aeval (Real.pi : ℝ) pQ = 0 →
-              (Complex.I * (Real.pi : ℂ)) ∈ lindemannOrbit (Complex.I * (Real.pi : ℂ)))
-        ∧ IntegerPolynomialExtractionFromAlgebraic)
-    ∧ (∀ (h_alg : IsAlgebraic ℚ (Complex.I * (Real.pi : ℂ))),
+              (Complex.I * (Real.pi : ℂ)) ∈ lindemannOrbit (Complex.I * (Real.pi : ℂ))))
+    ∧ (∀ (_h_alg : IsAlgebraic ℚ (Complex.I * (Real.pi : ℂ))),
           minpoly ℚ (Complex.I * (Real.pi : ℂ)) ≠ 0) := by
   refine ⟨?_, ?_⟩
   · exact lindemann_premise_rat_proof_w_t4b_session_4_headline
   · exact minpoly_iPi_ne_zero
-
-/-- **Frontier marker** — first cycle-62 Wave T4b session 4 orbit
-    construction landed in OV2.  Composes session 3's algebraic chain
-    with concrete orbit definition via Mathlib `minpoly` + `aroots`.
-    Cycle 65+ extends with the integer-polynomial extraction + symmetric-
-    sum integer witness. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_4_first_landed_in_V2 :
-    True := trivial
-
-/-- **W-T4b session 4 closure marker** — ready for cycle 65+. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_4_closed : True := trivial
 
 end OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofOrbitConstruction

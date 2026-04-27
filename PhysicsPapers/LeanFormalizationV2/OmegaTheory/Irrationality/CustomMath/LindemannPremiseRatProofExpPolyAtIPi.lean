@@ -190,14 +190,4 @@ theorem lindemann_premise_rat_proof_w_t4b_session_6_paper_bundle :
   show Complex.exp iPi = -1
   exact exp_iPi_eq_neg_one
 
-/-- **Frontier marker** — first cycle-62 Wave T4b session 6 instantiation
-    of Mathlib's `exp_polynomial_approx` at the root `i*π` landed in OV2.
-    Provides the per-root analytical bound + Euler simplification.
-    Cycle 65+ extends to multi-root summing + symmetric-sum integer witness. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_6_first_landed_in_V2 :
-    True := trivial
-
-/-- **W-T4b session 6 closure marker** — ready for cycle 65+. -/
-theorem lindemann_premise_rat_proof_w_t4b_session_6_closed : True := trivial
-
 end OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofExpPolyAtIPi

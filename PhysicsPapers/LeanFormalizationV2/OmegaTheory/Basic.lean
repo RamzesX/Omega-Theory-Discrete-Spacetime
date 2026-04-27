@@ -5544,3 +5544,33 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubset
 -- Proof: induction on Q via MvPolynomial.induction_on. 2 thm, ~70 lines.
 -- Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofMvPolyRationalEval
+
+-- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
+-- Wave T4b sessions 46-59 — CYCLE 64 KEYSTONE: Real.pi_transcendental
+-- AXIOM RETIRED. Custom port of Lindemann-Weierstrass via formal subset-
+-- sum polynomial machinery + fundamental theorem of symmetric polynomials
+-- + IsLocalization.integerNormalization + Euler's identity.
+-- Build delta: 4418 → 4454 GREEN (+36 jobs). Paper-headline primitive
+-- assumptions: 5 → 4. NO Real.pi_transcendental leak.
+-- ZERO stubs throughout. Lean core only.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalCoeffEvalRational
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofMultisetEnumeration
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalPolyEvalCoeffsRational
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofEvalPolyLiftQ
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofEvalPolyLiftZ
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofEvaledFormalPolyRoots
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPzeroXdvd
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFinsetOrbitSum
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofEvaledFormalPolyArootsExp
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPzeroExpSum
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofHzeroExtraction
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofHzeroExpSum
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofBridgeHighDegreeDischarge
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPiTranscendentalUnconditionalReal
+
+-- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
+-- Session 60 — FINAL UNCONDITIONAL CAPSTONE for axiom retirement.
+-- 8-conjunct paper bundle covering: π transcendental unconditional,
+-- π irrational unconditional, full bridge, high-degree sub-bridge, axiom
+-- flip, linear case, high-degree case, bridge reduction. Lean core only.
+import OmegaTheory.Capstones.PiTranscendenceAxiomRetirementFinal

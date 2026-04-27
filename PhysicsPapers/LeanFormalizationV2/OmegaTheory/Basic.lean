@@ -5362,3 +5362,13 @@ import OmegaTheory.Capstones.PiTranscendenceAxiomRetirement
 -- (natDeg = 1) discharged via Real.irrational_pi exfalso; natDeg ≥ 2
 -- remains for cycle 64+. 3 thm + 1 def. Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofBridgeReduction
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 24 — `LindemannPremiseRatProofBridgePiSqRational.lean`.
+-- Discharges the bridge sub-case where π² ∈ ℚ via explicit `b·X² + a`
+-- polynomial construction. Uses Mathlib's
+-- `Polynomial.aroots_quadratic_eq_pair_iff_of_ne_zero` to identify
+-- aroots = {iπ, -iπ}, then Euler's formula `exp(±iπ) = -1` to get
+-- ((aroots).map exp).sum = -2 = -m. 6 thm + 1 def, ~150 lines.
+-- Lean core only. ZERO stubs. Cycle 64+ remaining: π² ∉ ℚ case.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofBridgePiSqRational

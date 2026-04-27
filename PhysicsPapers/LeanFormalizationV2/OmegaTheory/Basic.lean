@@ -5574,3 +5574,9 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPiTranscende
 -- π irrational unconditional, full bridge, high-degree sub-bridge, axiom
 -- flip, linear case, high-degree case, bridge reduction. Lean core only.
 import OmegaTheory.Capstones.PiTranscendenceAxiomRetirementFinal
+
+-- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
+-- Session 61 — Yoneda bridges from pi_transcendental_unconditional to
+-- 5 nearby OV2 paper-headline theorems. Per workflow rule LOCKED
+-- 2026-04-27 ("Yoneda bridges via find_similar"). Lean core only.
+import OmegaTheory.Capstones.PiTranscendenceYonedaBridges

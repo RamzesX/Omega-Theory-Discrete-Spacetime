@@ -4633,6 +4633,19 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofAlgebraicCha
 -- cycle 65+. 9 thm + 1 def + 1 noncomputable def, Lean core only.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofOrbitConstruction
 
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 5 — `LindemannPremiseRatProofOrbitProduct.lean`.
+-- Multiset version of Wave T4a's head-factor-is-zero argument, lifted to
+-- compose with `Polynomial.aroots` (which returns Multiset, not List).
+-- `orbit_product_eq_zero_of_iPi_mem`: for any Multiset ℂ containing
+-- `Complex.I * Real.pi`, the polynomial product `∏(1+exp α) = 0` via
+-- Mathlib `Multiset.prod_eq_zero` + Hydra c59 `one_plus_exp_iPi_eq_zero`.
+-- Composes with session 4 to derive `((lindemannOrbit iπ).map (1+exp ·)).prod = 0`
+-- under the algebraic hypothesis. Plus full conditional chain composing
+-- sessions 3+4 to derive False mechanically given integer-bound witness.
+-- 5 thm, Lean core only. ZERO `Real.pi_transcendental` leak.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofOrbitProduct
+
 -- Alnasl (γ Sagittarii, "the arrowhead", K0III ~96 ly — Sagittarius theme
 -- match) — cycle-60 W1: `cmb_DeltaT_T_substrate_paper_bundle`. Plan A
 -- paper-bundle re-export of Albali c5 CMBAnisotropyFromSubstrate.lean into

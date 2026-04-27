@@ -5489,3 +5489,10 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofZeroFilterSu
 -- MvPolynomial.esymmAlgEquiv for ALL k (genuine cycle 64 work).
 -- 2 thm, ~50 lines. Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofNonzeroFilterSumRational
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 39 — `LindemannPremiseRatProofSubsetSumsCardBounds.lean`.
+-- Cardinality bounds: subsetSums.card ≥ 2 for natDeg ≥ 1, and
+-- (filter (·≠0)).card ≤ subsetSums.card - 1. 3 thm, ~65 lines.
+-- Lean core only. ZERO stubs. For cycle 64+ analytical bound argument.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsCardBounds

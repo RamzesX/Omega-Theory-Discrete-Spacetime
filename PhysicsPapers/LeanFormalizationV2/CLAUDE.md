@@ -24,6 +24,21 @@ For green-state checks during proof iteration, prefer
 `mcp__omega-orchestrator__build_status()` over re-running `lake build`.
 
 ## HARD RULES for all agents
+
+### 0. NO STUBS — SUPER IMPORTANT (LOCKED 2026-04-27)
+
+**NO `sorry`. NO `: True := trivial`. NO `Prop := True` (or any `Prop`
+declared as `True`). NO `:= trivial` proofs of placeholders.**
+
+User mandate verbatim 2026-04-27: *"No trivial, no true, no sorry, those
+are the rules"*.
+
+If a step is genuinely beyond current scope: prove it via real Mathlib
+API, defer the WHOLE file (don't ship partial), or reduce scope to what
+IS provable. NEVER stub. Allowed: real theorems, real `Prop` defs with
+non-trivial content, conditional theorems with NAMED real Prop hypotheses.
+
+### 1. Other hard rules
 1. **0 sorry** — absolutely never
 2. **0 new axioms** — `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research` (post-Lesath 2026-04-24); see PhysicsPapers/CLAUDE.md HARD RULES for full breakdown
 3. **Must compile GREEN** before reporting done
@@ -31,6 +46,7 @@ For green-state checks during proof iteration, prefer
 5. **Quality over speed** — take time, iterate on errors
 6. **Speak the same language** — follow `STYLE_GUIDE.md` (shared primitives, naming, proof patterns)
 7. **Connect don't duplicate** — `omega_hammer_premise` / `propose_proof` before writing new theorems
+8. **NO SUBAGENTS for paper-grade Yoneda** (LOCKED 2026-04-26) — categorical Yoneda witnesses, double-witnesses, Structure-composition theorems, grand capstones MUST be single-thread hand-authored. Subagents systematically produce citation-only `Nonempty S` mass-batch stubs (field-access density 0.10–0.59/thm vs hand-authored 1.13–3.6/thm = 5–30× denser; zero `funext`/`rfl` round-trip identities). See `~/.claude/CLAUDE.md` §8a + chaos-shield `.claude/CLAUDE.md`. Reference exemplars: `Foundations/{CKMAngles,PMNSAngles,ErrorBound}CategoricalYonedaWitness.lean` (c62 hand-authored).
 
 ## Proof Automation — USE BEFORE manual proof
 ```lean

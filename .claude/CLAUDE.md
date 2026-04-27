@@ -94,6 +94,35 @@ User mandate verbatim 2026-04-26: "subegent producing the trash, which will
 not close this poroejct".
 
 ## HARD RULES
+
+### NO STUBS RULE — SUPER IMPORTANT (LOCKED 2026-04-27)
+
+**NO `sorry`. NO `: True := trivial`. NO `Prop := True` (or any `Prop`
+declared as `True`). NO `:= trivial` proofs of hypothetical placeholders.**
+
+User mandate verbatim 2026-04-27: *"No trivial, no true, no sorry, those
+are the rules"*.
+
+Stub patterns are forbidden because they don't carry mathematical content:
+- `sorry` — universal-truth axiom backdoor, breaks soundness if abused.
+- `Prop := True` — trivially-inhabited Prop, pretending to be a theorem.
+- `: True := trivial` — frontier markers without content.
+- `_pending : Prop := True` placeholders consumed by conditional theorems.
+
+If a step is genuinely beyond current scope: DO NOT stub it. Either
+prove it, defer the WHOLE file (don't ship partial), or reduce scope
+to what IS provable.
+
+Allowed:
+- Real theorems with real proofs (use real Mathlib API).
+- Real `Prop` definitions with non-trivial content
+  (e.g. `def MyClaim : Prop := ∀ x, P x → Q x`).
+- Conditional theorems where the hypothesis is a NAMED real Prop
+  (NOT `:= True`), and the body uses the hypothesis non-vacuously.
+- Honest `noncomputable opaque X : {x : ℝ // 0 < x}` for physical
+  constants (uses `Classical.choice` from Lean core, not `axiom`).
+
+### Original hard rules
 1. **0 sorry** in Lean — absolutely never.
 2. **0 new axioms / primitive assumptions.** Honest accounting post-2026-04-24
    Lesath opaque-bundle refactor:

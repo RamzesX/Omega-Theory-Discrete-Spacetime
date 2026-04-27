@@ -281,6 +281,24 @@ Embedder endpoints (managed by `servers_control`):
 - `http://localhost:7996/rerank` — Qwen3-Reranker-8B CPU
 
 ## HARD RULES for all work
+
+### NO STUBS — SUPER IMPORTANT (LOCKED 2026-04-27)
+
+**NO `sorry`. NO `: True := trivial`. NO `Prop := True`. NO `:= trivial`
+proofs of placeholders.**
+
+User mandate verbatim 2026-04-27: *"No trivial, no true, no sorry, those
+are the rules"*.
+
+These don't carry mathematical content. If a step is genuinely beyond
+current scope: prove it, defer the WHOLE file (don't ship partial), or
+reduce scope to what IS provable. NEVER stub.
+
+Allowed: real theorems with real proofs, real `Prop` definitions with
+non-trivial content, conditional theorems with NAMED real Prop hypotheses
+(not `:= True`).
+
+### Original hard rules
 1. **0 sorry** in Lean — absolutely never
 2. **0 new axioms / primitive assumptions** — project rests on exactly **5
    primitive assumptions**: 4 physical existence postulates (c, ℏ, G_N, k_B as

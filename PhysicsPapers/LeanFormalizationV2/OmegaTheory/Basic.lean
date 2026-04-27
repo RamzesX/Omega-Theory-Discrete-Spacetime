@@ -4607,6 +4607,19 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProof
 -- placeholder. 11 thm + 1 def, Lean core only.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofStructural
 
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 3 — `LindemannPremiseRatProofAlgebraicChain.lean`.
+-- Algebraic-chain composition for the deg ≥ 2 case: composes session 2's
+-- bidirectional algebraic-lift with the aeval cast ℝ → ℂ via Mathlib's
+-- `Polynomial.aeval_algebraMap_apply` to derive the explicit chain
+-- (aeval π_ℝ pQ = 0, pQ ≠ 0) → IsAlgebraic ℚ (Complex.I * (Real.pi : ℂ)).
+-- Plus conditional deg ≥ 2 contradiction principle: with integer-bound
+-- witness, derive False mechanically. Once cycle 63+ provides the witness
+-- from the actual orbit of i·π, the deg ≥ 2 case closes by direct
+-- application of `lindemann_premise_rat_deg_ge_two_conditional`. 8 thm,
+-- Lean core only. ZERO `Real.pi_transcendental` leak.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofAlgebraicChain
+
 -- Alnasl (γ Sagittarii, "the arrowhead", K0III ~96 ly — Sagittarius theme
 -- match) — cycle-60 W1: `cmb_DeltaT_T_substrate_paper_bundle`. Plan A
 -- paper-bundle re-export of Albali c5 CMBAnisotropyFromSubstrate.lean into

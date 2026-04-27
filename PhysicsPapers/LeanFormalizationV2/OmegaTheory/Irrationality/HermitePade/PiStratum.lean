@@ -26,6 +26,7 @@
 -/
 
 import OmegaTheory.Irrationality.HermitePade.Decoupling
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPiTranscendentalUnconditionalReal
 import Mathlib.RingTheory.Algebraic.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Analysis.Real.Pi.Bounds
@@ -39,10 +40,18 @@ open BigOperators Finset
 
 Citation: F. Lindemann, *Über die Zahl π*, Math. Ann. 20 (1882), 213–225.
 
-When Mathlib derives this from its Lindemann-Weierstrass infrastructure,
-replace `axiom` with `theorem` and cite the Mathlib result.
+**RETIRED 2026-04-27** (cycle 64 closure): theorem proved unconditionally
+via custom port of Lindemann-Weierstrass — see
+`Irrationality/CustomMath/LindemannPremiseRatProofPiTranscendentalUnconditionalReal.lean`.
+Proof uses formal subset-sum polynomial machinery + fundamental theorem
+of symmetric polynomials (Mathlib `MvPolynomial.esymmAlgEquiv`) +
+`IsLocalization.integerNormalization` + Euler's identity.
+
+`#print axioms` returns `[propext, Classical.choice, Quot.sound]` only
+(Lean core), confirming the axiom retirement.
 -/
-axiom Real.pi_transcendental : Transcendental ℚ (Real.pi : ℝ)
+theorem Real.pi_transcendental : Transcendental ℚ (Real.pi : ℝ) :=
+  OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPiTranscendentalUnconditionalReal.pi_transcendental_unconditional
 
 /-! ## Research-axiom scoping marker (cycle 58, Libra · Vesta · 2026-04-25)
 

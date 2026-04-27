@@ -5253,3 +5253,11 @@ import OmegaTheory.Predictions.SMPrecision95BarPDGAnchors
 import OmegaTheory.Capstones.SMStructural95BarCapstone
 import OmegaTheory.Capstones.SM95BarYonedaBridges
 import OmegaTheory.Capstones.SM95BarTopQuarkBridge
+
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 12 — `LindemannPremiseRatProofPowerSumIntComplete.lean`.
+-- Extends Phase 1 (esymm = integer) to ALL k via case split: k ≤ natDegree
+-- (use Vieta from session 10) vs k > natDegree (esymm = 0 via
+-- Multiset.powersetCard_eq_empty + aroots_card_eq_natDegree). 2 thm,
+-- Lean core only. ZERO stubs. Foundation for Phase 3 power-sum induction.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPowerSumIntComplete

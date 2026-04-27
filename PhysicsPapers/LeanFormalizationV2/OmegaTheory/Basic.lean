@@ -5518,3 +5518,13 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubset
 -- variable rename via Finset.prod_bij with bijection S ↦ S.image e.
 -- 3 thm, ~95 lines. Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubsetSumPolySymmetric
+
+-- (cycle 63→64 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 43 — `LindemannPremiseRatProofFormalSubsetSumPolyCoeffsAlg.lean`.
+-- KEY CYCLE 64 KEYSTONE: each coefficient of formalSubsetSumPoly is in the
+-- symmetric subalgebra, hence by `MvPolynomial.esymmAlgEquiv` (fundamental
+-- theorem of symmetric polynomials) is the image of some
+-- Q : MvPolynomial (Fin n) ℤ. Specializing Q at esymm of f.aroots ℂ
+-- (rational by s29) gives rational coefficient values. 3 thm, ~70 lines.
+-- Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofFormalSubsetSumPolyCoeffsAlg

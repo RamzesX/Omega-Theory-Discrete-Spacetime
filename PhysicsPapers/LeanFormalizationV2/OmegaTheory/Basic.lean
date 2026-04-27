@@ -5473,3 +5473,10 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsAr
 -- cardinality ≥ 1.  Foundation for the L-W expansion bridge's `0 < m`
 -- hypothesis. 3 thm, ~55 lines. Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofZeroSubsetSumExists
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 37 — `LindemannPremiseRatProofZeroFilterSumZero.lean`.
+-- Sum of zero-filtered subsetSums is 0 (each element is 0). Plus
+-- subsetSums.sum = (filter (·≠0)).sum. 3 thm, ~55 lines.
+-- Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofZeroFilterSumZero

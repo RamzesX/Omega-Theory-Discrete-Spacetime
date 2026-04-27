@@ -5603,3 +5603,8 @@ import OmegaTheory.Capstones.PiTranscendenceAlgebraicConsequences
 -- Session 65 — π and √2 are ℚ-linearly independent. Foundational fact
 -- for the Pi-Hunch 4-irrational hierarchy. Lean core only.
 import OmegaTheory.Capstones.PiSqrt2LinearIndependence
+
+-- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
+-- Session 66 — Uniform π-transcendence forms (re-exports). ℚ[X] root,
+-- ℤ[X] root, ¬ IsAlgebraic — all equivalent forms. Lean core only.
+import OmegaTheory.Capstones.PiTranscendenceUniformConsequences

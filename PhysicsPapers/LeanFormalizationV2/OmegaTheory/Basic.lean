@@ -5090,3 +5090,4 @@ import OmegaTheory.Capstones.MetaYonedaGaugeSectorAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaCosmologyAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaGrandFiveAxisCapstone
 import OmegaTheory.Capstones.MetaYonedaConnesYukawaAxisCapstone
+import OmegaTheory.Capstones.MetaYonedaGrandSixAxisCapstone

@@ -4657,6 +4657,18 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofOrbitProduct
 -- Lean core only. ZERO `Real.pi_transcendental` leak.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofExpPolyAtIPi
 
+-- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
+-- Wave T4b session 7 — `LindemannPremiseRatProofRationalAnnihilator.lean`.
+-- Rational-annihilator extraction via Mathlib
+-- `IsAlgebraic.exists_nonzero_coeff_and_aeval_eq_zero`:
+-- given `IsAlgebraic ℚ (i*π)` (from session 3) + `i*π ∈ nonZeroDivisors ℂ`
+-- (from session 4 `iPi_ne_zero`), conclude
+-- `∃ q : ℚ[X], q.coeff 0 ≠ 0 ∧ aeval (i*π) q = 0`. Bridge between sessions
+-- 3+4 and session 6's `exp_polynomial_approx_at_iPi`. Integer-polynomial
+-- conversion via `Polynomial.DenomsClearable` reserved as Prop:=True for
+-- cycle 65+. 7 thm + 1 def, Lean core only. ZERO `Real.pi_transcendental` leak.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofRationalAnnihilator
+
 -- Alnasl (γ Sagittarii, "the arrowhead", K0III ~96 ly — Sagittarius theme
 -- match) — cycle-60 W1: `cmb_DeltaT_T_substrate_paper_bundle`. Plan A
 -- paper-bundle re-export of Albali c5 CMBAnisotropyFromSubstrate.lean into

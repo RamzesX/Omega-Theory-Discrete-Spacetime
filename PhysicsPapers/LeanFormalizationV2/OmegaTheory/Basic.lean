@@ -5300,3 +5300,11 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSums
 -- is a root of h. 8 thm + 2 paper bundles. Lean core only. ZERO stubs.
 -- Algebraic-side foundation for L-W contradiction (s18-s19+).
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofIntegerSubsetSums
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 17 — `LindemannPremiseRatProofPolynomialEvalScaledIntSum.lean`.
+-- D-scaled Phase 4a: for non-monic h : ℤ[X] with leading coeff D, and any
+-- g : ℤ[X], `D^{g.natDeg} · ((h.aroots ℂ).map (g.aeval ·)).sum ∈ ℤ`.
+-- Generalises s14 to non-monic h via D-tracking through Vieta + Newton +
+-- linearity. 7 thm + 2 paper bundles. Lean core only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPolynomialEvalScaledIntSum

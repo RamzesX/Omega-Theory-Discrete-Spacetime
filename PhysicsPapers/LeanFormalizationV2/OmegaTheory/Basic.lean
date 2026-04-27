@@ -5339,3 +5339,11 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofAnalyticalBo
 -- LindemannExpansionIdentityBridge as the named real Prop hypothesis.
 -- 3 thm. Lean core only. ZERO stubs. CONDITIONAL on bridge (cycle 64+).
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofUnconditional
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 21 — `PiTranscendentalUnconditional.lean`.
+-- Composes s20's LRP-modulo-bridge with Ganymede c57's
+-- `pi_transcendental_layer_B_galois_conditional_rat` to get
+-- `Transcendental ℚ Real.pi` modulo the L-W expansion bridge.
+-- 3 thm. Lean core only. ZERO stubs. CONDITIONAL on bridge (cycle 64+).
+import OmegaTheory.Irrationality.HermitePade.PiTranscendentalUnconditional

@@ -5086,3 +5086,4 @@ import OmegaTheory.Predictions.HermitePadeFamilyClosure
 import OmegaTheory.Capstones.AlgebraOmegaPhase789Capstone
 import OmegaTheory.Capstones.Cycle62FinalProgressionCapstone
 import OmegaTheory.Capstones.MetaYonedaSubstrateErrorAxisCapstone
+import OmegaTheory.Capstones.MetaYonedaGaugeSectorAxisCapstone

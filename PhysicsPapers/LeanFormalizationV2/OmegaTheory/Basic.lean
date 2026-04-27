@@ -5435,3 +5435,11 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumsSu
 -- s25 (aroots = filtered subsetSums) with s16 (each subset-sum is integral).
 -- 2 thm, ~45 lines.  Lean core only. ZERO stubs.
 import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofSubsetSumPolyArootsAlgebraic
+
+-- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
+-- Wave T4b session 32 — `LindemannPremiseRatProofPiTransUnderPiSqRational.lean`.
+-- π transcendental under π² ∈ ℚ hypothesis: composes s24 (bridge for π² ∈ ℚ)
+-- + s23 (bridge reduction) + s21 (π trans modulo bridge). One of two cases
+-- needed for unconditional π transcendence. 4 thm, ~75 lines. Lean core
+-- only. ZERO stubs.
+import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPiTransUnderPiSqRational

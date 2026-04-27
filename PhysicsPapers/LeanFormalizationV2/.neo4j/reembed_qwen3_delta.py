@@ -95,7 +95,7 @@ SPLIT_FIELD_CONFIG = {
 
 WRITE_SPLIT_TEMPLATE = '''
 UNWIND $rows AS row
-MATCH (t:Theorem {namespace: 'OmegaTheoryV2', name: row.name})
+MATCH (t:Theorem {{namespace: 'OmegaTheoryV2', name: row.name}})
 SET t.{target_prop} = row.vec,
     t.{target_prop}_at = datetime()
 '''

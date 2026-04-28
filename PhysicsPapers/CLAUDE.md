@@ -1,5 +1,86 @@
 # OmegaTheory — Physics Papers & Lean Formalization
 
+---
+
+## 🛡️ SOTA OPS PROFILE (LOCKED 2026-04-28 — fortress-of-science discipline)
+
+**CRITICAL CONTEXT FIRST.** This block is the load-bearing top section: read me before any tool call.
+
+### Active session crons (session-only — recreate after restart)
+
+- `f4a3b1cb` STRATEGIC every 30 min `:13/:43` — `<STRATEGIC_T_CYCLE v3>` (BOOK-structured prompt — see template `~/.claude/commands/erdos-strategic-cycle.md`)
+- `db51a03b` AGENT_POOL every 10 min `:07/:17/:27/:37/:47/:57` — `<AGENT_POOL_CYCLE v3>` (BOOK-structured prompt — see `~/.claude/commands/erdos-agent-pool-cycle.md`)
+- After restart: re-create both via `CronCreate(durable=true)` from the templates above. (The `durable=true` parameter currently does NOT actually persist to disk in this Claude Code build — verify with `find . -name scheduled_tasks.json`. If it does write, restart picks them up automatically.)
+
+### MCP arsenal (USE — they're load-bearing, NOT optional)
+
+- **`mcp__omega-orchestrator__omega_hammer_premise(goal, top_k, mix_mathlib)`** — top-K Mathlib + OmegaTheoryV2 premise hammer over the 4096-dim Qwen3 embedding + Qwen3 reranker. **Mathlib reembed completed 2026-04-27.** Default for every proof obligation.
+- **`mcp__omega-search__find_similar(name, k, namespace)`** — semantic similarity over the same 4096-dim embedding. Use for Yoneda bridge discovery + paper-headline interconnection.
+- **`mcp__lean-lsp__lean_loogle(query)`** — Mathlib type-pattern search. Use BEFORE writing manual proofs.
+- **`mcp__lean-lsp__lean_local_search`** — fast local declaration search.
+- **`mcp__lean-lsp__lean_multi_attempt(line, snippets)`** — try tactics without editing.
+- **`mcp__omega-orchestrator__cycle_state()`** — live build_jobs + axioms + sorry_count. Call FIRST every fire (no hardcoded counts).
+- **`mcp__omega-orchestrator__axiom_audit(targets)`** — verify Lean-core only.
+- **`mcp__omega-orchestrator__refresh_graph(dry_run=False)`** — async; poll job_status. Run every 4-6h for graph health.
+
+The 4096-dim Qwen3 embedding + reranker pipeline cost the project significant infrastructure effort. **Skipping omega_hammer in favor of "precedent file gave 100% template" is a regression** for paper-grade work. Wizard agents must log ≥3 MCP queries in BOOK_III of their report.
+
+### Skills auto-discovered (in `~/.claude/commands/`)
+
+- **erdos-strategic-cycle** — SOTA STRATEGIC cron template (BOOK_I-VIII XML structure)
+- **erdos-agent-pool-cycle** — SOTA AGENT_POOL cron template
+- **strategic-meta-loop** — older 5-axis balanced audit (every 2h)
+- **cycle-completion-loop** — Phase C 7-step refresh chant
+- **wave-dispatch** — spawn N lean-proof-wizards on top OPEN candidates
+- **refresh-graph** — Phase C steps 3-5 (dump → load → reembed → verify → prune)
+- **axiom-audit** — paper capstone Lean-core sentinel
+- **live-status** — show current build/axiom/candidate state
+- **schedule** — create CLOUD-PERSISTENT scheduled remote agents (survive sessions, durable)
+
+### Worth-mentioning memories (READ-FIRST priority)
+
+- **feedback_sota_prompt_engineering_erdos_2026-04-28.md** — BOOK_I-VIII XML structure, OPERATIONAL_CREED, LAST_STAND_PROTOCOL 5-tier graceful degradation. Stop pre-baked algorithms (Opus 4.7 has interleaved thinking). Confidence intervals [X-Y%] not hedge words.
+- **feedback_bundled_commits_protocol_2026-04-28.md** — 3-5 sessions per single commit. Validated working (s329-s379, ~55 sessions in ~11 commits).
+- **feedback_mandatory_mcp_usage_2026-04-28.md** — ≥3 of 14 MCP tools per proof obligation. graph_queries_run field non-optional.
+- **feedback_lean_proof_wizard_xml_refactor_2026-04-28.md** — XML body in MD frontmatter, 5 BOOKs structure, ErdosPrimarch v7.3 inspiration.
+- **feedback_no_stubs_rule_locked_2026-04-27.md** — STRICT: no sorry, no Prop:=True, no `: True := trivial`, no `:= trivial` placeholder proofs. User mandate locked at 4 levels.
+- **feedback_yoneda_bridge_via_find_similar_workflow_2026-04-27.md** — interconnection pattern: query find_similar, write explicit bridge theorem to top-similarity hits. 5-15 APPLIES per bridge.
+- **feedback_mathlib_not_blockade_2026-04-27.md** — empirically proven 2026-04-27 (T-4 single-day) and 2026-04-28 (T-5 Phase 1-7 ENTRY single-day, 22 sessions). Decompose into Lean-sized sub-lemmas, port what's needed.
+- **feedback_yoneda_categorical_not_nonempty_2026-04-26** — mass-batch subagents produce citation-only `Nonempty S` stubs. **Single-thread** for paper-grade categorical/Yoneda/structure-composition work (project rule §8a).
+- **feedback_strict_phase_ordering_2026-04-25** — STRICT B→C→A. NO B+A overlap, NO B+C overlap. Sage fires only after refresh complete.
+- **feedback_kill_servers_when_idle_2026-04-24.md** — embedder :7999 + reranker :7996 OFF during Phase B (wizards CPU-bound). ON during Phase A (sage retrieval) + Phase C (reembed).
+- **project_t5_phase1to7entry_closed_2026-04-28.md** — T-5 ~80%, Phase 1-7 ENTRY in single day (22 sessions s559x→s559rr). Phase 7 sub-iterations remain (~800 lines).
+- **project_t4_cycle64_closed_2026-04-27.md** — Real.pi_transcendental retired single-day. Lessons: Mathlib NOT blockade, NO STUBS works at scale, single-thread > subagents for paper-grade.
+- **project_t1_strict_scaffold_complete_2026-04-28.md** — 14 T-1 STRICT scaffold files (s309-s327). Closure cost ~7-12 days.
+- **feedback_mcp_loader_symlink_staleness_recurrence_2026-04-27.md** — `_v2.jsonl` symlinks NOT auto-updated by orchestrator. Sample live Neo4j after refresh; don't trust "succeeded".
+- **feedback_subprocess_pipe_oom_2026-04-25.md** — `subprocess.PIPE` for child emitting >1MB → parent OOM. Stream to tempfile, read bounded tail.
+
+### Hard rules (LOCKED)
+
+1. **NO STUBS** — never `sorry`, never `Prop := True`, never `: True := trivial`, never `:= trivial`. Defer or scope-reduce, never stub.
+2. **0 new axioms** — project rests on 5 primitive assumptions + 4 sealed HermitePadé research axioms. Goal: drive to 0.
+3. **GREEN build before reporting done** — verify at `~/lean-v2` (115× faster) then mirror to `/mnt/c`.
+4. **Live numbers via MCP** — `cycle_state()` / `graph_health()` / `axiom_audit()`. Don't hardcode counts in prompts.
+5. **Single-thread paper-grade** (§8a) — subagents produce citation-only `Nonempty S` trash for Yoneda/categorical/structure-composition work.
+6. **Bundled commits** — 3-5 sessions per single commit. Validated 75-80% commit-overhead reduction.
+7. **`omega_hammer_premise` + `find_similar` + `lean_loogle`** as DEFAULT Mathlib lookup. Crawler is escape hatch only.
+
+### Build layout
+
+- **Native ext4 mirror**: `~/lean-v2/` — 115× faster single-file Lean builds. Iterate here.
+- **Committed tree**: `/mnt/c/Users/Norbert/IdeaProjects/chaos-shield/PhysicsPapers/LeanFormalizationV2/` — mirror on green for git commit.
+- **Build commands**: `~/.elan/bin/lake build OmegaTheory.<Module> --log-level=error`. NEVER use `wsl.exe` wrapper.
+
+### Restart guidance
+
+If you `--resume` Claude Code:
+1. The two SOTA cron prompts (STRATEGIC + AGENT_POOL) are session-only and will need re-creation. Re-fire them via `CronCreate(durable=true, prompt=<from ~/.claude/commands/erdos-{strategic,agent-pool}-cycle.md BOOK_I-VIII PROMPT BODY>)`.
+2. Skills + memories survive — they're on disk.
+3. New CLAUDE.md SOTA OPS PROFILE (this section) is committed to git so survives across all sessions.
+4. For TRULY durable cross-session loops, prefer the `/schedule` skill (cloud-based remote agents, not session crons).
+
+---
+
 ## 🏆 ACHIEVEMENT MARKER — 2026-04-27 (CYCLE 64 — π TRANSCENDENCE RETIRED)
 
 **`Real.pi_transcendental` is no longer an axiom in OmegaTheory V2.**

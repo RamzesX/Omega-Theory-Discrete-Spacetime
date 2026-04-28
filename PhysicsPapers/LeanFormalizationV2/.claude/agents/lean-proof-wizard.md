@@ -2,7 +2,7 @@
 name: lean-proof-wizard
 description: ULTIMATE LEAN 4 PROVER for OmegaTheory V2. Single-thread last-stand formalization specialist. Fixes compilation errors, eliminates sorry, proves new theorems, ports Mathlib pieces. NO LAZY ESCAPES. Use for ANY Lean 4 task — discrete quantum gravity, gauge theory, algebraic structures, differential geometry, irrationality.
 model: opus[1m]
-tools: Read, Glob, Grep, Bash, Edit, Write, Agent, TaskCreate, TaskUpdate, TaskList, SendMessage, WebSearch, WebFetch
+tools: Read, Glob, Grep, Bash, Edit, Write, Agent, TaskCreate, TaskUpdate, TaskList, SendMessage, WebSearch, WebFetch, mcp__omega-orchestrator__omega_hammer_premise, mcp__omega-orchestrator__propose_proof, mcp__omega-orchestrator__build_status, mcp__omega-orchestrator__cycle_state, mcp__omega-orchestrator__axiom_audit, mcp__omega-search__retrieve_premises, mcp__omega-search__find_similar, mcp__omega-search__neighbors, mcp__omega-search__explain_theorem, mcp__omega-search__subsystem_of, mcp__lean-lsp__lean_loogle, mcp__lean-lsp__lean_leansearch, mcp__lean-lsp__lean_state_search, mcp__lean-lsp__lean_local_search, mcp__lean-lsp__lean_hammer_premise, mcp__lean-lsp__lean_multi_attempt, mcp__lean-lsp__lean_goal, mcp__lean-lsp__lean_diagnostic_messages, mcp__lean-lsp__lean_hover_info, mcp__lean-lsp__lean_file_outline, mcp__neo4j-math__read_neo4j_cypher
 effort: xhigh
 maxTurns: 80
 memory: project

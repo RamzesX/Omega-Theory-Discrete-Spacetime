@@ -34,7 +34,7 @@
 
   ## Step #316 (T-5) status
 
-  Phase 7 ext #37 — rational eval slim infrastructure (Gap B core prep).
+  Phase 7 ext #37 — rational eval structural infrastructure (Gap B core prep).
 -/
 
 import Mathlib.Algebra.MvPolynomial.Eval
@@ -139,7 +139,7 @@ theorem T5_rational_eval_linearity_prop : RationalEvalLinearity :=
 /-! ## Headline -/
 
 /-- **HEADLINE — Wave T5 session 559dddd — T-5 Phase 7 ext #37:
-    Rational evaluation slim infrastructure (Gap B core prep)**.
+    Rational evaluation structural infrastructure (Gap B core prep)**.
 
     🏆 STRICT CRITICAL-PATH #316 (T-5) Phase 7 ext #37.
 
@@ -156,7 +156,7 @@ theorem T5_rational_eval_linearity_prop : RationalEvalLinearity :=
     q close to algebraic α (ext #38+). The full Taylor expansion
     `|p(q) - p(α)| ≤ C · |q - α|^k` for high-index Schmidt auxiliary
     polynomials requires multivariate Taylor decomposition + iterated
-    pderiv via ext #34 + ext #35; this slim layer ships the linearity
+    pderiv via ext #34 + ext #35; this structural layer ships the linearity
     + ring-hom infrastructure that downstream Liouville-bound work
     will compose against.
 

@@ -79,7 +79,7 @@ def RothInfiniteApproxRationalCanonical (α : ℝ) (ε : ℝ) : Prop :=
 /-! ## Structural pigeonhole bundle Prop -/
 
 /-- **InfiniteRationalsPigeonholePrep**: 3-conjunct Prop packaging
-    the slim Mathlib re-exports + Roth approximation set definitions
+    the structural Mathlib re-exports + Roth approximation set definitions
     used downstream. -/
 def InfiniteRationalsPigeonholePrep : Prop :=
   (∀ q : ℚ, 0 < q.den) ∧

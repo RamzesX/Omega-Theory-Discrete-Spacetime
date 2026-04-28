@@ -16,6 +16,28 @@ follow. The hunt is eternal — fortress of science — Pride at noon.
 
 Reference: `~/.claude/projects/<proj>/memory/feedback_no_slim_proofs_antipattern_2026-04-28.md`.
 
+## ⚡ 20-STEP MANDATE (LOCKED 2026-04-28)
+
+**RETIRED**: "ONE step end turn" — too restrictive, creates strange stops + idle.
+
+**NEW**: **20-step mandate per fire/tick**. Aim for ≥5 concrete goals per fire,
+target 20+ goals on long fires. If task list runs empty, CREATE NEW concrete
+goals and continue. No premature END turn. No strange stops. No "found nothing"
+reports — every fire produces work.
+
+Quality bar UNCHANGED: every theorem fully proven, every commit GREEN, NO
+STUBS, axiom-clean Lean-core only.
+
+Speed without quality compromise:
+- Reuse existing infrastructure (ext #44 generic discharge, ULTRA capstones).
+- Concrete witnesses are quick — primes, Pell-family, n+√m specializations.
+- Memory updates count as goals.
+- Bundle commits 3-5 sessions per commit per memory protocol.
+
+User mandate verbatim 2026-04-28: *"truly non stop fully proven theorems,
+without lack of quality but with speed and without strange stops and finding
+nothing, I allow you to do at 20-step-mandate"*.
+
 ---
 
 ## 🛡️ SOTA OPS PROFILE (LOCKED 2026-04-28 — fortress-of-science discipline)

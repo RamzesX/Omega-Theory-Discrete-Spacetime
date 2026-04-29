@@ -5649,3 +5649,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer0
 -- T5_univarIndex abbreviation, root-multiplicity bridges, statement Props.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer1
+-- D.6.1 Layer 2 — index calculus foundations.
+-- Derivative-multiplicity drop, Taylor evaluation, off-target invariance.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer2

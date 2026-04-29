@@ -1274,6 +1274,179 @@ theorem T5_RothBoundLarge_kthRootNat_2_panel :
    T5_RothBoundLarge_eleventhroot_2,
    T5_RothBoundLarge_thirteenthroot_2⟩
 
+/-! ## Block C-alt-17 — Cubic-base extended (∛17, ∛19, ∛23, ∛29) -/
+
+/-- **C-alt-17a — `∛17`** per-α RothBoundLarge for ε > 1. -/
+theorem T5_RothBoundLarge_cuberoot_17
+    (ε : ℝ) (hε : 1 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 3 17) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 3 17 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_cubic _
+    (T5_isAlgebraicOfDegree_kthRootNat 3 17 (by norm_num)) ε hε
+
+/-- **C-alt-17b — `∛19`** per-α RothBoundLarge for ε > 1. -/
+theorem T5_RothBoundLarge_cuberoot_19
+    (ε : ℝ) (hε : 1 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 3 19) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 3 19 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_cubic _
+    (T5_isAlgebraicOfDegree_kthRootNat 3 19 (by norm_num)) ε hε
+
+/-- **C-alt-17c — `∛23`** per-α RothBoundLarge for ε > 1. -/
+theorem T5_RothBoundLarge_cuberoot_23
+    (ε : ℝ) (hε : 1 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 3 23) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 3 23 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_cubic _
+    (T5_isAlgebraicOfDegree_kthRootNat 3 23 (by norm_num)) ε hε
+
+/-- **C-alt-17d — `∛29`** per-α RothBoundLarge for ε > 1. -/
+theorem T5_RothBoundLarge_cuberoot_29
+    (ε : ℝ) (hε : 1 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 3 29) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 3 29 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_cubic _
+    (T5_isAlgebraicOfDegree_kthRootNat 3 29 (by norm_num)) ε hε
+
+/-- **C-alt-17e — `∛31`** per-α RothBoundLarge for ε > 1. -/
+theorem T5_RothBoundLarge_cuberoot_31
+    (ε : ℝ) (hε : 1 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 3 31) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 3 31 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_cubic _
+    (T5_isAlgebraicOfDegree_kthRootNat 3 31 (by norm_num)) ε hε
+
+/-! ## Block C-alt-18 — Quartic+quintic-base extended -/
+
+/-- **C-alt-18a — `∜11`** per-α RothBoundLarge for ε > 2. -/
+theorem T5_RothBoundLarge_fourthroot_11
+    (ε : ℝ) (hε : 2 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 4 11) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 4 11 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_quartic _
+    (T5_isAlgebraicOfDegree_kthRootNat 4 11 (by norm_num)) ε hε
+
+/-- **C-alt-18b — `∜13`** per-α RothBoundLarge for ε > 2. -/
+theorem T5_RothBoundLarge_fourthroot_13
+    (ε : ℝ) (hε : 2 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 4 13) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 4 13 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_quartic _
+    (T5_isAlgebraicOfDegree_kthRootNat 4 13 (by norm_num)) ε hε
+
+/-- **C-alt-18c — `⁵√7`** per-α RothBoundLarge for ε > 3. -/
+theorem T5_RothBoundLarge_fifthroot_7
+    (ε : ℝ) (hε : 3 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 5 7) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 5 7 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_quintic _
+    (T5_isAlgebraicOfDegree_kthRootNat 5 7 (by norm_num)) ε hε
+
+/-- **C-alt-18d — `⁵√11`** per-α RothBoundLarge for ε > 3. -/
+theorem T5_RothBoundLarge_fifthroot_11
+    (ε : ℝ) (hε : 3 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 5 11) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 5 11 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_quintic _
+    (T5_isAlgebraicOfDegree_kthRootNat 5 11 (by norm_num)) ε hε
+
+/-- **C-alt-18e — `⁵√13`** per-α RothBoundLarge for ε > 3. -/
+theorem T5_RothBoundLarge_fifthroot_13
+    (ε : ℝ) (hε : 3 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 5 13) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 5 13 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_quintic _
+    (T5_isAlgebraicOfDegree_kthRootNat 5 13 (by norm_num)) ε hε
+
+/-! ## Block C-alt-19 — Parametric all-base kthRootNat meta-theorems -/
+
+/-- **C-alt-19a — Parametric `∛n`**: per-α RothBoundLarge for any
+    `kthRootNat 3 n` (cube root of any nat) at ε > 1.
+
+    Subsumes all concrete cuberoot witnesses C-alt-7a (∛2), C-alt-8a-e
+    (∛3,5,7,11,13), C-alt-17a-e (∛17,19,23,29,31), and any future
+    cuberoot witnesses. Universally quantified over n : ℕ. -/
+theorem T5_RothBoundLarge_cuberoot_param
+    (n : ℕ) (ε : ℝ) (hε : 1 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 3 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 3 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_cubic _
+    (T5_isAlgebraicOfDegree_kthRootNat 3 n (by norm_num)) ε hε
+
+/-- **C-alt-19b — Parametric `∜n`**: per-α RothBoundLarge for any
+    `kthRootNat 4 n` at ε > 2. -/
+theorem T5_RothBoundLarge_fourthroot_param
+    (n : ℕ) (ε : ℝ) (hε : 2 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 4 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 4 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_quartic _
+    (T5_isAlgebraicOfDegree_kthRootNat 4 n (by norm_num)) ε hε
+
+/-- **C-alt-19c — Parametric `⁵√n`**: per-α RothBoundLarge for any
+    `kthRootNat 5 n` at ε > 3. -/
+theorem T5_RothBoundLarge_fifthroot_param
+    (n : ℕ) (ε : ℝ) (hε : 3 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 5 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 5 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_quintic _
+    (T5_isAlgebraicOfDegree_kthRootNat 5 n (by norm_num)) ε hε
+
+/-- **C-alt-19d — Parametric `ᵏ√n`** (any k ≥ 1, any n)**: per-α
+    RothBoundLarge for any `kthRootNat k n` at ε > k - 2 + ε > 0.
+
+    The ULTIMATE universal kthRootNat meta-theorem subsuming all
+    concrete and base-parameterized witnesses. -/
+theorem T5_RothBoundLarge_kthroot_param
+    (k : ℕ) (hk : 1 ≤ k) (n : ℕ)
+    (ε : ℝ) (hε : ((k : ℝ) - 2) < ε) (hε_pos : 0 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat k n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat k n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    (kthRootNat k n) k hk
+    (T5_isAlgebraicOfDegree_kthRootNat k n hk) ε hε hε_pos
+
 /-! ## Block C-alt-5 — 4-conjunct concrete-degree paper bundle -/
 
 /-- **C-alt-5 — concrete-degree per-α RothBoundLarge BUNDLE**.

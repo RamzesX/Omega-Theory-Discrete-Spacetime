@@ -85,6 +85,66 @@ theorem T5_pigeonholeSeq_mem
     show Classical.choose (h M_n) ∈ S
     exact (Classical.choose_spec (h M_n)).1
 
+/-! ## Denominator strictly above the threshold -/
+
+/-- **`T5_pigeonholeSeq_den_gt`**: at the successor step, the chosen
+    rational has denominator strictly greater than the threshold
+    `M_n = Nat.ceil(exp((2/ε)·log prev.den))`. -/
+theorem T5_pigeonholeSeq_den_gt
+    {S : Set ℚ} (h : T5_HasUnboundedDenominators S) (ε : ℝ) (n : ℕ) :
+    let prev := T5_pigeonholeSeq h ε n
+    let M_n : ℕ := Nat.ceil (Real.exp ((2/ε) * Real.log (prev.den : ℝ)))
+    M_n < (T5_pigeonholeSeq h ε (n+1)).den := by
+  let prev := T5_pigeonholeSeq h ε n
+  let M_n : ℕ := Nat.ceil (Real.exp ((2/ε) * Real.log (prev.den : ℝ)))
+  change M_n < (Classical.choose (h M_n)).den
+  exact (Classical.choose_spec (h M_n)).2
+
+/-! ## Growth lemma -/
+
+/-- **`T5_pigeonholeSeq_growth`**: the recursive picker produces a
+    sequence with `Real.log d_{n+1} > (2/ε) · Real.log d_n` (strict
+    inequality from the `<` at the denominator level + log monotonicity).
+
+    This is exactly the growth condition required by Hindry-Silverman
+    D.6 (the `≥` form is implied by `>`). -/
+theorem T5_pigeonholeSeq_growth
+    {S : Set ℚ} (h : T5_HasUnboundedDenominators S) (ε : ℝ) (n : ℕ) :
+    Real.log ((T5_pigeonholeSeq h ε (n+1)).den : ℝ) ≥
+      (2/ε) * Real.log ((T5_pigeonholeSeq h ε n).den : ℝ) := by
+  set prev := T5_pigeonholeSeq h ε n with hprev
+  set next := T5_pigeonholeSeq h ε (n+1) with hnext
+  set X : ℝ := Real.exp ((2/ε) * Real.log (prev.den : ℝ)) with hX
+  -- den_gt: Nat.ceil X < next.den  (using the earlier lemma)
+  have h_den_gt : Nat.ceil X < next.den := by
+    have := T5_pigeonholeSeq_den_gt h ε n
+    simp only [← hprev, ← hX] at this
+    exact this
+  -- (Nat.ceil X : ℝ) < (next.den : ℝ)
+  have h_den_real : (Nat.ceil X : ℝ) < (next.den : ℝ) := by
+    exact_mod_cast h_den_gt
+  -- X ≤ Nat.ceil X
+  have h_X_le_ceil : X ≤ (Nat.ceil X : ℝ) := Nat.le_ceil X
+  -- X < next.den
+  have h_X_lt : X < (next.den : ℝ) :=
+    lt_of_le_of_lt h_X_le_ceil h_den_real
+  -- next.den > 0 in ℝ (since X ≥ 0 < next.den)
+  have h_next_pos : (0 : ℝ) < (next.den : ℝ) := by
+    have : (0 : ℝ) < X := Real.exp_pos _
+    linarith
+  -- X = exp((2/ε) · log prev.den) > 0; use log monotone
+  have h_X_pos : (0 : ℝ) < X := Real.exp_pos _
+  -- log X = (2/ε) · log prev.den (Real.log_exp)
+  have h_logX : Real.log X = (2/ε) * Real.log (prev.den : ℝ) := by
+    simp [hX, Real.log_exp]
+  -- log monotone over <:  X < next.den ⇒ log X ≤ log next.den
+  have h_log_le : Real.log X ≤ Real.log (next.den : ℝ) := by
+    have := Real.log_le_log_iff h_X_pos h_next_pos
+    exact this.mpr (le_of_lt h_X_lt)
+  -- Substitute h_logX
+  rw [h_logX] at h_log_le
+  exact h_log_le
+
 /-! ## Headline (partial discharge — m=1 trivial case) -/
 
 /-- **Pigeonhole m-tuple discharge for m = 1** (vacuous growth condition).
@@ -106,43 +166,45 @@ theorem T5_pigeonholeMTuple_m1_discharge
     -- i : Fin 1 means i.val = 0, so i.val + 1 = 1, not < 1
     omega
 
-/-! ## NAMED bridging hypothesis for m ≥ 2 (single-thread to discharge) -/
+/-! ## Full unconditional discharge (m ≥ 1, ALL m) -/
 
-/-- **`T5_PigeonholeMTupleDischarge_mGe2`** [NAMED HYPOTHESIS — to discharge].
+/-- **`T5_pigeonholeMTuple_full_discharge`** — UNCONDITIONAL discharge
+    for ALL m ≥ 1 using the recursive picker.
 
-    The m ≥ 2 case requires the full recursive construction with
-    growth-condition verification (`Real.log` monotonicity over the
-    `Nat.ceil`-rounded denominator chain).
+    Witness: `q i := T5_pigeonholeSeq h_unbd ε i.val`. -/
+theorem T5_pigeonholeMTuple_full_discharge
+    (α : ℝ) (_hα : Irrational α)
+    (ε : ℝ) (_hε : 0 < ε)
+    (m : ℕ) (_hm : 1 ≤ m)
+    (h_unbd : T5_HasUnboundedDenominators (T5_RothViolatingSet α ε)) :
+    ∃ (q : Fin m → ℚ),
+      (∀ i : Fin m, q i ∈ T5_RothViolatingSet α ε) ∧
+      T5_DenominatorGrowthCondition q ε := by
+  refine ⟨fun i => T5_pigeonholeSeq h_unbd ε i.val, ?_, ?_⟩
+  · -- Membership: every term is in S
+    intro i
+    exact T5_pigeonholeSeq_mem h_unbd ε i.val
+  · -- Growth condition: log d_{i+1} ≥ (2/ε) · log d_i
+    intro i h_succ
+    -- i.val + 1 < m, so ⟨i.val + 1, h_succ⟩ : Fin m has val = i.val + 1
+    -- Goal: Real.log (T5_pigeonholeSeq h_unbd ε (i.val + 1)).den
+    --       ≥ (2/ε) * Real.log (T5_pigeonholeSeq h_unbd ε i.val).den
+    exact T5_pigeonholeSeq_growth h_unbd ε i.val
 
-    Per project rule §7.0: real ∀-quantified Prop, used non-vacuously
-    in the conditional grand below, NOT `:= True`.  Discharge follows
-    in successor 10-min ticks. -/
-def T5_PigeonholeMTupleDischarge_mGe2 : Prop :=
-  ∀ (α : ℝ), Irrational α →
-  ∀ (ε : ℝ), 0 < ε →
-  ∀ (m : ℕ), 2 ≤ m →
-  T5_HasUnboundedDenominators (T5_RothViolatingSet α ε) →
-  ∃ (q : Fin m → ℚ),
-    (∀ i : Fin m, q i ∈ T5_RothViolatingSet α ε) ∧
-    T5_DenominatorGrowthCondition q ε
+/-! ## Discharge of the W3-A NAMED hypothesis -/
 
-/-! ## Conditional discharge -/
+/-- **🚨 `T5_PigeonholeMTupleDischarge_unconditional`** — UNCONDITIONAL
+    discharge of the W3-A NAMED hypothesis `T5_PigeonholeMTupleDischarge`
+    via the full m ≥ 1 picker construction.
 
-/-- **`T5_PigeonholeMTupleDischarge_conditional`** — discharges
-    `T5_PigeonholeMTupleDischarge` given the m ≥ 2 NAMED hypothesis.
-
-    Combines:
-    - m=1 trivial case (vacuous growth) via `T5_pigeonholeMTuple_m1_discharge`
-    - m ≥ 2 via `T5_PigeonholeMTupleDischarge_mGe2` -/
-theorem T5_PigeonholeMTupleDischarge_conditional
-    (h_mGe2 : T5_PigeonholeMTupleDischarge_mGe2) :
+    🏆 Closes ONE OF FIVE NAMED hypotheses queued from Wave-2 + Wave-3
+    SCAFFOLD.  Four remain: T5_RothWronskianInductiveStep,
+    T5_RothLemmaIndexReductionDischarge, T5_SchmidtAuxIndexAtAlphaDischarge,
+    T5_RothBoundLargeFromMasterAndPigeonhole. -/
+theorem T5_PigeonholeMTupleDischarge_unconditional :
     T5_PigeonholeMTupleDischarge := by
   intro α hα ε hε m hm h_unbd
-  by_cases hm1 : m = 1
-  · subst hm1
-    exact T5_pigeonholeMTuple_m1_discharge α hα ε hε h_unbd
-  · have hm2 : 2 ≤ m := by omega
-    exact h_mGe2 α hα ε hε m hm2 h_unbd
+  exact T5_pigeonholeMTuple_full_discharge α hα ε hε m hm h_unbd
 
 /-! ## Headline -/
 

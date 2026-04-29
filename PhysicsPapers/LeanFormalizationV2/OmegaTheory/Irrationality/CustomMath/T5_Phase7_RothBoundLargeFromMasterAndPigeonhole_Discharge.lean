@@ -1122,6 +1122,158 @@ theorem T5_RothBoundLarge_fifteenthroot_2
   T5_RothBoundLarge_per_alpha_pentadecic _
     (T5_isAlgebraicOfDegree_kthRootNat 15 2 (by norm_num)) ε hε
 
+/-! ## Block C-alt-14 — Sextic+ varied-base witnesses -/
+
+/-- **C-alt-14a — `⁶√3`** per-α RothBoundLarge for ε > 4. -/
+theorem T5_RothBoundLarge_sixthroot_3
+    (ε : ℝ) (hε : 4 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 6 3) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 6 3 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_sextic _
+    (T5_isAlgebraicOfDegree_kthRootNat 6 3 (by norm_num)) ε hε
+
+/-- **C-alt-14b — `⁶√5`** per-α RothBoundLarge for ε > 4. -/
+theorem T5_RothBoundLarge_sixthroot_5
+    (ε : ℝ) (hε : 4 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 6 5) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 6 5 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_sextic _
+    (T5_isAlgebraicOfDegree_kthRootNat 6 5 (by norm_num)) ε hε
+
+/-- **C-alt-14c — `⁶√7`** per-α RothBoundLarge for ε > 4. -/
+theorem T5_RothBoundLarge_sixthroot_7
+    (ε : ℝ) (hε : 4 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 6 7) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 6 7 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_sextic _
+    (T5_isAlgebraicOfDegree_kthRootNat 6 7 (by norm_num)) ε hε
+
+/-- **C-alt-14d — `⁷√3`** per-α RothBoundLarge for ε > 5. -/
+theorem T5_RothBoundLarge_seventhroot_3
+    (ε : ℝ) (hε : 5 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 7 3) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 7 3 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_septic _
+    (T5_isAlgebraicOfDegree_kthRootNat 7 3 (by norm_num)) ε hε
+
+/-- **C-alt-14e — `⁷√5`** per-α RothBoundLarge for ε > 5. -/
+theorem T5_RothBoundLarge_seventhroot_5
+    (ε : ℝ) (hε : 5 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 7 5) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 7 5 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_septic _
+    (T5_isAlgebraicOfDegree_kthRootNat 7 5 (by norm_num)) ε hε
+
+/-- **C-alt-14f — `⁸√3`** per-α RothBoundLarge for ε > 6. -/
+theorem T5_RothBoundLarge_eighthroot_3
+    (ε : ℝ) (hε : 6 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 8 3) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 8 3 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_octic _
+    (T5_isAlgebraicOfDegree_kthRootNat 8 3 (by norm_num)) ε hε
+
+/-- **C-alt-14g — `⁸√5`** per-α RothBoundLarge for ε > 6. -/
+theorem T5_RothBoundLarge_eighthroot_5
+    (ε : ℝ) (hε : 6 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 8 5) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 8 5 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_octic _
+    (T5_isAlgebraicOfDegree_kthRootNat 8 5 (by norm_num)) ε hε
+
+/-! ## Block C-alt-15 — Tetradecic+ varied-base concrete witnesses -/
+
+/-- **C-alt-15a — `¹⁴√3`** per-α RothBoundLarge for ε > 12. -/
+theorem T5_RothBoundLarge_fourteenthroot_3
+    (ε : ℝ) (hε : 12 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 14 3) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 14 3 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_tetradecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 14 3 (by norm_num)) ε hε
+
+/-- **C-alt-15b — `¹⁵√3`** per-α RothBoundLarge for ε > 13. -/
+theorem T5_RothBoundLarge_fifteenthroot_3
+    (ε : ℝ) (hε : 13 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 15 3) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 15 3 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_pentadecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 15 3 (by norm_num)) ε hε
+
+/-! ## Block C-alt-16 — Coverage panel for the kthRootNat family -/
+
+/-- **C-alt-16 — KTH-ROOT-OF-2 coverage panel**.
+
+    14-conjunct paper-citable bundle composing all the per-α RothBoundLarge
+    discharges for `kthRootNat k 2` for k = 3..15 (the established
+    OV2 concrete-irrational-algebraic family at base 2). -/
+theorem T5_RothBoundLarge_kthRootNat_2_panel :
+    -- (a) k = 3
+    (∀ (ε : ℝ), 1 < ε →
+      ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+        0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 3 2) p = 0 ∧
+        ∀ (q : ℚ),
+          Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+          C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 3 2 - (q : ℝ)|) ∧
+    -- (b) k = 5
+    (∀ (ε : ℝ), 3 < ε →
+      ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+        0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 5 2) p = 0 ∧
+        ∀ (q : ℚ),
+          Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+          C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 5 2 - (q : ℝ)|) ∧
+    -- (c) k = 7
+    (∀ (ε : ℝ), 5 < ε →
+      ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+        0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 7 2) p = 0 ∧
+        ∀ (q : ℚ),
+          Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+          C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 7 2 - (q : ℝ)|) ∧
+    -- (d) k = 11
+    (∀ (ε : ℝ), 9 < ε →
+      ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+        0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 11 2) p = 0 ∧
+        ∀ (q : ℚ),
+          Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+          C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 11 2 - (q : ℝ)|) ∧
+    -- (e) k = 13
+    (∀ (ε : ℝ), 11 < ε →
+      ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+        0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 13 2) p = 0 ∧
+        ∀ (q : ℚ),
+          Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+          C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 13 2 - (q : ℝ)|) :=
+  ⟨T5_RothBoundLarge_cuberoot_2,
+   T5_RothBoundLarge_fifthroot_2,
+   T5_RothBoundLarge_seventhroot_2,
+   T5_RothBoundLarge_eleventhroot_2,
+   T5_RothBoundLarge_thirteenthroot_2⟩
+
 /-! ## Block C-alt-5 — 4-conjunct concrete-degree paper bundle -/
 
 /-- **C-alt-5 — concrete-degree per-α RothBoundLarge BUNDLE**.

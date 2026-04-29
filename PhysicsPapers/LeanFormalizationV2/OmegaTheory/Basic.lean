@@ -5626,3 +5626,9 @@ import OmegaTheory.Predictions.T3_ProtonMass_PaperHeadline_Complete
 -- hub bundling T-1 + T-2 + T-3 + T-6 paper-citable closures into a single
 -- citation point for the SM precision sector. Lean core only.
 import OmegaTheory.Predictions.SM_Headlines_MasterCapstone
+
+-- (T-1 top quark frontier — single-thread hand-authored, 2026-04-29)
+-- T-1 TOP QUARK PAPER HEADLINE — m_t = 173.34 GeV PDG anchor + π-heaviest
+-- substrate ceiling. Counterpart to T-1 Step 5 which covered 5 LIGHT
+-- quarks. Lean core only.
+import OmegaTheory.Predictions.T1_TopQuark_PaperHeadline_Complete

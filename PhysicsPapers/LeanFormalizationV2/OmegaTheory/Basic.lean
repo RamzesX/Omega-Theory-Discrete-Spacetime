@@ -5632,3 +5632,10 @@ import OmegaTheory.Predictions.SM_Headlines_MasterCapstone
 -- substrate ceiling. Counterpart to T-1 Step 5 which covered 5 LIGHT
 -- quarks. Lean core only.
 import OmegaTheory.Predictions.T1_TopQuark_PaperHeadline_Complete
+
+-- (T-5 D.7 atom discharge — single-thread hand-authored, 2026-04-29)
+-- T-5 Phase 7 D.7 BLOCK A — setup: contradiction skeleton + violator
+-- extraction. Five helper lemmas: failure-data extraction, height-vs-den
+-- bridge, violator membership in T5_RothViolatingSet, unbounded-dens
+-- bridge, m-tuple extraction via pigeonhole. Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAndPigeonhole_Discharge

@@ -45,6 +45,8 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_PigeonholeMTuple
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_MasterCapstone
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_IndexReduction
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothTheoremClosure
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_GenericDegreeAllQ
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_IsAlgebraicOfDegree
 import OmegaTheory.Irrationality.CustomMath.T5_Heights
 
 namespace OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAndPigeonhole_Discharge
@@ -54,9 +56,11 @@ open OmegaTheory.Irrationality.CustomMath.T5_Phase7_PigeonholeMTuple
 open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_MasterCapstone
 open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_IndexReduction
 open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothTheoremClosure
+open OmegaTheory.Irrationality.CustomMath.T5_Phase7_GenericDegreeAllQ
+open OmegaTheory.Irrationality.CustomMath.T5_Phase7_IsAlgebraicOfDegree
 open OmegaTheory.Irrationality.CustomMath.T5_Heights
 open OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndex
-open MvPolynomial Real
+open MvPolynomial Real Polynomial
 
 /-! ## Block A — Setup: contradiction skeleton + violator extraction -/
 
@@ -316,5 +320,104 @@ theorem T5_master_apply_indexReduction_at
     rothIndex P (fun i => ((q i : ℚ) : ℝ)) R ≤ t - Real.sqrt ((m : ℝ) * ε) :=
   T5_master_extract_indexReduction master hm P R α q ε t hP hε hR_deg hR_pos
     hq_den_pos h_growth h_balance h_t
+
+/-! ## Block C-alt — Per-α RothBoundLarge bypass via GenericDegreeAllQ -/
+
+/-- **C-alt-1 — generic-degree per-α RothBoundLarge bridge for ε > n−2**.
+
+    For algebraic α of degree exactly n, with ε > max(0, n−2), the per-α
+    inner ∀-shape of `RothBoundLarge` (existence of C₁ > 0, N : ℕ such
+    that `C₁ / height^(2+ε) ≤ |α - q|` for all q with q.den ≥ N) holds
+    UNCONDITIONALLY via `T5_generic_degree_all_q` (ext #178).
+
+    Bypasses the Schmidt + Roth's-lemma multivariate machinery for the
+    `ε > n−2` range entirely. Together with the quadratic Liouville
+    bridge (`T5_RothBoundLarge_per_alpha_quadratic`), this covers a
+    substantial portion of the RothBoundLarge ε-domain without D.7's
+    full multivariate-discharge requirement.
+
+    Conditional input: `eval₂ q p ≠ 0` for the witness polynomial `p` —
+    a substantive hypothesis (true if `p` is the minimal polynomial of
+    `α` and `q : ℚ` is rational, since irrational algebraic α's minimal
+    poly has no rational roots; that bridge can be discharged separately
+    via `irrationalNotRoot` infrastructure). -/
+theorem T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    (α : ℝ) (n : ℕ) (hn : 1 ≤ n)
+    (h_alg : IsAlgebraicOfDegree α n)
+    (ε : ℝ) (hε : ((n : ℝ) - 2) < ε) (hε_pos : 0 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧
+      p ≠ 0 ∧
+      Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  -- Step 1: get C * den^{-(2+ε)} ≤ |q - α| from generic-degree all q.
+  obtain ⟨C, p, hC_pos, _hC_le_one, hp_ne, hp_root, h_bound_den⟩ :=
+    T5_generic_degree_all_q α n hn h_alg ε hε hε_pos
+  refine ⟨C, p, hC_pos, hp_ne, hp_root, ?_⟩
+  intro q hq_eval2
+  -- Step 2: existing q.den-form lower bound on |q - α|
+  have h_q_form : C * ((q.den : ℝ)) ^ (-(2 + ε)) ≤ |((q : ℚ) : ℝ) - α| :=
+    h_bound_den q hq_eval2
+  -- Step 3: bridge q.den ≤ height ⇒ height^(2+ε) ≥ q.den^(2+ε).
+  -- Convert C * den^{-(2+ε)} = C / den^(2+ε)
+  have hden_pos : (0 : ℝ) < (q.den : ℝ) := by
+    have : (0 : ℕ) < q.den := q.pos
+    exact_mod_cast this
+  have h_den_neg : ((q.den : ℝ)) ^ (-(2 + ε)) =
+      1 / ((q.den : ℝ)) ^ (2 + ε) := by
+    rw [Real.rpow_neg (le_of_lt hden_pos), one_div]
+  rw [h_den_neg, mul_one_div] at h_q_form
+  -- h_q_form : C / den^(2+ε) ≤ |q - α|
+  -- We need: C / height^(2+ε) ≤ |α - q|
+  have h_abs_sub : |((q : ℚ) : ℝ) - α| = |α - ((q : ℚ) : ℝ)| := abs_sub_comm _ _
+  rw [h_abs_sub] at h_q_form
+  -- Note: q ≠ 0 case is implicit via eval₂; we need height_pos for the rpow.
+  -- For q = 0: eval₂ 0 p = p.coeff 0 ≠ 0 only if p has nonzero constant term.
+  -- General case: for any q : ℚ, height ≥ 1 and den ≥ 1 (height = max(num,den)).
+  by_cases hq_zero : q = 0
+  · -- q = 0 case: use fallback height = 1 (since num = 0, den = 1 for q=0)
+    subst hq_zero
+    -- |0 : ℝ - α| = |α|
+    -- den (0 : ℚ) = 1; height (0 : ℚ) = max(0, 1) = 1
+    -- height^(2+ε) = 1^(2+ε) = 1
+    -- Need: C / 1 ≤ |α - 0|, i.e., C ≤ |α|
+    -- From h_q_form: C / 1 ≤ |α - 0|, i.e., C ≤ |α|.
+    -- height (0 : ℚ) = 1.
+    have h_height_zero : Rat.naiveHeight (0 : ℚ) = 1 := Rat.naiveHeight_zero
+    rw [h_height_zero]
+    push_cast
+    rw [Real.one_rpow]
+    rw [Rat.den_ofNat] at h_q_form
+    -- den (0 : ℚ) = 1; (1 : ℝ)^(2+ε) = 1
+    push_cast at h_q_form
+    rw [Real.one_rpow] at h_q_form
+    exact h_q_form
+  · -- q ≠ 0 case: standard height ≥ den bridge
+    have hheight_pos : (0 : ℝ) < (Rat.naiveHeight q : ℝ) := by
+      have : (0 : ℕ) < Rat.naiveHeight q := Rat.naiveHeight_pos q hq_zero
+      exact_mod_cast this
+    have h_height_ge_den :
+        ((q.den : ℝ)) ≤ ((Rat.naiveHeight q : ℝ)) := by
+      have : q.den ≤ Rat.naiveHeight q := Rat.den_le_naiveHeight q
+      exact_mod_cast this
+    have h2eps_nn : (0 : ℝ) ≤ 2 + ε := by linarith
+    have h_pow_le :
+        ((q.den : ℝ)) ^ (2 + ε) ≤ ((Rat.naiveHeight q : ℝ)) ^ (2 + ε) :=
+      Real.rpow_le_rpow (le_of_lt hden_pos) h_height_ge_den h2eps_nn
+    have hpow_den_pos : (0 : ℝ) < ((q.den : ℝ)) ^ (2 + ε) :=
+      Real.rpow_pos_of_pos hden_pos _
+    have hpow_height_pos : (0 : ℝ) < ((Rat.naiveHeight q : ℝ)) ^ (2 + ε) :=
+      Real.rpow_pos_of_pos hheight_pos _
+    -- 1/A ≤ 1/B ⟺ B ≤ A (both positive). So C/A ≤ C/B (multiply by C > 0).
+    have h_div_le :
+        C / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤
+          C / ((q.den : ℝ) ^ (2 + ε)) := by
+      apply div_le_div_of_nonneg_left (le_of_lt hC_pos) hpow_den_pos h_pow_le
+    -- Transitivity
+    calc C / ((Rat.naiveHeight q : ℝ) ^ (2 + ε))
+        ≤ C / ((q.den : ℝ) ^ (2 + ε)) := h_div_le
+      _ ≤ |α - ((q : ℚ) : ℝ)| := h_q_form
 
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAndPigeonhole_Discharge

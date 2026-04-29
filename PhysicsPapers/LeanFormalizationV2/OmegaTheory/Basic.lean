@@ -5665,3 +5665,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer4
 -- Recursion bound monotonicity in Φ and δ, sqrt sub-additivity.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer5
+-- D.6.1 Layer 6 — multi-level unroll foundations (δ^{(1/2)^m} machinery).
+-- (1/2)^m anti-monotonicity, δ-rpow positivity, recursive squaring.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer6

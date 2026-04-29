@@ -5770,3 +5770,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer23_Poly
 -- Nat/Int cast positivity, arithmetic preservation.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer24_Cast
+-- D.6.1 Layer 25 — function manipulation helpers.
+-- id_comp, comp_id, comp_assoc, funext, comp_apply.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer25_FunctionHelpers

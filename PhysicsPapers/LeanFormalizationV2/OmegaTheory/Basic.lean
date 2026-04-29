@@ -5754,3 +5754,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer19_Orde
 -- Empty/singleton/union sums, sum const, sum monotone.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer20_FinsetSumHelpers
+-- D.6.1 Layer 21 — number theory helpers.
+-- Factorial positivity, choose at 0/self/symm, choose positivity.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer21_NumberTheoryHelpers

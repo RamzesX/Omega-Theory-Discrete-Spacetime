@@ -5774,3 +5774,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer24_Cast
 -- id_comp, comp_id, comp_assoc, funext, comp_apply.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer25_FunctionHelpers
+-- D.6.1 Layer 26 — linear/ring helpers.
+-- distrib, assoc, comm, one_mul, zero_add.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer26_LinearMapHelpers

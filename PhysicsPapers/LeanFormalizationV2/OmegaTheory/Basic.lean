@@ -5806,3 +5806,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_TopDow
 -- Demonstrates top-down approach works end-to-end with discharge-able forms.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_AllDischarged
+-- D.6.1 HEART strengthening — closer to actual Hindry-Silverman D.6.1 form.
+-- ST-1..ST-7: strengthened recursion bounds + monotonicity.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Strengthen

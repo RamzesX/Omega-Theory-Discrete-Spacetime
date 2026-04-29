@@ -5718,3 +5718,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer10_Alge
 -- natDegree of basic poly, products, derivative bounds.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer11_DegreeHelpers
+-- D.6.1 Layer 12 — rational coefficient helpers.
+-- Rat.den positivity, real coercion, num/den decomposition.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer12_RatHelpers

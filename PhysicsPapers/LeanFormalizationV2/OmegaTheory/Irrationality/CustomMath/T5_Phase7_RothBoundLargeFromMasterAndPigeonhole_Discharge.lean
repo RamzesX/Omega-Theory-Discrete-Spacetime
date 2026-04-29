@@ -486,4 +486,38 @@ theorem T5_RothBoundLarge_per_alpha_via_isAlgebraic
   exact T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
     α n hn_ge_one h_alg_of_deg ε hε hε_pos
 
+/-! ## Block C-alt-4 — Concrete-degree specializations -/
+
+/-- **C-alt-4a — Cubic specialization** (n = 3, ε > 1).
+
+    Direct specialization of C-alt-1 at n = 3. For any cubic algebraic α
+    (witnessing `IsAlgebraicOfDegree α 3`), per-α RothBoundLarge holds
+    for any ε > 1 (which is the standard cubic Roth threshold via the
+    cubic+ chain technique already in OV2).
+
+    Combined with `T5_RothBoundLarge_per_alpha_quadratic` (n = 2, any
+    ε > 0 via Liouville), this gives RothBoundLarge per-α coverage for:
+      n = 2: ε > 0
+      n = 3: ε > 1
+      n ≥ 4: ε > n - 2 (via C-alt-1 directly)
+
+    The remaining gap (n ≥ 3, ε ∈ (0, n-2]) is the multivariate Schmidt+
+    Roth's-lemma territory of D.7 proper. -/
+theorem T5_RothBoundLarge_per_alpha_cubic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 3)
+    (ε : ℝ) (hε : 1 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧
+      p ≠ 0 ∧
+      Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 3 (by norm_num) h_alg ε
+  · -- (3 - 2 : ℝ) < ε ⟺ 1 < ε (given hε)
+    push_cast; linarith
+  · -- 0 < ε follows from 1 < ε
+    linarith
+
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAndPigeonhole_Discharge

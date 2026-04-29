@@ -5643,6 +5643,10 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAn
 -- eval₂ rational existence, eval₂ at zero, integer witness bridge.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockD_IntegerNonVanish
+-- D.7 Block E — contradiction collide foundations.
+-- Bound-collision arithmetic, ε-regime constraints, rpow bridges.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockE_ContradictionCollide
 
 -- (T-5 D.6.1 atom 1 closure work — 2026-04-29)
 -- D.6.1 Layer 0 — real-analytic glue lemmas for the Hindry-Silverman

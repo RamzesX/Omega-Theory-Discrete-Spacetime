@@ -5834,3 +5834,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Specia
 -- RD-1..RD-5: scalar reduction operations preserve HEART recursion.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Reduction
+-- D.6.1 HEART grand integration — bundles all 9 HEART layers.
+-- GI-1..GI-4: 6-source disjunction → recursion + universally bounded.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_GrandIntegration

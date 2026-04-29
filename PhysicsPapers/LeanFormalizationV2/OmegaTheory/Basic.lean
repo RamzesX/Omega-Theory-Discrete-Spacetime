@@ -5798,3 +5798,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer30_RPow
 -- rpow_natCast, mul_rpow, rpow monotone, rpow neg, half-rpow.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer31_RPowExtended
+-- D.6.1 HEART top-down skeleton — recursion shape + 4 NAMED hypotheses.
+-- HEART recursion `Θ ≤ 2(Φ + √Φ + √δ)` decomposed; H4 discharged.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_TopDown

@@ -5758,3 +5758,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer20_Fins
 -- Factorial positivity, choose at 0/self/symm, choose positivity.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer21_NumberTheoryHelpers
+-- D.6.1 Layer 22 — real analysis helpers.
+-- sqrt, log foundational identities and monotonicity.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer22_RealAnalysisHelpers

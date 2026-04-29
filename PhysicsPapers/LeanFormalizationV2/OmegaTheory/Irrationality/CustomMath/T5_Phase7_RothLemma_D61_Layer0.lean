@@ -152,4 +152,77 @@ theorem T5_sqrt_mε_le_of_eps_le
   apply Real.sqrt_le_sqrt
   exact mul_le_mul_of_nonneg_left hεε' hm_nn
 
+/-! ## L0-8 — m ≥ 2 specialization of smallEpsBound -/
+
+/-- **L0-8 — `smallEpsBound_m_ge_2`**: for m ≥ 2 and 0 < ε ≤ 1/(4m²),
+    `√(mε) < 1/2` (strict, even with ≤ in hypothesis).
+
+    For m ≥ 2: ε ≤ 1/(4m²) ⇒ m·ε ≤ 1/(4m) < 1/8 < 1/4. So √ < 1/2. -/
+theorem T5_smallEpsBound_m_ge_2
+    (m : ℕ) (hm : 2 ≤ m) (ε : ℝ) (hε_pos : 0 < ε)
+    (hε_le : ε ≤ 1 / (4 * (m : ℝ)^2)) :
+    Real.sqrt ((m : ℝ) * ε) < 1 / 2 := by
+  have hm_pos : (0 : ℝ) < (m : ℝ) := by
+    have : 1 ≤ m := by omega
+    exact_mod_cast this
+  have hm_ge_two : (2 : ℝ) ≤ (m : ℝ) := by exact_mod_cast hm
+  have hm2_pos : (0 : ℝ) < (m : ℝ)^2 := by positivity
+  -- m·ε ≤ m · 1/(4m²) = 1/(4m) ≤ 1/8 (m ≥ 2)
+  have h_simplify : (m : ℝ) * (1 / (4 * (m : ℝ)^2)) = 1 / (4 * (m : ℝ)) := by
+    field_simp
+  have h_le_1_4m : (m : ℝ) * ε ≤ 1 / (4 * (m : ℝ)) := by
+    have h := mul_le_mul_of_nonneg_left hε_le (le_of_lt hm_pos)
+    rw [h_simplify] at h
+    exact h
+  -- 1/(4m) ≤ 1/8 (since m ≥ 2)
+  have h_8_le_4m : (8 : ℝ) ≤ 4 * (m : ℝ) := by linarith
+  have h_4m_pos : (0 : ℝ) < 4 * (m : ℝ) := by positivity
+  have h_one_over_4m_le_eighth : 1 / (4 * (m : ℝ)) ≤ (1/8 : ℝ) := by
+    rw [div_le_div_iff₀ h_4m_pos (by norm_num : (0 : ℝ) < 8)]
+    linarith
+  have h_m_eps_le_eighth : (m : ℝ) * ε ≤ 1/8 :=
+    le_trans h_le_1_4m h_one_over_4m_le_eighth
+  -- 1/8 < 1/4
+  have h_eighth_lt_quarter : (1/8 : ℝ) < 1/4 := by norm_num
+  have h_m_eps_lt_quarter : (m : ℝ) * ε < 1/4 :=
+    lt_of_le_of_lt h_m_eps_le_eighth h_eighth_lt_quarter
+  -- √(m·ε) < √(1/4) = 1/2
+  have h_m_eps_nn : (0 : ℝ) ≤ (m : ℝ) * ε := by positivity
+  have h_sqrt_lt : Real.sqrt ((m : ℝ) * ε) < Real.sqrt (1/4) :=
+    Real.sqrt_lt_sqrt h_m_eps_nn h_m_eps_lt_quarter
+  rw [show (1/4 : ℝ) = (1/2)^2 by norm_num] at h_sqrt_lt
+  rw [Real.sqrt_sq (by norm_num : (0 : ℝ) ≤ 1/2)] at h_sqrt_lt
+  exact h_sqrt_lt
+
+/-! ## L0-9 — Sqrt arithmetic helpers -/
+
+/-- **L0-9a — `sqrt_lt_one_of_lt_one`**: `0 ≤ x < 1 ⇒ √x < 1`. -/
+theorem T5_sqrt_lt_one_of_lt_one (x : ℝ) (hx_nn : 0 ≤ x) (hx_lt : x < 1) :
+    Real.sqrt x < 1 := by
+  have h_sqrt_lt : Real.sqrt x < Real.sqrt 1 :=
+    Real.sqrt_lt_sqrt hx_nn hx_lt
+  rwa [Real.sqrt_one] at h_sqrt_lt
+
+/-- **L0-9b — `sqrt_le_one_of_le_one`**: `0 ≤ x ≤ 1 ⇒ √x ≤ 1`. -/
+theorem T5_sqrt_le_one_of_le_one (x : ℝ) (hx_nn : 0 ≤ x) (hx_le : x ≤ 1) :
+    Real.sqrt x ≤ 1 := by
+  have h_sqrt_le : Real.sqrt x ≤ Real.sqrt 1 := Real.sqrt_le_sqrt hx_le
+  rwa [Real.sqrt_one] at h_sqrt_le
+
+/-! ## L0-10 — Integer/Real bridge for the index calculus -/
+
+/-- **L0-10 — `nat_cast_pos_of_one_le`**: `1 ≤ n ⇒ 0 < (n : ℝ)`. -/
+theorem T5_nat_cast_pos_of_one_le (n : ℕ) (hn : 1 ≤ n) :
+    (0 : ℝ) < (n : ℝ) := by
+  have : (1 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
+  linarith
+
+/-- **L0-11 — `inv_nat_le_one`**: `1 ≤ n ⇒ 1/(n : ℝ) ≤ 1`. -/
+theorem T5_inv_nat_le_one (n : ℕ) (hn : 1 ≤ n) :
+    1 / (n : ℝ) ≤ 1 := by
+  have hn_pos : (0 : ℝ) < (n : ℝ) := T5_nat_cast_pos_of_one_le n hn
+  have hn_ge_one : (1 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
+  rw [div_le_iff₀ hn_pos]
+  linarith
+
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer0

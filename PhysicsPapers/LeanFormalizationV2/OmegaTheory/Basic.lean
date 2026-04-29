@@ -5653,3 +5653,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer1
 -- Derivative-multiplicity drop, Taylor evaluation, off-target invariance.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer2
+-- D.6.1 Layer 3 — Wronskian factor split foundations.
+-- pow_rootMultiplicity_dvd bridge, residual factor V witness, V(α) ≠ 0.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer3

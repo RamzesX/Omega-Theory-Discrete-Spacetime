@@ -5786,3 +5786,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer27_NeqH
 -- 2 pos, 1/2 pos/lt-one, half-power foundational identities.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer28_NormHelpers
+-- D.6.1 Layer 29 — extended absolute value bounds.
+-- abs_lt unpacking, |x| ≥ 0, abs_pow nonneg, abs_le unpacking.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer29_AbsBoundsHelpers

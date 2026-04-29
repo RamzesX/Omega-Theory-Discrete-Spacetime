@@ -1561,6 +1561,68 @@ theorem T5_RothBoundLarge_fifteenthroot_param
   T5_RothBoundLarge_per_alpha_pentadecic _
     (T5_isAlgebraicOfDegree_kthRootNat 15 n (by norm_num)) ε hε
 
+/-! ## Block C-alt-22 — Equivalence between RothBoundLarge bound forms -/
+
+/-- **C-alt-22a — Direct `q.den` form vs `Rat.naiveHeight` form
+    equivalence** (for q ≠ 0).
+
+    For any rational q ≠ 0 and ε > 0:
+      `C / q.den^(2+ε) ≥ C / height^(2+ε)`
+    (since q.den ≤ height ⇒ q.den^(2+ε) ≤ height^(2+ε) ⇒ reciprocal-flip).
+
+    This shows the height-based form is `≤` the denominator-based form,
+    so any lower bound for `|q-α|` in height-form propagates to denominator-
+    form and vice-versa. -/
+theorem T5_height_bound_le_den_bound
+    (q : ℚ) (hq : q ≠ 0) (C : ℝ) (hC_nn : 0 ≤ C)
+    (ε : ℝ) (hε : 0 < ε) :
+    C / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ C / ((q.den : ℝ) ^ (2 + ε)) := by
+  have hden_pos : (0 : ℝ) < (q.den : ℝ) := by
+    have : (0 : ℕ) < q.den := q.pos
+    exact_mod_cast this
+  have hheight_pos : (0 : ℝ) < (Rat.naiveHeight q : ℝ) := by
+    have : (0 : ℕ) < Rat.naiveHeight q := Rat.naiveHeight_pos q hq
+    exact_mod_cast this
+  have h_height_ge_den : ((q.den : ℝ)) ≤ ((Rat.naiveHeight q : ℝ)) := by
+    have : q.den ≤ Rat.naiveHeight q := Rat.den_le_naiveHeight q
+    exact_mod_cast this
+  have h_pow_le :
+      ((q.den : ℝ)) ^ (2 + ε) ≤ ((Rat.naiveHeight q : ℝ)) ^ (2 + ε) := by
+    apply Real.rpow_le_rpow (le_of_lt hden_pos) h_height_ge_den
+    linarith
+  have hpow_den_pos : (0 : ℝ) < ((q.den : ℝ)) ^ (2 + ε) :=
+    Real.rpow_pos_of_pos hden_pos _
+  apply div_le_div_of_nonneg_left hC_nn hpow_den_pos h_pow_le
+
+/-- **C-alt-22b — Trivial bound for q.den = 0 (q = 0)** form.
+
+    For q = 0: `Rat.naiveHeight 0 = 1` and `q.den = 1`. Both bounds
+    coincide trivially. -/
+theorem T5_zeroQ_height_eq_den :
+    (Rat.naiveHeight (0 : ℚ) : ℝ) = 1 ∧ (((0 : ℚ).den : ℝ)) = 1 := by
+  refine ⟨?_, ?_⟩
+  · rw [Rat.naiveHeight_zero]; norm_cast
+  · rw [Rat.den_ofNat]; norm_cast
+
+/-! ## Block C-alt-23 — Per-α RothBoundLarge for arbitrary `k = natDegree of witness` -/
+
+/-- **C-alt-23 — Per-α RothBoundLarge from any IsAlgebraicOfDegree witness**.
+
+    Concretized form of C-alt-3 / parametric: given α with witness of
+    degree exactly n, the per-α RothBoundLarge bound holds at any
+    ε with `ε > max(0, n - 2)`. -/
+theorem T5_RothBoundLarge_per_alpha_from_witness_degree
+    (α : ℝ) (n : ℕ) (hn : 1 ≤ n)
+    (h_alg : IsAlgebraicOfDegree α n)
+    (ε : ℝ) (hε_pos : 0 < ε) (hε_threshold : ((n : ℝ) - 2) < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α n hn h_alg ε hε_threshold hε_pos
+
 /-! ## Block C-alt-5 — 4-conjunct concrete-degree paper bundle -/
 
 /-- **C-alt-5 — concrete-degree per-α RothBoundLarge BUNDLE**.

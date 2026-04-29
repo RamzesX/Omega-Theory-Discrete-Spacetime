@@ -3738,6 +3738,48 @@ theorem T5_RothBoundLarge_quartroot_233 (ε : ℝ) (hε : 2 < ε) :
         C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 4 233 - (q : ℝ)| :=
   T5_RothBoundLarge_fourthroot_param 233 ε hε
 
+/-! ## Block C-alt-71 — Quintic+sextic prime continuation (high primes) -/
+
+/-- **C-alt-71a — `⁵√179`** for ε > 3. -/
+theorem T5_RothBoundLarge_fifthroot_179 (ε : ℝ) (hε : 3 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 5 179) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 5 179 - (q : ℝ)| :=
+  T5_RothBoundLarge_fifthroot_param 179 ε hε
+
+/-- **C-alt-71b — `⁵√181`** for ε > 3. -/
+theorem T5_RothBoundLarge_fifthroot_181 (ε : ℝ) (hε : 3 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 5 181) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 5 181 - (q : ℝ)| :=
+  T5_RothBoundLarge_fifthroot_param 181 ε hε
+
+/-- **C-alt-71c — `⁶√103`** for ε > 4. -/
+theorem T5_RothBoundLarge_sixthroot_103 (ε : ℝ) (hε : 4 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 6 103) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 6 103 - (q : ℝ)| :=
+  T5_RothBoundLarge_sixthroot_param 103 ε hε
+
+/-- **C-alt-71d — `⁶√107`** for ε > 4. -/
+theorem T5_RothBoundLarge_sixthroot_107 (ε : ℝ) (hε : 4 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 6 107) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 6 107 - (q : ℝ)| :=
+  T5_RothBoundLarge_sixthroot_param 107 ε hε
+
+/-- **C-alt-71e — `⁶√109`** for ε > 4. -/
+theorem T5_RothBoundLarge_sixthroot_109 (ε : ℝ) (hε : 4 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 6 109) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 6 109 - (q : ℝ)| :=
+  T5_RothBoundLarge_sixthroot_param 109 ε hε
+
 /-! ## Block C-alt-5 — 4-conjunct concrete-degree paper bundle -/
 
 /-- **C-alt-5 — concrete-degree per-α RothBoundLarge BUNDLE**.

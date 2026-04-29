@@ -5766,3 +5766,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer22_Real
 -- Eval zero/one/X/add/mul/sub/neg/pow foundational identities.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer23_PolyEvalHelpers
+-- D.6.1 Layer 24 — cast helpers.
+-- Nat/Int cast positivity, arithmetic preservation.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer24_Cast

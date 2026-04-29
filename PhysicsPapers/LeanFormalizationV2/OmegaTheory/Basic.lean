@@ -5714,3 +5714,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer9_Wrons
 -- aeval foundational identities (zero, one, X, add, mul, pow, neg, sub).
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer10_AlgebraicHelpers
+-- D.6.1 Layer 11 — degree-bound helpers.
+-- natDegree of basic poly, products, derivative bounds.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer11_DegreeHelpers

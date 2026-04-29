@@ -5814,3 +5814,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Streng
 -- MV-1..MV-7: m-step inductive bound, three-source combination.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Multivariate
+-- D.6.1 HEART composition — 4-source disjunction discharge.
+-- CO-1..CO-6: composition under Θ ≤ Φ, Φ+1, √Φ+√δ, 0 cases.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Composition

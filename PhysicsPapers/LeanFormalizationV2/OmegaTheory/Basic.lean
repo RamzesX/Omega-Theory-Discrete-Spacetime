@@ -5669,3 +5669,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer5
 -- (1/2)^m anti-monotonicity, δ-rpow positivity, recursive squaring.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer6
+-- D.6.1 Layer 7 — application & discharge foundations.
+-- Bound monotonicity, sqrt-mε arithmetic, m=1 statement Prop.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer7

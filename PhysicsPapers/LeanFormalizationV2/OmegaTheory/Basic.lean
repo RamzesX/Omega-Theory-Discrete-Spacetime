@@ -5639,6 +5639,10 @@ import OmegaTheory.Predictions.T1_TopQuark_PaperHeadline_Complete
 -- bridge, violator membership in T5_RothViolatingSet, unbounded-dens
 -- bridge, m-tuple extraction via pigeonhole. Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAndPigeonhole_Discharge
+-- D.7 Block D — integer non-vanishing lower bound foundations.
+-- eval₂ rational existence, eval₂ at zero, integer witness bridge.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockD_IntegerNonVanish
 
 -- (T-5 D.6.1 atom 1 closure work — 2026-04-29)
 -- D.6.1 Layer 0 — real-analytic glue lemmas for the Hindry-Silverman

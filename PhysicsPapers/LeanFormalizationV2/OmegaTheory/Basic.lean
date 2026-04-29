@@ -5818,3 +5818,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Multiv
 -- CO-1..CO-6: composition under Θ ≤ Φ, Φ+1, √Φ+√δ, 0 cases.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Composition
+-- D.6.1 HEART convergence — recursion-bound positivity, monotonicity, zero/one values.
+-- CV-1..CV-6: pos lhs, bounded, monotone, zero/one specializations.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Convergence

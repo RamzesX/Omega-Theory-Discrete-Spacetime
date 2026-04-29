@@ -5826,3 +5826,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Conver
 -- BR-1..BR-6: bridges HEART recursion to V8 closure shape.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Bridge
+-- D.6.1 HEART specialize — concrete recursion at small (Φ, δ) values.
+-- SP-1..SP-6: Φ=1/0/4/9 specialization checks.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Specialize

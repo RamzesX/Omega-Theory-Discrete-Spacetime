@@ -5722,3 +5722,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer11_Degr
 -- Rat.den positivity, real coercion, num/den decomposition.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer12_RatHelpers
+-- D.6.1 Layer 13 — coefficient evaluation helpers.
+-- coeff zero/X/X-α/add/sub foundational identities.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer13_CoeffHelpers

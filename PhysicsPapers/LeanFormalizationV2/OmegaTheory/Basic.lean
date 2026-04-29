@@ -5778,3 +5778,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer25_Func
 -- distrib, assoc, comm, one_mul, zero_add.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer26_LinearMapHelpers
+-- D.6.1 Layer 27 — ne/ne' helpers.
+-- ne_of_lt, ne_of_gt, mul_ne_zero, neg_ne_zero.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer27_NeqHelpers

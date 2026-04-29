@@ -5802,3 +5802,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer31_RPow
 -- HEART recursion `Θ ≤ 2(Φ + √Φ + √δ)` decomposed; H4 discharged.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_TopDown
+-- D.6.1 HEART all-discharged formulation — all 4 reformulated hypotheses proven.
+-- Demonstrates top-down approach works end-to-end with discharge-able forms.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_AllDischarged

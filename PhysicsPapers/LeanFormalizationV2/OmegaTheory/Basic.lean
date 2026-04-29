@@ -5730,3 +5730,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer13_Coef
 -- |x| basic properties, triangle inequality, abs_pow.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer14_AbsHelpers
+-- D.6.1 Layer 15 — min/max helpers.
+-- Real min/max basic properties, ordering, commutativity.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer15_MinMaxHelpers

@@ -1994,6 +1994,106 @@ theorem T5_RothBoundLarge_eighthroot_17 (ε : ℝ) (hε : 6 < ε) :
         C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 8 17 - (q : ℝ)| :=
   T5_RothBoundLarge_eighthroot_param 17 ε hε
 
+/-! ## Block C-alt-31 — Nonic+decic prime extension -/
+
+/-- **C-alt-31a — `⁹√3`** for ε > 7. -/
+theorem T5_RothBoundLarge_ninthroot_3 (ε : ℝ) (hε : 7 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 9 3) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 9 3 - (q : ℝ)| :=
+  T5_RothBoundLarge_ninthroot_param 3 ε hε
+
+/-- **C-alt-31b — `⁹√5`** for ε > 7. -/
+theorem T5_RothBoundLarge_ninthroot_5 (ε : ℝ) (hε : 7 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 9 5) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 9 5 - (q : ℝ)| :=
+  T5_RothBoundLarge_ninthroot_param 5 ε hε
+
+/-- **C-alt-31c — `⁹√7`** for ε > 7. -/
+theorem T5_RothBoundLarge_ninthroot_7 (ε : ℝ) (hε : 7 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 9 7) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 9 7 - (q : ℝ)| :=
+  T5_RothBoundLarge_ninthroot_param 7 ε hε
+
+/-- **C-alt-31d — `¹⁰√3`** for ε > 8. -/
+theorem T5_RothBoundLarge_tenthroot_3 (ε : ℝ) (hε : 8 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 10 3) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 10 3 - (q : ℝ)| :=
+  T5_RothBoundLarge_tenthroot_param 3 ε hε
+
+/-- **C-alt-31e — `¹⁰√5`** for ε > 8. -/
+theorem T5_RothBoundLarge_tenthroot_5 (ε : ℝ) (hε : 8 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 10 5) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 10 5 - (q : ℝ)| :=
+  T5_RothBoundLarge_tenthroot_param 5 ε hε
+
+/-- **C-alt-31f — `¹⁰√7`** for ε > 8. -/
+theorem T5_RothBoundLarge_tenthroot_7 (ε : ℝ) (hε : 8 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 10 7) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 10 7 - (q : ℝ)| :=
+  T5_RothBoundLarge_tenthroot_param 7 ε hε
+
+/-! ## Block C-alt-32 — k=11..13 prime extension -/
+
+/-- **C-alt-32a — `¹¹√3`** for ε > 9. -/
+theorem T5_RothBoundLarge_eleventhroot_3 (ε : ℝ) (hε : 9 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 11 3) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 11 3 - (q : ℝ)| :=
+  T5_RothBoundLarge_eleventhroot_param 3 ε hε
+
+/-- **C-alt-32b — `¹¹√5`** for ε > 9. -/
+theorem T5_RothBoundLarge_eleventhroot_5 (ε : ℝ) (hε : 9 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 11 5) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 11 5 - (q : ℝ)| :=
+  T5_RothBoundLarge_eleventhroot_param 5 ε hε
+
+/-- **C-alt-32c — `¹²√3`** for ε > 10. -/
+theorem T5_RothBoundLarge_twelfthroot_3 (ε : ℝ) (hε : 10 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 12 3) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 12 3 - (q : ℝ)| :=
+  T5_RothBoundLarge_twelfthroot_param 3 ε hε
+
+/-- **C-alt-32d — `¹²√5`** for ε > 10. -/
+theorem T5_RothBoundLarge_twelfthroot_5 (ε : ℝ) (hε : 10 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 12 5) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 12 5 - (q : ℝ)| :=
+  T5_RothBoundLarge_twelfthroot_param 5 ε hε
+
+/-- **C-alt-32e — `¹³√3`** for ε > 11. -/
+theorem T5_RothBoundLarge_thirteenthroot_3 (ε : ℝ) (hε : 11 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 13 3) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 13 3 - (q : ℝ)| :=
+  T5_RothBoundLarge_thirteenthroot_param 3 ε hε
+
+/-- **C-alt-32f — `¹³√5`** for ε > 11. -/
+theorem T5_RothBoundLarge_thirteenthroot_5 (ε : ℝ) (hε : 11 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 13 5) p = 0 ∧
+      ∀ (q : ℚ), Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 13 5 - (q : ℝ)| :=
+  T5_RothBoundLarge_thirteenthroot_param 5 ε hε
+
 /-! ## Block C-alt-5 — 4-conjunct concrete-degree paper bundle -/
 
 /-- **C-alt-5 — concrete-degree per-α RothBoundLarge BUNDLE**.

@@ -5794,3 +5794,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer29_AbsB
 -- Real.rpow basics: rpow_zero, rpow_one, rpow_add, rpow_mul, monotone.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer30_RPowHelpers
+-- D.6.1 Layer 31 — extended rpow helpers.
+-- rpow_natCast, mul_rpow, rpow monotone, rpow neg, half-rpow.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer31_RPowExtended

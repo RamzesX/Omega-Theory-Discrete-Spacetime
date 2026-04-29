@@ -274,4 +274,52 @@ theorem T5_growth_implies_log_chain
       (2 / ε) * Real.log ((q i : ℚ).den : ℝ) :=
   h_growth i h_succ
 
+/-! ## L0-14 — More positivity helpers -/
+
+/-- **L0-14a — `pow_mul_pos_of_pos`**: positivity for products in
+    rpow form. Used in the analytical chain when collecting bounds
+    over multiple `R_i` exponents. -/
+theorem T5_rpow_mul_pos
+    (a : ℝ) (ha : 0 < a) (b c : ℝ) :
+    (0 : ℝ) < a^b * a^c := by
+  exact mul_pos (Real.rpow_pos_of_pos ha _) (Real.rpow_pos_of_pos ha _)
+
+/-- **L0-14b — `rpow_pos_of_one_le_base`**: 1 ≤ a ⇒ 0 < a^x for any x. -/
+theorem T5_rpow_pos_of_one_le
+    (a : ℝ) (ha : 1 ≤ a) (x : ℝ) :
+    (0 : ℝ) < a^x := by
+  apply Real.rpow_pos_of_pos
+  linarith
+
+/-- **L0-14c — `rpow_le_rpow_of_le_base`**: 1 ≤ a, b ≤ c ⇒ a^b ≤ a^c. -/
+theorem T5_rpow_le_rpow_of_exp_le
+    (a : ℝ) (ha : 1 ≤ a) (b c : ℝ) (hbc : b ≤ c) :
+    a^b ≤ a^c := by
+  apply Real.rpow_le_rpow_of_exponent_le ha hbc
+
+/-! ## L0-15 — Additional sqrt helpers -/
+
+/-- **L0-15a — `sqrt_eps_lt_one_of_lt_one`**: 0 ≤ ε < 1 ⇒ √ε < 1. -/
+theorem T5_sqrt_eps_lt_one (ε : ℝ) (hε_nn : 0 ≤ ε) (hε_lt : ε < 1) :
+    Real.sqrt ε < 1 := by
+  exact T5_sqrt_lt_one_of_lt_one ε hε_nn hε_lt
+
+/-- **L0-15b — `sqrt_mε_le_sqrt_m_sqrt_eps`**: `√(m·ε) ≤ √m · √ε`. -/
+theorem T5_sqrt_mε_eq_sqrt_m_mul_sqrt_eps
+    (m ε : ℝ) (hm_nn : 0 ≤ m) (hε_nn : 0 ≤ ε) :
+    Real.sqrt (m * ε) = Real.sqrt m * Real.sqrt ε :=
+  Real.sqrt_mul hm_nn ε
+
+/-! ## L0-16 — Index-bound integer floor helpers -/
+
+/-- **L0-16 — `nat_le_real_natCast_iff`**: `(n : ℕ) ≤ m ↔ (n : ℝ) ≤ (m : ℝ)`. -/
+theorem T5_nat_le_real_natCast_iff (n m : ℕ) :
+    n ≤ m ↔ (n : ℝ) ≤ (m : ℝ) := by
+  exact Nat.cast_le.symm
+
+/-- **L0-17 — `nat_lt_real_natCast_iff`**: `(n : ℕ) < m ↔ (n : ℝ) < (m : ℝ)`. -/
+theorem T5_nat_lt_real_natCast_iff (n m : ℕ) :
+    n < m ↔ (n : ℝ) < (m : ℝ) := by
+  exact Nat.cast_lt.symm
+
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer0

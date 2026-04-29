@@ -5660,6 +5660,10 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockC_Tayl
 -- Master integration alias for D.6.1 8 layers + D.7 6 blocks.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_PROGRESS_MILESTONE_2026_04_29
+-- T-5 MEGA-MASTER session capstone 2026-04-29 — both fires integrated.
+-- Master 3-conjunct alias: progress milestone + HEART foundation + count.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_MEGA_MASTER_2026_04_29
 
 -- (T-5 D.6.1 atom 1 closure work — 2026-04-29)
 -- D.6.1 Layer 0 — real-analytic glue lemmas for the Hindry-Silverman

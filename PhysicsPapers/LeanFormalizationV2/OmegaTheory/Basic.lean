@@ -5830,3 +5830,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Bridge
 -- SP-1..SP-6: Φ=1/0/4/9 specialization checks.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Specialize
+-- D.6.1 HEART reduction — recursion under (Φ/2, δ=0, +δ', +Φ') reductions.
+-- RD-1..RD-5: scalar reduction operations preserve HEART recursion.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Reduction

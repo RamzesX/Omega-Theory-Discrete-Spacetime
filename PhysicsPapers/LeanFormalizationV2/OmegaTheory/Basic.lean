@@ -5762,3 +5762,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer21_Numb
 -- sqrt, log foundational identities and monotonicity.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer22_RealAnalysisHelpers
+-- D.6.1 Layer 23 — polynomial eval helpers.
+-- Eval zero/one/X/add/mul/sub/neg/pow foundational identities.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer23_PolyEvalHelpers

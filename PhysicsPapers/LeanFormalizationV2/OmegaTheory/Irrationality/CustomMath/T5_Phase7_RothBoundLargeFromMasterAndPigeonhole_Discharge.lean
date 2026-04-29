@@ -520,4 +520,97 @@ theorem T5_RothBoundLarge_per_alpha_cubic
   · -- 0 < ε follows from 1 < ε
     linarith
 
+/-- **C-alt-4b — Quartic specialization** (n = 4, ε > 2).
+
+    Direct specialization of C-alt-1 at n = 4. -/
+theorem T5_RothBoundLarge_per_alpha_quartic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 4)
+    (ε : ℝ) (hε : 2 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧
+      p ≠ 0 ∧
+      Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 4 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-- **C-alt-4c — Quintic specialization** (n = 5, ε > 3). -/
+theorem T5_RothBoundLarge_per_alpha_quintic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 5)
+    (ε : ℝ) (hε : 3 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧
+      p ≠ 0 ∧
+      Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 5 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-- **C-alt-4d — Sextic specialization** (n = 6, ε > 4). -/
+theorem T5_RothBoundLarge_per_alpha_sextic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 6)
+    (ε : ℝ) (hε : 4 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧
+      p ≠ 0 ∧
+      Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 6 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-! ## Block C-alt-5 — 4-conjunct concrete-degree paper bundle -/
+
+/-- **C-alt-5 — concrete-degree per-α RothBoundLarge BUNDLE**.
+
+    4-conjunct paper-citable bundle composing the cubic, quartic,
+    quintic, sextic per-α specializations into a single sentence form.
+    Each conjunct is a fully unconditional RothBoundLarge per-α form
+    with the appropriate ε > n-2 threshold. -/
+theorem T5_RothBoundLarge_per_alpha_concrete_bundle
+    (α : ℝ) :
+    -- (a) cubic
+    (IsAlgebraicOfDegree α 3 → ∀ (ε : ℝ), 1 < ε →
+      ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+        0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval α p = 0 ∧
+        ∀ (q : ℚ),
+          Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+          C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)|) ∧
+    -- (b) quartic
+    (IsAlgebraicOfDegree α 4 → ∀ (ε : ℝ), 2 < ε →
+      ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+        0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval α p = 0 ∧
+        ∀ (q : ℚ),
+          Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+          C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)|) ∧
+    -- (c) quintic
+    (IsAlgebraicOfDegree α 5 → ∀ (ε : ℝ), 3 < ε →
+      ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+        0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval α p = 0 ∧
+        ∀ (q : ℚ),
+          Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+          C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)|) ∧
+    -- (d) sextic
+    (IsAlgebraicOfDegree α 6 → ∀ (ε : ℝ), 4 < ε →
+      ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+        0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval α p = 0 ∧
+        ∀ (q : ℚ),
+          Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+          C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)|) :=
+  ⟨fun h ε hε => T5_RothBoundLarge_per_alpha_cubic α h ε hε,
+   fun h ε hε => T5_RothBoundLarge_per_alpha_quartic α h ε hε,
+   fun h ε hε => T5_RothBoundLarge_per_alpha_quintic α h ε hε,
+   fun h ε hε => T5_RothBoundLarge_per_alpha_sextic α h ε hε⟩
+
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAndPigeonhole_Discharge

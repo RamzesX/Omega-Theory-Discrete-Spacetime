@@ -5651,6 +5651,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockE_Cont
 -- Block A-E foundational integration markers, V7 frontier alias.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockF_V7Capstone
+-- D.7 Block C — analytical Taylor upper bound foundations.
+-- Univariate Taylor evaluation bridge, Taylor-coefficient finset sum,
+-- absolute-value triangle inequality, |P.eval q| upper bound.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockC_TaylorUpperBound
 
 -- (T-5 D.6.1 atom 1 closure work — 2026-04-29)
 -- D.6.1 Layer 0 — real-analytic glue lemmas for the Hindry-Silverman

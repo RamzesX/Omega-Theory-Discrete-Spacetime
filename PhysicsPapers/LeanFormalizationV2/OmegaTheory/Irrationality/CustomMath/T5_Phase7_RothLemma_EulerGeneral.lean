@@ -129,6 +129,81 @@ theorem T5_GeneralEulerShifted_holds_for_monomial
     linarith
   · exact hr h_r
 
+/-! ## FULL general case via coefficient-wise induction -/
+
+/-- **Coefficient-wise X·pderiv identity** for arbitrary φ — extends the
+    monomial case by `monomial_add_induction_on`. -/
+theorem T5_coeff_X_mul_pderiv_eq
+    {m : ℕ} (i : Fin m) (α : Fin m →₀ ℕ) (φ : MvPolynomial (Fin m) ℝ) :
+    coeff α (X i * pderiv i φ) = ((α i : ℕ) : ℝ) * coeff α φ := by
+  induction φ using MvPolynomial.monomial_add_induction_on with
+  | C r =>
+    -- pderiv i (C r) = 0, so X i * 0 = 0
+    rw [MvPolynomial.pderiv_C, mul_zero, coeff_zero]
+    -- RHS: (α i) * coeff α (C r) = (α i) * (if 0 = α then r else 0)
+    rw [coeff_C]
+    by_cases h_α : α = 0
+    · subst h_α; simp
+    · -- α ≠ 0, so 0 ≠ α, so coeff α (C r) = 0
+      have h_neq : (0 : Fin m →₀ ℕ) ≠ α := Ne.symm h_α
+      simp [h_neq]
+  | monomial_add t b f _h_supp _hb ih =>
+    -- pderiv i (monomial t b + f) = pderiv i (monomial t b) + pderiv i f
+    rw [map_add, mul_add, coeff_add]
+    -- Use monomial case for first part, IH for second
+    -- coeff α (X i * pderiv i (monomial t b))
+    have h_mono : coeff α (X i * pderiv i (monomial t b : MvPolynomial (Fin m) ℝ)) =
+        ((α i : ℕ) : ℝ) * coeff α (monomial t b : MvPolynomial (Fin m) ℝ) := by
+      rw [T5_coeff_X_mul_pderiv_monomial_eq i t b α]
+      -- Goal: ((t i : ℕ) : ℝ) * coeff α (monomial t b) = ((α i : ℕ) : ℝ) * coeff α (monomial t b)
+      -- These are equal because: coeff α (monomial t b) = if t = α then b else 0
+      rw [coeff_monomial]
+      by_cases h : α = t
+      · subst h; rfl
+      · -- α ≠ t, so t ≠ α (Mathlib: coeff_monomial uses `t = α`)
+        have h_sym : ¬t = α := Ne.symm h
+        simp [h_sym]
+    rw [h_mono, ih, coeff_add]
+    ring
+
+/-- **Sum identity**: `coeff α (∑ i, X i * pderiv i φ) = (∑ i, α i : ℝ) * coeff α φ`. -/
+theorem T5_coeff_sum_X_mul_pderiv_eq
+    {m : ℕ} (α : Fin m →₀ ℕ) (φ : MvPolynomial (Fin m) ℝ) :
+    coeff α (∑ i : Fin m, X i * pderiv i φ) =
+      ((∑ i : Fin m, α i : ℕ) : ℝ) * coeff α φ := by
+  rw [coeff_sum]
+  push_cast
+  rw [Finset.sum_mul]
+  apply Finset.sum_congr rfl
+  intros i _
+  exact T5_coeff_X_mul_pderiv_eq i α φ
+
+/-! ## GENERAL discharge — final lemma -/
+
+/-- **🚨 GENERAL DISCHARGE — `T5_GeneralEulerShifted_holds`** :
+    For ANY non-zero φ in MvPolynomial (Fin m) ℝ:
+    `φ + ∑ i, X i * pderiv i φ ≠ 0`. -/
+theorem T5_GeneralEulerShifted_holds : T5_GeneralEulerShifted_NAMED := by
+  intros m φ hφ
+  -- Find α with coeff α φ ≠ 0
+  rw [Ne, MvPolynomial.ext_iff] at hφ
+  push_neg at hφ
+  obtain ⟨α, hα⟩ := hφ
+  rw [coeff_zero] at hα
+  -- Now show coeff α (LHS) ≠ 0
+  intro h_zero
+  apply hα
+  have h_coeff := congrArg (coeff α) h_zero
+  rw [coeff_zero, coeff_add, T5_coeff_sum_X_mul_pderiv_eq] at h_coeff
+  -- h_coeff : coeff α φ + ((∑ i, α i : ℕ) : ℝ) * coeff α φ = 0
+  -- Factor: (1 + (∑ i, α i : ℕ) : ℝ) * coeff α φ = 0
+  have h_factored : ((1 : ℝ) + ((∑ i : Fin m, α i : ℕ) : ℝ)) * coeff α φ = 0 := by linarith
+  rcases mul_eq_zero.mp h_factored with h_one_plus | h_r
+  · -- (1 : ℝ) + ((∑ i, α i : ℕ) : ℝ) = 0 — impossible since both nonnegative and 1 > 0
+    have h_nn : ((∑ i : Fin m, α i : ℕ) : ℝ) ≥ 0 := by positivity
+    linarith
+  · exact h_r
+
 /-! ## Headline -/
 
 /-- **🚨 HEADLINE — Wave-2 Phase 2.2 GENERAL ANALYTICAL CORE**.

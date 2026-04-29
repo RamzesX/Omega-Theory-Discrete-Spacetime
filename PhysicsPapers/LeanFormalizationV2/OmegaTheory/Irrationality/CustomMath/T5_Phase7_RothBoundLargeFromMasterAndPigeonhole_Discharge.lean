@@ -47,6 +47,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_IndexReduction
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothTheoremClosure
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_GenericDegreeAllQ
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_IsAlgebraicOfDegree
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_IrrationalGenericBundle_XXIV
 import OmegaTheory.Irrationality.CustomMath.T5_Heights
 
 namespace OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAndPigeonhole_Discharge
@@ -569,6 +570,212 @@ theorem T5_RothBoundLarge_per_alpha_sextic
     α 6 (by norm_num) h_alg ε
   · push_cast; linarith
   · linarith
+
+/-- **C-alt-4e — Septic specialization** (n = 7, ε > 5). -/
+theorem T5_RothBoundLarge_per_alpha_septic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 7)
+    (ε : ℝ) (hε : 5 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧
+      p ≠ 0 ∧
+      Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 7 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-- **C-alt-4f — Octic specialization** (n = 8, ε > 6). -/
+theorem T5_RothBoundLarge_per_alpha_octic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 8)
+    (ε : ℝ) (hε : 6 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧
+      p ≠ 0 ∧
+      Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 8 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-- **C-alt-4g — Nonic specialization** (n = 9, ε > 7). -/
+theorem T5_RothBoundLarge_per_alpha_nonic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 9)
+    (ε : ℝ) (hε : 7 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧
+      p ≠ 0 ∧
+      Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 9 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-- **C-alt-4h — Decic specialization** (n = 10, ε > 8). -/
+theorem T5_RothBoundLarge_per_alpha_decic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 10)
+    (ε : ℝ) (hε : 8 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧
+      p ≠ 0 ∧
+      Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 10 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-! ## Block C-alt-6 — Parametric ALL-n form -/
+
+/-- **C-alt-6 — parametric ALL-degree per-α RothBoundLarge** for ε > n-2.
+
+    For ANY n ≥ 1 and any α with `IsAlgebraicOfDegree α n`, per-α
+    RothBoundLarge holds for ε > max(0, n-2).
+
+    Equivalent to C-alt-1 but exposed in a clean parametric form for
+    iterated downstream consumption. -/
+theorem T5_RothBoundLarge_per_alpha_parametric
+    (α : ℝ) (n : ℕ) (hn : 1 ≤ n)
+    (h_alg : IsAlgebraicOfDegree α n)
+    (ε : ℝ) (hε : ((n : ℝ) - 2) < ε) (hε_pos : 0 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧
+      p ≠ 0 ∧
+      Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2 α n hn h_alg ε hε hε_pos
+
+/-- **C-alt-6b — parametric for n ≥ 2 with ε ≥ n** (cleaner threshold).
+
+    Uses ε ≥ n (which implies ε > n-2 since 2 > 0). Removes the
+    fractional threshold awkwardness for downstream callers who want
+    a clean integer threshold. -/
+theorem T5_RothBoundLarge_per_alpha_parametric_eps_ge_n
+    (α : ℝ) (n : ℕ) (hn : 1 ≤ n)
+    (h_alg : IsAlgebraicOfDegree α n)
+    (ε : ℝ) (hε : (n : ℝ) ≤ ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧
+      p ≠ 0 ∧
+      Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α n hn h_alg ε
+  · -- ε ≥ n > n - 2 (since 2 > 0)
+    have hn_pos : (0 : ℝ) ≤ (n : ℝ) := by positivity
+    linarith
+  · -- ε ≥ n ≥ 1 > 0
+    have hn_pos : (1 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
+    linarith
+
+/-! ## Block C-alt-7 — Concrete-α parametric per-α discharge -/
+
+open OmegaTheory.Irrationality.CustomMath.T5_Phase7_IrrationalGenericBundle_XXIV
+
+/-- **C-alt-7a — concrete `∛2` per-α RothBoundLarge** for ε > 1.
+
+    Direct application of cubic specialization to the concrete
+    witness `kthRootNat 3 2` (= ∛2). -/
+theorem T5_RothBoundLarge_cuberoot_2
+    (ε : ℝ) (hε : 1 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 3 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 3 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_cubic _
+    (T5_isAlgebraicOfDegree_kthRootNat 3 2 (by norm_num)) ε hε
+
+/-- **C-alt-7b — concrete `∜2` per-α RothBoundLarge** for ε > 2. -/
+theorem T5_RothBoundLarge_fourthroot_2
+    (ε : ℝ) (hε : 2 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 4 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 4 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_quartic _
+    (T5_isAlgebraicOfDegree_kthRootNat 4 2 (by norm_num)) ε hε
+
+/-- **C-alt-7c — concrete `⁵√2` per-α RothBoundLarge** for ε > 3. -/
+theorem T5_RothBoundLarge_fifthroot_2
+    (ε : ℝ) (hε : 3 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 5 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 5 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_quintic _
+    (T5_isAlgebraicOfDegree_kthRootNat 5 2 (by norm_num)) ε hε
+
+/-- **C-alt-7d — concrete `⁶√2` per-α RothBoundLarge** for ε > 4. -/
+theorem T5_RothBoundLarge_sixthroot_2
+    (ε : ℝ) (hε : 4 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 6 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 6 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_sextic _
+    (T5_isAlgebraicOfDegree_kthRootNat 6 2 (by norm_num)) ε hε
+
+/-- **C-alt-7e — concrete `⁷√2` per-α RothBoundLarge** for ε > 5. -/
+theorem T5_RothBoundLarge_seventhroot_2
+    (ε : ℝ) (hε : 5 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 7 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 7 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_septic _
+    (T5_isAlgebraicOfDegree_kthRootNat 7 2 (by norm_num)) ε hε
+
+/-- **C-alt-7f — concrete `⁸√2` per-α RothBoundLarge** for ε > 6. -/
+theorem T5_RothBoundLarge_eighthroot_2
+    (ε : ℝ) (hε : 6 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 8 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 8 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_octic _
+    (T5_isAlgebraicOfDegree_kthRootNat 8 2 (by norm_num)) ε hε
+
+/-- **C-alt-7g — concrete `⁹√2` per-α RothBoundLarge** for ε > 7. -/
+theorem T5_RothBoundLarge_ninthroot_2
+    (ε : ℝ) (hε : 7 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 9 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 9 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_nonic _
+    (T5_isAlgebraicOfDegree_kthRootNat 9 2 (by norm_num)) ε hε
+
+/-- **C-alt-7h — concrete `¹⁰√2` per-α RothBoundLarge** for ε > 8. -/
+theorem T5_RothBoundLarge_tenthroot_2
+    (ε : ℝ) (hε : 8 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 10 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 10 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_decic _
+    (T5_isAlgebraicOfDegree_kthRootNat 10 2 (by norm_num)) ε hε
 
 /-! ## Block C-alt-5 — 4-conjunct concrete-degree paper bundle -/
 

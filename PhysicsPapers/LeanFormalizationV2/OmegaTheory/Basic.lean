@@ -5657,3 +5657,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer2
 -- pow_rootMultiplicity_dvd bridge, residual factor V witness, V(α) ≠ 0.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer3
+-- D.6.1 Layer 4 — combinatorial pigeonhole foundations.
+-- Finset partition, average-value pigeonhole, half-sum split.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer4

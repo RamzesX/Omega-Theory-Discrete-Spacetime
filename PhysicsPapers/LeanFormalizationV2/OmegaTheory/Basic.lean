@@ -5710,3 +5710,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer5_Heart
 -- 2x2 determinant arithmetic, 1-variable Wronskian basic identities.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer9_WronskianHelpers
+-- D.6.1 Layer 10 — algebraic-number aeval helpers.
+-- aeval foundational identities (zero, one, X, add, mul, pow, neg, sub).
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer10_AlgebraicHelpers

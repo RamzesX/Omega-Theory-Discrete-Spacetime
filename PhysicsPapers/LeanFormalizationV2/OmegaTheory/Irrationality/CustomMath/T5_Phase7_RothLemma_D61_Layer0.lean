@@ -225,4 +225,53 @@ theorem T5_inv_nat_le_one (n : ℕ) (hn : 1 ≤ n) :
   rw [div_le_iff₀ hn_pos]
   linarith
 
+/-! ## L0-12 — Balance-condition basic implications -/
+
+/-- **L0-12a — `balance_implies_C_pos`**: balance condition ⇒ the balancing
+    constant C is positive. Trivially follows from the existential
+    structure. -/
+theorem T5_balance_implies_C_pos
+    {m : ℕ} (R : Fin m → ℕ) (q : Fin m → ℚ) (ε : ℝ)
+    (h_bal : T5_DegreeHeightBalanceCondition R q ε) :
+    ∃ C > 0, ∀ i : Fin m,
+      |((R i : ℝ) * Real.log ((q i : ℚ).den : ℝ)) - C| ≤ C * ε :=
+  h_bal
+
+/-- **L0-12b — `balance_implies_per_i_bound`**: from the balance condition,
+    each `R_i · log d_i` lies in `[C(1-ε), C(1+ε)]` (the explicit interval). -/
+theorem T5_balance_implies_per_i_bound
+    {m : ℕ} (R : Fin m → ℕ) (q : Fin m → ℚ) (ε : ℝ)
+    (h_bal : T5_DegreeHeightBalanceCondition R q ε)
+    (i : Fin m) :
+    ∃ (C : ℝ), 0 < C ∧
+      C * (1 - ε) ≤ (R i : ℝ) * Real.log ((q i : ℚ).den : ℝ) ∧
+      (R i : ℝ) * Real.log ((q i : ℚ).den : ℝ) ≤ C * (1 + ε) := by
+  obtain ⟨C, hC_pos, h_per_i⟩ := h_bal
+  refine ⟨C, hC_pos, ?_, ?_⟩
+  · -- lower bound: |x - C| ≤ Cε ⇒ -Cε ≤ x - C ⇒ x ≥ C - Cε = C(1-ε)
+    have h_abs := h_per_i i
+    rw [abs_sub_le_iff] at h_abs
+    -- h_abs : (R_i log d_i) - C ≤ C·ε ∧ C - (R_i log d_i) ≤ C·ε
+    have h_low := h_abs.2
+    linarith
+  · -- upper bound: similar
+    have h_abs := h_per_i i
+    rw [abs_sub_le_iff] at h_abs
+    have h_up := h_abs.1
+    linarith
+
+/-! ## L0-13 — Growth-condition basic implications -/
+
+/-- **L0-13a — `growth_implies_log_chain`**: growth condition ⇒ for any
+    `i.val + 1 < m`, `log d_{i+1} ≥ (2/ε) · log d_i`.
+
+    Direct re-export of `T5_DenominatorGrowthCondition` definition. -/
+theorem T5_growth_implies_log_chain
+    {m : ℕ} (q : Fin m → ℚ) (ε : ℝ)
+    (h_growth : T5_DenominatorGrowthCondition q ε)
+    (i : Fin m) (h_succ : i.val + 1 < m) :
+    Real.log ((q ⟨i.val + 1, h_succ⟩ : ℚ).den : ℝ) ≥
+      (2 / ε) * Real.log ((q i : ℚ).den : ℝ) :=
+  h_growth i h_succ
+
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer0

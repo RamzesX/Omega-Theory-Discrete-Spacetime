@@ -5790,3 +5790,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer28_Norm
 -- abs_lt unpacking, |x| ≥ 0, abs_pow nonneg, abs_le unpacking.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer29_AbsBoundsHelpers
+-- D.6.1 Layer 30 — rpow (real power) helpers.
+-- Real.rpow basics: rpow_zero, rpow_one, rpow_add, rpow_mul, monotone.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer30_RPowHelpers

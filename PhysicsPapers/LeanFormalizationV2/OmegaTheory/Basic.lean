@@ -5746,3 +5746,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer17_PowH
 -- inv positivity, div by self, div positivity.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer18_DivHelpers
+-- D.6.1 Layer 19 — ordering helpers.
+-- add/mul ordering, transitivity, contradiction.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer19_OrderHelpers

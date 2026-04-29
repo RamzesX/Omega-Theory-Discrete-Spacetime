@@ -5726,3 +5726,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer12_RatH
 -- coeff zero/X/X-α/add/sub foundational identities.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer13_CoeffHelpers
+-- D.6.1 Layer 14 — absolute-value helpers.
+-- |x| basic properties, triangle inequality, abs_pow.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer14_AbsHelpers

@@ -993,6 +993,135 @@ theorem T5_RothBoundLarge_grand_witness_panel :
    T5_RothBoundLarge_fourthroot_3,
    T5_RothBoundLarge_fifthroot_2⟩
 
+/-! ## Block C-alt-12 — Higher-degree specializations (n = 11, 12, 13, 14, 15) -/
+
+/-- **C-alt-12a — Undecic specialization** (n = 11, ε > 9). -/
+theorem T5_RothBoundLarge_per_alpha_undecic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 11)
+    (ε : ℝ) (hε : 9 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 11 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-- **C-alt-12b — Dodecic specialization** (n = 12, ε > 10). -/
+theorem T5_RothBoundLarge_per_alpha_dodecic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 12)
+    (ε : ℝ) (hε : 10 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 12 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-- **C-alt-12c — Tridecic specialization** (n = 13, ε > 11). -/
+theorem T5_RothBoundLarge_per_alpha_tridecic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 13)
+    (ε : ℝ) (hε : 11 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 13 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-- **C-alt-12d — Tetradecic specialization** (n = 14, ε > 12). -/
+theorem T5_RothBoundLarge_per_alpha_tetradecic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 14)
+    (ε : ℝ) (hε : 12 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 14 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-- **C-alt-12e — Pentadecic specialization** (n = 15, ε > 13). -/
+theorem T5_RothBoundLarge_per_alpha_pentadecic
+    (α : ℝ) (h_alg : IsAlgebraicOfDegree α 15)
+    (ε : ℝ) (hε : 13 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval α p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  apply T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α 15 (by norm_num) h_alg ε
+  · push_cast; linarith
+  · linarith
+
+/-! ## Block C-alt-13 — Concrete kthRootNat for k = 11..15 -/
+
+/-- **C-alt-13a — `¹¹√2`** per-α RothBoundLarge for ε > 9. -/
+theorem T5_RothBoundLarge_eleventhroot_2
+    (ε : ℝ) (hε : 9 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 11 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 11 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_undecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 11 2 (by norm_num)) ε hε
+
+/-- **C-alt-13b — `¹²√2`** per-α RothBoundLarge for ε > 10. -/
+theorem T5_RothBoundLarge_twelfthroot_2
+    (ε : ℝ) (hε : 10 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 12 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 12 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_dodecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 12 2 (by norm_num)) ε hε
+
+/-- **C-alt-13c — `¹³√2`** per-α RothBoundLarge for ε > 11. -/
+theorem T5_RothBoundLarge_thirteenthroot_2
+    (ε : ℝ) (hε : 11 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 13 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 13 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_tridecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 13 2 (by norm_num)) ε hε
+
+/-- **C-alt-13d — `¹⁴√2`** per-α RothBoundLarge for ε > 12. -/
+theorem T5_RothBoundLarge_fourteenthroot_2
+    (ε : ℝ) (hε : 12 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 14 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 14 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_tetradecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 14 2 (by norm_num)) ε hε
+
+/-- **C-alt-13e — `¹⁵√2`** per-α RothBoundLarge for ε > 13. -/
+theorem T5_RothBoundLarge_fifteenthroot_2
+    (ε : ℝ) (hε : 13 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 15 2) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 15 2 - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_pentadecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 15 2 (by norm_num)) ε hε
+
 /-! ## Block C-alt-5 — 4-conjunct concrete-degree paper bundle -/
 
 /-- **C-alt-5 — concrete-degree per-α RothBoundLarge BUNDLE**.

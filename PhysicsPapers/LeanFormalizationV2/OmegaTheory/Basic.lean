@@ -5742,3 +5742,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer16_Logi
 -- pow positivity, pow add, pow_le_one, pow nesting.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer17_PowHelpers
+-- D.6.1 Layer 18 — division/inverse helpers.
+-- inv positivity, div by self, div positivity.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer18_DivHelpers

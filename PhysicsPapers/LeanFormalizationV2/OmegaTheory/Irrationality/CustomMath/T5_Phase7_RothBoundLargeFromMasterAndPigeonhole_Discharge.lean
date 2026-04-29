@@ -420,4 +420,70 @@ theorem T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
         ≤ C / ((q.den : ℝ) ^ (2 + ε)) := h_div_le
       _ ≤ |α - ((q : ℚ) : ℝ)| := h_q_form
 
+/-! ## Block C-alt-2 — Bridge from IsAlgebraic ℤ α to IsAlgebraicOfDegree α n -/
+
+/-- **C-alt-2a — `IsAlgebraic ℤ α → ∃ n ≥ 1, IsAlgebraicOfDegree α n`**.
+
+    Direct construction: given any witness polynomial `p` for
+    `IsAlgebraic ℤ α` (with `p ≠ 0`, `aeval α p = 0`), the natural
+    degree `n := p.natDegree` satisfies `IsAlgebraicOfDegree α n`
+    by using the same polynomial.
+
+    Bound `n ≥ 1`: since `p ≠ 0` and `aeval α p = 0`, `p` cannot be
+    a non-zero constant (which has no roots), so `p.natDegree ≥ 1`. -/
+theorem T5_isAlgebraic_implies_isAlgebraicOfDegree
+    (α : ℝ) (h_alg : IsAlgebraic ℤ α) :
+    ∃ n : ℕ, 1 ≤ n ∧ IsAlgebraicOfDegree α n := by
+  obtain ⟨p, hp_ne, hp_root⟩ := h_alg
+  refine ⟨p.natDegree, ?_, p, hp_ne, hp_root, rfl⟩
+  -- Goal: 1 ≤ p.natDegree
+  rcases Nat.eq_zero_or_pos p.natDegree with h | h
+  · exfalso
+    -- natDegree = 0: p = C (p.coeff 0); p ≠ 0 ⇒ coeff 0 ≠ 0;
+    -- aeval α p = (coeff 0 : ℝ) ≠ 0, contradicting hp_root.
+    have hp_const : p = Polynomial.C (p.coeff 0) :=
+      Polynomial.eq_C_of_natDegree_eq_zero h
+    rw [hp_const, Polynomial.aeval_C] at hp_root
+    -- hp_root : (algebraMap ℤ ℝ) (p.coeff 0) = 0
+    have h_coeff_zero : p.coeff 0 = 0 := by
+      have : ((p.coeff 0 : ℤ) : ℝ) = 0 := hp_root
+      exact_mod_cast this
+    apply hp_ne
+    rw [hp_const, h_coeff_zero, Polynomial.C_0]
+  · exact h
+
+/-! ## Block C-alt-3 — Composed per-α RothBoundLarge for arbitrary IsAlgebraic ℤ -/
+
+/-- **C-alt-3 — composed per-α RothBoundLarge from `IsAlgebraic ℤ α`**.
+
+    Combines C-alt-2a (extract degree n witness) with C-alt-1 (per-α
+    RothBoundLarge for ε > n-2). The threshold for ε depends on the
+    specific witness's natDegree.
+
+    For irrational α with `IsAlgebraic ℤ α`, this delivers per-α
+    RothBoundLarge for any ε strictly greater than `n - 2` where
+    `n` is the natDegree of the chosen witness polynomial.
+
+    The output structure exposes both `n` and the witness polynomial,
+    so downstream callers can pick `ε > n - 2` and get the bound. -/
+theorem T5_RothBoundLarge_per_alpha_via_isAlgebraic
+    (α : ℝ) (h_alg : IsAlgebraic ℤ α) :
+    ∃ (n : ℕ), 1 ≤ n ∧
+      ∀ (ε : ℝ), ((n : ℝ) - 2) < ε → 0 < ε →
+      ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+        0 < C₁ ∧
+        p ≠ 0 ∧
+        Polynomial.aeval α p = 0 ∧
+        ∀ (q : ℚ),
+          Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+          C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |α - (q : ℝ)| := by
+  -- Extract degree n witness via C-alt-2a
+  obtain ⟨n, hn_ge_one, h_alg_of_deg⟩ :=
+    T5_isAlgebraic_implies_isAlgebraicOfDegree α h_alg
+  refine ⟨n, hn_ge_one, ?_⟩
+  intro ε hε hε_pos
+  -- Apply C-alt-1 at this n
+  exact T5_RothBoundLarge_per_alpha_generic_eps_gt_nMinus2
+    α n hn_ge_one h_alg_of_deg ε hε hε_pos
+
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAndPigeonhole_Discharge

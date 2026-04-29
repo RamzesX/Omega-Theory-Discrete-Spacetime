@@ -5822,3 +5822,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Compos
 -- CV-1..CV-6: pos lhs, bounded, monotone, zero/one specializations.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Convergence
+-- D.6.1 HEART bridge to V8 — eps-pos, m=1, half-step, scaled, pre-recursion.
+-- BR-1..BR-6: bridges HEART recursion to V8 closure shape.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Bridge

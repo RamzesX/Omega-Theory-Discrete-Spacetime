@@ -5838,3 +5838,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Reduct
 -- GI-1..GI-4: 6-source disjunction → recursion + universally bounded.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_GrandIntegration
+-- D.6.1 HEART V8 bridge — 6 substrate-shape variants → recursion shape.
+-- V8B-1..V8B-7: V8 capstone-shape bridges.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_V8Bridge

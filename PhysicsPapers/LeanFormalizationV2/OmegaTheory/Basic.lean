@@ -5750,3 +5750,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer18_DivH
 -- add/mul ordering, transitivity, contradiction.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer19_OrderHelpers
+-- D.6.1 Layer 20 — Finset sum helpers (extended).
+-- Empty/singleton/union sums, sum const, sum monotone.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer20_FinsetSumHelpers

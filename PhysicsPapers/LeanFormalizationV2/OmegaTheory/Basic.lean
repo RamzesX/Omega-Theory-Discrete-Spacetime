@@ -5614,3 +5614,15 @@ import OmegaTheory.Capstones.PiTranscendenceUniformConsequences
 -- paper-headline bundle aggregating all cycle-64 deliverables. Single
 -- citation point for any paper. Lean core only.
 import OmegaTheory.Capstones.Cycle64MasterCapstone
+
+-- (T-3 task #314 — single-thread hand-authored, 2026-04-29)
+-- T-3 PAPER HEADLINE — proton mass from Λ_QCD via empirical k=4.3.
+-- 6-conjunct paper-citable closure over existing ProtonMassFromLambdaQCD
+-- scaffolding. Lean core only.
+import OmegaTheory.Predictions.T3_ProtonMass_PaperHeadline_Complete
+
+-- (SM headlines master — single-thread hand-authored, 2026-04-29)
+-- 🚨🚨🚨🚨 SM PAPER-HEADLINES MASTER CAPSTONE 🚨🚨🚨🚨 — 4-conjunct Yoneda
+-- hub bundling T-1 + T-2 + T-3 + T-6 paper-citable closures into a single
+-- citation point for the SM precision sector. Lean core only.
+import OmegaTheory.Predictions.SM_Headlines_MasterCapstone

@@ -5647,6 +5647,10 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockD_Inte
 -- Bound-collision arithmetic, ε-regime constraints, rpow bridges.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockE_ContradictionCollide
+-- D.7 Block F — V7 capstone scaffolding.
+-- Block A-E foundational integration markers, V7 frontier alias.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockF_V7Capstone
 
 -- (T-5 D.6.1 atom 1 closure work — 2026-04-29)
 -- D.6.1 Layer 0 — real-analytic glue lemmas for the Hindry-Silverman

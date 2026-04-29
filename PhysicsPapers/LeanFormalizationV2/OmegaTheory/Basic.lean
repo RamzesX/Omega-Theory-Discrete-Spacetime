@@ -5734,3 +5734,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer14_AbsH
 -- Real min/max basic properties, ordering, commutativity.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer15_MinMaxHelpers
+-- D.6.1 Layer 16 — arithmetic logic helpers.
+-- ℕ/ℤ/ℝ arithmetic, transitivity, Int absolute value.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer16_LogicHelpers

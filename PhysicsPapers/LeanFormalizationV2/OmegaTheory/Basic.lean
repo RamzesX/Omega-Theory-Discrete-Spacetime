@@ -5661,3 +5661,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer3
 -- Finset partition, average-value pigeonhole, half-sum split.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer4
+-- D.6.1 Layer 5 — recursion structure setup (Θ ≤ 2(Φ + √Φ + √δ) shape).
+-- Recursion bound monotonicity in Φ and δ, sqrt sub-additivity.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer5

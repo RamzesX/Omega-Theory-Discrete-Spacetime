@@ -5782,3 +5782,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer26_Line
 -- ne_of_lt, ne_of_gt, mul_ne_zero, neg_ne_zero.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer27_NeqHelpers
+-- D.6.1 Layer 28 — numeric/norm helpers.
+-- 2 pos, 1/2 pos/lt-one, half-power foundational identities.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer28_NormHelpers

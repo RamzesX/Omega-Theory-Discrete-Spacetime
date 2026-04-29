@@ -5656,6 +5656,10 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockF_V7Ca
 -- absolute-value triangle inequality, |P.eval q| upper bound.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_BlockC_TaylorUpperBound
+-- T-5 PROGRESS MILESTONE 2026-04-29 — paper-citable scaffold-complete.
+-- Master integration alias for D.6.1 8 layers + D.7 6 blocks.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_PROGRESS_MILESTONE_2026_04_29
 
 -- (T-5 D.6.1 atom 1 closure work — 2026-04-29)
 -- D.6.1 Layer 0 — real-analytic glue lemmas for the Hindry-Silverman

@@ -5810,3 +5810,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_AllDis
 -- ST-1..ST-7: strengthened recursion bounds + monotonicity.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Strengthen
+-- D.6.1 HEART multivariate — m-step recursion + combined-source disjunction.
+-- MV-1..MV-7: m-step inductive bound, three-source combination.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_Multivariate

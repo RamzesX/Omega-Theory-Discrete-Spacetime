@@ -55,7 +55,8 @@ open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_MasterCapstone
 open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_IndexReduction
 open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothTheoremClosure
 open OmegaTheory.Irrationality.CustomMath.T5_Heights
-open Real
+open OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndex
+open MvPolynomial Real
 
 /-! ## Block A — Setup: contradiction skeleton + violator extraction -/
 
@@ -224,5 +225,96 @@ theorem T5_failure_extract_mTuple
   have h_unbd : T5_HasUnboundedDenominators (T5_RothViolatingSet α ε) :=
     T5_failure_unboundedDens α hα h_alg ε hε h_fail
   exact h_pigeon α hα ε hε m hm h_unbd
+
+/-! ## Block B — Master unpacking helpers (structural accessors) -/
+
+/-! ### B1 — RothLemmaMaster 5-conjunct accessors -/
+
+/-- **B1a — extract m=1 base** from `RothLemmaMaster`. -/
+theorem T5_master_extract_m1Base
+    (master : RothLemmaMaster) :
+    OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_Base_M1.T5_RothLemma_M1_Base :=
+  master.1
+
+/-- **B1b — extract `mvPolyWronskian` setup** from `RothLemmaMaster`. -/
+theorem T5_master_extract_inductiveSetup
+    (master : RothLemmaMaster) :
+    OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_InductiveSetup.T5_RothLemma_InductiveSetup :=
+  master.2.1
+
+/-- **B1c — extract Wronskian non-vanish statement** from `RothLemmaMaster`. -/
+theorem T5_master_extract_wronskianNonVanish
+    (master : RothLemmaMaster) :
+    OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_WronskianNonVanish.T5_RothLemma_WronskianNonVanish_Statement :=
+  master.2.2.1
+
+/-- **B1d — extract index-reduction statement** from `RothLemmaMaster`.
+
+    This is the Statement form (universal-quantified) of D.6.1.
+    NOTE: D.7's discharge USES this Statement form — D.7 is INDEPENDENT
+    of D.6.1's separate discharge as `T5_RothLemmaIndexReductionDischarge`.
+    So in Block C/D below we will call this accessor and use the
+    inequality directly. -/
+theorem T5_master_extract_indexReduction
+    (master : RothLemmaMaster) :
+    T5_RothLemmaIndexReduction_Statement :=
+  master.2.2.2.1
+
+/-- **B1e — extract Schmidt aux index ≥ m/2 − √(mε) statement** from
+    `RothLemmaMaster`. (Phase 2.4 — already UNCONDITIONAL via
+    `T5_SchmidtAuxIndex_mGe3_Discharge_unconditional`, so this is
+    "free" once master is in hand.) -/
+theorem T5_master_extract_schmidtAuxIndex
+    (master : RothLemmaMaster) :
+    OmegaTheory.Irrationality.CustomMath.T5_Phase7_SchmidtAuxIndexAtAlphaLowerBound.T5_SchmidtAuxIndexAtAlpha_Statement :=
+  master.2.2.2.2
+
+/-! ### B2 — Apply Schmidt aux index Statement at given (α, ε, m) -/
+
+/-- **B2 — extract Schmidt aux poly + index lower bound** at fixed
+    `(α, ε, m)` with `m ≥ m₀`.
+
+    Given `master` and `α` irrational algebraic, `ε > 0`, this returns
+    the threshold `m₀` and the family of aux polys for each `m ≥ m₀`.
+
+    Direct existential-elimination over the Schmidt aux index Statement.
+    Wrapper for cleaner downstream usage in Block C. -/
+theorem T5_master_apply_schmidtAuxIndex_at
+    (master : RothLemmaMaster)
+    (α : ℝ) (hα : Irrational α) (h_alg : IsAlgebraic ℤ α)
+    (ε : ℝ) (hε : 0 < ε) :
+    ∃ (m₀ : ℕ), ∀ (m : ℕ), m₀ ≤ m → 0 < m →
+      ∃ (P : MvPolynomial (Fin m) ℝ) (R : Fin m → ℕ),
+        P ≠ 0 ∧
+        (∀ i : Fin m, MvPolynomial.degreeOf i P ≤ R i) ∧
+        (∀ i : Fin m, 0 < R i) ∧
+        rothIndex P (fun _ => α) R ≥ (m : ℝ) / 2 - Real.sqrt ((m : ℝ) * ε) :=
+  T5_master_extract_schmidtAuxIndex master α hα h_alg ε hε
+
+/-! ### B3 — Apply index-reduction at given (P, R, α, q) with conditions -/
+
+/-- **B3 — apply the index-reduction inequality** at a given
+    Schmidt aux poly `P` with degree-bound function `R`, over real `α`
+    and rational tuple `q : Fin m → ℚ`, when growth + balance hold and
+    we have a lower bound `t` on the rothIndex at `α^m`.
+
+    Uses the index-reduction Statement extracted from `master`.
+    Direct application; the upper-bound output is the upper-bound
+    on rothIndex at `q` form. -/
+theorem T5_master_apply_indexReduction_at
+    (master : RothLemmaMaster)
+    {m : ℕ} (hm : 1 ≤ m)
+    (P : MvPolynomial (Fin m) ℝ) (R : Fin m → ℕ)
+    (α : ℝ) (q : Fin m → ℚ) (ε : ℝ) (t : ℝ)
+    (hP : P ≠ 0) (hε : 0 < ε)
+    (hR_deg : ∀ i, MvPolynomial.degreeOf i P ≤ R i)
+    (hR_pos : ∀ i, 0 < R i)
+    (hq_den_pos : ∀ i, 1 ≤ (q i).den)
+    (h_growth : T5_DenominatorGrowthCondition q ε)
+    (h_balance : T5_DegreeHeightBalanceCondition R q ε)
+    (h_t : rothIndex P (fun _ => α) R ≥ t) :
+    rothIndex P (fun i => ((q i : ℚ) : ℝ)) R ≤ t - Real.sqrt ((m : ℝ) * ε) :=
+  T5_master_extract_indexReduction master hm P R α q ε t hP hε hR_deg hR_pos
+    hq_den_pos h_growth h_balance h_t
 
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAndPigeonhole_Discharge

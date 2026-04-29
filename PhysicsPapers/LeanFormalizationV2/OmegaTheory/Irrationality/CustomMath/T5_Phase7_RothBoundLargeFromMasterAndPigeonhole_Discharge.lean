@@ -1447,6 +1447,120 @@ theorem T5_RothBoundLarge_kthroot_param
     (kthRootNat k n) k hk
     (T5_isAlgebraicOfDegree_kthRootNat k n hk) ε hε hε_pos
 
+/-! ## Block C-alt-20 — k = 6..10 parametric meta-theorems -/
+
+/-- **C-alt-20a — Parametric `⁶√n`**: any n, ε > 4 → per-α bound. -/
+theorem T5_RothBoundLarge_sixthroot_param
+    (n : ℕ) (ε : ℝ) (hε : 4 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 6 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 6 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_sextic _
+    (T5_isAlgebraicOfDegree_kthRootNat 6 n (by norm_num)) ε hε
+
+/-- **C-alt-20b — Parametric `⁷√n`**: any n, ε > 5 → per-α bound. -/
+theorem T5_RothBoundLarge_seventhroot_param
+    (n : ℕ) (ε : ℝ) (hε : 5 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 7 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 7 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_septic _
+    (T5_isAlgebraicOfDegree_kthRootNat 7 n (by norm_num)) ε hε
+
+/-- **C-alt-20c — Parametric `⁸√n`**: any n, ε > 6 → per-α bound. -/
+theorem T5_RothBoundLarge_eighthroot_param
+    (n : ℕ) (ε : ℝ) (hε : 6 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 8 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 8 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_octic _
+    (T5_isAlgebraicOfDegree_kthRootNat 8 n (by norm_num)) ε hε
+
+/-- **C-alt-20d — Parametric `⁹√n`**: any n, ε > 7 → per-α bound. -/
+theorem T5_RothBoundLarge_ninthroot_param
+    (n : ℕ) (ε : ℝ) (hε : 7 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 9 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 9 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_nonic _
+    (T5_isAlgebraicOfDegree_kthRootNat 9 n (by norm_num)) ε hε
+
+/-- **C-alt-20e — Parametric `¹⁰√n`**: any n, ε > 8 → per-α bound. -/
+theorem T5_RothBoundLarge_tenthroot_param
+    (n : ℕ) (ε : ℝ) (hε : 8 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 10 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 10 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_decic _
+    (T5_isAlgebraicOfDegree_kthRootNat 10 n (by norm_num)) ε hε
+
+/-! ## Block C-alt-21 — k = 11..15 parametric meta-theorems -/
+
+/-- **C-alt-21a — Parametric `¹¹√n`**: any n, ε > 9 → per-α bound. -/
+theorem T5_RothBoundLarge_eleventhroot_param
+    (n : ℕ) (ε : ℝ) (hε : 9 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 11 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 11 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_undecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 11 n (by norm_num)) ε hε
+
+/-- **C-alt-21b — Parametric `¹²√n`**: any n, ε > 10 → per-α bound. -/
+theorem T5_RothBoundLarge_twelfthroot_param
+    (n : ℕ) (ε : ℝ) (hε : 10 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 12 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 12 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_dodecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 12 n (by norm_num)) ε hε
+
+/-- **C-alt-21c — Parametric `¹³√n`**: any n, ε > 11 → per-α bound. -/
+theorem T5_RothBoundLarge_thirteenthroot_param
+    (n : ℕ) (ε : ℝ) (hε : 11 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 13 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 13 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_tridecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 13 n (by norm_num)) ε hε
+
+/-- **C-alt-21d — Parametric `¹⁴√n`**: any n, ε > 12 → per-α bound. -/
+theorem T5_RothBoundLarge_fourteenthroot_param
+    (n : ℕ) (ε : ℝ) (hε : 12 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 14 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 14 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_tetradecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 14 n (by norm_num)) ε hε
+
+/-- **C-alt-21e — Parametric `¹⁵√n`**: any n, ε > 13 → per-α bound. -/
+theorem T5_RothBoundLarge_fifteenthroot_param
+    (n : ℕ) (ε : ℝ) (hε : 13 < ε) :
+    ∃ (C₁ : ℝ) (p : Polynomial ℤ),
+      0 < C₁ ∧ p ≠ 0 ∧ Polynomial.aeval (kthRootNat 15 n) p = 0 ∧
+      ∀ (q : ℚ),
+        Polynomial.eval₂ ((Int.castRingHom ℚ)) (q : ℚ) p ≠ 0 →
+        C₁ / ((Rat.naiveHeight q : ℝ) ^ (2 + ε)) ≤ |kthRootNat 15 n - (q : ℝ)| :=
+  T5_RothBoundLarge_per_alpha_pentadecic _
+    (T5_isAlgebraicOfDegree_kthRootNat 15 n (by norm_num)) ε hε
+
 /-! ## Block C-alt-5 — 4-conjunct concrete-degree paper bundle -/
 
 /-- **C-alt-5 — concrete-degree per-α RothBoundLarge BUNDLE**.

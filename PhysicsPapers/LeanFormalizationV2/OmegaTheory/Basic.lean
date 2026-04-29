@@ -5706,3 +5706,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer8
 -- Φ + √Φ + √δ algebra, m=2 base case, distribution lemmas.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer5_HeartFoundation
+-- D.6.1 Layer 9 — Wronskian non-vanishing helpers.
+-- 2x2 determinant arithmetic, 1-variable Wronskian basic identities.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer9_WronskianHelpers

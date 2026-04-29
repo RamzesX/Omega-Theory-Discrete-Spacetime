@@ -5673,3 +5673,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer6
 -- Bound monotonicity, sqrt-mε arithmetic, m=1 statement Prop.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer7
+-- D.6.1 Layer 8 — integration capstone (7-Layer integrity + V8 scaffold).
+-- All-Layer marker integration alias, V8 capstone scaffold completion.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer8

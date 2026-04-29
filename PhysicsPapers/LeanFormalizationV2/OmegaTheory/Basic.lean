@@ -5645,3 +5645,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAn
 -- Roth's-lemma index-reduction inequality. smallEpsBound, log monotonicity,
 -- sqrt positivity, threshold helpers. Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer0
+-- D.6.1 Layer 1 — m=1 (single-variable) base case foundation.
+-- T5_univarIndex abbreviation, root-multiplicity bridges, statement Props.
+-- Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_Layer1

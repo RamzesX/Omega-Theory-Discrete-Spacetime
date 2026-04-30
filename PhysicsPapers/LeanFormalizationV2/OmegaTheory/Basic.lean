@@ -5894,6 +5894,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_Clear
 -- k = (q i).num via q_i.den · (q_i : ℝ) = (q_i.num : ℝ) identity.
 -- Combined with constant case, gives atomic monomial building blocks.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_ClearanceXVariableCase
+-- D.7 atom-2 V7-N2 STEP-5 — Block D PER-POLY LOWER BOUND 2026-04-30.
+-- 3 theorems (PPL-1 per-p lower bound from per-p clearance,
+-- PPL-2 V7-N2 for p=X i, PPL-3 V7-N2 for p=C c) + 3-conjunct headline.
+-- PPL-2 and PPL-3 are CONCRETE V7-N2 conclusions for specific polynomials —
+-- the V7-N2 conclusion is now PROVABLE for X i and C c.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_PerPolyLowerBound
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

@@ -6118,3 +6118,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_FullClosureTree
 
 -- SM-1 partial discharge: factor through Siegel-existence + α-index-lower-bound.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SM1_PartialDischarge
+
+-- SM-2 partial discharge: factor through R-aware q_seq construction.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SM2_PartialDischarge

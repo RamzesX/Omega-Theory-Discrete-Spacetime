@@ -6136,3 +6136,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_DLP1_Discharge
 
 -- δ → 0 limit FULL CLOSURE (DLP-1' + DLP-2 unconditional → relaxed → strict).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_DLP_FullClosure
+
+-- V8-atom-1 STRICT closure: SJWC-1 + UWF-2 ⇒ V8-atom-1 strict UNCONDITIONAL.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8AtomOne_StrictClosure

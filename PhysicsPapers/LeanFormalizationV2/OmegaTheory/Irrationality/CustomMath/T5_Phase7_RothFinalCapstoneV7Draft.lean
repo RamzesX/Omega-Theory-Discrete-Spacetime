@@ -134,6 +134,50 @@ def T5_NAMED_BlockE_bounds_collide : Prop :=
     (∀ d ∈ D_set, 0 < d → 1 / d ≤ C_upper * d ^ (-κ)) →
     False
 
+/-! ## V7-D-N3-LOCAL — Local single-d Block E real-arithmetic contradiction -/
+
+/-- **V7-D-N3-LOCAL — `T5_BlockE_local_arithmetic_contradiction`**: tractable
+    SINGLE-d version of the Block E contradiction.
+
+    Given x > 0, C > 0, κ > 1, AND simultaneously:
+    - 1/x ≤ C · x^{-κ}  (the main constraint)
+    - C < x^{κ-1}        (the contradiction trigger — x large enough)
+    derive False.
+
+    Proof: multiply the constraint by x^κ (positive) to get
+    x^{κ-1} ≤ C.  This contradicts the trigger x^{κ-1} > C via linarith.
+
+    This is the LOCAL/SINGLE-d version that simplifies the unbounded-set
+    formulation to ONE pair (x, C, κ) at a time.  The full V7-N3 needs to
+    pick x large from the unbounded set; this lemma handles the per-x
+    contradiction. -/
+theorem T5_BlockE_local_arithmetic_contradiction
+    (x C κ : ℝ) (hx : 0 < x) (hC : 0 < C) (hκ : 1 < κ)
+    (h_constraint : 1 / x ≤ C * x ^ (-κ))
+    (h_excess : C < x ^ (κ - 1)) :
+    False := by
+  -- Multiply both sides by x^κ to derive x^{κ-1} ≤ C.
+  have h_x_pow_pos : 0 < x ^ κ := Real.rpow_pos_of_pos hx κ
+  have h_mul : x ^ κ * (1 / x) ≤ x ^ κ * (C * x ^ (-κ)) :=
+    mul_le_mul_of_nonneg_left h_constraint (le_of_lt h_x_pow_pos)
+  -- Simplify LHS: x^κ * (1/x) = x^κ * x^{-1} = x^{κ-1}
+  have h_lhs : x ^ κ * (1 / x) = x ^ (κ - 1) := by
+    have h_inv : (1 / x) = x ^ (-1 : ℝ) := by
+      rw [Real.rpow_neg_one, one_div]
+    rw [h_inv, ← Real.rpow_add hx]
+    ring_nf
+  -- Simplify RHS: x^κ * (C * x^{-κ}) = C * (x^κ * x^{-κ}) = C * 1 = C
+  have h_rhs : x ^ κ * (C * x ^ (-κ)) = C := by
+    rw [show x ^ κ * (C * x ^ (-κ)) = C * (x ^ κ * x ^ (-κ)) by ring]
+    rw [← Real.rpow_add hx]
+    rw [show κ + (-κ) = 0 by ring]
+    rw [Real.rpow_zero]
+    ring
+  rw [h_lhs, h_rhs] at h_mul
+  -- h_mul : x ^ (κ - 1) ≤ C
+  -- h_excess : C < x ^ (κ - 1)
+  linarith
+
 /-! ## V7-T1 — V7 capstone DRAFT type signature -/
 
 /-- **V7-T1 — `T5_atom2_V7_capstone_target_signature`**: SIGNATURE of the

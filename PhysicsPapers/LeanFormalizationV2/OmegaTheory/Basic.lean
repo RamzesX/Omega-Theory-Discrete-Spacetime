@@ -5885,6 +5885,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_Integ
 -- multivariate integer non-vanishing, V7-N3 Block E real-arithmetic
 -- contradiction) + V7 capstone target SIGNATURE.  Each NAMED Prop has
 -- real content with explicit quantifier structure + concrete discharge
--- plan in docstrings.  This file is the ROADMAP for atom-2 closure
--- (next-fire targets).  4-conjunct headline.  Lean core only.
+-- plan in docstrings.  V7-N3 NOW UNCONDITIONALLY DISCHARGED 2026-04-30.
+-- 4-conjunct headline.  Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7Draft
+-- D.7 Block D Integer-Cast Abs Helpers.
+-- Tier-99 stepping stones for V7-N2 multivariate integer non-vanishing
+-- lower bound: |z : ℝ| ≥ 1 fact when z is the cast of a non-zero integer.
+-- 3 sub-lemmas + 3-conjunct headline.  Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_IntCastAbsHelpers

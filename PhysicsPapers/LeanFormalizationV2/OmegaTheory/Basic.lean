@@ -5865,6 +5865,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_Hygi
 -- Block D analytical (multivariate Taylor) + Block E contradiction.
 -- 2 composition theorems + 2-conjunct headline.  Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_IndexAtQTupleBound
+-- D.7 atom-2 V7-N1 STEP-1 — Block C VIOLATOR CONDITION EXPANSION 2026-04-30.
+-- 9 sub-lemmas (VC-1..VC-9) + 2 paper-citable headlines (natpow + rpow forms).
+-- Foundational sub-foundation for V7-N1 multivariate Taylor upper bound.
+-- Per-index + tuple-aggregate violator |q-α|^j ≤ q.den^{-(2+ε)·j} bounds.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_ViolatorConditionExpansion
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

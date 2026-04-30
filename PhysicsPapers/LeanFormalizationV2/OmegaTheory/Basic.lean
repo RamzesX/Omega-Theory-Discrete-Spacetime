@@ -6142,3 +6142,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8AtomOne_StrictClosure
 
 -- V8 paper headline V8 STRICT path: end-to-end 6-NAMED architecture.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_PaperHeadline_StrictPath
+
+-- V8 closure counters: real Nat bookkeeping documenting progress.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_ClosureCounters

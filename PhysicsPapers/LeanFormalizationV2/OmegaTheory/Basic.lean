@@ -5906,6 +5906,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_PerPo
 -- MvPolynomial.degreeOf_C_mul (requires nonZeroDivisors) + DCX-1.
 -- Witness k = c * (q i).num.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_ClearanceCMulXCase
+-- D.7 atom-2 V7-N2 STEP-7 — Block D CLEARANCE GENERAL MONOMIAL 2026-04-30.
+-- 2 theorems (DCM-1 product identity, DCM-2 general monomial clearance)
+-- + 2-conjunct headline.  GENERAL MONOMIAL CASE — subsumes DCC + DCX + DCMX.
+-- Witness k = c · ∏ j, (q j).num^(d j) for p = monomial d c.
+-- Combined with sum-of-monomials decomposition gives full DC-1 discharge.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_ClearanceMonomialCase
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

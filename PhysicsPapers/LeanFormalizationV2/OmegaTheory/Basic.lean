@@ -6154,3 +6154,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_ConcreteEpsilonThreshol
 
 -- V8 session summary capstone: paper-citable bundle of all session closures.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_SessionSummaryCapstone
+
+-- V8 strict paper headline architecture from 6 NAMEDs (memo capstone).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_StrictPaperHeadline_FromSixNAMEDs

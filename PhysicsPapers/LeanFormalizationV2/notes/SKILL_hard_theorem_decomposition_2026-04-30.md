@@ -876,6 +876,172 @@ aux index (Phase 2.4) were already unconditional.
 
 ---
 
+## Mathlib gap audit per V8 leaf (analyst H6, 2026-04-30)
+
+The "Mathlib-blocked" framing is empirically WRONG. Per analyst audit
+of the 5 V8 NAMED leaves:
+
+| Leaf | Mathlib status | Classification |
+|------|----------------|----------------|
+| **Leaf 1 (multivariate Taylor coefficient formula)** | parts present (`pderiv_*` in `MvPolynomial.PDeriv`, Euler identity in `EulerIdentity`); ~50–100 line wrapper to compute `(pderiv^α f)(x)/α!` | REAL PORT |
+| **Leaf 1+2 (multivariate Cauchy-Schwarz)** | `Emergence.finset_complex_cauchy_schwarz` already in OV2 at sim 0.883 | **ZERO PORT — direct reuse** |
+| **Leaf 1+2 (pigeonhole on Taylor offsets)** | `Finset.exists_ne_map_eq_of_card_lt_of_maps_to` + standard pigeonhole well-stocked; ~30-line wrapper | CONNECTION LEMMA |
+| **Leaf 3 (SiegelsLemma + restrictDegree)** | both in `Mathlib.NumberTheory.SiegelsLemma` and `Mathlib.RingTheory.MvPolynomial.Basic`; ~30-line bridge | CONNECTION LEMMA |
+| **Leaf 5 (continuity of aeval)** | `continuous_aeval` in `MvPowerSeries.Evaluation` + `aeval_continuousMap_apply` in `ContinuousMap.Polynomial` | **ZERO PORT — direct use** |
+
+**Conclusion**: 2/5 leaves require ZERO porting; 2/5 are connection-lemma
+wrappers (~30 lines each); only 1/5 (multivariate-Taylor coefficient
+wrapper) requires real Mathlib-extension work.
+
+The Mathlib-blocked label is wrong by default. Run `omega_hammer_premise`
++ `lean_loogle` on the leaf goal BEFORE concluding "we need to port X."
+
+---
+
+## Cypher cookbook (appendix)
+
+All queries verified live against the OV2 graph 2026-04-30.
+
+**Q1 — Tier-99 anchors (in-degree leaderboard)**:
+
+```cypher
+MATCH (t:Theorem {namespace: 'OmegaTheoryV2'})<-[r:APPLIES]-(src)
+WITH t, count(r) AS indegree, count(DISTINCT src.file) AS distinct_caller_files
+WHERE indegree >= 30
+RETURN t.name AS name, indegree, distinct_caller_files, t.file AS file
+ORDER BY indegree DESC LIMIT 25
+```
+
+**Q2 — Articulation gateways**:
+
+```cypher
+MATCH (t:Theorem {namespace: 'OmegaTheoryV2'})
+OPTIONAL MATCH (t)<-[:APPLIES]-() WITH t, count(*) AS indeg
+OPTIONAL MATCH (t)-[:APPLIES]->() WITH t, indeg, count(*) AS outdeg
+WHERE indeg >= 5 AND outdeg >= 5
+RETURN t.name, indeg, outdeg, indeg+outdeg AS total
+ORDER BY total DESC LIMIT 20
+```
+
+**Q3 — Top capstones by outdeg**:
+
+```cypher
+MATCH (t:Theorem {namespace: 'OmegaTheoryV2'})
+WHERE t.name CONTAINS 'capstone' OR t.name CONTAINS 'paper_bundle'
+   OR t.name CONTAINS 'unconditional' OR t.name CONTAINS 'paper_headline'
+OPTIONAL MATCH (t)-[r:APPLIES]->()
+WITH t.name AS name, count(r) AS outdeg, t.file AS file WHERE outdeg >= 5
+RETURN name, outdeg, file ORDER BY outdeg DESC LIMIT 20
+```
+
+**Q4 — Edge-type distribution** (smoke test for graph health):
+
+```cypher
+MATCH (a:Theorem {namespace: 'OmegaTheoryV2'})-[r]->(b)
+WHERE b:Theorem OR b:Definition OR b:Axiom OR b:Structure
+RETURN type(r) AS edge_type, count(*) AS count ORDER BY count DESC
+```
+
+**Q5 — Yoneda bridges per file (decomposition norm-check)**:
+
+```cypher
+MATCH (b:Theorem {namespace: 'OmegaTheoryV2'})
+WHERE b.name =~ '.*[Bb]ridge.*'
+WITH b.file AS file, count(b) AS bridges_per_file
+WHERE bridges_per_file >= 3
+RETURN file, bridges_per_file ORDER BY bridges_per_file DESC LIMIT 20
+```
+
+**Q6 — Subsystem coverage (Leiden)**:
+
+```cypher
+MATCH (sub:SubsystemNavigator {namespace: 'OmegaTheoryV2'})-[:CONTAINS]->(t:Theorem)
+WITH sub, count(t) AS members WHERE members >= 50
+RETURN sub.subsystem_id, sub.name, members ORDER BY members DESC LIMIT 25
+```
+
+**Q7 — Ancestor anchors of a target capstone (transitive APPLIES out)**:
+
+```cypher
+MATCH (capstone:Theorem {namespace: 'OmegaTheoryV2', name: $capstone_name})
+MATCH (capstone)-[:APPLIES*1..3]->(leaf:Theorem)
+WITH leaf, count(*) AS depth_count
+RETURN leaf.name, depth_count, leaf.file ORDER BY depth_count DESC LIMIT 30
+```
+
+**Q8 — Mathlib gap probe**:
+
+```cypher
+MATCH (t:Theorem {namespace: 'Mathlib'})
+WHERE t.file CONTAINS 'SiegelsLemma' OR t.name CONTAINS 'restrictDegree'
+RETURN t.name, t.file LIMIT 20
+```
+
+---
+
+## Aggregate decomposition heuristic (full synthesis)
+
+Given a NEW theorem statement `T` to decompose:
+
+1. **Identify Tier-99 anchors**: which of `c_pos`, `l_P_pos`, `pi_error_pos`,
+   `computationalUncertainty_pos`, `hbar_pos`, etc. does `T` need? Discharge
+   first via `have := <anchor>; positivity`.
+2. **Search articulation gateways**: query `find_similar(T_seed, k=10,
+   namespace='OmegaTheoryV2')`. If the cluster includes a known articulation
+   gateway (indeg ≥ 5 AND outdeg ≥ 100), route `T` through it; do NOT bypass.
+3. **Compute Mathlib gap**: for each NAMED leaf, run `omega_hammer_premise(
+   leaf_goal, top_k=10, mix_mathlib=True)`. If top-3 are OV2 hits at
+   sim > 0.85, leaf is in-house-discharged. If top-3 are Mathlib hits at
+   sim > 0.85, port directly. Otherwise leaf is a CONNECTION LEMMA needing
+   a hand-written ~30-line bridge.
+4. **Truth-rank Hindry-Silverman**: leaves where omega_hammer's #1 hit ≥
+   0.90 sim are Tier-99. Leaves at 0.80–0.90 are Tier-80. Leaves below
+   0.80 are Tier-Heart.
+5. **Outdeg-target check**: capstone 50–180, analytical workhorse 200–650
+   (Heuristic 5). Far more leaves than target ⇒ over-decomposing,
+   consolidate. Far fewer ⇒ hiding work, further decompose.
+6. **Yoneda bridges post-landing**: `find_similar(T, k=10, namespace='OmegaTheoryV2')`;
+   for each result with sim ≥ 0.91, write a small forwarding bridge
+   (outdeg 5–15). Write 8–22 such bridges in a single
+   `<TopicName>Bridge.lean` companion file with one outdeg-50+ aggregator.
+   Adds 50–300 APPLIES per landing.
+7. **Verify**: `axiom_audit` returns `[propext, Classical.choice, Quot.sound]`
+   only. `find_similar(T)` shows ≥ 1 result at sim ≥ 0.92 (proves new
+   theorem joined an existing cluster). If isolated, decomposition was
+   insufficiently grounded.
+
+---
+
+## Modern Lean SOTA roster (consensus is YOU)
+
+The 5-PHASE HYBRID pattern matches every modern Lean theorem-prover system:
+
+| System | Year | Decomposition shape | Bench |
+|--------|------|--------------------|-------|
+| **MA-LoT** (Multi-Agent Lean-of-Thought) | 2025-03 | Prover + Corrector + Lean executor; long-CoT across agents | 61.07% MiniF2F-Test |
+| **Ax-Prover** (Anthropic Claude Code MCP) | 2025-10 | LLM analyzes theorems, proposes sketches, generates Lean step-by-step; abstract algebra + quantum physics scope | — |
+| **DeepSeek-Prover-V2** (671B) | 2025-04 | Cold-start RL via subgoal decomposition; sketches in Lean 4; subgoal-theorem types | 88.9% MiniF2F-test |
+| **Goedel-Prover-V2** (8B/32B) | 2025-08 | Train statement formalizers on 1.64M Lean 4 statements | 88.1–90.4% MiniF2F |
+| **Aristotle** (Harmonic) | 2025-10 | Lean MCGS + lemma-based informal reasoning + geometry solver | 5/6 IMO 2025 (verified Lean) |
+| **Prover Agent** | 2025-06 | Coordinates informal LLM + formal prover + Lean feedback; generates auxiliary lemmas | 88.1% MiniF2F |
+| **DSP** (Draft, Sketch, Prove) | 2022 | NL → formal skeleton → hammer/automated discharge | — |
+| **Hilbert** | 2025-09 | Recursive decomposition; orchestrates DeepSeek-7B + Goedel-32B | — |
+| **Mechanic** (Sorrifier) | 2025 | `sorry` placeholder isolates unresolved subgoals while preserving verified surrounding | same shape as Hindry-Silverman Roth |
+| **Delta Prover** | 2025 | Reflective decomposition + revision after failed decompositions | 95.9% MiniF2F-test |
+| **BFS-Prover-V2** | 2025 | Hierarchical multi-agent search | 95.08% MiniF2F |
+| **Seed-Prover** | 2025 | "Sketch model" generates lemma-based Lean sketches; agentic prover solves sub-problems in parallel | — |
+
+**Pattern**: every SOTA system converges on **sketch + named-lemma
+decomposition + automated discharge per sub-lemma + reflection on
+failure**. This is exactly the 5-PHASE HYBRID.
+
+OV2 is the long-form depth-first counterpart: T-4 retired single-day
+14-files; T-5 V8 closure 5 NAMED leaves architectural milestone hit
+2026-04-30. The same skeleton, executed at paper-grade depth on a single
+multi-headlined formalization corpus.
+
+---
+
 ## Cross-references
 
 - `~/.claude/CLAUDE.md` BOOK_I — Erdős Primarch v8.0 IDENTITY +
@@ -916,39 +1082,127 @@ aux index (Phase 2.4) were already unconditional.
 
 ## Sources cited
 
-1. Pólya, G. *How to Solve It* (1945).
-   <https://en.wikipedia.org/wiki/How_to_Solve_It>
-2. Tao, T. (2025). 5 tips + Think Ahead methodology — modern frontier
-   strategy: "If proven, this would be used to…" / "Working backward
-   from the goal…"
-3. Hindry, M. & Silverman, J. *Diophantine Geometry* (2000), §D Roth's
-   theorem decomposition: Aux Poly + Index Is Large + Index Is Small.
-   <https://link.springer.com/book/10.1007/978-1-4612-1210-2>
-4. Schmidt, W.M. *Diophantine Approximation* (1980) — subspace theorem,
-   simultaneous Diophantine approximation, auxiliary polynomial.
-5. Niven, I. *Irrational Numbers* (1956) — irrationality + transcendence
-   methods (T-4 method, π retired 2026-04-27).
-6. Lindemann–Weierstrass (1882, 1885) — transcendence of e and π
+### Classical (1945–2000)
+
+1. Pólya, G. *How to Solve It* (1945, Princeton). 4-step framework
+   + heuristics dictionary. <https://en.wikipedia.org/wiki/How_to_Solve_It>
+   PDF: <https://www.hlevkin.com/hlevkin/90MathPhysBioBooks/Math/Polya/George_Polya_How%20to%20Solve%20It.pdf>
+2. Heuristic of Pólya and AI (DTIC). <https://apps.dtic.mil/sti/tr/pdf/ADA106557.pdf>
+3. Cassels, J.W.S. *An Introduction to Diophantine Approximation*
+   (Cambridge 1957). Roth's lemma by induction on number of variables.
+   <https://projecteuclid.org/euclid.bams/1183522285>
+4. Niven, I. *Irrational Numbers* (1956). Irrationality + transcendence
+   methods (T-4 π retired 2026-04-27).
+5. Lindemann–Weierstrass (1882, 1885). Transcendence of e and π
    (T-4 port, 14 files / ~3000 lines, single day).
-7. Fikhtenholz, G.M. *Course of Differential and Integral Calculus*
-   (1947) — bottom-up rigorous, concrete examples, knows the destination.
-8. Lean Prover team. *Theorem Proving in Lean 4* — top-down `sorry`-
-   placeholder strategy, adapted to NO STUBS via NAMED Props.
-   <https://leanprover.github.io/theorem_proving_in_lean4/>
-9. Mathlib Community. Mathlib v4.29.0 — modern Lean 4 frontier proof
-   culture (Buzzard, Macbeth, Carneiro, Dillies).
-10. Anthropic (2026). Multi-Agent Research, Effective harnesses for
-    long-running agents, Effective context engineering for AI agents,
-    Advanced tool use.
-    <https://www.anthropic.com/engineering>
-11. Wang, R. et al. *MA-LoT: Multi-Agent Lean-of-Thought* (March 2026,
-    arXiv 2503.03205). First multi-agent framework for Lean 4.
-12. *Ax-Prover* (Oct 2026, arXiv 2510.12787v2). Multi-agent for Lean
-    using MCP autonomously, mathematics + quantum physics scope.
-13. Wikipedia — Roth's theorem.
+6. Schmidt, W.M. *Diophantine Approximation* (1980). Subspace theorem,
+   simultaneous Diophantine approximation, auxiliary polynomial.
+7. Bourbaki, N. (1935+). Top-down general-to-particular axiomatic style.
+   <https://en.wikipedia.org/wiki/Nicolas_Bourbaki>;
+   <https://notes.math.ca/en/article/bourbaki-structuralism-and-categories/>
+8. Fikhtenholz, G.M. *Course of Differential and Integral Calculus*
+   (1947, USSR). Bottom-up rigorous, concrete examples, always
+   knows the destination.
+9. Hindry, M. & Silverman, J. *Diophantine Geometry* (Springer GTM 201,
+   2000). Roth via "Aux Poly + Index Is Large + Index Is Small +
+   Completion" — gold-standard top-down named-lemma proof.
+   <https://link.springer.com/book/10.1007/978-1-4612-1210-2>;
+   <https://www.ams.org/journals/bull/2001-38-03/S0273-0979-01-00907-7/S0273-0979-01-00907-7.pdf>
+
+### Modern (2006–2024)
+
+10. Bombieri, E. & Gubler, W. *Heights in Diophantine Geometry*
+    (Cambridge 2006). Schmidt's subspace theorem (Ch. 7) via
+    auxiliary-polynomial framework.
+    <https://www.cambridge.org/core/books/heights-in-diophantine-geometry/4117673141D14050628601C428E8748D/listing>
+11. Tao, T. *5 tips for mathematical problem-solving* (MasterClass).
+    <https://www.masterclass.com/articles/mathematical-problem-solving>
+12. Tao, T. *Think Ahead* (career advice).
+    <https://terrytao.wordpress.com/career-advice/think-ahead/>
+13. Tao, T. *Create lemmas* (advice on writing papers).
+    <https://terrytao.wordpress.com/advice-on-writing-papers/create-lemmas/>
+14. Tao, T. *245A problem-solving strategies* (2010).
+    <https://terrytao.wordpress.com/2010/10/21/245a-problem-solving-strategies/>
+15. Polymath Project. Massively-collaborative model showing modular
+    decomposition into named pieces enables crowd-sourcing.
+    <https://polymathprojects.org/>
+16. Lean Prover team. *Theorem Proving in Lean 4*.
+    <https://leanprover.github.io/theorem_proving_in_lean4/>
+17. Mathlib Community. *Naming conventions*, *Style*.
+    <https://leanprover-community.github.io/contribute/naming.html>;
+    <https://leanprover-community.github.io/contribute/style.html>
+
+### Frontier Lean systems (2022–2026)
+
+18. *Draft, Sketch, Prove* (DSP). NL draft → formal sketch → automated
+    prove. arXiv 2210.12283. <https://arxiv.org/abs/2210.12283>
+19. *LeanDojo / ReProver*. ByT5 retrieval-augmented Lean proving.
+    arXiv 2306.15626. <https://leandojo.org/leandojo.html>;
+    <https://ar5iv.labs.arxiv.org/html/2306.15626>
+20. *MA-LoT: Multi-Agent Lean-of-Thought*. arXiv 2503.03205.
+    <https://arxiv.org/abs/2503.03205>. 61.07% MiniF2F-Test.
+21. *DeepSeek-Prover-V2*. arXiv 2504.21801.
+    <https://arxiv.org/abs/2504.21801>. 88.9% MiniF2F-test.
+22. *Prover Agent*. arXiv 2506.19923.
+    <https://arxiv.org/abs/2506.19923>. 88.1% MiniF2F.
+23. *Goedel-Prover-V2* (8B/32B). arXiv 2508.03613.
+    <https://arxiv.org/pdf/2508.03613>. 88.1–90.4% MiniF2F.
+24. *Hilbert*. Recursive decomposition + multi-prover orchestration.
+    arXiv 2509.22819. <https://arxiv.org/pdf/2509.22819>.
+25. *Aristotle* (Harmonic). Lean MCGS + lemma-based informal reasoning
+    + geometry. arXiv 2510.01346. <https://arxiv.org/abs/2510.01346>.
+    5/6 IMO 2025 (verified Lean).
+26. *Ax-Prover*. Anthropic Claude Code MCP-based Lean prover (Sonnet 4
+    in experiments). arXiv 2510.12787v2.
+    <https://arxiv.org/abs/2510.12787v2>.
+27. *Mechanic* (Sorrifier). `sorry`-placeholder isolates unresolved
+    subgoals while preserving verified surrounding structure.
+    arXiv 2603.24465. <https://arxiv.org/html/2603.24465>.
+28. *Delta Prover, BFS-Prover-V2, Seed-Prover* (2025). Reflective
+    decomposition / hierarchical multi-agent / sketch-and-solve.
+    Delta Prover: 95.9% MiniF2F-test SOTA.
+29. *Vojta — Diophantine approximation and the subspace theorem* (2025).
+    arXiv 2502.00731v1. <https://arxiv.org/html/2502.00731v1>
+
+### Industrial proof engineering
+
+30. *SMTCoq*. Coq plugin reconstructing veriT/Z3/CVC4 proofs.
+    Coq 98.6% / Isabelle/HOL 88% reconstruction rates.
+    <https://www-sop.inria.fr/marelle/Laurent.Thery/pub1.pdf>
+31. *Sledgehammer for Isabelle/HOL*. Combines interactive prover with
+    SMT automation.
+    <https://www.tcs.ifi.lmu.de/staff/jasmin-blanchette/frocos2011-dis-proof.pdf>
+32. *CVC5*. Versatile industrial-strength SMT solver.
+    <https://www-cs.stanford.edu/~preiner/publications/2022/BarbosaBBKLMMMN-TACAS22.pdf>
+
+### Anthropic AI-agent research
+
+33. *Multi-agent research system* (Anthropic 2026). 90.2% lift on
+    breadth-first; depth-first single-thread for tightly-coupled.
+    <https://www.anthropic.com/engineering/multi-agent-research-system>
+34. *Effective harnesses for long-running agents* (Anthropic 2026-04).
+    Context resets + structured handoff artifacts beat naive compaction.
+    <https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents>
+35. *Effective context engineering for AI agents* (Anthropic 2026).
+    <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
+36. *Advanced tool use / Programmatic Tool Calling* (Anthropic 2026).
+    Multi-tool-per-message in single block.
+    <https://www.anthropic.com/engineering/advanced-tool-use>
+37. *Claude Code Routines*. Cloud-cron scheduled Claude Code sessions.
+    <https://code.claude.com/docs/en/scheduled-tasks>
+38. Anthropic 2026 Agentic Coding Trends Report.
+    <https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf>
+
+### Reference
+
+39. Wikipedia — *Roth's theorem*.
     <https://en.wikipedia.org/wiki/Roth's_theorem>
-14. Wikipedia — Divide-and-conquer algorithm.
+40. Wikipedia — *Divide-and-conquer algorithm*.
     <https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm>
+41. Wikipedia — *Lemma (mathematics)*.
+    <https://en.wikipedia.org/wiki/Lemma_(mathematics)>
+42. *Dependency Graphs for Interactive Theorem Provers*.
+    <https://www.researchgate.net/publication/2396953_Dependency_Graphs_for_Interactive_Theorem_Provers>
 
 ---
 

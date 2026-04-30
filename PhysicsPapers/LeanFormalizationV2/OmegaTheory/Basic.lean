@@ -5882,6 +5882,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_Multi
 -- + 2-conjunct headline.  Significant V7-N2 progress: the lower-bound
 -- argument is HANDLED HERE; next-fire work is JUST clearance discharge.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_MultivariateClearanceComposition
+-- D.7 atom-2 V7-N2 STEP-3 — Block D CLEARANCE CONSTANT CASE 2026-04-30.
+-- 2 sub-lemmas (DCC-1 constant, DCC-2 zero) + 2-conjunct headline.
+-- Concrete worked example: DC-1 (multivariate clearance) discharged
+-- for p = MvPolynomial.C c (k = c) and p = 0 (k = 0).  Sanity check
+-- that the NAMED clearance hypothesis is provable for simple cases.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_ClearanceConstantCase
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

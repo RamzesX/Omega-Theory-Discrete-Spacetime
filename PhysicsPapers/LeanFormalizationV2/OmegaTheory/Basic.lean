@@ -5987,6 +5987,14 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemmaD61_V8Decompositi
 -- T5FCS-3 decomposition tree headline.
 -- Documents complete T-5 path: 10 leaf NAMED Props (4+5+1) → V7 + V8.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalClosureStatusSnapshot
+-- D.7 + D.6.1 LEAF NAMED PROPS DISCHARGES 2026-04-30.
+-- BlockAB-D1 discharge file (Block A unbounded extraction).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_D1Discharge
+-- ALL LEAF NAMED PROPS DISCHARGES BUNDLE — 6 of 10 leaves discharged:
+-- BlockAB-D1, V7N1U-D2, BlockAB-D2, BlockAB-D3, V7N1U-D3, V7N1U-D4.
+-- Remaining 4 multi-step: V7N1U-D1 (κ algebra), BlockAB-D4 (iterative),
+-- BlockAB-D5 (master composition), V8-D5 (HEART lift, multi-day).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLeafNAMEDProps_AllDischarges
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

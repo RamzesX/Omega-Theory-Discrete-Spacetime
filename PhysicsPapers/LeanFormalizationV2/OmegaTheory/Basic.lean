@@ -6163,3 +6163,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_PartialDischarge
 
 -- V8-atom-1 strict closure → OG D.6.1 statement (constrained-ε bridge).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8AtomOne_to_OG_NAMED
+
+-- Constrained smallJ NAMED Prop (ε ≤ m³/16 form).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_ConstrainedSmallJ_NAMED

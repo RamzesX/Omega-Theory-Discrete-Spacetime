@@ -1,8 +1,8 @@
 # T4 — MCP Tools Wave (8 new)
 
-**Status**: 1/8 LIVE (`tactic_continuation`) | **Effort**: 2 days, ~250 lines Python total
+**Status**: 5/8 LIVE | **Effort**: 2 days, ~250 lines Python total
 **Depends on**: T2 Qwen3 goal-endpoint (✓ T4.2.a; LIVE via existing `retrieve_premises`), T1.3 ProofStep nodes (T4.2.b)
-**Server source**: `/home/norbert/services/omega_search_mcp.py` (omega-search) + omega-orchestrator (TBD)
+**Server source**: `/home/norbert/services/omega_search_mcp.py` (omega-search) + `/home/norbert/omega_orchestrator_mcp/` (omega-orchestrator)
 
 ## T4.1 — omega-orchestrator: 5 new tools (~150 lines)
 
@@ -11,10 +11,10 @@ Each is a Cypher-recipe wrapper. Recipes already exist in `V3-for-Lean/proof_hun
 | Tool | Method | Returns | Status |
 |---|---|---|---|
 | `propose_conjecture(seed, k=10)` | M3 + M4 (analogy + Mendeleev) | top-K `:TheoremCandidate` with provenance | TODO |
-| `find_missing_edges(target, k=10)` | M2 Adamic-Adar | top-K candidate APPLIES edges | TODO |
-| `find_keystones(k=20)` | M13 articulation points | definitive SPOFs | TODO |
-| `find_iff_cycles()` | M12 SCC in APPLIES DAG | latent iff-equivalences | TODO |
-| `find_bridge_lemmas(threshold=-0.9)` | M6 negative-Ricci | bridge candidates | TODO |
+| `find_missing_edges(seed, k=10)` | M2 Adamic-Adar | top-K candidate APPLIES edges | ✓ LIVE 2026-05-01 |
+| `find_keystones(k=20)` | M13 (pagerank × indegree proxy) | top-K SPOFs | ✓ LIVE 2026-05-01 |
+| `find_iff_cycles(limit=50)` | M12 (length-2 SCC) | latent iff-equivalences | ✓ LIVE 2026-05-01 |
+| `find_bridge_lemmas(min_span=3, k=20)` | M6 (community-span proxy) | bridge candidates | ✓ LIVE 2026-05-01 |
 
 ## T4.2 — omega-search: 3 new tools (~100 lines)
 
@@ -35,7 +35,16 @@ tool_tactic_continuation({'prefix': ['linarith', 'ring'], 'namespace': 'OmegaThe
 
 Backed by `Theorem.tactic_evidence` set via `~/lean-v2/.neo4j/set_tactic_evidence.cypher` (T1.2).
 
+## Smoke tests (2026-05-01)
+
+| Tool | Sample call | Result |
+|---|---|---|
+| `find_keystones(k=3)` | top-3 OV2 keystones | l_P_pos (225.98), c_pos (160.03), hbar_pos (93.96) |
+| `find_iff_cycles(limit=5)` | length-2 cycles | 0 found (healthy DAG) |
+| `find_bridge_lemmas(min_span=4, k=3)` | bridges spanning ≥4 communities | 5-span: P2/Gienah waves |
+| `find_missing_edges(seed='OmegaTheory.Irrationality.computationalUncertainty_pos', k=3)` | Adamic-Adar | top: electronMassScaleBound_pos (AA=3.92, common=34) |
+
 ## Verification
 
 `tactic_continuation` returns expected schema (verified 2026-04-30).
-omega-orchestrator tool source: TBD — needs `find /home/norbert -maxdepth 5 -name "*orchestrator*"`.
+T4.1 4-tool batch end-to-end verified 2026-05-01 (see code/orchestrator_t41_excerpt.py).

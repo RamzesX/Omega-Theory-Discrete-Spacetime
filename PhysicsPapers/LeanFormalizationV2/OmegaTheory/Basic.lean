@@ -6103,3 +6103,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UniversalWitnessFactoring
 
 -- UWF-3 UNCONDITIONALLY DISCHARGED (shiftPoly preserves nonzero via funext).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF3_Discharge
+
+-- UWF-1 UNCONDITIONALLY DISCHARGED (translation invariance via Phase 6).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF1_Discharge

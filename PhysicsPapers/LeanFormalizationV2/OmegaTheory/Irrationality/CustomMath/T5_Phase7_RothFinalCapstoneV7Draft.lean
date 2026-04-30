@@ -268,6 +268,59 @@ theorem T5_V7_target_postN3_implies_full
   intros _hN1 _hN2 _hN3 master h_pigeon
   exact h _hN1 _hN2 master h_pigeon
 
+/-! ## V7-D-N3-applied — Direct V7-N3 unconditional check theorem -/
+
+/-- **V7-D-N3-applied — `T5_BlockE_unconditional_check`**: USAGE example
+    showing how the discharged V7-N3 applies to derive False for any
+    (C, κ, unbounded D-set, constraint) instance.
+
+    Pure forwarding from `T5_NAMED_BlockE_bounds_collide_unconditional`. -/
+theorem T5_BlockE_unconditional_check
+    (C : ℝ) (hC : 0 < C) (κ : ℝ) (hκ : 1 < κ)
+    (D_set : Set ℝ)
+    (h_unbounded : ∀ M : ℝ, ∃ d ∈ D_set, M < d)
+    (h_constraint : ∀ d ∈ D_set, 0 < d → 1 / d ≤ C * d ^ (-κ)) :
+    False :=
+  T5_NAMED_BlockE_bounds_collide_unconditional C hC κ hκ D_set
+    h_unbounded h_constraint
+
+/-! ## V7-D-N3-corollary — Strict inequality form -/
+
+/-- **V7-D-N3-corollary — `T5_BlockE_strict_form`**: corollary in strict
+    inequality form.  For any unbounded D-set and constraint
+    `1/d < 2 * C * d^{-κ}` (looser than the strict `≤` form),
+    derive False — this is provable by applying V7-N3 with a perturbed
+    constant 2C. -/
+theorem T5_BlockE_strict_form
+    (C : ℝ) (hC : 0 < C) (κ : ℝ) (hκ : 1 < κ)
+    (D_set : Set ℝ)
+    (h_unbounded : ∀ M : ℝ, ∃ d ∈ D_set, M < d)
+    (h_constraint : ∀ d ∈ D_set, 0 < d → 1 / d < 2 * C * d ^ (-κ)) :
+    False := by
+  -- Strict < gives ≤, then apply V7-D-N3-FULL with constant 2C.
+  apply T5_NAMED_BlockE_bounds_collide_unconditional (2 * C) (by linarith) κ hκ D_set
+    h_unbounded
+  intros d hd hd_pos
+  exact le_of_lt (h_constraint d hd hd_pos)
+
+/-! ## V7-D-N3-bridge — bound-form bridge -/
+
+/-- **V7-D-N3-bridge — `T5_BlockE_via_lower_upper_collide`**: bridge form
+    expressing the contradiction in `lower ≤ upper` shape.
+
+    For an unbounded D-set with simultaneous lower bound (1/d ≤ |val(d)|)
+    and upper bound (|val(d)| ≤ C · d^{-κ}), we get False. -/
+theorem T5_BlockE_via_lower_upper_collide
+    (C : ℝ) (hC : 0 < C) (κ : ℝ) (hκ : 1 < κ)
+    (D_set : Set ℝ) (val : ℝ → ℝ)
+    (h_unbounded : ∀ M : ℝ, ∃ d ∈ D_set, M < d)
+    (h_lower : ∀ d ∈ D_set, 0 < d → 1 / d ≤ |val d|)
+    (h_upper : ∀ d ∈ D_set, 0 < d → |val d| ≤ C * d ^ (-κ)) :
+    False := by
+  apply T5_NAMED_BlockE_bounds_collide_unconditional C hC κ hκ D_set h_unbounded
+  intros d hd hd_pos
+  exact le_trans (h_lower d hd hd_pos) (h_upper d hd hd_pos)
+
 /-! ## V7-T2 — Discharge plan registry (all 3 NAMED Props are placeholder identifiers) -/
 
 /-- **V7-T2 — `T5_V7_NAMED_Props_registry`**: registry of the 3 NAMED Props

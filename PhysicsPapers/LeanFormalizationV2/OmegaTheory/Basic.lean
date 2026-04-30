@@ -6023,3 +6023,59 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7Draft
 -- lower bound: |z : ℝ| ≥ 1 fact when z is the cast of a non-zero integer.
 -- 3 sub-lemmas + 3-conjunct headline.  Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_IntCastAbsHelpers
+
+-- ════════════════════════════════════════════════════════════════════════════
+-- T-5 V8 Closure Path — 5-NAMED-leaves bundle (single-thread 2026-04-30).
+-- Composition chain: smallJ witness + V7-N1-uniform + 3 SM NAMED → V8 paper headline.
+-- ════════════════════════════════════════════════════════════════════════════
+
+-- H_c-1: pigeonhole on Fin m (max ≥ avg).  Foundation of √m birth.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_PigeonholeFinM_Helpers
+
+-- AM-QM Cauchy-Schwarz √m factor (∑aᵢ)² ≤ m·∑aᵢ².
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_AM_QM_Helpers
+
+-- Aeval triangle bound for sum decomposition.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_AevalTriangleBound
+
+-- H_c-2: pigeonhole applied to Taylor multi-index offsets.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_PigeonholeTaylorOffsets
+
+-- V7-N1-uniform Taylor sum form (D2 strong via shiftPoly).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1Uniform_TaylorSumForm
+
+-- BlockAB-D4 UNCONDITIONAL bumped-chain pigeonhole.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_BlockAB_D4_PigeonholeSequence
+
+-- BlockAB-D5 corrected (D5-restated) UNCONDITIONAL discharge.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_BlockAB_D5_RestatedAndDischarge
+
+-- V8-D5: smallJ witness factoring V8-atom-1 via csInf_le.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8D5_SmallJWitness_Reduction
+
+-- V8 capstone bridge (V8B-1/2/3): smallJ → HEART lift → V8-atom-1.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8Capstone_SmallJBridge
+
+-- Master from smallJ witness (composes Wronskian + Schmidt aux unconditional).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_MasterFromSmallJWitness
+
+-- V8 paper headline V8 from 3 NAMED leaves.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothTheorem_from_3_NAMED
+
+-- 3 Schmidt-machinery NAMED Props with discharge plans (SM-1/SM-2/SM-3).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_BlockAB_SchmidtMachineryNAMED
+
+-- BlockAB sequence-extraction via 3 SM NAMED.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_BlockAB_FromSchmidtMachinery
+
+-- V8 paper headline explicit — 5 NAMED leaves total (smallJ + V7N1U + 3 SM).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothTheorem_from_5_NAMED
+
+-- Yoneda-style V8 → V6 bridge (V8 strictly improves V6).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_implies_V6_Bridge
+
+-- H_c-4: √m birth composition (threshold survival + Cauchy-Schwarz scaling).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RootMBirth
+
+-- H_c-5: smallJ-witness inversion via D-pre-aux8 contrapositive.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallJWitnessFromIndexBound

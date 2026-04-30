@@ -5842,3 +5842,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_GrandI
 -- V8B-1..V8B-7: V8 capstone-shape bridges.
 -- Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_V8Bridge
+-- D.7 Block D foundation — rothIndex positivity ⇒ vanishing (4 contrapositive
+-- sub-lemmas + headline).  Tier-99 prep for the integer-non-vanishing argument
+-- of D.7 atom 2 closure.  Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothIndexPosVanish

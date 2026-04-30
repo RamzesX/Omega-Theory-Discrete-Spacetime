@@ -6139,3 +6139,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_DLP_FullClosure
 
 -- V8-atom-1 STRICT closure: SJWC-1 + UWF-2 ⇒ V8-atom-1 strict UNCONDITIONAL.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8AtomOne_StrictClosure
+
+-- V8 paper headline V8 STRICT path: end-to-end 6-NAMED architecture.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_PaperHeadline_StrictPath

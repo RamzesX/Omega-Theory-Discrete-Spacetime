@@ -5873,3 +5873,10 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_Index
 -- - Block D pre-foundation (rothIndex contrapositives + sub-threshold vanish)
 -- 3 composition theorems + 3-conjunct headline.  Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeAtom2ProgressBundle
+-- D.7 Block D CONTENT (univariate / m=1) — GENUINE atom-2 analytical content.
+-- Integer non-vanishing lower bound: |p.eval q| ≥ 1/q.den^p.natDegree for
+-- ℤ-poly p, rational q with non-zero evaluation.  Uses Mathlib's
+-- one_le_pow_mul_abs_eval_div as analytical base.  THIS IS THE TIER-HEART
+-- analytical content for atom-2 (univariate case).  2 lemmas + 2-conjunct
+-- headline.  Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_IntegerNonVanishingUnivariate

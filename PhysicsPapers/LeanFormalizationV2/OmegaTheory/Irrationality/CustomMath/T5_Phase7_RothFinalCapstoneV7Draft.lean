@@ -246,6 +246,28 @@ def T5_atom2_V7_capstone_target_signature : Prop :=
   T5_PigeonholeMTuple_Statement →
   RothBoundLarge
 
+/-! ## V7-T1.5 — Simplified V7 target signature (V7-N3 already discharged) -/
+
+/-- **V7-T1.5 — `T5_atom2_V7_capstone_target_signature_postN3`**: SIMPLIFIED V7
+    target signature post-V7-N3 unconditional discharge.
+
+    Requires only 2 NAMED hypotheses (V7-N1, V7-N2) instead of 3,
+    since V7-N3 is now unconditional. -/
+def T5_atom2_V7_capstone_target_signature_postN3 : Prop :=
+  T5_NAMED_BlockC_Taylor_upper_bound →
+  T5_NAMED_BlockD_integer_lower_bound →
+  RothLemmaMaster →
+  T5_PigeonholeMTuple_Statement →
+  RothBoundLarge
+
+/-- **V7-T1.5-bridge — `T5_V7_target_postN3_implies_full`**: bridges the
+    simplified post-N3 target to the full target via V7-N3 discharge. -/
+theorem T5_V7_target_postN3_implies_full
+    (h : T5_atom2_V7_capstone_target_signature_postN3) :
+    T5_atom2_V7_capstone_target_signature := by
+  intros _hN1 _hN2 _hN3 master h_pigeon
+  exact h _hN1 _hN2 master h_pigeon
+
 /-! ## V7-T2 — Discharge plan registry (all 3 NAMED Props are placeholder identifiers) -/
 
 /-- **V7-T2 — `T5_V7_NAMED_Props_registry`**: registry of the 3 NAMED Props

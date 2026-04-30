@@ -5953,6 +5953,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_V7N1U
 -- V7 capstone Block C+D+E is now FULLY MACHINE-CHECKED.
 -- Remaining: V7-N1-uniform discharge + Block A+B sequence extraction.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockCDE_Composition
+-- 🚨🚨🚨🚨 D.7 atom-2 V7 CAPSTONE FULL COMPOSITION 2026-04-30.
+-- 4 theorems: BlockAB-1 NAMED Prop for Block A+B sequence extraction,
+-- BlockAB-2 V7 capstone via Block A+B + V7-N1-uniform PROOF,
+-- BlockAB-3 target signature, BlockAB-4 paper-citable reduction headline.
+-- V7 capstone REDUCED TO TWO NAMED PROPS (V7-N1-uniform + Block A+B).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_NamedExtraction
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

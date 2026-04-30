@@ -6079,3 +6079,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RootMBirth
 
 -- H_c-5: smallJ-witness inversion via D-pre-aux8 contrapositive.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallJWitnessFromIndexBound
+
+-- SmallJ-witness composition: factor through index-at-q strict upper bound.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallJWitnessComposition

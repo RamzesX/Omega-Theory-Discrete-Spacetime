@@ -5976,6 +5976,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_V7N1U
 -- pattern + paper-citable headline.  Each piece references existing
 -- infrastructure for discharge.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_Decomposition
+-- D.6.1 atom-1 V8 STATUS DECOMPOSITION 2026-04-30.
+-- 4 sub-NAMED Props (HEART scaffold, lift to rothIndex) + V8 atom 1 via
+-- lift theorem + headline.  Documents that V8 atom 1 D.6.1 = HEART lift,
+-- which is the remaining frontier work for T-5 unconditional.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemmaD61_V8DecompositionStatus
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

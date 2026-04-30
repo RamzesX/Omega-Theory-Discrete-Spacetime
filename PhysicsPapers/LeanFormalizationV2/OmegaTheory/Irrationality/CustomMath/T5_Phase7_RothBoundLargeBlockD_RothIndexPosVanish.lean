@@ -20,6 +20,7 @@
 
 import OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndexEqZero
 import OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndexNonNeg
+import OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndexZeroJ
 
 namespace OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothIndexPosVanish
 
@@ -28,6 +29,7 @@ open MvPolynomial
 open OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndex
 open OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndexEqZero
 open OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndexNonNeg
+open OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndexZeroJ
 
 /-! ## D-pre-1 — `rothIndex > 0 ⇒ aeval α P = 0` (strict positivity contrapositive) -/
 
@@ -286,6 +288,85 @@ theorem T5_rothIndex_strict_lower_bound_subthreshold_vanish {n : ℕ}
     (rothIndex P α d) (le_refl _) j
   linarith
 
+/-! ## D-pre-aux8 — Existential dual: rothIndex < t ⇒ ∃ sub-threshold witness (with S nonempty hyp) -/
+
+/-- **D-pre-aux8 — `T5_rothIndex_lt_implies_exists_witness`**: dual of
+    D-pre-aux6.  If the rothIndex set is nonempty AND `rothIndex P α d < t`,
+    then there exists a multi-index `j` with `∑ j_i/d_i < t` and
+    `aeval α (multiIteratedPDeriv j P) ≠ 0`.
+
+    The nonempty precondition is mandatory: when S = ∅, rothIndex = 0
+    by `Real.sInf_empty` and the conclusion is vacuously false (no witness
+    exists at all).  The nonempty hypothesis is satisfied in the practical
+    Block-D application via `P ≠ 0` (some j makes the derivative non-zero,
+    e.g. j = full-degree gives a constant scalar).
+
+    Used by D.7 Block C analytical Taylor argument when the index-reduction
+    inequality gives `rothIndex at q-tuple ≤ t - √(mε)` and we need to
+    extract a SPECIFIC small-j witness whose derivative is non-vanishing
+    at the q-tuple (which then provides the leading term in the Taylor
+    expansion bound).
+
+    Proof: if no such j exists, every member `r` of the rothIndex set
+    has `r ≥ t`, so `t ≤ sInf set = rothIndex` by `le_csInf` (using the
+    nonempty hypothesis).  But that contradicts `rothIndex < t`. -/
+theorem T5_rothIndex_lt_implies_exists_witness {n : ℕ}
+    (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+    (t : ℝ) (h_lt : rothIndex P α d < t)
+    (h_nonempty : ({ r : ℝ | ∃ j : Fin n → ℕ,
+        aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+        r = ∑ i, (j i : ℝ) / (d i : ℝ) } : Set ℝ).Nonempty) :
+    ∃ (j : Fin n → ℕ),
+      aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+      (∑ i, (j i : ℝ) / (d i : ℝ)) < t := by
+  by_contra h_no_witness
+  push_neg at h_no_witness
+  -- h_no_witness : ∀ j, aeval α (multiIteratedPDeriv j P) ≠ 0 →
+  --                  t ≤ ∑ i, (j i : ℝ) / (d i : ℝ)
+  -- This means every member of the rothIndex set is ≥ t, so t is a lower bound.
+  have h_t_lb : ∀ r ∈ { r : ℝ | ∃ j : Fin n → ℕ,
+      aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+      r = ∑ i, (j i : ℝ) / (d i : ℝ) }, t ≤ r := by
+    intro r hr
+    rcases hr with ⟨j, hj_ne, hr_eq⟩
+    rw [hr_eq]
+    exact h_no_witness j hj_ne
+  -- Apply le_csInf using the nonempty hypothesis
+  have h_t_le_sInf : t ≤ sInf { r : ℝ | ∃ j : Fin n → ℕ,
+      aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+      r = ∑ i, (j i : ℝ) / (d i : ℝ) } :=
+    le_csInf h_nonempty h_t_lb
+  have h_t_le_idx : t ≤ rothIndex P α d := by
+    unfold rothIndex
+    exact h_t_le_sInf
+  linarith
+
+/-! ## D-pre-aux9 — Convenience: rothIndex set nonempty from aeval α P ≠ 0 -/
+
+/-- **D-pre-aux9 — `T5_rothIndex_set_nonempty_of_aeval_ne_zero`**:
+    convenience lemma deriving S nonempty (precondition for D-pre-aux8)
+    from `aeval α P ≠ 0`.
+
+    Proof: j = 0 is a witness in S since `multiIteratedPDeriv 0 P = P`
+    (via Phase 4 ext #2 `T5_multiIteratedPDeriv_zeroJ`), `aeval α P ≠ 0`
+    by hypothesis, and `∑ 0 / d_i = 0`.
+
+    Used to discharge the `h_nonempty` precondition of D-pre-aux8 in the
+    actual Block D application (Schmidt aux poly has `aeval α P` derived
+    from algebraic-relation context). -/
+theorem T5_rothIndex_set_nonempty_of_aeval_ne_zero {n : ℕ}
+    (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+    (h_ne : aeval α P ≠ 0) :
+    ({ r : ℝ | ∃ j : Fin n → ℕ,
+        aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+        r = ∑ i, (j i : ℝ) / (d i : ℝ) } : Set ℝ).Nonempty := by
+  refine ⟨0, ?_⟩
+  refine ⟨fun _ => 0, ?_, ?_⟩
+  · -- multiIteratedPDeriv 0 P = P (via zeroJ identity), so aeval α P ≠ 0 ↦ aeval α (...) ≠ 0
+    rw [T5_multiIteratedPDeriv_zeroJ]
+    exact h_ne
+  · simp
+
 /-! ## D-pre-5 — Headline -/
 
 /-- **🚨 D-pre-5 — `T5_BlockD_RothIndexPosVanish_HEADLINE`**: paper-citable
@@ -332,7 +413,22 @@ theorem T5_BlockD_RothIndexPosVanish_HEADLINE :
     (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
       (t : ℝ), t < rothIndex P α d →
       ∀ (j : Fin n → ℕ), (∑ i, (j i : ℝ) / (d i : ℝ)) ≤ t →
-        aeval α (multiIteratedPDeriv j P) = 0) :=
+        aeval α (multiIteratedPDeriv j P) = 0) ∧
+    -- (l) existential dual (with nonempty hypothesis)
+    (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+      (t : ℝ), rothIndex P α d < t →
+      ({ r : ℝ | ∃ j : Fin n → ℕ,
+          aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+          r = ∑ i, (j i : ℝ) / (d i : ℝ) } : Set ℝ).Nonempty →
+      ∃ (j : Fin n → ℕ),
+        aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+        (∑ i, (j i : ℝ) / (d i : ℝ)) < t) ∧
+    -- (m) convenience: nonempty from aeval α P ≠ 0
+    (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ),
+      aeval α P ≠ 0 →
+      ({ r : ℝ | ∃ j : Fin n → ℕ,
+          aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+          r = ∑ i, (j i : ℝ) / (d i : ℝ) } : Set ℝ).Nonempty) :=
   ⟨@T5_rothIndex_pos_implies_aeval_zero,
    @T5_rothIndex_ne_zero_implies_aeval_zero,
    @T5_rothIndex_ne_zero_implies_P_ne_zero,
@@ -343,6 +439,8 @@ theorem T5_BlockD_RothIndexPosVanish_HEADLINE :
    @T5_rothIndex_nonneg,
    @T5_rothIndex_pos_iff_ne_zero,
    @T5_rothIndex_lower_bound_implies_subthreshold_vanish,
-   @T5_rothIndex_strict_lower_bound_subthreshold_vanish⟩
+   @T5_rothIndex_strict_lower_bound_subthreshold_vanish,
+   @T5_rothIndex_lt_implies_exists_witness,
+   @T5_rothIndex_set_nonempty_of_aeval_ne_zero⟩
 
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothIndexPosVanish

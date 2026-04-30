@@ -5959,6 +5959,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockCDE_Com
 -- BlockAB-3 target signature, BlockAB-4 paper-citable reduction headline.
 -- V7 capstone REDUCED TO TWO NAMED PROPS (V7-N1-uniform + Block A+B).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_NamedExtraction
+-- 🚨🚨🚨🚨🚨 D.7 atom-2 V7 CAPSTONE CLOSURE STATUS SNAPSHOT 2026-04-30.
+-- 3 paper-citable theorems: V7CS-1 (5-conjunct closure status bundle),
+-- V7CS-2 (concrete forwarding), V7CS-3 (closure path 2 NAMED Props).
+-- Documents V7-N3 + V7-N2 unconditional + V7 capstone composition
+-- machine-checked + 2 NAMED Props remaining (V7-N1-uniform + Block A+B).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7ClosureStatus
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

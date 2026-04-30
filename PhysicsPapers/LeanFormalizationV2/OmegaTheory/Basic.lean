@@ -6085,3 +6085,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallJWitnessComposition
 
 -- H_c bundle headline: paper-citable composition of PTO + RMB + SJWB.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_HcBundleHeadline
+
+-- SJWC-2 partial discharge: rothIndex set nonempty from single-witness.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJWC2_Discharge

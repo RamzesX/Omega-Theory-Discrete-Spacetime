@@ -223,6 +223,69 @@ theorem T5_rothIndex_pos_iff_ne_zero {n : ℕ}
   · intro h_ne
     exact lt_of_le_of_ne (T5_rothIndex_nonneg P α d) (Ne.symm h_ne)
 
+/-! ## D-pre-aux6 — Sub-threshold vanishing (the core Block D bridge) -/
+
+/-- **D-pre-aux6 — `T5_rothIndex_lower_bound_implies_subthreshold_vanish`**:
+    if `rothIndex P at α ≥ t`, then any multi-index `j` with weighted sum
+    strictly LESS than `t` must satisfy `aeval α (multiIteratedPDeriv j P) = 0`.
+
+    This is the core "high index ⇒ vanish to high order" implication
+    used by D.7 Block D when combining the index-reduction inequality
+    (Wave-2 Phase 2.3 Statement form, available via `master.2.2.2.1`)
+    with the integer-non-vanishing argument.
+
+    Proof: by contrapositive — if `aeval α (multiIteratedPDeriv j P) ≠ 0`,
+    then `r := ∑ j_i / d_i` is in the rothIndex set (j is a witness with
+    derivative non-vanishing), so `rothIndex ≤ r` by `csInf_le`.  Combined
+    with hypothesis `r < t ≤ rothIndex`, contradiction. -/
+theorem T5_rothIndex_lower_bound_implies_subthreshold_vanish {n : ℕ}
+    (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+    (t : ℝ) (h_lower : t ≤ rothIndex P α d)
+    (j : Fin n → ℕ) (h_strict : (∑ i, (j i : ℝ) / (d i : ℝ)) < t) :
+    aeval α (multiIteratedPDeriv j P) = 0 := by
+  by_contra h_ne
+  -- j with derivative non-vanishing → r := ∑ j_i / d_i is in the rothIndex set
+  have h_mem :
+      (∑ i, (j i : ℝ) / (d i : ℝ)) ∈
+        { r : ℝ | ∃ j : Fin n → ℕ,
+            aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+            r = ∑ i, (j i : ℝ) / (d i : ℝ) } := by
+    refine ⟨j, h_ne, ?_⟩
+    rfl
+  -- BddBelow: every member ≥ 0
+  have h_bdd :
+      BddBelow { r : ℝ | ∃ j : Fin n → ℕ,
+                  aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+                  r = ∑ i, (j i : ℝ) / (d i : ℝ) } := by
+    refine ⟨0, ?_⟩
+    intro r hr
+    exact T5_rothIndex_setMember_nonneg P α d r hr
+  -- rothIndex ≤ r by csInf_le
+  have h_idx_le : rothIndex P α d ≤ ∑ i, (j i : ℝ) / (d i : ℝ) := by
+    unfold rothIndex
+    exact csInf_le h_bdd h_mem
+  -- t ≤ rothIndex ≤ r < t — contradiction
+  linarith
+
+/-! ## D-pre-aux7 — Strict version: rothIndex > t ⇒ subthreshold-(t+ε) vanish for any ε > 0 -/
+
+/-- **D-pre-aux7 — `T5_rothIndex_strict_lower_bound_subthreshold_vanish`**:
+    strict-inequality version of D-pre-aux6.  If `rothIndex P at α > t`,
+    then any j with `∑ j_i / d_i ≤ t` (note: ≤, not <) must satisfy
+    the vanishing.
+
+    Proof: from `rothIndex > t` and `∑ j_i / d_i ≤ t`, we have
+    `∑ j_i / d_i ≤ t < rothIndex`, so `∑ j_i / d_i < rothIndex`, apply
+    D-pre-aux6 with `t' := rothIndex P α d` and the ≤-form. -/
+theorem T5_rothIndex_strict_lower_bound_subthreshold_vanish {n : ℕ}
+    (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+    (t : ℝ) (h_strict : t < rothIndex P α d)
+    (j : Fin n → ℕ) (h_le : (∑ i, (j i : ℝ) / (d i : ℝ)) ≤ t) :
+    aeval α (multiIteratedPDeriv j P) = 0 := by
+  apply T5_rothIndex_lower_bound_implies_subthreshold_vanish P α d
+    (rothIndex P α d) (le_refl _) j
+  linarith
+
 /-! ## D-pre-5 — Headline -/
 
 /-- **🚨 D-pre-5 — `T5_BlockD_RothIndexPosVanish_HEADLINE`**: paper-citable
@@ -259,7 +322,17 @@ theorem T5_BlockD_RothIndexPosVanish_HEADLINE :
       0 ≤ rothIndex P α d) ∧
     -- (i) iff between strict positive and ne_zero
     (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ),
-      0 < rothIndex P α d ↔ rothIndex P α d ≠ 0) :=
+      0 < rothIndex P α d ↔ rothIndex P α d ≠ 0) ∧
+    -- (j) sub-threshold vanishing (≤-form): the core Block D bridge
+    (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+      (t : ℝ), t ≤ rothIndex P α d →
+      ∀ (j : Fin n → ℕ), (∑ i, (j i : ℝ) / (d i : ℝ)) < t →
+        aeval α (multiIteratedPDeriv j P) = 0) ∧
+    -- (k) strict-form sub-threshold vanishing
+    (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+      (t : ℝ), t < rothIndex P α d →
+      ∀ (j : Fin n → ℕ), (∑ i, (j i : ℝ) / (d i : ℝ)) ≤ t →
+        aeval α (multiIteratedPDeriv j P) = 0) :=
   ⟨@T5_rothIndex_pos_implies_aeval_zero,
    @T5_rothIndex_ne_zero_implies_aeval_zero,
    @T5_rothIndex_ne_zero_implies_P_ne_zero,
@@ -268,6 +341,8 @@ theorem T5_BlockD_RothIndexPosVanish_HEADLINE :
    @T5_rothIndex_pos_implies_aeval_zero_and_P_ne_zero,
    @T5_rothIndex_eq_zero_three_way,
    @T5_rothIndex_nonneg,
-   @T5_rothIndex_pos_iff_ne_zero⟩
+   @T5_rothIndex_pos_iff_ne_zero,
+   @T5_rothIndex_lower_bound_implies_subthreshold_vanish,
+   @T5_rothIndex_strict_lower_bound_subthreshold_vanish⟩
 
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothIndexPosVanish

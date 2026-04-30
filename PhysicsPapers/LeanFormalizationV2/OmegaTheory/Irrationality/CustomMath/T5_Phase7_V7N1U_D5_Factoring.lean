@@ -89,74 +89,57 @@ theorem T5_V7N1U_D5b_unconditional :
   intros m _hm P _R _hP_ne
   exact ⟨1, by norm_num⟩
 
-/-! ## D5F-3 — D5c per-q decay sub-NAMED (the analytical HEART) -/
+/-! ## D5F-3 — D5c per-q decay sub-NAMED (the analytical HEART, EXISTENTIAL form) -/
 
 /-- **D5F-3 — `T5_NAMED_V7N1U_D5c_per_q_decay`** [NAMED, HEART].
 
-    The analytical heart of V7N1U-D5: for given (α, ε, m, P, R, κ, C_upper),
-    each q satisfying violator + growth + balance + index bound gives
-    |aeval q P| ≤ C_upper · (∏ d^R)^{-κ}.
+    The analytical heart of V7N1U-D5: for given (α, ε, m, P, R), there
+    EXISTS a (C_upper, κ) pair such that each q satisfying violator +
+    growth + balance + index bound gives |aeval q P| ≤ C_upper · (∏d^R)^{-κ}.
 
-    Discharge: ~200 lines analytic. Requires AM-QM + Cauchy-Schwarz +
-    balance + small-ε formula + multivariate Taylor expansion.
-    The HEART of V7N1U closure. -/
+    NOTE (architectural honesty 2026-04-30): this Prop is DEFINITIONALLY
+    EQUAL to T5_NAMED_V7N1U_D5_kappa_composition (V7N1U-D5 itself). The
+    earlier formulation took (C_upper, κ) as ∀-inputs which made the
+    Prop literal-false (taking κ → ∞ violates the bound for any C).
+    Existential form is the only HONEST factoring; it COLLAPSES to
+    V7N1U-D5 with no genuine factoring achieved. The D5a (trivial κ
+    existence) and D5b (trivial C existence) closures are paper-citable
+    standalone trivial-scaffold but do NOT decompose D5's content.
+
+    Discharge: ~200 lines analytic — same content as V7N1U-D5 itself. -/
 def T5_NAMED_V7N1U_D5c_per_q_decay : Prop :=
-  ∀ (α : ℝ), Irrational α → IsAlgebraic ℤ α →
-  ∀ (ε : ℝ), 0 < ε →
-  ∀ {m : ℕ}, 1 ≤ m →
-  ∀ (P : MvPolynomial (Fin m) ℝ) (R : Fin m → ℕ),
-    P ≠ 0 →
-    (∀ i, MvPolynomial.degreeOf i P ≤ R i) →
-    (∀ i, 0 < R i) →
-  ∀ (C_upper : ℝ), 0 < C_upper →
-  ∀ (κ : ℝ), 1 < κ →
-  ∀ (q : Fin m → ℚ),
-    (∀ i, q i ∈ T5_RothViolatingSet α ε) →
-    T5_DenominatorGrowthCondition q ε →
-    T5_DegreeHeightBalanceCondition R q ε →
-    rothIndex P (fun i => ((q i : ℚ) : ℝ)) R ≤
-      (m : ℝ) / 2 - 2 * Real.sqrt ((m : ℝ) * ε) →
-    |aeval (fun i => ((q i : ℚ) : ℝ)) P| ≤
-      C_upper * (∏ i, ((q i).den : ℝ) ^ (R i : ℕ)) ^ (-κ)
+  T5_NAMED_V7N1U_D5_kappa_composition
 
-/-! ## D5F-4 — Composition: D5a + D5b + D5c ⇒ V7N1U-D5 -/
+/-! ## D5F-4 — Composition: D5c ⇒ V7N1U-D5 (TAUTOLOGICAL, definitional) -/
 
-/-- **D5F-4 — `T5_V7N1U_D5_via_D5a_D5b_D5c`**: composition theorem.
+/-- **D5F-4 — `T5_V7N1U_D5_via_D5a_D5b_D5c`**: TAUTOLOGICAL composition
+    after D5c-existential refactor.
 
-    Given the 3 factor sub-NAMEDs (D5a κ-existence, D5b C-existence,
-    D5c per-q decay), V7N1U-D5 follows directly.
-
-    Note: this composition uses GLOBAL κ and C_upper from D5a/D5b
-    (not depending on P, R for κ; and not depending on q for either).
-    The actual D5c uses the SAME κ, C_upper for all q. -/
+    Since D5c is DEFINITIONALLY EQUAL to V7N1U-D5, this is just identity.
+    D5a and D5b are unused (their unconditional discharges remain
+    paper-citable as trivial-scaffold but don't contribute to D5). -/
 theorem T5_V7N1U_D5_via_D5a_D5b_D5c
-    (h_D5a : T5_NAMED_V7N1U_D5a_kappa_existence)
-    (h_D5b : T5_NAMED_V7N1U_D5b_C_upper_existence)
+    (_h_D5a : T5_NAMED_V7N1U_D5a_kappa_existence)
+    (_h_D5b : T5_NAMED_V7N1U_D5b_C_upper_existence)
     (h_D5c : T5_NAMED_V7N1U_D5c_per_q_decay) :
-    T5_NAMED_V7N1U_D5_kappa_composition := by
-  intros α hα h_alg ε hε m hm P R hP_ne hP_deg hR_pos
-  obtain ⟨κ, hκ⟩ := h_D5a ε hε hm
-  obtain ⟨C_upper, hC⟩ := h_D5b hm P R hP_ne
-  refine ⟨C_upper, κ, hC, hκ, ?_⟩
-  intros q h_viol h_growth h_balance h_idx
-  exact h_D5c α hα h_alg ε hε hm P R hP_ne hP_deg hR_pos C_upper hC κ hκ q
-    h_viol h_growth h_balance h_idx
+    T5_NAMED_V7N1U_D5_kappa_composition :=
+  h_D5c
 
-/-! ## D5F-5 — Headline: D5c is THE HEART after factoring -/
+/-! ## D5F-5 — Headline: V7N1U-D5 is monolithic (factoring honest no-op) -/
 
 /-- **🚨🚨🚨 D5F-5 — `T5_V7N1U_D5_FACTORING_HEADLINE`**: paper-citable
-    factoring headline.
+    architectural HONESTY headline.
 
-    Strategic significance: V7N1U-D5 reduces to ONE atomic NAMED leaf
-    (D5c per-q decay), with D5a (κ-existence) and D5b (C-existence)
-    UNCONDITIONALLY closed.
+    Strategic significance: V7N1U-D5 does NOT admit clean factoring.
+    The earlier 3-NAMED factoring (D5a + D5b + D5c-as-input-quantified)
+    contained a literal-false Prop (∀ C, κ instead of ∃). Existential
+    form makes D5c ≡ V7N1U-D5; factoring collapses to identity.
 
-    Future single-thread fire of ~200 lines on D5c discharges V7N1U-D5
-    completely, which discharges V7N1U (V7-N1-uniform) entirely. -/
+    D5a (κ existence) + D5b (C existence) are STANDALONE TRIVIAL
+    DISCHARGES — paper-citable as scaffold but don't reduce D5's
+    analytical content. The actual HEART is monolithic. -/
 theorem T5_V7N1U_D5_FACTORING_HEADLINE :
-    -- D5c per-q decay alone (with closed D5a + D5b) discharges D5
     T5_NAMED_V7N1U_D5c_per_q_decay → T5_NAMED_V7N1U_D5_kappa_composition :=
-  fun h_D5c => T5_V7N1U_D5_via_D5a_D5b_D5c
-    T5_V7N1U_D5a_unconditional T5_V7N1U_D5b_unconditional h_D5c
+  id
 
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_D5_Factoring

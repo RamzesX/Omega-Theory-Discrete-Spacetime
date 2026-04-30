@@ -6172,3 +6172,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_Constrained
 
 -- Small-ε axis NAMED (V8 application context: ε ≤ m³/16 from Schmidt aux).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallEpsAxis_NAMED
+
+-- V8 RothTheorem from 7 NAMED leaves (END-TO-END paper-citable composition).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothTheorem_from_7_NAMED

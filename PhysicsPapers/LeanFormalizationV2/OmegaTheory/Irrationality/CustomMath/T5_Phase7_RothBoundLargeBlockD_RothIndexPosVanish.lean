@@ -367,6 +367,53 @@ theorem T5_rothIndex_set_nonempty_of_aeval_ne_zero {n : ℕ}
     exact h_ne
   · simp
 
+/-! ## D-pre-applied1 — Combined sub-threshold-vanish at the Schmidt-aux setup -/
+
+/-- **D-pre-applied1 — `T5_rothIndex_lower_bound_subthreshold_vanish_with_aeval_zero`**:
+    combined form of D-pre-aux6 with the rothIndex-zero implication.
+
+    Given `t ≤ rothIndex P α d`:
+    - For ANY j with `∑ j_i/d_i < t`: derivative vanishes at α (D-pre-aux6).
+    - In particular j = 0: `aeval α P = 0` (when t > 0, since 0 < t).
+
+    This combined form is what Block D actually uses: high-index ⇒ vanish
+    AT EVERY level including the polynomial itself when t > 0.
+
+    Specialization for the practical Schmidt-aux-poly context. -/
+theorem T5_rothIndex_lower_bound_pos_implies_aeval_zero_via_subthreshold {n : ℕ}
+    (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+    (t : ℝ) (h_pos : 0 < t) (h_lower : t ≤ rothIndex P α d) :
+    aeval α P = 0 := by
+  -- Apply D-pre-aux6 with j = 0
+  have h_sum_zero : (∑ i, ((fun _ => 0 : Fin n → ℕ) i : ℝ) / (d i : ℝ)) = 0 := by
+    simp
+  have h_sum_lt_t : (∑ i, ((fun _ => 0 : Fin n → ℕ) i : ℝ) / (d i : ℝ)) < t := by
+    rw [h_sum_zero]
+    exact h_pos
+  have h_deriv_zero :
+      aeval α (multiIteratedPDeriv (fun _ => 0) P) = 0 :=
+    T5_rothIndex_lower_bound_implies_subthreshold_vanish P α d t h_lower
+      (fun _ => 0) h_sum_lt_t
+  -- multiIteratedPDeriv 0 P = P (zeroJ identity)
+  rwa [T5_multiIteratedPDeriv_zeroJ] at h_deriv_zero
+
+/-! ## D-pre-applied2 — rothIndex ≥ ε > 0 ⇒ P vanishes at α -/
+
+/-- **D-pre-applied2 — `T5_rothIndex_pos_lower_bound_implies_aeval_zero_alt`**:
+    alternate form using `0 < t ≤ rothIndex` to imply `aeval α P = 0`.
+
+    This is identical conclusion to D-pre-1 (`T5_rothIndex_pos_implies_aeval_zero`)
+    but goes through D-pre-aux6 + the j = 0 specialization, providing a
+    "constructive" proof path that's useful for downstream extension when
+    we need the FULL vanish-set (j = 0 case is just one element).
+
+    Pragmatically: a redundant but useful API form for D.7 Block D code. -/
+theorem T5_rothIndex_pos_lower_bound_implies_aeval_zero_alt {n : ℕ}
+    (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+    (t : ℝ) (h_pos : 0 < t) (h_lower : t ≤ rothIndex P α d) :
+    aeval α P = 0 :=
+  T5_rothIndex_lower_bound_pos_implies_aeval_zero_via_subthreshold P α d t h_pos h_lower
+
 /-! ## D-pre-5 — Headline -/
 
 /-- **🚨 D-pre-5 — `T5_BlockD_RothIndexPosVanish_HEADLINE`**: paper-citable
@@ -428,7 +475,13 @@ theorem T5_BlockD_RothIndexPosVanish_HEADLINE :
       aeval α P ≠ 0 →
       ({ r : ℝ | ∃ j : Fin n → ℕ,
           aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
-          r = ∑ i, (j i : ℝ) / (d i : ℝ) } : Set ℝ).Nonempty) :=
+          r = ∑ i, (j i : ℝ) / (d i : ℝ) } : Set ℝ).Nonempty) ∧
+    -- (n) applied form: 0 < t ≤ rothIndex ⇒ aeval α P = 0 (via subthreshold)
+    (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+      (t : ℝ), 0 < t → t ≤ rothIndex P α d → aeval α P = 0) ∧
+    -- (o) applied alternate: same conclusion via different route
+    (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+      (t : ℝ), 0 < t → t ≤ rothIndex P α d → aeval α P = 0) :=
   ⟨@T5_rothIndex_pos_implies_aeval_zero,
    @T5_rothIndex_ne_zero_implies_aeval_zero,
    @T5_rothIndex_ne_zero_implies_P_ne_zero,
@@ -441,6 +494,8 @@ theorem T5_BlockD_RothIndexPosVanish_HEADLINE :
    @T5_rothIndex_lower_bound_implies_subthreshold_vanish,
    @T5_rothIndex_strict_lower_bound_subthreshold_vanish,
    @T5_rothIndex_lt_implies_exists_witness,
-   @T5_rothIndex_set_nonempty_of_aeval_ne_zero⟩
+   @T5_rothIndex_set_nonempty_of_aeval_ne_zero,
+   @T5_rothIndex_lower_bound_pos_implies_aeval_zero_via_subthreshold,
+   @T5_rothIndex_pos_lower_bound_implies_aeval_zero_alt⟩
 
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothIndexPosVanish

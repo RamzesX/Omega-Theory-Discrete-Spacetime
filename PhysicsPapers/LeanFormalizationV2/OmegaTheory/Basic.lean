@@ -5870,6 +5870,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_Index
 -- Foundational sub-foundation for V7-N1 multivariate Taylor upper bound.
 -- Per-index + tuple-aggregate violator |q-α|^j ≤ q.den^{-(2+ε)·j} bounds.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_ViolatorConditionExpansion
+-- D.7 atom-2 V7-N2 STEP-1 — Block D MULTIVARIATE PRODUCT POSITIVITY 2026-04-30.
+-- 7 sub-lemmas (DPP-1..DPP-7) + paper-citable headline.
+-- Foundational positivity / lower-bound / inverse properties of
+-- ∏ q_i.den^{R_i} central to V7-N2 multivariate integer non-vanishing
+-- lower bound conclusion.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_MultivariateProductPositivity
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

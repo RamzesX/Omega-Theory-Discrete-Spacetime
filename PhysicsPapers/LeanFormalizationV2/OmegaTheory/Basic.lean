@@ -6127,3 +6127,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_DeltaLimit_Packaging
 
 -- DLP-2 UNCONDITIONALLY DISCHARGED (growth + balance monotonicity in ε).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_DLP2_Discharge
+
+-- Yoneda bridge: strong smallJ ⇒ relaxed smallJ (trivial direction).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallJWitness_StrongRelaxedBridge

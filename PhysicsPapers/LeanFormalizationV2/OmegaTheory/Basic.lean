@@ -6166,3 +6166,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8AtomOne_to_OG_NAMED
 
 -- Constrained smallJ NAMED Prop (ε ≤ m³/16 form).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_ConstrainedSmallJ_NAMED
+
+-- Constrained-ε RothBoundLarge composition (V8 application path).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_Constrained

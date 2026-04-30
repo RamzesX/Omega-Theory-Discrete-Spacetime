@@ -6145,3 +6145,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_PaperHeadline_StrictPat
 
 -- V8 closure counters: real Nat bookkeeping documenting progress.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_ClosureCounters
+
+-- universal-witness specialization to ℤ-poly coercion (SM-3 architecture step).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UniversalWitness_IntPolySpecialization

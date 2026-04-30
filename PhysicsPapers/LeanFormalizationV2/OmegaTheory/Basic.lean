@@ -6106,3 +6106,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF3_Discharge
 
 -- UWF-1 UNCONDITIONALLY DISCHARGED (translation invariance via Phase 6).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF1_Discharge
+
+-- UWF-2 PARTIAL DISCHARGE (factor through Taylor coefficient identity).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF2_PartialDischarge

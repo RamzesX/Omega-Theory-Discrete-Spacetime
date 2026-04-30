@@ -5932,6 +5932,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_Clear
 -- 3-conjunct equivalence headline.  V7 capstone now requires ONLY V7-N1
 -- (multivariate Taylor upper bound) + master + pigeon → RothBoundLarge.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7DraftPostN2N3
+-- D.7 atom-2 V7-N2 UNCONDITIONAL APPLICATIONS BUNDLE 2026-04-30.
+-- 4 theorems (DPU-1 per-p, DPU-2 X i, DPU-3 C c, DPU-4 monomial d c)
+-- + 4-conjunct headline.  V7-N2 conclusion now provable for ANY polynomial
+-- without per-clearance hypothesis (since V7-N2 NAMED Prop is theorem).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_PerPolyUnconditional
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

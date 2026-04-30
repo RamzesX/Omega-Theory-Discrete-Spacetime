@@ -5865,3 +5865,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_Hygi
 -- Block D analytical (multivariate Taylor) + Block E contradiction.
 -- 2 composition theorems + 2-conjunct headline.  Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_IndexAtQTupleBound
+-- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
+-- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
+-- - A+B hygiene (entry-point data)
+-- - Block C entry-point bound (rothIndex P at q-tuple ≤ m/2 - 2√(mε))
+-- - Block C bridge to Block D (low-index witness extraction)
+-- - Block D pre-foundation (rothIndex contrapositives + sub-threshold vanish)
+-- 3 composition theorems + 3-conjunct headline.  Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeAtom2ProgressBundle

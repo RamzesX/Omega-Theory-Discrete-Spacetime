@@ -5846,3 +5846,9 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_V8Brid
 -- sub-lemmas + headline).  Tier-99 prep for the integer-non-vanishing argument
 -- of D.7 atom 2 closure.  Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothIndexPosVanish
+-- D.6.1 HEART → mvPolynomial rothIndex LIFT bridge.
+-- Hygiene fix 2026-04-30: connects the previously-decoupled 11-layer scalar
+-- HEART scaffold to the actual D.6.1 statement via explicit lift mapping
+-- (Θ := rothIndex at q-tuple, Φ := t - √(mε), δ := mε).
+-- 5 sub-lemmas + 4-conjunct headline.  Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_LiftToRothIndex

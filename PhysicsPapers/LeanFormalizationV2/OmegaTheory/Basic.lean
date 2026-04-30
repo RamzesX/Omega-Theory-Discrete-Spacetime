@@ -6088,3 +6088,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_HcBundleHeadline
 
 -- SJWC-2 partial discharge: rothIndex set nonempty from single-witness.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJWC2_Discharge
+
+-- V8-atom-1 RELAXED discharge via SJWC-1 + SJWC-2 composition.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8AtomOne_via_SJWC
+
+-- SM-3 partial discharge under universal aeval-witness.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SM3_PartialDischarge
+
+-- V8 7-NAMED-leaf-relaxed decomposition STATUS capstone.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_DecompositionStatus

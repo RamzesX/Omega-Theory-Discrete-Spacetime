@@ -110,45 +110,58 @@ theorem T5_pigeonholeSeq_bumped_at_most_one_hit
   apply T5_pigeonholeSeq_bumped_injective h ε
   rw [h_n, h_k]
 
-/-! ## SJF5M1-DEEP-4 — Skip-existence Prop (the remaining HEART sub-atom) -/
+/-! ## SJF5M1-DEEP-4 — Skip avoids finite bad set (UNCONDITIONALLY DISCHARGED) -/
 
-/-- **SJF5M1-DEEP-4 — `T5_NAMED_pigeonholeSeq_skip_avoids_finite_bad_set`**
-    [ATOMIC HEART for SJF-5 m=1].
+/-- **SJF5M1-DEEP-4 — `T5_pigeonholeSeq_skip_avoids_finite_bad_set`**
+    [UNCONDITIONAL via injectivity + Finset.preimage].
 
     Given a FINITE set of "bad" rationals, ∃ skip such that all chain
-    positions ≥ skip avoid the bad set.
+    positions n+skip avoid the bad set.
 
-    Strategy: bad_positions := {n : ℕ | chain n ∈ bad_set}. By
-    SJF5M1-DEEP-3 (at most one chain position per bad value),
-    |bad_positions| ≤ |bad_set| < ∞. So skip := max(bad_positions) + 1
-    works.
+    Proof: preimage of bad_set under chain is FINITE (subset of chain⁻¹
+    of bad_set, bounded by |bad_set| via injectivity). Take skip :=
+    max(preimage) + 1.
 
-    Mathlib reference: `Set.Finite.preimage`, `Set.Finite.bddAbove`.
-    Discharge: ~30 lines using Mathlib finiteness + Nat.find. -/
-def T5_NAMED_pigeonholeSeq_skip_avoids_finite_bad_set
-    {S : Set ℚ} (h : T5_HasUnboundedDenominators S) (ε : ℝ) : Prop :=
-  ∀ (bad_set : Finset ℚ),
+    Discharged 2026-04-30: ~25 lines via Finset.preimage + Finset.sup. -/
+theorem T5_pigeonholeSeq_skip_avoids_finite_bad_set
+    {S : Set ℚ} (h : T5_HasUnboundedDenominators S) (ε : ℝ)
+    (bad_set : Finset ℚ) :
     ∃ (skip : ℕ), ∀ (n : ℕ),
-      T5_pigeonholeSeq_bumped h ε (n + skip) ∉ bad_set
+      T5_pigeonholeSeq_bumped h ε (n + skip) ∉ bad_set := by
+  classical
+  -- Preimage of bad_set under chain (via injOn from injective)
+  let preimage_set : Finset ℕ :=
+    bad_set.preimage (T5_pigeonholeSeq_bumped h ε)
+      ((T5_pigeonholeSeq_bumped_injective h ε).injOn)
+  let skip := preimage_set.sup id + 1
+  refine ⟨skip, ?_⟩
+  intros n h_in
+  have h_n_skip_in_pre : n + skip ∈ preimage_set :=
+    Finset.mem_preimage.mpr h_in
+  have h_le : n + skip ≤ preimage_set.sup id :=
+    Finset.le_sup (f := id) h_n_skip_in_pre
+  -- skip = sup + 1, so n + skip ≥ skip = sup + 1 > sup. Contradiction with h_le.
+  show False
+  have : n + skip ≥ skip := Nat.le_add_left skip n
+  omega
 
 /-! ## SJF5M1-DEEP-5 — Architectural headline -/
 
-/-- **🚨🚨 SJF5M1-DEEP-5 — `T5_HEART_SJF5_DEEP_DECOMPOSITION_HEADLINE`**:
+/-- **🚨🚨🚨 SJF5M1-DEEP-5 — `T5_HEART_SJF5_DEEP_DECOMPOSITION_HEADLINE`**:
     paper-citable deep decomposition headline.
 
     Strategic significance: SJF-5 m=1 case decomposes into:
       [DEEP-1] Chain distinct values — UNCONDITIONAL via this file
       [DEEP-2] Chain injective — UNCONDITIONAL via DEEP-1
       [DEEP-3] At most one hit per value — UNCONDITIONAL via DEEP-2
-      [DEEP-4] Skip avoids finite bad set — HEART (~30 lines via
-                Mathlib finiteness)
-      [Bridge]  P_real has finite roots → bad set finite → DEEP-4 →
-                SJF-5 m=1 case (~50 lines via finSuccEquiv +
+      [DEEP-4] Skip avoids finite bad set — UNCONDITIONAL via this file
+      [Bridge]  P_real has finite rational roots → bad set finite →
+                DEEP-4 → SJF-5 m=1 case (~50 lines via finSuccEquiv +
                 Polynomial.setOf_isRoot_finite)
 
-    Net: SJF-5 m=1 case fully decomposed; 3 sub-atoms UNCONDITIONALLY
-    closed; 1 small HEART sub-atom remaining (~30 lines); bridge
-    via Mathlib finSuccEquiv (~50 lines). Total to discharge: ~80 lines. -/
+    Net: SJF-5 m=1 case fully decomposed; 4 sub-atoms UNCONDITIONALLY
+    closed; only bridge via Mathlib finSuccEquiv (~50 lines) remaining.
+    Total to discharge SJF-5 m=1 unconditionally: ~50 lines. -/
 theorem T5_HEART_SJF5_DEEP_DECOMPOSITION_HEADLINE :
     -- DEEP-1: Distinct values UNCONDITIONAL
     (∀ {S : Set ℚ} (h : T5_HasUnboundedDenominators S) (ε : ℝ)
@@ -156,8 +169,14 @@ theorem T5_HEART_SJF5_DEEP_DECOMPOSITION_HEADLINE :
         T5_pigeonholeSeq_bumped h ε n ≠ T5_pigeonholeSeq_bumped h ε k) ∧
     -- DEEP-2: Injective UNCONDITIONAL
     (∀ {S : Set ℚ} (h : T5_HasUnboundedDenominators S) (ε : ℝ),
-        Function.Injective (T5_pigeonholeSeq_bumped h ε)) :=
+        Function.Injective (T5_pigeonholeSeq_bumped h ε)) ∧
+    -- DEEP-4: Skip avoids finite bad set UNCONDITIONAL (NEW this fire)
+    (∀ {S : Set ℚ} (h : T5_HasUnboundedDenominators S) (ε : ℝ)
+       (bad_set : Finset ℚ),
+        ∃ (skip : ℕ), ∀ (n : ℕ),
+          T5_pigeonholeSeq_bumped h ε (n + skip) ∉ bad_set) :=
   ⟨@T5_pigeonholeSeq_bumped_distinct_values,
-   @T5_pigeonholeSeq_bumped_injective⟩
+   @T5_pigeonholeSeq_bumped_injective,
+   @T5_pigeonholeSeq_skip_avoids_finite_bad_set⟩
 
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_HEART_Sublemmas_Decomposition

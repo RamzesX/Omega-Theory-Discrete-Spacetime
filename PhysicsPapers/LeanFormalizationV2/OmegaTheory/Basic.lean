@@ -5927,6 +5927,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_Clear
 -- T-5 V7-N2 (Block D multivariate integer non-vanishing lower bound) CLOSED.
 -- V7 capstone now requires ONLY V7-N1 (Block C Taylor upper bound).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_ClearanceFinalDischarge
+-- D.7 atom-2 V7 SIMPLIFIED TARGET POST-V7-N2-N3 2026-04-30.
+-- 4 theorems: post-N2N3 def, postN3 ⇄ postN2N3 bridge, postN2N3 → full,
+-- 3-conjunct equivalence headline.  V7 capstone now requires ONLY V7-N1
+-- (multivariate Taylor upper bound) + master + pigeon → RothBoundLarge.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7DraftPostN2N3
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

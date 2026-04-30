@@ -5947,6 +5947,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockE_Seque
 -- V7N1U-3 extraction, V7N1U-4 headline.  Stronger form needed for SEQ-3
 -- composition where κ must be uniform across the q-tuple sequence.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_V7N1Uniform
+-- 🚨🚨🚨 D.7 atom-2 V7 BLOCK CDE COMPOSITION 2026-04-30.
+-- 2 theorems (CDE-1 V7 Block CDE composition deriving False from V7-N1-uniform
+-- + Roth-violating sequence, CDE-2 paper-citable headline).
+-- V7 capstone Block C+D+E is now FULLY MACHINE-CHECKED.
+-- Remaining: V7-N1-uniform discharge + Block A+B sequence extraction.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockCDE_Composition
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

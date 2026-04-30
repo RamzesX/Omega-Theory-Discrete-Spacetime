@@ -21,6 +21,7 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_Hygi
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_IndexReduction
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_MasterCapstone
 import OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndex
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothIndexPosVanish
 
 namespace OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_IndexAtQTupleBound
 
@@ -31,6 +32,7 @@ open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_MasterCapstone
 open OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndex
 open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeFromMasterAndPigeonhole_Discharge
 open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_HygieneBundle
+open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothIndexPosVanish
 
 /-! ## C-entry-1 — Schmidt aux index lower bound + index reduction → rothIndex at q-tuple bound -/
 
@@ -97,6 +99,62 @@ theorem T5_BlockC_rothIndex_at_q_tuple_simplified
   have h_alg : ((m : ℝ) / 2 - Real.sqrt ((m : ℝ) * ε)) - Real.sqrt ((m : ℝ) * ε)
       = (m : ℝ) / 2 - 2 * Real.sqrt ((m : ℝ) * ε) := by ring
   linarith
+
+/-! ## C-entry-bridge — Compose C-entry-2 with D-pre-aux8 (low-index witness extraction) -/
+
+/-- **C-entry-bridge — `T5_BlockC_low_index_witness_at_q_tuple`**: composition
+    of C-entry-2 (rothIndex at q ≤ m/2 - 2√(mε)) with D-pre-aux8 (existential
+    dual of subthreshold vanishing).
+
+    Given the master, all the index-reduction preconditions, AND a nonempty
+    rothIndex set (discharge via `aeval (q-tuple) P ≠ 0` — hypothesis here),
+    extract a SPECIFIC low-index multi-derivative witness:
+
+    ∃ j : Fin m → ℕ,
+      aeval (q-tuple) (multiIteratedPDeriv j P) ≠ 0 ∧
+      ∑ j_i / d_i < m/2 - 2√(mε) + 1
+
+    The +1 offset converts `≤ m/2 - 2√(mε)` to `< m/2 - 2√(mε) + 1` (strict).
+
+    This witness IS the analytical handle for the Block D content
+    (multivariate Taylor expansion around α uses this j for the leading term). -/
+theorem T5_BlockC_low_index_witness_at_q_tuple
+    (master : RothLemmaMaster)
+    {m : ℕ} (hm : 1 ≤ m)
+    (P : MvPolynomial (Fin m) ℝ) (R : Fin m → ℕ)
+    (α : ℝ) (q : Fin m → ℚ) (ε : ℝ)
+    (hP : P ≠ 0) (hε : 0 < ε)
+    (h_deg : ∀ i, MvPolynomial.degreeOf i P ≤ R i)
+    (h_R_pos : ∀ i, 0 < R i)
+    (h_q_pos : ∀ i, 1 ≤ (q i).den)
+    (h_growth : T5_DenominatorGrowthCondition q ε)
+    (h_balance : T5_DegreeHeightBalanceCondition R q ε)
+    (h_lower : rothIndex P (fun _ => α) R ≥ (m : ℝ) / 2 - Real.sqrt ((m : ℝ) * ε))
+    (h_aeval_q_ne : aeval (fun i => ((q i : ℚ) : ℝ)) P ≠ 0) :
+    ∃ (j : Fin m → ℕ),
+      aeval (fun i => ((q i : ℚ) : ℝ)) (multiIteratedPDeriv j P) ≠ 0 ∧
+      (∑ i, (j i : ℝ) / (R i : ℝ)) <
+        (m : ℝ) / 2 - 2 * Real.sqrt ((m : ℝ) * ε) + 1 := by
+  -- Get the rothIndex at q-tuple ≤ m/2 - 2√(mε)
+  have h_idx_q :
+      rothIndex P (fun i => ((q i : ℚ) : ℝ)) R ≤
+        (m : ℝ) / 2 - 2 * Real.sqrt ((m : ℝ) * ε) :=
+    T5_BlockC_rothIndex_at_q_tuple_simplified master hm P R α q ε
+      hP hε h_deg h_R_pos h_q_pos h_growth h_balance h_lower
+  -- Strict version: rothIndex < m/2 - 2√(mε) + 1
+  have h_idx_strict :
+      rothIndex P (fun i => ((q i : ℚ) : ℝ)) R <
+        (m : ℝ) / 2 - 2 * Real.sqrt ((m : ℝ) * ε) + 1 := by linarith
+  -- The rothIndex set is nonempty via D-pre-aux9 (aeval (q-tuple) P ≠ 0)
+  have h_nonempty :
+      ({ r : ℝ | ∃ j : Fin m → ℕ,
+        aeval (fun i => ((q i : ℚ) : ℝ)) (multiIteratedPDeriv j P) ≠ 0 ∧
+        r = ∑ i, (j i : ℝ) / (R i : ℝ) } : Set ℝ).Nonempty :=
+    T5_rothIndex_set_nonempty_of_aeval_ne_zero P (fun i => ((q i : ℚ) : ℝ)) R
+      h_aeval_q_ne
+  -- Apply D-pre-aux8
+  exact T5_rothIndex_lt_implies_exists_witness P (fun i => ((q i : ℚ) : ℝ)) R
+    ((m : ℝ) / 2 - 2 * Real.sqrt ((m : ℝ) * ε) + 1) h_idx_strict h_nonempty
 
 /-! ## C-entry-3 — Headline: the Block C entry-point bound bundle -/
 

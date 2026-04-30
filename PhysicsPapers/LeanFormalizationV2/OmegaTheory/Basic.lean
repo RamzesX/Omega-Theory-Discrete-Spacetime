@@ -6112,3 +6112,9 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF2_PartialDischarge
 
 -- UWF-2 J=0 special case: nonzero constant term ⇒ UWF-2 (UNCONDITIONAL).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF2_ZeroJCase
+
+-- V8 FULL CLOSURE TREE status capstone (post-fire 2026-04-30 final).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_FullClosureTree
+
+-- SM-1 partial discharge: factor through Siegel-existence + α-index-lower-bound.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SM1_PartialDischarge

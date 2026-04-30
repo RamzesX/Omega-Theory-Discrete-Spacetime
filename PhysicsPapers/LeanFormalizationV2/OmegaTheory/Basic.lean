@@ -5852,3 +5852,9 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothI
 -- (Θ := rothIndex at q-tuple, Φ := t - √(mε), δ := mε).
 -- 5 sub-lemmas + 4-conjunct headline.  Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_LiftToRothIndex
+-- D.7 Block A+B HYGIENE BUNDLE.
+-- Hygiene fix 2026-04-30: clean re-exposure of A1a/A2/A3a/A3b/B1a-e/B2/B3
+-- helpers from the discharge file, plus AB composition lemmas (full setup
+-- entry-point data structure for Block C/D/E analytical contradiction).
+-- 3 composition theorems + 3-conjunct headline.  Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_HygieneBundle

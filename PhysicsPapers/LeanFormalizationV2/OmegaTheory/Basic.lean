@@ -6169,3 +6169,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_ConstrainedSmallJ_NAMED
 
 -- Constrained-ε RothBoundLarge composition (V8 application path).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLarge_Constrained
+
+-- Small-ε axis NAMED (V8 application context: ε ≤ m³/16 from Schmidt aux).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallEpsAxis_NAMED

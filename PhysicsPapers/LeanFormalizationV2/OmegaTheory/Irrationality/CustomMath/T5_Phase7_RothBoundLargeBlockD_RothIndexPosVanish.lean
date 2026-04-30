@@ -19,6 +19,7 @@
 -/
 
 import OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndexEqZero
+import OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndexNonNeg
 
 namespace OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothIndexPosVanish
 
@@ -26,6 +27,7 @@ open Real
 open MvPolynomial
 open OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndex
 open OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndexEqZero
+open OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndexNonNeg
 
 /-! ## D-pre-1 — `rothIndex > 0 ⇒ aeval α P = 0` (strict positivity contrapositive) -/
 
@@ -170,6 +172,57 @@ theorem T5_rothIndex_eq_zero_three_way {n : ℕ}
     exact T5_rothIndex_zero_poly α d
   · exact h_idx
 
+/-! ## D-pre-aux4 — Global `rothIndex P α d ≥ 0` (filling a Phase-4 gap) -/
+
+/-- **D-pre-aux4 — `T5_rothIndex_nonneg`**: the Roth-index is always nonneg.
+
+    Despite being a corollary of `T5_rothIndex_setMember_nonneg` (Phase 4
+    foundation), this global statement was NEVER exposed in OV2 — only
+    derived inline in `T5_rothIndex_eq_zero_of_aeval_ne_zero` (Phase 4
+    INTERIM MASTER, lines 85-89).
+
+    Two cases by the rothIndex definition (empty-set sInf convention vs
+    nonempty-set sInf):
+    1. Set empty → `sInf ∅ = 0` on ℝ → `rothIndex = 0 ≥ 0`.
+    2. Set nonempty → bounded below by 0 (every member ≥ 0) → sInf ≥ 0.
+
+    Useful tier-99 closure of the rothIndex calculus.  Used by D-pre-aux5
+    below for the iff bridge. -/
+theorem T5_rothIndex_nonneg {n : ℕ}
+    (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ) :
+    0 ≤ rothIndex P α d := by
+  unfold rothIndex
+  by_cases h_empty :
+      { r : ℝ | ∃ j : Fin n → ℕ,
+          aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+          r = ∑ i, (j i : ℝ) / (d i : ℝ) } = ∅
+  · rw [h_empty]
+    rw [Real.sInf_empty]
+  · -- Nonempty: pick a witness, sInf ≥ 0 by le_csInf
+    have h_nonempty : Set.Nonempty
+        { r : ℝ | ∃ j : Fin n → ℕ,
+            aeval α (multiIteratedPDeriv j P) ≠ 0 ∧
+            r = ∑ i, (j i : ℝ) / (d i : ℝ) } :=
+      Set.nonempty_iff_ne_empty.mpr h_empty
+    apply le_csInf h_nonempty
+    intro b hb
+    exact T5_rothIndex_setMember_nonneg P α d b hb
+
+/-! ## D-pre-aux5 — Strict-positivity ⟺ ne-zero iff (under nonneg) -/
+
+/-- **D-pre-aux5 — `T5_rothIndex_pos_iff_ne_zero`**: full iff between
+    `0 < rothIndex P α d` and `rothIndex P α d ≠ 0`, using nonneg.
+
+    Forward: ne_of_gt (already in D-pre-aux1).
+    Reverse: from `0 ≤ x` and `x ≠ 0`, derive `0 < x` via `lt_of_le_of_ne`. -/
+theorem T5_rothIndex_pos_iff_ne_zero {n : ℕ}
+    (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ) :
+    0 < rothIndex P α d ↔ rothIndex P α d ≠ 0 := by
+  constructor
+  · exact ne_of_gt
+  · intro h_ne
+    exact lt_of_le_of_ne (T5_rothIndex_nonneg P α d) (Ne.symm h_ne)
+
 /-! ## D-pre-5 — Headline -/
 
 /-- **🚨 D-pre-5 — `T5_BlockD_RothIndexPosVanish_HEADLINE`**: paper-citable
@@ -200,13 +253,21 @@ theorem T5_BlockD_RothIndexPosVanish_HEADLINE :
       0 < rothIndex P α d → aeval α P = 0 ∧ P ≠ 0) ∧
     -- (g) three-way disjunction
     (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ),
-      aeval α P ≠ 0 ∨ P = 0 ∨ rothIndex P α d = 0 → rothIndex P α d = 0) :=
+      aeval α P ≠ 0 ∨ P = 0 ∨ rothIndex P α d = 0 → rothIndex P α d = 0) ∧
+    -- (h) global rothIndex nonneg
+    (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ),
+      0 ≤ rothIndex P α d) ∧
+    -- (i) iff between strict positive and ne_zero
+    (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ),
+      0 < rothIndex P α d ↔ rothIndex P α d ≠ 0) :=
   ⟨@T5_rothIndex_pos_implies_aeval_zero,
    @T5_rothIndex_ne_zero_implies_aeval_zero,
    @T5_rothIndex_ne_zero_implies_P_ne_zero,
    @T5_rothIndex_eq_zero_of_disj,
    @T5_rothIndex_pos_implies_ne_zero,
    @T5_rothIndex_pos_implies_aeval_zero_and_P_ne_zero,
-   @T5_rothIndex_eq_zero_three_way⟩
+   @T5_rothIndex_eq_zero_three_way,
+   @T5_rothIndex_nonneg,
+   @T5_rothIndex_pos_iff_ne_zero⟩
 
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothIndexPosVanish

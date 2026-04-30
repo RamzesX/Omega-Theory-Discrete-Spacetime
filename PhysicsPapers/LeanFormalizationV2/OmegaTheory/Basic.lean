@@ -6148,3 +6148,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_ClosureCounters
 
 -- universal-witness specialization to ℤ-poly coercion (SM-3 architecture step).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UniversalWitness_IntPolySpecialization
+
+-- V8 concrete ε₀ thresholds: documents practical applicability of V8 closure.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_ConcreteEpsilonThresholds

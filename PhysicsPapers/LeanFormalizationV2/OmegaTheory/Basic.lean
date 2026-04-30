@@ -5965,6 +5965,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_Name
 -- Documents V7-N3 + V7-N2 unconditional + V7 capstone composition
 -- machine-checked + 2 NAMED Props remaining (V7-N1-uniform + Block A+B).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7ClosureStatus
+-- D.7 atom-2 V7-N1-UNIFORM DECOMPOSITION 2026-04-30.
+-- 4 sub-NAMED Props (κ-formula, mvTaylor, high-index vanish, per-term
+-- bound) + composition pattern theorem + paper-citable headline.
+-- Decomposes V7-N1-uniform into tractable sub-discharges with explicit plans.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_V7N1UniformDecomposition
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

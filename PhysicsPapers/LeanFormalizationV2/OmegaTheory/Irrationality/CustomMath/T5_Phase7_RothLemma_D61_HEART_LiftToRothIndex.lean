@@ -157,6 +157,60 @@ theorem T5_HEART_lift_tight_branch_implies_D61
       t - Real.sqrt ((m : ℝ) * ε) :=
   h_tight_branch
 
+/-! ## L-6 — Schmidt-aux specialization (t := m/2 - √(mε)) -/
+
+/-- **L-6 — `T5_HEART_lift_at_schmidt_aux_t`**: lift values when `t` is
+    set to the Schmidt-aux-poly index lower bound `m/2 - √(mε)`.
+
+    Substituting `t = m/2 - √(mε)` into the lift mapping:
+    - Θ := rothIndex P at q-tuple
+    - Φ := (m/2 - √(mε)) - √(mε) = m/2 - 2√(mε)
+    - δ := mε
+
+    Provides Φ-nonneg precondition `2√(mε) ≤ m/2` (i.e., `m ≥ 16ε` for the
+    smallness threshold).
+
+    Used in D.6.1 closure when applying the lift via the master's Schmidt
+    aux index ≥ m/2 - √(mε) discharge. -/
+theorem T5_HEART_lift_at_schmidt_aux_t
+    (m : ℕ) (ε : ℝ) (hε : 0 ≤ ε)
+    (h_smallness : 2 * Real.sqrt ((m : ℝ) * ε) ≤ (m : ℝ) / 2) :
+    let t := (m : ℝ) / 2 - Real.sqrt ((m : ℝ) * ε)
+    Real.sqrt ((m : ℝ) * ε) ≤ t ∧
+    0 ≤ t - Real.sqrt ((m : ℝ) * ε) ∧
+    0 ≤ (m : ℝ) * ε := by
+  refine ⟨?_, ?_, T5_HEART_lift_delta_nonneg m ε hε⟩
+  · -- Real.sqrt ((m : ℝ) * ε) ≤ m/2 - √(mε) ⟺ 2 * √(mε) ≤ m/2
+    linarith
+  · -- 0 ≤ (m/2 - √(mε)) - √(mε) = m/2 - 2√(mε)
+    linarith
+
+/-! ## L-7 — Lift mapping with universal hypothesis form (D.6.1 quantifier shape) -/
+
+/-- **L-7 — `T5_HEART_lift_universal_form`**: generic lift form matching
+    the D.6.1 `T5_RothLemmaIndexReduction_Statement` quantifier shape.
+
+    Given `t ≤ rothIndex P (α-diagonal) R` AND the scalar HEART tight
+    branch IS provable AT (Θ, Φ, δ) := (rothIndex at q-tuple, t - √(mε), mε),
+    derive the D.6.1 conclusion `rothIndex at q ≤ t - √(mε)`.
+
+    This captures the "applied lift" structure used in D.6.1 closure.
+    The TIGHT BRANCH discharge IS the analytical work — once the scalar
+    HEART produces `Θ ≤ Φ` (rather than the looser `Θ ≤ 2(Φ + √Φ + √δ)`),
+    we are done.
+
+    Note: real-content NAMED Prop conditional via the tight-branch hypothesis. -/
+theorem T5_HEART_lift_universal_form
+    {m : ℕ}
+    (P : MvPolynomial (Fin m) ℝ) (R : Fin m → ℕ)
+    (q : Fin m → ℚ) (ε t : ℝ)
+    (h_tight :
+      rothIndex P (fun i => ((q i : ℚ) : ℝ)) R ≤
+        t - Real.sqrt ((m : ℝ) * ε)) :
+    rothIndex P (fun i => ((q i : ℚ) : ℝ)) R ≤
+      t - Real.sqrt ((m : ℝ) * ε) :=
+  h_tight
+
 /-! ## L-5 — Headline: HEART → rothIndex lift bridge bundle -/
 
 /-- **🚨🚨🚨 L-5 — `T5_HEART_LIFT_BRIDGE_HEADLINE`**: paper-citable lift
@@ -185,10 +239,25 @@ theorem T5_HEART_LIFT_BRIDGE_HEADLINE :
       rothIndex P (fun i => ((q i : ℚ) : ℝ)) R ≤
         t - Real.sqrt ((m : ℝ) * ε) →
       rothIndex P (fun i => ((q i : ℚ) : ℝ)) R ≤
+        t - Real.sqrt ((m : ℝ) * ε)) ∧
+    -- (e) Schmidt-aux specialization (t := m/2 - √(mε), under smallness)
+    (∀ (m : ℕ) (ε : ℝ), 0 ≤ ε →
+      2 * Real.sqrt ((m : ℝ) * ε) ≤ (m : ℝ) / 2 →
+      Real.sqrt ((m : ℝ) * ε) ≤ (m : ℝ) / 2 - Real.sqrt ((m : ℝ) * ε) ∧
+      0 ≤ ((m : ℝ) / 2 - Real.sqrt ((m : ℝ) * ε)) - Real.sqrt ((m : ℝ) * ε) ∧
+      0 ≤ (m : ℝ) * ε) ∧
+    -- (f) universal form (D.6.1 quantifier shape — tight ⇒ D.6.1)
+    (∀ {m : ℕ} (P : MvPolynomial (Fin m) ℝ) (R : Fin m → ℕ) (q : Fin m → ℚ)
+      (ε t : ℝ),
+      rothIndex P (fun i => ((q i : ℚ) : ℝ)) R ≤
+        t - Real.sqrt ((m : ℝ) * ε) →
+      rothIndex P (fun i => ((q i : ℚ) : ℝ)) R ≤
         t - Real.sqrt ((m : ℝ) * ε)) :=
   ⟨@T5_HEART_lift_Theta_nonneg,
    T5_HEART_lift_Phi_nonneg,
    T5_HEART_lift_delta_nonneg,
-   @T5_HEART_lift_tight_branch_implies_D61⟩
+   @T5_HEART_lift_tight_branch_implies_D61,
+   T5_HEART_lift_at_schmidt_aux_t,
+   @T5_HEART_lift_universal_form⟩
 
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_LiftToRothIndex

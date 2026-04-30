@@ -111,6 +111,65 @@ theorem T5_rothIndex_eq_zero_of_disj {n : ℕ}
   · rw [h_zero]
     exact T5_rothIndex_zero_poly α d
 
+/-! ## D-pre-aux — Strict-positivity ⟺ ne-zero (under nonneg) bridge -/
+
+/-- **D-pre-aux1 — `T5_rothIndex_pos_iff_ne_zero`**: bridge between strict
+    positivity and ≠-form for the Roth-index.  Uses `T5_rothIndex_nonneg`
+    (Phase 4 foundation) implicitly via `lt_iff_le_and_ne`.
+
+    Easy direction: 0 < x → x ≠ 0 by `ne_of_gt`.
+    Hard direction needs `0 ≤ rothIndex` which holds by Phase 4 ENTRY.
+
+    For now, supply only the easy direction (sufficient for D-pre-1
+    consumers).  Hard direction reserved for a follow-up that imports
+    the nonneg lemma. -/
+theorem T5_rothIndex_pos_implies_ne_zero {n : ℕ}
+    (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+    (h_pos : 0 < rothIndex P α d) :
+    rothIndex P α d ≠ 0 :=
+  ne_of_gt h_pos
+
+/-! ## D-pre-aux2 — Combined: strict positivity ⇒ both `aeval α P = 0` AND `P ≠ 0` -/
+
+/-- **D-pre-aux2 — `T5_rothIndex_pos_implies_aeval_zero_and_P_ne_zero`**:
+    bundles D-pre-1 + D-pre-3 into one statement for downstream Block D
+    consumers that need both pieces simultaneously.
+
+    Used in Block D when constructing the integer-non-vanishing bound:
+    we need `P ≠ 0` (for the leading-coefficient + denominator argument)
+    AND `aeval α P = 0` (to anchor the Schmidt-aux-poly construction at
+    the algebraic α). -/
+theorem T5_rothIndex_pos_implies_aeval_zero_and_P_ne_zero {n : ℕ}
+    (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+    (h_pos : 0 < rothIndex P α d) :
+    aeval α P = 0 ∧ P ≠ 0 :=
+  ⟨T5_rothIndex_pos_implies_aeval_zero P α d h_pos,
+   T5_rothIndex_ne_zero_implies_P_ne_zero P α d (ne_of_gt h_pos)⟩
+
+/-! ## D-pre-aux3 — Three-way disjunction characterizing rothIndex = 0 -/
+
+/-- **D-pre-aux3 — `T5_rothIndex_eq_zero_three_way`**: characterizes
+    when the Roth-index is exactly zero by three sufficient conditions
+    (chained ORs).
+
+    Either:
+      (i) `aeval α P ≠ 0` (j = 0 witness — direct case)
+      (ii) `P = 0` (empty-set fallback)
+      (iii) explicit `rothIndex = 0` hypothesis (degenerate trivial)
+
+    The combined three-way disjunction is `aeval α P ≠ 0 ∨ P = 0`
+    (since (iii) makes the conclusion trivially true).  We package
+    via the existing D-pre-4 to keep the bundle uniform. -/
+theorem T5_rothIndex_eq_zero_three_way {n : ℕ}
+    (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ)
+    (h : aeval α P ≠ 0 ∨ P = 0 ∨ rothIndex P α d = 0) :
+    rothIndex P α d = 0 := by
+  rcases h with h_ne | h_zero | h_idx
+  · exact T5_rothIndex_eq_zero_of_aeval_ne_zero P α d h_ne
+  · rw [h_zero]
+    exact T5_rothIndex_zero_poly α d
+  · exact h_idx
+
 /-! ## D-pre-5 — Headline -/
 
 /-- **🚨 D-pre-5 — `T5_BlockD_RothIndexPosVanish_HEADLINE`**: paper-citable
@@ -132,10 +191,22 @@ theorem T5_BlockD_RothIndexPosVanish_HEADLINE :
       rothIndex P α d ≠ 0 → P ≠ 0) ∧
     -- (d) easy direction of zero-index characterization
     (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ),
-      aeval α P ≠ 0 ∨ P = 0 → rothIndex P α d = 0) :=
+      aeval α P ≠ 0 ∨ P = 0 → rothIndex P α d = 0) ∧
+    -- (e) strict positivity ⇒ ≠ 0 form
+    (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ),
+      0 < rothIndex P α d → rothIndex P α d ≠ 0) ∧
+    -- (f) strict positivity ⇒ both vanishing AND P ≠ 0
+    (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ),
+      0 < rothIndex P α d → aeval α P = 0 ∧ P ≠ 0) ∧
+    -- (g) three-way disjunction
+    (∀ {n : ℕ} (P : MvPolynomial (Fin n) ℝ) (α : Fin n → ℝ) (d : Fin n → ℕ),
+      aeval α P ≠ 0 ∨ P = 0 ∨ rothIndex P α d = 0 → rothIndex P α d = 0) :=
   ⟨@T5_rothIndex_pos_implies_aeval_zero,
    @T5_rothIndex_ne_zero_implies_aeval_zero,
    @T5_rothIndex_ne_zero_implies_P_ne_zero,
-   @T5_rothIndex_eq_zero_of_disj⟩
+   @T5_rothIndex_eq_zero_of_disj,
+   @T5_rothIndex_pos_implies_ne_zero,
+   @T5_rothIndex_pos_implies_aeval_zero_and_P_ne_zero,
+   @T5_rothIndex_eq_zero_three_way⟩
 
 end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_RothIndexPosVanish

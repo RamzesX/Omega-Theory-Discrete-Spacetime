@@ -5858,3 +5858,10 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_D61_HEART_LiftTo
 -- entry-point data structure for Block C/D/E analytical contradiction).
 -- 3 composition theorems + 3-conjunct headline.  Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_HygieneBundle
+-- D.7 Block C ENTRY-POINT BOUND.
+-- FIRST genuine step-forward on atom-2 D.7 closure post-pivot 2026-04-30:
+-- composes master (Schmidt aux index ≥ m/2 − √(mε)) + index reduction Statement
+-- to derive rothIndex P at q-tuple ≤ m/2 − 2√(mε).  This bound feeds the
+-- Block D analytical (multivariate Taylor) + Block E contradiction.
+-- 2 composition theorems + 2-conjunct headline.  Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_IndexAtQTupleBound

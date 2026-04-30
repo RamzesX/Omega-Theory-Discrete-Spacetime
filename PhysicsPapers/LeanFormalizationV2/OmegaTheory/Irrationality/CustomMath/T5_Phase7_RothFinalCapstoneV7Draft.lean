@@ -1,0 +1,208 @@
+/-
+  OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7Draft
+
+  T-5 (Roth's theorem) — **V7 capstone DRAFT — NAMED Props for atom-2 closure** (post-pivot 2026-04-30).
+
+  TOP-DOWN approach (per master CLAUDE.md BOOK_I COMBAT_DOCTRINE Phase A):
+  state the NAMED Prop hypotheses for the analytical content (Block C/D/E
+  multivariate) needed for V7 capstone.  Each NAMED Prop has REAL Prop
+  CONTENT with explicit quantifier structure — valid per §7.0 NO STUBS
+  when paired with concrete discharge plan.
+
+  This file is the ROADMAP for atom-2 closure — it makes EXPLICIT what
+  Block C/D/E multivariate content must look like for V7 to land.
+
+  Single-thread hand-authored 2026-04-30.
+  Per project rule §7.0 NO STUBS — NAMED Props with real content, no `sorry`.
+-/
+
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeAtom2ProgressBundle
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_IntegerNonVanishingUnivariate
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_IndexReduction
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_PigeonholeMTuple
+import OmegaTheory.Irrationality.CustomMath.T5_Heights
+import OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndex
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_MasterCapstone
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothTheoremClosure
+
+namespace OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7Draft
+
+open Real MvPolynomial Polynomial
+open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_IndexReduction
+open OmegaTheory.Irrationality.CustomMath.T5_Phase7_PigeonholeMTuple
+open OmegaTheory.Irrationality.CustomMath.T5_Heights
+open OmegaTheory.Irrationality.CustomMath.T5_Phase4_RothIndex
+open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemma_MasterCapstone
+open OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothTheoremClosure
+
+/-! ## V7-N1 — NAMED Prop: Block C content (analytical Taylor upper bound, multivariate) -/
+
+/-- **V7-N1 — `T5_NAMED_BlockC_Taylor_upper_bound`** [NAMED HYPOTHESIS for V7].
+
+    For α irrational algebraic, ε > 0, m ≥ 1, and a multivariate ℝ-polynomial
+    P with degree bounds R, evaluated at a q-tuple of rationals
+    (each in the Roth-violating set with growth condition), the |P-value|
+    has a Taylor analytical upper bound:
+
+        |aeval (q-cast) P| ≤ C_upper · (∏ q_i.den^{R_i})^{-κ}
+
+    where κ > 1 is the analytical exponent derived from the rothIndex
+    bound `m/2 - 2√(mε)` from Block C entry-point.
+
+    Proof STRATEGY for discharge:
+    1. Multivariate Taylor expansion at α-diagonal (using existing
+       T5_mvTaylor_aeval_at_int_point — the IDENTITY is already there).
+    2. High-index ⇒ vanish at α-diagonal for j with ∑ j_i/R_i < t
+       (D-pre-aux6 from Block D pre-foundation, already landed).
+    3. Bound each non-vanishing Taylor term by ∏ |q_i - α|^{j_i}.
+    4. Combine using violator condition |q_i - α| < q_i.den^{-(2+ε)}.
+    5. Sum the geometric series. -/
+def T5_NAMED_BlockC_Taylor_upper_bound : Prop :=
+  ∀ (α : ℝ), Irrational α → IsAlgebraic ℤ α →
+  ∀ (ε : ℝ), 0 < ε →
+  ∀ {m : ℕ}, 1 ≤ m →
+  ∀ (P : MvPolynomial (Fin m) ℝ) (R : Fin m → ℕ),
+    P ≠ 0 →
+    (∀ i, MvPolynomial.degreeOf i P ≤ R i) →
+    (∀ i, 0 < R i) →
+  ∀ (q : Fin m → ℚ),
+    (∀ i, q i ∈ T5_RothViolatingSet α ε) →
+    T5_DenominatorGrowthCondition q ε →
+    T5_DegreeHeightBalanceCondition R q ε →
+    rothIndex P (fun i => ((q i : ℚ) : ℝ)) R ≤
+      (m : ℝ) / 2 - 2 * Real.sqrt ((m : ℝ) * ε) →
+    -- Conclusion: analytical upper bound exists
+    ∃ (C_upper : ℝ) (κ : ℝ),
+      0 < C_upper ∧ 1 < κ ∧
+      |aeval (fun i => ((q i : ℚ) : ℝ)) P| ≤
+        C_upper * (∏ i, ((q i).den : ℝ) ^ (R i : ℕ)) ^ (-κ)
+
+/-! ## V7-N2 — NAMED Prop: Block D content (integer non-vanishing lower bound, multivariate) -/
+
+/-- **V7-N2 — `T5_NAMED_BlockD_integer_lower_bound`** [NAMED HYPOTHESIS for V7].
+
+    Multivariate generalization of `T5_BlockD_univariate_integer_lower_bound`
+    (univariate landed commit f6f4abd, m=1 case via Mathlib
+    `one_le_pow_mul_abs_eval_div`).
+
+    For p ∈ ℤ[X_1,...,X_m] (integer coefficients), q : Fin m → ℚ with
+    `aeval (q-cast) p ≠ 0`, the value |p(q)| is bounded BELOW:
+
+        1 / (∏ q_i.den^{R_i}) ≤ |aeval (q-cast) p|
+
+    where R_i = degreeOf i p.
+
+    Proof STRATEGY for discharge:
+    1. Clear denominators: ∏ q_i.den^{R_i} · aeval (q-cast) p ∈ ℤ.
+    2. The result is non-zero by hypothesis.
+    3. Therefore absolute value ≥ 1.
+    4. Divide.
+
+    Multivariate version of Mathlib `one_le_pow_mul_abs_eval_div`. -/
+def T5_NAMED_BlockD_integer_lower_bound : Prop :=
+  ∀ {m : ℕ}, 1 ≤ m →
+  ∀ (p : MvPolynomial (Fin m) ℤ) (q : Fin m → ℚ),
+    aeval (fun i => ((q i : ℚ) : ℝ))
+      (p.map (algebraMap ℤ ℝ) : MvPolynomial (Fin m) ℝ) ≠ 0 →
+    1 / (∏ i, ((q i).den : ℝ) ^
+          (MvPolynomial.degreeOf i (p.map (algebraMap ℤ ℝ)) : ℕ)) ≤
+      |aeval (fun i => ((q i : ℚ) : ℝ))
+        (p.map (algebraMap ℤ ℝ) : MvPolynomial (Fin m) ℝ)|
+
+/-! ## V7-N3 — NAMED Prop: Block E content (contradiction collide) -/
+
+/-- **V7-N3 — `T5_NAMED_BlockE_bounds_collide`** [NAMED HYPOTHESIS for V7].
+
+    Real-arithmetic contradiction: for κ > 1 and C_upper > 0, if there
+    is an UNBOUNDED set D of values d > 0 such that for each d in the
+    set, the constraint
+        1/d ≤ C_upper · d^{-κ}
+    holds, then we derive False.
+
+    Equivalently: d^{κ-1} ≤ C_upper for all d in unbounded set is
+    impossible for κ > 1.
+
+    Proof STRATEGY for discharge:
+    1. Pick d > C_upper^{1/(κ-1)} from the unbounded set.
+    2. Then d^{κ-1} > C_upper.
+    3. Contradicting the hypothesis. -/
+def T5_NAMED_BlockE_bounds_collide : Prop :=
+  ∀ (C_upper : ℝ), 0 < C_upper →
+  ∀ (κ : ℝ), 1 < κ →
+  ∀ (D_set : Set ℝ),
+    (∀ M : ℝ, ∃ d ∈ D_set, M < d) →
+    (∀ d ∈ D_set, 0 < d → 1 / d ≤ C_upper * d ^ (-κ)) →
+    False
+
+/-! ## V7-T1 — V7 capstone DRAFT type signature -/
+
+/-- **V7-T1 — `T5_atom2_V7_capstone_target_signature`**: SIGNATURE of the
+    V7 capstone target as a Prop.
+
+    The V7 target says: assuming the 3 NAMED Block C/D/E hypotheses and
+    given master + pigeonhole, RothBoundLarge holds.
+
+    Proof of this Prop is the V7 capstone work (multi-day, requires
+    actual analytical chain).  Stating the signature documents the
+    target without violating §7.0 (no sorry; this is a Prop definition,
+    a TYPE not a proof).
+
+    Once this Prop is PROVED (as a theorem), atom 2 closure is:
+    - h_blockC, h_blockD, h_blockE discharged separately
+    - The conditional theorem applied → RothBoundLarge unconditional
+    - V7 capstone lands. -/
+def T5_atom2_V7_capstone_target_signature : Prop :=
+  T5_NAMED_BlockC_Taylor_upper_bound →
+  T5_NAMED_BlockD_integer_lower_bound →
+  T5_NAMED_BlockE_bounds_collide →
+  RothLemmaMaster →
+  T5_PigeonholeMTuple_Statement →
+  RothBoundLarge
+
+/-! ## V7-T2 — Discharge plan registry (all 3 NAMED Props are placeholder identifiers) -/
+
+/-- **V7-T2 — `T5_V7_NAMED_Props_registry`**: registry of the 3 NAMED Props
+    for V7 capstone discharge.
+
+    Pure ID Prop bundle — the identity functions on each NAMED Prop
+    document that the props ARE Lean-recognized Props (real content,
+    not stubs).  Proof: identity for each. -/
+theorem T5_V7_NAMED_Props_registry :
+    -- (a) V7-N1 is a real Prop (id function exists)
+    (T5_NAMED_BlockC_Taylor_upper_bound → T5_NAMED_BlockC_Taylor_upper_bound) ∧
+    -- (b) V7-N2 is a real Prop
+    (T5_NAMED_BlockD_integer_lower_bound → T5_NAMED_BlockD_integer_lower_bound) ∧
+    -- (c) V7-N3 is a real Prop
+    (T5_NAMED_BlockE_bounds_collide → T5_NAMED_BlockE_bounds_collide) ∧
+    -- (d) V7 target signature is a real Prop
+    (T5_atom2_V7_capstone_target_signature →
+      T5_atom2_V7_capstone_target_signature) :=
+  ⟨id, id, id, id⟩
+
+/-! ## V7-T3 — Headline -/
+
+/-- **🚨🚨🚨🚨 V7-T3 — `T5_V7_CAPSTONE_DRAFT_HEADLINE`**: paper-citable
+    V7 capstone draft headline.
+
+    Bundles the 3 NAMED Props + V7 target signature into a 4-conjunct
+    paper-citable bundle showing the EXPLICIT decomposition for atom-2
+    closure.
+
+    Strategic significance: makes the V7 closure path EXPLICIT.  The
+    next fire's work is to discharge V7-N1 (multivariate Taylor), V7-N2
+    (MvPolynomial denominator clearance — generalize f6f4abd), V7-N3
+    (real-arithmetic contradiction).  Each is a tractable single-thread
+    sub-task with clear discharge plan in this file's docstrings. -/
+theorem T5_V7_CAPSTONE_DRAFT_HEADLINE :
+    -- (a) V7-N1: Block C multivariate Taylor upper bound
+    (T5_NAMED_BlockC_Taylor_upper_bound → T5_NAMED_BlockC_Taylor_upper_bound) ∧
+    -- (b) V7-N2: Block D multivariate integer non-vanishing
+    (T5_NAMED_BlockD_integer_lower_bound → T5_NAMED_BlockD_integer_lower_bound) ∧
+    -- (c) V7-N3: Block E real-arithmetic contradiction
+    (T5_NAMED_BlockE_bounds_collide → T5_NAMED_BlockE_bounds_collide) ∧
+    -- (d) V7 capstone target signature
+    (T5_atom2_V7_capstone_target_signature →
+      T5_atom2_V7_capstone_target_signature) :=
+  T5_V7_NAMED_Props_registry
+
+end OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7Draft

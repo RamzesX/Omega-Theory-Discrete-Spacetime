@@ -5880,3 +5880,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeAtom2Progres
 -- analytical content for atom-2 (univariate case).  2 lemmas + 2-conjunct
 -- headline.  Lean core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_IntegerNonVanishingUnivariate
+-- V7 capstone DRAFT — TOP-DOWN ROADMAP for atom-2 closure.
+-- States 3 NAMED Props (V7-N1 Block C Taylor upper bound, V7-N2 Block D
+-- multivariate integer non-vanishing, V7-N3 Block E real-arithmetic
+-- contradiction) + V7 capstone target SIGNATURE.  Each NAMED Prop has
+-- real content with explicit quantifier structure + concrete discharge
+-- plan in docstrings.  This file is the ROADMAP for atom-2 closure
+-- (next-fire targets).  4-conjunct headline.  Lean core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7Draft

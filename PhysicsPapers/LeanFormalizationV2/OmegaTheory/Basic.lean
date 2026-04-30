@@ -5888,6 +5888,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_Multi
 -- for p = MvPolynomial.C c (k = c) and p = 0 (k = 0).  Sanity check
 -- that the NAMED clearance hypothesis is provable for simple cases.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_ClearanceConstantCase
+-- D.7 atom-2 V7-N2 STEP-4 — Block D CLEARANCE X VARIABLE CASE 2026-04-30.
+-- 2 sub-lemmas (DCX-1 rational arith helper, DCX-2 X-variable clearance)
+-- + 2-conjunct headline.  Concrete worked example for monomial X i:
+-- k = (q i).num via q_i.den · (q_i : ℝ) = (q_i.num : ℝ) identity.
+-- Combined with constant case, gives atomic monomial building blocks.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_ClearanceXVariableCase
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

@@ -5876,6 +5876,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_Viola
 -- ∏ q_i.den^{R_i} central to V7-N2 multivariate integer non-vanishing
 -- lower bound conclusion.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_MultivariateProductPositivity
+-- D.7 atom-2 V7-N2 STEP-2 — Block D MULTIVARIATE CLEARANCE COMPOSITION 2026-04-30.
+-- 1 NAMED Prop (T5_NAMED_BlockD_multivariate_clearance for ∃ k : ℤ, D_R · aeval = k)
+-- + composition theorem reducing V7-N2 to JUST integer clearance step
+-- + 2-conjunct headline.  Significant V7-N2 progress: the lower-bound
+-- argument is HANDLED HERE; next-fire work is JUST clearance discharge.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_MultivariateClearanceComposition
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

@@ -5942,6 +5942,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_PerPo
 -- in per-poly, SEQ-4 headline).  Ergonomic V7-N3 forms for V7 capstone
 -- composition — directly converts (D_seq, val_seq) bounds to False.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockE_SequenceApplications
+-- D.7 atom-2 V7-N1 UNIFORM VARIANT 2026-04-30.
+-- 4 theorems: V7N1U-1 NAMED Prop (uniform κ across q), V7N1U-2 bridge,
+-- V7N1U-3 extraction, V7N1U-4 headline.  Stronger form needed for SEQ-3
+-- composition where κ must be uniform across the q-tuple sequence.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_V7N1Uniform
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

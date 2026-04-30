@@ -6100,3 +6100,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_DecompositionStatus
 
 -- Universal-witness factoring into 3 sub-NAMEDs (translate + support + shift).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UniversalWitnessFactoring
+
+-- UWF-3 UNCONDITIONALLY DISCHARGED (shiftPoly preserves nonzero via funext).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF3_Discharge

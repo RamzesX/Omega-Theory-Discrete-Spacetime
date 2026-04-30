@@ -178,6 +178,49 @@ theorem T5_BlockE_local_arithmetic_contradiction
   -- h_excess : C < x ^ (κ - 1)
   linarith
 
+/-! ## V7-D-N3-FULL — DISCHARGE of V7-N3 (full unbounded-set version) -/
+
+/-- **V7-D-N3-FULL — `T5_NAMED_BlockE_bounds_collide_unconditional`**:
+    UNCONDITIONAL discharge of V7-N3 Block E using V7-D-N3-LOCAL.
+
+    Strategy: from the unbounded D-set, pick d > C^{1/(κ-1)} + 1.
+    Then d > 0 AND d^{κ-1} > C.  Apply the local arithmetic
+    contradiction lemma. -/
+theorem T5_NAMED_BlockE_bounds_collide_unconditional :
+    T5_NAMED_BlockE_bounds_collide := by
+  unfold T5_NAMED_BlockE_bounds_collide
+  intros C hC κ hκ D_set h_unbounded h_constraint
+  -- Pick threshold M := C^{1/(κ-1)} + 1
+  set M : ℝ := C ^ (1 / (κ - 1)) + 1 with hM_def
+  obtain ⟨d, hd_mem, hd_gt⟩ := h_unbounded M
+  -- M ≥ 1 (since C^{1/(κ-1)} ≥ 0)
+  have h_thresh_nn : 0 ≤ C ^ (1 / (κ - 1)) :=
+    Real.rpow_nonneg (le_of_lt hC) _
+  have hM_ge_one : 1 ≤ M := by rw [hM_def]; linarith
+  have hd_pos : 0 < d := by linarith
+  -- d > M = C^{1/(κ-1)} + 1 > C^{1/(κ-1)}
+  have hd_gt_thresh : C ^ (1 / (κ - 1)) < d := by
+    rw [hM_def] at hd_gt; linarith
+  -- d^{κ-1} > C  via raising both sides to power (κ-1) > 0
+  have hκm1_pos : 0 < κ - 1 := by linarith
+  have h_d_pow_gt : C < d ^ (κ - 1) := by
+    -- C^{1/(κ-1)} < d  →  (C^{1/(κ-1)})^{κ-1} < d^{κ-1}
+    have h_thresh_nonneg : 0 ≤ C ^ (1 / (κ - 1)) := h_thresh_nn
+    have h_lt_pow :
+        (C ^ (1 / (κ - 1))) ^ (κ - 1) < d ^ (κ - 1) :=
+      Real.rpow_lt_rpow h_thresh_nonneg hd_gt_thresh hκm1_pos
+    -- (C^{1/(κ-1)})^{κ-1} = C^{(1/(κ-1)) · (κ-1)} = C^1 = C
+    have h_pow_simp : (C ^ (1 / (κ - 1))) ^ (κ - 1) = C := by
+      rw [← Real.rpow_mul (le_of_lt hC)]
+      rw [show (1 / (κ - 1)) * (κ - 1) = 1 by
+        field_simp]
+      exact Real.rpow_one C
+    rw [h_pow_simp] at h_lt_pow
+    exact h_lt_pow
+  -- Apply local contradiction
+  exact T5_BlockE_local_arithmetic_contradiction d C κ hd_pos hC hκ
+    (h_constraint d hd_mem hd_pos) h_d_pow_gt
+
 /-! ## V7-T1 — V7 capstone DRAFT type signature -/
 
 /-- **V7-T1 — `T5_atom2_V7_capstone_target_signature`**: SIGNATURE of the

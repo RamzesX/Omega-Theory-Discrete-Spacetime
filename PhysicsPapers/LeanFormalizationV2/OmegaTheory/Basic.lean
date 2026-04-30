@@ -6097,3 +6097,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SM3_PartialDischarge
 
 -- V8 7-NAMED-leaf-relaxed decomposition STATUS capstone.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_DecompositionStatus
+
+-- Universal-witness factoring into 3 sub-NAMEDs (translate + support + shift).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UniversalWitnessFactoring

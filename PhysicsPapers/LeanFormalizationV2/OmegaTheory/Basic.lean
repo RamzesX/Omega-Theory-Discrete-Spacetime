@@ -6082,3 +6082,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallJWitnessFromIndexBoun
 
 -- SmallJ-witness composition: factor through index-at-q strict upper bound.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallJWitnessComposition
+
+-- H_c bundle headline: paper-citable composition of PTO + RMB + SJWB.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_HcBundleHeadline

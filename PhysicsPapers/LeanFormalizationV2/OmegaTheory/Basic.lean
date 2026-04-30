@@ -6121,3 +6121,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SM1_PartialDischarge
 
 -- SM-2 partial discharge: factor through R-aware q_seq construction.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SM2_PartialDischarge
+
+-- δ → 0 limit packaging: relaxed smallJ → strict V8-atom-1 via 2 sub-NAMEDs.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_DeltaLimit_Packaging

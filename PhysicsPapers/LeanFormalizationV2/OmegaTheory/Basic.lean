@@ -5981,6 +5981,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_Deco
 -- lift theorem + headline.  Documents that V8 atom 1 D.6.1 = HEART lift,
 -- which is the remaining frontier work for T-5 unconditional.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLemmaD61_V8DecompositionStatus
+-- 🚨🚨🚨🚨🚨🚨 D.7+D.6.1 FINAL T-5 CLOSURE STATUS SNAPSHOT 2026-04-30.
+-- 3 paper-citable theorems: T5FCS-1 6-conjunct closure status,
+-- T5FCS-2 hypothetical T-5 unconditional from all NAMED discharges,
+-- T5FCS-3 decomposition tree headline.
+-- Documents complete T-5 path: 10 leaf NAMED Props (4+5+1) → V7 + V8.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalClosureStatusSnapshot
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

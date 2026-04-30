@@ -6130,3 +6130,9 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_DLP2_Discharge
 
 -- Yoneda bridge: strong smallJ ⇒ relaxed smallJ (trivial direction).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallJWitness_StrongRelaxedBridge
+
+-- DLP-1' UNCONDITIONALLY DISCHARGED (corrected constraint ε₀ ≤ m³/16).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_DLP1_Discharge
+
+-- δ → 0 limit FULL CLOSURE (DLP-1' + DLP-2 unconditional → relaxed → strict).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_DLP_FullClosure

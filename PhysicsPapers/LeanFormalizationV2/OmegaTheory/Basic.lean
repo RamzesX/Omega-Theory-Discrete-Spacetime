@@ -5900,6 +5900,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_Clear
 -- PPL-2 and PPL-3 are CONCRETE V7-N2 conclusions for specific polynomials —
 -- the V7-N2 conclusion is now PROVABLE for X i and C c.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_PerPolyLowerBound
+-- D.7 atom-2 V7-N2 STEP-6 — Block D CLEARANCE C·X CASE 2026-04-30.
+-- 2 theorems (DCMX-1 clearance for C c * X i, DCMX-2 V7-N2 conclusion)
+-- + 2-conjunct headline.  Combines DCC + DCX via Mathlib
+-- MvPolynomial.degreeOf_C_mul (requires nonZeroDivisors) + DCX-1.
+-- Witness k = c * (q i).num.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_ClearanceCMulXCase
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

@@ -6109,3 +6109,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF1_Discharge
 
 -- UWF-2 PARTIAL DISCHARGE (factor through Taylor coefficient identity).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF2_PartialDischarge
+
+-- UWF-2 J=0 special case: nonzero constant term ⇒ UWF-2 (UNCONDITIONAL).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF2_ZeroJCase

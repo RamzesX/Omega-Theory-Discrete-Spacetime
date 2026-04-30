@@ -6157,3 +6157,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_SessionSummaryCapstone
 
 -- V8 strict paper headline architecture from 6 NAMEDs (memo capstone).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_StrictPaperHeadline_FromSixNAMEDs
+
+-- V7-N1-uniform partial discharge: factor through D5 κ-composition.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_PartialDischarge

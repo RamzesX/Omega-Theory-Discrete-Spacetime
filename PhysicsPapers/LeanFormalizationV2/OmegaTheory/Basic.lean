@@ -5937,6 +5937,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7DraftPo
 -- + 4-conjunct headline.  V7-N2 conclusion now provable for ANY polynomial
 -- without per-clearance hypothesis (since V7-N2 NAMED Prop is theorem).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_PerPolyUnconditional
+-- D.7 atom-2 V7-N3 SEQUENCE APPLICATIONS 2026-04-30.
+-- 4 theorems (SEQ-1 sequence form, SEQ-2 lower/upper, SEQ-3 V7-N2 baked
+-- in per-poly, SEQ-4 headline).  Ergonomic V7-N3 forms for V7 capstone
+-- composition — directly converts (D_seq, val_seq) bounds to False.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockE_SequenceApplications
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

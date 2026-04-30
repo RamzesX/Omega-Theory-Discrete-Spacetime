@@ -6160,3 +6160,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_StrictPaperHeadline_Fro
 
 -- V7-N1-uniform partial discharge: factor through D5 κ-composition.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_PartialDischarge
+
+-- V8-atom-1 strict closure → OG D.6.1 statement (constrained-ε bridge).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8AtomOne_to_OG_NAMED

@@ -6151,3 +6151,6 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UniversalWitness_IntPolySp
 
 -- V8 concrete ε₀ thresholds: documents practical applicability of V8 closure.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_ConcreteEpsilonThresholds
+
+-- V8 session summary capstone: paper-citable bundle of all session closures.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_SessionSummaryCapstone

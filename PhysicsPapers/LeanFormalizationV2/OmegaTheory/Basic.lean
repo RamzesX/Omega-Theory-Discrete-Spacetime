@@ -5970,6 +5970,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalCapstoneV7Closure
 -- bound) + composition pattern theorem + paper-citable headline.
 -- Decomposes V7-N1-uniform into tractable sub-discharges with explicit plans.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockC_V7N1UniformDecomposition
+-- D.7 atom-2 BLOCK A+B DECOMPOSITION 2026-04-30.
+-- 5 sub-NAMED Props (Block A unbounded, Schmidt aux, m choice,
+-- iterative pigeonhole, per-n hypothesis bundle) + decomposition
+-- pattern + paper-citable headline.  Each piece references existing
+-- infrastructure for discharge.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_Decomposition
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

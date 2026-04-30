@@ -5912,6 +5912,21 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_Clear
 -- Witness k = c · ∏ j, (q j).num^(d j) for p = monomial d c.
 -- Combined with sum-of-monomials decomposition gives full DC-1 discharge.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_ClearanceMonomialCase
+-- D.7 atom-2 V7-N2 STEP-8 — Block D CLEARANCE LINEARITY 2026-04-30.
+-- 5 theorems (DCL-1 def, DCL-2 zero, DCL-3 binary linearity,
+-- DCL-4 Finset.sum linearity, DCL-5 DC-1 bridge) + 3-conjunct headline.
+-- Building block for V7-N2 closure via MvPolynomial.as_sum + induction.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_ClearanceLinearity
+-- 🚨🚨🚨 D.7 atom-2 V7-N2 STEP-9 — V7-N2 UNCONDITIONALLY DISCHARGED 2026-04-30.
+-- 5 theorems landed in T5_Phase7_RothBoundLargeBlockD_ClearanceFinalDischarge:
+--   DCFD-1 monomial clearance with arbitrary R bound
+--   DCFD-2 degreeOf bound via monomial_le_degreeOf
+--   DCFD-3 T5_NAMED_BlockD_multivariate_clearance UNCONDITIONAL (THE MAIN)
+--   DCFD-4 T5_NAMED_BlockD_integer_lower_bound UNCONDITIONAL via DC-2
+--   DCFD-5 paper-citable V7-N2 closure headline
+-- T-5 V7-N2 (Block D multivariate integer non-vanishing lower bound) CLOSED.
+-- V7 capstone now requires ONLY V7-N1 (Block C Taylor upper bound).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockD_ClearanceFinalDischarge
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)

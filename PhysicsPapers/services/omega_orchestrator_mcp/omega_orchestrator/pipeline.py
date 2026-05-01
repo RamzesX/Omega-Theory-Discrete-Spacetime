@@ -1020,7 +1020,7 @@ def refresh_graph_target(
                 print(f"[preflight WARN] {w}", flush=True)
             write_progress({
                 "phase": "refresh_graph",
-                "step": 0, "step_count": 9, "step_name": "preflight",
+                "step": 0, "step_count": 10, "step_name": "preflight",
                 "step_status": "warn", "step_message": "; ".join(warns),
                 "elapsed_s": 0.0,
             })
@@ -1053,6 +1053,9 @@ def refresh_graph_target(
         ("reembed",
          ["python3", "reembed_qwen3_delta.py"], "neo4j",
          "Qwen3-Embedding-8B BF16 GPU delta embedder"),
+        ("ov2_proof_steps",
+         ["python3", "refresh_ov2_proof_steps.py"], "neo4j",
+         "OV2 :ProofStep source-segment Cypher migration (preserves full_t1_3 nodes)"),
     ]
 
     # Plus sentinel + verify = 8 user-visible "steps" (the chant).

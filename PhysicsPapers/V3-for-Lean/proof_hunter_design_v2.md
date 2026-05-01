@@ -803,3 +803,104 @@ My recommendation: **direct write, with a daily `:HuntRun` parent node** that gr
 ---
 
 *End of memo — Gacrux, 2026-04-19*
+
+---
+
+## 9. Implementation status — Day-2 SOTA (Added 2026-05-01)
+
+The 14 M-methods of §4 ship as live MCP tools as of 2026-05-01. Map below:
+
+### 9.1 Live MCP tools (omega-orchestrator + omega-search)
+
+| M-method | Tool name | Server | Status |
+|---|---|---|---|
+| M2 (Adamic-Adar) | `find_missing_edges(seed, k=10)` | omega-orchestrator | ✓ live |
+| M3 + M4 (mismatch + Mendeleev) | `propose_conjecture(seed_theorem, k=10, cosine_min=0.70)` | omega-orchestrator | ✓ live (2026-05-01) |
+| M6 (Forman-Ricci proxy) | `find_bridge_lemmas(min_span=3, k=20)` | omega-orchestrator | ✓ live |
+| M12 (iff cycles APPLIES) | `find_iff_cycles()` | omega-orchestrator | ✓ live |
+| M13 (articulation pts) | `find_keystones(k=20)` | omega-orchestrator | ✓ live |
+| Tactic-prefix (T4.2) | `tactic_continuation(prefix, k=10)` | omega-search | ✓ live |
+| Composite hammer | `omega_hammer_premise(goal, top_k, mix_mathlib)` | omega-orchestrator | ✓ live (freshness boost added T6.11) |
+| Yoneda kNN | `find_similar(theorem_name, k)` | omega-search | ✓ live |
+
+### 9.2 Hybrid retrieval upgrades (Day-2)
+
+**T3 BM25 FTS layer** (NEW 2026-05-01):
+- `CREATE FULLTEXT INDEX theorem_fts FOR (n:Theorem) ON EACH [n.signature, n.docstring, n.proof_body]`
+- Active in lean profile `[retrieval.fts]`. 327 hits on `'pi transcendental'` query, top score 11.27.
+
+**Goal-embedding separate field** (NEW 2026-05-01, backfill in flight):
+- `Theorem.embedding_goal` field (4096-d Qwen3 with `[goal]` prefix on signature only).
+- `theorem_embedding_goal` vector index ONLINE. Backfill ~3-4h for 192K theorems.
+- USE: agent goal queries (signature-only, pre-proof) get faithful corpus match,
+  not the proof-cluttered `embedding_lean` mismatch.
+
+**Library freshness boost (T6.11 LEGO-Prover, 2026-04-30)**:
+- `freshness = exp(-(now - env_dumped_at) / 7d)` set on every Theorem.
+- `omega_hammer_premise` composite score includes `w_freshness · freshness`
+  (lean profile w_freshness=0.15). Recently-touched lemmas boosted ~20% in rank.
+
+### 9.3 Recall@10 baseline (2026-05-01)
+
+N=83 stratified OV2 dev slice (33 per tier; tier-99 had only 17 candidates):
+
+| Mode | recall@10 | recall@5 | mean_hits | elapsed |
+|---|---:|---:|---:|---:|
+| dense (Qwen3 4096-d kNN) | 0.819 | 0.627 | 1.41 | 2.4s |
+| FTS (theorem_fts Lucene) | 0.554 | 0.434 | 0.99 | 5.0s |
+| hybrid (RRF k=60) | 0.783 | 0.554 | 1.31 | 6.8s |
+
+**Plan target ≥75% — dense alone exceeds this by 7 pp.** Surprising finding:
+hybrid LOSES to dense at scale (FTS noise dilutes strong dense signal).
+Next-fire: (a) goal-only benchmark via embedding_goal index post-backfill,
+(b) weighted RRF tuning, (c) reranker stage via Qwen3-Reranker-8B. See
+`SOTA/proving_techniques/02_hybrid_retrieval/T3_RECALL10_BASELINE_FINDINGS.md`.
+
+### 9.4 Frontier-2026 decomposition rules (T6, in prove-wizard-v3 v4.1.0)
+
+BOOK_VII FORBIDDEN additions:
+- T6.6 cut-aware doctrine cite (`arXiv:2602.10512` exponential separation theorem)
+- T6.11 freshness boost (LEGO-Prover, ABOVE)
+- T6.2 consistency-penalty rule (DeepSeek-V2 GRPO)
+- T6.5 failure-extraction NAMED Prop (REAL-Prover)
+- T6.7 dynamic replanning auto-trigger (BFS-V2)
+
+### 9.5 Agent fleet (Day-2 SOTA)
+
+| Agent | Status | Use |
+|---|---|---|
+| `prove-wizard-v3` v4.1.0 | live | 5-PHASE HYBRID + 5 new MCPs + T6.2/5/7 rules |
+| `prove-wizard-fast` v1.0 | live | Tier-99 fast-path 4-MCP-call cap |
+| `irrationality-hunter-v2` v1.0 | live | HD axiom port specialist (Nesterenko_1996) |
+| `grothendieck-sage` v2.0 | live | 5 new MCPs + propose_conjecture briefing source |
+
+### 9.6 Skills
+
+| Skill | Purpose |
+|---|---|
+| `cron-creation` | SOTA scheduled agent firing with anti-pause doctrine |
+| `sota-plan` | Repeatable plan-of-record for ATOM/MODULE/TRACK targets |
+
+### 9.7 Lean DSL extensions
+
+`OmegaTheory/Meta/SubgoalDSL.lean` — Suppose/Define/Conclude macros (Delta Prover §3
+inspired structured proof annotation).
+
+### 9.8 Backlog (open)
+
+| Tag | Item | Tier | Effort |
+|---|---|---|---|
+| T6.5 | `propose_named_from_failure` MCP tool | Tier-80 | ~2 days |
+| T6.9 | progress-prediction tiny MLP (LeanProgress) | Tier-80 | ~2 days |
+| T1.3 | goal-state checkpoints `DumpProofSteps.lean` | Heart | ~1 week |
+| T4.2.b | `goal_to_proof_step` (depends on T1.3) | Heart | ~3 days |
+| T2-wire | wire `goal_embed_client` into `omega_hammer` scoring | Tier-80 | ~3 hours after backfill completes |
+| T9 | HD axiom port (Nesterenko_1996) | Heart++ | ~2-4 weeks |
+
+### 9.9 Next iteration target
+
+The complete SOTA snapshot for Day-2 + Day-3 work is at
+`PhysicsPapers/SOTA/SNAPSHOT_2026-05-01.md` and successor snapshots.
+
+The hunt is eternal. Pride at noon.
+

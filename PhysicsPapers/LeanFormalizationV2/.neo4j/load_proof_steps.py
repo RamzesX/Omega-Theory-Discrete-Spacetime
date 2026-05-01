@@ -40,13 +40,22 @@ def detect_namespace(parent_thm: str) -> str:
 
 
 def upsert_batch(tx, batch, default_namespace=None):
-    """Idempotent upsert: drop existing :ProofStep for (parent_thm,step_idx) then create."""
+    """Idempotent upsert: drop existing :ProofStep for (parent_thm,step_idx) then create.
+
+    Always creates the :ProofStep node. Optionally creates :HAS_STEP edge to
+    the parent Theorem if one matches the parent_thm name (exact OR bare suffix).
+    Bare-suffix fallback handles the format mismatch where LeanDojo emits
+    `Real.sqrt_nonneg` but our graph stores it as bare `sqrt_nonneg`.
+    """
     rows = []
     for rec in batch:
         ns = default_namespace or detect_namespace(rec["parent_thm"])
+        full_name = rec["parent_thm"]
+        bare_name = full_name.rsplit(".", 1)[-1] if "." in full_name else full_name
         rows.append({
             "namespace": ns,
-            "parent_thm": rec["parent_thm"],
+            "parent_thm": full_name,
+            "bare_name": bare_name,
             "step_idx": rec["step_idx"],
             "tactic": rec.get("tactic", ""),
             "tactic_kind": rec.get("tactic_kind", ""),
@@ -58,14 +67,13 @@ def upsert_batch(tx, batch, default_namespace=None):
             "line": rec.get("line", 0),
             "col": rec.get("col", 0),
         })
-    # Strategy: per (parent_thm, step_idx) detach-delete LITE node then create FULL.
-    # This is one Cypher per row but batched in single tx.
+    # Strategy: ALWAYS create :ProofStep node (even when no Theorem match).
+    # Conditionally create :HAS_STEP when exact OR bare-suffix Theorem exists.
     cy = """
     UNWIND $rows AS row
     OPTIONAL MATCH (old:ProofStep {namespace: row.namespace, parent_thm: row.parent_thm, step_idx: row.step_idx})
     DETACH DELETE old
     WITH row
-    MATCH (t:Theorem {namespace: row.namespace, name: row.parent_thm})
     CREATE (ps:ProofStep {
         namespace: row.namespace,
         parent_thm: row.parent_thm,
@@ -81,7 +89,17 @@ def upsert_batch(tx, batch, default_namespace=None):
         col: row.col,
         full_t1_3: true
     })
-    CREATE (t)-[:HAS_STEP {step_idx: row.step_idx, full_t1_3: true}]->(ps)
+    WITH ps, row
+    OPTIONAL MATCH (texact:Theorem {namespace: row.namespace, name: row.parent_thm})
+    FOREACH (_ IN CASE WHEN texact IS NOT NULL THEN [1] ELSE [] END |
+        CREATE (texact)-[:HAS_STEP {step_idx: row.step_idx, full_t1_3: true, match: 'exact'}]->(ps)
+    )
+    WITH ps, row, texact
+    OPTIONAL MATCH (tbare:Theorem {namespace: row.namespace, name: row.bare_name})
+    WHERE texact IS NULL
+    FOREACH (_ IN CASE WHEN tbare IS NOT NULL THEN [1] ELSE [] END |
+        CREATE (tbare)-[:HAS_STEP {step_idx: row.step_idx, full_t1_3: true, match: 'bare'}]->(ps)
+    )
     """
     tx.run(cy, rows=rows)
 

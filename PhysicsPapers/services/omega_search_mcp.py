@@ -89,6 +89,12 @@ TASK_BRIDGE = (
     "cross-namespace theorems whose application would bridge this theorem to "
     "a target namespace — favor logical connectivity over surface similarity."
 )
+TASK_GOAL = (
+    "Given a Lean 4 proof goal-state with hypothesis context, encode the "
+    "goal-shape so that goals closable by analogous tactic prefixes "
+    "produce nearby vectors. Used for next-tactic suggestion via per-step "
+    ":ProofStep kNN."
+)
 
 
 def format_query(task_description: str, query: str) -> str:
@@ -328,6 +334,158 @@ def tool_neighbors(args: dict) -> dict:
         """
         rows = [dict(r) for r in s.run(q, {"name": name, "ns": namespace, "k": k})]
     return {"source": name, "direction": direction, "rel": rel, "k": k, "results": rows}
+
+
+def tool_auto_tactic_suggest(args: dict) -> dict:
+    """SOTA T6 / #36 — Given a goal-state string, return top-K most likely
+    next tactics with confidence scores, backed by kNN over the 343K-node
+    :ProofStep corpus (LeanDojo Mathlib + source-segmented OV2).
+
+    Algorithm:
+      1. Embed goal_str via Qwen3-Embedding-8B with TASK_GOAL prompt
+      2. kNN over `proof_step_embedding_goal` vector index (when ONLINE)
+         OR fall back to substring match on goal_before
+      3. Aggregate retrieved :ProofStep by .tactic head
+      4. Return top-K tactics ranked by frequency × mean cosine score
+      5. Each tactic carries supporting examples (parent_thm + step_idx)
+
+    Use case: "I'm staring at `⊢ ∀ x, P x → Q x`. What tactics typically
+    fire next?" → returns `[{tactic: 'intro x', confidence: 0.82, examples: ...}, ...]`.
+
+    Created: 2026-05-01 (T6 SOTA-monster auto-tactic-suggest tool).
+    """
+    goal_str = (args.get("goal_str") or "").strip()
+    namespace = args.get("namespace")
+    k = int(args.get("k", 3))
+    pool_k = int(args.get("pool_k", 30))  # how many :ProofStep to retrieve before agg
+    if not goal_str:
+        return {"error": "missing 'goal_str'"}
+
+    # Try kNN first
+    knn_rows = []
+    knn_index_available = False
+    try:
+        with driver().session() as s:
+            r = s.run(
+                "SHOW VECTOR INDEXES YIELD name "
+                "WHERE name = 'proof_step_embedding_goal' RETURN count(*) AS n"
+            ).single()
+            knn_index_available = (r and r["n"] > 0)
+    except Exception:
+        knn_index_available = False
+
+    mode = "knn" if knn_index_available else "substring"
+    if knn_index_available:
+        vec = embed_text(goal_str, is_query=True, task=TASK_GOAL)
+        with driver().session() as s:
+            ns_clause = "AND ps.namespace = $ns" if namespace else ""
+            q = f"""
+            CALL db.index.vector.queryNodes('proof_step_embedding_goal', $top, $vec)
+            YIELD node AS ps, score
+            WHERE ps.full_t1_3 = true
+              {ns_clause}
+            RETURN ps.parent_thm AS parent_thm,
+                   ps.step_idx AS step_idx,
+                   ps.tactic AS tactic,
+                   ps.tactic_kind AS tactic_kind,
+                   substring(coalesce(ps.goal_before, ''), 0, 200) AS goal_before,
+                   substring(coalesce(ps.goal_after, ''), 0, 100) AS goal_after,
+                   ps.namespace AS namespace,
+                   score
+            ORDER BY score DESC
+            LIMIT $pool_k
+            """
+            params = {"vec": vec, "top": max(100, pool_k * 2), "pool_k": pool_k}
+            if namespace:
+                params["ns"] = namespace
+            knn_rows = [dict(r) for r in s.run(q, params)]
+    else:
+        # Substring fallback (used until proof_step_embedding_goal index lands)
+        keyword = goal_str.split("⊢")[-1].strip()[:80] if "⊢" in goal_str else goal_str[:80]
+        with driver().session() as s:
+            ns_clause = "AND ps.namespace = $ns" if namespace else ""
+            q = f"""
+            MATCH (ps:ProofStep)
+            WHERE ps.full_t1_3 = true
+              AND ps.goal_before CONTAINS $kw
+              {ns_clause}
+            RETURN ps.parent_thm AS parent_thm,
+                   ps.step_idx AS step_idx,
+                   ps.tactic AS tactic,
+                   ps.tactic_kind AS tactic_kind,
+                   substring(coalesce(ps.goal_before, ''), 0, 200) AS goal_before,
+                   substring(coalesce(ps.goal_after, ''), 0, 100) AS goal_after,
+                   ps.namespace AS namespace,
+                   1.0 AS score
+            ORDER BY ps.step_idx ASC
+            LIMIT $pool_k
+            """
+            params = {"kw": keyword, "pool_k": pool_k}
+            if namespace:
+                params["ns"] = namespace
+            knn_rows = [dict(r) for r in s.run(q, params)]
+
+    if not knn_rows:
+        return {
+            "mode": mode,
+            "results": [],
+            "note": "No :ProofStep matched — try widening namespace or rewording goal_str",
+        }
+
+    # Aggregate by tactic head (first ~80 chars to dedupe near-identical tactics)
+    from collections import defaultdict
+    bins = defaultdict(lambda: {"count": 0, "score_sum": 0.0, "examples": []})
+    for row in knn_rows:
+        tac = row["tactic"] or ""
+        # Normalize: strip trailing whitespace + cap length for binning
+        tac_key = tac.strip()[:120]
+        if not tac_key:
+            continue
+        b = bins[tac_key]
+        b["count"] += 1
+        b["score_sum"] += row.get("score") or 0.0
+        if len(b["examples"]) < 3:
+            b["examples"].append({
+                "parent_thm": row["parent_thm"],
+                "step_idx": row["step_idx"],
+                "namespace": row["namespace"],
+                "goal_before": row["goal_before"],
+                "goal_after": row["goal_after"],
+                "score": row["score"],
+            })
+
+    suggestions = []
+    for tac, b in bins.items():
+        mean_score = b["score_sum"] / b["count"] if b["count"] > 0 else 0
+        # Confidence = freq × mean_score (normalized later)
+        confidence = b["count"] * mean_score
+        suggestions.append({
+            "tactic": tac,
+            "frequency": b["count"],
+            "mean_score": round(mean_score, 4),
+            "confidence": round(confidence, 4),
+            "examples": b["examples"],
+        })
+
+    suggestions.sort(key=lambda x: x["confidence"], reverse=True)
+    suggestions = suggestions[:k]
+
+    # Normalize confidence to [0, 1] across returned suggestions
+    max_conf = max((s["confidence"] for s in suggestions), default=1.0)
+    if max_conf > 0:
+        for s_ in suggestions:
+            s_["confidence_normalized"] = round(s_["confidence"] / max_conf, 4)
+
+    return {
+        "mode": mode,
+        "knn_index_available": knn_index_available,
+        "goal_str": goal_str[:200],
+        "namespace": namespace,
+        "pool_k": pool_k,
+        "k": k,
+        "pool_size": len(knn_rows),
+        "suggestions": suggestions,
+    }
 
 
 def tool_goal_to_proof_step(args: dict) -> dict:
@@ -647,6 +805,20 @@ TOOLS = {
             "required": ["name"],
         },
         "_handler": tool_find_similar,
+    },
+    "auto_tactic_suggest": {
+        "description": "SOTA #36 — Predict top-K most likely next tactics for a given goal-state via kNN over the 343K-node :ProofStep corpus. Aggregates retrieved steps by tactic head, ranks by frequency × mean cosine score. Returns suggestions with normalized confidence + 3 supporting examples per tactic. Auto-uses kNN over `proof_step_embedding_goal` index when ONLINE; falls back to substring match on goal_before until index lands. Use when stuck mid-proof and want corpus-driven tactic suggestions: 'I'm at ⊢ ∀ x, P x → Q x — what tactics fire next in similar goals?'",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "goal_str": {"type": "string", "description": "Goal text (e.g. '⊢ ∀ x, P x → Q x'). Required."},
+                "namespace": {"type": "string", "description": "Filter by namespace (Mathlib / OmegaTheoryV2). Default: both."},
+                "k": {"type": "integer", "default": 3, "description": "Top-K tactic suggestions to return."},
+                "pool_k": {"type": "integer", "default": 30, "description": "How many :ProofStep nodes to retrieve before aggregation."},
+            },
+            "required": ["goal_str"],
+        },
+        "_handler": tool_auto_tactic_suggest,
     },
     "goal_to_proof_step": {
         "description": "SOTA T4.2.b — Given a goal-state string and/or tactic prefix, return top-K :ProofStep nodes (real elaborated goals from FULL T1.3 dump_proof_steps) with similar context. Returns concrete next-tactic examples with parent theorem + step index + actual tactic + resulting goal_after. Two modes: (1) exact prefix match — when prefix=[t0,t1,...] all match preceding steps in some theorem, returns step_idx=len(prefix) tactics; (2) goal substring fallback — keyword match on goal_before. Backed by :ProofStep nodes with full_t1_3=true.",

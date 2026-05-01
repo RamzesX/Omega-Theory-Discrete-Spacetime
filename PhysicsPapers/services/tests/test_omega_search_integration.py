@@ -290,6 +290,37 @@ def test_goal_to_proof_step_namespace_filter_isolates(omega_search):
             f"namespace leak: got {r['namespace']!r}")
 
 
+# ── auto_tactic_suggest (#36 — added 2026-05-01) ──────────────────────────
+
+
+@needs_neo4j
+def test_auto_tactic_suggest_returns_ranked_suggestions(omega_search):
+    """Verify auto_tactic_suggest returns top-K tactic suggestions with
+    confidence_normalized field, working in substring fallback mode (until
+    proof_step_embedding_goal vector index lands)."""
+    out = omega_search.tool_auto_tactic_suggest({
+        "goal_str": "CommRing",
+        "k": 3,
+        "namespace": "Mathlib",
+    })
+    assert out.get("mode") in ("substring", "knn")
+    assert "knn_index_available" in out
+    assert "suggestions" in out
+    if out["suggestions"]:
+        for sug in out["suggestions"]:
+            assert "tactic" in sug
+            assert "frequency" in sug
+            assert "confidence_normalized" in sug
+            assert 0.0 <= sug["confidence_normalized"] <= 1.0
+            assert "examples" in sug
+
+
+@needs_neo4j
+def test_auto_tactic_suggest_validates_args(omega_search):
+    out = omega_search.tool_auto_tactic_suggest({})
+    assert "error" in out
+
+
 # ── lean profile: embedding_goal wiring (T1.3 + #9 + #17) ──────────────────
 
 

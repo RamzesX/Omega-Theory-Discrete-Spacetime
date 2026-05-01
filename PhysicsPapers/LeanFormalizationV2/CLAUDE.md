@@ -122,6 +122,15 @@ non-trivial content, conditional theorems with NAMED real Prop hypotheses.
 6. **Speak the same language** — follow `STYLE_GUIDE.md` (shared primitives, naming, proof patterns)
 7. **Connect don't duplicate** — `omega_hammer_premise` / `propose_proof` before writing new theorems
 8. **NO SUBAGENTS for paper-grade Yoneda** (LOCKED 2026-04-26) — categorical Yoneda witnesses, double-witnesses, Structure-composition theorems, grand capstones MUST be single-thread hand-authored. Subagents systematically produce citation-only `Nonempty S` mass-batch stubs (field-access density 0.10–0.59/thm vs hand-authored 1.13–3.6/thm = 5–30× denser; zero `funext`/`rfl` round-trip identities). See `~/.claude/CLAUDE.md` §8a + chaos-shield `.claude/CLAUDE.md`. Reference exemplars: `Foundations/{CKMAngles,PMNSAngles,ErrorBound}CategoricalYonedaWitness.lean` (c62 hand-authored).
+9. **NEVER `lake exe dump_proof_steps` SINGLE-PROCESS WHOLE-TREE** (LOCKED 2026-05-01) — re-elaboration via `processFile` per file accumulates Lean's olean cache without inter-file release → 127GB RSS leak → WSL OOM (kernel time 5336s, 5604s incidents). Mathlib :ProofStep is loaded from **LeanDojo benchmark v17** (`~/lean-v2/.neo4j/load_leandojo_full.sh`, 259K records in ~30s). OV2 :ProofStep is source-segmented via Cypher (`T1_3_proof_steps_source_segmented.cypher`). For Mathlib :ProofStep refresh use the LeanDojo loader; for OV2 use the Cypher migration. NEVER re-elaborate from source.
+
+## :ProofStep retrieval surface (LANDED 2026-05-01)
+
+The graph has **343,700 :ProofStep nodes** with REAL elaborated `goal_before`/`goal_after` strings + `tactic` per step (259K Mathlib via LeanDojo + 84K OV2 source-segmented + 158 OV2 FCNCAbsence smoke FULL). Plus **7.7M :USES edges** (premise-tactic linkage from LeanDojo `annotated_tactic`). Use via:
+
+- `mcp__omega-search__goal_to_proof_step({goal_str, prefix?, namespace, k=10})` — returns top-K steps with goal_before substring match (Mode 1) or exact prefix match (Mode 2). Mode 3 (real kNN over `proof_step_embedding_goal`) lands when per-step embeddings finish.
+- `mcp__omega-search__tactic_continuation({prefix, namespace, k=10})` — given tactic prefix, returns next-tactic distribution from corpus.
+- Direct Cypher: `MATCH (ps:ProofStep {full_t1_3:true}) WHERE ps.goal_before CONTAINS '...' RETURN ps.tactic, ps.goal_after`
 
 ## Proof Automation — USE BEFORE manual proof
 ```lean

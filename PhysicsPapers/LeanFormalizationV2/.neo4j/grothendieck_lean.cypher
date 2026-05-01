@@ -189,7 +189,7 @@ CALL gds.graph.drop('lean-multi') YIELD graphName RETURN graphName;
 // ----- D.1 : full-agreement edges (weight 1.0) ---------------
 MATCH (d1:Declaration {namespace: 'OmegaTheoryV2'}),
       (d2:Declaration {namespace: 'OmegaTheoryV2'})
-WHERE id(d1) < id(d2)                           -- avoid self + duplicate pairs
+WHERE elementId(d1) < elementId(d2)             -- avoid self + duplicate pairs (Neo4j 2026 elementId, lex order)
   AND d1.cluster_topo  IS NOT NULL
   AND d2.cluster_topo  IS NOT NULL
   AND d1.cluster_graph IS NOT NULL
@@ -204,7 +204,7 @@ SET r.weight    = 1.0,
 // Pairs where exactly ONE of the two clusterings groups them together.
 MATCH (d1:Declaration {namespace: 'OmegaTheoryV2'}),
       (d2:Declaration {namespace: 'OmegaTheoryV2'})
-WHERE id(d1) < id(d2)
+WHERE elementId(d1) < elementId(d2)
   AND d1.cluster_topo  IS NOT NULL
   AND d2.cluster_topo  IS NOT NULL
   AND d1.cluster_graph IS NOT NULL

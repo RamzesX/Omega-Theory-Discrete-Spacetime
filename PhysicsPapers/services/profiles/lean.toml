@@ -1,0 +1,108 @@
+# Omega Orchestrator model profile — LEAN (Qwen3-8B embed + distilled 1.5B reranker)
+#
+# The reranker here is placeholder-TBD until Phase 4 trains the distilled model.
+# Until then, activating this profile falls back to the default Qwen3-Reranker-8B.
+# Once Phase 4 ships, update reranker.model_path to the trained GGUF.
+
+[profile]
+name        = "lean"
+description = "Qwen3-Emb-8B GPU + distilled 1.5B Lean-specialized reranker CPU (Tier 3)"
+version     = 1
+
+[[servers]]
+id             = "embedder"
+role           = "embedding"
+launcher       = "/home/norbert/services/llama_embed_gpu.sh"
+port           = 7999
+alias          = "qwen3-embedding-8b"
+model_path     = "/home/norbert/models/qwen3-embedding-8b/Qwen3-Embedding-8B-Q8_0.gguf"
+model_dim      = 4096
+ctx            = 4096
+batch          = 4096
+ubatch         = 4096
+parallel       = 4
+threads        = 4
+gpu_layers     = 99
+query_wrap     = "Instruct: {task}\nQuery: {text}"
+doc_wrap       = ""
+neo4j_index    = "lean_retriever_embedding_theorem"
+neo4j_field    = "embedding_lean"
+boot_grace_s   = 120
+process_match  = "port 7999"
+
+[[servers]]
+id             = "reranker"
+role           = "reranking"
+# 2026-05-01 — promoted from CPU to GPU per user mandate. RX 9060 XT has space:
+#   embedder Q8_0  ≈ 9.0 GB  (port 7999)
+#   reranker Q6_K  ≈ 6.4 GB  (port 7996, this entry, GPU-loaded ALL 37 layers)
+#   total          ≈ 15.4 GB / 16 GB available — TIGHT, ~600 MB headroom
+# Wall-clock benefit: ~20-50 ms/pair vs CPU ~1 s/pair (~30× speedup).
+# If GPU OOMs in production: fall back to llama_reranker_cpu.sh (config kept inline).
+launcher       = "/home/norbert/services/llama_reranker_gpu.sh"
+port           = 7996
+# Trained v1 weights kept at: /home/norbert/models/lean-reranker-0.6b/lean-reranker-0.6b-Q6_K.gguf
+# (Phase 4 v1 had BCE-head / chat-template mismatch; v2 retrain pending.)
+alias          = "qwen3-reranker-8b"
+model_path     = "/home/norbert/models/qwen3-reranker-8b/Qwen3-Reranker-8B-Q6_K.gguf"
+ctx            = 8192
+batch          = 2048
+ubatch         = 2048
+parallel       = 4               # GPU handles 4 concurrent slots vs CPU 1
+threads        = 4               # low — GPU does the work
+gpu_layers     = 99
+# Same Qwen3-Reranker prompt-wrap pattern (model architecture preserved through fine-tune)
+query_wrap     = "<Instruct>: {task}\n<Query>: {text}"
+task_premise   = "Given a Lean 4 theorem / goal, judge whether the candidate document is a logically dependent premise — i.e. the goal applies, unfolds, or assumes the document's content in its proof chain. Prefer proof-relevant connections over surface keyword overlap."
+boot_grace_s   = 60
+process_match  = "port 7996"
+# CPU fallback kept for thermal-throttling scenarios:
+# launcher_cpu = "/home/norbert/services/llama_reranker_cpu.sh"
+# cpu_pin      = "0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30"
+
+[retrieval]
+# Lean profile activates multi-index + graph signals immediately.
+active_indices  = [
+  "theorem_embedding_signature",
+  "theorem_embedding_proof",
+  "theorem_embedding_docstring",
+  "theorem_embedding_goal",         # T1.3 + #9 + #17: goal-state embedding (4096-d Qwen3 [goal] task), backfilled 2026-05-01
+]
+rrf_k           = 60
+knn_top         = 100
+knn_final       = 10
+rerank_pool     = 50
+w_rerank        = 2.5      # distilled reranker gets higher trust
+w_indegree      = 0.15
+w_pagerank      = 0.25
+w_subsys_match  = 0.30
+w_rev_reach     = 0.40
+
+[retrieval.bm25]
+enabled         = true
+k1              = 1.5
+b               = 0.75
+
+# T3 hybrid retrieval — Neo4j FULLTEXT index over Theorem signature+docstring+proof_body.
+# Created 2026-05-01 via:
+#   CREATE FULLTEXT INDEX theorem_fts FOR (n:Theorem)
+#   ON EACH [n.signature, n.docstring, n.proof_body]
+#   OPTIONS { indexConfig: { `fulltext.analyzer`: 'standard' } }
+# Use as BM25 layer at scale (Neo4j-native, ~13K OV2 + 175K Mathlib all-in-one).
+# Query: CALL db.index.fulltext.queryNodes('theorem_fts', $q) YIELD node, score
+[retrieval.fts]
+enabled         = true
+index_name      = "theorem_fts"
+top_k           = 100
+
+[orchestrator]
+neo4j_uri             = "bolt://localhost:7687"
+neo4j_user            = "neo4j"
+neo4j_password_env    = "OMEGA_NEO4J_PASSWORD"
+lean_workdir          = "/home/norbert/lean-v2"
+lake_bin              = "/home/norbert/.elan/bin/lake"
+cache_dir             = "/home/norbert/omega_orchestrator_mcp/cache"
+cache_backend         = "sqlite"
+audit_dir             = "/home/norbert/omega_orchestrator_mcp/logs"
+embedder_concurrency  = 4
+reranker_concurrency  = 2

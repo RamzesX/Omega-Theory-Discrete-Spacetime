@@ -40,3 +40,11 @@ supportInterpreter = true
 name = "dump_stale_check"
 root = "OmegaTheory.Meta.DumpStaleCheck"
 supportInterpreter = true
+
+# `lake exe dump_proof_steps` — FULL T1.3: real elaborated goal-state capture
+# per tactic step via Lean.Elab.Frontend + InfoTree.visitM. Replaces LITE
+# Cypher migration (T1_3_proof_steps_lite.cypher). Author: Algol (β Persei).
+[[lean_exe]]
+name = "dump_proof_steps"
+root = "OmegaTheory.Meta.DumpProofSteps"
+supportInterpreter = true

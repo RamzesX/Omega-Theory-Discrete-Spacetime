@@ -237,6 +237,7 @@ partial def listLeanFiles (root : System.FilePath) : IO (Array System.FilePath) 
 structure CliOpts where
   outPath : Option String := none
   filePath : Option String := none
+  filesList : Option String := none
   rootDir : String := "/home/norbert/lean-v2/OmegaTheory"
   limit : Option Nat := none
 
@@ -250,6 +251,9 @@ def parseArgs (args : List String) : CliOpts := Id.run do
       xs := rest
     | "--file" :: v :: rest =>
       opts := { opts with filePath := some v }
+      xs := rest
+    | "--files-list" :: v :: rest =>
+      opts := { opts with filesList := some v }
       xs := rest
     | "--root" :: v :: rest =>
       opts := { opts with rootDir := v }
@@ -277,9 +281,14 @@ unsafe def main (args : List String) : IO UInt32 := do
     match handle? with
     | some h => h.putStrLn s
     | none   => IO.println s
-  let files ← match opts.filePath with
-    | some p => pure #[(System.FilePath.mk p)]
-    | none   => listLeanFiles (System.FilePath.mk opts.rootDir)
+  let files ← match opts.filePath, opts.filesList with
+    | some p, _ => pure #[(System.FilePath.mk p)]
+    | _, some listPath => do
+      let txt ← FS.readFile listPath
+      let lines := (txt.splitOn "\n").map String.trim
+      let nonEmpty := lines.filter (fun s => s.length > 0 && !s.startsWith "#")
+      pure (nonEmpty.map System.FilePath.mk).toArray
+    | _, _ => listLeanFiles (System.FilePath.mk opts.rootDir)
   let files := match opts.limit with
     | some n => files.extract 0 n
     | none => files

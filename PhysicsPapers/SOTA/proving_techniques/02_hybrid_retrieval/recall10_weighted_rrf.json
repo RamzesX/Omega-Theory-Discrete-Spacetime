@@ -1,0 +1,291 @@
+{
+  "baselines": {
+    "dense": {
+      "mode": "dense",
+      "n": 83,
+      "recall_at_10": 0.7228915662650602,
+      "recall_at_5": 0.5662650602409639,
+      "mean_hits": 1.0963855421686748,
+      "elapsed_sec": 6.473467111587524,
+      "log_sample": [
+        {
+          "name": "OmegaTheory.Foundations.errorAntipode_yoneda_categorical_witness",
+          "tier": "80",
+          "premises_count": 2,
+          "hit_count": 1,
+          "sample_hit": "OmegaTheory.Foundations.eapInverse_eapForward"
+        },
+        {
+          "name": "OmegaTheory.Predictions.HiggsSelfCouplingFit.electroweak_vacuum_not_unbounded_below_tree_level",
+          "tier": "Heart",
+          "premises_count": 2,
+          "hit_count": 1,
+          "sample_hit": "OmegaTheory.Predictions.HiggsSelfCouplingFit.higgsSelfCoupling_derived_pos"
+        },
+        {
+          "name": "OmegaTheory.Foundations.gaugeSymmetry_categorical_yoneda_paper_bundle",
+          "tier": "80",
+          "premises_count": 3,
+          "hit_count": 0,
+          "sample_hit": null
+        },
+        {
+          "name": "OmegaTheory.Geometry.conformal_weinbergHpwCompatible_flat",
+          "tier": "80",
+          "premises_count": 2,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Geometry.weinbergHpwCompatible_flat"
+        },
+        {
+          "name": "OmegaTheory.IrrationalityClasses.DixmierTracePlaceholder.omega_algebra_projection_dixmier_bundle",
+          "tier": "Heart",
+          "premises_count": 3,
+          "hit_count": 0,
+          "sample_hit": null
+        },
+        {
+          "name": "OmegaTheory.Capstones.PiTranscendenceYonedaBridges.yoneda_bridge_to_pi_irrational",
+          "tier": "99",
+          "premises_count": 2,
+          "hit_count": 0,
+          "sample_hit": null
+        },
+        {
+          "name": "OmegaTheory.Predictions.GiantComponentFrontierMarkerB0Glue.frontier_meets_b0_capstone_unconditional",
+          "tier": "99",
+          "premises_count": 2,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Capstones.OmegaAlgebraB0EqOneOrphanBridgeClosure.orphan_closure_holds"
+        },
+        {
+          "name": "OmegaTheory.Predictions.ProtonDecayLowerBoundIsolationBreak.NS_ProtonDecayLowerBound_isolation_break_via_proton_lifetime",
+          "tier": "80",
+          "premises_count": 6,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Predictions.ProtonDecayLowerBoundIsolationBreak.two_anchor_bridge_at_0"
+        },
+        {
+          "name": "OmegaTheory.Predictions.PionDecayConstantFit.fpi_over_mpi_ratio_substrate",
+          "tier": "Heart",
+          "premises_count": 2,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Predictions.PionDecayConstantFit.substratePionDecayConstant_at_anchor_eq_PDG"
+        },
+        {
+          "name": "OmegaTheory.Foundations.diracFromLatticeData_categorical_yoneda_paper_bundle",
+          "tier": "80",
+          "premises_count": 2,
+          "hit_count": 1,
+          "sample_hit": "OmegaTheory.Foundations.diracFromLatticeData_yoneda_categorical_witness"
+        }
+      ]
+    },
+    "fts": {
+      "mode": "fts",
+      "n": 83,
+      "recall_at_10": 0.5060240963855421,
+      "recall_at_5": 0.42168674698795183,
+      "mean_hits": 0.7831325301204819,
+      "elapsed_sec": 7.1564576625823975,
+      "log_sample": [
+        {
+          "name": "OmegaTheory.Foundations.errorAntipode_yoneda_categorical_witness",
+          "tier": "80",
+          "premises_count": 2,
+          "hit_count": 1,
+          "sample_hit": "OmegaTheory.Foundations.eapForward_eapInverse"
+        },
+        {
+          "name": "OmegaTheory.Predictions.HiggsSelfCouplingFit.electroweak_vacuum_not_unbounded_below_tree_level",
+          "tier": "Heart",
+          "premises_count": 2,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Predictions.HiggsSelfCouplingFit.higgsSelfCoupling_derived_ne_zero"
+        },
+        {
+          "name": "OmegaTheory.Foundations.gaugeSymmetry_categorical_yoneda_paper_bundle",
+          "tier": "80",
+          "premises_count": 3,
+          "hit_count": 3,
+          "sample_hit": "OmegaTheory.Foundations.gsm_yoneda_action_one_transport"
+        },
+        {
+          "name": "OmegaTheory.Geometry.conformal_weinbergHpwCompatible_flat",
+          "tier": "80",
+          "premises_count": 2,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Geometry.weinbergHpwCompatible_flat"
+        },
+        {
+          "name": "OmegaTheory.IrrationalityClasses.DixmierTracePlaceholder.omega_algebra_projection_dixmier_bundle",
+          "tier": "Heart",
+          "premises_count": 3,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.IrrationalityClasses.DixmierTracePlaceholder.DixTr_nonneg"
+        },
+        {
+          "name": "OmegaTheory.Capstones.PiTranscendenceYonedaBridges.yoneda_bridge_to_pi_irrational",
+          "tier": "99",
+          "premises_count": 2,
+          "hit_count": 0,
+          "sample_hit": null
+        },
+        {
+          "name": "OmegaTheory.Predictions.GiantComponentFrontierMarkerB0Glue.frontier_meets_b0_capstone_unconditional",
+          "tier": "99",
+          "premises_count": 2,
+          "hit_count": 1,
+          "sample_hit": "OmegaTheory.Predictions.GiantComponentFrontierMarkerB0Glue.frontier_meets_b0_capstone"
+        },
+        {
+          "name": "OmegaTheory.Predictions.ProtonDecayLowerBoundIsolationBreak.NS_ProtonDecayLowerBound_isolation_break_via_proton_lifetime",
+          "tier": "80",
+          "premises_count": 6,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Predictions.ProtonDecayLowerBoundIsolationBreak.two_anchor_bridge_at_0"
+        },
+        {
+          "name": "OmegaTheory.Predictions.PionDecayConstantFit.fpi_over_mpi_ratio_substrate",
+          "tier": "Heart",
+          "premises_count": 2,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Predictions.PionDecayConstantFit.substratePionDecayConstant_at_anchor_eq_PDG"
+        },
+        {
+          "name": "OmegaTheory.Foundations.diracFromLatticeData_categorical_yoneda_paper_bundle",
+          "tier": "80",
+          "premises_count": 2,
+          "hit_count": 0,
+          "sample_hit": null
+        }
+      ]
+    },
+    "hybrid_unweighted": {
+      "mode": "hybrid",
+      "n": 83,
+      "recall_at_10": 0.7349397590361446,
+      "recall_at_5": 0.5662650602409639,
+      "mean_hits": 1.0963855421686748,
+      "elapsed_sec": 6.636263370513916,
+      "log_sample": [
+        {
+          "name": "OmegaTheory.Foundations.errorAntipode_yoneda_categorical_witness",
+          "tier": "80",
+          "premises_count": 2,
+          "hit_count": 0,
+          "sample_hit": null
+        },
+        {
+          "name": "OmegaTheory.Predictions.HiggsSelfCouplingFit.electroweak_vacuum_not_unbounded_below_tree_level",
+          "tier": "Heart",
+          "premises_count": 2,
+          "hit_count": 1,
+          "sample_hit": "OmegaTheory.Predictions.HiggsSelfCouplingFit.higgsSelfCoupling_derived_pos"
+        },
+        {
+          "name": "OmegaTheory.Foundations.gaugeSymmetry_categorical_yoneda_paper_bundle",
+          "tier": "80",
+          "premises_count": 3,
+          "hit_count": 3,
+          "sample_hit": "OmegaTheory.Foundations.gsm_yoneda_action_one_transport"
+        },
+        {
+          "name": "OmegaTheory.Geometry.conformal_weinbergHpwCompatible_flat",
+          "tier": "80",
+          "premises_count": 2,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Geometry.weinbergHpwCompatible_flat"
+        },
+        {
+          "name": "OmegaTheory.IrrationalityClasses.DixmierTracePlaceholder.omega_algebra_projection_dixmier_bundle",
+          "tier": "Heart",
+          "premises_count": 3,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.IrrationalityClasses.DixmierTracePlaceholder.DixTr_nonneg"
+        },
+        {
+          "name": "OmegaTheory.Capstones.PiTranscendenceYonedaBridges.yoneda_bridge_to_pi_irrational",
+          "tier": "99",
+          "premises_count": 2,
+          "hit_count": 0,
+          "sample_hit": null
+        },
+        {
+          "name": "OmegaTheory.Predictions.GiantComponentFrontierMarkerB0Glue.frontier_meets_b0_capstone_unconditional",
+          "tier": "99",
+          "premises_count": 2,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Capstones.OmegaAlgebraB0EqOneOrphanBridgeClosure.orphan_closure_holds"
+        },
+        {
+          "name": "OmegaTheory.Predictions.ProtonDecayLowerBoundIsolationBreak.NS_ProtonDecayLowerBound_isolation_break_via_proton_lifetime",
+          "tier": "80",
+          "premises_count": 6,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Predictions.ProtonDecayLowerBoundIsolationBreak.two_anchor_bridge_at_0"
+        },
+        {
+          "name": "OmegaTheory.Predictions.PionDecayConstantFit.fpi_over_mpi_ratio_substrate",
+          "tier": "Heart",
+          "premises_count": 2,
+          "hit_count": 2,
+          "sample_hit": "OmegaTheory.Predictions.PionDecayConstantFit.substratePionDecayConstant_at_anchor_eq_PDG"
+        },
+        {
+          "name": "OmegaTheory.Foundations.diracFromLatticeData_categorical_yoneda_paper_bundle",
+          "tier": "80",
+          "premises_count": 2,
+          "hit_count": 1,
+          "sample_hit": "OmegaTheory.Foundations.diracFromLatticeData_yoneda_categorical_witness"
+        }
+      ]
+    }
+  },
+  "sweep": [
+    {
+      "w_dense": 1.0,
+      "w_fts": 1.0,
+      "n": 83,
+      "recall_at_10": 0.7349397590361446,
+      "recall_at_5": 0.5662650602409639,
+      "mean_hits": 1.0963855421686748,
+      "elapsed_sec": 6.624964237213135
+    },
+    {
+      "w_dense": 1.5,
+      "w_fts": 1.0,
+      "n": 83,
+      "recall_at_10": 0.7469879518072289,
+      "recall_at_5": 0.6024096385542169,
+      "mean_hits": 1.1566265060240963,
+      "elapsed_sec": 6.674106597900391
+    },
+    {
+      "w_dense": 2.0,
+      "w_fts": 1.0,
+      "n": 83,
+      "recall_at_10": 0.7469879518072289,
+      "recall_at_5": 0.6024096385542169,
+      "mean_hits": 1.1566265060240963,
+      "elapsed_sec": 8.257068395614624
+    },
+    {
+      "w_dense": 3.0,
+      "w_fts": 1.0,
+      "n": 83,
+      "recall_at_10": 0.7469879518072289,
+      "recall_at_5": 0.6024096385542169,
+      "mean_hits": 1.1566265060240963,
+      "elapsed_sec": 6.679775953292847
+    },
+    {
+      "w_dense": 5.0,
+      "w_fts": 1.0,
+      "n": 83,
+      "recall_at_10": 0.7469879518072289,
+      "recall_at_5": 0.6024096385542169,
+      "mean_hits": 1.1566265060240963,
+      "elapsed_sec": 6.611770391464233
+    }
+  ]
+}

@@ -233,6 +233,42 @@ def test_tactic_continuation_prefix_match(session):
         assert sup == sorted(sup, reverse=True)
 
 
+# ── T6.5 propose_named_from_failure — embedding + kNN to surface missing NAMED ─
+
+
+@needs_neo4j
+def test_propose_named_from_failure_surfaces_missing_premise(session):
+    """Verify retrieval-based NAMED proposal returns sensible top hits.
+
+    NOT a full end-to-end test of the @app.tool wrapper (that requires the
+    httpx embedding pipeline + MCP transport). Instead this verifies the
+    underlying Cypher kNN works on a known goal-state pattern.
+    """
+    # Use embedding of an existing OV2 theorem as a stand-in for a "fresh goal".
+    # The pi_transcendental_implies_irrational theorem's embedding should retrieve
+    # itself + close neighbors at high cosine.
+    rows = list(session.run(
+        """
+        MATCH (seed:Theorem {namespace: 'OmegaTheoryV2',
+            name: 'OmegaTheory.Capstones.PiHunchUnconditionalCapstone.pi_transcendental_implies_irrational'})
+        WHERE seed.embedding_lean IS NOT NULL
+        WITH seed.embedding_lean AS qvec
+        CALL db.index.vector.queryNodes('lean_retriever_embedding_theorem', 5, qvec)
+        YIELD node AS cand, score AS cos
+        WHERE cand.signature IS NOT NULL AND cos >= 0.50
+        RETURN cand.name AS name, cos
+        ORDER BY cos DESC LIMIT 5
+        """
+    ))
+    if not rows:
+        pytest.skip("seed theorem missing or no embeddings — skip")
+    # Top hit should have high cosine (>0.95 — same or near-identical theorem)
+    assert rows[0]["cos"] >= 0.95, f"top kNN cosine too low: {rows[0]['cos']}"
+    # All hits should be sorted by cosine desc
+    cosines = [r["cos"] for r in rows]
+    assert cosines == sorted(cosines, reverse=True)
+
+
 # ── T3 (FTS) — Neo4j fulltext index sanity ─────────────────────────────────
 
 

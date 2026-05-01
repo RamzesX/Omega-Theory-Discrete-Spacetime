@@ -68,3 +68,7 @@ venv/
 /site/dist/
 /site/node_modules/
 /site/.astro/
+
+# T6.9 progress predictor — regenerable artifacts
+PhysicsPapers/SOTA/proving_techniques/05_frontier_decomp_v2/*.npz
+PhysicsPapers/SOTA/proving_techniques/05_frontier_decomp_v2/*.pt

@@ -260,6 +260,13 @@
       ❌ Stretch goal targeting sister wizard's file → file conflict
       ❌ subprocess.PIPE for child emitting >1MB → parent OOM
       ❌ setsid + start_new_session=True → wrong pid recorded
+      ❌ `lake exe dump_proof_steps` in single-process whole-tree mode →
+         127GB RSS leak → WSL OOM-killed (2026-05-01 incident, kernel time 5336s).
+         Each `processFile` call accumulates env mass + InfoTree pinning across
+         files; no inter-file release. ALWAYS use `dump_ov2_per_file.py` (one
+         `lake exe` per file, OS reclaims memory between). Mathlib top-N driver
+         (`dump_mathlib_top_referenced.py`) is the same pattern. WSL has 160GB
+         ceiling / 0 swap → no headroom for runaway in-process loops.
     </DO_NOT>
 
   </BOOK_VI>

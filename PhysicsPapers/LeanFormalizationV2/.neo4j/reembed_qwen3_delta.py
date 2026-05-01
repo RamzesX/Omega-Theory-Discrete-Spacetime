@@ -91,6 +91,11 @@ SPLIT_FIELD_CONFIG = {
     "docstring":       ("doc",   "embedding_docstring",  1000,
                         "Given a Lean 4 declaration's doc comment, encode "
                         "the author's stated intent and mathematical meaning."),
+    "goal":            ("sig",   "embedding_goal",       1800,
+                        "Given a Lean 4 theorem signature treated as a proof "
+                        "goal, encode the goal-state context so that goals "
+                        "closable by analogous tactic prefixes produce nearby "
+                        "vectors."),
 }
 
 WRITE_SPLIT_TEMPLATE = '''

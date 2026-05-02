@@ -1,132 +1,28 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite it as below."
-title: "Chaos Shield: Ω-Theory - Discrete Spacetime, Mass as Geometric Reshaping, and Unified Physics"
-authors:
-- family-names: "Marchewka"
-  given-names: "Norbert"
+message: "If you use this software, please cite it using the metadata below."
+title: "OmegaTheory V2: Lean 4 Formalization of Discrete Spacetime Substrate"
 type: software
+authors:
+  - family-names: Marchewka
+    given-names: Norbert
+    orcid: "https://orcid.org/0009-0007-3029-175X"
+license: GPL-3.0-or-later
 repository-code: "https://github.com/RamzesX/chaos-shield"
+version: "1.0.0"
+date-released: "2026-05-03"
 keywords:
-  # Core Framework (Ω-Theory)
-  - discrete spacetime
-  - quantum gravity
-  - mass as geometric reshaping
-  - omega theory
-  - planck scale physics
-  - unified field theory
-  
-  # Central Thesis
-  - geometric reshaping cost
-  - action threshold physics
-  - computational deadlines
-  - irrational number uncertainty
-  
-  # Information Conservation
-  - fourth noether law
-  - information flow conservation
-  - fourth conservation law
-  
-  # Quantum Entanglement
-  - quantum entanglement dimensional theory
-  - topologically unstable wormholes
-  - lyapunov stability
-  - entanglement wormhole collapse
-  - D_ent hidden dimension
-  
-  # Stable Wormholes (NEW)
-  - stable wormholes
-  - wormhole engineering
-  - chronology protection
-  - time paradox prevention
-  - wormhole maintenance
-  - graceful collapse protocol
-  - three-tier wormhole classification
-  - black holes as natural wormholes
-  - information wormholes
-  - mass wormholes
-  - exotic matter alternatives
-  
-  # Quantum Computing
-  - quantum computing temperature limits
-  - action density optimization
-  - gate fidelity scaling
-  - temperature dependent quantum errors
-  - cryogenic cooling alternatives
-  
-  # Mathematical Framework
-  - constructive mathematics
-  - Conv(Q) framework
-  - rational numbers
-  - convergence operator
-  - computational foundations
-  - arbitrary precision operator
-  - APO
-  - computational debt
-  - godel incompleteness resource theory
-  - approximate intermediate value theorem
-  - constructive real analysis
-  
-  # Physics Predictions
-  - graviton predictions
-  - renormalization correspondence
-  - lorentz doppler unification
-  - stress energy tensor emergence
-  - holographic principle
-  - observer blindness
-  - time emergence
-  
-  # Quantum Security
-  - post-quantum cryptography
-  - quantum chaos protocols
-  - traffic obfuscation
-  - economic exhaustion
-  
-  # Philosophy
-  - digital physics
-  - it from bit
-  - computational universe
-  - emergent spacetime
-  
-license: CC-BY-4.0
-date-released: 2025-01-01
-version: "2.0.0"
+  - "Lean 4"
+  - "formal verification"
+  - "discrete spacetime"
+  - "Magnetic Laplacian"
+  - "Lyapunov stability"
+  - "Mathlib"
 abstract: |
-  Ω-Theory (Chaos Shield) presents a unified physics framework originating from a simple
-  question: "What if everything wants to teleport at the speed of light—but we can't,
-  because we have mass, and need to expend energy to reshape the geometry around us?"
-  
-  From this insight, the framework develops:
-  
-  1. DISCRETE SPACETIME: Reality is a Planck-scale lattice (Λ = ℓ_P × ℤ⁴)
-  
-  2. MASS AS RESHAPING COST: Massive particles pay energy to reshape local geometry
-     with each quantum jump—this toll manifests as rest mass (E = mc²)
-  
-  3. QUANTUM UNCERTAINTY: Arises from computational truncation of irrational numbers
-     (π, e, √2) under action threshold deadlines (S = nℏ)
-  
-  4. INFORMATION CONSERVATION: Fourth Noether law (∂_μJ^μ_I = 0) from which other
-     conservation laws derive
-  
-  5. QUANTUM ENTANGLEMENT: Topologically unstable wormholes in hidden dimension D_ent
-     that collapse upon measurement via Lyapunov healing flow
-  
-  6. STABLE WORMHOLES: Three-tier classification—natural (black holes, devastating),
-     information (maintained, safe), mass (heavily maintained, traversable). Time travel
-     impossible because CTCs violate information conservation.
-  
-  7. CHRONOLOGY PROTECTION: Automatic—the same mass that stabilizes wormholes prevents
-     relativistic manipulation into time machines.
-  
-  The framework makes testable predictions validated by recent data: quantum error rates
-  scale with action density ρ_S = NkT/V (power-law T^(-2.5), not Arrhenius exponential),
-  confirmed by Diraq/Nature 2024 spin qubit experiments.
-  
-  Total: 17 physics papers, 16 mathematics papers, 3 security papers.
-  
-  Recent breakthroughs:
-  - Arbitrary Precision Operator (APO) solving IVT and completeness theorems constructively
-  - Computational Debt: Gödel's theorems reframed as resource economics
-  - Appendix S: Stable wormhole engineering and chronology protection
-  
-  Philosophy: Good science should be FUN, FALSIFIABLE, and USEFUL.
+  Machine-checked Lean 4 formalization of OmegaTheory V2 — a discrete-spacetime
+  substrate-truncation framework deriving quantum mechanics, gauge theory, and
+  the Standard Model from four irrational existence postulates (pi, e, sqrt 2,
+  Catalan G) on a Planck-scale Z^4 lattice. Built against Mathlib v4.29.0;
+  depends only on Lean core axioms (propext, Classical.choice, Quot.sound) for
+  paper-headline capstones. Includes formalizations of pi-transcendence (first
+  in any prover), Roth's theorem on Diophantine approximation (in progress),
+  Magnetic Laplacian spectral methods, and Lyapunov stability analysis.

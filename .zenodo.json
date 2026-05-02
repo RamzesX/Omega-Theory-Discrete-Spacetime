@@ -1,0 +1,21 @@
+{
+  "title": "OmegaTheory V2: Lean 4 Formalization of Discrete Spacetime Substrate",
+  "upload_type": "software",
+  "license": "GPL-3.0-or-later",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "Marchewka, Norbert",
+      "orcid": "0009-0007-3029-175X"
+    }
+  ],
+  "keywords": [
+    "Lean 4",
+    "formal verification",
+    "discrete spacetime",
+    "Magnetic Laplacian",
+    "Lyapunov stability",
+    "Mathlib"
+  ],
+  "description": "Machine-checked Lean 4 formalization of OmegaTheory V2 — a discrete-spacetime substrate-truncation framework deriving quantum mechanics, gauge theory, and the Standard Model from four irrational existence postulates (pi, e, sqrt 2, Catalan G) on a Planck-scale Z^4 lattice. Built against Mathlib v4.29.0; depends only on Lean core axioms (propext, Classical.choice, Quot.sound) for paper-headline capstones. Includes formalizations of pi-transcendence (first in any prover), Roth's theorem on Diophantine approximation (in progress), Magnetic Laplacian spectral methods, and Lyapunov stability analysis."
+}

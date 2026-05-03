@@ -5990,11 +5990,17 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothFinalClosureStatusSnap
 -- D.7 + D.6.1 LEAF NAMED PROPS DISCHARGES 2026-04-30.
 -- BlockAB-D1 discharge file (Block A unbounded extraction).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothBoundLargeBlockAB_D1Discharge
+-- MINTAKA Wave 1 atom-2 — BlockA "extract unbounded" alias + Type-(a) standalone + Yoneda bridges (state (C) INLINE).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_BlockA_ExtractUnbounded_Discharge
 -- ALL LEAF NAMED PROPS DISCHARGES BUNDLE — 6 of 10 leaves discharged:
 -- BlockAB-D1, V7N1U-D2, BlockAB-D2, BlockAB-D3, V7N1U-D3, V7N1U-D4.
 -- Remaining 4 multi-step: V7N1U-D1 (κ algebra), BlockAB-D4 (iterative),
 -- BlockAB-D5 (master composition), V8-D5 (HEART lift, multi-day).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLeafNAMEDProps_AllDischarges
+-- SAIPH (κ Orionis) Wave-1 atom-2 — `T5_NAMED_m_choice_for_V7N1` Pollux-style
+-- inline-already-discharged bridge + Type-(a) standalone + Yoneda bridges
+-- to BlockAB-D{1,2,3} family + κ-formula-valid companion. State-(C) INLINE.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_MChoice_V7N1_Discharge
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)
@@ -6175,3 +6181,120 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallEpsAxis_NAMED
 
 -- V8 RothTheorem from 7 NAMED leaves (END-TO-END paper-citable composition).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothTheorem_from_7_NAMED
+
+-- ════ Architectural compression closures (2026-04-30 fires) ════
+
+-- TC1-monomial UNCONDITIONAL: single-monomial Taylor coefficient identity at zero.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF2_TC1_Monomial_Discharge
+
+-- UWF-2 ⇐ TC1-monomial further factoring (m=0 base + Q→monomial induction).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF2_TC1_FurtherFactoring
+
+-- V8-atom-1 strict ⇐ TC1-monomial + Hi-Glue (TIGHTEST 2-residual form).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8AtomOne_via_TC1Monomial_HiGlue
+
+-- V8-atom-1 strict ⇐ TC1-monomial + N3c-3 pure (PUREST FORM).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8AtomOne_via_TC1Monomial_N3cPure
+
+-- V8-atom-1 strict ⇐ UWF-2 + N3c (T-shape OR pure 2-residual).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8AtomOne_via_UWF2_N3c
+
+-- SJWC-1 N3c partial discharge: N3c-1 + N3c-2 unconditional, N3c-3 residual.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJWC1_N3c_PartialDischarge
+
+-- N3c Hi-1 Taylor support restriction at α-diagonal.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_N3c_Hi1_TaylorSupportRestriction
+
+-- V7N1U-D5 concrete C bound (D5b factoring).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_D5b_ConcreteC
+
+-- V7N1U-D5 architecturally honest closure with strengthened-form discharges (VEGA 2026-05-02).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_D5_Unconditional
+
+-- V7N1U-D5U1 strengthened-form discharge: strict regime + Analytical Core NAMED + bridge (DENEB 2026-05-02).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_D5U1_Discharge
+
+-- V7N1U-D5U1H-4 Analytical Core sub-factoring (BETELGEUSE 2026-05-02):
+-- D5U1H-4 (Analytical Core, ~150 lines HEART) sub-factored into D5U1H4-1 (κ-decay sub-residual,
+-- ~80 lines HEART, single residual NAMED leaf) + 3 Tier-99 framing + composition + chain.
+-- Tightest closure of D5U1H-1 (strict regime D5U1) via D5U1H4-1 → D5U1H-4 → D5U1H-1.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_D5U1H4_AnalyticalCore
+
+-- V7N1U-D5U1H4-1 κ-decay sub-residual sub-factoring (CASTOR 2026-05-02):
+-- D5U1H4-1 (BETELGEUSE's κ-decay sub-residual, ~80 lines HEART) sub-factored into D5U1H41-A
+-- (per-J point bound, ~40-50 lines HEART, SINGLE residual NAMED leaf) + 4 Tier-99 framing
+-- (weighted sum aggregation, per-J nonneg, coeff sum bound, RHS positivity) + composition + chain.
+-- Tightest closure of D5U1H4-1 via D5U1H41-A → D5U1H4-1 → D5U1H-4 → D5U1H-1.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_D5U1H4_KappaDecay_Discharge
+
+-- T-5 V7N1U-D5U1H4-1 fourth-pass sub-factoring (ALDEBARAN 2026-05-02):
+-- D5U1H41-A (CASTOR's per-J point bound, ~40-50 lines HEART) sub-factored into D5U1H41A-1
+-- (rpow-bridge step, ~30-40 lines HEART, SINGLE residual NAMED leaf) + 3 Tier-99 framing
+-- (J.support↔Finset.univ, denominator positivity, rpow product positivity) + composition + 2 chains.
+-- Tightest closure of D5U1H41-A via D5U1H41A-1 → D5U1H41-A → D5U1H4-1 → D5U1H-4 → D5U1H-1.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_D5U1H41A_PerJ_Discharge
+
+-- POLARIS architectural finding (2026-05-02): D5U1H41A-1 IS LITERAL-FALSE
+-- for m·ε < 64.  Strict regime (`m·ε < m²/16`) forces literal-false for m ≤ 31.
+-- POL-1 numeric counterexample witness + POL-2 strengthened form (extra hypothesis
+-- 64 < m·ε) + POL-3/4/5 Tier-99 log/rpow cleanups + POL-6 SUM-LEVEL Cauchy-Schwarz
+-- form (architecturally correct bypass of per-J factoring) + POL-7 HEADLINE bundle.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_D5U1H41A1_RpowBridge_Unconditional
+
+-- ARCTURUS architectural revision (2026-05-02 Wave 7a): SUM-LEVEL CAUCHY-SCHWARZ
+-- shares the SAME κ obstruction as per-J factoring.  CS-1/2/3 Cauchy-Schwarz
+-- machinery + CS-4 small-m·ε numeric obstruction + CS-5 universal-(<1) κ formula
+-- + CS-6 paper-citable HEADLINE.  Verdict: NEITHER per-J NOR sum-level discharges
+-- D5U1H4-1 unconditionally — genuine HS §D.6.1 path requires Wronskian induction
+-- on # variables, fundamentally different from either κ-extraction approach.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_D5_SumLevel_CauchySchwarz
+
+-- ALNILAM ε Orionis Wave 17 single-thread fire 2026-05-02 — V7N1U-D5 CHAIN
+-- PAPER-CITATION RE-EXPORT BUNDLE. Pure composition over Wave 1-7 unconditional
+-- pieces (Vega+Deneb+Betelgeuse+Castor+Aldebaran+Polaris+Arcturus); paper-citable
+-- 7-conjunct HEADLINE + 5 Type-(a) standalone variants; no new residual NAMEDs.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V7N1U_D5_Chain_Capstone
+
+-- WLOG ε ≤ 1 ⇒ full RothTheorem (RW-3 unconditional bridge).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothTheorem_WLOG_eps_le_1
+
+-- Small-ε existential axis (SEAE-2 unconditional, replaces literal-false universal).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SmallEpsAxis_Existential
+
+-- Schmidt joint existence (single existential replacing SM-1 ∧ SM-2 ∧ SM-3 universals).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_Schmidt_JointExistence
+
+-- Schmidt joint factoring (SM-1 + SM-2 + SM-3 extraction).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_Schmidt_Joint_Factoring
+
+-- V8 NAMED leaf audit (paper-citable architectural inventory).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_NAMEDLeafAudit
+
+-- SJWC-1 strict upper bound multi-path closure (SIRIUS, 2026-05-02):
+-- SJWC-1 ⇐ IndexReductionDischarge (PURE arithmetic) OR Hi-Glue (TC1-monomial unconditional)
+-- OR N3c-3 pure existential.  Removes SJWC-1 as a separate residual NAMED leaf.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJWC1_StrictUpperBound_Unconditional
+
+-- Hi-Glue further factoring (SIRIUS, 2026-05-02):
+-- Hi-Glue ⇐ Hi-2 + Hi-3 + Hi-4 (Hi-4 unconditional via reuse) OR Hi-2 + Hi-3' (single-residual).
+-- 4 NEW NAMED Props, 1 unconditional discharge.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJWC1_HiGlue_FurtherFactoring
+
+-- Hi-3' strong pigeon-pick architectural discharge (ALTAIR, 2026-05-02):
+-- Hi-3' as stated is LITERAL-FALSE under Hi-1; strengthened J-form ⇔ N3c-3.
+-- 4 unconditional Tier-99 discharges + 1 NEW NAMED Prop (J-form) + bidirectional bridge.
+-- SJWC-1 closure tightened: Hi-Glue residual merges into N3c-3 (single residual).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJWC1_HiGlue_Hi3_Strong_Discharge
+
+-- N3c-3 third-path closure via (IndexReductionDischarge, UWF-2) (RIGEL, 2026-05-02):
+-- N3c-3 ⇐ IndexReductionDischarge + UWF-2 — the SAME pair Sirius's Path 1 + Wave 2 use.
+-- 7 Tier-99 unconditional discharges + Type-(a) standalone + cross-path consistency.
+-- SJWC triple-discharge (SJWC-1 ∧ N3c-3 ∧ SJWC-2) from same pair.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJWC1_N3c3_Pure_Unconditional
+
+-- UWF-2 principal-closure-pair COLLAPSE (POLLUX, 2026-05-02):
+-- Inlines UNCONDITIONAL UWF-2 (TC1-monomial chain c930a0e) into all
+-- UWF-2-conditional chains. Universal-witness + SJWC-2 UNCONDITIONAL;
+-- SJWC-1 ⇐ NAMED-3c only; V8-atom-1 strict ⇐ NAMED-3c alone.
+-- 7 capstones + closure marker, all axiom_audit Lean-core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF2_FullClosure

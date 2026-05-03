@@ -6001,6 +6001,16 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLeafNAMEDProps_AllDisc
 -- inline-already-discharged bridge + Type-(a) standalone + Yoneda bridges
 -- to BlockAB-D{1,2,3} family + κ-formula-valid companion. State-(C) INLINE.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_MChoice_V7N1_Discharge
+-- PHACT (α Columbae) Wave-1 atom-2 — `T5_NAMED_high_index_vanish` STATE (C)
+-- INLINE Pollux re-export (sibling closure existed at AllDischarges) +
+-- Type-(a) pure / strict / SJWC-1 A6 Yoneda bridges + capstone 4-conjunct
+-- headline + BUILD_MATHLIB_MACHINERY paper-grade companion: multivariate
+-- per-variable iterated-pderiv vanishing (`iterate_pderiv_monomial_vanish`,
+-- `iterate_pderiv_finset_sum`, `iterate_pderiv_eq_zero_of_degreeOf_lt`) —
+-- multivariate analogue of `Polynomial.iterate_derivative_eq_zero` ported
+-- via Mathlib's `pderiv_monomial` + `monomial_le_degreeOf`. Mathlib gap
+-- closed.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_HighIndexVanish_Discharge
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)
@@ -6266,6 +6276,13 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_Schmidt_JointExistence
 
 -- Schmidt joint factoring (SM-1 + SM-2 + SM-3 extraction).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_Schmidt_Joint_Factoring
+
+-- Schmidt JOINT per-n DISCHARGE (MARKAB, 2026-05-03):
+-- universal SM-2 / SM-3 LITERAL-FALSE → strengthened existential per-n
+-- forms unconditionally discharged from `T5_NAMED_Schmidt_joint`.
+-- Concrete counterexample (E-WITNESS-3 / E-WITNESS-5) for SM-3 universal.
+-- Type-(b) bridges F-DISCHARGE-1/2/3 + paper-grade headline G-HEADLINE.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SchmidtJoint_Per_N_Discharge
 
 -- V8 NAMED leaf audit (paper-citable architectural inventory).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_NAMEDLeafAudit

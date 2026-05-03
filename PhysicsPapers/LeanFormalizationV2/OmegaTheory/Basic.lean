@@ -6296,6 +6296,17 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_Schmidt_Joint_Factoring
 -- Type-(b) bridges F-DISCHARGE-1/2/3 + paper-grade headline G-HEADLINE.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SchmidtJoint_Per_N_Discharge
 
+-- ATIK (Wave 7 atom-2 SM-side SJF-2 small-ε port, 2026-05-03):
+-- Composes NUNKI's accessible-regime UNCONDITIONAL (ε ≥ 1/4) +
+-- HAMAL's small-ε scaffold via SJE-1 + MARKAB's joint-extraction
+-- pattern into the FULL ε > 0 SJF-2 closure under SJE-1.
+-- Path-1 (ε ≥ 1/4) UNCONDITIONAL re-export +
+-- Path-2 (ε < 1/4) state-(C) INLINE via SJE-1 +
+-- Combined closure theorem T5_ATIK_full_SJF2_via_NUNKI_SJE1 +
+-- concrete sample witnesses at ε = 1/100, 1/1000 +
+-- Yoneda bridges + paper-grade ATIK-HEADLINE.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJF2_AlphaDiagonalSmallEps_SchmidtSiegel_Discharge
+
 -- V8 NAMED leaf audit (paper-citable architectural inventory).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8_NAMEDLeafAudit
 
@@ -6355,3 +6366,29 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_HEART_TightBranch_Theta_Le
 -- 8-conjunct headline + UNCONDITIONAL aeval-q-ne-zero regime closure.
 -- axiom_audit Lean-core only (propext, Classical.choice, Quot.sound).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_HEART_LiftD61WitnessExistence_Discharge
+
+-- REGULUS Wave 5 atom-1 V8-D5 NAMED enhanced UNCONDITIONAL discharge.
+-- 12 theorems / 8-conjunct REG-10 bundle / REG-11 paper-citable HEADLINE.
+-- UNCONDITIONAL Type-(a) closures for: aeval-q-NE-zero universal D.6.1
+-- quantifier-shape (REG-1), m = 0 (REG-2), smallness-violation impossibility
+-- (REG-3a/3b/3c), Schmidt-aux dominant regime instance (REG-4), universal
+-- strengthening + smallness branch (REG-5), dichotomy bridge (REG-6).
+-- Yoneda bridges to RASALHAGUE RH-1a (REG-7) + MIZAR MZ-3 (REG-8).
+-- axiom_audit Lean-core only (propext, Classical.choice, Quot.sound).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8D5_NAMED_SchmidtAuxPort_Discharge
+
+-- KEID Wave 7 atom-2 SM-side SJF-4 + SJF-5 combined unconditional discharge
+-- (ο Eridani — Eridani river system, the eggshell, G7V multiple-star at 16.45 ly).
+-- Per DUBHE-COMPOSITION HEURISTIC: composes SADR's PIVOT 5 (integer-floor witness,
+-- ε ≥ 1 + ANY R + ANY m) + SPICA's SJF-5-γ (Combinatorial Nullstellensatz) +
+-- ADHARA's Schmidt-chosen R + MIZAR's PIVOT 4 into:
+--   (a) SJF-4 ε ≥ 1 universal UNCONDITIONAL re-export.
+--   (b) SJF-5 case-split (NEZ vs ZERO at integer-floor diagonal) UNCONDITIONAL.
+--   (c) Combined SJF-4 + SJF-5 in NEZ regime UNCONDITIONAL via integer-floor witness.
+--   (d) SJF-4 strict-regime (m=1 ∨ ε ≥ 1) UNCONDITIONAL.
+--   (e) Schmidt-Mahler aeval-aware EXISTENCE form UNCONDITIONAL.
+-- 4 Yoneda bridges + 3 architectural markers + paper-grade KEID HEADLINE.
+-- 2 of 3 V8-atom-2 §D.7 SM-side residuals closed; remaining = small-ε regime
+-- m ≥ 2 + ε < 1 + general R (Schmidt-Mahler simultaneous approximation port).
+-- axiom_audit Lean-core only (propext, Classical.choice, Quot.sound).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJF4_SJF5_RAware_AevalNeZero_Discharge

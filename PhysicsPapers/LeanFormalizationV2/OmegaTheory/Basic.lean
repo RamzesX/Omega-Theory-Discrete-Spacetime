@@ -6001,6 +6001,11 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_RothLeafNAMEDProps_AllDisc
 -- inline-already-discharged bridge + Type-(a) standalone + Yoneda bridges
 -- to BlockAB-D{1,2,3} family + κ-formula-valid companion. State-(C) INLINE.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_MChoice_V7N1_Discharge
+-- ALPHARD (α Hydrae) Wave-2 atom-2 — `T5_NAMED_Schmidt_aux_construction`
+-- Pollux-style state (C) INLINE alias + Type-(a) standalone + concrete
+-- all-ones-monomial witness + Yoneda bridges to leaf-PROPS headline +
+-- joint-INLINE bridge with Saiph m-choice closure. Per ALPHARD wizard fire 2026-05-03.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SchmidtAuxConstruction_Discharge
 -- PHACT (α Columbae) Wave-1 atom-2 — `T5_NAMED_high_index_vanish` STATE (C)
 -- INLINE Pollux re-export (sibling closure existed at AllDischarges) +
 -- Type-(a) pure / strict / SJWC-1 A6 Yoneda bridges + capstone 4-conjunct
@@ -6011,6 +6016,13 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_MChoice_V7N1_Discharge
 -- via Mathlib's `pderiv_monomial` + `monomial_le_degreeOf`. Mathlib gap
 -- closed.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_HighIndexVanish_Discharge
+-- T-5 Wave 2 atom-2 D.7 Block C ENIF (ε Pegasi) — multivariate Taylor at REAL α
+-- STATE (C) INLINE bridge: Type-(a) standalone aliases (weak, strong, real-q,
+-- rational-q diagonal forms) + Yoneda bridge to Phact Wave-1
+-- (`iterate_pderiv_eq_zero_of_degreeOf_lt`) + per-variable Taylor-support
+-- finitude. NO new residual NAMED leaves (per BOOK_VII
+-- NO_NEW_UNDISCHARGED_LEAVES_T6_10). All targets UNCONDITIONALLY DISCHARGED.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_MvTaylorAtRealAlpha_Discharge
 -- D.7 atom-2 PROGRESS BUNDLE 2026-04-30.
 -- Unified paper-citable bundle of THIS-FIRE atom-2 closure work:
 -- - A+B hygiene (entry-point data)
@@ -6315,3 +6327,31 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJWC1_N3c3_Pure_Unconditio
 -- SJWC-1 ⇐ NAMED-3c only; V8-atom-1 strict ⇐ NAMED-3c alone.
 -- 7 capstones + closure marker, all axiom_audit Lean-core only.
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_UWF2_FullClosure
+
+-- D.6.1 HEART → rothIndex LIFT discharge in 3 structurally-trivial regimes
+-- (RASALHAGUE, α Ophiuchi, Wave 2C, 2026-05-03):
+-- RH-1 (aeval q P ≠ 0 regime UNCONDITIONAL via T5_rothIndex_eq_zero_of_aeval_ne_zero),
+-- RH-2 (tight-branch passthrough), RH-3 (Schmidt-aux-t well-definedness).
+-- Type-(a) partial unconditional + V8-D5 conditional discharge bridges.
+-- 8 paper-citable theorems + headline + closure marker. axiom_audit Lean-core only.
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_HEART_LiftToRothIndex_Discharge
+
+-- 🚨 D.6.1 SCALAR HEART tight-branch Θ ≤ Φ at lift values UNCONDITIONAL DISCHARGE
+-- (MIRACH, β Andromedae, the bright eastern bulge, Wave 3 atom-1 GENUINE HEART, 2026-05-03):
+-- The witness-bound lift bridge — given a multi-index witness with non-vanishing
+-- multiIteratedPDeriv at q-tuple AND ratio ∑ jᵢ/Rᵢ ≤ t - √(mε), conclude
+-- rothIndex P (q-tuple) R ≤ t - √(mε) via direct csInf_le. THIS IS the genuine
+-- scalar tight-branch Θ ≤ Φ in concrete polynomial terms.
+-- COLLAPSES V8-D5 NAMED Prop residual to a single existential statement
+-- (witness-existence at every D.6.1 hypothesis-set point).
+-- 14 paper-citable theorems (TB-1..TB-14) + 8-conjunct headline (TB-15).
+-- Composes RASALHAGUE RH-1 (aeval q P ≠ 0) + MIRACH TB-4 (witness existence)
+-- → full regime coverage UNCONDITIONAL.
+-- axiom_audit Lean-core only (propext, Classical.choice, Quot.sound).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_HEART_TightBranch_Theta_Le_Phi_Discharge
+-- T5 Phase 7 HEART lift D.6.1 witness-existence (TB-5) DISCHARGE — MIZAR Wave 4
+-- (ζ Ursae Majoris): atom-1 D.6.1 LAST RESIDUAL. Multi-path bridges from
+-- RothLemmaMaster + indexReduction Statement + V8-D5 NAMED to TB-5 NAMED Prop.
+-- 8-conjunct headline + UNCONDITIONAL aeval-q-ne-zero regime closure.
+-- axiom_audit Lean-core only (propext, Classical.choice, Quot.sound).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_HEART_LiftD61WitnessExistence_Discharge

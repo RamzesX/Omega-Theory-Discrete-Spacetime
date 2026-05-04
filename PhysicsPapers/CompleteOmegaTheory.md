@@ -302,13 +302,13 @@ Lean witness: `bekensteinHawking_eq_area_density` ([`OmegaTheory/Conservation/Co
 The Standard Model gauge group $U(1) \times SU(2) \times SU(3)$ arises from the Connes finite spectral triple with algebra
 $$A_F \;=\; \mathbb{C} \,\oplus\, \mathbb{H} \,\oplus\, M_3(\mathbb{C}) \quad . \qquad (5.1)$$
 The unitaries of $A_F$ project to exactly the Standard Model gauge group. This is established by the substrate-side specialisation `substrate_electroweak_unification_theorem` ([`OmegaTheory/Emergence/ElectroweakUnification.lean`](LeanFormalizationV2/OmegaTheory/Emergence/ElectroweakUnification.lean)) and the colour-sector specialisation `SU3_color_from_three_irrationals` ([`OmegaTheory/Emergence/SU3ColorAndNonAbelianF.lean`](LeanFormalizationV2/OmegaTheory/Emergence/SU3ColorAndNonAbelianF.lean)). The cardinality of the colour-channel set is exactly three:
-$$\#\,\mathrm{ColourChannel} \;=\; 3 \quad , \qquad (5.2)$$
+$$|\,\mathrm{ColourChannel}\,| \;=\; 3 \quad , \qquad (5.2)$$
 witnessed by `card_SU3ColorChannel_eq_three` in the same file.
 
 ### 5.2 Three generations from three irrationals
 
 The fermion-generation count is determined by the number of substrate-convergent irrationals: three. This is the *Pi-Hunch Crown* of the framework:
-$$\boxed{\;\#\,\mathrm{Generation} \;=\; \#\,\mathrm{ConvergentChannel} \;=\; 3\;} \qquad (5.3)$$
+$$\boxed{\;|\,\mathrm{Generation}\,| \;=\; |\,\mathrm{ConvergentChannel}\,| \;=\; 3\;} \qquad (5.3)$$
 Lean witness: `three_irrationals_three_generations_pi_hunch_crown_capstone` ([`OmegaTheory/Predictions/GenerationOrdering.lean`](LeanFormalizationV2/OmegaTheory/Predictions/GenerationOrdering.lean)) and the supporting theorem `three_irrationals_span_three_generations` ([`OmegaTheory/Irrationality/GenerationMap.lean`](LeanFormalizationV2/OmegaTheory/Irrationality/GenerationMap.lean)). The corresponding capstone in the matter-sector module is `generation_count_eq_three_irrationals` ([`OmegaTheory/Matter/GenerationCount.lean`](LeanFormalizationV2/OmegaTheory/Matter/GenerationCount.lean)).
 
 This count is *strict*: a fourth charged-fermion generation is forbidden because there is no fourth substrate-convergent irrational of the appropriate decay class. The orthogonal channel produced by Catalan's $G$ has quadratic decay $O(1/(2N+1)^2)$ and produces a sterile-neutrino sector (§7), not a fourth charged family.

@@ -15,7 +15,13 @@ order: 3
 
 ---
 
-## Machine-Verification Status (post cycle 43, 2026-04-21)
+> ⚠ **This is the legacy comprehensive version (1 036 lines, 2026-04-21 snapshot).**
+> For the current state of the framework (post cycle 65, 2026-05-04 — **4 926 GREEN, 6 axiom
+> declarations, all 5 bridge targets closed**), see the formal paper
+> [`CompleteOmegaTheory.md`](CompleteOmegaTheory.md). The numbers below reflect the historical
+> cycle-43 baseline and are preserved as-is for archival reference.
+
+## Machine-Verification Status (post cycle 43, 2026-04-21 — **HISTORICAL SNAPSHOT**)
 
 > **Lean 4 + Mathlib v4.29.0** — every claim below has a composable machine-checked witness.
 >

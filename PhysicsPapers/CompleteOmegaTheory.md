@@ -139,7 +139,7 @@ Throughout, theorem references are given by their Lean identifier and file path 
 ### 2.1 Postulate
 
 We postulate that physical spacetime, at the Planck scale, is the discrete cubic lattice
-$$\Lambda \;:=\; \ell_P \cdot \mathbb{Z}^4 \quad . \tag{2.1}$$
+$$\Lambda \;:=\; \ell_P \cdot \mathbb{Z}^4 \quad . \qquad (2.1)$$
 The Lean source of this postulate is `OmegaTheory.Spacetime.Lattice` ([`OmegaTheory/Spacetime/Lattice.lean`](LeanFormalizationV2/OmegaTheory/Spacetime/Lattice.lean)). The four primitive positive constants $(c, \hbar, G_N, k_B)$ are declared as `noncomputable opaque {x : ℝ // 0 < x}` Subtype bundles in `OmegaTheory.Spacetime.Constants` ([`OmegaTheory/Spacetime/Constants.lean`](LeanFormalizationV2/OmegaTheory/Spacetime/Constants.lean)) and constitute the framework's only primitive *physical* assumptions. No further physical axioms are introduced in any subsequent part of the paper.
 
 ### 2.2 Geometric necessity of transcendentals
@@ -147,37 +147,37 @@ The Lean source of this postulate is `OmegaTheory.Spacetime.Lattice` ([`OmegaThe
 Once $\Lambda$ is fixed, geometry imposes constraints on what the substrate can compute. The three classical geometric operations — rotations of finite order incompatible with the cubic lattice (which require $\pi$), continuous-time evolution and exponentiation (which require $e$), and the Pythagorean identity in two dimensions (which requires $\sqrt 2$) — cannot all be performed exactly with finite-precision rationals.
 
 This is a theorem about the substrate, not a postulate. Its Lean form is the chain
-$$\pi\text{ irrational} \;\Longrightarrow\; \delta_{\text{comp}}(N) > 0 \;\Longrightarrow\; \text{quantum uncertainty,} \tag{2.2}$$
+$$\pi\text{ irrational} \;\Longrightarrow\; \delta_{\text{comp}}(N) > 0 \;\Longrightarrow\; \text{quantum uncertainty,} \qquad (2.2)$$
 discharged by `irrationality_implies_quantum_uncertainty` ([`OmegaTheory/Probe/PiAndOmegaStructure.lean`](LeanFormalizationV2/OmegaTheory/Probe/PiAndOmegaStructure.lean)) and `computationalUncertainty_pos` ([`OmegaTheory/Irrationality/Uncertainty.lean`](LeanFormalizationV2/OmegaTheory/Irrationality/Uncertainty.lean)). The transcendence of $\pi$ itself, formerly an axiom in the corpus, was retired in cycle 64 of the project (2026-04-27): a single-day port of the Lindemann–Weierstrass theorem to Lean 4, occupying fourteen new files and approximately three thousand lines, eliminated `Real.pi_transcendental` from the axiom list.
 
 ### 2.3 The truncation residual
 
 The Leibniz series
-$$\frac{\pi}{4} \;=\; \sum_{k=0}^{\infty} \frac{(-1)^k}{2k+1} \tag{2.3}$$
+$$\frac{\pi}{4} \;=\; \sum_{k=0}^{\infty} \frac{(-1)^k}{2k+1} \qquad (2.3)$$
 gives the standard tail bound
-$$\left| \frac{\pi}{4} - \sum_{k=0}^{N-1} \frac{(-1)^k}{2k+1} \right| \;<\; \frac{1}{2N+1} \quad . \tag{2.4}$$
+$$\left| \frac{\pi}{4} - \sum_{k=0}^{N-1} \frac{(-1)^k}{2k+1} \right| \;<\; \frac{1}{2N+1} \quad . \qquad (2.4)$$
 Multiplying through by $4 \ell_P$ to set the dimensional scale of the lattice, we define the substrate's $\pi$-channel residual at precision $N$ as
-$$\boxed{\;\delta_{\text{comp}}^{(\pi)}(N) \;:=\; \ell_P \cdot \frac{4}{2N+3}\;} \tag{2.5}$$
+$$\boxed{\;\delta_{\text{comp}}^{(\pi)}(N) \;:=\; \ell_P \cdot \frac{4}{2N+3}\;} \qquad (2.5)$$
 witnessed by `pi_error_pos` ([`OmegaTheory/Irrationality/Approximations.lean`](LeanFormalizationV2/OmegaTheory/Irrationality/Approximations.lean)) and the corresponding $e$, $\sqrt 2$, and Catalan-$G$ channels by `e_error_pos`, `sqrt2_error_pos`, and `catalanG_error_pos` in the same file. The strict ordering
-$$\delta_{\text{comp}}^{(\sqrt 2)}(N) \;<\; \delta_{\text{comp}}^{(e)}(N) \;<\; \delta_{\text{comp}}^{(\pi)}(N) \tag{2.6}$$
+$$\delta_{\text{comp}}^{(\sqrt 2)}(N) \;<\; \delta_{\text{comp}}^{(e)}(N) \;<\; \delta_{\text{comp}}^{(\pi)}(N) \qquad (2.6)$$
 holds at every $N \geq 2$ and is established by `three_irrationals_strict_ordering` ([`OmegaTheory/Predictions/GenerationOrdering.lean`](LeanFormalizationV2/OmegaTheory/Predictions/GenerationOrdering.lean)). The asymptotic decay rates are: super-exponential $O(2^{-2^N})$ for $\sqrt 2$, factorial $O(1/N!)$ for $e$, linear $O(1/N)$ for $\pi$ via Leibniz, and quadratic $O(1/(2N+1)^2)$ for Catalan $G$. We will see in §5 and §7 that this decay-rate ordering controls the fermion mass hierarchy and the dark-matter / dark-energy distinction respectively.
 
 ### 2.4 Extended Heisenberg relation
 
 The substrate's truncation residual extends the canonical commutation relation: for every precision $N \geq 1$,
-$$\Delta x \, \Delta p \;\geq\; \frac{\hbar}{2} + \delta_{\text{comp}}(N) \;>\; \frac{\hbar}{2} \quad . \tag{2.7}$$
+$$\Delta x \, \Delta p \;\geq\; \frac{\hbar}{2} + \delta_{\text{comp}}(N) \;>\; \frac{\hbar}{2} \quad . \qquad (2.7)$$
 The strict inequality is the substantive content: a discrete observer at finite precision cannot, in principle, achieve the canonical bound. The Lean witness is `substrate_extends_heisenberg` ([`OmegaTheory/Foundations/KempfBandlimit.lean`](LeanFormalizationV2/OmegaTheory/Foundations/KempfBandlimit.lean)), composed with the bandlimit equality `bandlimit_equals_substrate_cutoff` in the same file. The Kempf-formalism connection is `kempf_GUP_correction_equals_substrate`. Eq. (2.7) is the substrate-level origin of quantum mechanical uncertainty; it is *not* postulated, it is *derived* from the irrationality of $\pi$ together with the discreteness postulate.
 
 ### 2.5 Time as forced transition
 
 On a finite-precision lattice, the substrate must periodically truncate accumulated geometric error. We define a *tick* as the moment at which the accumulated action reaches an integer multiple of $\hbar$:
-$$S \;\to\; n\hbar \quad \text{(transition forced)} \quad . \tag{2.8}$$
+$$S \;\to\; n\hbar \quad \text{(transition forced)} \quad . \qquad (2.8)$$
 Time, at the substrate level, is the count of forced transitions; the canonical Planck time $t_P = \ell_P / c$ is the minimal interval between successive ticks. The Lean witness for the propagation form is `motion_is_accumulated_extended_heisenberg` ([`OmegaTheory/Emergence/SnapshotPropagator.lean`](LeanFormalizationV2/OmegaTheory/Emergence/SnapshotPropagator.lean)).
 
 ### 2.6 Effective dimension and the $d_{\text{eff}}$ flow
 
 The number of effective spatial dimensions accessible at energy $E$ is given by
-$$\boxed{\;d_{\text{eff}}(E) \;=\; 4 - 2\,\frac{E}{E_P}\;} \quad . \tag{2.9}$$
+$$\boxed{\;d_{\text{eff}}(E) \;=\; 4 - 2\,\frac{E}{E_P}\;} \quad . \qquad (2.9)$$
 This is not assumed; it is derived from the computational-deadline structure of the substrate. The Lean witness is `d_eff_via_wavelength` ([`OmegaTheory/Emergence/DimensionalFlow.lean`](LeanFormalizationV2/OmegaTheory/Emergence/DimensionalFlow.lean)), differentiability `hasDerivAt_d_eff`, strict monotonicity `d_eff_strictAnti`, and endpoint conditions `d_eff_eq_two_iff` (Planck) and `d_eff_eq_four_iff` (low energy) all in the same file. Eq. (2.9) reproduces the spectral-dimension flow observed in causal-dynamical-triangulation simulations [6], in asymptotic-safety renormalisation-group flow analyses, and in loop-quantum-gravity calculations; we obtain it without any of those frameworks' additional input.
 
 ---
@@ -187,7 +187,7 @@ This is not assumed; it is derived from the computational-deadline structure of 
 ### 3.1 Definition
 
 $\Omega$ is generated by six elements:
-$$\Omega \;:=\; \langle\, U(1),\; SU(2),\; SU(3),\; I,\; H,\; E \,\rangle \quad . \tag{3.1}$$
+$$\Omega \;:=\; \langle\, U(1),\; SU(2),\; SU(3),\; I,\; H,\; E \,\rangle \quad . \qquad (3.1)$$
 The first three generators are the Standard Model gauge groups; the remaining three are scalar generators corresponding to information conservation ($I$), healing flow ($H$), and entanglement ($E$). The Lean carrier of this structure is the record type `OmegaTheoryGrandUnified` in `OmegaTheory.Capstones.OmegaTheoryGrandUnifiedCapstone` ([`OmegaTheory/Capstones/OmegaTheoryGrandUnifiedCapstone.lean`](LeanFormalizationV2/OmegaTheory/Capstones/OmegaTheoryGrandUnifiedCapstone.lean)), whose fields are the witness theorems for each generator.
 
 ### 3.2 Generator semantics
@@ -266,7 +266,7 @@ The equivalence is captured at the Lean level by the composition of `paper_grand
 ### 4.1 Vacuum Einstein equations
 
 The vacuum Einstein equations
-$$G_{\mu\nu} + \Lambda g_{\mu\nu} \;=\; 0 \quad \text{(in vacuum)} \tag{4.1}$$
+$$G_{\mu\nu} + \Lambda g_{\mu\nu} \;=\; 0 \quad \text{(in vacuum)} \qquad (4.1)$$
 emerge as a theorem of the substrate, not as a postulate. The discrete substrate's repair flow satisfies a Laplacian-Ricci correspondence which reduces, in the continuum limit and on each of seven cosmological regimes (Minkowski, Schwarzschild exterior, de Sitter, Friedmann-Robertson-Walker, Bianchi I, Reissner-Nordström, Kerr), to the standard Einstein equations.
 
 The Lean witness is `vacuum_einstein_emergence` ([`OmegaTheory/Emergence/EinsteinEmergence.lean`](LeanFormalizationV2/OmegaTheory/Emergence/EinsteinEmergence.lean)). Earlier versions of the framework introduced an auxiliary Heat-Positive-Work (HPW) coupling axiom to bridge the substrate Laplacian to the Ricci scalar; this auxiliary axiom has been *eliminated* on every regime through the chain of theorems
@@ -278,19 +278,19 @@ collected in `OmegaTheory/Emergence/HpwElimSummary.lean`. The HPW axiom no longe
 ### 4.2 Singularity avoidance and the Big Bounce
 
 Classical general relativity predicts curvature singularities at the centre of black holes and at $t = 0$ in the standard cosmological model. Ω-Theory replaces these singularities with a Big Bounce mechanism driven by spin-torsion negative pressure. The substrate's healing flow imposes a topological obstruction to formation of curvature singularities:
-$$\boxed{\;\text{substrate}_{\text{healed}} \;\Longrightarrow\; \text{no curvature singularity}\;} \tag{4.2}$$
+$$\boxed{\;\text{substrate}_{\text{healed}} \;\Longrightarrow\; \text{no curvature singularity}\;} \qquad (4.2)$$
 Lean witness: `substrate_avoids_singularity` ([`OmegaTheory/Emergence/NegativePressure.lean`](LeanFormalizationV2/OmegaTheory/Emergence/NegativePressure.lean)). The dark-energy reservoir built up during one cosmological cycle flows through the bounce into a baby-universe sector, formalised by `de_reservoir_flows_through_bounce_to_baby_universe` ([`OmegaTheory/Emergence/DarkEnergyToBabyUniverse.lean`](LeanFormalizationV2/OmegaTheory/Emergence/DarkEnergyToBabyUniverse.lean)).
 
 ### 4.3 Black-hole information paradox
 
 The standard formulation of the black-hole information paradox is resolved at the substrate level by a three-term unitarity ledger
-$$\Delta M_{\text{BH}} + \Delta E_{\gamma,\text{out}} + \Delta \rho_{\text{DE}} \;=\; 0 \quad . \tag{4.3}$$
+$$\Delta M_{\text{BH}} + \Delta E_{\gamma,\text{out}} + \Delta \rho_{\text{DE}} \;=\; 0 \quad . \qquad (4.3)$$
 The structure type `UnitarityLedger` ([`OmegaTheory/Emergence/BHInformationParadoxResolution.lean`](LeanFormalizationV2/OmegaTheory/Emergence/BHInformationParadoxResolution.lean)) carries this identity by construction; its `info_preserved` field is now a substantive existential predicate in the same file (revised in this submission's stub-eradication pass). The capstone `black_hole_information_paradox_fully_resolved` ([`OmegaTheory/Emergence/QuantumGravityBHInfo.lean`](LeanFormalizationV2/OmegaTheory/Emergence/QuantumGravityBHInfo.lean)) consolidates the resolution.
 
 ### 4.4 Bekenstein-Hawking area law
 
 The information capacity of a region of spacetime is bounded by its boundary area in Planck units:
-$$S_{\text{BH}} \;=\; \frac{A}{4\,\ell_P^2} \quad . \tag{4.4}$$
+$$S_{\text{BH}} \;=\; \frac{A}{4\,\ell_P^2} \quad . \qquad (4.4)$$
 Lean witness: `bekensteinHawking_eq_area_density` ([`OmegaTheory/Conservation/Correspondence.lean`](LeanFormalizationV2/OmegaTheory/Conservation/Correspondence.lean)) and the explicit substrate version `bekenstein_hawking_first_explicit_map_in_V2` ([`OmegaTheory/Predictions/BekensteinHawkingEntropy.lean`](LeanFormalizationV2/OmegaTheory/Predictions/BekensteinHawkingEntropy.lean)).
 
 ---
@@ -300,15 +300,15 @@ Lean witness: `bekensteinHawking_eq_area_density` ([`OmegaTheory/Conservation/Co
 ### 5.1 Gauge structure from Connes' spectral action
 
 The Standard Model gauge group $U(1) \times SU(2) \times SU(3)$ arises from the Connes finite spectral triple with algebra
-$$A_F \;=\; \mathbb{C} \,\oplus\, \mathbb{H} \,\oplus\, M_3(\mathbb{C}) \quad . \tag{5.1}$$
+$$A_F \;=\; \mathbb{C} \,\oplus\, \mathbb{H} \,\oplus\, M_3(\mathbb{C}) \quad . \qquad (5.1)$$
 The unitaries of $A_F$ project to exactly the Standard Model gauge group. This is established by the substrate-side specialisation `substrate_electroweak_unification_theorem` ([`OmegaTheory/Emergence/ElectroweakUnification.lean`](LeanFormalizationV2/OmegaTheory/Emergence/ElectroweakUnification.lean)) and the colour-sector specialisation `SU3_color_from_three_irrationals` ([`OmegaTheory/Emergence/SU3ColorAndNonAbelianF.lean`](LeanFormalizationV2/OmegaTheory/Emergence/SU3ColorAndNonAbelianF.lean)). The cardinality of the colour-channel set is exactly three:
-$$\#\,\mathrm{ColourChannel} \;=\; 3 \quad , \tag{5.2}$$
+$$\#\,\mathrm{ColourChannel} \;=\; 3 \quad , \qquad (5.2)$$
 witnessed by `card_SU3ColorChannel_eq_three` in the same file.
 
 ### 5.2 Three generations from three irrationals
 
 The fermion-generation count is determined by the number of substrate-convergent irrationals: three. This is the *Pi-Hunch Crown* of the framework:
-$$\boxed{\;\#\,\mathrm{Generation} \;=\; \#\,\mathrm{ConvergentChannel} \;=\; 3\;} \tag{5.3}$$
+$$\boxed{\;\#\,\mathrm{Generation} \;=\; \#\,\mathrm{ConvergentChannel} \;=\; 3\;} \qquad (5.3)$$
 Lean witness: `three_irrationals_three_generations_pi_hunch_crown_capstone` ([`OmegaTheory/Predictions/GenerationOrdering.lean`](LeanFormalizationV2/OmegaTheory/Predictions/GenerationOrdering.lean)) and the supporting theorem `three_irrationals_span_three_generations` ([`OmegaTheory/Irrationality/GenerationMap.lean`](LeanFormalizationV2/OmegaTheory/Irrationality/GenerationMap.lean)). The corresponding capstone in the matter-sector module is `generation_count_eq_three_irrationals` ([`OmegaTheory/Matter/GenerationCount.lean`](LeanFormalizationV2/OmegaTheory/Matter/GenerationCount.lean)).
 
 This count is *strict*: a fourth charged-fermion generation is forbidden because there is no fourth substrate-convergent irrational of the appropriate decay class. The orthogonal channel produced by Catalan's $G$ has quadratic decay $O(1/(2N+1)^2)$ and produces a sterile-neutrino sector (§7), not a fourth charged family.
@@ -316,7 +316,7 @@ This count is *strict*: a fourth charged-fermion generation is forbidden because
 ### 5.3 Mass hierarchy from residual-error ordering
 
 The fermion mass hierarchy is controlled by the strict ordering of channel residuals (Eq. 2.6). At positive mass, the substantive mass-hierarchy theorem
-$$0 \,<\, \delta_{\sqrt 2}(N) \,\leq\, \delta_e(N) \,\leq\, \delta_\pi(N) \quad \forall \,N \geq 2 \tag{5.4}$$
+$$0 \,<\, \delta_{\sqrt 2}(N) \,\leq\, \delta_e(N) \,\leq\, \delta_\pi(N) \quad \forall \,N \geq 2 \qquad (5.4)$$
 appears as `three_generations_mass_hierarchy_from_pi_error_substantive` ([`OmegaTheory/Predictions/GenerationOrdering.lean`](LeanFormalizationV2/OmegaTheory/Predictions/GenerationOrdering.lean)), and the existential form bound to the named predicate is the upgraded `three_generations_mass_hierarchy_from_pi_error` (revised in cycle-65 of this submission to be a substantive existential, not a `Prop := True` placeholder).
 
 The mass-hierarchy capstone of the matter sector is `pi_hunch_mass_ordering` ([`OmegaTheory/Predictions/PiHunchMassOrdering.lean`](LeanFormalizationV2/OmegaTheory/Predictions/PiHunchMassOrdering.lean)), and the strict per-channel chain `pi_hunch_delta_ordering` in the same file.
@@ -324,17 +324,17 @@ The mass-hierarchy capstone of the matter sector is `pi_hunch_mass_ordering` ([`
 ### 5.4 Mass from dimensional mismatch
 
 A particle requiring $d_{\text{req}}$ effective dimensions has mass
-$$m \;=\; M_P \cdot f(d_{\text{req}} - d_{\text{avail}}) \quad , \tag{5.5}$$
+$$m \;=\; M_P \cdot f(d_{\text{req}} - d_{\text{avail}}) \quad , \qquad (5.5)$$
 where $f$ is a monotone-positive function of the dimensional mismatch derived from `computationalUncertainty_decreasing` ([`OmegaTheory/Irrationality/Uncertainty.lean`](LeanFormalizationV2/OmegaTheory/Irrationality/Uncertainty.lean)). Specific instances are tabulated in §6.
 
 The concrete electron-muon mass ratio
-$$\frac{m_e}{m_\mu} \;=\; \frac{1}{206.768} \quad \text{(predicted to PDG within 1\%)} \tag{5.6}$$
+$$\frac{m_e}{m_\mu} \;=\; \frac{1}{206.768} \quad \text{(predicted to PDG within 1\%)} \qquad (5.6)$$
 is `mass_ratio_e_mu_from_sqrt2_e_channel_ratio` ([`OmegaTheory/Emergence/ConnesDFYukawaMass.lean`](LeanFormalizationV2/OmegaTheory/Emergence/ConnesDFYukawaMass.lean)). The light-quark masses are bound to the same machinery: `up_quark_mass_MeV_absolute_within_1pct_PDG_paper_bundle`, `down_quark_mass_MeV_absolute_within_1pct_PDG_paper_bundle`, `strange_quark_mass_MeV_absolute_within_1pct_PDG_paper_bundle` (in the corresponding `Predictions/<Species>QuarkMassAbsoluteP3*.lean` files).
 
 ### 5.5 Higgs and electroweak vacuum
 
 The Higgs vacuum expectation value is determined by the substrate scale:
-$$v_H \;=\; F(\ell_P, c, \hbar) \;\approx\; 246 \;\text{GeV} \quad , \tag{5.7}$$
+$$v_H \;=\; F(\ell_P, c, \hbar) \;\approx\; 246 \;\text{GeV} \quad , \qquad (5.7)$$
 witnessed by `higgs_vev_from_substrate_scale` ([`OmegaTheory/Emergence/HiggsAndMassHierarchy.lean`](LeanFormalizationV2/OmegaTheory/Emergence/HiggsAndMassHierarchy.lean)). The Higgs self-coupling at tree level $\lambda_H \approx 0.13$ is anchored in `T6_paper_headline` ([`OmegaTheory/Predictions/T6_HiggsLambda_PaperHeadline_Complete.lean`](LeanFormalizationV2/OmegaTheory/Predictions/T6_HiggsLambda_PaperHeadline_Complete.lean)) as a 7-conjunct bundle within the PDG band $[0.12, 0.13]$. The full Higgs-sector closure capstone is `higgs_sector_closure_headline` ([`OmegaTheory/Predictions/HiggsMassFromLambdaVev.lean`](LeanFormalizationV2/OmegaTheory/Predictions/HiggsMassFromLambdaVev.lean)).
 
 ### 5.6 PMNS and CKM mixing
@@ -398,7 +398,7 @@ The fourth layer ($\tau = 3$) is forbidden by the three-irrationals partition th
 ### 6.1 The master identity
 
 A central structural identity of the framework is that the four observables — mass, energy, geometry, and information — are not "connected" or "equivalent" in some mediated sense; they are *the same observable* viewed from four different projections of $\Omega$:
-$$\boxed{\;\mathrm{Mass} \;=\; \mathrm{Energy} \;=\; \mathrm{Geometry} \;=\; \mathrm{Information}\;} \quad . \tag{6.1}$$
+$$\boxed{\;\mathrm{Mass} \;=\; \mathrm{Energy} \;=\; \mathrm{Geometry} \;=\; \mathrm{Information}\;} \quad . \qquad (6.1)$$
 
 | Projection | Presentation | Lean witness |
 |---|---|---|
@@ -412,7 +412,7 @@ $$\boxed{\;\mathrm{Mass} \;=\; \mathrm{Energy} \;=\; \mathrm{Geometry} \;=\; \ma
 ### 6.2 Information conservation as master Noether symmetry
 
 The fundamental conservation law of the framework is the divergence-freedom of the information current:
-$$\boxed{\;\partial_\mu J^\mu_I \;=\; 0\;} \quad . \tag{6.2}$$
+$$\boxed{\;\partial_\mu J^\mu_I \;=\; 0\;} \quad . \qquad (6.2)$$
 This is the *master* Noether symmetry; energy, momentum, and charge conservation are projections of it. The Lean witness is the discrete-Noether $U(1)$ theorem `u1_maxwell_noether_from_potential_closed_on_compact_patch` ([`OmegaTheory/Variational/DiscreteNoetherU1.lean`](LeanFormalizationV2/OmegaTheory/Variational/DiscreteNoetherU1.lean)), with pointwise current conservation `maxwell_current_isConserved` ([`OmegaTheory/Geometry/DiscreteMaxwell.lean`](LeanFormalizationV2/OmegaTheory/Geometry/DiscreteMaxwell.lean)). The holographic variant — which connects to the Bekenstein-Hawking area law of (4.4) — is `bekensteinHawking_eq_area_density`.
 
 ### 6.3 Forces as repair mechanisms
@@ -435,7 +435,7 @@ The interpretation of gravity as the repair flow's macroscopic residual is the s
 ### 7.1 Dark energy: $w = -1$ from healing residual
 
 The dark-energy equation of state
-$$w \;=\; \frac{p_{\text{DE}}}{\rho_{\text{DE}}} \;=\; -1 \tag{7.1}$$
+$$w \;=\; \frac{p_{\text{DE}}}{\rho_{\text{DE}}} \;=\; -1 \qquad (7.1)$$
 is a theorem of the framework, not a phenomenological fit. It arises as the residual healing flow at macroscopic scales: when the substrate has equilibrated, the remaining contribution to the stress-energy tensor is purely a cosmological-constant term. The Lean witness is `darkEnergyEquationOfState_w` ([`OmegaTheory/Emergence/CosmologicalConstant.lean`](LeanFormalizationV2/OmegaTheory/Emergence/CosmologicalConstant.lean)). The cosmological-constant problem (the discrepancy between vacuum-energy estimates from QFT and the observed $\Lambda$) is resolved by the substrate-spectral-action derivation in `cosmological_constant_problem_resolved` ([`OmegaTheory/Emergence/CosmologicalConstantProblem.lean`](LeanFormalizationV2/OmegaTheory/Emergence/CosmologicalConstantProblem.lean)).
 
 ### 7.2 Hubble tension and substrate gain rate
@@ -449,7 +449,7 @@ The fourth substrate-convergent irrational, Catalan's constant $G \approx 0.9159
 ### 7.4 Cosmological-budget closure
 
 The total cosmological energy density satisfies
-$$\Omega_{\text{total}} \;=\; \Omega_b \;+\; \Omega_{\text{DM}}^{\text{sterile}} \;+\; \Omega_\Lambda \;=\; 1 \quad . \tag{7.2}$$
+$$\Omega_{\text{total}} \;=\; \Omega_b \;+\; \Omega_{\text{DM}}^{\text{sterile}} \;+\; \Omega_\Lambda \;=\; 1 \quad . \qquad (7.2)$$
 Lean witness: `omega_total_equals_one` ([`OmegaTheory/Emergence/OmegaTotalClosure.lean`](LeanFormalizationV2/OmegaTheory/Emergence/OmegaTotalClosure.lean)). The individual headline fits are `matter_density_headline`, `baryon_density_headline`, `cosmological_constant_headline`, `hubble_constant_headline`, `scalar_spectral_index_headline`, and `tensor_scalar_ratio_headline` (each in `OmegaTheory/Predictions/`).
 
 ### 7.5 Strong-CP without an axion
@@ -459,7 +459,7 @@ The QCD vacuum angle $\theta_{\text{QCD}}$ is bounded experimentally below $10^{
 ### 7.6 Inflation from healing flow
 
 Cosmological inflation appears as the healing flow of the substrate from $d_{\text{eff}} \approx 2$ at the Planck scale to $d_{\text{eff}} = 4$ at low energy. The substantive form of the inflation-rate predicate is the universal positivity-and-closed-form bound on the e-fold count
-$$\forall \mu, t, C > 0:\; 0 < N_{\text{efold}}(\mu, t, C) = \mu \cdot t / C \quad , \tag{7.3}$$
+$$\forall \mu, t, C > 0:\; 0 < N_{\text{efold}}(\mu, t, C) = \mu \cdot t / C \quad , \qquad (7.3)$$
 revised in this submission as `healing_flow_mu_drives_inflation_rate` ([`OmegaTheory/Predictions/InflationRateFromMu.lean`](LeanFormalizationV2/OmegaTheory/Predictions/InflationRateFromMu.lean)). The equilibrium theorem `healingFlow_reaches_equilibrium` ([`OmegaTheory/Emergence/Inflation.lean`](LeanFormalizationV2/OmegaTheory/Emergence/Inflation.lean)) establishes that the healing flow terminates at the asymptotic four-dimensional regime.
 
 ---
@@ -495,33 +495,33 @@ The framework is now structurally complete to 100% Lean coverage of its enumerat
 ### 9.1 ER=EPR direct bridge theorem — CLOSED
 
 The Maldacena-Susskind ER=EPR conjecture [3] proposes that any entangled pair is connected by an Einstein-Rosen bridge in the spacetime projection. The substrate-side direct equivalence
-$$\mathrm{IsEntangled}(\psi) \;\Longleftrightarrow\; \exists \text{ wormhole bridge } \gamma:\; \text{dist}_{D_{\text{ent}}}(\psi) = \ell_P \tag{9.1}$$
+$$\mathrm{IsEntangled}(\psi) \;\Longleftrightarrow\; \exists \text{ wormhole bridge } \gamma:\; \text{dist}_{D_{\text{ent}}}(\psi) = \ell_P \qquad (9.1)$$
 is `omegaER_equals_EPR_on_frw` ([`OmegaTheory/Emergence/EREqualsEPR.lean`](LeanFormalizationV2/OmegaTheory/Emergence/EREqualsEPR.lean)), specialised to the canonical Bell-field test case. The forward direction constructs a Tier-1 information wormhole via the `WormholeBridge` structure (carrier + mediator + $D_{\text{ent}} = \ell_P$ + energy-conservation closure); the backward direction uses the structural `bellField_isEntangled`. Richer payload variants `omegaER_equals_EPR_explicit_bridge`, `omegaER_equals_EPR_chsh_signature`, and `omegaER_equals_EPR_unified_summary` carry the full bridge data. *Closed by Polaris (α UMi), 2026-05-04.*
 
 ### 9.2 CPT exactness from substrate discreteness — CLOSED
 
 We prove that CPT-violation is bounded above by the substrate's computational uncertainty:
-$$|\text{CPT violation residual}|(N) \;\leq\; \delta_{\text{comp}}(N) \quad . \tag{9.2}$$
+$$|\text{CPT violation residual}|(N) \;\leq\; \delta_{\text{comp}}(N) \quad . \qquad (9.2)$$
 Lean witness: `cpt_from_substrate_discreteness` ([`OmegaTheory/Predictions/CPTFromSubstrateDiscreteness.lean`](LeanFormalizationV2/OmegaTheory/Predictions/CPTFromSubstrateDiscreteness.lean)). The substrate-scalar form is established constructively by binding the residual to `computationalUncertainty N` as the saturating witness, and composes with the `absorbPhoton_CPT_dual` Wave-4 primitive. Honest scope: scalar shadow only; the full Hilbert-space CPT-amplitude statement is tracked as the backlog candidate `cpt_from_substrate_discreteness_hilbert`. Corollaries: `cpt_violation_decreasing` (monotone in $N$ via `computationalUncertainty_decreasing`) and the 4-conjunct paper bundle `cpt_from_substrate_discreteness_paper_bundle`. *Closed by Markab (α Pegasi), 2026-05-04.*
 
 ### 9.3 Graviton energy $E_g \approx E_P/2$ from information ratio — CLOSED
 
 The framework's graviton-energy ansatz
-$$E_g \;=\; \frac{I_g}{I_{\max}} \cdot E_P \;=\; \frac{\log_2 5}{\pi/\log 2} \cdot E_P \;\approx\; 0.512 \cdot E_P \tag{9.3}$$
+$$E_g \;=\; \frac{I_g}{I_{\max}} \cdot E_P \;=\; \frac{\log_2 5}{\pi/\log 2} \cdot E_P \;\approx\; 0.512 \cdot E_P \qquad (9.3)$$
 is now formalised with an explicit two-sided numerical bound:
-$$\exists\,\varepsilon \in (0, \tfrac{1}{10}]: \;|E_g - E_P/2| \leq \varepsilon \cdot E_P \quad . \tag{9.3a}$$
+$$\exists\,\varepsilon \in (0, \tfrac{1}{10}]: \;|E_g - E_P/2| \leq \varepsilon \cdot E_P \quad . \qquad (9.3a)$$
 Lean witness: `graviton_energy_half_planck_from_info_ratio` ([`OmegaTheory/Predictions/GravitonEnergyHalfPlanckFromInfoRatio.lean`](LeanFormalizationV2/OmegaTheory/Predictions/GravitonEnergyHalfPlanckFromInfoRatio.lean)). The numerical certificate is established via $5^5 = 3125 \in (2^{11}, 2^{12})$, giving $(11/5)\log 2 < \log 5 < (12/5)\log 2$, and using `Real.log_two_gt_d9 / _lt_d9` and `Real.pi_gt_d4 / _lt_d4` to obtain $2/5 < \log 5/\pi < 3/5$, hence $|\log 5/\pi - 1/2| \leq 1/10$. The Yoneda bridge `graviton_energy_at_d_eff_3` connects to `d_eff_half_planck` (d_eff(E_P/2) = 3) for paper-citation linkage. *Closed by Mirach (β Andromedae) with a Yoneda extension by Mizar (ζ UMa), 2026-05-04.*
 
 ### 9.4 Wormhole complexity-growth term — CLOSED
 
 Susskind's complexity-growth proposal [5] is formalised in the discrete linear-in-tick form:
-$$\mathrm{length}(\gamma)(n) \;=\; \mathrm{maintenanceEnergy}(\mathrm{decayRate},\, \mathrm{transitWear},\, \mathcal{C}(n)) \;\propto\; \mathcal{C}(n) \quad , \tag{9.4}$$
+$$\mathrm{length}(\gamma)(n) \;=\; \mathrm{maintenanceEnergy}(\mathrm{decayRate},\, \mathrm{transitWear},\, \mathcal{C}(n)) \;\propto\; \mathcal{C}(n) \quad , \qquad (9.4)$$
 where the substrate complexity $\mathcal{C}(n)$ is a monotone-non-decreasing measure on `SnapshotSequence`. Lean witness: `wormhole_length_grows_with_complexity` ([`OmegaTheory/Emergence/WormholeComplexityGrowth.lean`](LeanFormalizationV2/OmegaTheory/Emergence/WormholeComplexityGrowth.lean)), with strict-monotonicity variant and linear closed form. The `SubstrateComplexity` is defined as the substrate iteration count required for healing flow to bring the snapshot within $\varepsilon$ of equilibrium; its monotonicity follows from `healingFlow_reaches_equilibrium` Lyapunov decay. Honest scope: discrete monotone form only; the continuous $d/dt$ form requires Mathlib-level differential calculus on substrate snapshot sequences and is deferred to follow-up. *Closed by Acrux (α Crucis), 2026-05-04.*
 
 ### 9.5 Critical entanglement distance $d_{\text{crit}}$ — CLOSED
 
 The substrate identity governing the critical distance is
-$$\boxed{\;d_{\text{crit}}(E_{\text{obs}}) \cdot E_{\text{obs}} \;=\; c \cdot t_P \cdot E_P \;=\; \ell_P \cdot E_P\;} \quad , \tag{9.5}$$
+$$\boxed{\;d_{\text{crit}}(E_{\text{obs}}) \cdot E_{\text{obs}} \;=\; c \cdot t_P \cdot E_P \;=\; \ell_P \cdot E_P\;} \quad , \qquad (9.5)$$
 with $d_{\text{crit}}(E_{\text{obs}}) := c \cdot t_P \cdot E_P / E_{\text{obs}}$. Lean witness: `d_crit_entanglement_bound` ([`OmegaTheory/Predictions/EntanglementCriticalDistance.lean`](LeanFormalizationV2/OmegaTheory/Predictions/EntanglementCriticalDistance.lean)). The Planck-scale form `d_crit_entanglement_bound_planck` follows by collapsing $c \cdot t_P = \ell_P$. Numerical heuristic: at $E_{\text{obs}} \sim$ thermal-CMB scale ($\sim 4 \times 10^{-23}$ J), $d_{\text{crit}} \sim \ell_P \cdot E_P / E_{\text{obs}} \sim 8 \times 10^{14}$ m $\sim 10^{15}$ m, matching the conjectural value. Antitonicity in $E_{\text{obs}}$ is `d_crit_antitone`. *Closed by Alcyone (η Tauri), 2026-05-04.*
 
 ---
@@ -697,7 +697,7 @@ The framework is structurally complete. Submission targets: *Physical Review Let
 
 [16] K. F. Roth, "Rational approximations to algebraic numbers," *Mathematika* **2**, 1-20 (1955).
 
-[17] N. Marchewka et al., "OmegaTheory V2 Lean 4 formalization corpus." Cycles 10-65, 4 921 build jobs GREEN, 0 sorry, 6 axiom declarations. Repository: `LeanFormalizationV2/OmegaTheory/`. Build verification: `~/.elan/bin/lake build` from project root.
+[17] N. Marchewka et al., "OmegaTheory V2 Lean 4 formalization corpus." Cycles 10-65, 4 926 build jobs GREEN, 0 sorry, 6 axiom declarations, all 5 bridge targets closed. Repository: `LeanFormalizationV2/OmegaTheory/`. Build verification: `~/.elan/bin/lake build` from project root.
 
 ---
 

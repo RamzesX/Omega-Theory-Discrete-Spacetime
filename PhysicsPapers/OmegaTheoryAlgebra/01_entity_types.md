@@ -47,7 +47,7 @@ The height function `h: Q₀ → ℤ` (V3 HypatiaBasis, Def. 2.3) orders types b
 
 In V3, Actor being a pure source (in-degree 0 on behavioral arrows, Proposition 2.1(ii) in HypatiaBasis) is what makes the quiver non-trivial: it means the algebra has a non-empty set of "prime causes." For Lean, Axiom being a pure source has the same role but with **stronger justification**: in Lean 4, an axiom is genuinely the only way to introduce a constant without a definition body. Every other declaration kind must eventually reduce to data + axioms. A Theorem can APPLY a Theorem, UNFOLD a Definition, or ASSUME an Axiom — but nothing can be APPLIED to an Axiom (that would amount to proving it, which by definition we did not do).
 
-OmegaTheory V2 has exactly **24 axioms** (8 physical + 1 `Real.pi_transcendental` waiting on Mathlib Lindemann–Weierstrass + 15 HermitePade research conjectures). All 24 are leaves of every backward traversal of the theorem DAG. This is exactly the "pure behavioral source" property V3 proves for Actor.
+OmegaTheory V2 has exactly **6 axiom declarations** (post cycle 65, 2026-05-04: 4 sealed Hermite-Padé research axioms + 2 citation axioms — Zudilin Catalan-G, Witten Chern-Simons; π-transcendence retired cycle 64, all 8 physical constants now `noncomputable opaque {x : ℝ // 0 < x}` Subtype bundles via `Classical.choice`, not `axiom`). All 6 are leaves of every backward traversal of the theorem DAG. This is exactly the "pure behavioral source" property V3 proves for Actor.
 
 ## 5. The Namespace-as-context polarity (why h=0 matters)
 
@@ -75,7 +75,7 @@ From the fresh catalogue (plan §Context):
 - **~1,057 definitions** → type 3. Roughly 2.5x fewer than theorems, consistent with V3 Resource:Process ratio on CheckItOut (≈3:5).
 - **~250 structures** → type 4. Low count expected; structures are schemas, not instances.
 - **282 namespaces** → type 6. Roughly 1 per file (211 files + module-internal subnamespaces).
-- **24 axioms** → type 1. Strict sources, match pure-source expectation.
+- **6 axiom declarations** (post cycle 65) → type 1. Strict sources, match pure-source expectation. Legacy paper reads "24 axioms" — that count was 2026-04-21 (8 physical + 1 π-trans + 15 HermitePade conjectures); cycle 64 retired π-trans, the 8 physical were converted to opaque-Subtype bundles, and Hermite-Padé was scoped down to 4 sealed.
 - **Instances** — not individually catalogued yet (ingestion task for Team Azha), but expected in the hundreds given Mathlib usage.
 
 The 6-type partition covers **all** top-level declarations in OmegaTheory with no "other" bucket required. This is the sanity check V3 asks for (HypatiaBasis §2.3, Proposition 2.1(iv)): 38.9% block density = 14 of 36 blocks occupied. File 02 computes the Lean counterpart.

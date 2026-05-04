@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-24T16:43:27.754Z",
+  "updated": "2026-04-27T18:39:09.319Z",
   "source": "PhysicsPapers/OmegaTheoryAlgebra/GROTHENDIECK_MATH_PUZZLE.md",
   "summary": {
     "totalPredictions": 28,
     "totalLanded": 24,
     "totalOpen": 4,
     "percentLanded": 86,
-    "leanFilesScanned": 529,
-    "totalDeclarationsIndexed": 10331
+    "leanFilesScanned": 1069,
+    "totalDeclarationsIndexed": 16272
   },
   "perPass": [
     {

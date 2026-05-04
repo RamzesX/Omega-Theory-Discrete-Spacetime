@@ -29,10 +29,16 @@ const papersMeta = {
     order: 2,
   },
   'Complete-Omega-Theory-Unified-Framework.md': {
-    title: 'Complete Omega-Theory Unified Framework',
-    description: 'Full technical treatment with all equations',
+    title: 'Complete Omega-Theory Unified Framework (legacy comprehensive)',
+    description: 'Full technical treatment with all equations — legacy 1036-line version',
     category: 'Core Theory',
     order: 3,
+  },
+  'CompleteOmegaTheory.md': {
+    title: 'Ω-Theory: Machine-Verified Algebraic Framework (formal paper, 2026-05-04)',
+    description: 'Clean formal academic paper. LaTeX equations, ASCII chain diagrams, step-by-step derivation, 55 Lean theorem index. All 5 OPEN bridge targets closed (cycle 65). Submission targets: PRL 2026-06, Foundations of Physics 2026-10.',
+    category: 'Core Theory',
+    order: 0,
   },
   'KeyInsight-Irrationals-Action-Thresholds.md': {
     title: 'Key Insight: Irrationals and Action Thresholds',

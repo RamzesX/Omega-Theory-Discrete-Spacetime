@@ -1,3 +1,10 @@
+---
+title: "Ω-Theory: Machine-Verified Algebraic Framework (formal paper, 2026-05-04)"
+description: "Clean formal academic paper. LaTeX equations, ASCII chain diagrams, step-by-step derivation, 55 Lean theorem index. All 5 OPEN bridge targets closed (cycle 65). Submission targets: PRL 2026-06, Foundations of Physics 2026-10."
+category: "Core Theory"
+
+---
+
 # Ω-Theory: A Machine-Verified Algebraic Framework for Physics from Discreteness
 
 **Author:** Norbert Marchewka

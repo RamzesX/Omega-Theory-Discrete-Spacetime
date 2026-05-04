@@ -1,6 +1,6 @@
 ---
-title: "Complete Omega-Theory Unified Framework"
-description: "Full technical treatment with all equations"
+title: "Complete Omega-Theory Unified Framework (legacy comprehensive)"
+description: "Full technical treatment with all equations — legacy 1036-line version"
 category: "Core Theory"
 order: 3
 ---

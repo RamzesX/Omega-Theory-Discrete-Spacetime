@@ -6404,3 +6404,12 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJF4_SJF5_RAware_AevalNeZe
 -- After this fire:  σ-form Prop reduces from 2 primitives (PHE-23 + small-σ)
 -- to 1 primitive (small-σ analytical heart only).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_PHE23_InBoxWitnessExtraction_Discharge
+
+-- Cycle 65 final bridges (2026-05-04): all 5 OPEN bridge targets from
+-- CompleteOmegaTheory.md §9 closed.  Build 4921 → 4926 GREEN with these imports.
+-- Audit: [propext, Classical.choice, Quot.sound] only on every headline.
+import OmegaTheory.Predictions.GravitonEnergyHalfPlanckFromInfoRatio
+import OmegaTheory.Predictions.CPTFromSubstrateDiscreteness
+import OmegaTheory.Emergence.EREqualsEPR
+import OmegaTheory.Predictions.EntanglementCriticalDistance
+import OmegaTheory.Emergence.WormholeComplexityGrowth

@@ -93,12 +93,80 @@ This is physically obvious:
 - Any computer is part of the universe
 - Therefore any computer has < 10¹²⁰ bits
 
-### 3.2 Self-Simulation Theorem
+### 3.2 Self-Reflection Limit (Conv(ℚ) Version)
 
-**Theorem 3.1 (Self-Simulation Impossibility)**:
-No system S can contain a complete simulation of itself.
+**Theorem 3.1 (Self-Reflection Limit in Conv(ℚ))**:
+Let T be a consistent, recursively axiomatizable theory in the language of Conv(ℚ), sufficient to interpret Robinson arithmetic Q (i.e., T contains ℕ with successor, addition, multiplication, and the standard axioms). Then there is no Turing machine M of finite description such that for every sentence φ of T's language:
 
-*Proof*: Let S have resources R(S). A simulation S' of S requires R(S') ≥ R(S). But S' ⊂ S (simulation is inside the system). So R(S') ≤ R(S) - ε for some ε > 0 (overhead). Therefore R(S') < R(S) ≤ R(S'). Contradiction. □
+$T \vdash \big[M(\ulcorner \varphi \urcorner) = 1\big] \leftrightarrow \varphi$
+
+In words: **no system in Conv(ℚ) can carry out a complete, truth-preserving simulation of itself.**
+
+*Proof*: Apply Kleene's Second Recursion Theorem (a structural fact about computability, finite-combinatorial in flavor): there exists a sentence L of T's language and a Turing machine index $e_L$ such that
+
+$T \vdash \big[M(\ulcorner L \urcorner) = 1\big] \leftrightarrow \neg L \quad (\star)$
+
+This is the diagonal lemma in computability form; it needs only finite Gödel coding and finitely many TM operations.
+
+Suppose for contradiction that M satisfies the truth-preservation schema. Specializing to L:
+
+$T \vdash \big[M(\ulcorner L \urcorner) = 1\big] \leftrightarrow L \quad (\dagger)$
+
+Combining (★) and (†):
+
+$T \vdash L \leftrightarrow \neg L$
+
+so T is inconsistent. Contradiction with hypothesis. □
+
+**Remark — what the proof uses (all permitted in Conv(ℚ))**:
+
+- Turing machines of arbitrary finite description length (potential infinity in *length*, not in cardinality)
+- Kleene's Second Recursion Theorem (provable in PA-strength systems, requires no choice, no uncountable sets)
+- Standard truth-preservation as effective biconditional
+- Consistency of T
+
+**What this proof does NOT use** (rejected by the Conv(ℚ) framework):
+
+- Completed uncountable infinities
+- Axiom of choice
+- Non-computable reals (Chaitin's Ω, random reals, generic reals)
+- Resource-counting inequalities of the form $R(S') \leq R(S) - \varepsilon$ — these fail to **compression**: a finite axiomatization of T has tiny Kolmogorov complexity, far smaller than T's deductive closure (PA fits in a few hundred bits of axioms but generates uncountably many theorems). The original size argument conflated description length with truth-predicate expressivity; the Kleene-recursion proof above avoids this by treating the obstruction as **structural** (diagonalization on computable predicates) rather than **quantitative** (resource bound).
+
+**Contrast with ZFC**: ZFC's analogous theorem is Tarski's undefinability of truth. Same conclusion, but because ZFC tolerates non-computable predicates as legitimate mathematical objects, the question "Is there a *non-computable* truth predicate?" has a delicate answer involving an ω-th-level meta-theory, dragging Chaitin's Ω and other mystical objects into the discussion. In Conv(ℚ), the only candidate predicates are Turing machines (the framework excludes non-computable reals by construction), so the question collapses to its computable form, and Theorem 3.1 settles it cleanly via Kleene.
+
+**Conv(ℚ)'s self-reflection limit is sharper than ZFC's because the framework excludes the mystical objects whose existence muddies the ZFC picture.**
+
+### 3.2.1 The Two Levels of Self-Reflection — and ZFC's Hidden Infinity-Debt
+
+Theorem 3.1 above addresses the **Tarski level** of self-reflection: no formula or Turing machine inside T can serve as T's truth predicate. This holds in both ZFC and Conv(ℚ) with the same finite proof. No infinite resources are required to *prove* Tarski; the diagonal-lemma derivation is finite-combinatorial.
+
+But there is a deeper **model-existence level** where ZFC and Conv(ℚ) diverge sharply.
+
+By Gödel II, T cannot prove "T has a model" within T itself — this is equivalent to Con(T), which T cannot prove if T is consistent and contains arithmetic. Classically, ZFC can *recover* self-modeling by ascending the **large-cardinal hierarchy**:
+
+- ZFC + ∃ inaccessible cardinal $\kappa$ ⊢ "$V_\kappa$ is a model of ZFC" (by reflection / inaccessibility)
+- ZFC + 2 inaccessibles ⊢ "ZFC + 1 inaccessible has a model"
+- ZFC + Mahlo cardinal ⊢ "ZFC + proper class of inaccessibles has a model"
+- ZFC + measurable ⊢ stronger consistency claims
+- ZFC + supercompact ⊢ stronger still
+- ... and the tower continues unboundedly: weakly compact, ineffable, Ramsey, measurable, strong, Woodin, supercompact, extendible, huge, almost-2-huge, ...
+
+Each ascending level requires accepting **strictly more infinity-power** than the previous — a new cardinal axiom postulating sets larger than anything constructible from the previous level. **None of these large-cardinal commitments corresponds to any physically realizable resource.** An inaccessible cardinal is not merely "very large"; it is a cardinal $\kappa$ such that no smaller collection of smaller sets can reach it. There is no physical correspondent, no construction, no enumeration in any finite or even Bekenstein-bounded universe.
+
+**This is ZFC's hidden infinity-debt:** formally, ZFC can self-model by climbing the cardinal tower; *physically*, the climb has no realization. The hierarchy is mathematically consistent (assuming each level is) but metaphysically uncashable. ZFC's self-understanding is a Platonic capability, not a constructible one.
+
+**Conv(ℚ) declines the climb.** There is no model-of-Conv(ℚ) inside Conv(ℚ), and the framework does not ascend a hierarchy to recover one. It accepts Theorem 3.1 as the structural limit of self-reflection and *stops there*. The framework is honest about its bounded scope: bounded above by computable description, bounded below by the Tarski-Kleene limit, and refusing to take on the cardinal-hierarchy debt that ZFC pays for its self-modeling capability.
+
+**The precise contrast:**
+
+| | Tarski limit | Model-existence | Resources |
+|---|---|---|---|
+| **ZFC** | Same finite proof | Recovered via large-cardinal hierarchy | Cardinal escalation — unbounded, unphysical |
+| **Conv(ℚ)** | Same finite proof | Not recovered — framework declines to ascend | Bounded by computable; honest |
+
+Both frameworks face the same Tarski-level limit on self-reflection. But only ZFC pays the cardinal-hierarchy debt to recover model existence — a debt that no physical system can ever settle. **This is the precise sense in which Conv(ℚ)'s incompleteness is physically honest and ZFC's self-modeling is metaphysical bookkeeping.**
+
+The "infinity resources we don't have in the real world" intuition is exactly right at this level: ZFC's proof of self-consistency requires *spending infinity-cardinals it has no physical access to*, while Conv(ℚ) never tries to make that purchase.
 
 ### 3.3 Incompleteness as Resource Starvation
 

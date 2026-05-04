@@ -41,6 +41,13 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v6
+        with:
+          # Auto-enable Pages on the repo if it's been disabled / not yet
+          # configured. Prevents the Setup-Pages step from fast-failing with
+          # `Get Pages site failed ... Not Found` when Pages source has been
+          # reset (observed 2026-05-04, runs 25344924228 / 25345318884 /
+          # 25346455224 — all 17–22 s fast-fails).
+          enablement: true
 
       - name: Install dependencies
         working-directory: ./site

@@ -8,8 +8,9 @@
 ║    ╚██████╔╝██║ ╚═╝ ██║███████╗╚██████╔╝██║  ██║         ██║   ██║  ██║███████╗╚██████╔╝██║  ██║   ██║           ║
 ║     ╚═════╝ ╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝         ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝           ║
 ║                                                                                                                  ║
-║       First Lean 4 formalization of π-transcendence  ·  Discrete-substrate quantum gravity with healing flow    ║
+║                  ★  FIRST LEAN 4 FORMALIZATION OF π-TRANSCENDENCE  (cycle 64, 2026-04-27)  ★                    ║
 ║                                                                                                                  ║
+║                  Discrete-substrate quantum gravity with healing-flow Lyapunov stability                        ║
 ║                                       Λ = ℓ_P · Z⁴  →  forced irrationals  →  QM                                 ║
 ║                                                                                                                  ║
 ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
@@ -18,6 +19,19 @@
 > *"What if everything wants to teleport at the speed of light—but we can't, because we have mass, and need to expend energy to reshape the geometry around us?"*
 
 This question motivated the project. The work that followed produced **two stand-alone Lean 4 formalizations**, plus a broader exploratory framework.
+
+> ## ★ Headline result — `Real.pi_transcendental` is now a theorem in Lean 4
+>
+> **First Lean 4 formalization of $\pi$-transcendence in any prover.** Coq + Isabelle had prior; Lean 3 had only partial work; **Lean 4 closed** in cycle 64 (2026-04-27) by a single-day single-thread custom port of Lindemann–Weierstrass. 24 files, ≈ 8 400 LOC, axiom audit returns `[propext, Classical.choice, Quot.sound]` only.
+>
+> ```
+> theorem Real.pi_transcendental : Transcendental ℚ (Real.pi : ℝ) :=
+>   OmegaTheory.Irrationality.CustomMath
+>     .LindemannPremiseRatProofPiTranscendentalUnconditionalReal
+>     .pi_transcendental_unconditional
+> ```
+>
+> [→ method note paper](PhysicsPapers/papers/Paper-Pi-Transcendence-Lean4-FirstFormalization.md) · [→ Lean source](PhysicsPapers/LeanFormalizationV2/OmegaTheory/Irrationality/HermitePade/PiStratum.lean)
 
 ### [📄 Formal paper (2026-05-04)](PhysicsPapers/CompleteOmegaTheory.md) · [📖 Astro site](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/) · [📑 Main Paper Postulates](PhysicsPapers/Main-Paper-Postulates.md) · [🧮 Lean by domain](https://ramzesx.github.io/Omega-Theory-Discrete-Spacetime/lean/)
 
@@ -157,6 +171,7 @@ The broader framework conjectures that the same truncation pattern, applied to f
 [![Lean 4](https://img.shields.io/badge/Lean-4.29.0-blue.svg)](PhysicsPapers/LeanFormalizationV2/)
 [![Build](https://img.shields.io/badge/build-4926%20GREEN-success.svg)](#)
 [![Stubs](https://img.shields.io/badge/stubs-0-success.svg)](#)
+[![First in Lean 4](https://img.shields.io/badge/π%20transcendence-FIRST%20IN%20LEAN%204-rose.svg?style=for-the-badge)](PhysicsPapers/papers/Paper-Pi-Transcendence-Lean4-FirstFormalization.md)
 [![Core](https://img.shields.io/badge/core-π%20transcendence%20+%20QG%20healing%20flow-success.svg)](PhysicsPapers/CompleteOmegaTheory.md)
 [![NO STUBS](https://img.shields.io/badge/NO_STUBS-locked-amber.svg)](#)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)

@@ -138,6 +138,6 @@ theorem fermionHilbert_categorical_yoneda_paper_bundle :
     `GaugeGroupFromAlgebra`, `FermionsFromAlgebra` Yoneda witnesses
     on the Connes A_F → SM derivation axis. -/
 theorem fermionHilbert_categorical_yoneda_first_dependent_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

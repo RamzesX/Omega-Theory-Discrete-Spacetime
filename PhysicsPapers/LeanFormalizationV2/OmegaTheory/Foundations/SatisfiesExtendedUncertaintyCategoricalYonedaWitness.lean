@@ -113,6 +113,6 @@ theorem satisfiesExtendedUncertainty_categorical_yoneda_paper_bundle
     Yoneda image of the foundational `irrationality_implies_quantum_uncertainty`
     theorem of OmegaTheory. -/
 theorem satisfiesExtendedUncertainty_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

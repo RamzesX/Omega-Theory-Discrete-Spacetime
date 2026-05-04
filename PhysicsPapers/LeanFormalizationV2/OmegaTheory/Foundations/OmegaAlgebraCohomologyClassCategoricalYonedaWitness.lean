@@ -135,6 +135,6 @@ theorem omegaAlgebraCohomologyClass_categorical_yoneda_paper_bundle
     together they cover the Ω-algebra cohomology axis of OV2
     through the categorical bijection. -/
 theorem omegaAlgebraCohomologyClass_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

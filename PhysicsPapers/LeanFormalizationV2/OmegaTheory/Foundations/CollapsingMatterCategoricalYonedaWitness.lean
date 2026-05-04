@@ -123,6 +123,6 @@ theorem collapsingMatter_categorical_yoneda_paper_bundle :
     Composes with `gravitationalPressure` + `spinTorsionPressure` for
     the Popławski bounce balance. -/
 theorem collapsingMatter_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

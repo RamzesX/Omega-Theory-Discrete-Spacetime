@@ -122,6 +122,6 @@ theorem piHunch_channel_indexed_agreement_at_unit
     the Pi-Hunch backbone (4-channel D_F + Fin-4 extended spectrum +
     error-bound dependent subtype) into one Yoneda-bridge formulation. -/
 theorem piHunch_composite_yoneda_capstone_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

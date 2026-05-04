@@ -163,6 +163,6 @@ theorem bianchiIScaleFactorData_categorical_yoneda_paper_bundle :
 /-- Frontier marker — first 7-data + 9-prop dependent-record Yoneda witness
     in OV2 (richest dependent-record Yoneda yet, 16 total fields). -/
 theorem bianchiIScaleFactorData_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

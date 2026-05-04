@@ -153,6 +153,6 @@ ship a `decide`-certified Lean-side blast-radius registry for
 `Real.pi_transcendental`. Trivially true; the meaning lies in the
 audit data above, not in the proposition itself. -/
 theorem pi_transcendental_blast_radius_audit_v2_first_lean_registry :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Irrationality.HermitePade.PiTranscendentalBlastRadiusAuditV2

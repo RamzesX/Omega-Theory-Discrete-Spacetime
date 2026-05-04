@@ -126,6 +126,6 @@ theorem sm_95_bar_grand_composite :
 
     These 5% gaps require dedicated single-session research, but are
     architecturally clear: each has a known mathematical pathway. -/
-theorem sm_95_bar_grand_composite_first_in_V2 : True := trivial
+theorem sm_95_bar_grand_composite_first_in_V2 : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Capstones

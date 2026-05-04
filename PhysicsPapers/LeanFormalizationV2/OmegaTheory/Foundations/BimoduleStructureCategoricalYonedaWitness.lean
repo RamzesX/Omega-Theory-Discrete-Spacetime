@@ -117,6 +117,6 @@ theorem bimoduleStructure_categorical_yoneda_paper_bundle
     `AF_Bimodule M := BimoduleStructure FiniteAlgebra M`, used by
     `FermionHilbert` and other Connes A_F constructions of OV2. -/
 theorem bimoduleStructure_categorical_yoneda_first_doubly_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

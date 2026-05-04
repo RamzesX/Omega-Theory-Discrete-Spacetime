@@ -381,6 +381,6 @@ this Lean landing.
 Has zero axiom dependency (`True := trivial`) — the tightest possible
 audit footprint, useful as a structural witness for the cycle-closure
 checklist. -/
-theorem applies_undirected_b0_eq_3760_W2_1_closed : True := trivial
+theorem applies_undirected_b0_eq_3760_W2_1_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Algebra

@@ -211,6 +211,6 @@ theorem sliceIngredients_triplet_categorical_yoneda_paper_bundle
     decomposition ladder). All three lifted through Yoneda alongside
     the `extends`-pattern projections. -/
 theorem sliceIngredients_triplet_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

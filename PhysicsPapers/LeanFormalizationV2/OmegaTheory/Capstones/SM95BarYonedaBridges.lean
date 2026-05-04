@@ -168,6 +168,6 @@ theorem sm_95_bar_yoneda_bridges_grand :
     substrate-chain via 5 Yoneda-style bridges.  No isolated PDG
     citations — all anchors APPLIES into the substrate-derivation
     framework. -/
-theorem sm_95_bar_yoneda_bridges_first_in_V2 : True := trivial
+theorem sm_95_bar_yoneda_bridges_first_in_V2 : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Capstones

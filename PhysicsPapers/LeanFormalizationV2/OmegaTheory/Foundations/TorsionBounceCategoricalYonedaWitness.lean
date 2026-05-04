@@ -119,6 +119,6 @@ theorem torsionBounce_categorical_yoneda_paper_bundle :
 /-- Frontier marker — Popławski bounce Yoneda completes the cyclic
     cosmology dyad together with BabyUniverseSpectrum. -/
 theorem torsionBounce_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

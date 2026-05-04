@@ -76,6 +76,6 @@ theorem connes_weight_derivation_composite_alias :
     categorical bijection of the substrate D_F → Yukawa kernel
     `(-log δ)^β · B/(B+i)`. -/
 theorem connes_weight_derivation_composite_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

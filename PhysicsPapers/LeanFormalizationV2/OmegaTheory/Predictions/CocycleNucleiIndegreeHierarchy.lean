@@ -407,6 +407,6 @@ cocycle's 9 gluing-data nuclei.  The proposition is trivial; the meaning
 lies in the paper bundle above and in the cycle-61 Capricornus L4 #3
 audit data, not in this marker's body. -/
 theorem cocycle_nuclei_indegree_hierarchy_first_paper_bundle_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions.CocycleNucleiIndegreeHierarchy

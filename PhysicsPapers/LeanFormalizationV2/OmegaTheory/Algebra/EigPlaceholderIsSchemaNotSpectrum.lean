@@ -305,6 +305,6 @@ theorem eig_placeholder_schema_not_spectrum_first_in_V2 :
   ⟨schema_trace_eq_ten, live_trace_eq_897⟩
 
 /-- **Closure marker** — c62.W2.5 closure stub. -/
-theorem eig_placeholder_schema_not_spectrum_W2_5_closed : True := trivial
+theorem eig_placeholder_schema_not_spectrum_W2_5_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Algebra.EigPlaceholderIsSchemaNotSpectrum

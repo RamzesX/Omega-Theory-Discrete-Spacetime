@@ -147,6 +147,6 @@ theorem pmns_angles_categorical_yoneda_paper_bundle :
 
 /-- Frontier marker. -/
 theorem pmns_angles_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

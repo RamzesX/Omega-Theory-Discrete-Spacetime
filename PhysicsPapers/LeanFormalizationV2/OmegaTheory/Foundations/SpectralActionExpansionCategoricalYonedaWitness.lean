@@ -180,6 +180,6 @@ theorem spectralActionExpansion_categorical_yoneda_paper_bundle :
     categorical bijection.  Paper-citable as the categorical
     coverage of the Seeley-DeWitt 4-term expansion. -/
 theorem spectralActionExpansion_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

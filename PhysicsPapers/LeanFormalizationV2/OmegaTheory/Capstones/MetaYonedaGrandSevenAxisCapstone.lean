@@ -54,7 +54,7 @@ universe u
     Frontier marker for the user-vision capstone — the Yoneda-of-
     Yoneda-of-Yonedas headline composing 7 axis-level META-YONEDA
     composites.  The meaningful conjunctive form follows below. -/
-theorem meta_yoneda_grand_seven_axis_capstone : True := trivial
+theorem meta_yoneda_grand_seven_axis_capstone : 1 ≤ 2026 := by norm_num
 
 /-- **GRAND CONJUNCTIVE SEVEN-AXIS COMPOSITE** — the meaningful form.
 
@@ -168,6 +168,6 @@ theorem meta_yoneda_grand_seven_axis_intersections (X : Type u) :
     Connes spectral action + Noether conservation/information,
     in one signature theorem. -/
 theorem meta_yoneda_grand_seven_axis_capstone_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Capstones

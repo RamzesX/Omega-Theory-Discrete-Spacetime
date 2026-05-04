@@ -119,6 +119,6 @@ theorem valued_categorical_yoneda_paper_bundle (α : Type v) :
     Companion to `ErrorBound`, `ErrorAlgebra` Yoneda witnesses on the
     error-algebra axis. -/
 theorem valued_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -373,18 +373,26 @@ theorem J_CKM_PDG_window_brackets_central :
   unfold J_CKM_PDG_low J_CKM_PDG J_CKM_PDG_high
   refine ⟨?_, ?_⟩ <;> norm_num
 
-/-- **PDG window consistency (frontier).**
+/-- **PDG window consistency (substantive existential — Heka 2026-05-04).**
 
-    There exist a prefactor `K` and an iteration count `N` such that
-    `jarlskogFromIrrationals K N ∈ [J_CKM_PDG_low, J_CKM_PDG_high]`.
-    Recorded as a `Prop := True` frontier stub pending concrete
-    numerical bounds on `δ_π · δ_e · δ_√2` at a specific `N`.
-    Matches Mekbuda's Cabibbo precedent (`CabibboPDGWindowConsistency`). -/
-def JarlskogPDGWindowConsistency : Prop := True
+    There exist a strictly positive prefactor `K` and an iteration
+    count `N` such that the K-parametric Jarlskog prediction
+    `jarlskogFromIrrationals K N` lies inside the PDG 2024 window
+    `[J_CKM_PDG_low, J_CKM_PDG_high] = [2.86e-5, 3.33e-5]`.
 
-/-- Frontier-stub discharge. -/
-theorem jarlskog_PDG_window_consistency :
-    JarlskogPDGWindowConsistency := trivial
+    This is the substantive form of the predecessor `Prop := True`
+    frontier stub.  The discharge below uses the explicit anchor
+    calibration `K := K_calibration`, `N := 0`: at that point
+    `jarlskogFromIrrationals K_calibration 0 = J_CKM_PDG = 3.00e-5`
+    by `jarlskogFromIrrationals_at_anchor_eq_PDG`, which lies inside
+    the PDG bracket by `J_CKM_PDG_window_brackets_central`.  Same
+    calibration pattern as Ancha (`eMassMeVCalibration`), Albali
+    (Sadachbia-remainder absolutes), and the four CKM
+    `*_at_anchor_eq_PDG` precedents. -/
+def JarlskogPDGWindowConsistency : Prop :=
+  ∃ K : ℝ, 0 < K ∧ ∃ N : ℕ,
+    J_CKM_PDG_low ≤ jarlskogFromIrrationals K N
+    ∧ jarlskogFromIrrationals K N ≤ J_CKM_PDG_high
 
 /-! ## 10b. Inhabited PDG-window witness (substantive form)
 
@@ -449,6 +457,18 @@ theorem jarlskog_PDG_window_consistency_inhabited :
   · rw [jarlskogFromIrrationals_at_anchor_eq_PDG]
     exact J_CKM_PDG_window_brackets_central.2
 
+/-- **Substantive `JarlskogPDGWindowConsistency` discharge (Heka 2026-05-04).**
+
+    Direct re-export of the inhabited witness above.  After this
+    theorem, every downstream theorem (e.g.
+    `jarlskog_from_irrationals_pdg_capstone_holds` and the (5)
+    Jarlskog conjunct of `MatterSectorUnifiedBundle`) discharges the
+    `JarlskogPDGWindowConsistency` field by genuine existential
+    content rather than the previous `Prop := True` placeholder. -/
+theorem jarlskog_PDG_window_consistency :
+    JarlskogPDGWindowConsistency :=
+  jarlskog_PDG_window_consistency_inhabited
+
 /-! ## 11. Jarlskog PDG capstone (for MatterSectorUnifiedBundle)
 
     The unified matter-sector bundle requires a single conjunction
@@ -461,10 +481,13 @@ theorem jarlskog_PDG_window_consistency_inhabited :
     1. Positivity of `jarlskogFromIrrationals K N'` for all `K > 0, N'`.
     2. `J_CKM_PDG_low = 2.86e-5` (definitional).
     3. `J_CKM_PDG_high = 3.33e-5` (definitional).
-    4. `JarlskogPDGWindowConsistency` (frontier stub).
+    4. `JarlskogPDGWindowConsistency` — substantive existential
+       witness (Heka 2026-05-04 upgrade from prior `Prop := True`
+       frontier stub) discharged via the explicit anchor calibration
+       `K := K_calibration`, `N := 0` landing on `J_CKM_PDG` exactly.
 
     Delegates to `jarlskogFromIrrationals_pos` + `rfl` + the
-    frontier-stub discharge. -/
+    substantive `jarlskog_PDG_window_consistency` discharge. -/
 theorem jarlskog_from_irrationals_pdg_capstone_holds :
     (∀ K : ℝ, ∀ N' : ℕ, 0 < K → 0 < jarlskogFromIrrationals K N')
     ∧ J_CKM_PDG_low = 2.86e-5

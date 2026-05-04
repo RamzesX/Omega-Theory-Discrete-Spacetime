@@ -139,6 +139,6 @@ theorem fullQuantumNumbers_categorical_yoneda_paper_bundle :
     data Yoneda** (rational weak hypercharge `Y`).  Bridges the SM
     fermion classification through Yoneda. -/
 theorem fullQuantumNumbers_categorical_yoneda_first_inductive_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

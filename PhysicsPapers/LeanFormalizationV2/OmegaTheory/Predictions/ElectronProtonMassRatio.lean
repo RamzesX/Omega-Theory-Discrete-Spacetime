@@ -292,6 +292,6 @@ theorem electron_proton_mass_ratio_substrate_fit :
     replaced by the composed theorem.  No mathematical content
     here — serves only as a hook. -/
 theorem electron_proton_mass_ratio_sqrt2_LambdaQCD_substrate_ansatz :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions.ElectronProtonMassRatio

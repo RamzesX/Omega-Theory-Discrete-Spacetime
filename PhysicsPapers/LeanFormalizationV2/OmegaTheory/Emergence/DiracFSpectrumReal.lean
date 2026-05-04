@@ -209,31 +209,44 @@ by a genuine spectral-theoretic proof earlier in this file. -/
     theorems (`electronD_F_spectrum_elt_is_real`,
     `upQuarkD_F_spectrum_elt_is_real`,
     `downQuarkD_F_spectrum_elt_is_real`,
-    `neutrinoD_F_spectrum_elt_is_real`) plus the generic statement
-    `dirac_spectrum_elt_is_real`.  The frontier carrier is `True`
-    (trivial consequence of the already-proved theorems above). -/
-def dirac_spectrum_hermitian_spectral_real : Prop := True
+    `neutrinoD_F_spectrum_elt_is_real`).
 
-/-- The headline bundle holds. -/
+    NO STUBS doctrine: the frontier carrier is the genuine 4-conjunct
+    spectral-reality statement — for every species tower, every element
+    of the ℂ-spectrum has vanishing imaginary part.  This `Prop`
+    contains real mathematical content; its inhabitation is backed by
+    the spectral theorem applied to each Hermiticity witness in
+    `DiracFSpectrum.lean`. -/
+def dirac_spectrum_hermitian_spectral_real : Prop :=
+  (∀ z ∈ spectrum ℂ electronD_F,  Complex.im z = 0) ∧
+  (∀ z ∈ spectrum ℂ upQuarkD_F,   Complex.im z = 0) ∧
+  (∀ z ∈ spectrum ℂ downQuarkD_F, Complex.im z = 0) ∧
+  (∀ z ∈ spectrum ℂ neutrinoD_F,  Complex.im z = 0)
+
+/-- The headline bundle holds: pure ∧-introduction of the four
+    per-species spectral-reality witnesses. -/
 theorem dirac_spectrum_hermitian_spectral_real_holds :
     dirac_spectrum_hermitian_spectral_real :=
-  trivial
+  ⟨electronD_F_spectrum_elt_is_real,
+   upQuarkD_F_spectrum_elt_is_real,
+   downQuarkD_F_spectrum_elt_is_real,
+   neutrinoD_F_spectrum_elt_is_real⟩
 
 /-- **Discharge of the headline bundle with all witnesses attached.**
-    Packages the four per-species reality theorems together so the
-    bundle is not merely `True` in isolation but is cited alongside
-    its genuine mathematical content. -/
+    Re-exports the headline alongside its four per-species components.
+    Backwards-compatible alias for downstream consumers that expect the
+    flat 5-conjunct shape. -/
 theorem dirac_spectrum_hermitian_spectral_real_discharge :
     dirac_spectrum_hermitian_spectral_real ∧
     (∀ z ∈ spectrum ℂ electronD_F, Complex.im z = 0) ∧
     (∀ z ∈ spectrum ℂ upQuarkD_F, Complex.im z = 0) ∧
     (∀ z ∈ spectrum ℂ downQuarkD_F, Complex.im z = 0) ∧
-    (∀ z ∈ spectrum ℂ neutrinoD_F, Complex.im z = 0) := by
-  refine ⟨trivial, ?_, ?_, ?_, ?_⟩
-  · exact electronD_F_spectrum_elt_is_real
-  · exact upQuarkD_F_spectrum_elt_is_real
-  · exact downQuarkD_F_spectrum_elt_is_real
-  · exact neutrinoD_F_spectrum_elt_is_real
+    (∀ z ∈ spectrum ℂ neutrinoD_F, Complex.im z = 0) :=
+  ⟨dirac_spectrum_hermitian_spectral_real_holds,
+   electronD_F_spectrum_elt_is_real,
+   upQuarkD_F_spectrum_elt_is_real,
+   downQuarkD_F_spectrum_elt_is_real,
+   neutrinoD_F_spectrum_elt_is_real⟩
 
 /-! ## 8. Cycle-4 capstone: unified 4-way spectral reality
 

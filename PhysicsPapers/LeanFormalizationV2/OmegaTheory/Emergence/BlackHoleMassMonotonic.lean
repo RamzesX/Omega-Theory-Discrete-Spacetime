@@ -63,12 +63,12 @@
     residual dark-energy gain ordered — the Denebola reservoir
     respects BH mass ordering.
 
-  * **Frontier headline**
-    `black_hole_mass_monotonic_in_substrate : Prop := True` — the
-    TheoremCandidate Neo4j stamp for cycle 2 target 4/6.  The content
-    is delivered by `bh_mass_monotonic_in_substrate_flux`; this alias
-    exists so downstream paper/review tooling can cite the frontier
-    label directly.
+  * **Frontier headline** `black_hole_mass_monotonic_in_substrate` —
+    the TheoremCandidate Neo4j label for cycle 2 target 4/6, BOUND to
+    the substantive 3-conjunct claim "monotone ∧ strictly monotone ∧
+    injective" over `substrateFluxThrough`.  Downstream paper / review
+    tooling can cite the label directly and the cited Prop carries
+    full content (NO STUBS — retrofit 2026-05-04 by Hadar).
 
   ## Scoping (honest)
 
@@ -79,9 +79,10 @@
     will agree with the present one at the equilibrium / steady-state
     limit of Alnasl's `incomingEnergy = hawkingOutflow + darkEnergyGain`.
 
-  * No new axioms.  No `sorry`.  No substantive `Prop := True`
-    (the frontier headline is a tag, not a claim; the content is in
-    `bh_mass_monotonic_in_substrate_flux`).
+  * No new axioms.  No `sorry`.  No `Prop := True` placeholders —
+    the frontier headline carries genuine 3-conjunct content
+    (monotone ∧ strict ∧ injective), discharged by composition of
+    the file's record-field theorems.
 -/
 
 import OmegaTheory.Emergence.BlackHoleAsMediator
@@ -244,35 +245,49 @@ theorem bh_dark_energy_gain_ordered_under_shared_outflow
 
 /-! ## §4.  Frontier headline (TheoremCandidate)
 
-`black_hole_mass_monotonic_in_substrate : Prop := True` is the
-Neo4j-facing frontier tag for cycle 2 target 4/6.  The mathematical
-content is delivered by `bh_mass_monotonic_in_substrate_flux` above;
-this alias exists so downstream paper/review tooling can cite the
-frontier label directly. -/
+`black_hole_mass_monotonic_in_substrate` is the Neo4j-facing frontier
+HEADLINE for cycle 2 target 4/6, bound to the substantive 3-conjunct
+claim:  for every pair of BHs the substrate-flux observable is
+monotone, strictly monotone, AND injective in mass.  The label IS the
+theorem (NO STUBS retrofit, 2026-05-04). -/
 
-/-- **FRONTIER TAG — `black_hole_mass_monotonic_in_substrate`.**
+/-- **FRONTIER HEADLINE — `black_hole_mass_monotonic_in_substrate`.**
 
-    TheoremCandidate stamp for cycle 2 target 4/6.  The substantive
-    mathematical content is in `bh_mass_monotonic_in_substrate_flux`;
-    this `Prop := True` alias is the Neo4j-facing frontier label used
-    by the paper/review pipeline, following the Kepler_186 /
-    Photon-Electron-Loop convention of stamping high-level physics
-    events as `True` while anchoring content in record-field theorems.
+    Paper-headline / TheoremCandidate label for cycle 2 target 4/6.
+    Bound to the SUBSTANTIVE content of the file:  for every pair of
+    black holes `bh₁, bh₂` the substrate-flux observable
+    `substrateFluxThrough` is simultaneously monotone, strictly
+    monotone, AND injective in mass.  The label IS the claim — three
+    conjuncts spanning `bh_mass_monotonic_in_substrate_flux`,
+    `bh_mass_strictly_monotonic_in_substrate_flux`, and
+    `bh_mass_injective_in_substrate_flux`.
 
-    **Do not weaken this by pointing downstream code at the tag** —
-    always cite `bh_mass_monotonic_in_substrate_flux` for the actual
-    monotonicity, `bh_mass_strictly_monotonic_in_substrate_flux` for
-    the strict form, and `bh_mass_injective_in_substrate_flux` for the
-    "equal flux ⇒ equal mass" form.  The tag is a label, not a claim. -/
-def black_hole_mass_monotonic_in_substrate : Prop := True
+    **Why three conjuncts.**  Downstream paper / Neo4j tooling cites
+    this label as a single proposition; bundling all three substantive
+    monotonicity facets ensures the cited Prop carries the full
+    content of "BH mass is determined by substrate flux up to a
+    positive constant".  No `True` placeholder; the label IS the
+    theorem (NO STUBS — BOOK_VII compliance, 2026-05-04 retrofit by
+    Hadar). -/
+def black_hole_mass_monotonic_in_substrate : Prop :=
+  ∀ (bh₁ bh₂ : BlackHole),
+    (substrateFluxThrough bh₁ ≤ substrateFluxThrough bh₂ → bh₁.mass ≤ bh₂.mass)
+      ∧ (substrateFluxThrough bh₁ < substrateFluxThrough bh₂ → bh₁.mass < bh₂.mass)
+      ∧ (substrateFluxThrough bh₁ = substrateFluxThrough bh₂ → bh₁.mass = bh₂.mass)
 
-/-- **Frontier tag discharge.**  The `Prop`-valued alias above is
-    inhabited by `trivial`, matching the Kepler_186 / Photon-Electron-
-    Loop convention of stamping frontier labels with proofs of `True`
-    while anchoring mathematical content in the theorem named
-    `bh_mass_monotonic_in_substrate_flux`. -/
+/-- **Frontier headline discharge.**  Each of the three conjuncts is
+    delivered by an existing record-field theorem above:
+    `bh_mass_monotonic_in_substrate_flux` (non-strict),
+    `bh_mass_strictly_monotonic_in_substrate_flux` (strict), and
+    `bh_mass_injective_in_substrate_flux` (equal-flux-⇒-equal-mass).
+    The label is now the claim; downstream tooling can cite it as a
+    real Prop without losing content. -/
 theorem black_hole_mass_monotonic_in_substrate_holds :
-    black_hole_mass_monotonic_in_substrate := trivial
+    black_hole_mass_monotonic_in_substrate :=
+  fun bh₁ bh₂ =>
+    ⟨bh_mass_monotonic_in_substrate_flux bh₁ bh₂,
+     bh_mass_strictly_monotonic_in_substrate_flux bh₁ bh₂,
+     fun h => bh_mass_injective_in_substrate_flux h⟩
 
 /-! ## §5.  Unified summary
 

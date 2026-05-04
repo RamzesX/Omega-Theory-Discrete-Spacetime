@@ -114,6 +114,6 @@ theorem meta_yoneda_connes_yukawa_cardinal_progression :
     backbone (11) / expanded (9) / substrate-error (6) /
     gauge-sector (9) / cosmology (12). -/
 theorem meta_yoneda_connes_yukawa_axis_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

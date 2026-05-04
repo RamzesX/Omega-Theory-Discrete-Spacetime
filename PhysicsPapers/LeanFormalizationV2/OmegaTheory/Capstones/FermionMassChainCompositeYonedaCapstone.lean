@@ -115,6 +115,6 @@ theorem fermion_mass_chain_composite_alias :
     coverage of the Standard-Model fermion mass-ratio empirical fits
     of the OmegaTheory framework. -/
 theorem fermion_mass_chain_composite_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

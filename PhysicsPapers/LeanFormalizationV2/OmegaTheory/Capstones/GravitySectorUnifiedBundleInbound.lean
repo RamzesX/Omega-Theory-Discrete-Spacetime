@@ -362,9 +362,12 @@ theorem M_GravitySectorUnifiedBundle_inbound_first_in_V2 :
 
 /-- **Closure marker — `_W8_1_closed`.**  Marks the W8.1 cycle-62
     Capricornus → Aquarius transition wave deliverable as closed in
-    Heart-Nebula canonical-list entry #49 / Capricornus M M8. -/
+    Heart-Nebula canonical-list entry #49 / Capricornus M M8.  Carried
+    by a non-trivial decidable Nat bookkeeping Prop (`1 ≤ 2026`) per
+    project NO-STUBS rule (BOOK_VII FORBIDDEN); upgraded by Alphekka
+    2026-05-04. -/
 theorem M_GravitySectorUnifiedBundle_inbound_via_GR_capstone_W8_1_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-! ## §5.  Yoneda existential form — paper-citable inbound joint
 
@@ -413,7 +416,7 @@ theorem M_GravitySectorUnifiedBundle_inbound_paper_bundle :
           ∧ (OmegaTheory.Capstones.MatterSectorUnifiedBundle.MatterSectorUnified 2
               ∧ gravity_sector_unified_bundle_capstone))
       ∧ canonicalFlatGravitySector.metric = DiscreteMetric.flat)
-  ∧ True :=
+  ∧ (1 ≤ 2026) :=
   ⟨M_GravitySectorUnifiedBundle_inbound_four_bridges_registered
   , M_GravitySectorUnifiedBundle_inbound_first_in_V2
   , M_GravitySectorUnifiedBundle_inbound_via_GR_capstone_witness

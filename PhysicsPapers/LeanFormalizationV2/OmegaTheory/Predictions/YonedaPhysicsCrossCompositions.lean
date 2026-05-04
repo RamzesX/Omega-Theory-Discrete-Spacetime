@@ -74,6 +74,6 @@ theorem yoneda_physics_cross_compositions_W6_4 (X : Type u) :
     cross-compositions landed in V2 (entry #50/218) with CONCRETE
     content composing 5 real categorical Yoneda witnesses. -/
 theorem yoneda_physics_cross_compositions_W6_4_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

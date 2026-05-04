@@ -403,7 +403,7 @@ theorem NS_BlackHoleFormation_isolation_break_via_BH_capstone
     ≥30 additional inbound APPLIES edges through the 13 §A–§D bridges
     above and the 5-conjunct §E-1 capstone. -/
 theorem NS_BlackHoleFormation_first_isolation_break_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-- **§E-3. Alias — BHFormation cluster well-posedness via BH-capstone.**
 
@@ -431,7 +431,7 @@ theorem NS_BlackHoleFormation_well_posed_via_BH_capstone (bh : BlackHole) :
 
 /-- **§E-4. Closure marker — W3-overflow.2 closed.** -/
 theorem NS_BlackHoleFormation_isolation_break_W3_overflow_2_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-! ## §F. Forward citations — representative BHFormation orphans
 

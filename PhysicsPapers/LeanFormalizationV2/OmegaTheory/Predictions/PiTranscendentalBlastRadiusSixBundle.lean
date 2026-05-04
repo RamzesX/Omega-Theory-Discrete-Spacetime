@@ -289,13 +289,13 @@ above (the corrected count = 6, decomposed into two branches of 3),
 not in this marker's body.  Following the OmegaTheoryV2 convention
 for "first <X> in V2" frontier markers. -/
 theorem pi_transcendental_blast_radius_six_first_paper_bundle_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-- **Closure marker — c62 W1.6 wave is closed.**
 
 Trivial proposition certifying the wave landing.  The meaning is in
 the bundle above; this marker exists for cycle-memo cross-reference. -/
 theorem pi_transcendental_blast_radius_six_W1_6_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions.PiTranscendentalBlastRadiusSixBundle

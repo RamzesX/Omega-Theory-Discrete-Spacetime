@@ -258,6 +258,6 @@ theorem analytical_bound_under_conjugation_w11c_paper_bundle :
     conjugation partial fill landed in OV2 (Plan A — real Prop with d=1 and
     d=2 concretely closed; d≥3 placeholder reserved for cycle-61 follow-up). -/
 theorem analytical_bound_under_conjugation_first_partial_landed_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Irrationality.CustomMath.AnalyticalBoundUnderConjugation

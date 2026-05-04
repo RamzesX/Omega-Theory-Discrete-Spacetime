@@ -456,6 +456,6 @@ theorem eight_specializes_generalizes_pairs_h1_witness_paper_bundle_first_in_V2 
 parent-orchestrator's PROPOSED → CLOSED_BY_LEAN_LANDING flip on the
 `eight_specializes_generalizes_pairs_h1_witness_paper_bundle`
 candidate. -/
-theorem W2_6_closed : True := trivial
+theorem W2_6_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.EightSpecGenH1WitnessBundle

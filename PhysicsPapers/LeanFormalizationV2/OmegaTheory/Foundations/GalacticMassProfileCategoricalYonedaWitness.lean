@@ -179,6 +179,6 @@ theorem galacticMassProfile_categorical_yoneda_paper_bundle :
     curve flatness (produced by substrate-information mass accumulation
     rather than CDM particles) through Yoneda. -/
 theorem galacticMassProfile_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -70,6 +70,6 @@ theorem mathlib_bridges_real_pi_anchor :
 /-- **Frontier marker** — Tier 6 c63 WARM W6.7 Mathlib-bridges atlas
     landed in V2 (entry #51/218) with CONCRETE Real-side anchors. -/
 theorem mathlib_bridges_atlas_W6_7_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

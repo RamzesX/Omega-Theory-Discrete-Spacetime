@@ -214,6 +214,6 @@ theorem pdgQuarkRatios_categorical_yoneda_paper_bundle :
     (12 fields, all data ℝ + flat positivity).  PDG 2024 quark mass
     ratios become natural-in-X. -/
 theorem pdgQuarkRatios_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

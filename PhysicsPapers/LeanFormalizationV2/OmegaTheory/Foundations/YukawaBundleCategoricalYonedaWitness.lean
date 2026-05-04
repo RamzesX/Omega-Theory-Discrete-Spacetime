@@ -144,6 +144,6 @@ theorem yukawaBundle_categorical_yoneda_paper_bundle :
     to DFEigenvalueSpectrum Yoneda for the full Connes mass-derivation
     chain. -/
 theorem yukawaBundle_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

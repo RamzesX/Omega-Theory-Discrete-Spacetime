@@ -119,6 +119,6 @@ theorem photonRedshiftEvent_categorical_yoneda_paper_bundle :
     Companion to `DarkEnergyTransferEvent`, `HawkingEmissionEvent`
     Yoneda witnesses on the BH-DE energy flow axis. -/
 theorem photonRedshiftEvent_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

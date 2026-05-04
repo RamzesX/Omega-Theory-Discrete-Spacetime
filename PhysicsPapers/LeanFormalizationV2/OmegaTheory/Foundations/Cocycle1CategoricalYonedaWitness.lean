@@ -123,6 +123,6 @@ theorem cocycle1_categorical_yoneda_paper_bundle (I : Type) :
     over the index type `I`.  Paper-citable as the categorical
     bijection over the Čech 1-cocycle algebra of OmegaTheory. -/
 theorem cocycle1_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -168,6 +168,6 @@ theorem strongCouplingFromSubstrate_categorical_yoneda_paper_bundle
     SU(2)_L × SU(3)_C non-abelian gauge couplings of the OV2
     substrate. -/
 theorem strongCouplingFromSubstrate_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

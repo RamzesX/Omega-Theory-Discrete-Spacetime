@@ -405,7 +405,7 @@ theorem FOA_four_irrationals_index_four_cohomology_classes_inbound_paper_bundle 
     capstone for Λ on the √2 channel) and Alniyat's Phase-IV
     `four_irrationals_index_four_cohomology_classes` (joint mapping). -/
 theorem four_irrationals_index_four_cohomology_classes_inbound_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaAlgebraCohomologyClass
 

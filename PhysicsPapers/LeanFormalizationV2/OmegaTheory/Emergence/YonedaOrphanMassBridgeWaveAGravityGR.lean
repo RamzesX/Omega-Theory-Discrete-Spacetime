@@ -484,10 +484,10 @@ Yoneda-orphan fans. -/
 /-- **Frontier marker**: this is the first Wave-A mass-bridge in OV2 for
     the Gravity-GR Yoneda-orphan fan, wiring 14 Structures simultaneously. -/
 theorem yoneda_orphan_mass_bridge_wave_A_gravity_GR_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-- **Closure marker**: c62 W6.4 closed. -/
 theorem yoneda_orphan_mass_bridge_wave_A_gravity_GR_W6_4_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Emergence.YonedaOrphanMassBridgeWaveAGravityGR

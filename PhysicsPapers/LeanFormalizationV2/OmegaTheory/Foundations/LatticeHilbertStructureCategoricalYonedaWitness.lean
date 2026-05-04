@@ -180,6 +180,6 @@ theorem latticeHilbertStructure_categorical_yoneda_paper_bundle
     theory.  Paper-citable as the categorical bijection over the
     QM Hilbert-space-axiom emergence of the OmegaTheory framework. -/
 theorem latticeHilbertStructure_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

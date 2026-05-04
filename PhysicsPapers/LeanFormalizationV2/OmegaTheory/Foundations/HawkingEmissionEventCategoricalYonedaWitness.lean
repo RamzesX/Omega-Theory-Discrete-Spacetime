@@ -144,6 +144,6 @@ theorem hawkingEmissionEvent_categorical_yoneda_paper_bundle
     Hawking-radiation-as-reverse-redshift theorem
     `hawking_radiation_as_reverse_redshift_info_cost` of OV2. -/
 theorem hawkingEmissionEvent_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

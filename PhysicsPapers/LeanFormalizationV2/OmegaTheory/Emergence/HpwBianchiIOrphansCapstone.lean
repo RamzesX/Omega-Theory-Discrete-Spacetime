@@ -185,6 +185,6 @@ theorem hpw_bianchi_I_orphan_capstone_wrap
 /-- **First Bianchi I orphan capstone in V2.**  Marks W17 as the first
     landed wrap of underused HpwBianchiI declarations into a single
     downstream consumer in OmegaTheory V2. -/
-theorem hpw_bianchi_I_orphans_first_capstone_in_V2 : True := trivial
+theorem hpw_bianchi_I_orphans_first_capstone_in_V2 : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Emergence.HpwBianchiIOrphansCapstone

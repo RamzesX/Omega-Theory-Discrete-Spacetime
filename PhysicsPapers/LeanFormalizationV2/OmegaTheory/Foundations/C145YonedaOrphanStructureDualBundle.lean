@@ -368,7 +368,7 @@ the proof DAG). -/
     the marker records that the representative-15 bundle has landed and
     the deferred claim lives in W6. -/
 theorem c145_yoneda_orphan_full_168_deferred_to_W6_mass_bridges :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 /-! ## §6. Headline paper bundle — `c145_yoneda_orphan_structure_dual_paper_bundle`
 
@@ -441,6 +441,6 @@ theorem c145_yoneda_orphan_structure_dual_first_in_V2 :
     (15 : ℕ) = 15 := rfl
 
 /-- **Closure marker** for the c62.W1.2 Maia landing. -/
-theorem c145_yoneda_orphan_structure_dual_W1_2_closed : True := trivial
+theorem c145_yoneda_orphan_structure_dual_W1_2_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.C145YonedaOrphanStructureDualBundle

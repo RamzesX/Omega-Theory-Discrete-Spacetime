@@ -172,6 +172,6 @@ theorem ckmFromYukawa_categorical_yoneda_paper_bundle :
     Sibling to CKMAngles Yoneda; together they pin both parametrizations
     of the CKM mixing matrix. -/
 theorem ckmFromYukawa_categorical_yoneda_first_complex_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

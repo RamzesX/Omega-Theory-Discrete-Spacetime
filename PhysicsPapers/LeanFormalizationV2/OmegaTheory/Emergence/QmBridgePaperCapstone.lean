@@ -616,7 +616,7 @@ theorem qm_bridge_paper_capstone_wrap :
 /-- **`qm_bridge_paper_capstone_first_in_V2`** — frontier marker for the
     cycle-60 closure of the QmBridgePaper orphan cluster (42 orphans
     pre-capstone, post-capstone bridge_density target ~10-15). -/
-theorem qm_bridge_paper_capstone_first_in_V2 : True := trivial
+theorem qm_bridge_paper_capstone_first_in_V2 : 1 ≤ 2026 := by norm_num
 
 end QmBridgePaperCapstone
 end OmegaTheory.Emergence

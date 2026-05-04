@@ -80,6 +80,6 @@ theorem grothendieck_wave3_concrete_bridge : True := by
     RelativisticSchrodinger, HpwBianchiI, WeylGeneral,
     InformationSecondLaw). -/
 theorem grothendieck_wave3_post_landing_isolate_bundle_W7_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

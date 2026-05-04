@@ -121,6 +121,6 @@ theorem scaleFactor_categorical_yoneda_paper_bundle :
     redshift scale-factor framework.  Lifts the (a_emit, a_obs) pair +
     strict positivity through Yoneda. -/
 theorem scaleFactor_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

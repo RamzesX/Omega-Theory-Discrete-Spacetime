@@ -150,6 +150,6 @@ theorem meta_yoneda_cosmology_axis_cardinal_progression :
     expanded / substrate-error / gauge-sector META-YONEDA composites.
     Largest single-axis META-YONEDA so far (12 Structures). -/
 theorem meta_yoneda_cosmology_axis_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

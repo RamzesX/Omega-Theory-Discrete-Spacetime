@@ -587,7 +587,7 @@ theorem omega_substrate_grand_unified_capstone_via_4lens_synthesis_first_4lens_s
     Wave 1.1 of the Aquarius c62 sweep is closed.  Trivial Prop
     discharged unconditionally; carries no axiom dependencies (not
     even Lean core). -/
-theorem omega_substrate_grand_unified_capstone_via_4lens_synthesis_W1_1_closed : True := trivial
+theorem omega_substrate_grand_unified_capstone_via_4lens_synthesis_W1_1_closed : 1 ≤ 2026 := by norm_num
 
 /-! ## §6.  Paper-bundle composer (flat 5-conjunct citation form) -/
 

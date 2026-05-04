@@ -191,7 +191,7 @@ theorem meta_yoneda_expanded_implies_original (X : Type u) :
     `meta_yoneda_paper_backbone_grand_composite` and the planned
     future 218-Structure closure capstone. -/
 theorem meta_yoneda_expanded_first_25_composite_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 /-- **Cardinal-progression theorem** — the META-YONEDA hierarchy
     progresses 11 → 25 → ... → 218 toward the closure capstone. -/

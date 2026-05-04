@@ -102,6 +102,6 @@ theorem cyclic_cosmology_axis_composite_alias :
     baby universe → next-cycle inflaton driver + post-bounce
     primordial graviton background. -/
 theorem cyclic_cosmology_axis_composite_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

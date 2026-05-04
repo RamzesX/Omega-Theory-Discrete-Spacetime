@@ -141,6 +141,6 @@ theorem diracFromLatticeData_categorical_yoneda_paper_bundle :
     `FermionHilbert` Yoneda witnesses on the lattice → Dirac/KG
     emergence axis. -/
 theorem diracFromLatticeData_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

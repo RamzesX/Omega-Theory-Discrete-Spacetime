@@ -237,29 +237,6 @@ theorem kineticEnergyRelativistic_nonneg
   rw [kineticEnergyRelativistic_eq_relE_form]
   exact relKinetic_nonneg hm p
 
-/-! ## Mission-spec headline
-
-    Per the mission's Prop := True FRONTIER convention, the
-    narrative headline is stamped `True`.  The *real* content lives
-    in `kinetic_tends_to_nonrelativistic` and
-    `relKinetic_minus_classical_bound` above. -/
-
-/-- **Narrative headline.**  Packages the statement "SR kinetic
-    energy degenerates to the Schrödinger kinetic term in the
-    low-momentum limit" as a paper-citable tag.  All mathematical
-    content is in the neighbouring theorems; this stamp exists
-    for downstream `InfoLoop`-style composition.
-
-    FRONTIER: def :: Prop := True per mission convention.  The
-    honest content is `kinetic_tends_to_nonrelativistic` above. -/
-def relativistic_energy_spectrum_bridge_schrodinger : Prop := True
-
-/-- Witness: the narrative headline is satisfied. -/
-theorem relativistic_energy_spectrum_bridge_schrodinger_holds :
-    relativistic_energy_spectrum_bridge_schrodinger := by
-  unfold relativistic_energy_spectrum_bridge_schrodinger
-  trivial
-
 /-! ## Unified 3-conjunct summary -/
 
 /-- **Paper-ready 3-conjunct summary.**  At positive mass:
@@ -279,5 +256,50 @@ theorem relativistic_to_schrodinger_unified
   ⟨fun p => relKinetic_nonneg hm p,
    fun p => relKinetic_minus_classical_bound hm p,
    kinetic_tends_to_nonrelativistic hm⟩
+
+/-! ## Mission-spec headline (substantive ∃-form, post NO_STUBS retirement
+    2026-05-04 — Antlia)
+
+    Original mission stamped this as `Prop := True` per a now-retired
+    FRONTIER convention.  Per BOOK_VII NO_STUBS (LOCKED 2026-04-27,
+    user mandate verbatim: "No trivial, no true, no sorry, those are
+    the rules"), the headline is upgraded to a substantive ∃-form
+    binding directly to the 3-conjunct paper-ready summary
+    `relativistic_to_schrodinger_unified`.  All three honest
+    ingredients (SR-kinetic non-negativity, the `p⁴/(4m³c²)`
+    pointwise bound, and the `Tendsto … (nhds 0) (nhds 0)`
+    low-momentum limit) are now witnessed at a concrete positive
+    mass `m = 1`. -/
+
+/-- **Narrative headline (substantive form).**  Packages the
+    statement "SR kinetic energy degenerates to the Schrödinger
+    kinetic term in the low-momentum limit" as a paper-citable
+    tag *with* genuine analytic content: there exists a positive
+    mass `m` at which the SR/Schrödinger 3-conjunct
+    (non-negativity + pointwise `p⁴/(4m³c²)` bound + `Tendsto`
+    limit) holds simultaneously.  Discharged via
+    `relativistic_to_schrodinger_unified` at `m = 1`.
+
+    Contract upgrade 2026-05-04 (Antlia): replaces the prior
+    `Prop := True` mission-FRONTIER stamp.  No sorry, no axioms,
+    no stubs — see BOOK_VII NO_STUBS LOCKED 2026-04-27. -/
+def relativistic_energy_spectrum_bridge_schrodinger : Prop :=
+  ∃ m : ℝ, 0 < m ∧
+    (∀ p, 0 ≤ relativisticEnergy p m - m * c ^ 2) ∧
+    (∀ p, |(relativisticEnergy p m - m * c ^ 2) - p ^ 2 / (2 * m)|
+         ≤ p ^ 4 / (4 * m ^ 3 * c ^ 2)) ∧
+    Tendsto
+      (fun p : ℝ =>
+        (relativisticEnergy p m - m * c ^ 2) - p ^ 2 / (2 * m))
+      (nhds 0) (nhds 0)
+
+/-- Witness: the narrative headline is satisfied at `m = 1`,
+    with all three conjuncts (non-negativity, `p⁴/(4m³c²)` bound,
+    `Tendsto` limit) discharged through
+    `relativistic_to_schrodinger_unified`. -/
+theorem relativistic_energy_spectrum_bridge_schrodinger_holds :
+    relativistic_energy_spectrum_bridge_schrodinger :=
+  ⟨(1 : ℝ), by norm_num,
+   relativistic_to_schrodinger_unified (by norm_num : (0:ℝ) < 1)⟩
 
 end OmegaTheory.Emergence

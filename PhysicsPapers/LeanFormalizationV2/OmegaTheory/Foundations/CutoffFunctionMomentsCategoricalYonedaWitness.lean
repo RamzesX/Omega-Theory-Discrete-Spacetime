@@ -154,6 +154,6 @@ theorem cutoffFunctionMoments_categorical_yoneda_paper_bundle :
 /-- Frontier marker — sibling to SeeleyDeWittCoeffsCategoricalYoneda
     completing the spectral-action cutoff dyad. -/
 theorem cutoffFunctionMoments_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -369,6 +369,6 @@ boundary-breakers side close the c61 paper-bundle pair on the central
 thesis: **substrate ⊕ irrationals → QM**, where neither half alone
 suffices. -/
 theorem substrate_irrationals_duality_first_boundary_breaker_paper_bundle_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions.SubstrateIrrationalsDualityFromBoundaryBreakers

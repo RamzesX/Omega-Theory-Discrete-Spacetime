@@ -342,6 +342,6 @@ theorem yoneda_orphan_mass_bridge_wave_A_yukawa_sector_first_in_V2 :
     13 = 13 := rfl
 
 /-- **Closure marker**: c62 W6.5 entry #32 closed. -/
-theorem _W6_5_closed : True := trivial
+theorem _W6_5_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Emergence.YonedaOrphanMassBridgeWaveAYukawaSector

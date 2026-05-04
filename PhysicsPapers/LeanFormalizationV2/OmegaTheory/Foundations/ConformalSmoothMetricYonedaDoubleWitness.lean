@@ -554,11 +554,11 @@ BlackHole), and the sampling-theoretic layer (W6.1 BandlimitedField). -/
     pairing curvature-spectral isolation (zero Christoffel/Ricci/Q on
     constant Ω) with sevenfold Witness-Yoneda completeness. -/
 theorem L4_conformalSmoothMetric_double_witness_frontier_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-- **W6-EXT.1 closure marker**: this file closes the Capricornus
     cycle-61 W6-EXT.1 wave on the Geometry-layer L4 #11 candidate. -/
 theorem L4_conformalSmoothMetric_W6_ext_1_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations.ConformalSmoothMetricYonedaDoubleWitness

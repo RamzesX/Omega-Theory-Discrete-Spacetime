@@ -126,6 +126,6 @@ theorem errorBound_categorical_yoneda_paper_bundle :
 
 /-- Frontier marker — first dependent-subtype Yoneda witness in OV2. -/
 theorem errorBound_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

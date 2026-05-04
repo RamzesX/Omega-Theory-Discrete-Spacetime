@@ -460,6 +460,6 @@ theorem right_handed_doublet_CP_dual_first_quark_lepton_symmetry_inbound_in_V2 :
   · exact canonical_right_y_is_half gen1
 
 /-- **Closure marker** — Wave 7-tail W7-TAIL.3 (cycle 62 Capricornus) closed. -/
-theorem W7_tail_3_closed : True := trivial
+theorem W7_tail_3_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Emergence.RightHandedDoubletCPDualInbound

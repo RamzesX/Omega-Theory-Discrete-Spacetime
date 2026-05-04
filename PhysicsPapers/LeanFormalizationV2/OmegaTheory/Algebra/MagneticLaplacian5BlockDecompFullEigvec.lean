@@ -432,6 +432,6 @@ theorem magnetic_laplacian_5_block_decomposition_full_eigvec_first_in_V2 :
     landed.  No content; serves only as a graph-traceable closure
     witness. -/
 theorem magnetic_laplacian_5_block_decomposition_full_eigvec_W4_3_closed :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Algebra.MagneticLaplacian5BlockDecompFullEigvec

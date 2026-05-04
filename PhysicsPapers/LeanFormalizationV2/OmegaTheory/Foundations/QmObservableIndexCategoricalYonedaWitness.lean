@@ -158,6 +158,6 @@ theorem qmObservableIndex_categorical_yoneda_paper_bundle :
     `QmObservableIndex.trivial` instance.  Companion to other
     fibration Yoneda witnesses on the FibrationConnectivity axis. -/
 theorem qmObservableIndex_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

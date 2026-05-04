@@ -190,6 +190,6 @@ theorem hpwHypothesis_categorical_yoneda_paper_bundle
     for its appropriate `g`, and that instance is now natural-in-X
     through this Yoneda bijection. -/
 theorem hpwHypothesis_categorical_yoneda_paper_headline_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

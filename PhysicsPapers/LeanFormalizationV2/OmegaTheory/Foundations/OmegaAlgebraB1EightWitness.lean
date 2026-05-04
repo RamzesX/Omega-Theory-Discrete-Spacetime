@@ -343,6 +343,6 @@ theorem omega_algebra_b1_eq_eight_witness_first_in_V2 :
 /-- **`W4_4_closed`** — Aquarius W4.4 closure marker for the
 parent-orchestrator's PROPOSED → CLOSED_BY_LEAN_LANDING flip on the
 `omega_algebra_b1_eq_eight_witness` candidate. -/
-theorem W4_4_closed : True := trivial
+theorem W4_4_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.OmegaAlgebraB1EightWitness

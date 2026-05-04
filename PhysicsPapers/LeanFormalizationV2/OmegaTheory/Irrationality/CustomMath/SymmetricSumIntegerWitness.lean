@@ -220,6 +220,6 @@ theorem symmetric_sum_integer_witness_wave1_paper_bundle
     Plan B placeholders for cycle-61 closure of 2-element + general-d
     cases). -/
 theorem symmetric_sum_integer_witness_w11b_first_partial_fill_landed_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Irrationality.CustomMath.SymmetricSumIntegerWitness

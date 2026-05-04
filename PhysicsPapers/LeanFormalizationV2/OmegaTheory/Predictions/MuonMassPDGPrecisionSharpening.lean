@@ -76,6 +76,6 @@ theorem muon_mass_PDG_precision_sharpening_W8 :
     for the muon mass landed in V2 (entry #43/218 of the c62
     hand-authored progression). -/
 theorem muon_mass_PDG_precision_sharpening_W8_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

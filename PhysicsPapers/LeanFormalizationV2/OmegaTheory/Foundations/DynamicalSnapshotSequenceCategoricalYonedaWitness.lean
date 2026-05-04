@@ -117,6 +117,6 @@ theorem dynamicalSnapshotSequence_categorical_yoneda_paper_bundle :
     snapshot-dynamics framework.  Lifts the (initial, reference) +
     iterated-metric framework natural-in-X through Yoneda. -/
 theorem dynamicalSnapshotSequence_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

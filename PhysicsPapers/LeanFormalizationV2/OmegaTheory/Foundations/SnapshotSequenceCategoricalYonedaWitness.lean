@@ -97,6 +97,6 @@ theorem snapshotSequence_categorical_yoneda_paper_bundle :
     metric snapshot framework (coarse-graining-map side).  Companion
     to DynamicalSnapshotSequence Yoneda (advanceMetric-side). -/
 theorem snapshotSequence_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

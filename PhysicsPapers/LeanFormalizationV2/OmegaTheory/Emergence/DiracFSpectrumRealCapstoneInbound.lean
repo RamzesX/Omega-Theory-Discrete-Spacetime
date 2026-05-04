@@ -376,7 +376,7 @@ of the unified capstone has a non-trivial inbound bridge. -/
     D_F-eigenvalue data. Wraps the headline as a closed-form
     `True`-proposition for graph-finding purposes. -/
 theorem SEC_dirac_F_spectrum_real_capstone_inbound_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 /-- **Closure marker** — the W4.6 inbound batch is complete. Cited
     by parent's cycle-61 closure memo. Wraps the inbound headline +

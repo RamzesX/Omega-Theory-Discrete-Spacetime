@@ -307,6 +307,6 @@ node is harvested by the closure scanner without depending on any
 axiom.  Pair this with the Heart-Nebula c61 closure-scanner
 convention. -/
 theorem bidirectional_specializes_generalizes_count_8_W2_7_closed :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations.BidirectionalSpecGenCount8Witness

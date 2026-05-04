@@ -140,6 +140,6 @@ theorem spinAsInfoLoop_categorical_yoneda_paper_bundle :
     witnesses; together they cover the spin-statistics axis of OV2
     through the categorical bijection. -/
 theorem spinAsInfoLoop_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

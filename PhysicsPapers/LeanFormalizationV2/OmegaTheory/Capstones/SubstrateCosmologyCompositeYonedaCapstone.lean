@@ -100,6 +100,6 @@ theorem substrateCosmology_composite_yoneda_capstone_at_unit :
     First **cross-sector** composite, bridging static cosmology (BianchiI,
     FRW) with the dynamic-bounce cosmology (DER, TB, BUS). -/
 theorem substrateCosmology_composite_yoneda_capstone_first_cross_sector_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

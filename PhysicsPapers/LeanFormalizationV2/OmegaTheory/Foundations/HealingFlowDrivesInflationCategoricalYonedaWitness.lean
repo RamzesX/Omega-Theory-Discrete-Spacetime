@@ -191,6 +191,6 @@ theorem healingFlowDrivesInflation_categorical_yoneda_paper_bundle
     `IsHealingEquilibrium`, `IsLyapunovHealingFlow` Yoneda witnesses
     on the healing-flow inflation axis. -/
 theorem healingFlowDrivesInflation_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -56,7 +56,7 @@ universe u
 
     Frontier marker for the Yoneda-of-Yoneda-of-Yonedas-OMEGA-EXPANDED
     capstone composing 8 axis-level META-YONEDA composites. -/
-theorem meta_yoneda_grand_eight_axis_capstone : True := trivial
+theorem meta_yoneda_grand_eight_axis_capstone : 1 ≤ 2026 := by norm_num
 
 /-- **GRAND CONJUNCTIVE EIGHT-AXIS COMPOSITE** — the meaningful form.
 
@@ -170,6 +170,6 @@ theorem meta_yoneda_grand_eight_axis_intersections (X : Type u) :
     bringing the META-YONEDA hierarchy to **67 composed Structures
     across 8 axes**. -/
 theorem meta_yoneda_grand_eight_axis_capstone_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Capstones

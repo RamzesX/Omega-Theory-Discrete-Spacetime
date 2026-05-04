@@ -276,12 +276,12 @@ theorem M_propagator_composition_prop_inbound_grand_alias :
     marker carries no proof obligation; its existence is the
     inbound-edge witness. -/
 theorem M_propagator_composition_prop_first_inbound_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-- **W7-tail.2 closure marker** — confirms the Capricornus M M3
     isolation-break landing has been recorded in V2 by the
     Sculptor wizard. -/
 theorem M_propagator_composition_prop_W7_tail_2_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Emergence

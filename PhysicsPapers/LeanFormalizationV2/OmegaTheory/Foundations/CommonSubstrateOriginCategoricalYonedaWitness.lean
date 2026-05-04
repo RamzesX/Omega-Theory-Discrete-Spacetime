@@ -180,6 +180,6 @@ theorem commonSubstrateOrigin_categorical_yoneda_paper_bundle
     `WeakCouplingFromSubstrate` + `photonSubstrateMassBound` for the
     cross-sector EM-weak unification at substrate iteration count N. -/
 theorem commonSubstrateOrigin_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

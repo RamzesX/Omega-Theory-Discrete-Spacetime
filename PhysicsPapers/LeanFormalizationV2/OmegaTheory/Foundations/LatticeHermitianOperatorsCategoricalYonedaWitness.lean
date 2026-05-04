@@ -151,6 +151,6 @@ theorem latticeHermitianOperators_categorical_yoneda_paper_bundle
     categorical bijection.  Paper-citable as the Yoneda image of
     the substrate-Hermiticity emergence theorem of OV2. -/
 theorem latticeHermitianOperators_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

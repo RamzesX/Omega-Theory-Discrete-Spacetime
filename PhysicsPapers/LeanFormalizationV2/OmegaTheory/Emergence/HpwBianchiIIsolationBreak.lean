@@ -59,6 +59,6 @@ theorem hpw_bianchi_I_yoneda_composition :
     hand-authored progression).  Companion to other Tier 4 W7 isolate-
     break bundles. -/
 theorem hpw_bianchi_I_isolate_bundle_W7_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Emergence

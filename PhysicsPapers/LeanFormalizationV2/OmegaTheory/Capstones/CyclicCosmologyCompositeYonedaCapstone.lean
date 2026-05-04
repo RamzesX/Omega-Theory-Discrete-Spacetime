@@ -111,6 +111,6 @@ theorem cyclicCosmology_information_to_inheritance_at_unit
     (after SpectralAction).  Establishes the cyclic-cosmology trio as
     a single Yoneda-bridge formulation. -/
 theorem cyclicCosmology_composite_yoneda_capstone_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

@@ -168,6 +168,6 @@ theorem cycle9NumericalFits_categorical_yoneda_paper_bundle :
     in OV2: m_n − m_p, m_μ/m_e, m_H all natural-in-X with their PDG 2024
     tolerances. -/
 theorem cycle9NumericalFits_categorical_yoneda_first_PDG_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

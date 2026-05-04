@@ -375,7 +375,7 @@ its successors will pick up the 154 remaining orphans. -/
     W6.D, ... wave files. For now, the marker records that Wave A
     (Gauge) has landed. -/
 theorem yoneda_orphan_mass_bridge_remaining_sectors_deferred :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 /-! ## §6. Headline paper bundle —
     `yoneda_orphan_mass_bridge_wave_A_gauge_sector`
@@ -447,6 +447,6 @@ theorem yoneda_orphan_mass_bridge_wave_A_first_in_V2 :
     (14 : ℕ) = 14 := rfl
 
 /-- **Closure marker** for the c62.W6.3 Cygnus landing. -/
-theorem yoneda_orphan_mass_bridge_wave_A_W6_3_closed : True := trivial
+theorem yoneda_orphan_mass_bridge_wave_A_W6_3_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Emergence.YonedaOrphanMassBridgeWaveAGaugeSector

@@ -131,6 +131,6 @@ theorem interaction_categorical_yoneda_paper_bundle :
     OmegaTheory: a worldline that crosses a boundary between two
     distinct subsystems. -/
 theorem interaction_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

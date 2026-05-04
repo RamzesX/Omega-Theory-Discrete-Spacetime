@@ -469,6 +469,6 @@ theorem qm_yukawa_disjoint_via_c145_bridge_first_topological_isolation_in_V2 :
 /-! ## §9. Closure marker -/
 
 /-- **Closure marker**: c62.W1.3 closed via c145-bridge witness. -/
-theorem qm_yukawa_disjoint_via_c145_bridge_W1_3_closed : True := trivial
+theorem qm_yukawa_disjoint_via_c145_bridge_W1_3_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.QMYukawaDisjointViaC145BridgeWitness

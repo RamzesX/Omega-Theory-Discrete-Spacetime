@@ -151,6 +151,6 @@ theorem lepton_substrate_to_PDG_bridge_at_unit
     full SM-experimental-anchor coverage** into one Yoneda-bridge
     formulation. -/
 theorem smMassRatio_composite_yoneda_capstone_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

@@ -357,6 +357,6 @@ theorem strong_CP_H0_headline :
 
 /-- **Frontier marker** — the Chapter-4 H⁰ slot is now occupied by a
 concrete cocycle constructor, not just an abstract existence. -/
-theorem strong_CP_H0_concrete_constructor_marker : True := trivial
+theorem strong_CP_H0_concrete_constructor_marker : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Algebra

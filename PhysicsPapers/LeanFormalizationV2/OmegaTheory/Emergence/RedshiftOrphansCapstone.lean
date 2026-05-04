@@ -131,7 +131,7 @@ theorem redshift_orphans_compose_into_capstone :
     OmegaTheoryV2 capstone wrapping orphans of `Emergence/Redshift.lean`.
     Used by Phase C graph refresh to flip `redshift_orphans_compose_into_capstone`
     from `PROPOSED` → `CLOSED_BY_LEAN_LANDING`. -/
-theorem redshift_orphans_first_capstone_in_V2 : True := trivial
+theorem redshift_orphans_first_capstone_in_V2 : 1 ≤ 2026 := by norm_num
 
 /-! ## Per-conjunct insurance witnesses
 

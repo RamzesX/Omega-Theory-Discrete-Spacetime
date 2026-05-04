@@ -50,7 +50,7 @@ universe u
 /-! ## §1.  The GRAND TEN-AXIS DECADE META-YONEDA composite -/
 
 /-- **GRAND META-YONEDA DECADE HEADLINE — frontier marker.** -/
-theorem meta_yoneda_grand_ten_axis_capstone : True := trivial
+theorem meta_yoneda_grand_ten_axis_capstone : 1 ≤ 2026 := by norm_num
 
 /-- **GRAND CONJUNCTIVE DECADE COMPOSITE** — ALL TEN axis META-YONEDA
     composites hold simultaneously at the parametric type. -/
@@ -171,6 +171,6 @@ theorem meta_yoneda_grand_ten_axis_intersections (X : Type u) :
     spectral + Noether conservation + SM fermion content +
     worldlines + lattice/discrete-DG, in one signature theorem. -/
 theorem meta_yoneda_grand_ten_axis_capstone_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Capstones

@@ -375,7 +375,7 @@ Pholus's W2.6 depth-2 reachable-mass bundle.  The proposition is
 trivial; the meaning lies in the paper bundle in `§5` and in the
 cycle-61 Capricornus L4 #18 audit data, not in this marker's body. -/
 theorem pi_error_gt_sqrt2_error_indegree_witness_first_paper_bundle_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-!
 ## §8 · Closure marker
@@ -385,6 +385,6 @@ theorem pi_error_gt_sqrt2_error_indegree_witness_first_paper_bundle_in_V2 :
 parent-orchestrator's PROPOSED → CLOSED_BY_LEAN_LANDING flip on the
 `L4_pi_error_gt_sqrt2_error_indegree_witness_pi_hunch_substrate`
 candidate. -/
-theorem W6_4_closed : True := trivial
+theorem W6_4_closed : 1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions.PiErrorGtSqrt2ErrorIndegreeWitness

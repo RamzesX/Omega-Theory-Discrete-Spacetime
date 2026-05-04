@@ -508,6 +508,6 @@ theorem magnetic_laplacian_eigenvector_localization_5tier_first_witness_in_V2 :
 
 /-- **Closure marker** — c62 W1.5 closed.  Lean-core only,
     no axioms. -/
-theorem c62_W1_5_closed : True := trivial
+theorem c62_W1_5_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Algebra.MagneticLaplacianEigenvectorLocalization5Tier

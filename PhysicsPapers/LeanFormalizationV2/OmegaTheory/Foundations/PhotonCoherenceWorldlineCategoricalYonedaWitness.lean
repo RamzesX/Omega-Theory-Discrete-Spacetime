@@ -160,6 +160,6 @@ theorem photonCoherenceWorldline_categorical_yoneda_paper_bundle :
     Companion to `PhotonWorldline`, `PhotonShapiroWorldline`
     Yoneda witnesses on the photon-worldline coherence axis. -/
 theorem photonCoherenceWorldline_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

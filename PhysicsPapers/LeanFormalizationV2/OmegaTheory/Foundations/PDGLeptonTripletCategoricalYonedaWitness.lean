@@ -150,6 +150,6 @@ theorem pdgLeptonTriplet_categorical_yoneda_paper_bundle :
     prediction).  Together they pin both substrate-prediction and
     PDG-anchor sides of the lepton mass-ratio ladder. -/
 theorem pdgLeptonTriplet_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

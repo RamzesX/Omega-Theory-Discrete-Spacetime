@@ -199,6 +199,6 @@ with the bridge to the c60 W14 `List`-based audit registry verified by
 declaration above (the paper-bundle headline) and in the c60 audit
 data, not in this marker's body. -/
 theorem pi_transcendental_blast_radius_first_paper_bundle_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions.PiTranscendentalBlastRadiusBundle

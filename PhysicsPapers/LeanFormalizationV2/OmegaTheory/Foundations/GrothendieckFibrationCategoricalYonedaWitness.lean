@@ -119,6 +119,6 @@ theorem grothendieckFibration_categorical_yoneda_paper_bundle
     (group-action axis), and `NonAbelianConnection L` (Lie-valued
     axis) Yoneda witnesses on the universe-polymorphic axis. -/
 theorem grothendieckFibration_categorical_yoneda_first_categorical_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

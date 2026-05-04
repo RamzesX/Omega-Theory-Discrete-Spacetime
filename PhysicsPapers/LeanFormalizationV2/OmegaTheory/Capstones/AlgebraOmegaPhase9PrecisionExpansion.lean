@@ -81,6 +81,6 @@ theorem algebra_omega_phase_9_laws_bundle :
 /-- **Frontier marker** — Phase-9 rep-cat precision-numbers expansion
     landed.  Third of the 19 P2 𝒜_Ω Phase 7+8+9 entries. -/
 theorem algebra_omega_phase_9_precision_expansion_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

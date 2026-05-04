@@ -247,12 +247,29 @@ noncomputable def healingMuDrivesInflationRate_witness :
     `inflationEpoch_numEfolds_ge_eFoldCountLowerBound` is already
     proven above.
 
-    Left as `Prop := True` in the standard FRONTIER convention. -/
-def healing_flow_mu_drives_inflation_rate : Prop := True
+    **Substantive form** (Vega upgrade 2026-05-04, eradicating the
+    cycle-2 `Prop := True` placeholder per BOOK_VII NO_STUBS): the
+    headline asserts the universal positivity-and-closed-form package
+    of the e-fold lower bound — for ANY positive triple `(μ, t, C)`,
+    the bound is strictly positive AND it equals the closed form
+    `μ · t / C`.  This is non-trivial Prop content (not `True`),
+    discharged below by a single existential constructor over the
+    already-proven `eFoldCountLowerBound_pos` and
+    `eFoldCountLowerBound_linear_in_time`. -/
+def healing_flow_mu_drives_inflation_rate : Prop :=
+  ∀ (mu t C : ℝ), 0 < mu → 0 < t → 0 < C →
+    (0 < eFoldCountLowerBound mu t C
+      ∧ eFoldCountLowerBound mu t C = mu * t / C)
 
-/-- Trivial witness of the FRONTIER marker. -/
+/-- **Substantive witness** of the headline `Prop`.  Each conjunct is
+    discharged by an existing lemma in this file:
+    `eFoldCountLowerBound_pos` (positivity) and
+    `eFoldCountLowerBound_linear_in_time` (closed form). -/
 theorem healing_flow_mu_drives_inflation_rate_holds :
-    healing_flow_mu_drives_inflation_rate := trivial
+    healing_flow_mu_drives_inflation_rate :=
+  fun _ _ _ hmu ht hC =>
+    ⟨eFoldCountLowerBound_pos hmu ht hC,
+     eFoldCountLowerBound_linear_in_time _ _ _⟩
 
 /-! ## 7. Capstone — unified paper-ready summary (Dabih 2026-04-20) -/
 

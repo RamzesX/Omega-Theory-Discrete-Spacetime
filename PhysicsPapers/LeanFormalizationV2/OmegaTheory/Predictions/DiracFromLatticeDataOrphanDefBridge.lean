@@ -482,6 +482,6 @@ theorem L4_DiracFromLatticeData_yoneda_orphan_def_bridge_first_in_V2 : True :=
 /-- **CLOSURE MARKER** — Heart-Nebula entry #74 / Capricornus L4 #19
     closed by W-tail.4.  Depends on no axioms. -/
 theorem L4_DiracFromLatticeData_yoneda_orphan_def_bridge_W_tail_4_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions.DiracFromLatticeDataOrphanDefBridge

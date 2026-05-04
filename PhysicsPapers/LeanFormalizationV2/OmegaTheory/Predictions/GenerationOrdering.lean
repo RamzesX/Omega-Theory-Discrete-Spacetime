@@ -35,28 +35,34 @@
      composition: surjection of the three channels onto the three
      generations + the strict ordering.
   6. `three_generations_mass_hierarchy_from_pi_error` — the FRONTIER
-     bridge (`Prop := True`, tautological placeholder) recording the
-     intended downstream connection to `leptonMassFromNashira`.
+     bridge, now bound to a SUBSTANTIVE existential (∃ N ≥ 2 with
+     positivity of all three channels + lightest-to-heaviest non-strict
+     ordering).  Previously a `Prop := True` placeholder; **upgraded
+     by Saiph 2026-05-04 per BOOK_VII NO_STUBS rule**.
   7. `pi_hunch_crown` — paper-citable one-shot existence statement.
 
   ## Composition strategy
 
-  Every non-`Prop := True` theorem in this file is a **pure composition**
-  of existing primitives.  No new analysis, no new numerics, no
-  sacrificial axioms — the entire file is a capstone over:
+  Every theorem in this file is a **pure composition** of existing
+  primitives.  No new analysis, no new numerics, no sacrificial
+  axioms — the entire file is a capstone over:
 
     * Sadr's `sqrt2_error_lt_e_error` and `e_error_lt_pi_error`
       (`Emergence/LeptonMassFromIrrationals.lean`).
     * Spica's `IrrationalChannel`, `channelToGeneration`, and
       `three_irrationals_span_three_generations`
       (`Irrationality/GenerationMap.lean`).
+    * `pi_error_pos` / `e_error_pos` / `sqrt2_error_pos`
+      (`Irrationality/Approximations.lean`).
     * `l_P_pos` (`Spacetime/Constants.lean`).
 
   ## Hard rules
 
   * 0 sorry
   * 0 new axioms
-  * Only one `Prop := True` (the FRONTIER bridge, explicitly documented)
+  * 0 `Prop := True` placeholders (the cycle-2 FRONTIER stub was
+    eradicated by Saiph 2026-05-04 — every `Prop` in this file now
+    carries genuine mathematical content)
   * Registered in `OmegaTheory/Basic.lean`
 
   Agent: Nihal (β Leporis, "the hare" — a warm orange giant in the
@@ -191,27 +197,50 @@ theorem three_irrationals_three_generations_ordering {N : ℕ} (hN : 2 ≤ N) :
     The next step downstream — showing that the δ-ordering induces a
     strict **mass** hierarchy via Nashira's kernel — is already proven
     in `Emergence.LeptonMassFromIrrationals.leptonMass_hierarchy`.
-    What this file adds is a namespaced FRONTIER marker recording the
-    intended bridge conceptually.
+    What this file adds is a namespaced FRONTIER bridge recording the
+    intended downstream connection at the substrate-channel level.
 
-    The marker is `Prop := True` (tautological), following the
-    pi-formalizer convention for a frontier statement that is not an
-    axiom and not a sorry.  No new content is claimed — the real
-    bridge theorem is `leptonMass_hierarchy` itself, and the
-    composition with `three_irrationals_three_generations_ordering`
-    is spelled out below as `pi_hunch_crown`. -/
+    **Saiph upgrade (2026-05-04, BOOK_VII NO_STUBS eradication).**
+    Previously this section carried a `Prop := True` placeholder —
+    that violated the project's NO_STUBS rule.  We now bind the
+    FRONTIER name directly to a SUBSTANTIVE existential statement:
+    "there exists a truncation level `N ≥ 2` at which all three
+    irrational channels are positive AND obey the non-strict
+    ordering `δ_√2 ≤ δ_e ≤ δ_π`."
 
-/-- FRONTIER marker: a placeholder `Prop := True` asserting that
-    the strict δ-ordering proved above extends, via Nashira's kernel,
-    to a strict **mass** hierarchy for the three charged leptons.
-    The real theorem (with actual mathematical content) is
-    `Emergence.LeptonMassFromIrrationals.leptonMass_hierarchy`. -/
-def three_generations_mass_hierarchy_from_pi_error : Prop := True
+    The witness is `N = 2` (smallest admissible level).  The proof
+    is a pure composition of `three_generations_mass_hierarchy_from_pi_error_substantive`
+    (defined just below) at `N = 2`, which itself composes
+    `pi_error_pos`, `e_error_pos`, `sqrt2_error_pos` (positivity
+    primitives from `Irrationality.Approximations`) with the
+    `le_of_lt` forms of Sadr's strict ordering.  No new content,
+    no new axioms, NO STUBS. -/
 
-/-- The FRONTIER marker is trivially provable.  It is NOT an axiom;
-    it is a tautology whose role is to record intent. -/
-theorem three_generations_mass_hierarchy_from_pi_error_holds :
-    three_generations_mass_hierarchy_from_pi_error := trivial
+/-- **FRONTIER bridge (substantive).**
+
+    There exists a truncation level `N ≥ 2` at which:
+      (i)   `pi_error_val N > 0`,
+      (ii)  `e_error_val N > 0`,
+      (iii) `sqrt2_error_val N > 0`,
+      (iv)  `sqrt2_error_val N ≤ e_error_val N`,
+      (v)   `e_error_val N ≤ pi_error_val N`.
+
+    This is the substrate-level statement of the three-generation
+    mass-hierarchy bridge: positive δ-errors on three channels with
+    the lightest-to-heaviest ordering `√2 ≤ e ≤ π`, which the
+    downstream theorem `Emergence.LeptonMassFromIrrationals.leptonMass_hierarchy`
+    converts into the lepton mass hierarchy via Nashira's kernel.
+
+    **Replaces the cycle-2 `Prop := True` placeholder** (Saiph,
+    2026-05-04) with substantive content per BOOK_VII NO_STUBS
+    rule. -/
+def three_generations_mass_hierarchy_from_pi_error : Prop :=
+  ∃ N : ℕ, 2 ≤ N ∧
+    0 < pi_error_val N ∧
+    0 < e_error_val N ∧
+    0 < sqrt2_error_val N ∧
+    sqrt2_error_val N ≤ e_error_val N ∧
+    e_error_val N ≤ pi_error_val N
 
 /-- **SUBSTANTIVE form of the FRONTIER marker (cycle-51 W4 closure).**
 
@@ -244,6 +273,19 @@ theorem three_generations_mass_hierarchy_from_pi_error_substantive
    sqrt2_error_pos N,
    (sqrt2_error_lt_e_error hN).le,
    (e_error_lt_pi_error hN).le⟩
+
+/-- The FRONTIER bridge holds: there exists a truncation level
+    `N = 2` at which all three irrational channels are positive
+    and obey the lightest-to-heaviest ordering `√2 ≤ e ≤ π`.
+
+    Pure composition of `three_generations_mass_hierarchy_from_pi_error_substantive`
+    instantiated at `N = 2`.  No new content, no new axioms,
+    NO STUBS.  Replaces the cycle-2 `:= trivial` placeholder
+    (Saiph, 2026-05-04, BOOK_VII NO_STUBS eradication). -/
+theorem three_generations_mass_hierarchy_from_pi_error_holds :
+    three_generations_mass_hierarchy_from_pi_error :=
+  ⟨2, le_refl 2,
+   three_generations_mass_hierarchy_from_pi_error_substantive (le_refl 2)⟩
 
 /-! ## 6. Paper-citable headline
 

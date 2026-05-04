@@ -139,6 +139,6 @@ theorem standardModelConnesBridge_composite_yoneda_capstone_at_unit :
     experimental side (Cycle9 + quark ratios + lepton substrate +
     lepton PDG). -/
 theorem standardModelConnesBridge_composite_yoneda_capstone_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

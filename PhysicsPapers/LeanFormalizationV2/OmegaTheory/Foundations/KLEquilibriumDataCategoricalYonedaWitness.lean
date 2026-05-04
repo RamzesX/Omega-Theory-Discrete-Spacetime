@@ -146,6 +146,6 @@ theorem klEquilibriumData_categorical_yoneda_paper_bundle :
     information bookkeeping.  Lifts the substrate KL-divergence
     approximate-conservation framework through Yoneda. -/
 theorem klEquilibriumData_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

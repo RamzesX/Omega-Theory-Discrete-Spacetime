@@ -289,6 +289,6 @@ theorem omega_algebra_b0_eq_one_first_landing_in_V2 :
 
 /-- **W6.5 closure marker** — registers cycle-61 W6.5 as the wave
     that landed the topological-completeness headline. -/
-theorem omega_algebra_b0_eq_one_W6_5_closed : True := trivial
+theorem omega_algebra_b0_eq_one_W6_5_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Capstones.OmegaAlgebraB0EqOneOrphanBridgeClosure

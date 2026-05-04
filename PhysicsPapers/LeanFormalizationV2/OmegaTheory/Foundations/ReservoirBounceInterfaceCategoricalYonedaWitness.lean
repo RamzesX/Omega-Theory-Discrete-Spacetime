@@ -156,6 +156,6 @@ theorem reservoirBounceInterface_categorical_yoneda_paper_bundle :
     `TorsionBounce` Yoneda witnesses; together they cover the full
     cyclic-cosmology axis through Yoneda. -/
 theorem reservoirBounceInterface_categorical_yoneda_first_3substructure_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

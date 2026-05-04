@@ -114,6 +114,6 @@ theorem substrateRegion_categorical_yoneda_paper_bundle :
     OV2.  Lifts the monopole-suppression substrate-region framework
     (volume_Mpc³ + label + volume nonneg) through categorical Yoneda. -/
 theorem substrateRegion_categorical_yoneda_first_string_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

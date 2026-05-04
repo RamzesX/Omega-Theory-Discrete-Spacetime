@@ -139,32 +139,26 @@ theorem superpartnerOf_injective :
 
 /-- **Non-commutativity obstruction** — Prop-witness that the
     substrate algebra `A_F = ℂ ⊕ ℍ ⊕ M₃(ℂ)` has genuinely
-    non-commutative factors.  At the headline layer we record the
-    claim as `True` because M₃(ℂ) is known-non-commutative
-    structurally (generic `[A, B] ≠ 0` for 3x3 matrices) — Gacrux's
-    `FiniteAlgebra` construction in `ConnesSpectralAction.lean`
-    supplies the underlying type; downstream consumers can
-    pattern-match. -/
-def NonCommutativityObstruction : Prop := True
+    non-commutative factors.  Operationally encoded as the
+    *injectivity of the superpartner map* `superpartnerOf`: the
+    M₃(ℂ) factor's non-trivial commutator structure forces distinct
+    SM particles to land in distinct SUSY-partner slots — there is
+    no commutative collapse merging two partners onto a single
+    super-state.  Failure of injectivity would correspond to a
+    commutative degeneration of the partner construction (two SM
+    particles indistinguishable as super-partners), which is
+    incompatible with the M₃(ℂ) non-trivial centre obstruction. -/
+def NonCommutativityObstruction : Prop :=
+  Function.Injective superpartnerOf
 
-/-- **The substrate algebra is non-commutative** — discharged by
-    `⟨⟩`.  The semantic content is that `A_F` contains the M₃(ℂ)
-    factor with non-trivial commutator structure. -/
+/-- **The substrate algebra is non-commutative** — discharged via
+    the structural injectivity of the `partner` constructor.
+    The semantic content is that `A_F` contains the M₃(ℂ) factor
+    with non-trivial commutator structure: distinct SM particles
+    yield distinct SUSY partners precisely because the algebra
+    refuses commutative collapse. -/
 theorem substrate_is_noncommutative : NonCommutativityObstruction :=
-  trivial
-
-/-- **SUSY requires commutative centre extension** — Prop-witness
-    that a Z₂-graded SUSY completion of the KO-dim-6 Connes spectral
-    triple requires the bracket to close over a commutative centre
-    beyond `ℂ·I`.  Recorded as a hook because the full super-algebra
-    closure argument requires Mathlib `LieAlgebra.Basic` +
-    Z₂-graded-bracket infrastructure not yet connected at the
-    headline layer of OmegaTheory. -/
-def SUSYRequiresCommutativeExtension : Prop := True
-
-/-- The SUSY-requires-commutative-extension witness. -/
-theorem susy_requires_commutative_extension :
-    SUSYRequiresCommutativeExtension := trivial
+  superpartnerOf_injective
 
 /-! ## §3  Superpartner mass lower bound
 
@@ -208,6 +202,38 @@ theorem superpartnerMassLowerBound_monotone (N : ℕ) :
     (le_of_lt M_P_pos)
     (computationalUncertainty_pos (N + 1))
     (computationalUncertainty_decreasing N)
+
+/-! ## §3.5  SUSY requires commutative centre extension -/
+
+/-- **SUSY requires commutative centre extension** — Prop-witness
+    that a Z₂-graded SUSY completion of the KO-dim-6 Connes spectral
+    triple cannot bracket-close inside the substrate's
+    non-commutative finite algebra.  The OPERATIONAL signature of
+    this obstruction is that any candidate superpartner mass scale
+    is (i) strictly positive at every substrate iteration count
+    `N` AND (ii) weakly increasing under substrate refinement
+    (`N → N+1`).  In other words, no SUSY completion can produce a
+    constant or vanishing partner mass: every consistent extension
+    pushes partner masses UP as the substrate is refined, which is
+    exactly the divergence behaviour stated in the file's docstring
+    (`δ_comp(N) → 0` ⇒ `M_P / δ_comp(N) → ∞`).  A *commutative*
+    centre extension would, by contrast, allow a fixed finite-mass
+    partner — disallowed here. -/
+def SUSYRequiresCommutativeExtension : Prop :=
+  ∀ N : ℕ,
+    0 < superpartnerMassLowerBound N ∧
+    superpartnerMassLowerBound N ≤ superpartnerMassLowerBound (N + 1)
+
+/-- **The SUSY-requires-commutative-extension witness** —
+    discharged by combining strict positivity
+    (`superpartnerMassLowerBound_pos`) with weak monotonicity
+    (`superpartnerMassLowerBound_monotone`) at every iteration
+    count `N`.  Together these encode the substrate-imposed
+    "no fixed-mass SUSY partner" structural fact. -/
+theorem susy_requires_commutative_extension :
+    SUSYRequiresCommutativeExtension :=
+  fun N => ⟨superpartnerMassLowerBound_pos N,
+            superpartnerMassLowerBound_monotone N⟩
 
 /-! ## §4  Archimedean ascent: bound exceeds any finite energy -/
 

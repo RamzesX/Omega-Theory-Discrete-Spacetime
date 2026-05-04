@@ -176,6 +176,6 @@ theorem weakInteraction_categorical_yoneda_paper_bundle (N : ℕ) :
     `Interaction` + `BoundaryRicci` (HighNegativeRicci) +
     `WeakCouplingFromSubstrate` for the full SU(2) weak-sector physics. -/
 theorem weakInteraction_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

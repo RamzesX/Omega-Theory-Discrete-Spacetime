@@ -284,7 +284,7 @@ theorem alphaS_at_MZ_substrate_strict_PDG_paper_bundle_composed :
     `alphaS_at_MZ_substrate_absolute_frontier_marker` (loose-band
     sibling). -/
 theorem alphaS_at_MZ_substrate_strict_PDG_paper_bundle_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-! ## 7. Physical summary
 

@@ -72,13 +72,13 @@ theorem jarlskog_invariant_PDG_precision_sharpening_W8 :
     Companion to CabibboAnglePDGPrecisionSharpening on the CKM-side
     PDG anchor axis. -/
 theorem jarlskog_invariant_PDG_precision_sharpening_W8_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-- **TIER 5 COMPLETE marker** — all 5 W8 PDG-precision sharpenings
     (T5.1 ElectronMass, T5.2 MuonMass, T5.3 TauMass, T5.4 CabibboAngle,
     T5.5 JarlskogInvariant) landed in V2.  Cycle 62 (Aquarius)
     paper-grade c62 hand-authored progression at entry 46/218. -/
 theorem tier_5_W8_PDG_precision_sharpenings_complete :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

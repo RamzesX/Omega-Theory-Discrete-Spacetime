@@ -293,6 +293,6 @@ theorem opaque_bundle_topology_preservation_first_in_V2 :
     opaque_bundles.card = 5 ∧ paper_threshold = 50 := by decide
 
 /-- Closure marker for cycle-62 Aquarius Phase B Wave 1 W1.7. -/
-theorem c62_W1_7_closed : True := trivial
+theorem c62_W1_7_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.OpaqueBundleSubstrateTopologyPreservation

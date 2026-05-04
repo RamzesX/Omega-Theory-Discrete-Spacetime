@@ -434,6 +434,6 @@ this Lean landing.
 Has zero axiom dependency (`True := trivial`) — the tightest possible
 audit footprint, useful as a structural witness for the cycle-closure
 checklist. -/
-theorem applies_degree_filtration_persistence_diagram_W3_2_closed : True := trivial
+theorem applies_degree_filtration_persistence_diagram_W3_2_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations

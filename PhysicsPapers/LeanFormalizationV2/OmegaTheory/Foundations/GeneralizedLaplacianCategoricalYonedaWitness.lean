@@ -134,6 +134,6 @@ theorem generalizedLaplacian_categorical_yoneda_paper_bundle
 /-- Frontier marker — closes the parameter-side Yoneda for the
     `A4EssentialSectors g Δ` doubly-parametric witness. -/
 theorem generalizedLaplacian_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

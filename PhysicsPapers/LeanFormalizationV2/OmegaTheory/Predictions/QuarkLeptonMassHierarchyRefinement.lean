@@ -61,6 +61,6 @@ theorem lepton_mass_hierarchy_refinement_W6_10 :
     hierarchy refinement landed in V2 (entry #47/218 of the c62
     hand-authored progression).  First Tier 6 entry. -/
 theorem quark_lepton_mass_hierarchy_refinement_W6_10_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

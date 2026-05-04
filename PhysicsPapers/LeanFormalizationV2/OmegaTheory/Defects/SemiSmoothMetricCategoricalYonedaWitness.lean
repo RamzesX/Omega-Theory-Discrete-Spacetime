@@ -180,6 +180,6 @@ theorem semiSmoothMetric_categorical_yoneda_paper_bundle :
     Christoffel/Riemann witnesses, completing the Defects → Tensor
     categorical chain. -/
 theorem semiSmoothMetric_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Defects

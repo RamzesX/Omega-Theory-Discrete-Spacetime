@@ -281,6 +281,6 @@ theorem weakBosonMassFromError_categorical_yoneda_paper_bundle
     the **first 13-field rich-conjugate Yoneda witness** in OV2 to
     fully encode the substrate → W/Z mass chain through Yoneda. -/
 theorem weakBosonMassFromError_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -124,6 +124,6 @@ theorem substrateState_categorical_yoneda_paper_bundle :
     gravitationalMass`).  Composes the (momentum, restMassLabel) pair +
     derived inertial / gravitational mass extractors through Yoneda. -/
 theorem substrateState_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

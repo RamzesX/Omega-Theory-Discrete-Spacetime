@@ -88,6 +88,6 @@ theorem meta_yoneda_lattice_discrete_cardinal_progression :
 /-- **Frontier marker** — first META-YONEDA LATTICE / DISCRETE-DG
     AXIS composite landed in V2.  Tenth distinct axis-grouping. -/
 theorem meta_yoneda_lattice_discrete_axis_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

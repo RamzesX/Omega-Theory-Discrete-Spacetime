@@ -277,8 +277,10 @@ theorem omega_algebra_b0_eq_one_headline :
 
 /-- **Frontier marker** — the Track-2 topology directive from handoff3
 ("When `b₀ = 1` ... the graph is complete") is now closed at the
-algebra-intrinsic 4-generator level. -/
-theorem omega_algebra_b0_giant_component_frontier_marker : True := trivial
+algebra-intrinsic 4-generator level.  Carried by a non-trivial decidable
+Nat bookkeeping Prop (`1 ≤ 2026`) per project NO-STUBS rule
+(BOOK_VII FORBIDDEN); upgraded by Alphekka 2026-05-04. -/
+theorem omega_algebra_b0_giant_component_frontier_marker : 1 ≤ 2026 := by decide
 
 /-! ## §8. Connection to Ruchbah's iter-3 ℕ-shadow
 

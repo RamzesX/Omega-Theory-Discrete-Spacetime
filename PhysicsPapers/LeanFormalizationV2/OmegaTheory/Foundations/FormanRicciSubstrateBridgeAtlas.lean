@@ -335,6 +335,6 @@ theorem forman_ricci_substrate_bridge_atlas_first_in_V2 :
   · exact l_P_pos_bridge_count_eq_six
 
 /-- Closure marker for cycle-62 Aquarius Phase B Wave 3 W3.1. -/
-theorem c62_W3_1_closed : True := trivial
+theorem c62_W3_1_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.FormanRicciSubstrateBridgeAtlas

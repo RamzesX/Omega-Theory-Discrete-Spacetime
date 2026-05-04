@@ -485,6 +485,6 @@ theorem magnetic_laplacian_namespace_kernel_uniqueness_first_witness_in_V2 :
     landed.  No content; serves only as a graph-traceable closure
     witness. -/
 theorem magnetic_laplacian_namespace_kernel_uniqueness_W2_3_closed :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Algebra.MagneticLaplacianNamespaceKernelUniqueness

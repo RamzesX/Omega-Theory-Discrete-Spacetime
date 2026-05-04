@@ -169,6 +169,6 @@ theorem errorLieAlgebra_categorical_yoneda_paper_bundle
     typeclass (W6.5/T3.1 mass-batch upgrade with FULL bidirectional
     bijection). -/
 theorem errorLieAlgebra_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

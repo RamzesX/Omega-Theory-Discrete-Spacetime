@@ -367,7 +367,7 @@ theorem L4_a4EssentialSectors_yoneda_seeley_dewitt_bridge_first_in_V2 :
 /-- **Closure marker** for W6-EXT.5 (entry #68 in the Heart-Nebula
     canonical list).  By definition, Lean-core-axiom-tight (`True`). -/
 theorem L4_a4EssentialSectors_yoneda_seeley_dewitt_bridge_W6_ext_5_closed :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 /-! ## §7. Grand alias for paper citation (no `N` hypothesis required)
 

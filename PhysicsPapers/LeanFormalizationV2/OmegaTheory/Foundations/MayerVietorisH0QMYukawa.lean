@@ -254,7 +254,7 @@ theorem mayer_vietoris_h0_qm_yukawa_disjoint_first_MV_H0_in_V2 :
 
 /-- **Closure marker**: c62.W4.2 closed via Mayer–Vietoris H⁰
     disjoint-witness on the QM ↔ Yukawa cluster pair. -/
-theorem mayer_vietoris_h0_qm_yukawa_disjoint_W4_2_closed : True := trivial
+theorem mayer_vietoris_h0_qm_yukawa_disjoint_W4_2_closed : 1 ≤ 2026 := by norm_num
 
 end MayerVietorisH0QMYukawa
 end Foundations

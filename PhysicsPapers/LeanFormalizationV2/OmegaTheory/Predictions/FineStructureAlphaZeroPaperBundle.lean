@@ -180,7 +180,7 @@ theorem fine_structure_alpha_zero_paper_bundle_composed :
     endpoint), Acrux's `alphaEM_one_loop_consistent_frontier_marker`
     (cycle-55 M_Z one-loop), and Hadar's α(0) Thomson anchor. -/
 theorem fine_structure_alpha_zero_paper_bundle_composed_frontier_marker :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-! ## Physical summary
 

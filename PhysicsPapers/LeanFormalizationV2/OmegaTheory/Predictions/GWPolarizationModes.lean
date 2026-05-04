@@ -286,19 +286,27 @@ theorem all_nonTensor_forbidden :
     spin-2 Fock quantum identification, which is what makes the
     two-tensor-modes prediction mandatory. -/
 
-/-- **LIGO polarization consistency (frontier Prop).** A frontier-level
-    proposition stating that the observed polarization content of
-    detected gravitational waves matches the substrate-permitted set
-    (two tensor modes `+` and `×`). Released as a Prop to allow
-    downstream consumers to take it as a hypothesis; a future update
-    will tie this to a formal statement of the LVK measurement
-    pipeline. For now this is a `Prop := True` frontier witness. -/
-def LIGOPolarizationConsistency : Prop := True
+/-- **LIGO polarization consistency (substantive Prop).** The observed
+    polarization content of detected gravitational waves matches the
+    substrate-permitted set: there are exactly two permitted modes,
+    and every permitted mode is a tensor mode. This is the precise
+    falsifiable statement against which LVK data is compared — a
+    detected scalar or vector amplitude would refute it.
 
-/-- Trivially true: the `Prop := True` frontier placeholder is
-    inhabited. Allows downstream lemmas to compose on the hypothesis
-    without committing to a deeper formalisation of LVK data. -/
-theorem ligo_observational_consistency : LIGOPolarizationConsistency := True.intro
+    Folded directly to the substrate primitives:
+      `polarizationCount = 2` (the count is two — `polarizationCount_eq_two`)
+      ∧ tensor-only-on-permitted (`both_permitted_are_tensor`).
+
+    Discharged unconditionally below by composition. -/
+def LIGOPolarizationConsistency : Prop :=
+  polarizationCount = 2
+    ∧ (∀ m : PolarizationMode, permittedByGR m → isTensorMode m = true)
+
+/-- **LIGO polarization consistency** is unconditionally true on the
+    OmegaTheory substrate: the count is `2` (`polarizationCount_eq_two`)
+    and every permitted mode is tensor (`both_permitted_are_tensor`). -/
+theorem ligo_observational_consistency : LIGOPolarizationConsistency :=
+  ⟨polarizationCount_eq_two, both_permitted_are_tensor⟩
 
 /-- **Falsifiability statement.** If the substrate identification is
     correct, then the observational content agrees with the two-tensor

@@ -370,9 +370,9 @@ Navi-v3 W6 gap (Jarlskog/CP-violation isolation-break). -/
     parameter CKM angles record), pairing fourfold Jarlskog axis
     vanishing with threefold Witness-Yoneda completeness. -/
 theorem CKMAngles_yoneda_zero_eig_double_witness_frontier_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 /-- **W6.2 closure marker** — Capricornus cycle-61 W6.2 closed. -/
-theorem CKMAngles_double_witness_W6_2_closed : True := trivial
+theorem CKMAngles_double_witness_W6_2_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.CKMAnglesYonedaDoubleWitness

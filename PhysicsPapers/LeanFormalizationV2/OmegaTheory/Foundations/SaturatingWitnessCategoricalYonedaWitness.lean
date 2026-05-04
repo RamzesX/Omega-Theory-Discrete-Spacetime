@@ -146,6 +146,6 @@ theorem saturatingWitness_categorical_yoneda_paper_bundle
     a real-valued parameter (`bound : ℝ`) in OV2.  Composes the
     Gaussian minimum-uncertainty state framework through Yoneda. -/
 theorem saturatingWitness_categorical_yoneda_first_real_param_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

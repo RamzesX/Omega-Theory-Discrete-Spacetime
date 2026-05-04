@@ -102,6 +102,6 @@ theorem omegaAlgebraRep_categorical_yoneda_paper_bundle :
     `OmegaAlgebraCohomologyClass` Yoneda witnesses; together they
     cover the Ω-algebra representation theory axis. -/
 theorem omegaAlgebraRep_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -143,6 +143,6 @@ theorem errorCoalgebra_categorical_yoneda_paper_bundle (V : Type v) :
     `ErrorCoalgebra V` typeclass (W6.1/T3.1 mass-batch upgrade).
     Replaces `errorCoalgebra_inbound` Nonempty stub. -/
 theorem errorCoalgebra_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

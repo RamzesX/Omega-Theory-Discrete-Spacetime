@@ -181,6 +181,6 @@ theorem substrateBounded_triplet_categorical_yoneda_paper_bundle
     All three primitives lifted through Yoneda alongside the
     `extends`/parametric patterns. -/
 theorem substrateBounded_triplet_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

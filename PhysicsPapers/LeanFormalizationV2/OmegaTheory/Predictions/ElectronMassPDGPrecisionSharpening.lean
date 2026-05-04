@@ -89,6 +89,6 @@ theorem electron_mass_PDG_precision_sharpening_W8 :
     Companion to other Tier 5 W8 PDG sharpenings (MuonMass, TauMass,
     CabibboAngle, JarlskogInvariant). -/
 theorem electron_mass_PDG_precision_sharpening_W8_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

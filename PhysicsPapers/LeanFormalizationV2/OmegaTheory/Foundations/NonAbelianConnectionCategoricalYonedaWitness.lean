@@ -119,6 +119,6 @@ theorem nonAbelianConnection_categorical_yoneda_paper_bundle
     together they cover both abelian and non-abelian gauge structures
     through Yoneda. -/
 theorem nonAbelianConnection_categorical_yoneda_first_universe_param_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

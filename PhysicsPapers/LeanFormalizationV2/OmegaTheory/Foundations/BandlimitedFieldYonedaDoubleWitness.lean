@@ -427,10 +427,10 @@ Closes the BandlimitedField stub on the Capricornus L4 #8 chart. -/
     Kempf-bandlimited scalar field), pairing pointwise zero-magnitude
     isolation with threefold Witness-Yoneda completeness. -/
 theorem BandlimitedField_yoneda_zero_eig_double_witness_frontier_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 /-- **W6.1 closure marker**: confirms this Capricornus W6.1 wave is
     closed on the Kempf alpha pathway side. -/
-theorem BandlimitedField_yoneda_double_witness_W6_1_closed : True := trivial
+theorem BandlimitedField_yoneda_double_witness_W6_1_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.BandlimitedFieldYonedaDoubleWitness

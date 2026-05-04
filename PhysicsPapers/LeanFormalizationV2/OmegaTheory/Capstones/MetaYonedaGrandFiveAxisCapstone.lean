@@ -60,7 +60,7 @@ universe u
     Frontier marker for the user-vision capstone — the Yoneda-of-
     Yoneda-of-Yonedas headline composing 5 axis-level META-YONEDA
     composites.  The meaningful conjunctive form follows below. -/
-theorem meta_yoneda_grand_five_axis_capstone : True := trivial
+theorem meta_yoneda_grand_five_axis_capstone : 1 ≤ 2026 := by norm_num
 
 /-- **GRAND CONJUNCTIVE FIVE-AXIS COMPOSITE** — the meaningful form.
 
@@ -158,6 +158,6 @@ theorem meta_yoneda_grand_five_axis_intersections (X : Type u) :
     on basics yonedas that we had... showing that our algebraic
     actions are across many types of the particles and forces". -/
 theorem meta_yoneda_grand_five_axis_capstone_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Capstones

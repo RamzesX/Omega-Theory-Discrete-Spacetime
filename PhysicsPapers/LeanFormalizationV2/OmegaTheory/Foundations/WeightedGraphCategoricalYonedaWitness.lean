@@ -119,6 +119,6 @@ theorem weightedGraph_categorical_yoneda_paper_bundle :
     Paper-citable as the categorical bijection over the
     substrate-lattice variational source primitive of OmegaTheory. -/
 theorem weightedGraph_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

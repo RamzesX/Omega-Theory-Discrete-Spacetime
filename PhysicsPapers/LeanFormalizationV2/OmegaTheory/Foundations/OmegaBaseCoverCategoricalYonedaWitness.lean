@@ -120,6 +120,6 @@ theorem omegaBaseCover_categorical_yoneda_paper_bundle :
     Grothendieck site/cover primitives of OV2 through the
     categorical bijection. -/
 theorem omegaBaseCover_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

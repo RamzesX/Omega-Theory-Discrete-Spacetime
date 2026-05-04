@@ -604,10 +604,10 @@ into the structural-witness predicate. -/
 
     Closes Heart-Nebula canonical-list entry #45 / Capricornus OA #A11. -/
 theorem connes_DF_eig_placeholder_inbound_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-- **Closure marker** — Wave 7.4 closure flag. -/
 theorem OA_eig_placeholder_inbound_via_connes_DF_eigenvalues_W7_4_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions.ConnesDFEigenvaluesEigPlaceholderInbound

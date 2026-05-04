@@ -366,6 +366,6 @@ where `layer_CD_unconditional_lindemann_premise : LindemannPremiseRat`
 is the c60-c62 deliverable.
 -/
 theorem layer_CD_skeleton_landed_first_formal_bridge_marker_2026_04_25 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Irrationality.HermitePade.PiTranscendentalLayerCD

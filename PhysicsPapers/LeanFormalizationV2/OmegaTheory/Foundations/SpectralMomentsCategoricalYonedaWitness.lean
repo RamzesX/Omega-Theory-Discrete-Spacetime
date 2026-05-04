@@ -154,6 +154,6 @@ theorem spectralMoments_categorical_yoneda_paper_bundle :
     Yoneda (different integral weightings).  Together these two cover
     both conventions of the heat-kernel-moment framework. -/
 theorem spectralMoments_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

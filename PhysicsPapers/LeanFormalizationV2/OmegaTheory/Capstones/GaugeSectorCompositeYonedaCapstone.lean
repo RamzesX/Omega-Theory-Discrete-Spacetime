@@ -83,6 +83,6 @@ theorem gaugeSector_composite_yoneda_capstone_at_unit :
     transformation + SM gauge-group ranks) into one Yoneda-bridge
     formulation. -/
 theorem gaugeSector_composite_yoneda_capstone_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

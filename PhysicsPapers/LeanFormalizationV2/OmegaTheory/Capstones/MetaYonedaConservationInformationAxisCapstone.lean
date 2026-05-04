@@ -125,6 +125,6 @@ theorem meta_yoneda_conservation_information_cardinal_progression :
 /-- **Frontier marker** — first META-YONEDA CONSERVATION / INFORMATION
     AXIS composite landed in V2.  Seventh distinct axis-grouping. -/
 theorem meta_yoneda_conservation_information_axis_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

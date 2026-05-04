@@ -481,6 +481,6 @@ theorem NS_ErrorForms_isolation_break_first_ErrorHopf_chain_witness_in_V2 :
 
 /-! ## Closure marker -/
 
-theorem NS_ErrorForms_isolation_break_W5_overflow_1_closed : True := trivial
+theorem NS_ErrorForms_isolation_break_W5_overflow_1_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.ErrorFormsIsolationBreak

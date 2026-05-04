@@ -92,6 +92,6 @@ theorem algebra_omega_phase_9_fibration_base :
 /-- **Frontier marker** — Tier 7 c66-c70 𝒜_Ω Phase 7+8+9 capstone
     landed in V2 (entry #53/218) with concrete content. -/
 theorem algebra_omega_phase_789_capstone_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

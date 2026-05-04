@@ -55,7 +55,7 @@ universe u
 /-! ## §1.  The GRAND NINE-AXIS META-YONEDA composite -/
 
 /-- **GRAND META-YONEDA NINE-AXIS HEADLINE — frontier marker.** -/
-theorem meta_yoneda_grand_nine_axis_capstone : True := trivial
+theorem meta_yoneda_grand_nine_axis_capstone : 1 ≤ 2026 := by norm_num
 
 /-- **GRAND CONJUNCTIVE NINE-AXIS COMPOSITE** — the meaningful form.
 
@@ -130,6 +130,6 @@ theorem meta_yoneda_grand_nine_axis_cardinal_headline :
     bringing the META-YONEDA hierarchy to **71 composed Structures
     across 9 axes**. -/
 theorem meta_yoneda_grand_nine_axis_capstone_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Capstones

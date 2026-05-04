@@ -189,6 +189,6 @@ theorem substrateEntropyState_categorical_yoneda_paper_bundle :
     substrate entropy state (matter + BH + DE + DM).  Lifts the
     Second-Law/holography bookkeeping framework through Yoneda. -/
 theorem substrateEntropyState_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

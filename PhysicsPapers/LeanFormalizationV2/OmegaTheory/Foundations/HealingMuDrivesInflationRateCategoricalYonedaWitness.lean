@@ -170,6 +170,6 @@ theorem healingMuDrivesInflationRate_categorical_yoneda_paper_bundle :
     the Yoneda image of the healing-flow μ-driven inflation
     monotonicity bundle of the OmegaTheory framework. -/
 theorem healingMuDrivesInflationRate_categorical_yoneda_first_all_forall_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

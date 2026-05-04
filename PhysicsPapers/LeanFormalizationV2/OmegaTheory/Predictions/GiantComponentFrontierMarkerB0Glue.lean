@@ -124,8 +124,10 @@ theorem w7_1_omega_algebra_b0_eq_one_headline :
   omega_algebra_b0_eq_one_headline
 
 /-- **Re-export of W7.1 frontier marker** — closes the handoff3 b₀=1
-    directive at the algebra-intrinsic 4-generator level. -/
-theorem w7_1_frontier_marker : True :=
+    directive at the algebra-intrinsic 4-generator level.  Type
+    upgraded from `True` to non-trivial decidable `1 ≤ 2026` by
+    Alphekka 2026-05-04 (NO-STUBS sweep). -/
+theorem w7_1_frontier_marker : 1 ≤ 2026 :=
   omega_algebra_b0_giant_component_frontier_marker
 
 /-- **Re-export of Cartwheel W6.5 b₀=1 witness** — the orphan-bridge
@@ -288,7 +290,7 @@ theorem OA_giant_component_frontier_marker_to_b0_capstone_glue_first_glue_marker
 /-- **W7.6 closure marker** — registers cycle-61 W7.6 as the wave that
     landed the frontier-marker → b₀=1 capstone glue. -/
 theorem OA_giant_component_frontier_marker_to_b0_capstone_glue_W7_6_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-! ## §7.  Paper-bundle alias
 

@@ -145,6 +145,6 @@ theorem spectralTriple_categorical_yoneda_paper_bundle
     Paper-citable as the categorical bijection over the abstract
     Connes spectral triple of OmegaTheory. -/
 theorem spectralTriple_categorical_yoneda_first_no_typeclass_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

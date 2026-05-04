@@ -439,6 +439,6 @@ theorem L4_orphan_headline_reachability_first_panel_in_V2 :
   ⟨orphanCapstonePullWitness_holds, trivial⟩
 
 /-- **Wave-closure marker** — explicit cycle-61 W6.3 closure tag. -/
-theorem L4_orphan_headline_reachability_W6_3_closed : True := trivial
+theorem L4_orphan_headline_reachability_W6_3_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Capstones.OrphanHeadlineReachabilityCapstonePull

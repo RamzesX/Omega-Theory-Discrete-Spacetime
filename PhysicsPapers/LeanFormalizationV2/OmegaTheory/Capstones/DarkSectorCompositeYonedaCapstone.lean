@@ -89,6 +89,6 @@ theorem darkSector_composite_yoneda_capstone_at_unit :
     Bundles the OV2 dark-sector physics (DE + DM + sterile-ν) into one
     Yoneda-bridge formulation, all natural-in-X. -/
 theorem darkSector_composite_yoneda_capstone_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

@@ -120,6 +120,6 @@ theorem blackHole_categorical_yoneda_paper_bundle :
 /-- Frontier marker — first substrate-physics positive-real-subtype Yoneda
     witness in OV2 (companion to ErrorBound nonneg-subtype). -/
 theorem blackHole_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

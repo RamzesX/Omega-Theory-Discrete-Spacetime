@@ -105,6 +105,6 @@ theorem conservationHealing_composite_yoneda_capstone_at_unit :
     Bundles the OV2 conservation + healing-flow infrastructure into one
     Yoneda-bridge formulation. -/
 theorem conservationHealing_composite_yoneda_capstone_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

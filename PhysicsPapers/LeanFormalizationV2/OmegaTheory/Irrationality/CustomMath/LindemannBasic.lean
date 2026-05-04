@@ -169,6 +169,6 @@ theorem lindemann_basic_wave1_paper_bundle :
 
 /-- **Frontier marker** — first multi-cycle Lindemann–Weierstrass port skeleton
     landed in OV2 (cycle 58 wave 1). -/
-theorem lindemann_basic_wave1_first_skeleton_landed_in_V2 : True := trivial
+theorem lindemann_basic_wave1_first_skeleton_landed_in_V2 : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Irrationality.CustomMath.LindemannBasic

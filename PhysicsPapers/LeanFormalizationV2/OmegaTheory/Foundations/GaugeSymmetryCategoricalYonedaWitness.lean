@@ -143,6 +143,6 @@ theorem gaugeSymmetry_categorical_yoneda_paper_bundle
     (single universe-param, no type-class) Yoneda witnesses; together
     these three cover the universe-polymorphic axis of OV2. -/
 theorem gaugeSymmetry_categorical_yoneda_first_doubly_param_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

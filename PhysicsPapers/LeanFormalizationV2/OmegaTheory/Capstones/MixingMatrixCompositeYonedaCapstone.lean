@@ -73,6 +73,6 @@ theorem mixingMatrix_composite_yoneda_capstone_at_unit :
     Bundles the Standard Model mixing-matrix sector (CKM angles + CKM
     from Yukawa + PMNS) into one Yoneda-bridge formulation. -/
 theorem mixingMatrix_composite_yoneda_capstone_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

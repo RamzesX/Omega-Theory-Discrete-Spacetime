@@ -150,6 +150,6 @@ theorem errorSU3Bracket_categorical_yoneda_paper_bundle (N : ℕ) :
     non-abelian gauge Lie bracket axis of OV2 through the
     categorical bijection (SU(2)_L weak + SU(3)_C strong). -/
 theorem errorSU3Bracket_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

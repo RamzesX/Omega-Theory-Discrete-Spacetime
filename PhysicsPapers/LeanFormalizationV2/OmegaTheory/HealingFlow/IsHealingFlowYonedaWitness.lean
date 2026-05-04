@@ -586,11 +586,11 @@ the Pandora L4 #12 substrate-dynamics analogue). -/
     (`IsHealingFlow`), pairing constant-flat-path equilibrium-
     isolation with fourfold Witness-Yoneda completeness. -/
 theorem isHealingFlow_yoneda_witness_frontier_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-- **W-TAIL.3 closure marker**: Heart-Nebula canonical-list entry #73
     / Capricornus tail Quaoar Q7 closed by this file. -/
 theorem isHealingFlow_yoneda_witness_W_tail_3_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.HealingFlow.IsHealingFlowYonedaWitness

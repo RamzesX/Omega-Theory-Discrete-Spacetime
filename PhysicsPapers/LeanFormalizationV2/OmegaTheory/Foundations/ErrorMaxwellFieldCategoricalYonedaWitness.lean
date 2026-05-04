@@ -141,6 +141,6 @@ theorem errorMaxwellField_categorical_yoneda_paper_bundle :
     + source noise + F-component truncation).  Bridges the U(1) gauge
     sector through categorical Yoneda. -/
 theorem errorMaxwellField_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

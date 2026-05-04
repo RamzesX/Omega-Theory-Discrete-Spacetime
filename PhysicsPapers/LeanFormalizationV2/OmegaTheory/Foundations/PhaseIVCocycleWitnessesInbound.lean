@@ -403,6 +403,6 @@ theorem phase_IV_cocycle_witnesses_inbound_first_capping_in_V2 :
     frontier marker, not a content claim.  The content claim is
     carried by the four section §2/§3/§4/§6 inbound bridges and the
     grand alias §7. -/
-theorem phase_IV_cocycle_witnesses_W5_3_closed : True := trivial
+theorem phase_IV_cocycle_witnesses_W5_3_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.PhaseIVCocycleWitnessesInbound

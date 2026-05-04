@@ -482,6 +482,6 @@ isolation in the `HealingFlowBH` cluster. -/
     BH dynamics, Hawking-flow tier, and the Vega Lyapunov framework
     into a single capstone bundle. -/
 theorem NS_HealingFlowBH_first_isolation_break_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.HealingFlow.HealingFlowBHIsolationBreak

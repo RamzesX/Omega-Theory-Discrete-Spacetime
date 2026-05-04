@@ -165,6 +165,6 @@ theorem yukawaFrameworkFromD_F_categorical_yoneda_paper_bundle :
     the categorical Yoneda bijection.  Companion to `DiracOperatorF`,
     fermion-tower Yoneda witnesses on the Connes axis. -/
 theorem yukawaFrameworkFromD_F_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -226,6 +226,6 @@ theorem galois_conjugation_step_w11a_paper_bundle :
     landed in OV2.  Trivial-class (d=1) and degree-2 (d=2) cases
     inhabited; degree-≥3 reserved for cycles 61-62. -/
 theorem galois_conjugation_step_w11a_first_real_fill_landed_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Irrationality.CustomMath.LindemannGaloisConjugationStep

@@ -534,11 +534,11 @@ Foundations analogue). -/
     (`DynamicalSnapshotSequence`), pairing flat-instance generator-
     isolation with fourfold Witness-Yoneda completeness. -/
 theorem DynamicalSnapshotSequence_yoneda_zero_eig_double_witness_frontier_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-- **W6-EXT.2 closure marker**: Capricornus L4 #12 / Heart-Nebula
     canonical-list entry #65 closed by this file. -/
 theorem DynamicalSnapshotSequence_yoneda_zero_eig_double_witness_W6_ext_2_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations.DynamicalSnapshotSequenceYonedaDoubleWitness

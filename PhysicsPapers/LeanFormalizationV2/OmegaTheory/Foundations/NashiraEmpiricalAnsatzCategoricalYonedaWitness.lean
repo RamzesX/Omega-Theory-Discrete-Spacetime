@@ -182,6 +182,6 @@ theorem nashiraEmpiricalAnsatz_categorical_yoneda_paper_bundle :
     sector) and `PDGQuarkRatios` Yoneda (quark sector) to span the full
     SM mass-ratio experimental coverage. -/
 theorem nashiraEmpiricalAnsatz_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

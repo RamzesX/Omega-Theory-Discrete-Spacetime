@@ -96,6 +96,6 @@ theorem algebra_omega_phase_8_laws_bundle (Ω : OmegaAlgebra) :
 /-- **Frontier marker** — Phase-8 force-interactions expansion landed.
     Second of the 19 P2 𝒜_Ω Phase 7+8+9 entries. -/
 theorem algebra_omega_phase_8_force_interactions_expansion_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

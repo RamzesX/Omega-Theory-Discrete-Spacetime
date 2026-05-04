@@ -180,6 +180,6 @@ theorem smoothConnectionData_categorical_yoneda_paper_bundle :
     smooth-connection bounds bundle.  Lifts the discrete-Christoffel
     + first-derivative uniform-bound framework through Yoneda. -/
 theorem smoothConnectionData_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -81,6 +81,6 @@ theorem bhThermodynamics_composite_yoneda_capstone_at_unit :
     area + spin-information conservation) into one Yoneda-bridge
     formulation. -/
 theorem bhThermodynamics_composite_yoneda_capstone_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

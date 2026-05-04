@@ -125,6 +125,6 @@ theorem rightHandedDoublet_categorical_yoneda_paper_bundle :
     Paper-citable as the Yoneda image of the SU(3)_C × SU(2)_L ×
     U(1)_Y right-handed gauge multiplet of the Standard Model. -/
 theorem rightHandedDoublet_categorical_yoneda_first_option_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

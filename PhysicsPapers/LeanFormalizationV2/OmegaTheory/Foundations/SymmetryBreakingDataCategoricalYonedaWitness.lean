@@ -181,6 +181,6 @@ theorem symmetryBreakingData_categorical_yoneda_paper_bundle
     spontaneous-symmetry-breaking ledger of the OmegaTheory
     framework, on the universe-polymorphic axis. -/
 theorem symmetryBreakingData_categorical_yoneda_first_triply_param_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

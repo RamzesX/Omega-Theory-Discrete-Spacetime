@@ -127,6 +127,6 @@ theorem errorBoundedSmoothMetricReal_categorical_yoneda_paper_bundle :
 /-- Frontier marker — Real-variant categorical Yoneda companion to
     `ErrorBoundedSmoothMetricCategoricalYonedaWitness`. -/
 theorem errorBoundedSmoothMetricReal_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Geometry

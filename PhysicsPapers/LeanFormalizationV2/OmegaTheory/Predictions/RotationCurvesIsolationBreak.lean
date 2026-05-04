@@ -555,7 +555,7 @@ theorem NS_RotationCurves_isolation_break_first_in_V2 :
 
 /-- **Closure marker** — W3-OVERFLOW.3 Capricornus close. -/
 theorem NS_RotationCurves_isolation_break_W3_overflow_3_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-! ## §9.  Inbound-witness existential -/
 

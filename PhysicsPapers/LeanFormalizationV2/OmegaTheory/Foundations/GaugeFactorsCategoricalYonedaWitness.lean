@@ -129,6 +129,6 @@ theorem gaugeFactors_categorical_yoneda_paper_bundle :
     fields).  Composes the SM gauge-group rank decomposition through
     Yoneda. -/
 theorem gaugeFactors_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

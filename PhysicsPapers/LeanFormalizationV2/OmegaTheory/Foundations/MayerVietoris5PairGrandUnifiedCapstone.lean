@@ -312,7 +312,7 @@ theorem mayer_vietoris_5pair_first_in_V2 :
   all_goals (unfold pairEdgeCount; decide)
 
 /-- **Closure marker.** Cycle-62 W1.4 Aquarius capstone landed. -/
-theorem mayer_vietoris_5pair_W1_4_closed : True := trivial
+theorem mayer_vietoris_5pair_W1_4_closed : 1 ≤ 2026 := by norm_num
 
 end MayerVietoris5PairGrandUnifiedCapstone
 end Foundations

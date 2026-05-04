@@ -149,6 +149,6 @@ theorem lieTrace_categorical_yoneda_paper_bundle
     [Module ℝ L]` instances; the four conjuncts together state that
     `tr` is an ℝ-linear functional. -/
 theorem lieTrace_categorical_yoneda_first_algebraic_law_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

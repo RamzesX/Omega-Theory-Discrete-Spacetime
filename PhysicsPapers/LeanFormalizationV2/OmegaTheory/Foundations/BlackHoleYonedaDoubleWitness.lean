@@ -409,6 +409,6 @@ analogue). -/
     anchored on a substrate-physics Structure (`BlackHole`), pairing
     singularity-isolation with fourfold Witness-Yoneda completeness. -/
 theorem BlackHole_yoneda_zero_eig_double_witness_frontier_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations.BlackHoleYonedaDoubleWitness

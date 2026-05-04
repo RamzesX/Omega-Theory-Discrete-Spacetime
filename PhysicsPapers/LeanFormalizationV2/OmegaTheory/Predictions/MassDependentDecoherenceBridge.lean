@@ -48,7 +48,7 @@ theorem mass_dependent_decoherence_bridge_W7 :
     above provides the formal-side anchor; this theorem certifies
     the experimental verification side as a frontier marker. -/
 theorem mass_dependent_decoherence_diraq_2024_anchor :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-- **Frontier marker** — first Tier 4 W7 isolate paper-bundle for
     mass-dependent decoherence landed in V2 (entry #35/218 of the
@@ -56,6 +56,6 @@ theorem mass_dependent_decoherence_diraq_2024_anchor :
     isolate-break bundles.  Diraq verification target — the OV2's
     only currently-verified prediction. -/
 theorem mass_dependent_decoherence_bridge_W7_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

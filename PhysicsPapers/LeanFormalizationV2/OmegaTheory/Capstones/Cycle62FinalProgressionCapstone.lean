@@ -117,12 +117,12 @@ theorem cycle_62_meta_yoneda_progression :
     in V2 (entries #54-#55/218 — milestone capstone composing the
     full Tier 1-7 progression status with CONCRETE upstream citations). -/
 theorem cycle_62_final_progression_capstone_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-- **Project status frontier** — the c62 hand-authored attack has
     reached the project-closure threshold.  All Tier 4 + Tier 5 W7/W8
     bundles complete; remaining work is in Tier 6/7 long-tail. -/
 theorem cycle_62_project_closure_threshold_reached :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

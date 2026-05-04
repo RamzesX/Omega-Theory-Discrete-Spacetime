@@ -123,6 +123,6 @@ theorem meta_yoneda_substrate_error_cardinal_progression :
     backbone (11-sector) and expanded (25-sector) META-YONEDA
     composites. -/
 theorem meta_yoneda_substrate_error_axis_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

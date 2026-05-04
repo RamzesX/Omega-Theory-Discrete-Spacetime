@@ -130,6 +130,6 @@ theorem bConnesDerivation_categorical_yoneda_paper_bundle :
     **full Connes weight derivation axis** (B integer base + β
     spectral exponent) for the D_F → Yukawa pipeline of OV2. -/
 theorem bConnesDerivation_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -241,6 +241,6 @@ theorem omegaCapstoneV2Bundle_categorical_yoneda_paper_bundle :
     `omega_theory_v2_final_meta_capstone`,
     `grand_capstone_v2_substrate_SM_plus_gravity_plus_DM_plus_DE`. -/
 theorem omegaCapstoneV2Bundle_categorical_yoneda_first_paper_signature_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

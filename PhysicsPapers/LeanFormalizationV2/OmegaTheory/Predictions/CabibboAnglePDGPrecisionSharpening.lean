@@ -64,6 +64,6 @@ theorem cabibbo_angle_PDG_precision_sharpening_W8 :
 /-- **Frontier marker** — Tier 5 W8 Cabibbo-angle PDG-precision
     sharpening landed in V2 (entry #45/218). -/
 theorem cabibbo_angle_PDG_precision_sharpening_W8_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

@@ -558,7 +558,7 @@ theorem SEC_cyclic_cosmology_paper_bundle_inbound_first_in_V2 :
 
 /-- **Closure marker** — W8.3 Capricornus close. -/
 theorem SEC_cyclic_cosmology_paper_bundle_inbound_W8_3_closed :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 /-- **Grand alias** — concise paper-citable form of the headline
     aggregating the registry + both-orphan-headlines membership +

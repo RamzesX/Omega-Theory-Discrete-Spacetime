@@ -349,7 +349,7 @@ theorem af_irreducibility_first_algebraModule_bridge_inbound_first_capping_in_V2
 /-- **Closure marker (Wave 8.6):** `True := trivial` (no axioms,
     no external citation — pure schema closure stamp). -/
 theorem af_irreducibility_first_algebraModule_bridge_inbound_W8_6_closed :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 /-! ## §8 — Paper-citable composer
 

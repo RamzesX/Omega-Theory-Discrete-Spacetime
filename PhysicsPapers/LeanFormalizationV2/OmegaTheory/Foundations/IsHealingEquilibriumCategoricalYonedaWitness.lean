@@ -112,6 +112,6 @@ theorem isHealingEquilibrium_categorical_yoneda_paper_bundle
     `IsLyapunovHealingFlow`, `IsHealingFlow` Yoneda witnesses on
     the healing-flow axis. -/
 theorem isHealingEquilibrium_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

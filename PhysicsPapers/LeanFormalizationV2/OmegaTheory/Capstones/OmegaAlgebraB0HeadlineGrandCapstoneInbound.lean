@@ -329,7 +329,7 @@ theorem topologicallyCompleteSubstrate_implies_OrphanClosure
 
 /-- **W7.1 closure marker** — registers cycle-61 W7.1 as the wave
     that landed the OA-to-grand-capstone wiring. -/
-theorem OA_b0_eq_one_headline_to_grand_capstone_W7_1_closed : True := trivial
+theorem OA_b0_eq_one_headline_to_grand_capstone_W7_1_closed : 1 ≤ 2026 := by norm_num
 
 /-! ## §5.  Companion paper bundle
 

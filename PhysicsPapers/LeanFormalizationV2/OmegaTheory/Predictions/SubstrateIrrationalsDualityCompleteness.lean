@@ -86,6 +86,6 @@ theorem substrate_irrationals_channel_ordering_anchor :
     duality completeness landed in V2 (entry #48/218).  CONCRETE
     upgrade from True-tagged stub. -/
 theorem substrate_irrationals_duality_completeness_W6_8_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

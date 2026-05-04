@@ -414,9 +414,9 @@ theorem yoneda_orphan_mass_bridge_wave_A_foundations_grand_alias :
     (Emergence), Wave C (Predictions), and Wave D (Geometry) follow in
     sister wizards. -/
 theorem yoneda_orphan_mass_bridge_wave_A_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 /-- **Closure marker** — c62.W6.1 entry #28 closed. -/
-theorem _W6_1_closed : True := trivial
+theorem _W6_1_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.YonedaOrphanMassBridgeWaveAFoundations

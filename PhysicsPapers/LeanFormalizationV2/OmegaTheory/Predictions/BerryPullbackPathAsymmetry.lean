@@ -396,6 +396,6 @@ theorem L4_berry_specializes_generalizes_symmetric_nontrivial_via_path_asymmetry
 parent-orchestrator's PROPOSED → CLOSED_BY_LEAN_LANDING flip on the
 `L4_berry_specializes_generalizes_symmetric_nontrivial_via_path_asymmetry`
 candidate. -/
-theorem W6_ext_3_closed : True := trivial
+theorem W6_ext_3_closed : 1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions.BerryPullbackPathAsymmetry

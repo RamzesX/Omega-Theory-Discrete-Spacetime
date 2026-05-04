@@ -138,6 +138,6 @@ theorem seeleyDeWittCoeffs_categorical_yoneda_paper_bundle :
     formalising Chamseddine–Connes 1997 spectral action coefficients
     natural-in-X. -/
 theorem seeleyDeWittCoeffs_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

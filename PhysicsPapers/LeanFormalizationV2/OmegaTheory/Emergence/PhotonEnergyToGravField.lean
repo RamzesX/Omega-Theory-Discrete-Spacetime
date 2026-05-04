@@ -47,8 +47,10 @@
   constraints between the photon's redshift cost and the field's
   back-reaction amplitude.  Microphysical integration against the
   Einstein tensor `G_μν` at a discrete lattice point remains FRONTIER
-  (we flag it as `PhotonGravitationalFieldCoupling := True` in a
-  section marked `§F.  Frontier glue`).
+  (we expose it as the substantive coupling claim
+  `PhotonGravitationalFieldCoupling`, a universal three-conjunct
+  bookkeeping inequality at the canonical saturating field, in a
+  section marked `§F.  Substrate coupling`).
 
   ## What this file formalizes
 
@@ -64,8 +66,11 @@
     Defined as `field.backReactionAmplitude` (field-side record).
   * `PhotonSourcesMetric w field` — three-conjunct stress-energy
     transfer inequality; headline shape.
-  * `PhotonGravitationalFieldCoupling` — FRONTIER `Prop := True`
-    marker for microphysical integration still to be done.
+  * `PhotonGravitationalFieldCoupling` — universal substrate-level
+    coupling claim: at every photon worldline `w` (with non-negative
+    path length), the canonical saturating field simultaneously
+    satisfies the three honest stress-energy bookkeeping inequalities
+    (transfer is ≥ photon redshift cost, ≥ 0, and ≤ ceiling).
 
   **Headline (Tier 1):**
   * `photon_energy_transfer_to_gravitational_field` — for every photon
@@ -112,8 +117,10 @@
     existence of such a choice is proved by `canonical_field_saturating`,
     so the headline is not vacuous.  What we do NOT prove here is the
     *value* of the back-reaction in terms of `G_μν` or the Einstein
-    tensor — that integration is FRONTIER and flagged via
-    `PhotonGravitationalFieldCoupling := True`.
+    tensor — that integration is FRONTIER.  The substantive bookkeeping
+    content is exposed via `PhotonGravitationalFieldCoupling`, a
+    universal three-conjunct inequality at the canonical saturating
+    field.
 
   * Composes on:
     Bellatrix (`ProtonPhotonRedshift.gravRedshiftCost`,
@@ -441,29 +448,69 @@ theorem photon_bh_horizon_strong_transfer
   unfold PhotonRedshiftForField
   exact gravRedshiftCost_le_ceiling _ _
 
-/-! ## §F.  Frontier glue — microphysical Einstein integration flag.
+/-! ## §F.  Substrate coupling — universal three-conjunct inequality.
 
-The bookkeeping inequalities above are honest but *abstract*: they
-only relate the photon's redshift cost to a field-side amplitude
-record.  The microphysical step — integrating the photon's
-stress-energy against the Einstein tensor `G_μν` at a discrete lattice
-point, to recover the full `T_μν^(I)` source term of
-`SatisfiesEmergentEinstein` — remains FRONTIER, marked below.
+The bookkeeping inequalities above hold *per field choice*.  This
+section bundles them at the canonical saturating field as a single
+universal `Prop`-level claim, exposing the substrate-level coupling
+between the photon's redshift cost and the gravitational field's
+stress-energy budget.
 
-Future work (downstream of Alphard/Alpheratz's EBHPW Einstein witness
-infrastructure) will replace the `:= True` with a genuine lattice
-integral of the redshift-cost density against the Einstein tensor. -/
+The microphysical step — integrating the photon's stress-energy
+against the Einstein tensor `G_μν` at a discrete lattice point, to
+recover the full `T_μν^(I)` source term of
+`SatisfiesEmergentEinstein` — remains FRONTIER (downstream of
+Alphard/Alpheratz's EBHPW Einstein witness infrastructure).  The
+`PhotonGravitationalFieldCoupling` claim below is the substantive
+bookkeeping content available WITHOUT that integration. -/
 
-/-- **FRONTIER: photon stress-energy integration against G_μν.**  The
-    microphysical step connecting the bookkeeping inequalities in this
-    file to the full `SatisfiesEmergentEinstein g T^(I)` statement of
-    `Conservation.StressEnergy`.  Flagged as `True` pending an explicit
-    lattice integral. -/
-def PhotonGravitationalFieldCoupling : Prop := True
+/-- **Photon-gravitational-field coupling (substantive form).**
 
-/-- FRONTIER marker is inhabited (trivially). -/
+    Universal stress-energy transfer claim at the canonical saturating
+    field: for every photon coherence worldline `w` with non-negative
+    path length, the canonical saturating field `f_sat` simultaneously
+    satisfies the three honest bookkeeping inequalities:
+
+      (1) the photon's redshift cost is bounded above by the
+          stress-energy transfer to the field
+          (`PhotonRedshiftForField w ≤ stressEnergyTransferToField w f_sat`);
+      (2) the transfer is non-negative
+          (`0 ≤ stressEnergyTransferToField w f_sat`);
+      (3) the transfer is bounded above by the per-event redshift
+          ceiling
+          (`stressEnergyTransferToField w f_sat
+              ≤ gravRedshiftCeiling w.pathLength w.energy`).
+
+    This is the substrate-level coupling content visible WITHOUT
+    integrating against `G_μν`: it says the canonical field is the
+    correct intermediary between the photon's redshift cost and the
+    metric's per-event ceiling.
+
+    The microphysical step — integrating the photon's stress-energy
+    against the Einstein tensor `G_μν` at a discrete lattice point to
+    recover the full `T_μν^(I)` source term of
+    `SatisfiesEmergentEinstein` — remains FRONTIER (downstream of
+    Alphard/Alpheratz's EBHPW Einstein witness infrastructure). -/
+def PhotonGravitationalFieldCoupling : Prop :=
+  ∀ (w : PhotonCoherenceWorldline) (hL : 0 ≤ w.pathLength),
+    let f_sat := canonical_field_saturating w hL
+    PhotonRedshiftForField w ≤ stressEnergyTransferToField w f_sat
+    ∧ 0 ≤ stressEnergyTransferToField w f_sat
+    ∧ stressEnergyTransferToField w f_sat ≤
+        gravRedshiftCeiling w.pathLength w.energy
+
+/-- **Coupling holds.**  Composed from the headline inequality
+    (`photon_energy_transfer_to_gravitational_field`), the
+    non-negativity of stress-energy transfer
+    (`stressEnergyTransferToField_nonneg`), and the ceiling bound
+    (`stressEnergyTransferToField_le_ceiling`). -/
 theorem PhotonGravitationalFieldCoupling_holds :
-    PhotonGravitationalFieldCoupling := trivial
+    PhotonGravitationalFieldCoupling := by
+  intro w hL
+  refine ⟨?_, ?_, ?_⟩
+  · exact photon_energy_transfer_to_gravitational_field w hL
+  · exact stressEnergyTransferToField_nonneg w _
+  · exact stressEnergyTransferToField_le_ceiling w _
 
 /-! ## §7.  Paper-ready unified summary.
 
@@ -489,8 +536,10 @@ Alcor's `hawking_reverse_redshift_unified_summary`. -/
     4. **Saturating witness.**  The canonical field exists and
        saturates equality with the photon's redshift cost.
 
-    5. **Frontier flag.**  `PhotonGravitationalFieldCoupling := True`
-       is marked for microphysical integration against `G_μν`. -/
+    5. **Substrate coupling.**  `PhotonGravitationalFieldCoupling`
+       holds: the universal three-conjunct stress-energy bookkeeping
+       inequality at the canonical saturating field is satisfied.
+       Microphysical integration against `G_μν` remains FRONTIER. -/
 theorem photon_energy_transfer_unified_summary
     (w : PhotonCoherenceWorldline) (hL : 0 ≤ w.pathLength) :
     let f_sat := canonical_field_saturating w hL

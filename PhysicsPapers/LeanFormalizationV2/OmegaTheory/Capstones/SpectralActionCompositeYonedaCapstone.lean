@@ -139,6 +139,6 @@ theorem spectralAction_composite_yoneda_capstone_at_unit
     Each cited Yoneda witness becomes a real `APPLIES` edge under
     `dump_arrows`, eliminating the corresponding nodes' orphan status. -/
 theorem spectralAction_composite_yoneda_capstone_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

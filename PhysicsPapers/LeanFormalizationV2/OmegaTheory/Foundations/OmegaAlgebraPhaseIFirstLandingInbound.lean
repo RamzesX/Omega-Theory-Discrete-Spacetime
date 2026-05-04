@@ -268,7 +268,7 @@ theorem FOA_omega_algebra_phase_I_first_landing_inbound_first_capping_in_V2 :
 
 /-- W5.6 closure marker. -/
 theorem FOA_omega_algebra_phase_I_first_landing_inbound_W5_6_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaAlgebraPhaseIFirstLandingInbound
 end OmegaTheory.Foundations

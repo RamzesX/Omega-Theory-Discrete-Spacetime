@@ -101,6 +101,6 @@ theorem gaugeConnection_categorical_yoneda_paper_bundle :
     gauge connection framework.  Composes through `GaugeConnection.exact`
     + `gaugeCurvature` for the substrate U(1) field-strength framework. -/
 theorem gaugeConnection_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

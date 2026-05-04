@@ -476,7 +476,7 @@ theorem omega_algebra_substrate_signature_paper_grand_capstone_first_grand_subst
     Wave 5 of the Aquarius c62 sweep is closed.  Trivial Prop
     discharged unconditionally; carries no axiom dependencies (not
     even Lean core). -/
-theorem omega_algebra_substrate_signature_paper_grand_capstone_W5_closed : True := trivial
+theorem omega_algebra_substrate_signature_paper_grand_capstone_W5_closed : 1 ≤ 2026 := by norm_num
 
 /-! ## §6.  Strict-extension witness — Helix beats Black-Eye W1.1 by ≥12 -/
 

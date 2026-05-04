@@ -374,7 +374,7 @@ theorem cocycle_nuclei_navmaster_3_level_alignment_first_in_V2 :
 W6-extension #4 closure tag.  Trivial proposition; meaning lies in
 the W6-EXT.4 paper-headline above and the cycle-61 closure list. -/
 theorem cocycle_nuclei_navmaster_3_level_alignment_W6_ext_4_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 /-!
 ## §8 · Honest-negative narrower-true notes

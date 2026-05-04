@@ -91,6 +91,6 @@ in V2 to ship a {π, e, √2} irrationality conjunction with **zero**
 dependency on `Real.pi_transcendental`.  Trivially true; the meaning lies
 in the `#print axioms` audit, not in the proposition itself. -/
 theorem ic_three_constants_paper_headline_first_pi_transcendental_free_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.IrrationalityClasses

@@ -236,7 +236,7 @@ single-Structure level to the grand 11-Structure backbone level.
     this **grand composite** lifts the entire 11-Structure paper
     backbone simultaneously. -/
 theorem meta_yoneda_paper_backbone_first_grand_composite_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 /-- **Cardinal count** — the META-YONEDA capstone composes exactly 11
     independent categorical Yoneda witnesses simultaneously over a

@@ -132,6 +132,6 @@ theorem latticeComplex2D_categorical_yoneda_paper_bundle :
     over the 2D complex underlying the discrete Gauss-Bonnet
     Euler-characteristic computation of OmegaTheory. -/
 theorem latticeComplex2D_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

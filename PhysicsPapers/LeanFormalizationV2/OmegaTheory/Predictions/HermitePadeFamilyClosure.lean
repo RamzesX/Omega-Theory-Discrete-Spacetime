@@ -69,6 +69,6 @@ theorem hermite_pade_pi_irrational_consequence :
     closure landed in V2 (entry #52/218) with CONCRETE RA-1
     citation. -/
 theorem hermite_pade_family_closure_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

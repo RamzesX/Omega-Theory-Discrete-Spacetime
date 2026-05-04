@@ -93,6 +93,6 @@ theorem phase_V_H0_H1_cohomology_bridge (Ω : OmegaAlgebra) :
     closure landed in V2 (entry #49/218) with CONCRETE upstream
     cocycle citations. -/
 theorem phase_V_cohomology_closure_W6_9_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Predictions

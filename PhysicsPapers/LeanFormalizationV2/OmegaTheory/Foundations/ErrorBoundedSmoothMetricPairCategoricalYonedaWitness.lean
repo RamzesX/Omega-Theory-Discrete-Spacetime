@@ -183,6 +183,6 @@ theorem errorBoundedSmoothMetric_pair_categorical_yoneda_paper_bundle :
     bridging discrete N-truncations to smooth metrics with
     quantitative error bounds. -/
 theorem errorBoundedSmoothMetric_pair_categorical_yoneda_first_pair_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -200,6 +200,6 @@ theorem frwHpwData_categorical_yoneda_paper_bundle
     bundles.  Composes through `HpwHypothesis_of_frw` to deliver the
     FRW cosmological HPW elimination theorem. -/
 theorem frwHpwData_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

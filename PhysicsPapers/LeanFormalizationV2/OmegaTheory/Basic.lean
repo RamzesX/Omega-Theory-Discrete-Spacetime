@@ -6392,3 +6392,15 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_V8D5_NAMED_SchmidtAuxPort_
 -- m ≥ 2 + ε < 1 + general R (Schmidt-Mahler simultaneous approximation port).
 -- axiom_audit Lean-core only (propext, Classical.choice, Quot.sound).
 import OmegaTheory.Irrationality.CustomMath.T5_Phase7_SJF4_SJF5_RAware_AevalNeZero_Discharge
+
+-- THUBAN Wave 7 atom-1 LAST RESIDUAL PRIMITIVE — PHE-23 in-box witness extraction
+-- UNCONDITIONAL DISCHARGE.  α Draconis, the historical pole star.  Closes the
+-- LAST Mathlib gap of T-5 atom-1 D.6.1 closure path before the small-σ analytical
+-- heart (Pottmeyer Theorem 3.4.1 inductive step).  9 theorems + Type-(a) standalone
+-- alias + 4-conjunct THUBAN HEADLINE + closure marker.  axiom_audit Lean-core only.
+-- DUBHE-COMPOSITION HEURISTIC fired:  composes UWF-1 (translation invariance) +
+-- UWF-2 (TC1-monomial unconditional) + UWF-3 (shiftPoly preserves nonzero) +
+-- new degreeOf_shiftPoly_le (the genuine Mathlib gap CLOSED here).
+-- After this fire:  σ-form Prop reduces from 2 primitives (PHE-23 + small-σ)
+-- to 1 primitive (small-σ analytical heart only).
+import OmegaTheory.Irrationality.CustomMath.T5_Phase7_PHE23_InBoxWitnessExtraction_Discharge

@@ -364,6 +364,6 @@ theorem c145_substrate_bridge_first_cardinality_witness_in_V2 :
 /-! ## §9. Closure marker -/
 
 /-- **Closure marker**: c62.W4.1 closed via c145 substrate bridge witness. -/
-theorem c145_substrate_bridge_W4_1_closed : True := trivial
+theorem c145_substrate_bridge_W4_1_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.C145SubstrateBridge

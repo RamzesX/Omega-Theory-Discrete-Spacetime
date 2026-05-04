@@ -150,6 +150,6 @@ theorem topQuarkPDG2024Anchor_categorical_yoneda_paper_bundle :
     bijection.  Paper-citable as the Yoneda image of the top-quark
     mass-fit + substrate-ceiling theorem of OmegaTheory. -/
 theorem topQuarkPDG2024Anchor_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

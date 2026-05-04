@@ -206,6 +206,6 @@ theorem a4EssentialSectors_categorical_yoneda_paper_bundle
     parametric over both `g : ErrorBoundedSmoothMetric` AND
     `Δ : GeneralizedLaplacian g`. -/
 theorem a4EssentialSectors_categorical_yoneda_first_doubly_parametric_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

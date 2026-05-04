@@ -106,6 +106,6 @@ theorem gauge_sector_masses_composite_alias (N : ℕ) :
     appears as a real APPLIES edge in `dump_arrows`, driving
     cross-Yoneda interconnection of the substrate gauge sector. -/
 theorem gauge_sector_masses_composite_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Capstones

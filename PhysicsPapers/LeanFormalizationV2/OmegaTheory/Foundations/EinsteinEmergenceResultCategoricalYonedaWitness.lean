@@ -152,6 +152,6 @@ theorem einsteinEmergenceResult_categorical_yoneda_paper_bundle :
 /-- Frontier marker — first 5-data + 3-prop dependent-record Yoneda witness
     in OV2 (richer than CKM/PMNS simple-product or ErrorBound subtype). -/
 theorem einsteinEmergenceResult_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

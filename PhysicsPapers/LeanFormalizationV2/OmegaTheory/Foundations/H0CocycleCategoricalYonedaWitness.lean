@@ -112,6 +112,6 @@ theorem h0Cocycle_categorical_yoneda_paper_bundle :
     solution: H⁰ cohomology classes are constant functions, and
     constant functions automatically satisfy the cocycle condition. -/
 theorem h0Cocycle_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

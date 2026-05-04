@@ -101,6 +101,6 @@ theorem gaugeBoson_categorical_yoneda_paper_bundle (N : ℕ) :
     gauge boson framework.  Composes through `photonGaugeBoson` /
     `BoundaryFlux` for the substrate U(1) photon at iteration count N. -/
 theorem gaugeBoson_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

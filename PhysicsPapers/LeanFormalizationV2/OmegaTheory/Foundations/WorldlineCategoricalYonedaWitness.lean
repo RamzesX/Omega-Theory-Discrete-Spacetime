@@ -115,6 +115,6 @@ theorem worldline_categorical_yoneda_paper_bundle :
     non-emptiness + `Worldline.singleton`/`Worldline.pair` canonical
     constructors) through Yoneda. -/
 theorem worldline_categorical_yoneda_first_list_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

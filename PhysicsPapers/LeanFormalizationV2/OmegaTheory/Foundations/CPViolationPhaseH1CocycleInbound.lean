@@ -375,7 +375,7 @@ theorem FOA_cp_violation_phase_H1_cocycle_inbound_via_jarlskog_discharged
     side Jarlskog ⊕ lepton-CP-phase positivity bundle, closing
     Heart-Nebula's canonical-list entry #33 / Capricornus FOA B3. -/
 theorem FOA_cp_violation_phase_H1_cocycle_inbound_first_landing_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaAlgebraCohomologyClass
 

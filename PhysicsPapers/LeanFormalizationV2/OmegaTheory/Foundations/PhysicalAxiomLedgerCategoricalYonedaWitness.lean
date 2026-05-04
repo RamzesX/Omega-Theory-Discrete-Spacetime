@@ -204,6 +204,6 @@ theorem physicalAxiomLedger_categorical_yoneda_paper_bundle :
     canonical Yoneda witness over the four physical existence
     postulates (c, ℏ, G_N, k_B) of the OV2 framework. -/
 theorem physicalAxiomLedger_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

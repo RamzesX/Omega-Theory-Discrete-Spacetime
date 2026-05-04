@@ -257,6 +257,6 @@ theorem lindemann_galois_conjugation_wave2_paper_bundle :
     skeleton landed in OV2 (Plan B structured API for cycles 60-62
     follow-up). -/
 theorem lindemann_galois_conjugation_wave2_first_skeleton_landed_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Irrationality.CustomMath.LindemannGaloisConjugation

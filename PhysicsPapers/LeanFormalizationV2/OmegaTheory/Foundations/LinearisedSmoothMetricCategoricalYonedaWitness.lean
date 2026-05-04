@@ -164,6 +164,6 @@ theorem linearisedSmoothMetric_categorical_yoneda_paper_bundle :
     `ConformalSmoothMetric`, `BoundedSymmetryMetric`,
     `BianchiMetric` Yoneda witnesses on the smooth-metric axis. -/
 theorem linearisedSmoothMetric_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

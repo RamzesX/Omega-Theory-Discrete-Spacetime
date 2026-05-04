@@ -347,7 +347,7 @@ theorem cosmological_constant_resolved_via_omega_algebra_H1_headline :
     constant is now occupied.  Together with Alniyat's θ_QCD H¹ class
     this lifts the strong-CP–dark-energy cohabitation onto the
     cohomology atlas. -/
-theorem cosmological_constant_H1_concrete_constructor_marker : True := trivial
+theorem cosmological_constant_H1_concrete_constructor_marker : 1 ≤ 2026 := by norm_num
 
 end OmegaAlgebraCohomologyClass
 

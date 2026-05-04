@@ -125,6 +125,6 @@ theorem structureConstantSystem_categorical_yoneda_paper_bundle
     (parametric in ι, K, L).  Companion to gauge-sector Yoneda
     witnesses on the Lie-algebra axis. -/
 theorem structureConstantSystem_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

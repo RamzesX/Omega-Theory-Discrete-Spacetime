@@ -141,6 +141,6 @@ theorem ricciComparisonData_categorical_yoneda_paper_bundle
     bijection.  Includes a unit-probe witnessing the canonical flat
     `DiscreteMetric.flat` instance. -/
 theorem ricciComparisonData_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

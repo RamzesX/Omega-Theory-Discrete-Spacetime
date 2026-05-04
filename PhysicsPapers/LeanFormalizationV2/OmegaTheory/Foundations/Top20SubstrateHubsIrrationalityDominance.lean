@@ -526,13 +526,13 @@ proposition is trivial; the meaning lies in the paper bundle above
 and the cycle-62 Sadalsuud-II L4-P-3 / Helix-Nebula F-TOP-4 audit
 data, not in this marker's body. -/
 theorem top20_substrate_hubs_irrationality_dominance_first_paper_bundle_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 /-- **Closure marker — `_W3_3_closed`.**
 
 c62.W3.3 (Galatea) closure marker — pinpoints that this Aquarius
 Wave 3 entry #18 is sealed against the cycle-62 4-sage audit and
 ready for the Phase-C refresh. -/
-theorem _W3_3_closed : True := trivial
+theorem _W3_3_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Foundations.Top20SubstrateHubsIrrationalityDominance

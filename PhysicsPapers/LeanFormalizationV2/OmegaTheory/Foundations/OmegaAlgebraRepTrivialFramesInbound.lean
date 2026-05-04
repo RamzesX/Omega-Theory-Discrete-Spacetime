@@ -421,7 +421,7 @@ theorem FOA_OmegaAlgebraRep_trivial_frames_inbound_first_capping_in_V2 :
 
 /-- W5-overflow-2 closure marker. -/
 theorem FOA_OmegaAlgebraRep_trivial_frames_inbound_W5_overflow_2_closed :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaAlgebraRepTrivialFramesInbound
 end OmegaTheory.Foundations

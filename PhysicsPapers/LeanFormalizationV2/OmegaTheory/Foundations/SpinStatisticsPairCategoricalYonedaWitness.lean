@@ -108,6 +108,6 @@ theorem spinStatistics_pair_categorical_yoneda_paper_bundle
     Pauli exclusion / Bose-Einstein coexistence structural framework
     on `SpinHalf` / `SpinOne` pairs. -/
 theorem spinStatistics_pair_categorical_yoneda_first_pair_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

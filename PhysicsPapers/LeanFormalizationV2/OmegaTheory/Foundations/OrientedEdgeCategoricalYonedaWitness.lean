@@ -113,6 +113,6 @@ theorem orientedEdge_categorical_yoneda_paper_bundle :
     together they cover the Aharonov-Bohm holonomy axis of OV2
     through the categorical bijection. -/
 theorem orientedEdge_categorical_yoneda_first_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

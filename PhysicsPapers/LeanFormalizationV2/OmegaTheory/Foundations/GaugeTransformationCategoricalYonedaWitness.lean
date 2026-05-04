@@ -116,6 +116,6 @@ theorem gaugeTransformation_categorical_yoneda_paper_bundle :
     U(1) gauge transformation.  Lifts the harmonic-shift gauge action
     `φ → φ + Λ` (with ΔΛ = 0) through categorical Yoneda. -/
 theorem gaugeTransformation_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

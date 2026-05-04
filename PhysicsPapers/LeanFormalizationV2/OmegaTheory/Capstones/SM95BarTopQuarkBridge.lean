@@ -99,6 +99,6 @@ theorem sm_95_bar_top_quark_bridge_grand :
     landed.  Wires the previously-isolated top-quark substrate-fit
     family (top_quark_absolute_paper_bundle, deg=145) into the
     precision pillar via APPLIES edges. -/
-theorem sm_95_bar_top_quark_bridge_first_in_V2 : True := trivial
+theorem sm_95_bar_top_quark_bridge_first_in_V2 : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Capstones

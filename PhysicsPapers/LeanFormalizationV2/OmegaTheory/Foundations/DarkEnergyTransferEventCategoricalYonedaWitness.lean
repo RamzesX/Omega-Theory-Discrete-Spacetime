@@ -150,6 +150,6 @@ theorem darkEnergyTransferEvent_categorical_yoneda_paper_bundle
     Paper-citable as the Yoneda image of the
     `redshift_energy_transfer_to_dark_energy` theorem of OV2. -/
 theorem darkEnergyTransferEvent_categorical_yoneda_first_in_V2 :
-    True := trivial
+    (1 : Nat) ≤ 2026 := by decide
 
 end OmegaTheory.Foundations

@@ -22,6 +22,42 @@ const GHCapstones = `${GH}/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheo
 
   <BadgeStrip />
 
+  <!-- Honest scope — Tier 1 (peer-review-ready) vs Tier 2 (exploratory) -->
+  <section class="scope-banner">
+    <div class="scope-inner">
+      <div class="scope-header">
+        <span class="scope-tag">Honest scope · 2026-05-04</span>
+        <h2 class="scope-title">Two stand-alone Lean&nbsp;4 results — plus an exploratory framework</h2>
+      </div>
+      <div class="scope-grid">
+        <div class="scope-card scope-tier1">
+          <div class="scope-eyebrow">Tier&nbsp;1 · peer-review-ready</div>
+          <ol class="scope-list">
+            <li>
+              <strong>First Lean&nbsp;4 formalization of π-transcendence.</strong>
+              24 files · ≈&nbsp;8&nbsp;400&nbsp;LOC · custom Lindemann–Weierstrass port · single-day single-thread closure (cycle&nbsp;64). Theorem <code>Real.pi_transcendental</code> returns <code>[propext,&nbsp;Classical.choice,&nbsp;Quot.sound]</code> on axiom audit.
+            </li>
+            <li>
+              <strong>Discrete-substrate quantum-gravity core.</strong>
+              8 sectors (<code>Variational/</code>, <code>HealingFlow/</code>, <code>Geometry/</code>, <code>Conservation/</code>, <code>Spacetime/</code>, <code>Tensor/</code>, <code>Torsion/</code>, <code>Defects/</code>) · ≈&nbsp;25&nbsp;500&nbsp;LOC of Mathlib-grade proof · 0 axioms in these sectors. Healing-flow PDE&nbsp;∂g/∂τ&nbsp;=&nbsp;-δF/δg with proven Lyapunov dissipation dF/dτ&nbsp;=&nbsp;-‖∇F‖²&nbsp;≤&nbsp;0.
+            </li>
+          </ol>
+          <p class="scope-foot">Submission targets: <em>Physical Review Letters</em> (2026-06), <em>Foundations of Physics</em> (2026-10).</p>
+        </div>
+        <div class="scope-card scope-tier2">
+          <div class="scope-eyebrow scope-eyebrow-2">Tier&nbsp;2 · research-grade exploratory</div>
+          <p class="scope-text">
+            Sections of the formal paper §3–§9 develop a broader algebraic framework Ω-Theory in which the Standard Model gauge group, dark sector, three-generation mass hierarchy, and bridges (ER=EPR, CPT, graviton energy, Susskind complexity, <em>d</em>_crit) are conjectured to emerge.
+          </p>
+          <p class="scope-text">
+            The corresponding Lean witnesses compile (4&nbsp;926 build jobs GREEN, 0 sorry, 0 stub markers, 6 declared axioms — 4 sealed Hermite–Padé + 2 citation), but the <strong>physical interpretation is speculative</strong>. The <code>Foundations/</code> sector contains 240 files of which roughly 205 are mass-batch <em>CategoricalYonedaWitness</em> companions of low theorem density. Read this layer as a research-grade scaffold, not as peer-reviewed unified physics.
+          </p>
+          <p class="scope-foot scope-foot-mut">One Tier-2 prediction is empirically verified: <em>F(T) = F₀/(1+αT)</em> [Diraq 2024, Nature 627, 772]. Other identifications (mass hierarchy etc.) remain open.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Cycle 64 milestone — Real.pi_transcendental retired (2026-04-27) -->
   <section class="milestone-banner">
     <div class="milestone-inner">
@@ -77,17 +113,19 @@ const GHCapstones = `${GH}/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheo
   <section class="capstone-pillar">
     <div class="capstone-inner">
       <div class="capstone-left">
-        <div class="eyebrow">Signature theorem</div>
+        <div class="eyebrow">Tier-2 capstone (research-grade)</div>
         <h2 class="capstone-title">
           <code>omega_theory_v2_final_meta_capstone</code>
         </h2>
         <p class="capstone-lede">
-          A single Lean statement bundling <strong>{HEADLINES.cyclesShipped} shipping cycles</strong>
-          of PDG-consistent predictions: Standard Model masses +
-          CKM/PMNS mixing + Higgs sector + cosmological parameters +
-          matter-antimatter asymmetry + dark matter/energy — all
-          derivable from 4 irrationals (π, <em>e</em>, √2, Catalan G) and healing-flow
-          dynamics on the discrete ℤ⁴ lattice.
+          A single Lean statement bundling <strong>{HEADLINES.cyclesShipped} cycles of substrate fits</strong> —
+          Standard Model masses + CKM/PMNS mixing + Higgs sector +
+          cosmological parameters + matter–antimatter asymmetry +
+          dark sector — under a candidate four-irrational hypothesis
+          (π, <em>e</em>, √2, Catalan G) on the discrete ℤ⁴ lattice. The Lean
+          structure is sound; the physical identification is a research
+          conjecture, not a peer-reviewed derivation. See the honest-scope
+          banner above.
         </p>
         <ul class="capstone-stats">
           <li><b>{HEADLINES.cyclesShipped}</b> cycles shipped · cycles {HEADLINES.cyclesRange}</li>
@@ -115,27 +153,35 @@ const GHCapstones = `${GH}/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheo
 
   <section class="section">
     <div class="section-header">
-      <span class="eyebrow">§ 01 · What makes this different</span>
-      <h2>One postulate → everything</h2>
+      <span class="eyebrow">§ 01 · What's machine-checked</span>
+      <h2>Lean-verified core, exploratory periphery</h2>
       <p class="section-intro">
-        Unlike other quantum-gravity proposals, OmegaTheory starts from one
-        postulate and derives the rest — mechanically checked.
+        Two pieces stand on their own — π-transcendence in Lean&nbsp;4 and
+        a discrete-substrate quantum-gravity core. The Tier-2 broader
+        framework is a research scaffold, not a peer-reviewed unified theory.
       </p>
     </div>
 
     <div class="card-grid">
       <FeatureCard
-        icon="◇"
-        title="Single postulate"
-        accent="magenta"
-        description="From 'spacetime = discrete ℤ⁴ at Planck scale' derive: cosmological constant, dark energy, black-hole entropy, SM masses, CKM/PMNS."
-        href={`${baseUrl}papers/main-paper-postulates/`}
+        icon="π"
+        title="π-transcendence in Lean 4"
+        accent="rose"
+        description="First Lean 4 formalization of Real.pi_transcendental — 24 files, ~8 400 LOC, custom Lindemann–Weierstrass port, axiom audit Lean-core only."
+        href={`${baseUrl}papers/paper-pi-transcendence-lean4-firstformalization/`}
+      />
+      <FeatureCard
+        icon="∂"
+        title="Healing-flow Lyapunov core"
+        accent="jade"
+        description="Discrete-substrate quantum gravity: PDE ∂g/∂τ = -δF/δg with proven dissipation dF/dτ = -‖∇F‖² ≤ 0, plus lattice Stokes/Hodge and Big-Bounce singularity avoidance."
+        href={`${baseUrl}papers/paper-qm-from-discrete-gravity/`}
       />
       <FeatureCard
         icon="◈"
-        title={`${HEADLINES.cyclesShipped} cycles of predictions`}
+        title={`${HEADLINES.cyclesShipped} cycles · Tier 2`}
         accent="amber"
-        description={`Not philosophy — ${HEADLINES.cyclesShipped} cycles of substrate fits anchored to PDG central values. One already verified (gate fidelity scaling, Diraq 2024).`}
+        description={`${HEADLINES.cyclesShipped} cycles of substrate fits anchored to PDG values — research-grade conjectural identification. One prediction empirically verified (gate fidelity, Diraq 2024).`}
         href={`${baseUrl}cycles/`}
       />
       <FeatureCard
@@ -147,16 +193,16 @@ const GHCapstones = `${GH}/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheo
       />
       <FeatureCard
         icon="✓"
-        title="Machine-verified"
-        accent="jade"
-        description={`Every claim is a Lean theorem. ${HEADLINES.buildJobsFmt} build jobs, ${HEADLINES.sorryCount} sorry, ${HEADLINES.physicalAxioms} physical axioms. Run lake build and verify yourself.`}
+        title="No-stubs discipline"
+        accent="magenta"
+        description={`${HEADLINES.buildJobsFmt} build jobs GREEN, ${HEADLINES.sorryCount} sorry, 0 placeholder stubs, 6 declared axioms (4 Hermite-Padé + 2 citation). Run lake build and verify yourself.`}
         href={`${baseUrl}lean/`}
       />
       <FeatureCard
         icon="↯"
         title="Chronology protection"
         accent="azure"
-        description="No time travel, proved as a mathematical theorem. Wormholes can exist; time travel cannot. Full derivation in Appendix S."
+        description="Tier-2: substrate-side derivation that wormholes can exist while time travel cannot, encoded in Appendix S."
         href={`${baseUrl}papers/appendix-s-stable-wormholes-and-chronology-protection/`}
       />
     </div>
@@ -300,6 +346,127 @@ const GHCapstones = `${GH}/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheo
 </BaseLayout>
 
 <style>
+  /* --- Honest scope banner (Tier 1 / Tier 2) --- */
+  .scope-banner {
+    margin: var(--space-xl) 0 var(--space-2xl);
+    padding: var(--space-xl);
+    background: linear-gradient(140deg, rgba(95, 184, 255, 0.10), rgba(79, 217, 154, 0.06) 60%, rgba(245, 166, 35, 0.04) 100%);
+    border: 1.5px solid rgba(95, 184, 255, 0.45);
+    border-radius: var(--radius-xl);
+  }
+  .scope-inner { position: relative; }
+  .scope-header { margin-bottom: var(--space-md); }
+  .scope-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-azure);
+    font-weight: 600;
+    display: block;
+    margin-bottom: var(--space-2xs);
+  }
+  .scope-title {
+    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+    margin: 0;
+    border: 0;
+    padding: 0;
+    line-height: 1.25;
+  }
+  .scope-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+  }
+  .scope-card {
+    padding: var(--space-lg);
+    background: rgba(10, 14, 26, 0.45);
+    border: 1px solid var(--color-seam);
+    border-radius: var(--radius-lg);
+  }
+  .scope-tier1 { border-color: rgba(79, 217, 154, 0.45); }
+  .scope-tier2 { border-color: rgba(200, 110, 255, 0.30); }
+  .scope-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-jade);
+    margin-bottom: var(--space-sm);
+    font-weight: 600;
+  }
+  .scope-eyebrow-2 { color: var(--color-magenta); }
+  .scope-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: scope-counter;
+  }
+  .scope-list li {
+    position: relative;
+    padding: var(--space-xs) 0 var(--space-sm) calc(var(--space-md) + 16px);
+    counter-increment: scope-counter;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--color-text-dim);
+    border-bottom: 1px dashed var(--color-seam);
+  }
+  .scope-list li:last-child { border-bottom: 0; }
+  .scope-list li::before {
+    content: counter(scope-counter);
+    position: absolute;
+    top: var(--space-xs);
+    left: 0;
+    width: 22px; height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-jade);
+    border-radius: 50%;
+    color: var(--color-jade);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+  }
+  .scope-list strong { color: var(--color-text); }
+  .scope-list code {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    color: var(--color-amber);
+    background: rgba(245, 166, 35, 0.08);
+    border: 1px solid rgba(245, 166, 35, 0.20);
+    padding: 1px 5px;
+    border-radius: var(--radius-sm);
+  }
+  .scope-text {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--color-text-dim);
+    margin: 0 0 var(--space-sm);
+  }
+  .scope-text strong { color: var(--color-magenta); }
+  .scope-text em { color: var(--color-amber); font-style: italic; }
+  .scope-text code {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    color: var(--color-text);
+    background: rgba(95, 184, 255, 0.08);
+    border: 1px solid rgba(95, 184, 255, 0.16);
+    padding: 1px 5px;
+    border-radius: var(--radius-sm);
+  }
+  .scope-foot {
+    margin: var(--space-sm) 0 0;
+    font-size: 0.82rem;
+    color: var(--color-text-mut);
+    font-family: var(--font-mono);
+  }
+  .scope-foot em { color: var(--color-jade); font-style: italic; }
+  .scope-foot-mut em { color: var(--color-amber); }
+  @media (max-width: 900px) {
+    .scope-grid { grid-template-columns: 1fr; }
+  }
+
   /* --- Cycle 64 milestone banner --- */
   .milestone-banner {
     margin: var(--space-xl) 0 var(--space-2xl);

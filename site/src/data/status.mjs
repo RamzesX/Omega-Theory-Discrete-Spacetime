@@ -20,21 +20,21 @@ const STATUS_PATH = join(
 );
 
 // Fallbacks kept static — only used if the STATUS.md parse fails.
-// These are the last-known numbers; the parser below should always win.
+// Refreshed 2026-05-04 (cycle 65 close — narrowed-scope sync).
 const FALLBACK = {
-  buildJobs: 3835,
+  buildJobs: 4926,
   sorryCount: 0,
-  physicalAxioms: 8,
-  researchAxioms: 16,
-  totalAxioms: 24,
+  physicalAxioms: 6,        // 4 sealed Hermite-Padé + 2 citation; 0 in T-x cone
+  researchAxioms: 6,
+  totalAxioms: 6,
   ownTheorems: 8996,
   ownDefinitions: 4465,
   mathlibTheorems: 175137,
   grandTotalTheorems: 184133,
-  leanFiles: 294,
-  cyclesShipped: 42,      // cycles 2..43 inclusive = 42 numbered cycles
+  leanFiles: 1100,
+  cyclesShipped: 64,        // cycles 2..65 inclusive = 64 numbered cycles
   firstCycle: 2,
-  lastCycle: 43,
+  lastCycle: 65,
   graphFindings: 88,
   graphFindingsPaperWorthy: 44,
   theoremCandidates: 166,

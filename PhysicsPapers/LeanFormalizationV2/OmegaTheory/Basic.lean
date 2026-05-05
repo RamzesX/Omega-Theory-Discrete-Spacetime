@@ -5249,6 +5249,10 @@ import OmegaTheory.Predictions.GravitonDispersionTheorem
 -- UV ceiling: Ω²(k) ≤ 4/ℓ_P² for ALL k.
 -- Relative deficit: (k²−Ω²(k))/k² ≤ k²·ℓ_P²·(5/48) → 0 as k→0.
 import OmegaTheory.Predictions.IRUVDecomposition
+-- Lion's-Pride Phase 3.1 (2026-05-05): rank-2 symmetric d'Alembertian on
+-- the substrate + trace-free preservation + free-graviton-mode predicate.
+-- Closes inventory gap §C.7 (the spin-2 TT-mode formalisation).
+import OmegaTheory.Geometry.WeinbergLinearisedTT
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak

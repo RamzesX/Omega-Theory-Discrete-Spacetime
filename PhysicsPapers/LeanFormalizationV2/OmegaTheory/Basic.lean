@@ -4843,6 +4843,13 @@ import OmegaTheory.Predictions.RepairQuantumEnergyTheorem
 -- input. Equilibrium = no release. Answers: where does the repair-flow
 -- energy come from? → from the perturbation itself.
 import OmegaTheory.HealingFlow.PerturbationEnergy
+-- Lion's-Pride Phase 3.1 (dynamic /loop iteration 3, 2026-05-05):
+-- Mexican-hat scalar potential V(φ) = -μ²·φ² + λ·φ⁴ + completing-the-square
+-- identity V(φ) = λ·(φ² − μ²/(2λ))² − μ⁴/(4λ) + 5 SSB headlines:
+--   (1) algebraic heart, (2) V(v_min) = -μ⁴/(4λ),
+--   (3) ∀ φ, V(v_min) ≤ V(φ), (4) V(0) > V(v_min), (5) V(±v_min) equal Z₂-distinct.
+-- First piece of new substrate machinery shipped after Lion's-Pride trash purge.
+import OmegaTheory.HealingFlow.HiggsScalarField
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

@@ -5222,6 +5222,10 @@ import OmegaTheory.Geometry.HodgeDecomposition2Tensor
 -- gap §C.5; bridge from substrate's information functional to a
 -- discretised T_μν, plus pointwise ε-bound on SemiSmoothMetric.
 import OmegaTheory.Conservation.InformationStressEnergyConstructor
+-- Lion's-Pride Phase 2.4 (2026-05-05): Ricci-tensor perturbation bound.
+-- Extends Tensor/ValuedCurvature.lean::riemann_perturbation_bound to
+-- Ricci via 4-fold contraction. Closes inventory gap §C.6 Ricci side.
+import OmegaTheory.Tensor.ValuedRicci
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak

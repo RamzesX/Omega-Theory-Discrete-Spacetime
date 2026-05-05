@@ -4929,6 +4929,15 @@ import OmegaTheory.Variational.RicciScalarPerturbative
 -- diagonal evaluation V₃(h, h, h) = (metricTrace h)^3, vanishing at zero
 -- perturbation. Headline: cubic_graviton_vertex_report (5-conjunct).
 import OmegaTheory.Variational.CubicGravitonVertex
+-- Lion's-Pride Phase 5.4 (dynamic /loop iteration 17, 2026-05-06):
+-- Quartic graviton vertex V₄(h₁, h₂, h₃, h₄) extracted from R₄ as
+-- tetralinear scaffold. Total symmetry via S₄ generators (12)/(23)/(34),
+-- additivity in each of 4 args, diagonal V₄(h,h,h,h) = (metricTrace h)^4,
+-- bridge to ricciScalarO4 placeholder. Headline:
+-- quartic_graviton_vertex_report (6-conjunct). Phase 5 G-G self-interaction
+-- now 4/4 complete (5.1 EH action + 5.2 perturbative Ricci + 5.3 cubic
+-- vertex + 5.4 quartic vertex).
+import OmegaTheory.Variational.QuarticGravitonVertex
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

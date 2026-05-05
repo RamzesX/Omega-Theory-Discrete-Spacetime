@@ -4930,6 +4930,13 @@ import OmegaTheory.Variational.QuarticGravitonVertex
 -- and Phase 6.5 Standard-Model spectral action. Headline:
 -- finite_spectral_triple_report (5-conjunct).
 import OmegaTheory.Foundations.FiniteSpectralTriple
+-- Lion's-Pride Phase 6.2 (dynamic /loop iteration 20, 2026-05-06):
+-- Finite-dim Seeley-DeWitt heat-kernel coefficients
+-- a_k(T) := Tr(D^(2k)). Properties: a_0 = n (Hilbert dim),
+-- D^(2k) Hermitian via Matrix.conjTranspose_pow, a_k.im = 0
+-- (Hermitian-trace-real). Foundation for Phase 6.4 spectral action
+-- expansion. Headline: heat_kernel_coefficients_report (4-conjunct).
+import OmegaTheory.Foundations.HeatKernelCoefficients
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

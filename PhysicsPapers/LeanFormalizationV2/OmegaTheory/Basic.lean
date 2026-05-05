@@ -498,24 +498,6 @@ import OmegaTheory.Predictions.ZBosonWidthFit
 -- + Hassaleh M_Z + Wasat m_H_PDG.
 import OmegaTheory.Predictions.HiggsWidthFit
 
--- Higgs self-coupling λ_H ≈ 0.129 DERIVED (not fitted) from Bellatrix's VEV
--- and Wasat's Higgs mass via the tree-level quartic identity m_H² = 2λv²
--- (Ruchbah, 2026-04-20 cycle-14 target 1/6). FIRST DERIVED COUPLING IN V2:
--- λ_H := m_H_PDG² / (2·v_PDG²) = 125.10²/(2·246.22²) ≈ 0.129074, matches
--- PDG central 0.129 within 0.001 (three-decimal hit) without a fresh fit.
--- Delivers FIRST FORMAL ELECTROWEAK VACUUM STABILITY theorem in V2
--- (λ > 0 ⇒ potential bounded below ⇒ SSB minimum exists). Composes
--- HiggsVEVSubstrate (Bellatrix) + NumericalFitsCycle9 (Wasat).
-import OmegaTheory.Predictions.HiggsSelfCouplingFit
-
--- Kepler-22b (first confirmed Earth-sized HZ exoplanet) — cycle-58 (Libra)
--- Phase B Wave 1 W4: `higgs_self_coupling_absolute_paper_bundle`
--- Higgs self-coupling λ_H = m_H²/(2 v²) = 0.129074 (PDG match within 0.001),
--- AbsolutePrediction wrapper with substrate-derivation chain (HiggsMassAbsolute
--- + HiggsVEVSubstrate). Composes Iapetus pattern (substrate → PDG window).
--- 8 theorems + 2 defs, Lean core only.
-import OmegaTheory.Predictions.HiggsSelfCouplingAbsolute
-
 -- Proton-photon coupling under gravity via substrate info-cost
 -- (Bellatrix, 2026-04-19). First compositional bridge between EM
 -- (ErrorForms.emNoiseFloor) and gravity (RedshiftFloor.vacuumResidualInformationCost)
@@ -1738,32 +1720,6 @@ import OmegaTheory.Predictions.UpQuarkMassFit
 -- falsifiability witness.  0 sorry, 0 new axioms.
 import OmegaTheory.Predictions.NeutrinoMassSumBound
 
--- TopQuarkWidthFit (Shaula 2026-04-20, cycle-13 target 4/6): top
--- quark total decay width Γ_top = 1.42 GeV (SM tree level, Jezabek-
--- Kühn 1989; PDG 2024 measured 1.36 +0.14/-0.11 GeV) as substrate
--- numerical fit via π-truncation channel (Spica `channelToGeneration
--- .pi = 2 : Fin 3` heaviest generation, Mirfak `yukawaUpQuark gen3 = 9`
--- top-slot).  EXACT HIT at SM central — `topQuarkWidth_substrate :=
--- 1.42` threads SM exactly (gap 0) and sits inside PDG 1σ (|gap to
--- PDG| = 0.06 ≤ 0.14).  CLOSES THE DECAY-RATE QUARTET Γ_H / Γ_W /
--- Γ_Z / Γ_top (joining Sadalmelik Γ_H, Alpheratz Γ_W, Hamal Γ_Z)
--- with four-observable ordering `Γ_H < Γ_top < Γ_W < Γ_Z` (4.07 <
--- 1420 < 2085 < 2495.2 MeV) — NON-MONOTONE with mass hierarchy
--- (m_H < m_W < m_Z < m_t but widths ordered differently, driven
--- by phase space × coupling rather than mass alone).  FIRST formal
--- PARTONIC-FREEDOM theorem in OmegaTheory V2: `Γ_top > Λ_QCD`
--- (1420 MeV >> 210 MeV, factor > 6.7) — top is the ONLY SM quark
--- that decays before QCD hadronisation, a unique phenomenological
--- signature.  Composes WBosonWidthFit (Alpheratz cycle 10) +
--- ZBosonWidthFit (Hamal cycle 11) + HiggsWidthFit (Sadalmelik
--- cycle 12) + TopQuarkMassFit (Phact cycle 8 m_t = 173.34) +
--- QCDRunningCoupling (LambdaQCD_PDG_MeV = 210) + AlphaEM (Hadar) +
--- Approximations (pi_error_val).  23 theorems + 8 defs + 5-conjunct
--- paper bundle `top_quark_width_substrate_fit` + 7-conjunct
--- reconciliation + headline alias + partonic-freedom frontier
--- marker + decay-rate quartet closed alias.  0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.TopQuarkWidthFit
-
 -- DownQuarkMassFit (Anuradha 2026-04-20, cycle-13 target 2/6): down
 -- quark mass `m_d(2 GeV) = 4.67 MeV` (PDG 2024, MS-bar) as substrate
 -- numerical fit via √2-truncation LIGHTEST-generation channel (Spica
@@ -1789,26 +1745,6 @@ import OmegaTheory.Predictions.TopQuarkWidthFit
 -- `down_quark_mass_substrate_fit` + headline alias.  0 sorry, 0 new
 -- axioms.
 import OmegaTheory.Predictions.DownQuarkMassFit
-
--- Wave-4-B canonical alias bundle (wizard bucket B, 2026-04-22):
--- top-level discovery names CKMVubFit / DownQuarkMassFit /
--- UpQuarkMassFit / TopQuarkWidthFit / NeutrinoMassSumBound /
--- StrongCPThetaBound / fermi_constant_extraction_substrate_fit /
--- pion_charged_decay_rate_substrate_fit rebound as one-line aliases
--- onto their primary-statement theorems in Peacock / Anuradha /
--- Alderamin / TopQuarkWidthFit / Diadem / Sheliak / Arcturus /
--- ChargedPionLifetimeFit.  Pure pointer file, no new content.
-import OmegaTheory.Predictions.ParticleWave4Fits
-
--- FrontierWave4 (Wave-4 bucket E retry, 2026-04-22): five mixed-difficulty
--- frontier theorems — weinberg_ricci_general_conformal (conformal Ricci →
--- Weinberg = 3/8), extendedBound_saturation_hilbert (ℝ-witness Hilbert lift
--- of Mothallah's saturation), singleton_theorems_bridge_mp2 (universal
--- bridge for MP-2 singletons), HiggsMassReconciliation (2-conjunct PDG
--- window alias for Zubeneschamali's cycle-14 result), ProtonLifetimeBound
--- (τ_p > 10³⁴ yr existence from Alkaid cycle-19 infrastructure).  Packaged
--- 5-conjunct capstone `frontier_wave4_E_capstone`.
-import OmegaTheory.Predictions.FrontierWave4
 
 -- Wave5Enrichments (Wave-5 wizard C, 2026-04-22): three enriched-witness
 -- upgrades of Wave-4 bucket-E minimum forms —
@@ -1940,26 +1876,6 @@ import OmegaTheory.Predictions.BaryonDensityFit
 -- 0 new axioms.
 import OmegaTheory.Predictions.CKMVtdFit
 
--- HiggsMassFromLambdaVev (Zubeneschamali 2026-04-20, cycle-14 target
--- 6/6): the first TRIPLE CONSISTENCY theorem in OmegaTheory V2.
--- Claim: the Higgs-sector observables {λ ≈ 0.129, v = 246 GeV,
--- m_H = 125.10 GeV} are consistent at tree level via the Standard
--- Model identity m_H² = 2 λ v².  Derivation: m_H_derived =
--- √(2 λ) · v ≈ 0.5079 · 246 ≈ 125.0 GeV, within PDG 2024 tolerance
--- of the measured 125.10 ± 0.14 GeV.  m_H²_derived = 2·0.129·246²
--- = 15610.25 GeV² vs m_H²_PDG = 15650.01 GeV², gap ≈ 40 GeV² < 100
--- GeV² window (~ 0.3% relative).  Closes the Higgs sector as a
--- 3-observable / 2-dof / 1-check consistency bundle.  Vacuum
--- stability theorem: λ > 0 ⟹ m_H² > 0 (classically stable EW
--- vacuum).  Composes NumericalFitsCycle9 (higgsMass_PDG cycle 9) +
--- HiggsVEVSubstrate (Bellatrix higgsVEV_PDG) + hardcoded λ =
--- 0.129 (cycle-14 parallel `HiggsSelfCouplingFit.lean` hunter not
--- yet landed; value derived from PDG 2024 SM global fit).  13
--- theorems + 4 defs + 5-conjunct PAPER bundle
--- `higgs_sector_closure` + 3-conjunct headline alias +
--- existential witness + vacuum-stability theorem.  0 sorry, 0 new
--- axioms.
-import OmegaTheory.Predictions.HiggsMassFromLambdaVev
 
 -- MatterDensityOmegaM (Mira 2026-04-20, cycle-15 target 3/6): FIRST
 -- cosmological energy-budget fit in OmegaTheory V2.  Claim: matter
@@ -2465,27 +2381,6 @@ import OmegaTheory.Predictions.StringScaleBound
 -- + falsifiability witness. 0 sorry, 0 new axioms.
 import OmegaTheory.Predictions.ProtonDecayLowerBound
 
--- PeskinTakeuchiSFit (Zaniah 2026-04-20, cycle-18 target 3/6):
--- Peskin–Takeuchi S oblique parameter S = -0.01 ± 0.10 (PDG 2024).
--- FIRST formal BSM-constraint theorem in V2. Substrate prediction
--- peskin_S_substrate := 0 matches the SM tree-level value exactly
--- (no 4th-generation fermions, no technicolor dynamics), threading
--- the PDG measurement within 0.1σ (|gap| = 0.01 ≤ 0.10). Delivers
--- `bsm_S_bounded_above : |S_PDG - S_substrate| < 0.15` — any BSM
--- contribution to the oblique sector is bounded by the experimental
--- 1.5σ envelope, template for future heavy-new-physics exclusion
--- theorems. √2-channel near-zero super-exp lane (same as Diadem
--- Σm_ν and Algenib θ_13), `S_channel_on_lightest_generation`.
--- Falsifiability witness `substrate_refuted_if_S_exceeds_bound`:
--- if |S| ≥ 0.15 at future precision the substrate is REFUTED.
--- 14 theorems + 6 defs + 5-conjunct paper bundle
--- `peskin_takeuchi_S_substrate_fit` + 3-conjunct headline alias
--- `peskin_takeuchi_S_headline` + frontier marker
--- `first_formal_bsm_constraint_in_V2`. Composes WBosonMassCDFIIFit
--- (Biham) + ZBosonMassFit (Hassaleh) + HiggsWidthFit (Sadalmelik)
--- + Approximations (sqrt2_error_val) + GenerationMap (Spica).
--- 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.PeskinTakeuchiSFit
 
 -- WeakMixingAngleEffectiveFit (Acubens 2026-04-20, cycle-18 target 2/6):
 -- effective leptonic weak-mixing angle sin²θ_eff^lept = 0.23155 ± 0.00004
@@ -2565,36 +2460,6 @@ import OmegaTheory.Predictions.MuToEGammaBound
 -- GUTUnificationScaleFit (Sargas M_GUT_substrate + M_Planck_GeV) +
 -- Approximations. 0 sorry, 0 new axioms.
 import OmegaTheory.Predictions.ReheatingTemperatureBound
-
--- MuToEConversionBound (Porrima 2026-04-20, cycle-19 target 3/6):
--- SINDRUM-II 2006 coherent μ⁻ + Ti → e⁻ + Ti conversion-rate upper
--- bound R_{μ→e}(Ti) < 4.3 × 10⁻¹² (90% CL) as EXACT-ZERO substrate
--- prediction. **FIRST formal CLFV CONVERSION (not photon) bound in
--- V2**, companion to Sarin's MuToEGammaBound (cycle-19 4/6 photon
--- channel). Substrate `mu_to_e_conversion_substrate := 0` threads
--- SINDRUM-II with zero gap — no 4th-gen, no leptoquarks, no SUSY
--- sleptons in OmegaTheory ℤ⁴ lattice. **FIRST CLFV cross-channel
--- ordering** `muEgamma_rate_bound_lt_muToE_conversion_bound`:
--- MEG 2016 BR(μ→eγ) < 4.2e-13 TIGHTER than SINDRUM-II R_{μ→e}(Ti)
--- < 4.3e-12 at rate level (10× tighter, experimental sensitivity
--- hierarchy). `bsm_muToE_bounded_above` caps any BSM contribution
--- at 4.3e-12 — charged-lepton analogue of Zaniah's `bsm_S_bounded_above`.
--- Neutrino-mixing vs charged-LFV distinctness
--- `pmns_distinct_from_charged_LFV`: substrate R_{μ→e}=0 but PMNS
--- sin²(2·θ_12)=0.846 (12 decimal decades gap), formalising that the
--- PMNS matrix does NOT induce observable charged-LFV at substrate
--- level. Falsifiability witness `substrate_refuted_if_muToE_detected`:
--- any future R ≥ 4.3e-12 refutes OmegaTheory ansatz (Mu2e/COMET
--- 10⁻¹⁶ sensitivity will pressure-test this). √2 super-exponential
--- lane (same as Algenib θ_13, Zaniah S, Diadem Σm_ν, Sarin μ→eγ).
--- 18 theorems + 5 defs + 5-conjunct paper bundle
--- `muon_to_e_conversion_bound_substrate` + 3-conjunct headline
--- `muon_to_e_conversion_headline` + frontier marker
--- `mu_to_e_first_CLFV_conversion_bound_in_V2`. Composes
--- MuonLifetimeFit (Deneb) + ElectronGminus2SubstrateFit (Zaurak) +
--- PMNSTheta12Solar (Aspidiske) + Approximations (sqrt2_error_val) +
--- GenerationMap (Spica). 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.MuToEConversionBound
 
 -- InflatonPotentialScale (Furud 2026-04-20, cycle-20 target 1/6):
 -- inflaton potential energy scale `V^{1/4} < 1.6×10¹⁶ GeV` UPPER BOUND
@@ -4224,25 +4089,6 @@ import OmegaTheory.Predictions.NeutronProtonMassSplittingTightened
 -- 17 declarations, Lean core only.
 import OmegaTheory.Predictions.ProtonMassTightK
 
--- Cycle-54 (2026-04-25) — Eta-Carinae — top quark Yukawa absolute prediction
--- y_t ≈ 1.0 ± 0.05:
---   `top_quark_mass_absolute_yukawa_one_substrate`
--- Calibration anchor pattern over Lesath/Skat's `substrateTopMassGeV`
--- (TopQuarkMassAbsoluteP3n) + Bellatrix's `higgsVEV_anchor`. SM-Lagrangian
--- convention y_t = m_t/(v/√2). Numerical: 173.34/(246/√2) ≈ 0.9966 within
--- 0.05 of unity. + falsifiability `y_t > y_b` at anchor + 5-conjunct paper
--- bundle. 9 theorems, Lean core only (transitively `Real.pi_transcendental`
--- via `pi_error_val` in `substrateTopMassGeV`).
-import OmegaTheory.Predictions.TopYukawaUnityAbsolute
-
--- Eta-Carinae stretch — Higgs mass absolute prediction m_H ≈ 125 ± 0.5 GeV:
---   `higgs_mass_125GeV_from_lambda_quartic_substrate`
--- Square-root bracket technique: derived m_H² = 2λv² = 15610.248 GeV² ∈
--- [15500.25, 15750.25] = [124.5², 125.5²], so √m_H² ∈ [124.5, 125.5] by
--- monotonicity of Real.sqrt. Pure composition over Bellatrix/Zubeneschamali's
--- `higgsMassSquared_derived_eq`. 8 theorems, Lean core only.
-import OmegaTheory.Predictions.HiggsMassAbsolute125
-
 -- Cycle-54 (2026-04-25) — Sombrero (M104) — capstone dispatch 4-pillar factorization:
 --   `capstone_dispatch_factors_through_4_pillars`
 -- Pure 4-fold And.intro over MP-1 Alhena base-site + MP-2 Ruchbah giant
@@ -4872,7 +4718,6 @@ import OmegaTheory.Foundations.ErrorGaugeSU2IsolationBreak
 -- W4 sector closures
 import OmegaTheory.Conservation.NoetherInformationTorsionInbound
 import OmegaTheory.Emergence.DarkEnergyToBabyUniverseInbound
-import OmegaTheory.Emergence.ElectroweakUnificationPaperBundleInbound
 import OmegaTheory.Conservation.CorrespondenceBridgeFirstLandingInbound
 
 -- W5 FOA cohomology

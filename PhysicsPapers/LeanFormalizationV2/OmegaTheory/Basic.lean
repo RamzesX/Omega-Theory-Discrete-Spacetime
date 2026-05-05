@@ -4922,6 +4922,14 @@ import OmegaTheory.Variational.CubicGravitonVertex
 -- now 4/4 complete (5.1 EH action + 5.2 perturbative Ricci + 5.3 cubic
 -- vertex + 5.4 quartic vertex).
 import OmegaTheory.Variational.QuarticGravitonVertex
+-- Lion's-Pride Phase 6.1 (dynamic /loop iteration 19, 2026-05-06):
+-- Finite-dim spectral triple foundations. `FiniteSpectralTriple n`
+-- structure (Hermitian D + algebra dim) plus core properties: D
+-- diagonal real, trace.im = 0, direct-sum closure, canonical 1-dim
+-- trivial example. Foundation for Phase 6.2 heat-kernel asymptotics
+-- and Phase 6.5 Standard-Model spectral action. Headline:
+-- finite_spectral_triple_report (5-conjunct).
+import OmegaTheory.Foundations.FiniteSpectralTriple
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

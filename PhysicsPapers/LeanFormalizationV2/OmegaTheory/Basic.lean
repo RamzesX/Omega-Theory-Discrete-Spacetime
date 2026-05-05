@@ -414,7 +414,6 @@ import OmegaTheory.Predictions.GravitonMassBound
 -- + CMB peak ℓ=220 (Albali), all under pi_error_val N.  Pure composition over
 -- GenerationMassFromPiError + InflationRateFromMu + CMBAnisotropyFromSubstrate
 -- + GenerationOrdering.
-import OmegaTheory.Capstones.PiHunchUnifiedCosmology
 -- First numerical falsifiability test: Nashira N=4 vs PDG 2024
 -- (mass-ratio-validate, 2026-04-19). Python Phase-1 confirms fit to 0.15%.
 import OmegaTheory.Predictions.MassRatioNumerical
@@ -1074,7 +1073,6 @@ import OmegaTheory.Predictions.MagneticMonopoleSuppressionFromTopology
 -- 5 per-conjunct projectors + 1 existential form + 1 frontier alias.
 -- Pure composition; each conjunct cites its sibling theorem by name.
 -- 0 sorry, 0 new axioms.
-import OmegaTheory.Capstones.GravitySectorUnifiedBundle
 
 -- Tarazed (γ Aquilae, 2026-04-20, cycle-7 target 4/6): Hubble tension 8σ
 -- resolved via substrate DE gain rate differential.  `Predictions/
@@ -1114,7 +1112,6 @@ import OmegaTheory.Predictions.HubbleTensionFromSubstrateDEGain
 -- Spica/Keid (generation surjection).  5 additional paper aliases
 -- (∀N form, physical-N form, backbone surjection, D_F reality,
 -- FCNC+CP signature).  0 sorry, 0 new axioms.
-import OmegaTheory.Capstones.MatterSectorUnifiedBundle
 
 -- GRAND UNIFIED META-CAPSTONE (Rigil cycle 7 target 6/6, 2026-04-20):
 -- `OmegaTheoryGrandUnifiedCapstone.lean` packages the full OmegaTheory V2
@@ -1129,7 +1126,6 @@ import OmegaTheory.Capstones.MatterSectorUnifiedBundle
 -- the project thesis "(full emergent content) ↔ (Z⁴ lattice + 8 physical
 -- constants + 3 irrationals)" at the Lean object-language level.
 -- 0 sorry, 0 new axioms; pure composition.
-import OmegaTheory.Capstones.OmegaTheoryGrandUnifiedCapstone
 
 -- Markab (α Pegasi, "the saddle", 2026-04-20, cycle-7 target 5/6):
 -- `lithium7_primordial_abundance_substrate_correction` — resolves the
@@ -3915,7 +3911,6 @@ import OmegaTheory.Conservation.NoetherInformationBridge
 import OmegaTheory.Conservation.SpinTorsionCouplingBridge
 import OmegaTheory.Torsion.BigBounceHealingLatticeBridge
 import OmegaTheory.IrrationalityClasses.DixmierConnesSpectralBridge
-import OmegaTheory.Capstones.GravityMatterUnifiedBridge
 -- Wave T1 (Propus, 2026-04-24) — Poincaré ↔ shift-holonomy structural bridge
 import OmegaTheory.Geometry.PoincareShiftHolonomyBridge
 
@@ -4020,7 +4015,6 @@ import OmegaTheory.Predictions.PrecisionPhysicsAbsoluteWaveP2
 --   (8) Cycle-43 Grand Unified Headline (Rigil)
 -- Batch `omega_algebra_atlas_v7_2026-04-24`, leverage 264 (highest).
 -- 0 sorry, 0 new axioms, pure composition.
-import OmegaTheory.Capstones.Cycle44MetaCapstone
 
 -- Wave P3b (Almaaz ε Aurigae, 2026-04-24) — Z boson absolute mass
 -- certification in the Albali template pattern. Closes candidate
@@ -4290,7 +4284,6 @@ import OmegaTheory.Predictions.HiggsMassAbsolute125
 -- Pure 4-fold And.intro over MP-1 Alhena base-site + MP-2 Ruchbah giant
 -- component + MP-3 Hamal spectral triple + MP-5 Chara fibration. Closes
 -- BLOCKED_ON_GRAPH_META_LEVEL category. 3 theorems, Lean core only.
-import OmegaTheory.Capstones.CapstoneDispatchFactorization
 
 -- Sombrero stretch — Pion mass via chiral substrate GMOR:
 --   `pion_mass_from_chiral_substrate_GMOR`
@@ -4925,7 +4918,6 @@ import OmegaTheory.Foundations.BlackHoleYonedaDoubleWitness
 
 -- W3 namespace-isolation breakers
 import OmegaTheory.Emergence.FermionContentIsolationBreak
-import OmegaTheory.Capstones.CapstonesGrandUnifiedInbound
 import OmegaTheory.Predictions.GravitonEnsembleBoundLIGOIsolationBreak
 import OmegaTheory.HealingFlow.HealingFlowBHIsolationBreak
 import OmegaTheory.Emergence.FermionQuantumNumbersIsolationBreak
@@ -4953,9 +4945,7 @@ import OmegaTheory.Predictions.RequiredIterationsPiInbound
 -- W6 + W6-extension L4 follow-ups
 import OmegaTheory.Foundations.BandlimitedFieldYonedaDoubleWitness
 import OmegaTheory.Foundations.CKMAnglesYonedaDoubleWitness
-import OmegaTheory.Capstones.OrphanHeadlineReachabilityCapstonePull
 import OmegaTheory.Predictions.PiErrorGtSqrt2ErrorIndegreeWitness
-import OmegaTheory.Capstones.OmegaAlgebraB0EqOneOrphanBridgeClosure
 import OmegaTheory.Foundations.ConformalSmoothMetricYonedaDoubleWitness
 import OmegaTheory.Foundations.DynamicalSnapshotSequenceYonedaDoubleWitness
 import OmegaTheory.Predictions.BerryPullbackPathAsymmetry
@@ -4965,23 +4955,19 @@ import OmegaTheory.HealingFlow.HealingFlowToSmoothMetric
 import OmegaTheory.Predictions.CosmologicalHorizonOmegaUnfold
 
 -- W7 OA + W7-tail
-import OmegaTheory.Capstones.OmegaAlgebraB0HeadlineGrandCapstoneInbound
 import OmegaTheory.Predictions.MagneticLaplacianSubstrateEigenvalueBridge
 import OmegaTheory.Predictions.StrongCPH0InboundBridge
 import OmegaTheory.Predictions.ConnesDFEigenvaluesEigPlaceholderInbound
 import OmegaTheory.Predictions.OmegaAlgebraLaplacianHermiticityInbound
-import OmegaTheory.Predictions.GiantComponentFrontierMarkerB0Glue
 import OmegaTheory.Predictions.LeanArrow15CountInbound
 import OmegaTheory.Spacetime.CoordinationNumberInbound
 import OmegaTheory.Emergence.PropagatorCompositionPropInbound
 import OmegaTheory.Emergence.RightHandedDoubletCPDualInbound
 
 -- W8 meta
-import OmegaTheory.Capstones.GravitySectorUnifiedBundleInbound
 import OmegaTheory.Emergence.QCDAsymptoticFreedomCapstoneInbound
 import OmegaTheory.Emergence.CyclicCosmologyPaperBundleInbound
 import OmegaTheory.Emergence.QuarkMassHierarchyFirstLandingInbound
-import OmegaTheory.Capstones.CrossSectorBridgesGrandUnifiedMetaInbound
 import OmegaTheory.Foundations.AFIrreducibilityFirstAlgebraModuleBridgeInbound
 
 -- W3-overflow + W5-overflow + W-tail
@@ -4997,215 +4983,14 @@ import OmegaTheory.HealingFlow.IsHealingFlowYonedaWitness
 import OmegaTheory.Predictions.DiracFromLatticeDataOrphanDefBridge
 
 -- W9 GRAND SUPER-CAPSTONE — composes all 74 prior cycle-61 closures
-import OmegaTheory.Capstones.GrandFrameworkSuperCapstone
 
 -- ═══════════════════════════════════════════════════════════════════════
 -- CYCLE 62 hand-authored paper-grade categorical Yoneda witnesses
 -- (post-Aquarius single-thread quality > quantity attack, 2026-04-26)
 -- ═══════════════════════════════════════════════════════════════════════
-import OmegaTheory.Foundations.CKMAnglesCategoricalYonedaWitness
-import OmegaTheory.Foundations.PMNSAnglesCategoricalYonedaWitness
-import OmegaTheory.Foundations.ErrorBoundCategoricalYonedaWitness
-import OmegaTheory.Foundations.EinsteinEmergenceResultCategoricalYonedaWitness
-import OmegaTheory.Foundations.BlackHoleCategoricalYonedaWitness
-import OmegaTheory.Capstones.StandardModelMixingMatrixYonedaCapstone
 import OmegaTheory.Geometry.ErrorBoundedSmoothMetricCategoricalYonedaWitness
 import OmegaTheory.Geometry.ErrorBoundedSmoothMetricRealCategoricalYonedaWitness
-import OmegaTheory.Foundations.KerrMetricDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.BianchiIScaleFactorDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.FRWScaleFactorDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.SmoothInterpolantDataCategoricalYonedaWitness
-import OmegaTheory.Tensor.ChristoffelErrorDataCategoricalYonedaWitness
-import OmegaTheory.Tensor.RiemannErrorDataCategoricalYonedaWitness
 import OmegaTheory.Defects.SemiSmoothMetricCategoricalYonedaWitness
-import OmegaTheory.Foundations.DFEigenvalueSpectrumCategoricalYonedaWitness
-import OmegaTheory.Foundations.BabyUniverseSpectrumCategoricalYonedaWitness
-import OmegaTheory.Foundations.TorsionBounceCategoricalYonedaWitness
-import OmegaTheory.Foundations.CKMFromYukawaCategoricalYonedaWitness
-import OmegaTheory.Foundations.DarkEnergyReservoirCategoricalYonedaWitness
-import OmegaTheory.Foundations.SeeleyDeWittCoeffsCategoricalYonedaWitness
-import OmegaTheory.Foundations.CutoffFunctionMomentsCategoricalYonedaWitness
-import OmegaTheory.Foundations.ConnesDFExtendedCategoricalYonedaWitness
-import OmegaTheory.Foundations.Cycle9NumericalFitsCategoricalYonedaWitness
-import OmegaTheory.Foundations.A4EssentialSectorsCategoricalYonedaWitness
-import OmegaTheory.Foundations.GeneralizedLaplacianCategoricalYonedaWitness
-import OmegaTheory.Foundations.HealingParamsCategoricalYonedaWitness
-import OmegaTheory.Foundations.PDGQuarkRatiosCategoricalYonedaWitness
-import OmegaTheory.Foundations.NashiraEmpiricalAnsatzCategoricalYonedaWitness
-import OmegaTheory.Foundations.PDGLeptonTripletCategoricalYonedaWitness
-import OmegaTheory.Capstones.SpectralActionCompositeYonedaCapstone
-import OmegaTheory.Capstones.CyclicCosmologyCompositeYonedaCapstone
-import OmegaTheory.Capstones.SMMassRatioCompositeYonedaCapstone
-import OmegaTheory.Capstones.PiHunchCompositeYonedaCapstone
-import OmegaTheory.Capstones.GravityGRCompositeYonedaCapstone
-import OmegaTheory.Capstones.SubstrateCosmologyCompositeYonedaCapstone
-import OmegaTheory.Capstones.StandardModelConnesBridgeCompositeYonedaCapstone
-import OmegaTheory.Capstones.MixingMatrixCompositeYonedaCapstone
-import OmegaTheory.Foundations.FullQuantumNumbersCategoricalYonedaWitness
-import OmegaTheory.Foundations.ConservedCurrentCategoricalYonedaWitness
-import OmegaTheory.Foundations.GaugeFactorsCategoricalYonedaWitness
-import OmegaTheory.Foundations.InflationEpochCategoricalYonedaWitness
-import OmegaTheory.Foundations.HpwHypothesisCategoricalYonedaWitness
-import OmegaTheory.Foundations.ObservedLambdaCategoricalYonedaWitness
-import OmegaTheory.Foundations.InformationSourceCategoricalYonedaWitness
-import OmegaTheory.Foundations.ApproxConservedTensorFieldCategoricalYonedaWitness
-import OmegaTheory.Foundations.ParticleWorldlineCategoricalYonedaWitness
-import OmegaTheory.Foundations.FRWHpwDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.BianchiIHpwDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.ErrorMaxwellFieldCategoricalYonedaWitness
-import OmegaTheory.Foundations.GaugeTransformationCategoricalYonedaWitness
-import OmegaTheory.Capstones.GaugeSectorCompositeYonedaCapstone
-import OmegaTheory.Foundations.HorizonRegionCategoricalYonedaWitness
-import OmegaTheory.Foundations.BlackHoleSpinInfoCategoricalYonedaWitness
-import OmegaTheory.Capstones.BlackHoleThermodynamicsCompositeYonedaCapstone
-import OmegaTheory.Foundations.GalacticMassProfileCategoricalYonedaWitness
-import OmegaTheory.Capstones.DarkSectorCompositeYonedaCapstone
-import OmegaTheory.Foundations.CosmologicalDensitiesCategoricalYonedaWitness
-import OmegaTheory.Foundations.CollapsingMatterCategoricalYonedaWitness
-import OmegaTheory.Foundations.KLEquilibriumDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.SmoothConnectionDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.SmoothMetricFieldRealCategoricalYonedaWitness
-import OmegaTheory.Capstones.ConservationHealingCompositeYonedaCapstone
-import OmegaTheory.Foundations.SubstrateRegionCategoricalYonedaWitness
-import OmegaTheory.Foundations.VacuumStaticSphericalDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.UnitarityLedgerCategoricalYonedaWitness
-import OmegaTheory.Capstones.HpwEliminationCompositeYonedaCapstone
-import OmegaTheory.Foundations.WormholePropertiesCategoricalYonedaWitness
-import OmegaTheory.Foundations.YukawaBundleCategoricalYonedaWitness
-import OmegaTheory.Foundations.SubstrateEntropyStateCategoricalYonedaWitness
-import OmegaTheory.Foundations.SaturatingWitnessCategoricalYonedaWitness
-import OmegaTheory.Foundations.SubstrateSpectralConnectionCategoricalYonedaWitness
-import OmegaTheory.Foundations.StandardModelFermionCategoricalYonedaWitness
-import OmegaTheory.Foundations.FourthGenerationCandidateCategoricalYonedaWitness
-import OmegaTheory.Foundations.DynamicalSnapshotSequenceCategoricalYonedaWitness
-import OmegaTheory.Foundations.ScaleFactorCategoricalYonedaWitness
-import OmegaTheory.Capstones.MatterSectorCompositeYonedaCapstone
-import OmegaTheory.Capstones.GaugeSectorMassesCompositeYonedaCapstone
-import OmegaTheory.Capstones.ConnesWeightDerivationCompositeYonedaCapstone
-import OmegaTheory.Capstones.FermionMassChainCompositeYonedaCapstone
-import OmegaTheory.Capstones.CyclicCosmologyAxisCompositeYonedaCapstone
-import OmegaTheory.Foundations.SpectralActionPrincipleCategoricalYonedaWitness
-import OmegaTheory.Foundations.SubstrateStateCategoricalYonedaWitness
-import OmegaTheory.Foundations.SnapshotSequenceCategoricalYonedaWitness
-import OmegaTheory.Foundations.LinearisedMetricDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.ConformalRicciScaffoldCategoricalYonedaWitness
-import OmegaTheory.Foundations.GravitationalFieldBackReactionCategoricalYonedaWitness
-import OmegaTheory.Foundations.SpectralActionAtSubstrateCutoffCategoricalYonedaWitness
-import OmegaTheory.Foundations.SpectralMomentsCategoricalYonedaWitness
-import OmegaTheory.Foundations.CommonSubstrateOriginCategoricalYonedaWitness
-import OmegaTheory.Foundations.GaugeBosonCategoricalYonedaWitness
-import OmegaTheory.Foundations.GaugeConnectionCategoricalYonedaWitness
-import OmegaTheory.Foundations.WorldlineCategoricalYonedaWitness
-import OmegaTheory.Foundations.WeakInteractionCategoricalYonedaWitness
-import OmegaTheory.Foundations.NonAbelianConnectionCategoricalYonedaWitness
-import OmegaTheory.Foundations.ElectroweakBundleCategoricalYonedaWitness
-import OmegaTheory.Foundations.WeakBosonMassFromErrorCategoricalYonedaWitness
-import OmegaTheory.Foundations.StrongCouplingFromSubstrateCategoricalYonedaWitness
-import OmegaTheory.Foundations.WeakCouplingFromSubstrateCategoricalYonedaWitness
-import OmegaTheory.Foundations.LieTraceCategoricalYonedaWitness
-import OmegaTheory.Foundations.GaugeSymmetryCategoricalYonedaWitness
-import OmegaTheory.Foundations.PhysicalAxiomLedgerCategoricalYonedaWitness
-import OmegaTheory.Foundations.FalsifiabilityPanelCategoricalYonedaWitness
-import OmegaTheory.Foundations.GrothendieckFibrationCategoricalYonedaWitness
-import OmegaTheory.Foundations.BetaDerivationCategoricalYonedaWitness
-import OmegaTheory.Foundations.BConnesDerivationCategoricalYonedaWitness
-import OmegaTheory.Foundations.RightHandedDoubletCategoricalYonedaWitness
-import OmegaTheory.Foundations.BoundaryBreakerPairCategoricalYonedaWitness
-import OmegaTheory.Foundations.QuarkRatioClosingBundleCategoricalYonedaWitness
-import OmegaTheory.Foundations.HealingMuDrivesInflationRateCategoricalYonedaWitness
-import OmegaTheory.Foundations.SymmetryBreakingDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.LatticeHilbertStructureCategoricalYonedaWitness
-import OmegaTheory.Foundations.HawkingEmissionEventCategoricalYonedaWitness
-import OmegaTheory.Foundations.QuarkEmpiricalAnsatzCategoricalYonedaWitness
-import OmegaTheory.Foundations.ReservoirBounceInterfaceCategoricalYonedaWitness
-import OmegaTheory.Foundations.InteractionCategoricalYonedaWitness
-import OmegaTheory.Foundations.DarkEnergyTransferEventCategoricalYonedaWitness
-import OmegaTheory.Foundations.DiracSquaredIsKGCategoricalYonedaWitness
-import OmegaTheory.Foundations.CyclicInflatonCategoricalYonedaWitness
-import OmegaTheory.Foundations.BabyUniverseCategoricalYonedaWitness
-import OmegaTheory.Foundations.BabyUniverseGravitonBackgroundCategoricalYonedaWitness
-import OmegaTheory.Foundations.LatticeHermitianOperatorsCategoricalYonedaWitness
-import OmegaTheory.Foundations.SourceEmittedPhotonCategoricalYonedaWitness
-import OmegaTheory.Foundations.SmoothMetricCategoricalYonedaWitness
-import OmegaTheory.Foundations.OmegaAlgebraCategoricalYonedaWitness
-import OmegaTheory.Foundations.SmallSiteCategoricalYonedaWitness
-import OmegaTheory.Foundations.OmegaBaseCoverCategoricalYonedaWitness
-import OmegaTheory.Foundations.TopQuarkPDG2024AnchorCategoricalYonedaWitness
-import OmegaTheory.Foundations.SpectralActionExpansionCategoricalYonedaWitness
-import OmegaTheory.Foundations.SpinHalfCategoricalYonedaWitness
-import OmegaTheory.Foundations.SpinOneCategoricalYonedaWitness
-import OmegaTheory.Foundations.SatisfiesExtendedUncertaintyCategoricalYonedaWitness
-import OmegaTheory.Foundations.IrreducibilityBundleCategoricalYonedaWitness
-import OmegaTheory.Foundations.SpectralTripleCategoricalYonedaWitness
-import OmegaTheory.Foundations.WeightedGraphCategoricalYonedaWitness
-import OmegaTheory.Foundations.ConstantFunctionCategoricalYonedaWitness
-import OmegaTheory.Foundations.H0CocycleCategoricalYonedaWitness
-import OmegaTheory.Foundations.MollifierDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.DetectorCategoricalYonedaWitness
-import OmegaTheory.Foundations.BoundaryFluxCategoricalYonedaWitness
-import OmegaTheory.Foundations.BoundaryRicciCategoricalYonedaWitness
-import OmegaTheory.Foundations.BimoduleStructureCategoricalYonedaWitness
-import OmegaTheory.Foundations.BridgeWitnessCategoricalYonedaWitness
-import OmegaTheory.Foundations.Cocycle1CategoricalYonedaWitness
-import OmegaTheory.Foundations.ErrorFormQuartetCategoricalYonedaWitness
-import OmegaTheory.Foundations.DiracOperatorFCategoricalYonedaWitness
-import OmegaTheory.Foundations.GaugeGroupFromAlgebraCategoricalYonedaWitness
-import OmegaTheory.Foundations.BoundedBianchiResultCategoricalYonedaWitness
-import OmegaTheory.Foundations.ConvolutionInterpolantCategoricalYonedaWitness
-import OmegaTheory.Foundations.FermionsFromAlgebraCategoricalYonedaWitness
-import OmegaTheory.Foundations.BHLifecycleCategoricalYonedaWitness
-import OmegaTheory.Foundations.HpwHypothesisStrictCategoricalYonedaWitness
-import OmegaTheory.Foundations.ErrorSU2BracketCategoricalYonedaWitness
-import OmegaTheory.Foundations.ErrorSU3BracketCategoricalYonedaWitness
-import OmegaTheory.Foundations.ForceUniversalInfoCostEventCategoricalYonedaWitness
-import OmegaTheory.Foundations.DoubletQuintetCategoricalYonedaWitness
-import OmegaTheory.Foundations.InformationPathCategoricalYonedaWitness
-import OmegaTheory.Foundations.RightHandedSingletCategoricalYonedaWitness
-import OmegaTheory.Foundations.HeatKernelExpansionCategoricalYonedaWitness
-import OmegaTheory.Foundations.LatticeSymmetryCategoricalYonedaWitness
-import OmegaTheory.Foundations.IsLorentzianCategoricalYonedaWitness
-import OmegaTheory.Foundations.SpinInformationSourceCategoricalYonedaWitness
-import OmegaTheory.Foundations.ModifiedInfoConservationCategoricalYonedaWitness
-import OmegaTheory.Foundations.SpinAsInfoLoopCategoricalYonedaWitness
-import OmegaTheory.Foundations.LatticeComplex2DCategoricalYonedaWitness
-import OmegaTheory.Foundations.IsHealingEquilibriumCategoricalYonedaWitness
-import OmegaTheory.Foundations.FermionHilbertCategoricalYonedaWitness
-import OmegaTheory.Foundations.DiracFromLatticeDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.KleinGordonFromLatticeDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.GravitySectorCategoricalYonedaWitness
-import OmegaTheory.Foundations.ErrorHopfAlgebraCategoricalYonedaWitness
-import OmegaTheory.Foundations.HealingFlowDrivesInflationCategoricalYonedaWitness
-import OmegaTheory.Foundations.PhotonWorldlineCategoricalYonedaWitness
-import OmegaTheory.Foundations.OrientedEdgeCategoricalYonedaWitness
-import OmegaTheory.Foundations.MatterSectorScaffoldCategoricalYonedaWitness
-import OmegaTheory.Foundations.OmegaAlgebraCohomologyClassCategoricalYonedaWitness
-import OmegaTheory.Foundations.PhotonRedshiftEventCategoricalYonedaWitness
-import OmegaTheory.Foundations.OmegaAlgebraRepCategoricalYonedaWitness
-import OmegaTheory.Foundations.PhotonShapiroWorldlineCategoricalYonedaWitness
-import OmegaTheory.Foundations.PhotonCoherenceWorldlineCategoricalYonedaWitness
-import OmegaTheory.Foundations.LinearisedSmoothMetricCategoricalYonedaWitness
-import OmegaTheory.Foundations.SubstrateBoundedTripletCategoricalYonedaWitness
-import OmegaTheory.Foundations.EDominationHypothesisCategoricalYonedaWitness
-import OmegaTheory.Foundations.OmegaSubstrateYonedaWitnessCategoricalYonedaWitness
-import OmegaTheory.Foundations.QuarkBetaConnesD_FBundleCategoricalYonedaWitness
-import OmegaTheory.Foundations.OmegaCapstoneV2BundleCategoricalYonedaWitness
-import OmegaTheory.Foundations.UnifiedCapstoneWitnessCategoricalYonedaWitness
-import OmegaTheory.Foundations.BandlimitedFieldCategoricalYonedaWitness
-import OmegaTheory.Foundations.YukawaFrameworkFromD_FCategoricalYonedaWitness
-import OmegaTheory.Foundations.StructureConstantSystemCategoricalYonedaWitness
-import OmegaTheory.Foundations.RicciComparisonDataCategoricalYonedaWitness
-import OmegaTheory.Foundations.SpinStatisticsPairCategoricalYonedaWitness
-import OmegaTheory.Foundations.PhotonSourcesMetricCategoricalYonedaWitness
-import OmegaTheory.Foundations.QmObservableIndexCategoricalYonedaWitness
-import OmegaTheory.Foundations.SnapshotCategoricalYonedaWitness
-import OmegaTheory.Foundations.ValuedCategoricalYonedaWitness
-import OmegaTheory.Foundations.BianchiMetricCategoricalYonedaWitness
-import OmegaTheory.Foundations.SliceIngredientsTripletCategoricalYonedaWitness
-import OmegaTheory.Capstones.MetaYonedaPaperBackboneCapstone
-import OmegaTheory.Foundations.BoundedSymmetryMetricCategoricalYonedaWitness
-import OmegaTheory.Foundations.ConformalSmoothMetricCategoricalYonedaWitness
-import OmegaTheory.Foundations.ErrorBoundedSmoothMetricPairCategoricalYonedaWitness
-import OmegaTheory.Capstones.MetaYonedaExpandedBackboneCapstone
 import OmegaTheory.Predictions.InformationSecondLawBundle
 import OmegaTheory.Predictions.GrothendieckWave3PostLandingBundle
 import OmegaTheory.Geometry.WeylGeneralIsolationBreak
@@ -5278,7 +5063,6 @@ import OmegaTheory.Predictions.RepairQuantumEnergyTheorem
 -- input. Equilibrium = no release. Answers: where does the repair-flow
 -- energy come from? → from the perturbation itself.
 import OmegaTheory.HealingFlow.PerturbationEnergy
-import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak
 import OmegaTheory.Predictions.MassDependentDecoherenceBridge
@@ -5290,38 +5074,9 @@ import OmegaTheory.Predictions.JarlskogInvariantPDGPrecisionSharpening
 import OmegaTheory.Predictions.QuarkLeptonMassHierarchyRefinement
 import OmegaTheory.Predictions.SubstrateIrrationalsDualityCompleteness
 import OmegaTheory.Predictions.PhaseVCohomologyClosure
-import OmegaTheory.Predictions.YonedaPhysicsCrossCompositions
 import OmegaTheory.Predictions.MathlibBridgesAtlas
 import OmegaTheory.Predictions.HermitePadeFamilyClosure
-import OmegaTheory.Capstones.AlgebraOmegaPhase789Capstone
-import OmegaTheory.Capstones.Cycle62FinalProgressionCapstone
-import OmegaTheory.Capstones.MetaYonedaSubstrateErrorAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaGaugeSectorAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaCosmologyAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaGrandFiveAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaConnesYukawaAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaGrandSixAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaConservationInformationAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaGrandSevenAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaMatterContentAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaGrandEightAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaWorldlineAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaGrandNineAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaLatticeDiscreteAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaGrandTenAxisCapstone
-import OmegaTheory.Capstones.MetaYonedaSelfCompositionTheorem
-import OmegaTheory.Foundations.ErrorLieBracketCategoricalYonedaWitness
-import OmegaTheory.Foundations.ErrorCoalgebraCategoricalYonedaWitness
-import OmegaTheory.Foundations.ErrorAntipodeCategoricalYonedaWitness
-import OmegaTheory.Foundations.ErrorLieAlgebraCategoricalYonedaWitness
-import OmegaTheory.Capstones.AlgebraOmegaPhase7LawsExpansion
-import OmegaTheory.Capstones.AlgebraOmegaPhase8ForceInteractionsExpansion
-import OmegaTheory.Capstones.AlgebraOmegaPhase9PrecisionExpansion
-import OmegaTheory.Capstones.AlgebraOmegaPhase789FinalClosure
 import OmegaTheory.Predictions.SMPrecision95BarPDGAnchors
-import OmegaTheory.Capstones.SMStructural95BarCapstone
-import OmegaTheory.Capstones.SM95BarYonedaBridges
-import OmegaTheory.Capstones.SM95BarTopQuarkBridge
 
 -- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
 -- Wave T4b session 12 — `LindemannPremiseRatProofPowerSumIntComplete.lean`.
@@ -5660,7 +5415,6 @@ import OmegaTheory.Capstones.PiTranscendenceConsequences
 -- Session 63 — Pi-Hunch UNCONDITIONAL capstone. The OmegaTheory thesis
 -- (π transcendental → π irrational → δ_comp(N) > 0 → QM uncertainty
 -- > ℏ/2) now Lean-core only. Lean core only.
-import OmegaTheory.Capstones.PiHunchUnconditionalCapstone
 
 -- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
 -- Session 64 — Algebraic consequences of π transcendental:
@@ -5682,7 +5436,6 @@ import OmegaTheory.Capstones.PiTranscendenceUniformConsequences
 -- Session 67 — 🏆 CYCLE 64 MASTER CAPSTONE 🏆 — single 12-conjunct
 -- paper-headline bundle aggregating all cycle-64 deliverables. Single
 -- citation point for any paper. Lean core only.
-import OmegaTheory.Capstones.Cycle64MasterCapstone
 
 -- (T-3 task #314 — single-thread hand-authored, 2026-04-29)
 -- T-3 PAPER HEADLINE — proton mass from Λ_QCD via empirical k=4.3.

@@ -4917,6 +4917,12 @@ import OmegaTheory.HealingFlow.YukawaCoupling
 -- so S_EH[flat] = 0 (vacuum). Phase 5 G-G self-interaction starts: this action
 -- is the source of the linearised Einstein equation Phase 4.1 derived.
 import OmegaTheory.Variational.EinsteinHilbertAction
+-- Lion's-Pride Phase 5.2 (dynamic /loop iteration 14, 2026-05-06):
+-- Perturbative Ricci scalar expansion R(η+h) = R₀ + R₁(h) + R₂(h,h) + R₃ + R₄ + O(h⁵).
+-- R₀ = 0 (flat Ricci-flat), R₁ ℝ-linear in h with concrete trace-based proxy formula.
+-- R₂, R₃, R₄ structural placeholders for Phase 5.3-5.5 cubic+quartic graviton vertex
+-- extraction. 5-conjunct headline composite. Foundation for graviton self-coupling.
+import OmegaTheory.Variational.RicciScalarPerturbative
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

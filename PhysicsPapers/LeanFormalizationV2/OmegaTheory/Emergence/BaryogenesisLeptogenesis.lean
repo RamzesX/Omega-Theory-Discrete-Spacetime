@@ -166,7 +166,6 @@ import OmegaTheory.Predictions.SterileNeutrinoFromFourthIrrational
 import OmegaTheory.Predictions.PMNSDeltaCPFit
 import OmegaTheory.Predictions.CKMJarlskogFit
 import OmegaTheory.Emergence.ConnesCalibrationAndFourChannels
-import OmegaTheory.Emergence.PiHunchQuantitative
 import OmegaTheory.Emergence.SU3ColorAndNonAbelianF
 import OmegaTheory.Irrationality.Approximations
 import Mathlib.Tactic
@@ -180,7 +179,6 @@ open OmegaTheory.Predictions.SterileNeutrinoFromFourthIrrational
 open OmegaTheory.Predictions.PMNSDeltaCPFit
 open OmegaTheory.Predictions.CKMJarlskogFit
 open OmegaTheory.Emergence.ConnesCalibrationAndFourChannels
-open OmegaTheory.Emergence.PiHunchQuantitative
 open OmegaTheory.Emergence.SU3ColorAndNonAbelianF
 
 /-! ## §1. THEOREM 33.1 — `baryogenesis_from_sakharov_plus_catalanG`
@@ -515,55 +513,21 @@ number of ACTIVE (color-carrying) channels, which OmegaTheory
 derives from the three-irrational-plus-sterile structure (Tiaki
 cycle-29 + Zosma cycle-6). -/
 
-/-- **THEOREM 33.4 — Three generations necessary from gauge-anomaly
-    structure**.
-
-    Exactly three active (color-carrying) generations, and Catalan-G
-    (the 4th irrational) forced into the sterile (colorless) slot.
-
-    This is a paper-citable alias of Errai cycle-31
-    `three_generations_necessary_from_three_active_channels`, with
-    the docstring reframing the count as "necessary from gauge
-    anomaly cancellation".  The underlying Lean content:
-
-      * `Fintype.card SU3ColorChannel = 3` (Tiaki cycle-29);
-      * `Function.Bijective channelToGeneration4` (Matar cycle-27);
-      * `channelToGeneration4 .catalan_g = 3` (Matar cycle-27).
-
-    The physical reading: the SU(3) color gauge anomaly cancellation
-    (which requires equal numbers of left-handed and right-handed
-    quarks in complex conjugate representations) combined with the
-    SM hypercharge assignments FORBIDS a 4th active generation with
-    non-standard hypercharges.  The Catalan-G channel avoids this
-    constraint by being STRUCTURALLY colorless (sterile), hence
-    satisfying the "no 4th active generation" anomaly bound while
-    providing the 4th irrational channel for dark-matter
-    physics.
-
-    Composition:
-      * Tiaki cycle-29 `card_SU3ColorChannel_eq_three`,
-      * Matar cycle-27 `channelToGeneration4_bijective`,
-      * Matar cycle-27 `channelToGeneration4_catalan_g_eq_three`,
-      * Errai cycle-31 `three_generations_necessary_from_three_active_channels`. -/
-theorem three_generations_necessary_from_gauge_anomaly_cancellation :
-    Fintype.card SU3ColorChannel = 3 ∧
-    Function.Bijective channelToGeneration4 ∧
-    channelToGeneration4 .catalan_g = (3 : Fin 4) :=
-  three_generations_necessary_from_three_active_channels
+-- §4 (Lion's-Pride 2026-05-05) — DELETED:
+-- theorem three_generations_necessary_from_gauge_anomaly_cancellation removed
+-- 2026-05-05 (Lion's-Pride trash purge) — depended on deleted Errai cycle-31
+-- alias `three_generations_necessary_from_three_active_channels`.
+-- The underlying gauge anomaly cancellation is in AnomalyCancellation.lean
+-- (KEEP keystone). `Fintype.card SU3ColorChannel = 3` is preserved as
+-- `card_SU3ColorChannel_eq_three` and re-aliased below.
 
 /-- **Compact alias** — just the cardinality statement. -/
 theorem exactly_three_color_generations_from_anomaly :
     Fintype.card SU3ColorChannel = 3 :=
   card_SU3ColorChannel_eq_three
 
-/-- **Sterile (Catalan-G) is colorless — gauge-anomaly reading**.
-    Paper-citable alias of Errai cycle-31
-    `sterile_colorless_from_topology`, same propositional content
-    under a gauge-anomaly-cancellation label. -/
-theorem sterile_colorless_from_anomaly_cancellation :
-    ¬ ∃ (p : SU3ColorChannel),
-        p.val = IrrationalChannel4.catalan_g :=
-  sterile_colorless_from_topology
+-- theorem sterile_colorless_from_anomaly_cancellation removed 2026-05-05
+-- (Lion's-Pride trash purge) — depended on deleted Errai cycle-31 alias.
 
 /-! ## §5. Cycle-33 paper bundle — four-conjunct headline -/
 
@@ -589,12 +553,10 @@ theorem baryogenesis_leptogenesis_paper_bundle (N : ℕ) :
     (|eta_B_substrate N - baryonPhotonRatio_PDG| < 1e-9) ∧
     (0 < epsilon_sterile_asymmetry) ∧
     (0 < BR_substrate N) ∧
-    (Fintype.card SU3ColorChannel = 3 ∧
-      Function.Bijective channelToGeneration4 ∧
-      channelToGeneration4 .catalan_g = (3 : Fin 4)) := by
+    (Fintype.card SU3ColorChannel = 3) := by
   refine ⟨?_, epsilon_sterile_asymmetry_pos,
           BR_substrate_pos N,
-          three_generations_necessary_from_gauge_anomaly_cancellation⟩
+          card_SU3ColorChannel_eq_three⟩
   exact (baryogenesis_from_sakharov_plus_catalanG N).2.2.2
 
 /-- **Three-conjunct compact headline** — the core predictions of

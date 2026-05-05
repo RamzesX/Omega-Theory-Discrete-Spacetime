@@ -97,7 +97,6 @@ import OmegaTheory.Foundations.OmegaAlgebra
 import OmegaTheory.Foundations.OmegaAlgebraCohomologyWitnesses
 import OmegaTheory.Foundations.OmegaAlgebraCohomologyWitnessesLesath
 import OmegaTheory.Predictions.PMNSDeltaCPFit
-import OmegaTheory.Predictions.CPViolationPhaseAbsoluteP3o
 
 namespace OmegaTheory.Foundations
 

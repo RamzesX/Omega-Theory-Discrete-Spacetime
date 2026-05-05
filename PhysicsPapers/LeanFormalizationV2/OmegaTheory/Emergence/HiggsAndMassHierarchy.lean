@@ -135,7 +135,6 @@ import OmegaTheory.Emergence.HiggsVEVSubstrate
 import OmegaTheory.Emergence.ElectroweakUnification
 import OmegaTheory.Emergence.Inflation
 import OmegaTheory.Emergence.KoideRelation
-import OmegaTheory.Emergence.PiHunchQuantitative
 import OmegaTheory.Emergence.DarkEnergyToBabyUniverse
 import OmegaTheory.Emergence.ConnesCalibrationAndFourChannels
 import OmegaTheory.Predictions.NumericalFitsCycle9
@@ -153,7 +152,6 @@ open OmegaTheory.Emergence.ErrorGaugeField
 open OmegaTheory.Emergence.ErrorGaugeSU2
 open OmegaTheory.Emergence.SymmetryBreaking
 open OmegaTheory.Emergence.KoideRelation
-open OmegaTheory.Emergence.PiHunchQuantitative
 open OmegaTheory.Emergence.ConnesCalibrationAndFourChannels
 open OmegaTheory.Predictions.NumericalFitsCycle9
 open OmegaTheory.Predictions.TopQuarkMassFit
@@ -319,66 +317,13 @@ theorem higgs_mass_squared_substrate_headline :
 
 Top-quark to electron mass ratio bracketed to 10% around PDG central. -/
 
-/-- **Top-quark mass in eV** (from Phact's GeV PDG central,
-    converted by `1e9`). -/
-noncomputable def topQuarkMass_eV : ℝ := topQuarkMassGeV * 1e9
-
-/-- The top-quark mass in eV is strictly positive. -/
-theorem topQuarkMass_eV_pos : 0 < topQuarkMass_eV := by
-  unfold topQuarkMass_eV
-  exact mul_pos topQuarkMassGeV_pos (by norm_num)
-
-/-- The top-quark mass in eV equals 173.34 × 10⁹. -/
-theorem topQuarkMass_eV_eq : topQuarkMass_eV = 173.34 * 1e9 := by
-  unfold topQuarkMass_eV topQuarkMassGeV; rfl
-
-/-- The electron mass in eV equals 0.51099895 × 10⁶. -/
-theorem m_e_eV_eq : m_e_eV = 0.51099895 * 1e6 := by
-  unfold m_e_eV m_e; ring
-
-/-- **Numerical bound on the top-to-electron ratio** — lower bound. -/
-theorem topOverElectron_gt_3e5 :
-    3 * 10^5 * m_e_eV < topQuarkMass_eV := by
-  rw [topQuarkMass_eV_eq, m_e_eV_eq]
-  norm_num
-
-/-- **Numerical bound on the top-to-electron ratio** — upper bound. -/
-theorem topOverElectron_lt_4e5 :
-    topQuarkMass_eV < 4 * 10^5 * m_e_eV := by
-  rw [topQuarkMass_eV_eq, m_e_eV_eq]
-  norm_num
-
-/-- **THEOREM 35.3 — `fermion_mass_hierarchy_spans_12_orders`.**
-
-    The top-quark-to-electron mass ratio is bracketed to approximately
-    10% around the PDG central `m_t / m_e ≈ 3.39 · 10⁵`:
-
-        `3 · 10⁵ · m_e_eV < topQuarkMass_eV < 4 · 10⁵ · m_e_eV`.
-
-    Numerically: `173.34 · 10⁹ eV / (0.51099895 · 10⁶ eV) ≈ 3.39218 · 10⁵`,
-    comfortably inside the bracket.  This establishes the **Pi-Hunch
-    heavy-to-light span**: the charged fermion sector's mass tower
-    covers ~5.5 orders of magnitude from `m_e = 0.511 MeV` to
-    `m_t = 173.34 GeV`.
-
-    When the sterile-ν contribution is added (Errai cycle-31
-    `lepton_mass_ordering_from_pi_hunch`: `m_sterile < 10⁻⁵ eV`), the
-    full matter-sector hierarchy spans ~12 orders of magnitude, from
-    `< 10⁻⁵ eV` (sterile ν) up to `1.73 · 10¹¹ eV` (top quark).
-
-    Composition: Phact's `topQuarkMassGeV` and Errai's `m_e_eV`,
-    stitched through eV-unit conversions. -/
-theorem fermion_mass_hierarchy_spans_12_orders :
-    3 * 10^5 * m_e_eV < topQuarkMass_eV ∧
-    topQuarkMass_eV < 4 * 10^5 * m_e_eV :=
-  ⟨topOverElectron_gt_3e5, topOverElectron_lt_4e5⟩
-
-/-- **Compact headline**: the top-to-electron ratio is in the `3-4 · 10⁵`
-    bracket. -/
-theorem top_electron_ratio_headline :
-    3 * 10^5 * m_e_eV < topQuarkMass_eV ∧
-    topQuarkMass_eV < 4 * 10^5 * m_e_eV :=
-  fermion_mass_hierarchy_spans_12_orders
+-- §3 (Lion's-Pride 2026-05-05 cleanup) — DELETED: top/electron PDG-ratio
+-- numerology section. The original §3 defined `topQuarkMass_eV := topQuarkMassGeV * 1e9`
+-- and proved `3·10⁵·m_e_eV < topQuarkMass_eV < 4·10⁵·m_e_eV` via norm_num on
+-- hand-picked PDG literals. Per Agent 1 audit (4-agent fleet 2026-05-05),
+-- this is tautology — the bracket [3e5, 4e5] was chosen to contain
+-- 173.34 GeV / 0.511 MeV ≈ 3.39e5. KEEP §1 (substrate Higgs ceiling identity)
+-- and §4 (Dirac/Majorana classifier) below.
 
 /-! ## §4. THEOREM 35.4 — `dirac_vs_majorana_from_bounce_topology`
 
@@ -527,8 +472,6 @@ theorem higgs_and_mass_hierarchy_paper_bundle :
      0 < higgs_mass_sq_PDG ∧
      |higgs_mass_sq_substrate - higgs_mass_sq_PDG| < 125 ∧
      0 < higgs_self_coupling_PDG) ∧
-    (3 * 10^5 * m_e_eV < topQuarkMass_eV ∧
-     topQuarkMass_eV < 4 * 10^5 * m_e_eV) ∧
     ((massKindOfChannel4 .pi    = .dirac ∧
       massKindOfChannel4 .e     = .dirac ∧
       massKindOfChannel4 .sqrt2 = .dirac) ∧
@@ -539,7 +482,6 @@ theorem higgs_and_mass_hierarchy_paper_bundle :
       channelToGeneration4 .catalan_g ≠ channelToGeneration4 .sqrt2)) :=
   ⟨higgs_vev_substrate_close_to_PDG,
    higgs_mass_from_self_coupling_derived,
-   fermion_mass_hierarchy_spans_12_orders,
    dirac_vs_majorana_from_bounce_topology⟩
 
 /-- **Compact three-conjunct headline** — Higgs VEV exact + m_H² tight
@@ -578,13 +520,10 @@ theorem higgs_mass_hierarchy_first_bundle_in_V2 :
     ∃ (N : ℕ) (Λ : ℝ), 0 < Λ ∧
       |higgs_vev_substrate N - higgsVEV_PDG| < 1 ∧
       |higgs_mass_sq_substrate - higgs_mass_sq_PDG| < 125 ∧
-      (3 * 10^5 * m_e_eV < topQuarkMass_eV ∧
-       topQuarkMass_eV < 4 * 10^5 * m_e_eV) ∧
       massKindOfChannel4 .catalan_g = .majorana :=
   ⟨0, 1, by norm_num,
    higgs_vev_substrate_close_to_PDG 0,
    higgs_mass_sq_close_to_PDG,
-   fermion_mass_hierarchy_spans_12_orders,
    rfl⟩
 
 end OmegaTheory.Emergence.HiggsAndMassHierarchy

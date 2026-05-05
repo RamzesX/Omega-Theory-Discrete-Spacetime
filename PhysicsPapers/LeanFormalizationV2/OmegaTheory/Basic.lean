@@ -1820,7 +1820,6 @@ import OmegaTheory.Predictions.FrontierWave4
 -- `HiggsMassReconciliation_identity` (abstract algebraic identity
 -- ∀ m_H_sq lam v, m_H² = 2 λ v² → m_H²/2 = λ v², universally quantified,
 -- closed by `linarith`).  Packaged as 3-conjunct `wave5_C_enrichments_capstone`.
-import OmegaTheory.Predictions.Wave5Enrichments
 
 -- AlphaStrongAtMZFit (2026-04-20 cycle-14 target 2/6): strong coupling
 -- at the Z pole `α_s(m_Z²) = 0.1180 ± 0.0009` (PDG 2024 world average)
@@ -3222,7 +3221,6 @@ import OmegaTheory.Emergence.FermionContent.RightHandedDoublet
 -- + catalan_g_is_colorless) + Matar (ConnesCalibrationAndFourChannels
 -- channelToGeneration4_bijective + channelToGeneration4_catalan_g_eq_three).
 -- 0 sorry, 0 new axioms, 0 new `Prop := True`.
-import OmegaTheory.Emergence.PiHunchQuantitative
 
 -- Interactions as subsystem boundary crossings — cycle-32 formal
 -- bundle (Achird's Q3 closure, Tejat 2026-04-21, cycle-32 all four
@@ -3461,7 +3459,6 @@ import OmegaTheory.Emergence.CrossCorpusTests
 -- (Zosma sterile_window_upper) + BaryonPhotonRatioFit (Alioth
 -- baryonPhotonRatio_PDG) + PiHunchQuantitative (Errai m_e_eV).
 -- 0 sorry, 0 new axioms, 0 new `Prop := True`.
-import OmegaTheory.Emergence.MatterAsymmetryAndNoNewPhysics
 
 -- OmegaTheoryGrandCapstoneV2 (Polaris 2026-04-21, cycle-43 FINAL CAPSTONE,
 -- 4 theorems 57-60):
@@ -4760,7 +4757,6 @@ import OmegaTheory.Emergence.QmBridgePaperCapstone
 -- [0.1171, 0.1189]. 6 thm + 2 defs, Lean core only. Honest narrower-true:
 -- briefing's literal RG path overshoots; Ceres' inverse-RG calibration solves
 -- backward at Λ_QCD=87.6 MeV exact-hit.
-import OmegaTheory.Predictions.AlphaSAtMZStrictPDGPaperBundle
 
 -- Hale-Bopp (C/1995 O1 long-period comet, naked-eye 1996-97 — fresh name) —
 -- cycle-60 W8: `ckm_vus_vcb_absolute_substrate_paper_bundle`. Plan A
@@ -4890,7 +4886,6 @@ import OmegaTheory.Predictions.FermionGenerationCompositeBaseSiteWitness
 
 -- W2 Yoneda + L4 double-witnesses
 import OmegaTheory.Predictions.LandauerConservationBridge
-import OmegaTheory.Predictions.BekensteinBHBridge
 import OmegaTheory.Foundations.ErrorBoundYonedaWitness
 import OmegaTheory.Foundations.ErrorBoundedSmoothMetricDoubleWitness
 import OmegaTheory.Predictions.SubstrateIrrationalsDualityFromBoundaryBreakers
@@ -4902,11 +4897,9 @@ import OmegaTheory.Foundations.BlackHoleYonedaDoubleWitness
 import OmegaTheory.Emergence.FermionContentIsolationBreak
 import OmegaTheory.Predictions.GravitonEnsembleBoundLIGOIsolationBreak
 import OmegaTheory.HealingFlow.HealingFlowBHIsolationBreak
-import OmegaTheory.Emergence.FermionQuantumNumbersIsolationBreak
 import OmegaTheory.Foundations.ErrorGaugeSU2IsolationBreak
 
 -- W4 sector closures
-import OmegaTheory.Emergence.HiggsMassHierarchyInbound
 import OmegaTheory.Conservation.NoetherInformationTorsionInbound
 import OmegaTheory.Emergence.DarkEnergyToBabyUniverseInbound
 import OmegaTheory.Emergence.ElectroweakUnificationPaperBundleInbound
@@ -4950,7 +4943,6 @@ import OmegaTheory.Foundations.AFIrreducibilityFirstAlgebraModuleBridgeInbound
 -- W3-overflow + W5-overflow + W-tail
 import OmegaTheory.Foundations.ErrorFormsIsolationBreak
 import OmegaTheory.Emergence.BlackHoleFormationIsolationBreak
-import OmegaTheory.Predictions.RotationCurvesIsolationBreak
 import OmegaTheory.Predictions.NeutrinoLessDoubleBetaBoundIsolationBreak
 import OmegaTheory.Foundations.CechCocycleConstantsIrrationalsCompatibility
 import OmegaTheory.HealingFlow.IsHealingFlowYonedaWitness

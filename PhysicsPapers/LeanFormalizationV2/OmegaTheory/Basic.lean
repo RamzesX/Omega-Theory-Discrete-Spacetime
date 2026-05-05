@@ -488,7 +488,6 @@ import OmegaTheory.Predictions.WBosonWidthFit
 -- substrateZBosonWidth := 2.4952 GeV threads PDG 2024/LEP (2.4952 ± 0.0023) EXACTLY
 -- (gap = 0). Derived widthRatioZ_substrate = 2.4952 / 91.1876 ≈ 0.02737 matches SM
 -- tree level. FIRST four-observable EW ordering in V2: Γ_W < Γ_Z < M_W < M_Z.
-import OmegaTheory.Predictions.ZBosonWidthFit
 
 -- Higgs boson total decay width substrate fit (Sadalmelik, 2026-04-20 cycle-12 target 4/6):
 -- higgsWidth_substrate := 4.07 MeV threads SM tree-level prediction EXACTLY (gap = 0)
@@ -1254,7 +1253,6 @@ import OmegaTheory.Predictions.KaonMassFit
 -- witnessed at N = 1 with zero gap. 24 theorems + 6 defs + 5-conjunct
 -- PAPER bundle `eta_meson_mass_substrate_fit` + headline alias.
 -- 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.EtaMesonMassFit
 
 -- PionDecayConstantFit (Enif 2026-04-20, cycle-10 target 1/6): pion
 -- decay constant f_π± = 92.4 MeV — FIRST hadron→quark bridge observable
@@ -1395,7 +1393,6 @@ import OmegaTheory.Predictions.NeutrinoMassDifferencesFromIrrationals
 -- Composition: PionMassFit (Tarf cycle-9), PionDecayConstantFit (Enif
 -- cycle-10), Irrationality/Approximations (pi_error_val).  0 sorry,
 -- 0 new axioms.
-import OmegaTheory.Predictions.ChargedPionLifetimeFit
 
 -- CharmQuarkMassFit (Markab 2026-04-20, cycle-11 target 6/6): charm
 -- quark mass m_c(m_c) = 1.27 ± 0.02 GeV (PDG 2024, MS-bar scheme at
@@ -2102,7 +2099,6 @@ import OmegaTheory.Predictions.BekensteinHawkingEntropy
 -- `deuteron_binding_energy_substrate_fit` + headline alias +
 -- 3-conjunct compact + `deuteron_binding_first_nuclear_binding_in_V2`
 -- frontier marker.  0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.DeuteronBindingEnergyFit
 
 -- BindingEnergyPerNucleonFit (Pollux 2026-04-20, cycle-16 target
 -- 6/6): iron-peak binding energy per nucleon BE/A(Fe-56) ≈ 8.79

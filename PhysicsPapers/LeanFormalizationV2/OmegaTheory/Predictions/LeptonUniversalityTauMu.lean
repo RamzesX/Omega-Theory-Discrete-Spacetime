@@ -90,7 +90,6 @@ import OmegaTheory.Irrationality.Uncertainty
 import OmegaTheory.Irrationality.Approximations
 import OmegaTheory.Predictions.TauGminus2SubstrateFit
 import OmegaTheory.Predictions.MuonGminus2SubstrateFit
-import OmegaTheory.Predictions.FermiConstantFit
 import OmegaTheory.Emergence.ErrorGaugeSU2
 import Mathlib.Tactic
 

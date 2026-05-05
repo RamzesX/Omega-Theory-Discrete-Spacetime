@@ -4944,6 +4944,15 @@ import OmegaTheory.Foundations.HeatKernelCoefficients
 -- Headline: heat_kernel_bochner_form_report (5-conjunct). Phase 6 NCG
 -- now 3/5 sub-phases complete.
 import OmegaTheory.Foundations.HeatKernelBochnerForm
+-- Lion's-Pride Phase 6.4 (dynamic /loop iteration 23, 2026-05-06):
+-- Truncated spectral-action Taylor expansion:
+-- truncatedHeatTrace T N t := Σ_{k=0..N} (-t)^k/k! · a_k(T).
+-- Properties: zero-order = n, at t=0 always = n, first-order =
+-- n − t·a_1, succ recursion (truncation step). Foundation for the
+-- continuum spectral action S = Tr(f(D/Λ)) heat-kernel asymptotic.
+-- Headline: spectral_action_truncated_report (4-conjunct).
+-- Phase 6 NCG now 4/5 sub-phases.
+import OmegaTheory.Foundations.SpectralActionTruncated
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

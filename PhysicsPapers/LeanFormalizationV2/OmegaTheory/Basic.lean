@@ -5441,19 +5441,16 @@ import OmegaTheory.Capstones.PiTranscendenceUniformConsequences
 -- T-3 PAPER HEADLINE — proton mass from Λ_QCD via empirical k=4.3.
 -- 6-conjunct paper-citable closure over existing ProtonMassFromLambdaQCD
 -- scaffolding. Lean core only.
-import OmegaTheory.Predictions.T3_ProtonMass_PaperHeadline_Complete
 
 -- (SM headlines master — single-thread hand-authored, 2026-04-29)
 -- 🚨🚨🚨🚨 SM PAPER-HEADLINES MASTER CAPSTONE 🚨🚨🚨🚨 — 4-conjunct Yoneda
 -- hub bundling T-1 + T-2 + T-3 + T-6 paper-citable closures into a single
 -- citation point for the SM precision sector. Lean core only.
-import OmegaTheory.Predictions.SM_Headlines_MasterCapstone
 
 -- (T-1 top quark frontier — single-thread hand-authored, 2026-04-29)
 -- T-1 TOP QUARK PAPER HEADLINE — m_t = 173.34 GeV PDG anchor + π-heaviest
 -- substrate ceiling. Counterpart to T-1 Step 5 which covered 5 LIGHT
 -- quarks. Lean core only.
-import OmegaTheory.Predictions.T1_TopQuark_PaperHeadline_Complete
 
 -- (T-5 D.7 atom discharge — single-thread hand-authored, 2026-04-29)
 -- T-5 Phase 7 D.7 BLOCK A — setup: contradiction skeleton + violator

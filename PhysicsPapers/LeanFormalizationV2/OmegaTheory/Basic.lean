@@ -496,7 +496,6 @@ import OmegaTheory.Predictions.ZBosonWidthFit
 -- triplet Γ_W/Γ_Z/Γ_H; FIRST five-observable EW hierarchy Γ_H < Γ_W < Γ_Z < M_W < M_Z
 -- in V2. π-channel envelope (b-Yukawa). Composes Alpheratz Γ_W + Hamal Γ_Z + Biham M_W
 -- + Hassaleh M_Z + Wasat m_H_PDG.
-import OmegaTheory.Predictions.HiggsWidthFit
 
 -- Proton-photon coupling under gravity via substrate info-cost
 -- (Bellatrix, 2026-04-19). First compositional bridge between EM
@@ -935,7 +934,6 @@ import OmegaTheory.Predictions.DarkPhotonCouplingFromDeltaComp
 -- V2. 25 theorems + 8 defs + 5-conjunct paper bundle + 3-conjunct
 -- headline + existential + frontier marker. Composes AlphaEM (Hadar)
 -- + AlphaEMAtMZFit (Dabih) + Approximations. 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.PeskinTakeuchiTFit
 
 import OmegaTheory.Matter.GenerationCount
 import OmegaTheory.Matter.KoideFromThreeIrrationals
@@ -1441,7 +1439,6 @@ import OmegaTheory.Predictions.CharmQuarkMassFit
 -- (Spica middle-gen), Predictions/CharmQuarkMassFit (Markab 2m_c reference
 -- + shape rfl), Predictions/KaonMassFit (Menkar e-channel template).
 -- 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.JpsiCharmoniumMassFit
 
 -- BottomQuarkMassFit (Deneb 2026-04-20, cycle-12 target 1/6): bottom
 -- quark mass m_b(m_b) = 4.18 ± 0.03 GeV (PDG 2024, MS-bar scheme at
@@ -1549,7 +1546,6 @@ import OmegaTheory.Predictions.NeutronLifetimeFit
 -- (Wasat protonMass_PDG = 938.272) + NeutronLifetimeFit (Scheat
 -- τ_n Fermi-Sargent) + ChargedPionLifetimeFit (Alhena parallel
 -- hadronic bridge).  0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.AxialCouplingGAFit
 
 -- CKMJarlskogFit (Kraz 2026-04-20, cycle-12 target 5/6): CKM
 -- Jarlskog invariant J = Im(V_us V_cb V_ub* V_cs*) ≈ 3.08 × 10⁻⁵
@@ -1601,7 +1597,6 @@ import OmegaTheory.Predictions.CKMJarlskogFit
 -- `muon_lifetime_substrate_fit` + headline alias + frontier
 -- marker `muon_lifetime_first_purely_leptonic_decay_rate_template`.
 -- 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.MuonLifetimeFit
 
 -- PMNSDeltaCPFit (Rotanev 2026-04-20, cycle-12 target 6/6): PMNS
 -- Dirac CP-violating phase δ_CP ≈ -1.601 rad (NuFIT 5.3 best fit, NO
@@ -1669,7 +1664,6 @@ import OmegaTheory.Predictions.CKMVubFit
 -- Composes CKMVcbFit (Ankaa) + CKMVubFit (Peacock) + KaonMassFit
 -- (Menkar shape rfl) + CabibboAngleFit (Mekbuda) + Approximations.
 -- 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.CKMVtsFit
 
 -- UpQuarkMassFit (Alderamin 2026-04-20, cycle-13 target 1/6): up
 -- quark mass m_u(2 GeV) = 2.16 +0.49/-0.26 MeV (PDG 2024, MS-bar at
@@ -1874,7 +1868,6 @@ import OmegaTheory.Predictions.BaryonDensityFit
 -- Approximations + GenerationMap.  21 theorems + 5 defs + 5-conjunct
 -- paper bundle + headline alias + 3-conjunct compact.  0 sorry,
 -- 0 new axioms.
-import OmegaTheory.Predictions.CKMVtdFit
 
 
 -- MatterDensityOmegaM (Mira 2026-04-20, cycle-15 target 3/6): FIRST
@@ -2058,7 +2051,6 @@ import OmegaTheory.Predictions.BekensteinHawkingEntropy
 -- magnetic-moment fit in V2; formalises proton-not-pointlike and
 -- pointlike-electron vs composite-proton magnetic hierarchy.
 -- Zavijava (β Virginis, "the corner/angle"). 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.ProtonMagneticMomentFit
 
 -- NeutronMagneticMomentFit (Avior 2026-04-20, cycle-16 target 2/6):
 -- neutron magnetic moment `μ_n / μ_N = -1.91304273 ± 4.5e-7` (PDG
@@ -2086,7 +2078,6 @@ import OmegaTheory.Predictions.ProtonMagneticMomentFit
 -- marker `first_negative_substrate_fit_in_V2`. Composition:
 -- Approximations + GenerationMap + NeutronLifetimeFit (Scheat) +
 -- KaonMassFit (Menkar e-channel shape rfl). 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.NeutronMagneticMomentFit
 
 -- DeuteronBindingEnergyFit (Tarazed 2026-04-20, cycle-16 target 4/6):
 -- FIRST NUCLEAR BINDING theorem in OmegaTheory V2.  Deuteron binding
@@ -2138,7 +2129,6 @@ import OmegaTheory.Predictions.DeuteronBindingEnergyFit
 -- `first_nuclear_cohesion_ordering_in_V2` frontier marker +
 -- `iron_peak_is_stellar_endpoint` + falsifiability witness.
 -- 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.BindingEnergyPerNucleonFit
 
 -- PionNucleonCouplingFit (Schedar 2026-04-20, cycle-16 target 5/6):
 -- pion-nucleon coupling `g_πNN ≈ 13.05 ± 0.1` (Stoks et al. 1993,
@@ -2166,7 +2156,6 @@ import OmegaTheory.Predictions.BindingEnergyPerNucleonFit
 -- heavy-gen) + PionDecayConstantFit (Enif f_π) +
 -- ProtonMassFromLambdaQCD (m_p) + Mathlib Pi.Bounds.  0 sorry,
 -- 0 new axioms.
-import OmegaTheory.Predictions.PionNucleonCouplingFit
 
 -- RhoMesonMassFit (Rasalgethi 2026-04-20, cycle-17 target 1/6): ρ(770)
 -- vector meson mass 775.26 MeV (PDG 2024) as EXACT-HIT substrate fit
@@ -2182,7 +2171,6 @@ import OmegaTheory.Predictions.PionNucleonCouplingFit
 -- Composes PionMassFit (Tarf) + KaonMassFit (Menkar) + EtaMesonMassFit
 -- (Nunki) + ProtonMassFromLambdaQCD + GenerationMap (Spica) +
 -- Approximations (pi_error_val). 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.RhoMesonMassFit
 
 -- UpsilonBottomoniumMassFit (Nashira 2026-04-20, cycle-17 target 3/6):
 -- Υ(1S) bottomonium mass m_Υ = 9460.30 ± 0.26 MeV (PDG 2024) — the
@@ -2207,7 +2195,6 @@ import OmegaTheory.Predictions.RhoMesonMassFit
 -- Composes Approximations (pi_error_val) + GenerationMap (Spica
 -- heavy-gen) + BottomQuarkMassFit (Deneb rfl-bridge shape + m_b
 -- bound). 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.UpsilonBottomoniumMassFit
 
 -- BMesonMassFit (Nusakan 2026-04-20, cycle-17 target 4/6): neutral
 -- B meson mass m_{B⁰} = 5279.66 MeV (PDG 2024, ±0.12 MeV 1σ) — bd̄
@@ -2238,7 +2225,6 @@ import OmegaTheory.Predictions.UpsilonBottomoniumMassFit
 -- DownQuarkMassFit (Anuradha light-partner) + KaonMassFit
 -- (Menkar) + EtaMesonMassFit (Nunki) + PionMassFit (Tarf).
 -- 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.BMesonMassFit
 
 -- RhoParameterFit (Caph 2026-04-20, cycle-18 target 1/6): electroweak
 -- ρ parameter `ρ = 1.00031 ± 0.00019` (PDG 2024 EW precision fit) as
@@ -2261,7 +2247,6 @@ import OmegaTheory.Predictions.BMesonMassFit
 -- cos_theta_W_substrate, sin2_theta_W_substrate,
 -- mW_eq_mZ_times_cosThetaW_substrate) + FermiConstantFit (Arcturus
 -- anchor) + Approximations. 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.RhoParameterFit
 
 -- AlphaSRunningBeta0Fit (Menkib 2026-04-20, cycle-18 target 5/6): QCD
 -- β-function one-loop coefficient `β₀(n_f) = 11 − (2/3)·n_f` as the
@@ -4311,7 +4296,6 @@ import OmegaTheory.Predictions.TauLeptonMassPaperBundle
 -- Mizar c44 + Hadar c14. Renamed to `_composed` to avoid collision with
 -- Europa's `fine_structure_alpha_zero_paper_bundle`. 2 thms (1 headline +
 -- 1 frontier), Lean core only.
-import OmegaTheory.Predictions.FineStructureAlphaZeroPaperBundle
 
 -- Hydra (Pluto-II nine-headed serpent moon, fits Scorpius/Hydra theme) —
 -- cycle-59 W11: `lindemann_galois_conjugation_step_skeleton`. Plan B

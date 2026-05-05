@@ -5226,6 +5226,10 @@ import OmegaTheory.Conservation.InformationStressEnergyConstructor
 -- Extends Tensor/ValuedCurvature.lean::riemann_perturbation_bound to
 -- Ricci via 4-fold contraction. Closes inventory gap §C.6 Ricci side.
 import OmegaTheory.Tensor.ValuedRicci
+-- Lion's-Pride Phase 3.6 (2026-05-05): dimensional bridge from Lyapunov-form
+-- dissipation to energy-form dissipation via μ_E = ℏ. Closes inventory
+-- gap §D.ii dimensional multiplier; foundation for Phase-4 spectral argument.
+import OmegaTheory.HealingFlow.Dimensional
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak

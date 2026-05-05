@@ -4949,6 +4949,16 @@ import OmegaTheory.Foundations.HeatKernelBochnerForm
 -- Headline: spectral_action_truncated_report (4-conjunct).
 -- Phase 6 NCG now 4/5 sub-phases.
 import OmegaTheory.Foundations.SpectralActionTruncated
+-- Lion's-Pride Phase 6.5 (dynamic /loop iteration 25, 2026-05-06):
+-- Substrate-derived finite spectral triple instance — bridges NCG
+-- to OmegaTheory's truncation residual δ_comp(N). Defines
+-- substrateScalarTriple N : FiniteSpectralTriple 1 with D = δ_comp(N) · I,
+-- proves Hermiticity, computes a_0 = 1. The simplest non-vacuous
+-- substrate-NCG bridge — n=1 base case for full SM construction.
+-- Headline: substrate_spectral_triple_report (4-conjunct). Phase 6
+-- NCG now 5/5 sub-phases (foundations complete; full SM in Phase 6.5+
+-- multi-month buildout).
+import OmegaTheory.Foundations.SubstrateSpectralTriple
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

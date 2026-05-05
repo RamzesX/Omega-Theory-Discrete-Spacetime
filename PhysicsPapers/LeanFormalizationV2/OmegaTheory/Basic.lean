@@ -5253,6 +5253,11 @@ import OmegaTheory.Predictions.IRUVDecomposition
 -- the substrate + trace-free preservation + free-graviton-mode predicate.
 -- Closes inventory gap §C.7 (the spin-2 TT-mode formalisation).
 import OmegaTheory.Geometry.WeinbergLinearisedTT
+-- Lion's-Pride Phase 4.4 (2026-05-05): the headline capstone.
+-- ∃ ω : ℝ, c/(2 ℓ_P) ≤ ω ≤ c/ℓ_P ∧ |ℏω − E_P/2| ≤ E_P/4.
+-- Substantive replacement for the rejected `def OmegaConjecture` posture.
+-- Witness: ω := c/(2 ℓ_P), giving ℏω = E_P/2 exactly.
+import OmegaTheory.Predictions.RepairQuantumEnergyTheorem
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak

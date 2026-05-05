@@ -4843,6 +4843,15 @@ import OmegaTheory.Predictions.RepairQuantumEnergyTheorem
 -- input. Equilibrium = no release. Answers: where does the repair-flow
 -- energy come from? → from the perturbation itself.
 import OmegaTheory.HealingFlow.PerturbationEnergy
+-- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
+-- non-derivation status markers for the SM mass / Higgs / Yukawa /
+-- spectral-action chain. Companion to GravitonDetectionImpossibility.
+-- Records the V2 status of 7 non-derivations + 4 substrate-spine
+-- inbound-counts via REAL Nat-decidable Props (no `: True := trivial`).
+-- Pattern: pattern_frozen_nat_snapshot_for_graph_measurements. Aligns
+-- the repo's claims with Lion's-Pride doctrine post trash-purge
+-- batches 1-7 (~107K LOC trash deleted across ~570 files).
+import OmegaTheory.Predictions.MassDerivationStatus
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak
 import OmegaTheory.Predictions.MassDependentDecoherenceBridge

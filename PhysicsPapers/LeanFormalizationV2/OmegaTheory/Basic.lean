@@ -5209,6 +5209,10 @@ import OmegaTheory.Capstones.MetaYonedaExpandedBackboneCapstone
 import OmegaTheory.Predictions.InformationSecondLawBundle
 import OmegaTheory.Predictions.GrothendieckWave3PostLandingBundle
 import OmegaTheory.Geometry.WeylGeneralIsolationBreak
+-- Lion's-Pride Phase 2.1 (2026-05-05): substrate d'Alembertian operator,
+-- sign-correct Lorentzian wave operator on the lattice. Closes inventory
+-- gap E.2; foundation for Phase-3 graviton wave equation.
+import OmegaTheory.Geometry.Dalembertian
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak

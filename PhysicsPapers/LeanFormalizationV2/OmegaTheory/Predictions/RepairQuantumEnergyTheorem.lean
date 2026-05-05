@@ -168,13 +168,80 @@ theorem repair_quantum_typical_energy_in_half_planck_band :
   · exact repairQuantumTypicalFrequency_le_upper
   · exact repair_quantum_typical_energy_within_quarter_planck
 
-/-! ## Section 6 — Audit hook
+/-! ## Section 6 — Substrate-spectrum identification (Phase 4.2 mini-bridge)
+
+The witness `ω₀ := c/(2 ℓ_P)` is not chosen arbitrarily — it lies in
+the substrate dispersion spectrum.  Specifically, at the lattice
+wavenumber `k₀ := 2 · arcsin(1/4) / ℓ_P` (a valid wavenumber, since
+`arcsin(1/4) ∈ (0, π/2)`), we have
+
+  `ω(k₀)²  =  c² · latticeDispersionPerDirection k₀
+           =  c² · (4/ℓ_P²) · sin²(k₀ ℓ_P/2)
+           =  c² · (4/ℓ_P²) · (1/16)
+           =  c² / (4 ℓ_P²)
+           =  (c/(2 ℓ_P))²
+           =  ω₀².`
+
+This formalises the structural fact that the half-Planck-band
+typical repair quantum corresponds to a real point in the
+substrate spectrum — not a chosen abstraction. -/
+
+/-- **Witness wavenumber**: `k₀ := 2 · arcsin(1/4) / ℓ_P`. -/
+noncomputable def repairQuantumTypicalWavenumber : ℝ :=
+  2 * Real.arcsin (1/4) / l_P
+
+/-- The witness wavenumber, when fed into the lattice dispersion
+    formula, produces `latticeDispersionPerDirection k₀ = 1/(4 ℓ_P²)`. -/
+theorem latticeDispersionPerDirection_at_typicalWavenumber :
+    latticeDispersionPerDirection repairQuantumTypicalWavenumber =
+      1 / (4 * l_P ^ 2) := by
+  unfold latticeDispersionPerDirection repairQuantumTypicalWavenumber
+  -- k₀ * ℓ_P / 2 = arcsin(1/4).  Hence sin(k₀ ℓ_P / 2) = sin(arcsin(1/4)) = 1/4.
+  have hl : l_P ≠ 0 := ne_of_gt l_P_pos
+  have h_arg : 2 * Real.arcsin (1/4) / l_P * l_P / 2 = Real.arcsin (1/4) := by
+    field_simp
+  rw [h_arg]
+  -- sin(arcsin(1/4)) = 1/4 (since |1/4| ≤ 1).
+  have h14 : (-1 : ℝ) ≤ 1/4 ∧ (1 : ℝ)/4 ≤ 1 := by constructor <;> norm_num
+  rw [Real.sin_arcsin h14.1 h14.2]
+  -- (4 / l_P^2) * (1/4)^2 = (4 / l_P^2) * (1/16) = 1/(4 l_P²).
+  have hl2 : l_P ^ 2 ≠ 0 := pow_ne_zero 2 hl
+  field_simp
+
+/-- **Spectral identification of the witness frequency**:
+    `c² · Ω²(k₀) = ω₀²`, i.e., the witness frequency is a real point
+    in the substrate dispersion spectrum. -/
+theorem c_sq_mul_dispersion_eq_repairQuantumTypicalFrequency_sq :
+    c ^ 2 * latticeDispersionPerDirection repairQuantumTypicalWavenumber =
+      repairQuantumTypicalFrequency ^ 2 := by
+  rw [latticeDispersionPerDirection_at_typicalWavenumber]
+  unfold repairQuantumTypicalFrequency
+  -- Goal: c² · (1/(4 ℓ_P²)) = (c/(2 ℓ_P))²
+  -- LHS = c²/(4 ℓ_P²).  RHS = c²/(4 ℓ_P²).  Direct calculation.
+  have hl : l_P ≠ 0 := ne_of_gt l_P_pos
+  field_simp
+  ring
+
+/-- **Existence form**: there exists a substrate wavenumber `k` such that
+    `c² · Ω²(k) = ω₀²`.  This is the formal statement that the witness
+    frequency lies in the substrate spectrum. -/
+theorem repairQuantumTypicalFrequency_in_substrate_spectrum :
+    ∃ k : ℝ, c ^ 2 * latticeDispersionPerDirection k =
+      repairQuantumTypicalFrequency ^ 2 :=
+  ⟨repairQuantumTypicalWavenumber,
+   c_sq_mul_dispersion_eq_repairQuantumTypicalFrequency_sq⟩
+
+/-! ## Section 7 — Audit hook
 
 NO `def OmegaConjecture` in this file.  The headline
-`repair_quantum_typical_energy_in_half_planck_band` is a real
-`theorem` with `[propext, Classical.choice, Quot.sound]` audit trail.
+`repair_quantum_typical_energy_in_half_planck_band` and the spectral
+bridge `repairQuantumTypicalFrequency_in_substrate_spectrum` are
+both real `theorem`s with `[propext, Classical.choice, Quot.sound]`
+audit trail.
 
 Phase 4.4 deliverable: explicit witness for the half-Planck typical
-repair quantum.  Real, falsifiable, axiom-clean. -/
+repair quantum, AND explicit identification of this witness as a
+point in the substrate dispersion spectrum.  Real, falsifiable,
+axiom-clean. -/
 
 end OmegaTheory.Predictions

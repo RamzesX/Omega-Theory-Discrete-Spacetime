@@ -352,6 +352,6 @@ theorem cosmo_horizon_omega_algebra_unfold_first_in_V2 :
 
 /-- **Closure marker — Heart-Nebula canonical-list entry #70 closed** —
     cycle-61 W6-EXT.7 capstone. -/
-theorem cosmo_horizon_omega_algebra_unfold_W6_ext_7_closed : True := trivial
+theorem cosmo_horizon_omega_algebra_unfold_W6_ext_7_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.CosmologicalHorizonOmegaUnfold

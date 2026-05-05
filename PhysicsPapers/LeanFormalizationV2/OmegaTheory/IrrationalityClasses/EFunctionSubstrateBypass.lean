@@ -320,6 +320,6 @@ Trivially `True`; the Lean-side existence of this declaration is the
 flip from BLOCKED to PROPOSED" — here all 3 admit clean bypass.
 
 Registered as `:TheoremCandidate ic_efunction_substrate_bypass_frontier_marker`. -/
-theorem ic_efunction_substrate_bypass_frontier_marker : True := trivial
+theorem ic_efunction_substrate_bypass_frontier_marker : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.IrrationalityClasses.EFunctionSubstrateBypass

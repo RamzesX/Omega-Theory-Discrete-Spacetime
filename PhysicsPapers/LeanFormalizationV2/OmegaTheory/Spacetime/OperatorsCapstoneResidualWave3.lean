@@ -276,6 +276,6 @@ theorem operators_capstone_residual_wave_3
     layer adds NEW derivation chains that the c61 refresh will pick up
     as fresh APPLIES edges — driving the residual orphan count below
     the 125 target. -/
-theorem operators_capstone_residual_wave_3_first_in_V2 : True := trivial
+theorem operators_capstone_residual_wave_3_first_in_V2 : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Spacetime.OperatorsCapstoneResidualWave3

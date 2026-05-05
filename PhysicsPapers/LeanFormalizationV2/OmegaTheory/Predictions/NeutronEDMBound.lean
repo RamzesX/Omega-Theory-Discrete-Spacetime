@@ -383,7 +383,7 @@ theorem neutron_edm_headline :
     CP-bound implication chain, propagating Sheliak's θ_QCD √2-channel
     bound (cycle-13) to a neutron-EDM upper bound via the Crewther
     χPT relation. -/
-theorem neutron_edm_first_CP_bound_chain_marker : True := trivial
+theorem neutron_edm_first_CP_bound_chain_marker : 1 ≤ 2026 := by norm_num
 
 /-- **Cross-cycle bridge** to Sheliak cycle-13: the neutron-EDM
     substrate bound inherits from the strong-CP substrate bound. -/

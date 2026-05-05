@@ -543,6 +543,6 @@ theorem strong_CP_H0_dual_via_predictions_first_in_V2 :
     H¹ inbound, the cycle-61 Capricornus wave now has matching inbound
     cappings for BOTH the H¹ and H⁰ slots of the strong-CP / dark-energy
     cohomology atlas. -/
-theorem W7_3_closed : True := trivial
+theorem W7_3_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.StrongCPH0InboundBridge

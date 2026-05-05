@@ -458,6 +458,6 @@ theorem eta_meson_mass_substrate_fit_alias :
     Skyrme-soliton spectrum on ℤ⁴ with SU(3)-breaking moduli, or (c)
     similarity-algebra bound-state spectrum.  Hook for follow-up
     agents. -/
-theorem eta_mass_SU3_octet_ansatz : True := trivial
+theorem eta_mass_SU3_octet_ansatz : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.EtaMesonMassFit

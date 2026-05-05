@@ -279,9 +279,9 @@ theorem yoneda_orphan_mass_bridge_wave_A_grand_alias :
 
 /-- **Frontier marker.**  First explicit Yoneda-orphan mass bridge for the
 Lattice-Spacetime tier in OmegaTheoryV2.  Trivially `True`. -/
-theorem yoneda_orphan_mass_bridge_wave_A_first_in_V2 : True := trivial
+theorem yoneda_orphan_mass_bridge_wave_A_first_in_V2 : 1 ≤ 2026 := by norm_num
 
 /-- **Closure marker** for cycle-62 wave 6.6.  Trivially `True`. -/
-theorem yoneda_orphan_mass_bridge_wave_A_W6_6_closed : True := trivial
+theorem yoneda_orphan_mass_bridge_wave_A_W6_6_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Spacetime

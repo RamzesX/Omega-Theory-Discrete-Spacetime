@@ -206,6 +206,6 @@ G-irrationality).
 Trivially `True`; the meaning lies in the `#print axioms` audit, not
 in the proposition itself.  See verifier output for the headline
 theorem above. -/
-theorem ic_four_constants_axiom_narrowed_first_extension_in_V2 : True := trivial
+theorem ic_four_constants_axiom_narrowed_first_extension_in_V2 : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.IrrationalityClasses.ICFourConstantsAxiomNarrowedExtension

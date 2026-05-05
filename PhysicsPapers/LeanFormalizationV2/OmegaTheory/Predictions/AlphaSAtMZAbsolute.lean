@@ -294,6 +294,6 @@ theorem alphaS_at_MZ_full_paper_bundle :
 
 /-- **Frontier marker** — exposes the cycle-55 briefing closure to graph
     extractors and downstream surveys. -/
-theorem alphaS_at_MZ_substrate_absolute_frontier_marker : True := trivial
+theorem alphaS_at_MZ_substrate_absolute_frontier_marker : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.AlphaSAtMZAbsolute

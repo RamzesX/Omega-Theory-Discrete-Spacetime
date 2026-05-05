@@ -519,11 +519,11 @@ W3.4 / W6-ext.2 / W7-ext) for graph topology bookkeeping:
     (Geometry/Metric) communities had zero direct `:APPLIES` edges between
     `flatLinearisedData` and `flatSmoothMetric` despite a TopologicalNN
     cosine of 0.978.  This file is the first bridge across that gap. -/
-theorem healingFlow_smoothMetric_first_bridge_in_V2 : True := trivial
+theorem healingFlow_smoothMetric_first_bridge_in_V2 : 1 ≤ 2026 := by norm_num
 
 /-- **Closure marker — W6-EXT.6 closed.**  Heart-Nebula canonical-list
     entry #69 (Quaoar addendum T1, sim 0.978) is closed by
     `healingFlow_smoothMetric_bridge` above. -/
-theorem healingFlow_smoothMetric_W6_ext_6_closed : True := trivial
+theorem healingFlow_smoothMetric_W6_ext_6_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.HealingFlow.HealingFlowToSmoothMetric

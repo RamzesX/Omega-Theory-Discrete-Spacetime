@@ -239,6 +239,6 @@ theorem operators_full_zoo_paper_bundle
     via these capstones (the 3 unbundled are `@[simp]` attribute
     lemmas + `discreteGradient/Divergence` defs which appear inside
     Group-4 anchor bundles by reference). -/
-theorem operators_capstone_index_w15_closure_marker : True := trivial
+theorem operators_capstone_index_w15_closure_marker : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Spacetime

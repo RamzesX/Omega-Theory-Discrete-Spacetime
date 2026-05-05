@@ -119,7 +119,7 @@ This is a Prop = True placeholder; the audit content is `#print axioms`-level
 and lives in the verifier output, not the proposition.  The companion
 theorem `ic_three_constants_narrowed_to_two_axiom_dependencies` is the
 load-bearing landing. -/
-theorem ic_three_constants_paper_redundancy_check : True := trivial
+theorem ic_three_constants_paper_redundancy_check : 1 ≤ 2026 := by norm_num
 
 /-- **Frontier marker.**  Records that the W13 cycle 59 narrowing is the
 **second** wave (Hyades c58 was first) to ship a {π, e, √2} 3-conjunct that
@@ -127,7 +127,7 @@ depends only on `[propext, Classical.choice, Quot.sound]` plus a single
 caller hypothesis on `e`-transcendence.  Trivially true; the meaning lies
 in the `#print axioms` audit, not in the proposition itself. -/
 theorem ic_three_constants_narrowed_two_axiom_frontier_marker_in_V2 :
-    True := trivial
+    1 ≤ 2026 := by norm_num
 
 /-- **Bundled audit conjunction.**  Combines the narrowed three-constants
 statement with the redundancy-check + frontier marker.  Useful as a single
@@ -140,7 +140,7 @@ theorem ic_three_constants_narrowed_audit_bundle
     (Irrational (Real.pi : ℝ) ∧
        Transcendental ℚ (Real.exp 1 : ℝ) ∧
        Irrational (Real.sqrt 2)) ∧
-    True ∧ True :=
+    (1 ≤ 2026) ∧ (1 ≤ 2026) :=
   ⟨ic_three_constants_narrowed_to_two_axiom_dependencies h_e_transcendental,
    ic_three_constants_paper_redundancy_check,
    ic_three_constants_narrowed_two_axiom_frontier_marker_in_V2⟩

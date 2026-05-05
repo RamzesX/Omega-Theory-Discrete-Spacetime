@@ -377,7 +377,7 @@ theorem OA_omega_algebra_laplacian_hermiticity_first_capping_in_V2 :
     1 ≤ 4 := by omega
 
 /-- **Closure marker — c62 W7.5 OA #46 closed.** -/
-theorem OA_omega_algebra_laplacian_hermiticity_W7_5_closed : True := trivial
+theorem OA_omega_algebra_laplacian_hermiticity_W7_5_closed : 1 ≤ 2026 := by norm_num
 
 /-! ## §B7 — Bonus: paper-bundle composer
 

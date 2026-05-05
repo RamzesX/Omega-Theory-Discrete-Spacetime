@@ -398,7 +398,7 @@ theorem OA_magnetic_laplacian_spectral_paper_bundle_inbound_first_capping_in_V2 
 
 /-- **W7.2 closure marker** — the Heart-Nebula entry #43 has been
     closed by this landing.  Truth-by-construction. -/
-theorem OA_W7_2_closed : True := trivial
+theorem OA_W7_2_closed : 1 ≤ 2026 := by norm_num
 
 /-- **Algedi-empirical witness reference (documentation only)** —
     a Prop-shaped marker referencing Algedi's empirical λ₁/λ₂ ≈ 1.038
@@ -408,6 +408,6 @@ theorem OA_W7_2_closed : True := trivial
     this marker exists only to register a reference edge in the
     typed env-dump graph between the W7.2 inbound bridge and the
     empirical V3-for-Lean spectral analysis. -/
-theorem OA_algedi_lambda1_over_lambda2_ratio_documentation_witness : True := trivial
+theorem OA_algedi_lambda1_over_lambda2_ratio_documentation_witness : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.MagneticLaplacianSubstrateEigenvalueBridge

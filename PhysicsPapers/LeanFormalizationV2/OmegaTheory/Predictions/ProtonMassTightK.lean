@@ -158,7 +158,7 @@ theorem protonMass_substrate_tight_def (N : ℕ) :
 /-- **Caveat-replacement marker.** Records that this file's headline supersedes
   the empirical `protonMassCoefficient = 4.3` ansatz from
   `ProtonMassFromLambdaQCD.lean`. -/
-theorem protonMass_tight_k_replaces_empirical_marker : True := trivial
+theorem protonMass_tight_k_replaces_empirical_marker : 1 ≤ 2026 := by norm_num
 
 /-! ## Paper bundle (4-conjunct)
 

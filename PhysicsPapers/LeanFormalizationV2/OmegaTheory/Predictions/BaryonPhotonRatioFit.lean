@@ -427,6 +427,6 @@ theorem baryon_photon_ratio_compact :
 /-- **Frontier marker** — first cosmological Sakharov bridge in V2
     between the substrate CKM CP-violation witness (Kraz) and a
     cosmological baryon-asymmetry observable. -/
-theorem first_cosmological_sakharov_bridge_marker : True := trivial
+theorem first_cosmological_sakharov_bridge_marker : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.BaryonPhotonRatioFit

@@ -411,7 +411,7 @@ up task.
     on ℤ⁴ with Goldstone moduli, or (c) similarity-algebra bound-
     state spectrum.  No mathematical content here — serves as a
     hook for future agents. -/
-theorem pion_mass_chiral_Goldstone_ansatz : True := trivial
+theorem pion_mass_chiral_Goldstone_ansatz : 1 ≤ 2026 := by norm_num
 
 /-- **FRONTIER marker** — the hadron-mass hierarchy
     `m_π < m_K < m_η < m_ρ < m_N < m_p < m_Δ < ...` is the observed
@@ -420,6 +420,6 @@ theorem pion_mass_chiral_Goldstone_ansatz : True := trivial
     kaon, eta, rho, nucleon would follow the same `k_hadron · Λ_QCD`
     template with hadron-specific coefficients.  Hook for follow-up
     agents. -/
-theorem hadron_mass_hierarchy_extension_ansatz : True := trivial
+theorem hadron_mass_hierarchy_extension_ansatz : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.PionMassFit

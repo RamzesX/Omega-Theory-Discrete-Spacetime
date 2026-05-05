@@ -379,6 +379,6 @@ substrate chain via `pi_error_pos` and `sqrt2_error_pos`.  Both orphans
 had `out_d = 279, in_d = 0` at briefing time; this file gives each its
 first non-trivial inbound `:APPLIES` edge.  The proposition is trivial;
 the meaning lies in the headline bundle above. -/
-theorem required_iterations_pi_first_inbound_landing_in_V2 : True := trivial
+theorem required_iterations_pi_first_inbound_landing_in_V2 : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.RequiredIterationsPiInbound

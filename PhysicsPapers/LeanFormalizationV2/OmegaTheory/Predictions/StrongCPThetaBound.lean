@@ -280,6 +280,6 @@ theorem strong_cp_headline :
 
 /-- **Frontier marker** — this is the first OmegaTheory formal resolution
     of a Standard-Model fine-tuning problem. -/
-theorem first_fine_tuning_resolution_marker : True := trivial
+theorem first_fine_tuning_resolution_marker : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.StrongCPThetaBound

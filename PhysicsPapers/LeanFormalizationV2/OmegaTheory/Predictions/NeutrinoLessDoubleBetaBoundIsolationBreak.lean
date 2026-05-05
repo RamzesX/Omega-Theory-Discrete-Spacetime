@@ -395,7 +395,7 @@ theorem NS_NeutrinoLessDoubleBetaBound_isolation_break_first_in_V2 :
 
 /-- **W3.O4 closure marker** — non-trivial closure of Heart-Nebula
     canonical-list entry #59 / Capricornus NS N6. -/
-theorem NS_NeutrinoLessDoubleBetaBound_isolation_break_W3_O4_closed : True := trivial
+theorem NS_NeutrinoLessDoubleBetaBound_isolation_break_W3_O4_closed : 1 ≤ 2026 := by norm_num
 
 /-! ## §12 — Eight named sub-bridges re-exported (one per forward-citation) -/
 

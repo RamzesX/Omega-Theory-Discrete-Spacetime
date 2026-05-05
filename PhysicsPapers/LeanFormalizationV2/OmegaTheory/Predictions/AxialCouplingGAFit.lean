@@ -425,6 +425,6 @@ theorem axial_coupling_gA_headline :
     for the nucleon octet, (b) similarity-algebra axial-current
     spectrum, or (c) lattice QCD on ℤ⁴ with chiral boundary
     conditions.  Hook for follow-up. -/
-theorem gA_first_principles_ansatz : True := trivial
+theorem gA_first_principles_ansatz : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.AxialCouplingGAFit

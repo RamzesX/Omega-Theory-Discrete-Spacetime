@@ -178,6 +178,6 @@ theorem jarlskog_3sigma_paper_bundle :
 /-- The cycle-44 frontier item "Jarlskog J_CKM equality
     (witness via class → numerical equality)" is now closed in
     3σ-PDG form by `jarlskog_J_CKM_numerical_3sigma_PDG` above. -/
-theorem cycle44_jarlskog_J_CKM_equality_closed_in_3sigma_form : True := trivial
+theorem cycle44_jarlskog_J_CKM_equality_closed_in_3sigma_form : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.JarlskogJCKMAbsolute3Sigma

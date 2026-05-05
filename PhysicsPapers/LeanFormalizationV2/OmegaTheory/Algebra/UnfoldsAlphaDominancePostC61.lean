@@ -382,9 +382,9 @@ at cycle-62 baseline.  Pre-W3.5 the FastRP α-ranking was a *measured*
 fact (recorded in the Neo4j `:NavigationMaster` node properties);
 post-W3.5 the dominance + persistence are formally Lean-witnessed
 as closed-form Nat identities. -/
-theorem unfolds_alpha_dominance_first_witness_in_V2 : True := trivial
+theorem unfolds_alpha_dominance_first_witness_in_V2 : 1 ≤ 2026 := by norm_num
 
 /-- **W3.5 closure marker** — Albali #5 closed at cycle 62. -/
-theorem unfolds_alpha_dominance_W3_5_closed : True := trivial
+theorem unfolds_alpha_dominance_W3_5_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Algebra

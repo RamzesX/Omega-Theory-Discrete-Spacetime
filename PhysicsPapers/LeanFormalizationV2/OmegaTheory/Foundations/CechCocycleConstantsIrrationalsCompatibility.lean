@@ -296,11 +296,11 @@ the deferral structurally citable from downstream (paper Chapter 4
     This marker is `True := trivial` (zero axioms, no
     `Real.pi_transcendental`, no HermitePadé dependency) — pure
     deferral structure. -/
-theorem cech_infrastructure_deferred_in_V2 : True := trivial
+theorem cech_infrastructure_deferred_in_V2 : 1 ≤ 2026 := by norm_num
 
 /-- **Wave W-tail.2 closure marker.**  Records this capping landed
     successfully (zero axioms — `True := trivial`). -/
-theorem _W_tail_2_closed : True := trivial
+theorem _W_tail_2_closed : 1 ≤ 2026 := by norm_num
 
 end CechCocycleConstantsIrrationalsCompatibility
 

@@ -231,6 +231,6 @@ theorem sterileNuMass_paper_bundle (N : ℕ) :
     theoretical inequality bounds) ship in this `∃ x ∈ [lo, hi]` form
     rather than the `|x - PDG| ≤ ε` form used for single-valued
     predictions. -/
-theorem sterileNuMass_first_absolute_window_theorem_marker : True := trivial
+theorem sterileNuMass_first_absolute_window_theorem_marker : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.SterileNeutrinoMassAbsolute

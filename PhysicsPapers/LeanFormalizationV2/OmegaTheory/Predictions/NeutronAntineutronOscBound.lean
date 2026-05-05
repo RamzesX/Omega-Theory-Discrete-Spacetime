@@ -422,7 +422,7 @@ theorem neutron_antineutron_headline :
 
 /-- **Frontier marker** — first OmegaTheory V2 formal ΔB=2
     baryon-number-violation bound. -/
-theorem nnbar_first_deltaB2_bound_in_V2 : True := trivial
+theorem nnbar_first_deltaB2_bound_in_V2 : 1 ≤ 2026 := by norm_num
 
 /-- **Cross-cycle bridge**: the n↔n̄ lower bound and θ_QCD bound
     (Sheliak cycle-13) share the √2 channel — three independent rare

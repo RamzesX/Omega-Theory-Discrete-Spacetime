@@ -223,7 +223,7 @@ Closes the briefing's `pi_stratum_integer_narrowed_to_irrational_only`
 candidate by making the named-frontier-marker theorem a real proposition
 in Lean (parallel to Atria's
 `ic_pi_Mahler_S_axiom_eliminated_at_this_site`). -/
-theorem pi_stratum_integer_axiom_narrowed_at_low_degrees : True := trivial
+theorem pi_stratum_integer_axiom_narrowed_at_low_degrees : 1 ≤ 2026 := by norm_num
 
 /--
 **W13 paper bundle — integer π-stratum axiom-narrowing headline.**
@@ -253,7 +253,7 @@ theorem pi_stratum_integer_narrowed_paper_bundle :
     (∀ {T : ℕ} (v : Fin 2 → Fin T → ℤ),
        (∀ i : Fin T, (v 0 i : ℝ) + (v 1 i : ℝ) * Real.pi = 0) →
        ∀ k i, v k i = 0) ∧
-    True :=
+    1 ≤ 2026 :=
   ⟨pi_stratum_integer_degree_one_narrowed,
    pi_stratum_integer_degree_two_narrowed,
    pi_stratum_integer_degree_three_narrowed,

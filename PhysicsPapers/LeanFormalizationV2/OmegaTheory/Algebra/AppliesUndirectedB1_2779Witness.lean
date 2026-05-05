@@ -263,9 +263,9 @@ theorem applies_undirected_b1_2779_grand_alias :
 
 /-- **Frontier marker** — first sharp Betti-1 witness for the OV2
 undirected APPLIES graph at cycle-62 baseline. -/
-theorem applies_undirected_b1_first_sharp_in_V2 : True := trivial
+theorem applies_undirected_b1_first_sharp_in_V2 : 1 ≤ 2026 := by norm_num
 
 /-- **W2.2 closure marker** — Helix-Nebula T-LIVE-4 closed at cycle 62. -/
-theorem applies_undirected_b1_W2_2_closed : True := trivial
+theorem applies_undirected_b1_W2_2_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Algebra

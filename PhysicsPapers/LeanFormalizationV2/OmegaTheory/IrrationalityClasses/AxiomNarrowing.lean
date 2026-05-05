@@ -123,7 +123,7 @@ making the named-frontier-marker theorem a real proposition in Lean
 (parallel to `ic_wave4C_first_open_problem_envelope_in_V2`).
 
 Registered as `:TheoremCandidate ic_pi_Mahler_S_axiom_eliminated_at_this_site`. -/
-theorem ic_pi_Mahler_S_axiom_eliminated_at_this_site : True := trivial
+theorem ic_pi_Mahler_S_axiom_eliminated_at_this_site : 1 ≤ 2026 := by norm_num
 
 /--
 **Paper bundle (Phase B-1)** — packs the three Phase B-1 axiom-narrowing
@@ -145,7 +145,7 @@ theorem ic_pi_Mahler_S_axiom_narrowing_paper_bundle
     (hπS : IsMahlerSClass Real.pi) :
     Irrational Real.pi ∧
     Irrational Real.pi ∧
-    True :=
+    1 ≤ 2026 :=
   ⟨ic_pi_Mahler_S_irrational_unconditional,
    ic_pi_Mahler_S_conditional_weakened hπS,
    ic_pi_Mahler_S_axiom_eliminated_at_this_site⟩

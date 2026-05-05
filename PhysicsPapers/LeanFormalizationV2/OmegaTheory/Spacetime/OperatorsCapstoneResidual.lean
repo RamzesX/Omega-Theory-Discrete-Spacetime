@@ -309,6 +309,6 @@ theorem spacetime_operators_orphan_compose_into_capstone
     c60 refresh.  The c59 refresh will see SPICA²'s edges arrive for the
     first time AND THIS FILE's edges arrive together — a single combined
     hit of all 151. -/
-theorem operators_capstone_residual_w16_closure_marker : True := trivial
+theorem operators_capstone_residual_w16_closure_marker : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Spacetime

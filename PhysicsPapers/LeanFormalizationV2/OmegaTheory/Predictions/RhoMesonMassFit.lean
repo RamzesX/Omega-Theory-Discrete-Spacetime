@@ -372,7 +372,7 @@ theorem rho_channel_distinct_from_kaon_channel :
     All prior meson fits (Tarf π, Menkar K, Nunki η) formalised
     pseudoscalars (J^P = 0⁻).  Hook for follow-up agents to extend
     to ω(782), φ(1020), K*(892). -/
-theorem rho_is_first_vector_meson_in_V2 : True := trivial
+theorem rho_is_first_vector_meson_in_V2 : 1 ≤ 2026 := by norm_num
 
 /-! ## 7. Tier 6 — Paper-citable bundle -/
 

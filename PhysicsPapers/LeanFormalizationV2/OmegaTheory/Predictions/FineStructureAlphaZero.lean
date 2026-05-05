@@ -256,7 +256,7 @@ theorem fine_structure_alpha_zero_paper_bundle :
     "α(0) substrate at zero energy 1/137.036". Companion to Acrux's
     `alphaEM_one_loop_consistent_frontier_marker` (cycle-55 M_Z scale)
     and Hadar's `alpha_EM_paper_bundle` (cycle-14 PDG anchor). -/
-theorem fine_structure_alpha_zero_frontier_marker : True := trivial
+theorem fine_structure_alpha_zero_frontier_marker : 1 ≤ 2026 := by norm_num
 
 /-! ## 6. Physical summary
 

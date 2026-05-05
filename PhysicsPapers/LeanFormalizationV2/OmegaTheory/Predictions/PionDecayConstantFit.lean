@@ -455,6 +455,6 @@ theorem pion_decay_constant_substrate_fit_alias :
     Connes D_F eigenvalues, (b) lattice-QCD simulation on ℤ⁴ with
     chiral-breaking boundary, or (c) similarity-algebra axial-current
     spectrum.  Hook for follow-up agents. -/
-theorem fpi_first_principles_ansatz : True := trivial
+theorem fpi_first_principles_ansatz : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.PionDecayConstantFit

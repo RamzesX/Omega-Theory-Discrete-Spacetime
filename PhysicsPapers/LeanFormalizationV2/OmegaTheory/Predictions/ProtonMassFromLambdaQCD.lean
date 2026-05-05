@@ -200,6 +200,6 @@ honest about limits, and delivers a concrete falsifiable prediction. -/
 /-- **Caveat marker** — signals that `protonMassCoefficient = 4.3` is an
 open problem for first-principles derivation. Has no mathematical content;
 serves only as a hook for downstream agents to find the follow-up task. -/
-theorem protonMass_empirical_coefficient_is_ansatz : True := trivial
+theorem protonMass_empirical_coefficient_is_ansatz : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions

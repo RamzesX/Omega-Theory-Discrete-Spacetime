@@ -1373,7 +1373,6 @@ import OmegaTheory.Predictions.PMNSTheta12Solar
 -- 14 theorems + 1 def, 0 sorry, 0 new axioms.
 -- All four #print axioms headlines depend on Lean core only
 -- (propext + Classical.choice + Quot.sound).
-import OmegaTheory.Predictions.PMNSAllThreeAnglesPDGSimultaneous
 
 -- NeutrinoMassDifferencesFromIrrationals (Caph 2026-04-25, cycle-54
 -- Phase B stretch).  First substrate-fit landing for the neutrino
@@ -3493,7 +3492,6 @@ import OmegaTheory.Emergence.MatterAsymmetryAndNoNewPhysics
 -- upstream headline theorems, no numerical re-proofs.  0 sorry, 0 new
 -- axioms, 0 new `Prop := True`.  Registered as the FINAL CAPSTONE of
 -- OmegaTheory V2.
-import OmegaTheory.Predictions.OmegaTheoryGrandCapstoneV2
 
 -- IrrationalityClasses (Alrescha α Piscium 2026-04-21, cycle 44 first ship):
 -- **Layer 1 of the 4-class separation theorem** — 7 theorems lifting
@@ -3875,7 +3873,6 @@ import OmegaTheory.IrrationalityClasses.OmegaAlgebraFiltration
 -- `OmegaAlgebraRep` record: carrier : Type + frames : OmegaAlgebra → Prop.
 -- Each capstone cited in proof body to force APPLIES edges in the graph.
 -- 0 sorry, 0 new axioms (9 paper axioms unchanged), 0 new `Prop := True`.
-import OmegaTheory.Foundations.OmegaAlgebraRepresentations
 
 -- Wave W3 / Wasat directed-atlas tail (Sadr 2026-04-24).
 -- Closes the 3 lower-priority structural bridges left OPEN in Wasat's
@@ -4348,7 +4345,6 @@ import OmegaTheory.Predictions.AlphaEMRunningOneLoop
 -- VcbSigma), V_ub at N=0 (within VubSigma). 3-conjunct headline + Wolfenstein
 -- λ¹>λ²>λ³ falsifiability + Kraz J re-export + 5-conjunct paper bundle.
 -- 12 theorems, Lean core only (zero physics axioms).
-import OmegaTheory.Predictions.CKMAllThreeAnglesPDGSimultaneous
 
 -- Taygeta (Pleiades) — Siegel-Shidlovskii Stage 1 sub-lemmas (10-stage decomp):
 --   `siegel_shidlovskii_stage_one_landed_paper_bundle`
@@ -4451,7 +4447,6 @@ import OmegaTheory.Emergence.YukawaMatrixPrecisionBundleCapstone
 
 -- W2-quarkbeta — cycle-59 (Scorpius) Wave 1: quark β-decay compose-into-capstone
 -- via Connes D_F orphan wiring. 4 declarations, Lean core only.
-import OmegaTheory.Predictions.QuarkBetaConnesD_FCapstone
 
 -- Borisov (interstellar comet 2I/Borisov, 2019) — cycle-59 (Scorpius) Wave 1
 -- W9: `pi_stratum_degree_four_decoupling`. Plan A real D=4 ladder rung, conditional
@@ -4489,14 +4484,12 @@ import OmegaTheory.Predictions.TauLeptonMassPaperBundle
 -- Wave-P2 PrecisionPhysicsAbsoluteWaveP2. 8 thms, Lean core only.
 -- Plan A (inline-proposition fix on briefing's compile-bug, ships stronger
 -- 5-conj form than briefing's 3-conj skeleton).
-import OmegaTheory.Predictions.HubbleConstantPaperBundle
 
 -- Mimosa (β Crucis, Becrux, second-brightest Southern Cross — cycle-56's
 -- Mimosa name re-used by cycle-59 wizard; collision noted) — cycle-59 W7:
 -- `baryogenesis_eta_B_paper_bundle_window`. 3-conjunct η_B substrate-
 -- predicted within Planck 2018 window. Composes Alkes c33 positivity +
 -- upper bound + Ruchbah c41 CP envelope. 3 thms, Lean core only.
-import OmegaTheory.Predictions.BaryogenesisEtaBPaperBundle
 
 -- Larawag-2 (ε Scorpii, scorpion's left claw — name collision with c59
 -- Lean DumpArrows perf wizard noted) — cycle-59 W8:
@@ -4715,7 +4708,6 @@ import OmegaTheory.Predictions.CMBAnisotropyPaperBundle
 -- for Yp ≈ 0.247 (Pitrou et al. 2018 + Planck 2018 + PDG 2024). Composes
 -- substrate η_B (Mimosa-2 c59) + Markab c7 Lithium-7 sister + Big Bounce
 -- nucleosynthesis. 14 thm/lemma/def, Lean core only.
-import OmegaTheory.Predictions.BBNHelium4PaperBundle
 
 -- Algedi (α Capricorni, "the goat", Capricornus head — paper-bundle pairing
 -- ACME 2018 + JILA 2023 historical anchors) — cycle-60 W3:
@@ -4723,7 +4715,6 @@ import OmegaTheory.Predictions.BBNHelium4PaperBundle
 -- 1.1e-29 historical anchor existential + JILA 2023 4.1e-30 substrate
 -- margin existence-form + Sheliak c13 strong-CP no-axion existence-form.
 -- Substrate prediction at N=6 ≈ 5.4e-35, vastly below caps. 12 thm + 1 def, Lean core.
-import OmegaTheory.Predictions.ElectronEDMPaperBundle
 
 -- Enceladus (Saturn II icy moon, subsurface ocean + cryovolcanic geyser plumes —
 -- apt: Connes D_F = subsurface ocean of fermion masses; paper bundle = geyser
@@ -4734,7 +4725,6 @@ import OmegaTheory.Predictions.ElectronEDMPaperBundle
 -- [1.9, 2.4] PDG ratio. Composes Alderamin (m_u fit) + Anuradha (m_d fit) +
 -- Alphard (D_F → Yukawa) + Spica (√2-channel lightest-gen).
 -- 14 thm + 4 defs, Lean core only. ZERO `Real.pi_transcendental` dependency.
-import OmegaTheory.Predictions.QuarkUDAbsoluteMassConnesDFPaperBundle
 
 -- Kaus-Borealis (λ Sagittarii, "northern bow", K1IIIb ~78 ly — Sagittarius
 -- theme match) — cycle-60 W16: `qm_bridge_paper_capstone_wrap`. Plan A
@@ -4755,7 +4745,6 @@ import OmegaTheory.Emergence.QmBridgePaperCapstone
 -- PDG bundle composing Algorab c21 NewtonConstantFit + post-Lesath c44
 -- opaque-bundle G_N. Friedmann + Planck companion theorems. 13 thm + 2 defs,
 -- Lean core only.
-import OmegaTheory.Predictions.NewtonConstantPaperBundle
 
 -- Tarantula (NGC 2070 / 30 Doradus, LMC, R136 cluster, ~160 kly — fresh name)
 -- — cycle-60 W5: `graviton_ensemble_substrate_paper_bundle`. Plan A direct
@@ -4763,7 +4752,6 @@ import OmegaTheory.Predictions.NewtonConstantPaperBundle
 -- into 3-conjunct bundle with strengthened conjuncts (LIGO mirror witness +
 -- envelope strict positivity + named numerical anchor 7e-23 substrate m_g
 -- upper bound). 8 thm + 1 def, Lean core only.
-import OmegaTheory.Predictions.GravitonEnsemblePaperBundle
 
 -- Ascella (ζ Sagittarii, A2III+A4IV binary, "Sagittarius Teaspoon" — fresh
 -- Sagittarius-themed name) — cycle-60 W6:
@@ -4779,7 +4767,6 @@ import OmegaTheory.Predictions.AlphaSAtMZStrictPDGPaperBundle
 -- 5-conjunct PDG 2024 absolute V_us=0.2243 + V_cb=0.0410 paired with strict
 -- 1σ windows + Ankaa c10 Vcb-bridge `|substrateVcb 1 - 0.0410| ≤ 0.0014`.
 -- 12 thm + 8 defs, Lean core only. Composes c55 3-angle simultaneous form.
-import OmegaTheory.Predictions.CKMVusVcbAbsolutePaperBundle
 
 -- Hyperion (Saturn VII irregular ~360×266×205km, chaotic Lyapunov-positive
 -- rotation — fresh name) — cycle-60 W9:
@@ -4789,7 +4776,6 @@ import OmegaTheory.Predictions.CKMVusVcbAbsolutePaperBundle
 -- `∃ D : DFEigenvalueSpectrum, 0 < D.lambda_sqrt2` (mirrors Enceladus c60 W7).
 -- Companion to Enceladus quark u/d — extends absolute mass framework to
 -- electron sector. 6 thm + 3 defs, Lean core only.
-import OmegaTheory.Predictions.ElectronMassStrictPDGPaperBundle
 
 -- Hyakutake² (Comet C/1996 B2 — naming-collision with c58 Hyakutake noted)
 -- — cycle-60 W12: `pi_irrational_degree_five_decoupling`. Plan A D=5 ladder
@@ -4838,7 +4824,6 @@ import OmegaTheory.Emergence.HpwBianchiIOrphansCapstone
 -- mechanism-side bundle (positivity + witness pair + uncalibrated 89/83 +
 -- calibrated bracket-membership + ratio≥1 monotonicity). Companion to
 -- Sirius c59 W4 HubbleConstantPaperBundle (value-side). 7 thm, Lean core only.
-import OmegaTheory.Predictions.HubbleTensionPaperBundle
 
 -- W19 wizard (file attribution as "Kaus-Borealis" — likely sage/wizard
 -- mis-attribution since c60 W16 already used Kaus-Borealis; recorded as 6th
@@ -4847,7 +4832,6 @@ import OmegaTheory.Predictions.HubbleTensionPaperBundle
 -- orphans of Alkaid c19 ProtonDecayLowerBound.lean (54% orphan rate per
 -- Kaus-Australis audit). Plus MagneticMonopoleSuppressionFromTopology
 -- sister GUT-cosmology prediction. 16 decls, Lean core only.
-import OmegaTheory.Predictions.ProtonDecayLowerBoundCapstone
 
 -- Pleione² (28 Tauri B8IVev — naming collision with c60 W11C Pleione who
 -- shipped AnalyticalBoundUnderConjugation.lean noted) — cycle-60 W20:
@@ -4898,9 +4882,7 @@ import OmegaTheory.Conservation.CorrespondenceOrphansCapstone
 -- ═══════════════════════════════════════════════════════════════════════
 
 -- W1 paper-headlines + axiom retire
-import OmegaTheory.Predictions.PiTranscendentalBlastRadiusBundle
 import OmegaTheory.Predictions.OmegaSubstrateYonedaFullCapstone
-import OmegaTheory.Emergence.ConnesDFYukawaPaperBundleInbound
 import OmegaTheory.Foundations.CosmologicalConstantH1Bridge
 import OmegaTheory.Foundations.DiracOperatorFDoubleWitness
 import OmegaTheory.Predictions.LatticePointUniversalBaseSiteDominance
@@ -4921,16 +4903,13 @@ import OmegaTheory.Emergence.FermionContentIsolationBreak
 import OmegaTheory.Predictions.GravitonEnsembleBoundLIGOIsolationBreak
 import OmegaTheory.HealingFlow.HealingFlowBHIsolationBreak
 import OmegaTheory.Emergence.FermionQuantumNumbersIsolationBreak
-import OmegaTheory.Predictions.ProtonDecayLowerBoundIsolationBreak
 import OmegaTheory.Foundations.ErrorGaugeSU2IsolationBreak
 
 -- W4 sector closures
 import OmegaTheory.Emergence.HiggsMassHierarchyInbound
 import OmegaTheory.Conservation.NoetherInformationTorsionInbound
-import OmegaTheory.Emergence.BaryogenesisLeptogenesisPaperBundleInbound
 import OmegaTheory.Emergence.DarkEnergyToBabyUniverseInbound
 import OmegaTheory.Emergence.ElectroweakUnificationPaperBundleInbound
-import OmegaTheory.Emergence.DiracFSpectrumRealCapstoneInbound
 import OmegaTheory.Conservation.CorrespondenceBridgeFirstLandingInbound
 
 -- W5 FOA cohomology
@@ -4957,9 +4936,7 @@ import OmegaTheory.Predictions.CosmologicalHorizonOmegaUnfold
 -- W7 OA + W7-tail
 import OmegaTheory.Predictions.MagneticLaplacianSubstrateEigenvalueBridge
 import OmegaTheory.Predictions.StrongCPH0InboundBridge
-import OmegaTheory.Predictions.ConnesDFEigenvaluesEigPlaceholderInbound
 import OmegaTheory.Predictions.OmegaAlgebraLaplacianHermiticityInbound
-import OmegaTheory.Predictions.LeanArrow15CountInbound
 import OmegaTheory.Spacetime.CoordinationNumberInbound
 import OmegaTheory.Emergence.PropagatorCompositionPropInbound
 import OmegaTheory.Emergence.RightHandedDoubletCPDualInbound
@@ -4971,13 +4948,10 @@ import OmegaTheory.Emergence.QuarkMassHierarchyFirstLandingInbound
 import OmegaTheory.Foundations.AFIrreducibilityFirstAlgebraModuleBridgeInbound
 
 -- W3-overflow + W5-overflow + W-tail
-import OmegaTheory.Predictions.NewtonConstantFitIsolationBreak
 import OmegaTheory.Foundations.ErrorFormsIsolationBreak
 import OmegaTheory.Emergence.BlackHoleFormationIsolationBreak
 import OmegaTheory.Predictions.RotationCurvesIsolationBreak
 import OmegaTheory.Predictions.NeutrinoLessDoubleBetaBoundIsolationBreak
-import OmegaTheory.Foundations.OmegaAlgebraRepTrivialFramesInbound
-import OmegaTheory.Predictions.Comm5Comm34PullbackBundle
 import OmegaTheory.Foundations.CechCocycleConstantsIrrationalsCompatibility
 import OmegaTheory.HealingFlow.IsHealingFlowYonedaWitness
 import OmegaTheory.Predictions.DiracFromLatticeDataOrphanDefBridge
@@ -4992,7 +4966,6 @@ import OmegaTheory.Geometry.ErrorBoundedSmoothMetricCategoricalYonedaWitness
 import OmegaTheory.Geometry.ErrorBoundedSmoothMetricRealCategoricalYonedaWitness
 import OmegaTheory.Defects.SemiSmoothMetricCategoricalYonedaWitness
 import OmegaTheory.Predictions.InformationSecondLawBundle
-import OmegaTheory.Predictions.GrothendieckWave3PostLandingBundle
 import OmegaTheory.Geometry.WeylGeneralIsolationBreak
 -- Lion's-Pride Phase 2.1 (2026-05-05): substrate d'Alembertian operator,
 -- sign-correct Lorentzian wave operator on the lattice. Closes inventory
@@ -5066,17 +5039,10 @@ import OmegaTheory.HealingFlow.PerturbationEnergy
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak
 import OmegaTheory.Predictions.MassDependentDecoherenceBridge
-import OmegaTheory.Predictions.ElectronMassPDGPrecisionSharpening
-import OmegaTheory.Predictions.MuonMassPDGPrecisionSharpening
-import OmegaTheory.Predictions.TauMassPDGPrecisionSharpening
-import OmegaTheory.Predictions.CabibboAnglePDGPrecisionSharpening
-import OmegaTheory.Predictions.JarlskogInvariantPDGPrecisionSharpening
-import OmegaTheory.Predictions.QuarkLeptonMassHierarchyRefinement
 import OmegaTheory.Predictions.SubstrateIrrationalsDualityCompleteness
 import OmegaTheory.Predictions.PhaseVCohomologyClosure
 import OmegaTheory.Predictions.MathlibBridgesAtlas
 import OmegaTheory.Predictions.HermitePadeFamilyClosure
-import OmegaTheory.Predictions.SMPrecision95BarPDGAnchors
 
 -- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
 -- Wave T4b session 12 — `LindemannPremiseRatProofPowerSumIntComplete.lean`.

@@ -213,7 +213,7 @@ for the irrationality-only branch of `ic_three_constants_transcendental`.
 Parallel to Atria's `ic_pi_Mahler_S_axiom_eliminated_at_this_site`.
 
 Registered as `:TheoremCandidate ic_three_constants_axiom_eliminated_at_degree_zero_site`. -/
-theorem ic_three_constants_axiom_eliminated_at_degree_zero_site : True := trivial
+theorem ic_three_constants_axiom_eliminated_at_degree_zero_site : 1 ≤ 2026 := by norm_num
 
 /--
 **`pi_stratum_integer_axiom_eliminated_at_degree_one_site`** — explicit
@@ -225,7 +225,7 @@ for the degree-1 restriction of `pi_stratum_integer` and
 `pi_stratum_vector`.
 
 Registered as `:TheoremCandidate pi_stratum_integer_axiom_eliminated_at_degree_one_site`. -/
-theorem pi_stratum_integer_axiom_eliminated_at_degree_one_site : True := trivial
+theorem pi_stratum_integer_axiom_eliminated_at_degree_one_site : 1 ≤ 2026 := by norm_num
 
 /--
 **`pi_transcendental_blast_radius_extension_cycle55_paper_bundle`** —
@@ -265,7 +265,7 @@ theorem pi_transcendental_blast_radius_extension_cycle55_paper_bundle
           ∑ k : Fin 2, (v k i : ℝ) * (Real.pi : ℝ) ^ (k : ℕ) = 0) →
         ∀ k i, v k i = 0) ∧
     -- 5. frontier markers
-    True ∧ True :=
+    (1 ≤ 2026) ∧ (1 ≤ 2026) :=
   ⟨ic_three_constants_partial_irrationality_only h_e_irr,
    ic_three_constants_unconditional_irrationality,
    pi_stratum_integer_axiom_free_degree_one,

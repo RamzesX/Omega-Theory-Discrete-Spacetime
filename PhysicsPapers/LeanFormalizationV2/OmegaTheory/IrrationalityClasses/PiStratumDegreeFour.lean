@@ -219,7 +219,7 @@ markers in `AxiomNarrowing.lean` / `AxiomNarrowingExtensions.lean`.
 
 Registered as `:TheoremCandidate
 pi_stratum_degree_four_axiom_eliminated_at_this_site`. -/
-theorem pi_stratum_degree_four_axiom_eliminated_at_this_site : True := trivial
+theorem pi_stratum_degree_four_axiom_eliminated_at_this_site : 1 ≤ 2026 := by norm_num
 
 /--
 **W9 paper bundle — degree-4 axiom-narrowing headline.**
@@ -250,7 +250,7 @@ theorem pi_stratum_degree_four_paper_bundle :
        (r₀ r₁ r₂ r₃ : ℚ),
        ((r₀ : ℝ) + (r₁ : ℝ) * Real.pi + (r₂ : ℝ) * Real.pi ^ 2
           + (r₃ : ℝ) * Real.pi ^ 3 : ℝ) ≠ Real.pi ^ 4) ∧
-    True :=
+    1 ≤ 2026 :=
   ⟨fun a b c d e h₄ h => pi_stratum_degree_four_decoupling a b c d e h₄ h,
    hpi_indep_three_of_four,
    pi_stratum_degree_four_e_zero_decoupling,

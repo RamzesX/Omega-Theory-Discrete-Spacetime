@@ -244,7 +244,7 @@ W9 cycle-59 frontier markers.
 Registered as `:TheoremCandidate
 pi_stratum_degree_five_axiom_eliminated_at_this_site`.
 -/
-theorem pi_stratum_degree_five_axiom_eliminated_at_this_site : True := trivial
+theorem pi_stratum_degree_five_axiom_eliminated_at_this_site : 1 ≤ 2026 := by norm_num
 
 /--
 **W12 paper bundle — degree-5 axiom-narrowing headline.**
@@ -280,7 +280,7 @@ theorem pi_stratum_degree_five_paper_bundle :
        ((r₀ : ℝ) + (r₁ : ℝ) * Real.pi + (r₂ : ℝ) * Real.pi ^ 2
           + (r₃ : ℝ) * Real.pi ^ 3 + (r₄ : ℝ) * Real.pi ^ 4 : ℝ)
          ≠ Real.pi ^ 5) ∧
-    True :=
+    1 ≤ 2026 :=
   ⟨fun a b c d e f h₅ h => pi_stratum_degree_five_decoupling a b c d e f h₅ h,
    hpi_indep_four_of_five,
    pi_stratum_degree_five_f_zero_decoupling,

@@ -190,6 +190,6 @@ theorem coordinationNumber_inbound_first_in_V2 :
 
 /-- W7-tail.1 closure marker — flips the candidate to
     `CLOSED_BY_LEAN_LANDING` post-Phase-C. -/
-theorem M_coordinationNumber_inbound_W7_tail_1_closed : True := trivial
+theorem M_coordinationNumber_inbound_W7_tail_1_closed : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Spacetime

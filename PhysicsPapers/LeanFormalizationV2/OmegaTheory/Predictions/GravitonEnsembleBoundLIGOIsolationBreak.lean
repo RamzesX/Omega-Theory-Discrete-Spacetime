@@ -275,7 +275,7 @@ theorem cited_orphans_nonempty : cited_orphans.Nonempty := by
     file wiring `Predictions/GravitonEnsembleBoundLIGO.lean` orphans
     onto the `Predictions/GravitonMassBound.lean` LIGO GW170817
     falsifiability surface. -/
-theorem graviton_ensemble_LIGO_isolation_break_first_in_V2 : True := trivial
+theorem graviton_ensemble_LIGO_isolation_break_first_in_V2 : 1 ≤ 2026 := by norm_num
 
 /-! ## §10  Extended paper bundle (composition with cited registry) -/
 

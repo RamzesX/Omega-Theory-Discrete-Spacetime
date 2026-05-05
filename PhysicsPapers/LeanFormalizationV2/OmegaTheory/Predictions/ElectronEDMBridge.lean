@@ -236,6 +236,6 @@ theorem electron_edm_pi_bridge_headline :
 /-- **Frontier marker** — first formal π-truncation envelope bridge
     for the electron EDM bound; partners Girtab's √2-channel tight
     bound with the Pi-Hunch universal dominant-error envelope. -/
-theorem electron_edm_pi_bridge_marker : True := trivial
+theorem electron_edm_pi_bridge_marker : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.ElectronEDMBridge

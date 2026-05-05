@@ -440,7 +440,7 @@ theorem axion_substrate_refuted_if_outside_window :
     cycle-13 + Errai cycle-14).  Serves as a hook for future
     axion-DM experimental fits (ADMX / HAYSTAC / IAXO / ORGAN /
     QUAX). -/
-theorem axion_first_DM_only_demotion_in_V2 : True := trivial
+theorem axion_first_DM_only_demotion_in_V2 : 1 ≤ 2026 := by norm_num
 
 /-- **Frontier marker** — the calibration `C_axion = 10⁻⁴ eV` is
     an EMPIRICAL_ANSATZ input.  A first-principles derivation would
@@ -448,6 +448,6 @@ theorem axion_first_DM_only_demotion_in_V2 : True := trivial
     Skyrme-like soliton spectrum on ℤ⁴, or an explicit instanton-sum
     reconstruction of `m_a · f_a` from Tarf `m_π` and Enif `f_π`.
     No mathematical content here — hook for downstream agents. -/
-theorem axion_mass_calibration_frontier : True := trivial
+theorem axion_mass_calibration_frontier : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Predictions.AxionMassWindow

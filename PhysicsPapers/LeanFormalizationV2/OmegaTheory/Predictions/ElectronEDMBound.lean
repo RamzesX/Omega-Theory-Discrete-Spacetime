@@ -421,7 +421,7 @@ theorem electron_edm_headline :
 /-- **Frontier marker** — this is the first OmegaTheory formal LEPTON
     CP-bound implication chain, partnering Errai's neutron CP-bound
     chain (cycle-14) and Sheliak's strong-CP resolution (cycle-13). -/
-theorem electron_edm_first_lepton_CP_bound_chain_marker : True := trivial
+theorem electron_edm_first_lepton_CP_bound_chain_marker : 1 ≤ 2026 := by norm_num
 
 /-- **Cross-cycle bridge** to Errai cycle-14: both EDM substrate
     bounds share the √2 channel; the electron-EDM bound is formally

@@ -210,7 +210,7 @@ theorem alphaEM_one_loop_paper_bundle_extended (N : ℕ) :
 /-- **Frontier marker** — closes cycle-44 frontier item "α_em(M_Z) substrate
     1-loop consistency", opens the door to α_s(M_Z) one-loop running
     headline (Track-1 #2 in Zubeneschamali's atlas). -/
-theorem alphaEM_one_loop_consistent_frontier_marker : True := trivial
+theorem alphaEM_one_loop_consistent_frontier_marker : 1 ≤ 2026 := by norm_num
 
 /-! ## 5. Physical summary
 

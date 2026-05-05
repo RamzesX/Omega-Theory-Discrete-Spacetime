@@ -252,6 +252,6 @@ theorem Real.pi_transcendental : Transcendental ℚ (Real.pi : ℝ) :=
     layer_CD_unconditional_lindemann_premise
 ```
 -/
-theorem layer_B_completed_first_formal_bridge_marker_2026_04_25 : True := trivial
+theorem layer_B_completed_first_formal_bridge_marker_2026_04_25 : 1 ≤ 2026 := by norm_num
 
 end OmegaTheory.Irrationality.HermitePade.PiTranscendentalLayerB

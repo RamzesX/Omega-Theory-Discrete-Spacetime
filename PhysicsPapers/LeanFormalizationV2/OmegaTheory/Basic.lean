@@ -212,7 +212,6 @@ import OmegaTheory.Emergence.HiggsFromError
 import OmegaTheory.Emergence.HiggsVEVSubstrate
 import OmegaTheory.Emergence.PathIntegral
 import OmegaTheory.Emergence.RotationCurves
-import OmegaTheory.Emergence.SpectralActionExpansion
 -- Pathway A: Λ_QCD from substrate via 1-loop RG running
 -- (lambda-qcd-builder, 2026-04-19). Formalizes 1-loop β-function,
 -- Λ_QCD as RG invariant, and substrate UV-cutoff composition.
@@ -3609,22 +3608,6 @@ import OmegaTheory.IrrationalityClasses.Wave4LandingsHeadline
 -- 0 sorry, 0 new axioms.
 import OmegaTheory.IrrationalityClasses.AxiomNarrowing
 
--- Wave-B, cycle-44 theorem 3 — Dixmier-trace placeholder interface
--- (Alkalurops 2026-04-22).  Closes Grothendieck-sage's MP-3
--- literature-anchored gap: OmegaTheory adopts the Chamseddine-Connes
--- spectral action S = Tr(f(D/Λ)) but has no Dixmier-trace
--- regularisation.  Provides a 3-axiom interface `DixTr : (ℕ → ℝ) → ℝ`:
---   (i)   `DixTr (reference_sequence) = π²/6` on the Basel sequence;
---   (ii)  vanishes on summable non-reference sequences;
---   (iii) `heatTrace spec.a4 = DixTr (eigenvalueSequence spec)`
---         for every SeeleyDeWittCoeffs `spec`.
--- Honest scope: axiom (ii) carries the "not-equal-to-the-reference"
--- caveat to avoid the literal `1/(n+1)²-is-summable-∧-sums-to-π²/6`
--- contradiction.  Full Connes-Dixmier construction (ω-limits on
--- ℒ^{1,∞}) is research-level future work.
--- 0 sorry, 0 new axioms, 0 new `Prop := True`.
-import OmegaTheory.IrrationalityClasses.DixmierTracePlaceholder
-
 -- FastRPBridgesWave5 (Wave 5 wizard B, 2026-04-22): 5 FastRP-predicted
 -- kNN bridge theorems (Aludra's wave-3 single-most-impactful-next-step)
 -- closing >0.87 cosine-similarity edges that the Neo4j embedding graph
@@ -3696,17 +3679,6 @@ import OmegaTheory.Emergence.ZSterileYieldCatalanKernel
 -- Makes Alkalurops' Dixmier-trace placeholder axiom (iii) non-trivially
 -- consumable.  0 sorry, 0 new axioms.
 import OmegaTheory.Foundations.SeeleyDeWittA4Substrate
-
--- Wave D+E — strictly stronger Dixmier-trace placeholder
--- (Diphda 2026-04-24).  Orthogonal offering to Alkalurops'
--- `DixmierTracePlaceholder` (Basel-reference version): uses the
--- non-summable harmonic reference `1/(n+1)` so the strict axiom
--- "DixTr2 vanishes on ALL summable sequences unconditionally" holds
--- without contradicting the `π²/6` value at the reference.  Proves
--- `dixmier_trace_vanishes_on_trace_class_strictly` as a three-conjunct
--- existence statement.  0 sorry, 0 new axioms; uses `summable_nat_add_iff`
--- + `Real.not_summable_one_div_natCast` for the harmonic divergence.
-import OmegaTheory.IrrationalityClasses.DixmierTraceStrict
 
 -- Wave D+E — numerical m_e/m_μ PDG bracket at N = 4
 -- (Diphda 2026-04-24).  Ships existential witness
@@ -3891,7 +3863,6 @@ import OmegaTheory.Foundations.WasatTailSadr
 --   B5 NoetherInformationBridge (23 unblocks, Conservation/)
 --   B6 SpinTorsionCouplingBridge (22 unblocks, Conservation/)
 --   B7 BigBounceHealingLatticeBridge (11 unblocks, Torsion/)
---   B8 DixmierConnesSpectralBridge (10 unblocks, IrrationalityClasses/)
 --   B9 GravityMatterUnifiedBridge (39 unblocks, Capstones/)
 -- Pattern: each bridge file co-cites kernel facts from two previously
 -- isolated source modules in the same proof body, exposing the
@@ -3904,7 +3875,6 @@ import OmegaTheory.Emergence.RedshiftMassAsDelayBridge
 import OmegaTheory.Conservation.NoetherInformationBridge
 import OmegaTheory.Conservation.SpinTorsionCouplingBridge
 import OmegaTheory.Torsion.BigBounceHealingLatticeBridge
-import OmegaTheory.IrrationalityClasses.DixmierConnesSpectralBridge
 -- Wave T1 (Propus, 2026-04-24) — Poincaré ↔ shift-holonomy structural bridge
 import OmegaTheory.Geometry.PoincareShiftHolonomyBridge
 

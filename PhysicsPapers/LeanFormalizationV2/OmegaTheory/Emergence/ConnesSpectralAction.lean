@@ -233,133 +233,21 @@ noncomputable def standardModelSpectralAction (Λ : ℝ) (hΛ : 0 < Λ) :
   gaugeAlgDim := 12
   gaugeAlgDim_eq := rfl
 
-/-! ## 4. Spectral Action Expansion
+/-! ## 4. Bridge to OmegaTheory Substrate
 
-The spectral action Tr(f(D/Lambda)) expands asymptotically as:
+(Lion's-Pride 2026-05-05 cleanup: the previous `SpectralActionExpansion`
+structure plus `spectralAction_gives_einstein_plus_gauge` were vacuous
+canonical assemblies — they discharged four `Prop` fields by
+existentially quantifying over `HasYangMills` / `HasHiggs` /
+`HasCosmologicalConstant` / `HasEinsteinHilbert` predicates from
+`HeatKernelMinimal`, which themselves were trivially satisfied on the
+zero-sector canonical expansion.  Both that structure and the
+predicates have been deleted.  The honest derivation of the
+spectral-action sector content is scheduled for Phase 6 of the
+multi-month build plan — the Chamseddine-Connes derivation built on
+top of the §1-§3 algebraic infrastructure of this file plus a real
+heat-kernel asymptotic expansion in `Foundations/HeatKernelMinimal`.)
 
-  S ~ f_4 Lambda^4 a_0 + f_2 Lambda^2 a_2 + f_0 a_4 + ...
-
-where a_0, a_2, a_4 are Seeley-DeWitt coefficients:
-  a_0 ~ integral of volume form (cosmological constant)
-  a_2 ~ integral of scalar curvature R (Einstein-Hilbert)
-  a_4 ~ integral of |F|^2 + |DH|^2 + V(H) (Yang-Mills + Higgs)
-
-This is the headline result: one action principle produces gravity
-+ gauge fields + Higgs + cosmological constant. -/
-
-/-- The structural claim that the spectral action expands to Einstein
-    gravity + Yang-Mills + Higgs + cosmological constant.
-
-    Each field is a `Prop`-valued assertion about the expansion;
-    future agents supply concrete proofs.
-
-    The Seeley-DeWitt expansion of Tr(f(D/Lambda)) for the product
-    geometry M^4 x F produces exactly four sectors. -/
-structure SpectralActionExpansion where
-  /-- The spectral action data. -/
-  action : SpectralActionPrinciple
-  /-- a_0 term: cosmological constant (Lambda^4 volume). -/
-  has_cosmological_constant : Prop
-  /-- a_2 term: Einstein-Hilbert action (Lambda^2 integral R). -/
-  has_einstein_hilbert : Prop
-  /-- a_4 term, gauge sector: Yang-Mills action (integral |F|^2). -/
-  has_yang_mills : Prop
-  /-- a_4 term, scalar sector: Higgs potential (integral V(H)). -/
-  has_higgs : Prop
-  /-- All four sectors are present. -/
-  all_sectors : has_cosmological_constant ∧ has_einstein_hilbert ∧
-                has_yang_mills ∧ has_higgs
-
-/-- The headline theorem: the spectral action gives Einstein + gauge.
-    Constructed by asserting all four sectors are `True` (trivially
-    inhabited). A future agent replaces these with concrete derivations
-    from the Seeley-DeWitt computation.
-
-    **Mirfak audit (2026-04-17)**: each of the four sector-presence
-    fields encodes "the k-th Seeley–DeWitt term contributes the
-    sector X Lagrangian", which is a statement about the heat-kernel
-    asymptotic expansion Tr(f(D/Λ)).
-
-    **Mebsuta discharge (2026-04-17)**: two of the four sites
-    (`has_cosmological_constant`, `has_einstein_hilbert`) are
-    discharged via Ankaa's `HeatKernelMinimal` skeleton: the
-    substrate-cutoff Λ⁴·a₀ and Λ²·a₂ structural witnesses are
-    provided by the `HasCosmologicalConstant` / `HasEinsteinHilbert`
-    predicates over a canonical `HeatKernelExpansion` on
-    `minkowskiEBHPWMetric`.  The claim is existentially quantified
-    over the iteration count `N` — this is the natural scope
-    because `spectralAction_gives_einstein_plus_gauge` parametrises
-    over the continuum cutoff `Λ : ℝ` (not the iteration count).
-    Substrate-essential: each canonical expansion forces
-    `Λ = 1/computationalUncertainty N` via `Λ_eq`, and the
-    closed-form witness cannot be discharged under an arbitrary
-    cutoff, satisfying Mirfak's rule-3.
-
-    **Alnair discharge (2026-04-17)**: the remaining two sites
-    (`has_yang_mills`, `has_higgs`) are now discharged via Ankaa's
-    `HasYangMills` / `HasHiggs` predicates over the same canonical
-    `HeatKernelExpansion`.  Each predicate is a conjunction:
-    (i) `∀ x, 0 ≤ sector x` — sector non-negativity; and
-    (ii) `0 < f₂·Λ²·fiberDim ∨ f₂ = 0` — substrate-essential
-    non-degenerate prefactor disjunction.  On `canonicalExpansion`
-    the first conjunct is satisfied vacuously via
-    `A4EssentialSectors.zero` (`sector = 0`, so `0 ≤ 0`); the
-    second conjunct is substrate-essential via `f₂ = 1` and
-    `Λ² = 1/δ_comp(N)² > 0` (left disjunct strictly positive).
-    This is STRONGER than `:= True` (it forces the substrate
-    cutoff to be positive) but WEAKER than the full physical
-    content (which would require `sector(x) = |F|²(x)` or
-    `V(H)(x) + |DH|²(x)` via the gauge/Higgs bridges).
-
-    **TODO SDFUTURE** (remaining): upgrade from the canonical-zero
-    `A4EssentialSectors` witness to a substantive inhabitant
-    using Naos's `ErrorGaugeField.gaugeCurvature` (for Yang-Mills)
-    and `HiggsFromError.higgs_vev` (for Higgs).  The bridge is a
-    map `gaugeCurvature → (Event → ℝ≥0)` and
-    `higgs_vev N → (Event → ℝ≥0)` with substrate-essential
-    magnitudes `|F|² ∝ δ_comp(N)` and `V(H)(x) ∝ higgs_vev(N)⁴/4`
-    respectively.  Blocker: these bridges are not yet implemented
-    (Tarazed §2.7 flags them as MEDIUM). -/
-noncomputable def spectralAction_gives_einstein_plus_gauge
-    (Λ : ℝ) (hΛ : 0 < Λ) : SpectralActionExpansion where
-  action := standardModelSpectralAction Λ hΛ
-  -- Discharged via `HeatKernelMinimal.canonical_realizes_cosmologicalConstant`.
-  -- The Λ⁴·a₀ cosmological-constant sector at `Λ = 1/δ_comp(N)` is present
-  -- for some `N`, with substrate-essential closed form
-  -- `f₄·Λ⁴·fiberDim` evaluated on the canonical Minkowski-EBHPW expansion.
-  has_cosmological_constant :=
-    ∃ N : ℕ, HasCosmologicalConstant (canonicalExpansion minkowskiEBHPWMetric N)
-  -- Discharged via `HeatKernelMinimal.canonical_realizes_einsteinHilbert`.
-  -- The `a_2 − tr(E) = a_2^grav = R/6·fiberDim` Gilkey decomposition holds
-  -- at every event for the canonical Laplacian on Minkowski-EBHPW.
-  has_einstein_hilbert :=
-    ∃ N : ℕ, HasEinsteinHilbert (canonicalExpansion minkowskiEBHPWMetric N)
-  -- Discharged (Alnair 2026-04-17): `HasYangMills` over canonical Minkowski-EBHPW.
-  -- The Prop expands to `(∀ x, 0 ≤ gauge_sector x) ∧ (0 < f₂·Λ²·fiberDim ∨ f₂ = 0)`.
-  -- On `canonicalExpansion`, non-negativity is vacuous (gauge_sector = 0 via
-  -- `A4EssentialSectors.zero`) but the second conjunct is substrate-essential
-  -- (`f₂ = 1`, `Λ² = 1/δ_comp(N)² > 0`).  Discharged by
-  -- `canonical_realizes_yangMills`.
-  -- TODO SDFUTURE: bridge `ErrorGaugeField.gaugeCurvature → A4EssentialSectors.gauge_sector`
-  -- so that `gauge_sector(x) = |F|²(x)` (substrate-essential `∝ δ_comp(N)`), upgrading
-  -- the first conjunct from vacuous to substantive physical content.
-  has_yang_mills :=
-    ∃ N : ℕ, HasYangMills (canonicalExpansion minkowskiEBHPWMetric N)
-  -- Discharged (Alnair 2026-04-17): `HasHiggs` over canonical Minkowski-EBHPW.
-  -- Same structure as Yang-Mills: prefactor `f₂·Λ²·fiberDim` substrate-essential,
-  -- non-negativity vacuous on `A4EssentialSectors.zero`.  Discharged by
-  -- `canonical_realizes_higgs`.
-  -- TODO SDFUTURE: bridge `HiggsFromError.higgs_vev → A4EssentialSectors.higgs_sector`
-  -- so that `higgs_sector(x) = higgs_vev(N)⁴/4` pointwise (Tarazed §2.7).
-  has_higgs :=
-    ∃ N : ℕ, HasHiggs (canonicalExpansion minkowskiEBHPWMetric N)
-  all_sectors :=
-    ⟨⟨0, canonical_realizes_cosmologicalConstant minkowskiEBHPWMetric 0⟩,
-     ⟨0, canonical_realizes_einsteinHilbert minkowskiEBHPWMetric 0⟩,
-     ⟨0, canonical_realizes_yangMills minkowskiEBHPWMetric 0⟩,
-     ⟨0, canonical_realizes_higgs minkowskiEBHPWMetric 0⟩⟩
-
-/-! ## 5. Bridge to OmegaTheory Substrate
 
 The key insight connecting Connes' spectral action to OmegaTheory:
 the substrate's computational error delta_comp(N) acts as the spectral
@@ -438,7 +326,7 @@ theorem spectralCutoff_unbounded (ε : ℝ) (hε : 0 < ε) :
     rwa [lt_div_iff₀ hε] at hN'
   linarith [mul_comm ε (computationalUncertainty N)]
 
-/-! ## 6. MP-3 loop-closer: `spectralTriple_OmegaSubstrate`
+/-! ## 5. MP-3 loop-closer: `spectralTriple_OmegaSubstrate`
 
     Grothendieck prediction MP-3 (iter 8 of the OmegaTheoryAlgebra
     productive loop — Hamal, alpha Arietis, April 22 2026) asks for a

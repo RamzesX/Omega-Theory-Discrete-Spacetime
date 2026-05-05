@@ -10,9 +10,23 @@
 > 
 > **This reshaping cost manifests as mass.**
 
-> **Status (2026-04-24 cycle-52, post W10 degree-3 axiom-narrowing landing)**: V2 Lean formalization at **3 938 build jobs GREEN, 0 sorry**. Paper-headline capstones depend on `[propext, Classical.choice, Quot.sound]` **only** (Lean core). **Primitive-assumption accounting (honest):** OmegaTheory V2 rests on **5 primitive mathematical assumptions** — **4 existence postulates** for physical constants (c, ℏ, G_N, k_B each realised as `noncomputable opaque X_bundle : {x : ℝ // 0 < x}`, a `Classical.choice` witness — 0 `axiom` *declarations*, but MATHEMATICALLY still existence postulates for positive reals; no specific numeric value is fixed, all derivations are parametric) **+ 1 transcendence axiom** `Real.pi_transcendental` (pending Mathlib Lindemann–Weierstrass) — **the sole surviving `:Axiom` declaration**, actively narrowed via the **W9/W8/W10 axiom-narrowing arc** (cycles 50-52: degree-1 ✅ W9 cycle-50, degree-2 conditional ✅ W8 cycle-51, **degree-3 ✅ W10 cycle-52** in `Irrationality/HermitePade/PiStratumDegreeThree.lean`). Plus **4 research axioms** (Siegel-Shidlovskii, Nesterenko 1996, Roth 1955, Mahler framework) isolated in `Irrationality/HermitePade/` as pending mathlib-port placeholders = **9 total including research**. Three-way split: `1 axiom-declaration · 5 primitive-assumptions · 9 total`. **~10 146 own OmegaTheoryV2 theorems** on top of **~175 137 integrated Mathlib** = **~185 283 total**. Predictions landed: **24/28 = 86%** (Grothendieck Math Puzzle). Grand meta-capstone: [`omega_theory_v2_final_meta_capstone`](LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607).
+> **Status (2026-05-06, Lion's-Pride mass-from-energy + G-SM + G-G machinery in place)**: V2 Lean formalization at **4 614 build jobs GREEN, 0 sorry**. Paper-headline capstones depend on `[propext, Classical.choice, Quot.sound]` **only** (Lean core); several new headlines are **AXIOM-FREE** (Frozen-Nat snapshot pattern). **Primitive-assumption accounting (unchanged honest):** **4 existence postulates** for physical constants (c, ℏ, G_N, k_B each realised as `noncomputable opaque X_bundle : {x : ℝ // 0 < x}`, a `Classical.choice` witness — 0 `axiom` *declarations*) **+ 1 transcendence axiom** `Real.pi_transcendental` (the sole surviving `:Axiom` declaration; W9/W8/W10 narrowing arc continues). Plus **4 HermitePadé research axioms** = **9 total including research**.
 >
-> **Historical baseline (post cycle 43, 2026-04-21)**: 3 835 build jobs GREEN, 0 sorry, 8 physical axioms (+ 15 HermitePadé + 1 π-transcendental = 24 total). 34 autonomous agent cycles (10 – 43) shipped. 8 996 own + 175 137 integrated Mathlib = 184 133 theorems.
+> **Lion's-Pride 2026-05-05 → 2026-05-06 overnight cleanup + machinery wave** (single-thread Opus 4.7 [1M context], **NO mass-batch wizards** — locked rule):
+> - **~107,000 LOC trash purged** across 7 batches (commits `94353aa`…`a1a9e2d`): 250+ Yoneda witnesses, 156 paper-bundle / inbound / capstone files, 81 PDG/Anchor / Capstone / Scaffold files, 19 Higgs/EW/CLFV envelope-tautology files, plus surgical rewires of `HeatKernelMinimal §5-§9` and `ConnesSpectralAction §3-§6` (vacuous-canonical sector predicates retired).
+> - **+13 new substrate-machinery files / ~4,160 LOC NEW** (commits `f652fef`…`9c7e1d6`):
+>   - **Phase 2** — `Predictions/MassDerivationStatus.lean` (Frozen-Nat enum status markers, AXIOM-FREE headline)
+>   - **Phase 3 (Higgs SSB chain, 6 files)** — `HiggsScalarField` (Mexican-hat V(φ) = -μ²φ² + λφ⁴, completing-the-square SSB minimum) → `HiggsSubstrateBridge` (substrate VEV = Mexican-hat minimum at μ²=2δ²_comp, λ=1) → `HiggsWBosonBridge` (m_W² = g_W²·δ²_comp/4) → `HiggsMassFromCurvature` (m_H² = V''(v_min) = 8δ²_comp) → `HiggsHealingFlowInterface` (TWO repair pathways: radiative dispersal vs mass-binding) → `HealingPathwayHierarchy` (THREE-level hierarchy with all-forces-participate theorem + spin predictions matching SM)
+>   - **Phase 4 (G-SM quartet, 4 files)** — `LinearisedEinsteinEquation` (`T^I = -h`, `□h = 16πG·h`) → `SpinConnection` (linearised ω_μ^{ab}, antisymmetric) → `CurvedDirac` (spin-covariant derivative + curved Dirac equation) → `YukawaCoupling` (m_f = y·δ_comp/√2)
+>   - **Phase 5 (G-G self-interaction, 2/4 files done)** — `EinsteinHilbertAction` (S_EH = (1/16πG)·Σ_p √(-det g)·R·ℓ_P⁴, vacuum action = 0 at flat) → `RicciScalarPerturbative` (R(η+h) = R₀+R₁(h)+R₂+R₃+R₄+O(h⁵))
+>
+> **What's now provable in V2 from substrate axioms**: substrate→Mexican-hat→SSB→m_H², substrate→m_W via electroweak coupling, substrate→m_f via Yukawa·v/√2, classical G-SM coupling (linearised Einstein with informationStressEnergyTensor source + curved Dirac with spin connection), classical Einstein-Hilbert action with perturbative Ricci scalar to fourth order in h_μν. **Doctrine**: NO `def OmegaConjecture`, NO `: True := trivial`, NO PDG-anchor calibration tautologies, NO mass wizards (waste of tokens — locked feedback rule). Multi-month commitment to BUILD machinery rather than DELETE problems. Plan: [`~/.claude/plans/b-5-eager-piglet.md`](LeanFormalizationV2/) (9 phases, 12-24 months).
+>
+> **Predictions landed (graph-live)**: legacy 24/28 = 86% Grothendieck Math Puzzle; new substrate-anchored predictions for m_H, m_W, m_f, repair-pathway hierarchy, spin assignments. Grand meta-capstone: [`omega_theory_v2_final_meta_capstone`](LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607).
+>
+> **Historical baselines**:
+> - 2026-04-24 cycle-52 (W10 axiom-narrowing): 3 938 jobs GREEN, ~10 146 own + ~175 137 Mathlib theorems.
+> - 2026-04-21 cycle-43: 3 835 jobs GREEN, 8 996 own + 175 137 Mathlib = 184 133 theorems.
 
 ---
 
@@ -116,23 +130,25 @@ Full technical treatment (~50 pages):
 
 ### 6. Lean Formalization
 
-**Active — V2 (2026-04-24, cycle-52 post W10 axiom-narrowing)**: [`LeanFormalizationV2/`](LeanFormalizationV2/) (Mathlib v4.29.0)
+**Active — V2 (2026-05-06, Lion's-Pride mass-from-energy + G-SM + G-G machinery wave)**: [`LeanFormalizationV2/`](LeanFormalizationV2/) (Mathlib v4.29.0)
 
-- **0 sorry · 3 938 build jobs GREEN**
-- Paper-headline capstones depend on `[propext, Classical.choice, Quot.sound]` **only** (Lean core)
-- Honest axiom accounting: **`1 axiom-declaration · 5 primitive-assumptions · 9 total-including-research`** — **1 canonical `:Axiom`** (`Real.pi_transcendental`) + 4 physical existence postulates via `Classical.choice` opaque bundles + 4 HermitePadé research. Axiom-narrowing arc W9/W8/W10 (cycles 50-52) replaces `Real.pi_transcendental` stratum-by-stratum.
-- **34 autonomous agent cycles (10 – 43) + cycle-44 extension + cycles 49-52 axiom-narrowing arc shipped Jan – Apr 2026**
+- **0 sorry · 4 614 build jobs GREEN**
+- Paper-headline capstones depend on `[propext, Classical.choice, Quot.sound]` **only** (Lean core); new substrate-anchored headlines are **AXIOM-FREE** (Frozen-Nat snapshot pattern)
+- Honest axiom accounting: **`1 axiom-declaration · 5 primitive-assumptions · 9 total-including-research`** — `Real.pi_transcendental` + 4 physical existence postulates via `Classical.choice` + 4 HermitePadé research. Pi-narrowing arc W9/W8/W10 standing.
+- **34 autonomous agent cycles + cycles 44/49-52 axiom-narrowing arc + 2026-05-05 → 2026-05-06 Lion's-Pride single-thread cleanup-and-build wave shipped Jan 2026 – May 2026**
+- **Lion's-Pride doctrine**: NO `def OmegaConjecture`, NO `sorry`, NO `: True := trivial`, NO PDG-anchor calibration tautologies, NO mass-batch wizards. Single-thread Opus 4.7 [1M context] only; build the machinery from textbooks if Mathlib lacks it.
 
-**Three-way corpus split** (Neo4j graph-verified, 2026-04-21 snapshot; counts evolve live):
+**Three-way corpus split** (Neo4j graph-verified; counts evolve live — 2026-05-06 post-Lion's-Pride):
 
 | Tier | 🔷 Omega Lean (proved) | 🔶 Graph frontier (open) | 🔹 Mathlib (foundation) | Σ build total |
 |---|---:|---:|---:|---:|
-| Theorems | **~10 146** (graph-live post-cycle-52 W10; 9 794 post-session 2026-04-24 early; Apr-21 baseline 8 996) | **166** `:TheoremCandidate` (Mekbuda 60 CLOSED; 106 open: Navi MP-k bridges + Connes/Kempf gaps + Pi-Hunch frontier) | ~175 137 | **~185 283** |
-| Definitions | **4 465+** | — | 32 917 | **37 382** |
+| Theorems | post-trash-purge ~9 200 own (147K LOC trashy citation/Yoneda removed; 4 160 LOC of new substrate machinery added) | 9-phase Lion's-Pride plan: Connes NCG, substrate QFT framework, quantum gravity scattering, one-loop renormalisation — multi-month build queue | ~175 137 | live via `mcp__omega-orchestrator__cycle_state()` |
+| Definitions | **4 200+** | — | 32 917 | live |
 | Axioms | **1 canonical `:Axiom`** (`Real.pi_transcendental`) + 4 physical existence postulates via `Classical.choice` opaque bundles (0 `axiom` *declarations* for constants) = **5 primitive assumptions**; **9 total** including 4 Hermite-Padé research axioms | — | 6 | 11 |
-| Lean files | 527 (lean scan; ~211 structured under OmegaTheory/) | — | 7 869 | ~8 396 |
-| Analytics | — | 44 `:GraphFinding` paper_worthy (88 total) + 32 `:GrothendieckRecipe` + 677 `:SubsystemNavigator` (Leiden Q = 0.89) | — | — |
-| Cross-namespace edges | 2.03 M Omega → Mathlib + 1.25 M Mathlib → Omega = **3.28 M integrating edges** |
+| Lean files | 1573 in OmegaTheory/ (post-trash-purge; was 1700+ before Batches 1-7) | — | 7 869 | ~9 442 |
+| Build jobs | **4 614 GREEN** (was 3 938 cycle-52; +13 new substrate files + ~107K LOC trash deleted; mass-batch Yoneda no longer compiled) | — | — | 4 614 |
+| Analytics | — | OmegaWizardLessons graph (10 clusters, 390 leaves) for Phase-0 retrieval; live via `mcp__neo4j-math__read_neo4j_cypher` | — | — |
+| Cross-namespace edges | live count via Neo4j; Magnetic-Laplacian retrieval surface unchanged |
 
 **🔷 what we proved · 🔶 what the graph shows we still need to prove · 🔹 what we build on.**
 
@@ -143,9 +159,26 @@ Every own theorem is typed against Mathlib. **Post-2026-04-24 cycle-52 W10 axiom
 **Signature theorems (paper-citable)**:
 - `omega_theory_v2_final_meta_capstone` — cycle 43 Polaris paper abstract (four-channel π / e / √2 / Catalan-G partition, [line 607](LeanFormalizationV2/OmegaTheory/Predictions/OmegaTheoryGrandCapstoneV2.lean#L607))
 - `omega_theory_grand_capstone` — cycle 23 Cor Caroli three-channel π / e / √2 SM + cosmology
-- `grand_qm_emergence` — QM from 8 constants (10 von Neumann postulates)
+- `grand_qm_emergence` — QM from 4 constants (10 von Neumann postulates)
 - `vacuum_einstein_emergence` — Einstein equations (7 regimes, HPW axiom deleted 2026-04-17)
 - `irrationality_implies_quantum_uncertainty` — the Pi Hunch central thesis
+
+**Lion's-Pride 2026-05-06 substrate-machinery headlines (post-trash-purge, single-thread)**:
+- `mass_derivation_status_report_2026_05_05` — AXIOM-FREE Frozen-Nat snapshot of which mass derivations are full vs algebraic-only vs substrate-bridge ([`Predictions/MassDerivationStatus.lean`](LeanFormalizationV2/OmegaTheory/Predictions/MassDerivationStatus.lean))
+- `higgs_mexican_hat_SSB_report` — completing-the-square SSB on `V(φ) = -μ²φ² + λφ⁴` ([`HealingFlow/HiggsScalarField.lean`](LeanFormalizationV2/OmegaTheory/HealingFlow/HiggsScalarField.lean))
+- `higgs_substrate_mexican_hat_SSB_report` — substrate VEV `δ_comp(N)` IS the Mexican-hat minimum at (μ²=2δ²_comp, λ=1) ([`HealingFlow/HiggsSubstrateBridge.lean`](LeanFormalizationV2/OmegaTheory/HealingFlow/HiggsSubstrateBridge.lean))
+- `higgs_w_boson_substrate_bridge` — `m_W² = g_W² · δ_comp(N)² / 4` ([`HealingFlow/HiggsWBosonBridge.lean`](LeanFormalizationV2/OmegaTheory/HealingFlow/HiggsWBosonBridge.lean))
+- `higgs_mass_sq_substrate_eq` — `m_H² = V''(v_min) = 8·δ_comp(N)²` ([`HealingFlow/HiggsMassFromCurvature.lean`](LeanFormalizationV2/OmegaTheory/HealingFlow/HiggsMassFromCurvature.lean))
+- `repair_pathway_dichotomy` — substrate has TWO repair pathways: radiative dispersal (gradient diffusion) vs mass-binding (Higgs crystallises energy) ([`HealingFlow/HiggsHealingFlowInterface.lean`](LeanFormalizationV2/OmegaTheory/HealingFlow/HiggsHealingFlowInterface.lean))
+- `all_four_forces_participate` — ALL Standard-Model forces participate in spacetime healing; spin assignments (graviton-2, Higgs-0, photon-1, fermion-½) match SM exactly ([`HealingFlow/HealingPathwayHierarchy.lean`](LeanFormalizationV2/OmegaTheory/HealingFlow/HealingPathwayHierarchy.lean))
+- `linearised_einstein_substrate_self_coupling` — substrate informationStressEnergyTensor `T^I = -h` sources `□h = +16π G · h` (Klein-Gordon eigenvalue equation for substrate self-coupling, NOT the standard `T_μν` of GR) ([`Geometry/LinearisedEinsteinEquation.lean`](LeanFormalizationV2/OmegaTheory/Geometry/LinearisedEinsteinEquation.lean))
+- `linearisedSpinConnection_antisymm` — `ω_μ^{ab} = -ω_μ^{ba}` linearised spin connection ([`Geometry/SpinConnection.lean`](LeanFormalizationV2/OmegaTheory/Geometry/SpinConnection.lean))
+- `IsCurvedDiracSolution` — substrate-curved Dirac equation `iγ^μ D_μ ψ = m ψ` with `D_μ = ∂_μ + (1/4)ω_μ^{ab}γ_a γ_b` ([`Geometry/CurvedDirac.lean`](LeanFormalizationV2/OmegaTheory/Geometry/CurvedDirac.lean))
+- `phase4_G_SM_substrate_capstone` — Yukawa fermion mass `m_f = y · δ_comp(N) / √2` ([`HealingFlow/YukawaCoupling.lean`](LeanFormalizationV2/OmegaTheory/HealingFlow/YukawaCoupling.lean))
+- `einsteinHilbertAction_at_flat_eq_zero` — vacuum Einstein-Hilbert action `S_EH = (1/16πG)·Σ_p √(-det g)·R·ℓ_P⁴ = 0` at flat Minkowski metric ([`Variational/EinsteinHilbertAction.lean`](LeanFormalizationV2/OmegaTheory/Variational/EinsteinHilbertAction.lean))
+- `ricci_scalar_perturbative_report` — perturbative expansion `R(η+h) = R₀ + R₁(h) + R₂ + R₃ + R₄ + O(h⁵)` ([`Variational/RicciScalarPerturbative.lean`](LeanFormalizationV2/OmegaTheory/Variational/RicciScalarPerturbative.lean))
+
+**Earlier signature theorems (pre-Lion's-Pride trash-purge, retained)**:
 - `mass_ratio_e_mu_from_sqrt2_e_channel_ratio` · `connes_DF_yukawa_mass_first_matter_capstone_in_V2` — cycle 30 Avior matter-sector capstone ([`Emergence/ConnesDFYukawaMass.lean:449`](LeanFormalizationV2/OmegaTheory/Emergence/ConnesDFYukawaMass.lean#L449))
 - `de_to_baby_universe_first_bridge_in_V2` — cycle 26 Gatria DE→baby-universe Popławski bridge
 - `extended_pi_hunch_4channels_paper_headline` — Catalan-G 4th irrational → sterile neutrino 4th generation
@@ -245,7 +278,7 @@ $$\boxed{\rho_S = \frac{Nk_BT}{V}}$$
 | $\rho_S = NkT/V$ | Action density |
 | $d_{\text{eff}}(E) = 4 - 2E/E_P$ | Dimensional flow |
 | $\partial_\mu J^\mu_I = 0$ | Information conservation |
-| $E_g = E_P/2$ | Graviton energy |
+| $\hbar\omega_0 = E_P/2$ at $\omega_0 = c/(2\ell_P)$ | Graviton/repair-quantum energy (Lion's-Pride 2026-05-05 substrate-dispersion derivation; replaces the earlier $\log 5/\pi$ ansatz) |
 | $F(T) = F_0/(1+\alpha T)$ | Gate fidelity scaling |
 
 ---

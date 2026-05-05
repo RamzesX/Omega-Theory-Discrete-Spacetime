@@ -4869,6 +4869,13 @@ import OmegaTheory.HealingFlow.HiggsWBosonBridge
 -- 5-headline composite + decreasing-with-N corollary. Closed-form Higgs mass-squared
 -- in substrate primitives without PDG anchor.
 import OmegaTheory.HealingFlow.HiggsMassFromCurvature
+-- Lion's-Pride Phase 3.5 (dynamic /loop iteration 7, 2026-05-05):
+-- Higgs ↔ healing flow interface. Quantitative substrate predictions:
+-- m_H(N) = 2√2·δ_comp(N), E_H(N) = ℏ·m_H·c², τ_H(N) = ℏ/E_H = 1/(m_H·c²),
+-- decay rate 1/τ_H = m_H·c² (mass-binding threshold). Two repair pathways:
+-- radiative dispersal (graviton, fast/transient) vs mass-binding (Higgs, persistent).
+-- 5-conjunct headline + dichotomy theorem.
+import OmegaTheory.HealingFlow.HiggsHealingFlowInterface
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

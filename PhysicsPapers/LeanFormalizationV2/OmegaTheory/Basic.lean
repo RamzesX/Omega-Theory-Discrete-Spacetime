@@ -4863,6 +4863,12 @@ import OmegaTheory.HealingFlow.HiggsSubstrateBridge
 -- m_W² = g_W²(N,Λ) · (higgsVEV_min substrate-params)² / 4 = g_W² · δ_comp(N)² / 4.
 -- 3-conjunct headline + decreasing-with-N corollary.
 import OmegaTheory.HealingFlow.HiggsWBosonBridge
+-- Lion's-Pride Phase 3.4 (dynamic /loop iteration 6, 2026-05-05):
+-- Higgs mass from curvature V''(v_min) = 4·μ² at the Mexican-hat minimum.
+-- Substrate-anchored: m_H²_substrate(N) = 4·μ_sq_substrate = 8·(computationalUncertainty N)².
+-- 5-headline composite + decreasing-with-N corollary. Closed-form Higgs mass-squared
+-- in substrate primitives without PDG anchor.
+import OmegaTheory.HealingFlow.HiggsMassFromCurvature
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

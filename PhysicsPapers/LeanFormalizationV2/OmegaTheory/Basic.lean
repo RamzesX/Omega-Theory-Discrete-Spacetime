@@ -4892,6 +4892,12 @@ import OmegaTheory.HealingFlow.HealingPathwayHierarchy
 -- non-zero h must repair via level-1 (TT graviton dispersal) or level-2 (mass-binding).
 -- 4-conjunct headline composite + equilibrium-triviality theorem.
 import OmegaTheory.Geometry.LinearisedEinsteinEquation
+-- Lion's-Pride Phase 4.2 (dynamic /loop iteration 10, 2026-05-05):
+-- Linearised spin connection ω_μ^{ab} = ½(∂^a h_μ^b - ∂^b h_μ^a) for the substrate's
+-- curved Dirac equation. Properties: antisymmetry ω^{ab} = -ω^{ba}, diagonal-vanishing
+-- ω^{aa} = 0, vanishing on flat metric (h=0 ⟹ ω=0), linearity in h. Foundation for
+-- Phase 4.3 spin-covariant derivative D_μ = ∂_μ + (1/4) ω_μ^{ab} γ_a γ_b.
+import OmegaTheory.Geometry.SpinConnection
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

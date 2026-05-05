@@ -5235,6 +5235,11 @@ import OmegaTheory.HealingFlow.Dimensional
 -- lower bound on the actual repair energy, parameterised by minimum
 -- discriminable defect δ_min and temperature T. Closes inventory gap §D.i.
 import OmegaTheory.Predictions.RepairEnergyLowerBound
+-- Lion's-Pride Phase 3.2 (2026-05-05): substrate dispersion function
+-- Ω²(k) = (4/ℓ_P²) sin²(k·ℓ_P/2) per direction, with IR bound ≤ k²
+-- (sub-continuum) and UV ceiling ≤ 4/ℓ_P² (Planck-scale cutoff).
+-- Foundation for Phase-4 spectral upper-bound argument.
+import OmegaTheory.Predictions.SubstrateDispersion
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak

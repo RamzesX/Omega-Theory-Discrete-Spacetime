@@ -4876,6 +4876,14 @@ import OmegaTheory.HealingFlow.HiggsMassFromCurvature
 -- radiative dispersal (graviton, fast/transient) vs mass-binding (Higgs, persistent).
 -- 5-conjunct headline + dichotomy theorem.
 import OmegaTheory.HealingFlow.HiggsHealingFlowInterface
+-- Lion's-Pride Phase 3.6 (dynamic /loop iteration 8, 2026-05-05):
+-- Three-level substrate-healing hierarchy with spin predictions.
+-- Levels: 1 radiative dispersal (graviton/photon/gluon massless), 2 mass-binding
+-- (Higgs/W/Z/quarks/leptons massive), 3 horizon-thermal (Hawking-style).
+-- Substrate-tensor → spin: rank-2 metric → spin-2 graviton, scalar trace → spin-0
+-- Higgs, rank-1 connection → spin-1 W/Z/photon/gluon, Dirac spinor → spin-½ fermion.
+-- All 4 forces participate. Predict-then-verify methodology against SM.
+import OmegaTheory.HealingFlow.HealingPathwayHierarchy
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

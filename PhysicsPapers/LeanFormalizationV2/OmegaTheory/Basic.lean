@@ -4884,6 +4884,14 @@ import OmegaTheory.HealingFlow.HiggsHealingFlowInterface
 -- Higgs, rank-1 connection → spin-1 W/Z/photon/gluon, Dirac spinor → spin-½ fermion.
 -- All 4 forces participate. Predict-then-verify methodology against SM.
 import OmegaTheory.HealingFlow.HealingPathwayHierarchy
+-- Lion's-Pride Phase 4.1 (dynamic /loop iteration 9, 2026-05-05):
+-- Substrate-sourced linearised Einstein equation `□ h_μν = -16π G_N · T_μν^I`.
+-- Closes gap from free-graviton (□ h = 0) to matter-coupled wave equation. Substrate
+-- identity T_μν^I = -h_μν gives self-coupling eigenvalue equation `□ h = 16π G_N · h`
+-- (the substrate gravitational self-coupling). Connects to Phase 3.6 pathway hierarchy:
+-- non-zero h must repair via level-1 (TT graviton dispersal) or level-2 (mass-binding).
+-- 4-conjunct headline composite + equilibrium-triviality theorem.
+import OmegaTheory.Geometry.LinearisedEinsteinEquation
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

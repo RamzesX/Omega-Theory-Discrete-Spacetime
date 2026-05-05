@@ -124,13 +124,91 @@ theorem dispersion_deficit_le_k_sq (k : ℝ) :
   unfold latticeDispersionPerDirection at hnn
   linarith
 
-/-! ## Section 4 — Audit hook
+/-! ## Section 4 — Quartic Taylor bound (Tier-B, conditional |k·ℓ_P| ≤ 1)
 
-NO `def OmegaConjecture` in this file.  All declarations are real
-quantitative inequalities derived from Mathlib's classical
-trigonometric identities.
+The substantive substrate prediction: under |k·ℓ_P| ≤ 1, the
+deviation of lattice dispersion from continuum is bounded by
+    `k⁴ · ℓ_P² · (5/48)`.
 
-Direct `#print axioms` on each headline returns
-`[propext, Classical.choice, Quot.sound]`. -/
+This is the Lion's-Pride completion of the file, closing the
+deferral noted in commit 525f77f. -/
+
+/-- **Half-angle and substitution identity** rewrite of the deficit:
+    after multiplying by `ℓ_P²`, the deficit becomes a polynomial
+    in `k`, `ℓ_P`, and `cos(k·ℓ_P)`. -/
+private theorem deficit_times_l_P_sq (k : ℝ) :
+    l_P ^ 2 * (k ^ 2 - (4 / l_P ^ 2) * (Real.sin (k * l_P / 2)) ^ 2) =
+      k ^ 2 * l_P ^ 2 - 2 + 2 * Real.cos (k * l_P) := by
+  rw [dispersion_deficit_in_terms_of_cos]
+  have hl : l_P ^ 2 ≠ 0 := ne_of_gt (sq_pos_of_pos l_P_pos)
+  have hcancel : l_P ^ 2 * (2 / l_P ^ 2) = 2 := by
+    rw [mul_div_assoc']; exact mul_div_cancel_left₀ 2 hl
+  -- Distribute, then cancel `l_P^2 · (2/l_P^2)` to `2`.
+  have hdist : l_P ^ 2 * (k ^ 2 - (2 / l_P ^ 2) * (1 - Real.cos (k * l_P))) =
+      l_P ^ 2 * k ^ 2 - (l_P ^ 2 * (2 / l_P ^ 2)) * (1 - Real.cos (k * l_P)) := by ring
+  rw [hdist, hcancel]
+  ring
+
+/-- **Quartic dispersion correction** (the Tier-B headline).
+
+    For wavevectors within Planck-scale (|k·ℓ_P| ≤ 1), the deviation
+    of lattice dispersion from continuum is bounded by `k⁴·ℓ_P²·(5/48)`.
+
+    Proof: by `dispersion_deficit_in_terms_of_cos`, the deficit equals
+    `k² − (2/ℓ_P²)(1 − cos(k·ℓ_P))`.  Multiplying by `ℓ_P² > 0`
+    converts this to `k²·ℓ_P² − 2 + 2·cos(k·ℓ_P)`.  By `Real.cos_bound`
+    at `x = k·ℓ_P` (under `|x| ≤ 1`), `cos(x) ≤ 1 − x²/2 + x⁴·(5/96)`,
+    which gives `k²·ℓ_P² − 2 + 2·cos(x) ≤ k²·ℓ_P² − 2 + 2(1 − x²/2 +
+    x⁴·5/96) = k²·ℓ_P² − x² + x⁴·5/48 = 0 + k⁴·ℓ_P⁴·5/48`.  Dividing
+    by `ℓ_P² > 0` recovers the deficit bound `k⁴·ℓ_P²·5/48`. -/
+theorem dispersion_deficit_le_quartic (k : ℝ) (hk : |k * l_P| ≤ 1) :
+    k ^ 2 - (4 / l_P ^ 2) * (Real.sin (k * l_P / 2)) ^ 2 ≤
+      k ^ 4 * l_P ^ 2 * (5 / 48) := by
+  -- Step 1: Apply Real.cos_bound at x = k·l_P.
+  have hcos := Real.cos_bound hk
+  -- |x|^4 = x^4 for real x (even power).
+  have habs4 : |k * l_P| ^ 4 = (k * l_P) ^ 4 := by
+    rw [show (4 : ℕ) = 2 * 2 from rfl, pow_mul, pow_mul, sq_abs]
+  rw [habs4] at hcos
+  -- Upper bound on cos:
+  have hcos_upper : Real.cos (k * l_P) ≤
+      1 - (k * l_P) ^ 2 / 2 + (k * l_P) ^ 4 * (5 / 96) := by
+    have := (abs_le.mp hcos).2
+    linarith
+  -- Step 2: Multiply both sides of the deficit inequality by l_P^2,
+  -- which is positive (so direction preserved).
+  have hl_pos : 0 < l_P ^ 2 := sq_pos_of_pos l_P_pos
+  have hl_ne : l_P ^ 2 ≠ 0 := ne_of_gt hl_pos
+  -- The l_P^2-scaled deficit is a polynomial in k, l_P, cos.
+  have h_scaled := deficit_times_l_P_sq k
+  -- Substituting the cos upper bound:
+  -- k^2·l_P^2 - 2 + 2·cos(k·l_P) ≤ k^2·l_P^2 - 2 + 2·[1 − (k·l_P)²/2 + (k·l_P)⁴·(5/96)]
+  --                            = k^2·l_P^2 - (k·l_P)² + (k·l_P)⁴·(10/96)
+  --                            = 0 + k⁴·l_P⁴·(5/48)
+  have h_target_scaled :
+      l_P ^ 2 * (k ^ 2 - (4 / l_P ^ 2) * (Real.sin (k * l_P / 2)) ^ 2) ≤
+        l_P ^ 2 * (k ^ 4 * l_P ^ 2 * (5 / 48)) := by
+    rw [h_scaled]
+    -- Goal: k^2·l_P^2 - 2 + 2·cos(k·l_P) ≤ l_P^2·k^4·l_P^2·(5/48) = k^4·l_P^4·(5/48)
+    have h_klP_sq : (k * l_P) ^ 2 = k ^ 2 * l_P ^ 2 := by ring
+    have h_klP_4  : (k * l_P) ^ 4 = k ^ 4 * l_P ^ 4 := by ring
+    -- From hcos_upper, multiply both sides by 2:
+    --   2 cos(k·l_P) ≤ 2 - (k·l_P)² + (k·l_P)⁴·(10/96)
+    have hcos_scaled : 2 * Real.cos (k * l_P) ≤
+        2 - (k * l_P) ^ 2 + (k * l_P) ^ 4 * (10 / 96) := by linarith
+    -- Substitute (k·l_P)² = k²·l_P² and (k·l_P)⁴ = k⁴·l_P⁴:
+    rw [h_klP_sq, h_klP_4] at hcos_scaled
+    -- hcos_scaled : 2·cos(k·l_P) ≤ 2 - k²·l_P² + k⁴·l_P⁴·(10/96)
+    -- Add k²·l_P² - 2 to both sides:
+    -- k²·l_P² - 2 + 2·cos(k·l_P) ≤ k⁴·l_P⁴·(10/96) = k⁴·l_P⁴·(5/48)
+    -- Compare with goal: l_P^2·k^4·l_P^2·(5/48) = k^4·l_P^4·(5/48). ✓
+    have h_target_eq : l_P ^ 2 * (k ^ 4 * l_P ^ 2 * (5 / 48)) =
+                        k ^ 4 * l_P ^ 4 * (5 / 48) := by ring
+    have h_coef_eq : (10 : ℝ) / 96 = 5 / 48 := by norm_num
+    rw [h_target_eq]
+    linarith [h_coef_eq ▸ hcos_scaled]
+  -- Step 3: Divide both sides by l_P^2 (positive).
+  -- We have: l_P^2 · LHS ≤ l_P^2 · RHS, l_P^2 > 0 ⟹ LHS ≤ RHS.
+  exact le_of_mul_le_mul_left h_target_scaled hl_pos
 
 end OmegaTheory.Predictions

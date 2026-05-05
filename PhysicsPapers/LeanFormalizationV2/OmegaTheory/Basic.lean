@@ -4968,6 +4968,14 @@ import OmegaTheory.Foundations.SubstrateSpectralTriple
 -- + creation/annihilation + path integral. Phase 7 substrate-QFT
 -- 1/6 sub-phases. Headline: truncated_fock_space_report (4-conjunct).
 import OmegaTheory.Foundations.TruncatedFockSpace
+-- Lion's-Pride Phase 7.3 (dynamic /loop iteration 27, 2026-05-06):
+-- Truncated creation/annihilation operator definitions.
+-- annihilationOpTruncated N: (Fin(N+1) × Fin(N+1)) → ℂ matrix with
+-- entries √j on super-diagonal (i+1 = j); creationOpTruncated N has
+-- √i on sub-diagonal (j+1 = i). Vacuum-kill: a · e_0 = 0 (since
+-- i+1 = 0 has no nat solution). Phase 7 substrate-QFT 2/6 sub-phases.
+-- Headline: creation_annihilation_truncated_report (2-conjunct).
+import OmegaTheory.Foundations.CreationAnnihilationTruncated
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

@@ -5213,6 +5213,10 @@ import OmegaTheory.Geometry.WeylGeneralIsolationBreak
 -- sign-correct Lorentzian wave operator on the lattice. Closes inventory
 -- gap E.2; foundation for Phase-3 graviton wave equation.
 import OmegaTheory.Geometry.Dalembertian
+-- Lion's-Pride Phase 2.2 (2026-05-05): rank-2 symmetric tensor trace
+-- decomposition + TT predicate. Closes inventory gap §C.6; foundation
+-- for Phase-3 Weinberg linearised TT graviton derivation.
+import OmegaTheory.Geometry.HodgeDecomposition2Tensor
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak

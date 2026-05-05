@@ -6408,7 +6408,9 @@ import OmegaTheory.Irrationality.CustomMath.T5_Phase7_PHE23_InBoxWitnessExtracti
 -- Cycle 65 final bridges (2026-05-04): all 5 OPEN bridge targets from
 -- CompleteOmegaTheory.md §9 closed.  Build 4921 → 4926 GREEN with these imports.
 -- Audit: [propext, Classical.choice, Quot.sound] only on every headline.
-import OmegaTheory.Predictions.GravitonEnergyHalfPlanckFromInfoRatio
+-- 2026-05-05: GravitonEnergyHalfPlanckFromInfoRatio removed (Lion's-Pride
+-- Phase 1 — tautological numerology per AUDIT_TRASH_THEOREMS_2026-05-05.md;
+-- replacement chain in Phase 4 = Predictions/RepairQuantumEnergyTheorem.lean).
 import OmegaTheory.Predictions.CPTFromSubstrateDiscreteness
 import OmegaTheory.Emergence.EREqualsEPR
 import OmegaTheory.Predictions.EntanglementCriticalDistance

@@ -5230,6 +5230,11 @@ import OmegaTheory.Tensor.ValuedRicci
 -- dissipation to energy-form dissipation via μ_E = ℏ. Closes inventory
 -- gap §D.ii dimensional multiplier; foundation for Phase-4 spectral argument.
 import OmegaTheory.HealingFlow.Dimensional
+-- Lion's-Pride Phase 3.5 (2026-05-05): Landauer repair-energy lower bound.
+-- Substrate-side bridge from defectMagnitude + landauerEnergy to a
+-- lower bound on the actual repair energy, parameterised by minimum
+-- discriminable defect δ_min and temperature T. Closes inventory gap §D.i.
+import OmegaTheory.Predictions.RepairEnergyLowerBound
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak

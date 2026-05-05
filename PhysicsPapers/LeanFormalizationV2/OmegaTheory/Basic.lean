@@ -5272,6 +5272,12 @@ import OmegaTheory.HealingFlow.LinearisedGradient
 -- Substantive replacement for the rejected `def OmegaConjecture` posture.
 -- Witness: ω := c/(2 ℓ_P), giving ℏω = E_P/2 exactly.
 import OmegaTheory.Predictions.RepairQuantumEnergyTheorem
+-- Lion's-Pride Phase 4.5 (2026-05-05): structural energy of metric
+-- perturbations. Energy released by healing = ℏ·‖∇F‖² ≥ 0, sourced
+-- internally by the perturbation's own structural strain. No external
+-- input. Equilibrium = no release. Answers: where does the repair-flow
+-- energy come from? → from the perturbation itself.
+import OmegaTheory.HealingFlow.PerturbationEnergy
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak

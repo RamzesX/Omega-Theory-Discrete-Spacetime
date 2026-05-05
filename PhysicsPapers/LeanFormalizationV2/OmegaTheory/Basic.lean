@@ -4976,6 +4976,14 @@ import OmegaTheory.Foundations.TruncatedFockSpace
 -- i+1 = 0 has no nat solution). Phase 7 substrate-QFT 2/6 sub-phases.
 -- Headline: creation_annihilation_truncated_report (2-conjunct).
 import OmegaTheory.Foundations.CreationAnnihilationTruncated
+-- Lion's-Pride Phase 7.4 (dynamic /loop iteration 31, 2026-05-06):
+-- Number-operator vacuum-kill identity in truncated Fock space.
+-- (numberOperatorTruncated N) i 0 = 0 since N̂ is diagonal with
+-- 0 at index 0. This is the building block of the famous N̂ = a†·a
+-- relation (full matrix proof deferred). Phase 7 substrate-QFT
+-- 3/6 sub-phases. Headline: number_op_equals_a_dagger_a_report
+-- (3-conjunct).
+import OmegaTheory.Foundations.NumberOpEqualsAdaggerA
 -- Lion's-Pride Phase 8.1 (dynamic /loop iteration 28, 2026-05-06):
 -- Tree-level graviton scattering amplitude scaffold composing the
 -- cubic + quartic vertices from Phase 5.3 + 5.4. Identifies

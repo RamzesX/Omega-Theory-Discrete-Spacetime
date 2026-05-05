@@ -4959,6 +4959,15 @@ import OmegaTheory.Foundations.SpectralActionTruncated
 -- NCG now 5/5 sub-phases (foundations complete; full SM in Phase 6.5+
 -- multi-month buildout).
 import OmegaTheory.Foundations.SubstrateSpectralTriple
+-- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
+-- Truncated single-mode Fock space. numberOperatorTruncated N is
+-- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via
+-- isHermitian_diagonal_iff + Complex.conj_natCast. Harmonic-oscillator
+-- Hamiltonian Ĥ(ω,N) := ω·N̂ + ω/2·I has eigenvalues ω(k+1/2);
+-- vacuum energy E_0 = ω/2. Foundation for Phase 7.2-7.6 multi-mode
+-- + creation/annihilation + path integral. Phase 7 substrate-QFT
+-- 1/6 sub-phases. Headline: truncated_fock_space_report (4-conjunct).
+import OmegaTheory.Foundations.TruncatedFockSpace
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

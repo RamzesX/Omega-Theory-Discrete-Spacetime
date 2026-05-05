@@ -234,84 +234,15 @@ theorem higgs_vev_substrate_headline (N : ℕ) :
   unfold higgsVEV_PDG
   rfl
 
-/-! ## §2. THEOREM 35.2 — `higgs_mass_from_self_coupling_derived`
-
-Tree-level Higgs mass from the quartic identity `m_H² = 2 · λ_H · v²`. -/
-
-/-- **Higgs self-coupling λ_H** — PDG 2024 SM global-fit anchor. -/
-noncomputable def higgs_self_coupling_PDG : ℝ := 0.129
-
-/-- The Higgs self-coupling is strictly positive (electroweak vacuum
-    stability). -/
-theorem higgs_self_coupling_PDG_pos : 0 < higgs_self_coupling_PDG := by
-  unfold higgs_self_coupling_PDG; norm_num
-
-/-- **Substrate-derived Higgs mass squared**.
-    Tree-level quartic identity `m_H² = 2 · λ · v²`. -/
-noncomputable def higgs_mass_sq_substrate : ℝ :=
-  2 * higgs_self_coupling_PDG * higgsVEV_PDG ^ 2
-
-/-- The substrate-derived Higgs mass squared is strictly positive
-    (electroweak vacuum stability at tree level). -/
-theorem higgs_mass_sq_substrate_pos : 0 < higgs_mass_sq_substrate := by
-  unfold higgs_mass_sq_substrate
-  have h₁ : 0 < higgs_self_coupling_PDG := higgs_self_coupling_PDG_pos
-  have h₂ : 0 < higgsVEV_PDG ^ 2 := sq_pos_of_pos higgsVEV_PDG_pos
-  have h₃ : 0 < 2 * higgs_self_coupling_PDG :=
-    mul_pos (by norm_num : (0:ℝ) < 2) h₁
-  exact mul_pos h₃ h₂
-
-/-- **PDG benchmark Higgs mass squared** — `m_H² = 125.10²`. -/
-noncomputable def higgs_mass_sq_PDG : ℝ := higgsMass_PDG ^ 2
-
-/-- The PDG Higgs mass squared is strictly positive. -/
-theorem higgs_mass_sq_PDG_pos : 0 < higgs_mass_sq_PDG := by
-  unfold higgs_mass_sq_PDG
-  exact sq_pos_of_pos higgsMass_PDG_pos
-
-/-- **Numerical bound on the squared-mass gap**.
-
-    The substrate-derived `m_H²_substrate = 2 · 0.129 · 246.22²`
-    and the PDG benchmark `m_H²_PDG = 125.10²` differ by
-    `~ 14.08 GeV²`, well inside the tight `125 GeV²` envelope
-    (≈ 0.8% relative, comfortably within the PDG 0.14 GeV
-    uncertainty on m_H). -/
-theorem higgs_mass_sq_close_to_PDG :
-    |higgs_mass_sq_substrate - higgs_mass_sq_PDG| < 125 := by
-  unfold higgs_mass_sq_substrate higgs_mass_sq_PDG
-  unfold higgs_self_coupling_PDG higgsVEV_PDG higgsMass_PDG
-  rw [show (246.22 : ℝ) ^ 2 = 246.22 * 246.22 from sq (246.22 : ℝ),
-      show (125.10 : ℝ) ^ 2 = 125.10 * 125.10 from sq (125.10 : ℝ)]
-  norm_num [abs_sub_lt_iff]
-
-/-- **THEOREM 35.2 — `higgs_mass_from_self_coupling_derived`.**
-
-    At tree level, the substrate-derived Higgs mass (via the quartic
-    identity `m_H² = 2 λ v²` with λ = 0.129 and v = 246.22 GeV) agrees
-    with the PDG benchmark `m_H = 125.10 GeV` in the SQUARED-MASS form
-    to within `125 GeV²` — corresponding to a linear mass gap of
-    approximately `0.06 GeV < 0.5 GeV`, well inside the PDG 2024
-    `m_H = 125.10 ± 0.14 GeV` precision.
-
-    The four-conjunct bundle records:
-      (1) the substrate-derived squared mass is positive (stability);
-      (2) the PDG squared mass is positive;
-      (3) the numerical gap is below `125 GeV²`;
-      (4) the self-coupling is positive (vacuum stability foundation). -/
-theorem higgs_mass_from_self_coupling_derived :
-    0 < higgs_mass_sq_substrate ∧
-    0 < higgs_mass_sq_PDG ∧
-    |higgs_mass_sq_substrate - higgs_mass_sq_PDG| < 125 ∧
-    0 < higgs_self_coupling_PDG :=
-  ⟨higgs_mass_sq_substrate_pos,
-   higgs_mass_sq_PDG_pos,
-   higgs_mass_sq_close_to_PDG,
-   higgs_self_coupling_PDG_pos⟩
-
-/-- **Compact headline** — the squared-mass substrate hit inside 125 GeV². -/
-theorem higgs_mass_squared_substrate_headline :
-    |higgs_mass_sq_substrate - higgs_mass_sq_PDG| < 125 :=
-  higgs_mass_sq_close_to_PDG
+-- §2 (Lion's-Pride 2026-05-06 cleanup) — DELETED: PDG-anchored quartic
+-- identity `m_H² = 2 · λ_H · v²` tautology section. The original §2 defined
+-- `higgs_self_coupling_PDG := 0.129`, `higgs_mass_sq_substrate := 2 · 0.129 · 246.22²`,
+-- `higgs_mass_sq_PDG := 125.10²`, and proved `|substrate - PDG| < 125`
+-- via norm_num on these PDG literals — the bracket was chosen to contain
+-- the tautological gap. The REAL substrate Higgs-mass derivation now lives
+-- in `HealingFlow/HiggsMassFromCurvature.lean` (Phase 3.4): it derives
+-- `higgs_mass_sq_substrate N = 8 · (computationalUncertainty N)² = V''(v_min)`
+-- from the substrate Mexican-hat curvature, NOT from the PDG anchor.
 
 /-! ## §3. THEOREM 35.3 — `fermion_mass_hierarchy_spans_12_orders`
 
@@ -449,81 +380,11 @@ theorem dirac_majorana_channel_split :
     massKindOfChannel4 .catalan_g = .majorana :=
   ⟨rfl, rfl, rfl, rfl⟩
 
-/-! ## §5. Cycle-35 paper bundle — Higgs + mass hierarchy four-conjunct headline -/
-
-/-- **Cycle-35 paper bundle — the Higgs + mass-hierarchy capstone.**
-
-    Four-conjunct summary packaging all four cycle-35 theorems:
-      (1) `higgs_vev_from_substrate_scale`: the PDG 246.22 GeV is
-          realised exactly by the substrate ceiling at the canonical
-          electroweak scale, at every depth N — with electroweak
-          unification bundle inhabited and Higgs field strictly positive;
-      (2) `higgs_mass_from_self_coupling_derived`: tree-level `m_H²`
-          from `2 λ v²` agrees with the PDG benchmark within 125 GeV²
-          (corresponding to ~0.06 GeV linear mass gap);
-      (3) `fermion_mass_hierarchy_spans_12_orders`: the top-to-electron
-          mass ratio is bracketed `3·10⁵ < m_t/m_e < 4·10⁵`;
-      (4) `dirac_vs_majorana_from_bounce_topology`: the mass-kind
-          classifier separates active (Dirac) from sterile (Majorana)
-          channels, with bounce-topology witness. -/
-theorem higgs_and_mass_hierarchy_paper_bundle :
-    (∀ N : ℕ, |higgs_vev_substrate N - higgsVEV_PDG| < 1) ∧
-    (0 < higgs_mass_sq_substrate ∧
-     0 < higgs_mass_sq_PDG ∧
-     |higgs_mass_sq_substrate - higgs_mass_sq_PDG| < 125 ∧
-     0 < higgs_self_coupling_PDG) ∧
-    ((massKindOfChannel4 .pi    = .dirac ∧
-      massKindOfChannel4 .e     = .dirac ∧
-      massKindOfChannel4 .sqrt2 = .dirac) ∧
-     massKindOfChannel4 .catalan_g = .majorana ∧
-     FermionMassKind.dirac ≠ FermionMassKind.majorana ∧
-     (channelToGeneration4 .catalan_g ≠ channelToGeneration4 .pi ∧
-      channelToGeneration4 .catalan_g ≠ channelToGeneration4 .e  ∧
-      channelToGeneration4 .catalan_g ≠ channelToGeneration4 .sqrt2)) :=
-  ⟨higgs_vev_substrate_close_to_PDG,
-   higgs_mass_from_self_coupling_derived,
-   dirac_vs_majorana_from_bounce_topology⟩
-
-/-- **Compact three-conjunct headline** — Higgs VEV exact + m_H² tight
-    + Dirac/Majorana split.  The fermion-hierarchy is packaged separately
-    via `fermion_mass_hierarchy_spans_12_orders`. -/
-theorem higgs_and_mass_hierarchy_headline :
-    (∀ N : ℕ, higgs_vev_substrate N = higgsVEV_PDG) ∧
-    |higgs_mass_sq_substrate - higgs_mass_sq_PDG| < 125 ∧
-    (massKindOfChannel4 .pi = .dirac ∧
-     massKindOfChannel4 .catalan_g = .majorana) :=
-  ⟨higgs_vev_substrate_eq_PDG,
-   higgs_mass_sq_close_to_PDG,
-   ⟨rfl, rfl⟩⟩
-
-/-! ## §6. Frontier marker — cycle-35 first Higgs + mass hierarchy bundle -/
-
-/-- **Cycle-35 frontier marker** — this file is the FIRST formal
-    bundle in V2 that simultaneously:
-      (i)   realises the PDG Higgs VEV 246.22 GeV EXACTLY as the
-            substrate ceiling at a canonical electroweak scale, at
-            EVERY truncation depth N;
-      (ii)  derives the tree-level Higgs mass 125.10 GeV from the
-            quartic identity `m_H² = 2 λ v²` with the PDG
-            self-coupling 0.129, agreeing within 125 GeV² (≈ 0.06
-            GeV linear);
-      (iii) brackets the top-to-electron mass hierarchy to 10% around
-            the PDG central 3.39 · 10⁵, spanning the full charged
-            fermion sector;
-      (iv)  derives the Dirac-vs-Majorana mass-kind split as a
-            type-level structural theorem driven by bounce topology.
-
-    Concrete existence witness: at `N = 0` (the saturating default
-    budget) with electroweak scale `Λ = 1` (any positive number works),
-    all four cycle-35 claims hold simultaneously. -/
-theorem higgs_mass_hierarchy_first_bundle_in_V2 :
-    ∃ (N : ℕ) (Λ : ℝ), 0 < Λ ∧
-      |higgs_vev_substrate N - higgsVEV_PDG| < 1 ∧
-      |higgs_mass_sq_substrate - higgs_mass_sq_PDG| < 125 ∧
-      massKindOfChannel4 .catalan_g = .majorana :=
-  ⟨0, 1, by norm_num,
-   higgs_vev_substrate_close_to_PDG 0,
-   higgs_mass_sq_close_to_PDG,
-   rfl⟩
+-- §5+§6 (Lion's-Pride 2026-05-06 cleanup) — DELETED: paper-bundle citation
+-- chains that composed §1+§2+§3+§4 into single bundle headlines. §2 was
+-- pure tautology (deleted above), §3 already deleted (batch 5), so the
+-- bundles in §5+§6 referenced trash. BOOK_VII §8a forbids paper-bundle
+-- citation chains anyway. The §1 (substrate VEV) and §4 (Dirac/Majorana
+-- classifier) survive as their own headlines.
 
 end OmegaTheory.Emergence.HiggsAndMassHierarchy

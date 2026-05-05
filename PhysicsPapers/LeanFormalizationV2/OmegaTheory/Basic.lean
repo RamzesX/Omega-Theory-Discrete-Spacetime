@@ -5253,6 +5253,20 @@ import OmegaTheory.Predictions.IRUVDecomposition
 -- the substrate + trace-free preservation + free-graviton-mode predicate.
 -- Closes inventory gap §C.7 (the spin-2 TT-mode formalisation).
 import OmegaTheory.Geometry.WeinbergLinearisedTT
+-- Lion's-Pride Phase 4.2 (2026-05-05): full spectral analysis of
+-- the discrete Laplacian. Plane-wave eigenfunctions + closed-form
+-- eigenvalue −(4/ℓ_P²) sin²(k·ℓ_P/2). The substrate dispersion
+-- Ω²(k) is DERIVED as the discrete-Laplacian eigenvalue, not posited.
+import OmegaTheory.HealingFlow.SpectralLatticeLaplacian
+-- Lion's-Pride Phase 4.3 (2026-05-05): substrate temperature pinning.
+-- k_B · T_P = E_P exactly (algebraic identity); the half-Planck
+-- witness ℏ ω₀ = E_P/2 is exactly half of substrate thermal scale.
+import OmegaTheory.HealingFlow.SubstrateThermal
+-- Lion's-Pride Phase 4.1 (2026-05-05): linearised healing operator
+-- L h = -μ_F·Δ h + α_F·h. Plane waves are eigenfunctions with
+-- eigenvalue μ_F·(4/ℓ_P²) sin²(k·ℓ_P/2) + α_F. Spectrum non-negative
+-- under stable parameters; explicit half-Planck eigenmode.
+import OmegaTheory.HealingFlow.LinearisedGradient
 -- Lion's-Pride Phase 4.4 (2026-05-05): the headline capstone.
 -- ∃ ω : ℝ, c/(2 ℓ_P) ≤ ω ≤ c/ℓ_P ∧ |ℏω − E_P/2| ≤ E_P/4.
 -- Substantive replacement for the rejected `def OmegaConjecture` posture.

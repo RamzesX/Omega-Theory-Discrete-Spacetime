@@ -5240,6 +5240,11 @@ import OmegaTheory.Predictions.RepairEnergyLowerBound
 -- (sub-continuum) and UV ceiling ≤ 4/ℓ_P² (Planck-scale cutoff).
 -- Foundation for Phase-4 spectral upper-bound argument.
 import OmegaTheory.Predictions.SubstrateDispersion
+-- Lion's-Pride Phase 3.4 (2026-05-05, Tier-A): graviton dispersion deficit
+-- non-negativity (substrate undershoots continuum at every k).
+-- Headline: 0 ≤ k² - (4/ℓ_P²)·sin²(k·ℓ_P/2), unconditional.
+-- Quartic Taylor refinement deferred (honest scoping).
+import OmegaTheory.Predictions.GravitonDispersionTheorem
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak

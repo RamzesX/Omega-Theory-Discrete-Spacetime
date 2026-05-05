@@ -4905,6 +4905,12 @@ import OmegaTheory.Geometry.SpinConnection
 -- the Dirac equation to curved spacetime. Properties: flat-reduction (h=0 ⟹ D=∂),
 -- zero-spinor vanishing, ℂ-additivity in ψ, curved-flat reduction theorem.
 import OmegaTheory.Geometry.CurvedDirac
+-- Lion's-Pride Phase 4.4 (dynamic /loop iteration 12, 2026-05-06):
+-- Yukawa coupling m_f = y · v / √2 connecting substrate Higgs VEV (Phase 3.2) to
+-- fermion mass-binding (Phase 3.6 level 2) via curved-Dirac mass term (Phase 4.3).
+-- Substrate closed form: m_f(y, N) = y · δ_comp(N) / √2 + m_f² = y² · v² / 2.
+-- Closes Phase 4 G-SM coupling quartet (4.1+4.2+4.3+4.4 done). 5-conjunct capstone.
+import OmegaTheory.HealingFlow.YukawaCoupling
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

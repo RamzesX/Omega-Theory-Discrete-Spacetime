@@ -4857,6 +4857,12 @@ import OmegaTheory.HealingFlow.HiggsScalarField
 -- abstract algebra to the V2 substrate's concrete VEV. First concrete bridge
 -- linking δ_comp(N) to a classical Mexican-hat field-theory potential.
 import OmegaTheory.HealingFlow.HiggsSubstrateBridge
+-- Lion's-Pride Phase 3.3 (dynamic /loop iteration 5, 2026-05-05):
+-- W-boson mass formula via the substrate Mexican-hat minimum.
+-- Bridges Phase 3.1+3.2 to the existing wBosonMass_sq_from_higgs (HiggsFromError):
+-- m_W² = g_W²(N,Λ) · (higgsVEV_min substrate-params)² / 4 = g_W² · δ_comp(N)² / 4.
+-- 3-conjunct headline + decreasing-with-N corollary.
+import OmegaTheory.HealingFlow.HiggsWBosonBridge
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

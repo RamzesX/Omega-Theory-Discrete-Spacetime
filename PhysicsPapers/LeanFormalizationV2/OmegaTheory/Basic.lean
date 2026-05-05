@@ -5217,6 +5217,11 @@ import OmegaTheory.Geometry.Dalembertian
 -- decomposition + TT predicate. Closes inventory gap §C.6; foundation
 -- for Phase-3 Weinberg linearised TT graviton derivation.
 import OmegaTheory.Geometry.HodgeDecomposition2Tensor
+-- Lion's-Pride Phase 2.3 (2026-05-05): concrete information stress-energy
+-- tensor T^I_μν = g_exact - g_actual via δI/δg^{μν}. Closes inventory
+-- gap §C.5; bridge from substrate's information functional to a
+-- discretised T_μν, plus pointwise ε-bound on SemiSmoothMetric.
+import OmegaTheory.Conservation.InformationStressEnergyConstructor
 import OmegaTheory.Emergence.HpwBianchiIIsolationBreak
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak

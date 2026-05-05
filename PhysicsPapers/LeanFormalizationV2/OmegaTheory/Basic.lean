@@ -4898,6 +4898,13 @@ import OmegaTheory.Geometry.LinearisedEinsteinEquation
 -- ω^{aa} = 0, vanishing on flat metric (h=0 ⟹ ω=0), linearity in h. Foundation for
 -- Phase 4.3 spin-covariant derivative D_μ = ∂_μ + (1/4) ω_μ^{ab} γ_a γ_b.
 import OmegaTheory.Geometry.SpinConnection
+-- Lion's-Pride Phase 4.3 (dynamic /loop iteration 11, 2026-05-05):
+-- Spin-covariant derivative D_μ ψ = ∂_μ ψ + (1/4) ω_μ^{ab} γ_a γ_b ψ +
+-- curved Dirac equation `i ℏ γ^μ D_μ ψ = m c ψ`. Combines Tureis's gammaClifford
+-- (flat-space γ matrices) with the linearised spin connection (Phase 4.2) to extend
+-- the Dirac equation to curved spacetime. Properties: flat-reduction (h=0 ⟹ D=∂),
+-- zero-spinor vanishing, ℂ-additivity in ψ, curved-flat reduction theorem.
+import OmegaTheory.Geometry.CurvedDirac
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

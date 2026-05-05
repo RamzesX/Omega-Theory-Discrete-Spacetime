@@ -4937,6 +4937,13 @@ import OmegaTheory.Foundations.FiniteSpectralTriple
 -- (Hermitian-trace-real). Foundation for Phase 6.4 spectral action
 -- expansion. Headline: heat_kernel_coefficients_report (4-conjunct).
 import OmegaTheory.Foundations.HeatKernelCoefficients
+-- Lion's-Pride Phase 6.3 (dynamic /loop iteration 22, 2026-05-06):
+-- Finite-dim Bochner-form algebraic identity: D^(2k) = (D²)^k via
+-- pow_mul. Heat coefficients in D² form: a_k = Tr((D²)^k). Specials:
+-- a_1 = Tr(D²), a_2 = Tr((D²)²). (D²)^k Hermitian for all k.
+-- Headline: heat_kernel_bochner_form_report (5-conjunct). Phase 6 NCG
+-- now 3/5 sub-phases complete.
+import OmegaTheory.Foundations.HeatKernelBochnerForm
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

@@ -4985,6 +4985,14 @@ import OmegaTheory.Foundations.CreationAnnihilationTruncated
 -- quantum-gravity scattering 1/3 sub-phases. Headline:
 -- graviton_scattering_tree_report (5-conjunct).
 import OmegaTheory.QuantumGravity.GravitonScatteringTreeLevel
+-- Lion's-Pride Phase 9.1 (dynamic /loop iteration 29, 2026-05-06):
+-- Substrate UV regularisation: substrateUVCutoff = 1/ℓ_P > 0 (Kempf
+-- bandlimit identification). The substrate's intrinsic lattice scale
+-- regulates all loop integrals — substrate-QG avoids the
+-- renormalization problem because it has a built-in UV cutoff.
+-- Headline: substrate_uv_regularisation_report (3-conjunct).
+-- Phase 9 substrate-renormalization 1/4 sub-phases.
+import OmegaTheory.QuantumGravity.SubstrateUVRegularisation
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

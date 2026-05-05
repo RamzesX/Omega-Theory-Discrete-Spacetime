@@ -4850,6 +4850,13 @@ import OmegaTheory.HealingFlow.PerturbationEnergy
 --   (3) ∀ φ, V(v_min) ≤ V(φ), (4) V(0) > V(v_min), (5) V(±v_min) equal Z₂-distinct.
 -- First piece of new substrate machinery shipped after Lion's-Pride trash purge.
 import OmegaTheory.HealingFlow.HiggsScalarField
+-- Lion's-Pride Phase 3.2 (dynamic /loop iteration 4, 2026-05-05):
+-- Substrate Higgs VEV IS the Mexican-hat minimum. For (μ_sq_substrate N,
+-- lamH_substrate) := (2·δ_comp²(N), 1), the SSB minimum equals computationalUncertainty N.
+-- 5-conjunct headline `higgs_substrate_mexican_hat_SSB_report` ties Phase 3.1
+-- abstract algebra to the V2 substrate's concrete VEV. First concrete bridge
+-- linking δ_comp(N) to a classical Mexican-hat field-theory potential.
+import OmegaTheory.HealingFlow.HiggsSubstrateBridge
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

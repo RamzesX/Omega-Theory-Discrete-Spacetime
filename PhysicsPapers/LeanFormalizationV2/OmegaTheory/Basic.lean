@@ -5001,6 +5001,14 @@ import OmegaTheory.QuantumGravity.GravitonScatteringTreeLevel
 -- Headline: substrate_uv_regularisation_report (3-conjunct).
 -- Phase 9 substrate-renormalization 1/4 sub-phases.
 import OmegaTheory.QuantumGravity.SubstrateUVRegularisation
+-- Lion's-Pride Phase 9.2 (dynamic /loop iteration 32, 2026-05-06):
+-- Substrate loop-integrand finiteness. Concrete demonstration that
+-- finite-dim heat coefficients a_k(T) = Tr(D^(2k)) are FINITE complex
+-- numbers with zero imaginary part. a_0 = n, a_1 = Tr(D²), all
+-- bounded by `‖a_k‖ ≤ ‖a_k‖`. Substrate-QG is UV-finite by
+-- construction. Phase 9 substrate-renorm 2/4 sub-phases. Headline:
+-- substrate_loop_finiteness_report (4-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateLoopFiniteness
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

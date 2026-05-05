@@ -4984,6 +4984,14 @@ import OmegaTheory.Foundations.CreationAnnihilationTruncated
 -- 3/6 sub-phases. Headline: number_op_equals_a_dagger_a_report
 -- (3-conjunct).
 import OmegaTheory.Foundations.NumberOpEqualsAdaggerA
+-- Lion's-Pride Phase 7.5 (dynamic /loop iteration 33, 2026-05-06):
+-- Substrate-regulated graviton propagator G(k²) := 1/k² for k² > 0.
+-- Properties: positive on physical domain, non-negative including
+-- degenerate k²=0 case (1/0 = 0 by Lean convention), reciprocal
+-- relation G(k²) · k² = 1. Foundation for Phase 8.2 channel-exchange
+-- amplitudes (V₃ · G(k²) · V₃ s/t/u). Phase 7 substrate-QFT 4/6
+-- sub-phases. Headline: substrate_propagator_report (3-conjunct).
+import OmegaTheory.Foundations.SubstratePropagator
 -- Lion's-Pride Phase 8.1 (dynamic /loop iteration 28, 2026-05-06):
 -- Tree-level graviton scattering amplitude scaffold composing the
 -- cubic + quartic vertices from Phase 5.3 + 5.4. Identifies

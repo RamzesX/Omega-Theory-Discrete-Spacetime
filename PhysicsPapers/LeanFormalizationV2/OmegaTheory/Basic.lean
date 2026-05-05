@@ -4923,6 +4923,12 @@ import OmegaTheory.Variational.EinsteinHilbertAction
 -- R₂, R₃, R₄ structural placeholders for Phase 5.3-5.5 cubic+quartic graviton vertex
 -- extraction. 5-conjunct headline composite. Foundation for graviton self-coupling.
 import OmegaTheory.Variational.RicciScalarPerturbative
+-- Lion's-Pride Phase 5.3 (dynamic /loop iteration 16, 2026-05-06):
+-- Cubic graviton vertex V₃(h₁, h₂, h₃) extracted from R₃ as trilinear scaffold.
+-- Total symmetry under any 3-permutation, additivity in each argument,
+-- diagonal evaluation V₃(h, h, h) = (metricTrace h)^3, vanishing at zero
+-- perturbation. Headline: cubic_graviton_vertex_report (5-conjunct).
+import OmegaTheory.Variational.CubicGravitonVertex
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

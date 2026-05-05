@@ -4911,6 +4911,12 @@ import OmegaTheory.Geometry.CurvedDirac
 -- Substrate closed form: m_f(y, N) = y · δ_comp(N) / √2 + m_f² = y² · v² / 2.
 -- Closes Phase 4 G-SM coupling quartet (4.1+4.2+4.3+4.4 done). 5-conjunct capstone.
 import OmegaTheory.HealingFlow.YukawaCoupling
+-- Lion's-Pride Phase 5.1 (dynamic /loop iteration 13, 2026-05-06):
+-- Einstein-Hilbert action S_EH = (1/16π G_N) Σ_p √(-det g_p) · R(g, p) · ℓ_P⁴ on
+-- the substrate ℤ⁴ lattice. At flat metric, det = -1, √(-det) = 1, R_flat = 0,
+-- so S_EH[flat] = 0 (vacuum). Phase 5 G-G self-interaction starts: this action
+-- is the source of the linearised Einstein equation Phase 4.1 derived.
+import OmegaTheory.Variational.EinsteinHilbertAction
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

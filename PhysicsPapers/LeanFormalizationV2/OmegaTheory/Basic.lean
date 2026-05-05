@@ -4976,6 +4976,15 @@ import OmegaTheory.Foundations.TruncatedFockSpace
 -- i+1 = 0 has no nat solution). Phase 7 substrate-QFT 2/6 sub-phases.
 -- Headline: creation_annihilation_truncated_report (2-conjunct).
 import OmegaTheory.Foundations.CreationAnnihilationTruncated
+-- Lion's-Pride Phase 8.1 (dynamic /loop iteration 28, 2026-05-06):
+-- Tree-level graviton scattering amplitude scaffold composing the
+-- cubic + quartic vertices from Phase 5.3 + 5.4. Identifies
+-- gravitonAmplitude3pt = gravitonCubicVertex (Feynman rule for 2→1)
+-- and gravitonAmplitude4pt = gravitonQuarticVertex (Feynman rule
+-- for 2→2 direct contact). Inherits S₃ and S₄ symmetry. Phase 8
+-- quantum-gravity scattering 1/3 sub-phases. Headline:
+-- graviton_scattering_tree_report (5-conjunct).
+import OmegaTheory.QuantumGravity.GravitonScatteringTreeLevel
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

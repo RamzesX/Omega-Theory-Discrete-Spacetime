@@ -5370,6 +5370,15 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionNormalised
 -- structural ordering only; specific (α_g₁, α_g₂, α_g₃) values from
 -- substrate axioms multi-month future work via Connes spectral-action.
 import OmegaTheory.QuantumGravity.SubstratePiHunchOrdering
+-- Lion's-Pride Phase 9.23 (dynamic /loop iteration 69, 2026-05-06):
+-- substrate Pi-Hunch cross-difference sign — combines Phase 9.22
+-- ordering with Phase 9.16 cross-difference identity. Under Pi-Hunch
+-- ordering and non-neg IR-Yukawa values, the cross-difference for
+-- (g₁=0, g₂=1) and (g₁=1, g₂=2) is ≥ 0. Physical content: lighter
+-- generations' masses decline RELATIVELY slower than heavier ones
+-- with substrate truncation N. Falsifiable substrate-QG prediction.
+-- Headline: substrate_pi_hunch_cross_difference_report (2-conjunct).
+import OmegaTheory.QuantumGravity.SubstratePiHunchCrossDifference
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

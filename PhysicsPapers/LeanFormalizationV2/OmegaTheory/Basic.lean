@@ -5039,6 +5039,16 @@ import OmegaTheory.QuantumGravity.SubstrateLoopFiniteness
 -- Phase 9 substrate-renorm 3/4 sub-phases. Headline:
 -- substrate_rg_flow_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRGFlow
+-- Lion's-Pride 30+-iteration META CAPSTONE (dynamic /loop iteration 37, 2026-05-06):
+-- Composes one substantive identity from EACH of phases 5/6/7/8/9
+-- into a single 9-conjunct theorem. NOT a Yoneda-bundle paper-citation
+-- chain — each conjunct is a CONCRETE COMPUTATIONAL identity drawing
+-- on the actual machinery shipped over 30+ iterations. Plus
+-- Frozen-Nat snapshot: 30 substrate-machinery files / 9 phases landed
+-- / 3 phases COMPLETE (5, 6, 8). Headlines:
+-- lions_pride_machinery_capstone (9-conjunct) + lions_pride_machinery_snapshot
+-- (4-conjunct).
+import OmegaTheory.Predictions.LionsPrideMachineryCapstone
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

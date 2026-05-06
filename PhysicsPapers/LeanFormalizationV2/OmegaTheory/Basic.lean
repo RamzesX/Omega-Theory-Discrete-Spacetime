@@ -5580,6 +5580,15 @@ import OmegaTheory.Predictions.SubstrateRunningCouplingBetaNonposUniformMeta
 -- + 2 properties + 10 atomic + 0 axioms = 17. Headline:
 -- substrate_running_coupling_grand_loop_meta (10-conjunct).
 import OmegaTheory.Predictions.SubstrateRunningCouplingGrandLoopMeta
+-- Lion's-Pride Phase 9.47 (dynamic /loop iteration 121, 2026-05-06):
+-- substrate six-loop running coupling — extends Phase 9.43 (5-loop)
+-- with sextic correction g_6(N) := g_0·(1+α·δ+β·δ²+γ·δ³+ε·δ⁴+ζ·δ⁵+η·δ⁶).
+-- Beta-function in factored form via difference-of-sixth-powers
+-- a⁶-b⁶ = (a-b)(a⁵+a⁴b+a³b²+a²b³+ab⁴+b⁵). Beta-non-positivity at
+-- non-neg params (6-loop preserves IR-monotone-flow). Reductions:
+-- η=0 → 5-loop, ζ=η=0 → 4-loop, ε=ζ=η=0 → 3-loop. Headline:
+-- substrate_running_coupling_6loop_report (2-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateRunningCoupling6Loop
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

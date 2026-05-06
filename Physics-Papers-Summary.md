@@ -1,6 +1,18 @@
 # OmegaTheory — A Friendly Tour
 
-> **Corpus scale** (2026-04-24, cycle-44-extension post Lesath opaque-bundle refactor): 🔷 **~9,500** OmegaTheoryV2 own theorems · 🔶 **~175,127** Mathlib integrated · 🔹 **~184,627** total. Build: **3,901 jobs GREEN**, 0 sorry. **Honest axiom accounting:** `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research`. The 4 physical constants (c, ℏ, G_N, k_B) are now `noncomputable opaque X_bundle : {x : ℝ // 0 < x}` via `Classical.choice` — 0 `axiom` *declarations* but MATHEMATICALLY 4 existence postulates for positive reals (no specific numeric value fixed, all derivations parametric). Plus **1 transcendence axiom** `Real.pi_transcendental` = **5 primitive assumptions**. Plus **4 HermitePadé research axioms** (Siegel-Shidlovskii, Nesterenko 1996, Roth 1955, Mahler framework) = **9 total**. *Historical baseline (2026-04-21): 8,996 own · 184,133 total · 3,835 jobs · 24 `axiom` declarations. (See §"The three-way split" below for the narrative version of this table.)*
+> ## ⚠ Reframed 2026-05-06 — read [`README.md`](README.md) and [`PhysicsPapers/README.md`](PhysicsPapers/README.md) first
+>
+> This is the **friendly conceptual tour** of the discrete-substrate framework. It was written 2026-04-24 (corpus snapshot 9 500 own theorems, 3 901 jobs) and remains a useful narrative introduction, but its **numerical citations and theorem references reflect the cycle-43 / cycle-44 corpus from before the 2026-05-05/06 trash purge**. After the purge (~117 K LOC of mass-batch Yoneda witnesses + PDG calibration tautologies + paper-bundle citation files removed), several theorem names and file paths in this document have moved or been deleted.
+>
+> **Current state (2026-05-06):** **4 620 jobs GREEN, 0 sorry, paper-headlines audit Lean-core only.** The substrate spine (π transcendence, healing-flow Lyapunov, Mexican-hat SSB algebra, gauge-information density, photon signature match) is intact. The "Tier-2 framework" (mass derivations, three-generation matching, dark-sector identification) is research-grade exploratory, not peer-reviewed.
+>
+> **The project's central organizing principle has shifted** to the **signature-match bridging framework** (2026-05-06). We do NOT try to derive the SM's quantum numbers from substrate axioms — instead we IMPORT the SM as given from textbooks, formalize its precise mathematics, extract each particle's information signature from its standard-physics stress-energy / Lagrangian, match the signature to our substrate `informationStressEnergyTensor` + `gaugeInformation` densities, and prove the match theorem. That dictionary is the bridge between SM events and substrate / spacetime events. First match shipped: the **photon** (`gaugeInformation = (1/2)·Σ F²` matches textbook `(1/2)(|E|² + |B|²)`). See [`README.md`](README.md) for the dictionary table and current status.
+>
+> **Read this document for** the conceptual setup (what the framework claims in plain English, the Pi-Hunch narrative, the three-way Lean / Graph / Mathlib split). **Verify any specific theorem-name / file-path citation** with a fresh `grep` against the current corpus before relying on it.
+>
+> ---
+>
+> **Historical corpus scale** (2026-04-24, cycle-44-extension post Lesath opaque-bundle refactor): 🔷 ~9,500 OmegaTheoryV2 own theorems · 🔶 ~175,127 Mathlib integrated · 🔹 ~184,627 total. Build: 3,901 jobs GREEN, 0 sorry. **Honest axiom accounting:** `0 axiom-declarations · 5 primitive-assumptions · 9 total-including-research`. The 4 physical constants (c, ℏ, G_N, k_B) are `noncomputable opaque X_bundle : {x : ℝ // 0 < x}` via `Classical.choice` — 0 `axiom` *declarations* but MATHEMATICALLY 4 existence postulates. Plus **1 transcendence axiom** `Real.pi_transcendental` (which since became a derived theorem in cycle 64, 2026-04-27) = **5 primitive assumptions**. Plus **4 HermitePadé research axioms** = **9 total**.
 
 ## What is this project, in one paragraph?
 

@@ -5489,6 +5489,15 @@ import OmegaTheory.Predictions.SubstratePiHunchAllPairsMeta
 -- multiplicative associativity (rs)•a = r•(s•a) — all at c_part.
 -- Headline: finite_AF_algebra_smul_report (5-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraSMul
+-- Lion's-Pride Phase 6.5i — GRAND META-CAPSTONE (dynamic /loop iteration
+-- 111, 2026-05-06): finite Chamseddine-Connes A_F GRAND META composing
+-- one substantive identity from EACH of Phase 6.5a (additive), 6.5b
+-- (mul), 6.5c (adj), 6.5d (mul-props), 6.5e (anti-mul), 6.5h (SMul ℝ)
+-- into a single 6-conjunct umbrella theorem extending the Phase-6.5f
+-- 5-conjunct META to include the new ℝ-module action structure.
+-- Frozen-Nat snapshot: 7 phases, 26 substantive theorems, 0 new axioms,
+-- sum = 33. Headline: finite_AF_algebra_grand_meta_capstone (6-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraGrandMetaCapstone
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

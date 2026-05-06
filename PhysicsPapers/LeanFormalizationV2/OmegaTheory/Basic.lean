@@ -5650,6 +5650,16 @@ import OmegaTheory.Predictions.SubstrateRunningCoupling10LoopGrandMeta
 -- 4-conjunct positivity + track dominance comparison. Headline:
 -- substrate_machinery_summary_snapshot (9-conjunct).
 import OmegaTheory.Predictions.SubstrateMachinerySummaryMeta
+-- Lion's-Pride Phase 6.14 — SUBSTRATE MACHINERY LOC ACCOUNTING META
+-- (dynamic /loop iteration 152, 2026-05-06): top-level frozen-Nat
+-- LOC accounting META — decide-only ledger declaring cumulative LOC
+-- contributions, iteration count, and commit count of the substrate
+-- machinery as of iter 151: 151 iterations, 143 new files, 27K+ new
+-- LOC, 117K+ trash deleted, 4723 build jobs GREEN, 25 META capstones.
+-- Plus structural-integrity inequalities + trash-dominates-new-LOC
+-- comparison. Headline:
+-- substrate_machinery_loc_accounting_snapshot (6-conjunct).
+import OmegaTheory.Predictions.SubstrateMachineryLOCAccountingMeta
 -- Lion's-Pride Phase 9.54 — 9-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 147, 2026-05-06): substrate running-coupling 9-LOOP GRAND-
 -- LOOP META extending Phase 9.52 (16-conjunct) with new Phase 9.53

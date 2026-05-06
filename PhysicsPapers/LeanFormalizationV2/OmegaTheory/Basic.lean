@@ -4941,6 +4941,17 @@ import OmegaTheory.Foundations.YukawaHeatKernelExpansion
 -- mass-squared in the spectral action — the substrate's natural UV
 -- regularisation. Headline: substrate_uv_spectral_action_report.
 import OmegaTheory.Foundations.SubstrateUVSpectralAction
+-- Lion's-Pride Phase 6.5j (2026-05-06): ContinuumHeatKernelYukawa.
+-- The GENUINE analytic heat kernel `e^{-t·D²}` for Yukawa-diagonal Dirac
+-- via Mathlib's NormedSpace.exp (matrix exponential). Closed-form trace:
+--    Tr(e^{-t·D²}) = Σᵢ e^{-t·y_i²}
+-- This is the SPECTRAL FUNCTION of the Yukawa spectral triple — not
+-- truncated, not asymptotic. Composed via Matrix.exp_diagonal +
+-- Pi.exp_def + Matrix.trace_diagonal. As t→0⁺ Taylor-expands to
+-- Phase 6.5h truncated heat trace; as t→∞ lowest-Yukawa-eigenvalue
+-- dominates (heat-kernel ground-state limit).
+-- Headline: continuum_heat_kernel_yukawa_report (4-conjunct).
+import OmegaTheory.Foundations.ContinuumHeatKernelYukawa
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

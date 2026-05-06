@@ -5516,6 +5516,16 @@ import OmegaTheory.Foundations.FiniteAFAlgebraSMulHPart
 -- ALL 3 components of A_F = ℂ ⊕ ℍ ⊕ M_3(ℂ). Headline:
 -- finite_AF_algebra_smul_m3_part_report (5-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraSMulM3Part
+-- Lion's-Pride Phase 6.5l — SMul ALL-COMPONENTS META (dynamic /loop
+-- iteration 114, 2026-05-06): finite Chamseddine-Connes A_F SMul
+-- ALL-COMPONENTS META composing 2 representative ℝ-module-compat laws
+-- (one-scalar identity + distrib over +) at EACH of the 3 direct-sum
+-- components (c_part Phase 6.5h, h_part Phase 6.5j, m3_part Phase 6.5k)
+-- into a 6-conjunct umbrella demonstrating UNIFORM ℝ-module structure
+-- across A_F = ℂ ⊕ ℍ ⊕ M_3(ℂ). Frozen-Nat snapshot: 3 phases × 5 laws
+-- = 15 atomic identities, 0 axioms. Headline:
+-- finite_AF_algebra_smul_all_components_meta (6-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraSMulAllComponentsMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

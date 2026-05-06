@@ -5488,6 +5488,14 @@ import OmegaTheory.QuantumGravity.SubstrateExpectationBound
 -- Heisenberg upper bound — finite and concrete. Headline:
 -- substrate_uncertainty_bound_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateUncertaintyBound
+-- Lion's-Pride Phase 9.34 (dynamic /loop iteration 94, 2026-05-06):
+-- substrate physical-bounds META-CAPSTONE composing one identity
+-- from EACH of 9.30 (probability), 9.31 (Born rule), 9.32 (expectation
+-- bound), 9.33 (uncertainty bounded), 7.21 (Heisenberg non-neg) into
+-- a 7-conjunct theorem. Plus Frozen-Nat snapshot (6 phases, 7
+-- properties, sum 13). Headline:
+-- substrate_physical_bounds_meta_capstone (7-conjunct).
+import OmegaTheory.Predictions.SubstratePhysicalBoundsMetaCapstone
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

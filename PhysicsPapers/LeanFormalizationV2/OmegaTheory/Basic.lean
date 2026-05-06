@@ -5589,6 +5589,15 @@ import OmegaTheory.Predictions.SubstrateRunningCouplingGrandLoopMeta
 -- η=0 → 5-loop, ζ=η=0 → 4-loop, ε=ζ=η=0 → 3-loop. Headline:
 -- substrate_running_coupling_6loop_report (2-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRunningCoupling6Loop
+-- Lion's-Pride Phase 9.48 — EXTENDED GRAND-LOOP META (dynamic /loop
+-- iteration 122, 2026-05-06): substrate running-coupling EXTENDED
+-- GRAND-LOOP META extending Phase-9.46 10-conjunct GRAND-LOOP with
+-- the new Phase-9.47 6-loop reductions and beta-non-positivity into
+-- a 12-conjunct umbrella covering all 6 loop orders. 6-conjunct
+-- extended hierarchy 6→5→4→3→2→1→const + 6-conjunct extended uniform
+-- IR-monotone-flow. Frozen-Nat snapshot: 6+2+12+0=20. Headline:
+-- substrate_running_coupling_extended_grand_loop_meta (12-conjunct).
+import OmegaTheory.Predictions.SubstrateRunningCouplingExtendedGrandLoopMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

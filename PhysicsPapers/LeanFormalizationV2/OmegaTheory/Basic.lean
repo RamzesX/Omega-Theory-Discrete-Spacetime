@@ -5553,6 +5553,15 @@ import OmegaTheory.Predictions.FiniteAFAlgebraTotalAssemblyMeta
 -- ε=ζ=0 → 3-loop, γ=ε=ζ=0 → 2-loop, β=γ=ε=ζ=0 → 1-loop. Headline:
 -- substrate_running_coupling_5loop_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRunningCoupling5Loop
+-- Lion's-Pride Phase 9.44 — LOOP-HIERARCHY META (dynamic /loop iteration
+-- 118, 2026-05-06): substrate running-coupling LOOP-HIERARCHY META
+-- composing the 5 reduction-chain theorems from the multi-loop substrate
+-- running-coupling tower (Phase 9.5 1-loop, 9.6 2-loop, 9.7 3-loop, 9.42
+-- 4-loop, 9.43 5-loop) into a single 5-conjunct NESTED REDUCTION
+-- umbrella (5-loop @ ζ=0 → 4-loop → ε=0 → 3-loop → γ=0 → 2-loop → β=0
+-- → 1-loop → α=0 → const). Frozen-Nat snapshot: 5+5+0=10. Headline:
+-- substrate_running_coupling_loop_hierarchy_meta (5-conjunct).
+import OmegaTheory.Predictions.SubstrateRunningCouplingLoopHierarchyMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

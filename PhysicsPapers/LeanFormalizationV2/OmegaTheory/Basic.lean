@@ -5166,6 +5166,18 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling3Loop
 -- `substrateRGScale_pow_le_pow`: δ_{N+1}^k ≤ δ_N^k for every k.
 -- Headline: substrate_running_coupling_nloop_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRunningCouplingNLoop
+-- Lion's-Pride Phase 7.7 (dynamic /loop iteration 50, 2026-05-06):
+-- per-mode number operator + single-mode excitation utility on the
+-- multi-mode truncated Fock space (Phase 7.2 extension). Defines
+-- `perModeNumberEigenvalue state i := (state i).val` and
+-- `singleModeExcitation i n` (excite mode i to level n, others
+-- vacuum). Theorems: per-mode bounded by N; total = Σ per-mode
+-- (decomposition); single-mode excitation localises (per-mode = n at
+-- excited, = 0 elsewhere); total of single-mode = n.val. Headline:
+-- multimode_number_operators_report (4-conjunct). Honest scope:
+-- eigenvalue-level structure only; commutation `[N̂_i, N̂_j] = 0`
+-- requires actual operator-on-tensor-space machinery deferred.
+import OmegaTheory.Foundations.MultimodeNumberOperators
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

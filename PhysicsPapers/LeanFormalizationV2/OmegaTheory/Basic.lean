@@ -4857,6 +4857,43 @@ import OmegaTheory.Foundations.SpectralActionTruncated
 -- NCG now 5/5 sub-phases (foundations complete; full SM in Phase 6.5+
 -- multi-month buildout).
 import OmegaTheory.Foundations.SubstrateSpectralTriple
+-- Lion's-Pride Phase 6.5a (2026-05-06): YukawaDirac. Diagonal Yukawa
+-- Dirac matrix D_F = diag(y₁..yₙ) ∈ Matrix(ℂ^n). Hermitian via
+-- isHermitian_diagonal_iff + RCLike.star_def. Heat-kernel coefficients
+-- a_k = Σᵢ yᵢ^(2k) (Yukawa power moments). Specialisations a_0 = n,
+-- a_1 = Σ y², a_2 = Σ y⁴. Headline: yukawa_dirac_report (4-conjunct).
+import OmegaTheory.Foundations.YukawaDirac
+-- Lion's-Pride Phase 6.5b (2026-05-06): SpectralActionFluctuation.
+-- Quadratic trace expansion of the fluctuated Dirac:
+-- Tr((D + tH)²) = Tr(D²) + 2t·Tr(D·H) + t²·Tr(H²) — the Higgs
+-- mass-term seed of the Chamseddine-Connes spectral action.
+-- Algebraic backbone: (D + tH)² = D² + t·(DH+HD) + t²·H²
+-- (via `module` after Matrix.add_mul/mul_add/smul_mul/mul_smul).
+-- Headline: spectral_fluctuation_quadratic_report (2-conjunct).
+import OmegaTheory.Foundations.SpectralActionFluctuation
+-- Lion's-Pride Phase 6.5c (2026-05-06): YukawaHiggsCrossTermVanishing.
+-- The cross-term Tr(D·H) vanishes when D is diagonal (Yukawa) and H
+-- is strictly off-diagonal (Higgs) — orthogonality of Yukawa and
+-- Higgs subspaces in the finite spectral triple. Hence the spectral
+-- action quadratic simplifies to Tr((D+tH)²) = Tr(D²) + t²·Tr(H²)
+-- (no cross-term). Headline: yukawa_higgs_orthogonal_report.
+import OmegaTheory.Foundations.YukawaHiggsCrossTermVanishing
+-- Lion's-Pride Phase 6.5d (2026-05-06): HiggsMassPositivity. The
+-- Higgs mass-squared coefficient `Tr(H²)` is real and ≥ 0 for
+-- Hermitian H (Frobenius norm squared structure: Σᵢⱼ |Hᵢⱼ|²). The
+-- spectral action's seed Higgs is NOT tachyonic. Headline:
+-- higgs_mass_positivity_report (3-conjunct).
+import OmegaTheory.Foundations.HiggsMassPositivity
+-- Lion's-Pride Phase 6.5e (2026-05-06) — PHASE 6 CAPSTONE:
+-- StandardModelFromConnes. Full spectral action quadratic formula:
+-- Re(Tr((yukawaDirac y + (t:ℂ)·H)²)) = Σᵢ (y i)² + t²·‖H‖_F²
+-- for Yukawa eigenvalues y, off-diagonal Hermitian Higgs H, and
+-- real fluctuation parameter t. The Yukawa eigenvalues set the
+-- t⁰-coefficient (fermion mass scale); the Frobenius norm squared
+-- sets the t²-coefficient (Higgs mass coefficient). Closes the
+-- finite-dim Chamseddine-Connes Higgs derivation. Headline:
+-- standardModel_from_connes_report (4-conjunct).
+import OmegaTheory.Foundations.StandardModelFromConnes
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

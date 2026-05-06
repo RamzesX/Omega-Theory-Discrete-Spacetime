@@ -5418,6 +5418,13 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionDistance
 -- zero, vacuum-state expectation = 0. Plus vacuumState definition.
 -- Headline: multimode_wave_function_expectation_report (3-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionExpectation
+-- Lion's-Pride Phase 7.19 (dynamic /loop iteration 84, 2026-05-06):
+-- multi-mode wave-function SECOND MOMENT of total number operator.
+-- ⟨ψ|N̂²|ψ⟩ := Σ_state ψ(state)² · totalN(state)². Non-negativity,
+-- basis-state evaluation = totalN(state)², zero on zero, vacuum = 0.
+-- Foundation for variance (ΔN̂)² and Heisenberg uncertainty.
+-- Headline: multimode_wave_function_second_moment_report (4-conjunct).
+import OmegaTheory.Foundations.MultimodeWaveFunctionSecondMoment
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

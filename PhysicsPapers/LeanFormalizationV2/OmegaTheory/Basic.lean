@@ -5404,6 +5404,13 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionPositiveDef
 -- snapshot (10 phases, 6 axioms+inequalities, sum 16). Headline:
 -- multimode_hilbert_complete_meta_capstone.
 import OmegaTheory.Predictions.MultimodeHilbertCompleteMetaCapstone
+-- Lion's-Pride Phase 7.17 (dynamic /loop iteration 82, 2026-05-06):
+-- multi-mode wave-function squared distance metric d²(ψ,φ) := ⟨ψ-φ,ψ-φ⟩.
+-- Non-negativity, symmetry, reflexivity (d²(ψ,ψ)=0), zero-iff-equal
+-- (d²(ψ,φ)=0 ⟺ ψ=φ via positive-definiteness 7.15), binomial expansion
+-- d²(ψ,φ) = ⟨ψ,ψ⟩ - 2⟨ψ,φ⟩ + ⟨φ,φ⟩. Headline:
+-- multimode_wave_function_distance_report (5-conjunct).
+import OmegaTheory.Foundations.MultimodeWaveFunctionDistance
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

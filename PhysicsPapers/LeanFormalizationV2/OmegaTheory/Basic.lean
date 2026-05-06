@@ -5544,6 +5544,15 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling4Loop
 -- theorems + 3 META + 0 axioms = 50. Headline:
 -- finite_AF_algebra_total_assembly_meta (8-conjunct).
 import OmegaTheory.Predictions.FiniteAFAlgebraTotalAssemblyMeta
+-- Lion's-Pride Phase 9.43 (dynamic /loop iteration 117, 2026-05-06):
+-- substrate five-loop running coupling — extends Phase 9.42 (4-loop)
+-- with quintic correction g_5(N) := g_0·(1+α·δ+β·δ²+γ·δ³+ε·δ⁴+ζ·δ⁵).
+-- Beta-function in factored form via difference-of-fifth-powers
+-- a⁵-b⁵ = (a-b)(a⁴+a³b+a²b²+ab³+b⁴). Beta-non-positivity at non-neg
+-- params (5-loop preserves IR-monotone-flow). Reductions: ζ=0 → 4-loop,
+-- ε=ζ=0 → 3-loop, γ=ε=ζ=0 → 2-loop, β=γ=ε=ζ=0 → 1-loop. Headline:
+-- substrate_running_coupling_5loop_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateRunningCoupling5Loop
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

@@ -5292,6 +5292,15 @@ import OmegaTheory.QuantumGravity.SubstrateNonUniformAlpha
 -- Headline: substrate_running_tower_capstone (12-conjunct). Plus
 -- Frozen-Nat snapshot `substrateRunningTower_phase_count = 12`.
 import OmegaTheory.Predictions.SubstrateRunningTowerCapstone
+-- Lion's-Pride Phase 8.9 (dynamic /loop iteration 61, 2026-05-06):
+-- substrate running cross-section — composes Phase 8.4 cross-section
+-- structure with Phase 9.5 running coupling. Defines `runningAmplitude
+-- M_IR α N := runningCoupling M_IR α N` and `runningCrossSection M_IR
+-- α N := |runningAmplitude|²`. Theorems: always non-negative
+-- (squared); constant case at α=0 gives M_IR²; monotone-decreasing
+-- in N for `M_IR, α ≥ 0` (substrate IR flow). Headline:
+-- substrate_running_cross_section_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateRunningCrossSection
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

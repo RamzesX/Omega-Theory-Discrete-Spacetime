@@ -5475,6 +5475,12 @@ import OmegaTheory.QuantumGravity.SubstrateBornRule
 -- Plus Frozen-Nat snapshot (4 phases, 8 properties, sum 12).
 -- Headline: substrate_qm_bridge_meta_capstone (6-conjunct).
 import OmegaTheory.Predictions.SubstrateQMBridgeMetaCapstone
+-- Lion's-Pride Phase 9.32 (dynamic /loop iteration 92, 2026-05-06):
+-- substrate-physics expectation bound. ⟨ψ|N̂|ψ⟩ ≤ k·N for normalised
+-- ψ via per-state totalN(state) ≤ k·N + Finset.sum_le_sum + IsNormalised.
+-- Concrete numerical bound on QM observable. Headline:
+-- substrate_expectation_bound_report (2-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateExpectationBound
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

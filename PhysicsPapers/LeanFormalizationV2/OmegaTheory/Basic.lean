@@ -5454,6 +5454,14 @@ import OmegaTheory.Foundations.FiniteAFAlgebraAdjoint
 -- with iter 104 one-mul. Headline: finite_AF_algebra_mul_properties_report
 -- (4-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraMulProperties
+-- Lion's-Pride Phase 6.5e (dynamic /loop iteration 107, 2026-05-06):
+-- finite Chamseddine-Connes A_F ADJOINT ANTI-MULTIPLICATIVITY at c_part —
+-- fifth step of multi-iteration Phase 6.5. Proves (a · b)* = b* · a* at
+-- c_part (the *-algebra compatibility law between Phase 6.5b mul and
+-- Phase 6.5c adjoint). Plus 3 corollaries: self-product (a · a)*,
+-- zero-product (0 · a)*, one-product (1 · a)*. Headline:
+-- finite_AF_algebra_adj_anti_mul_report (4-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraAdjAntiMul
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

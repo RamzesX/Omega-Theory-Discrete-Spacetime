@@ -5432,6 +5432,13 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionSecondMoment
 -- function variance = 0. Substrate-side input to Heisenberg uncertainty.
 -- Headline: multimode_wave_function_variance_report (3-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionVariance
+-- Lion's-Pride Phase 7.21 (dynamic /loop iteration 87, 2026-05-06):
+-- multi-mode wave-function VARIANCE NON-NEGATIVITY for normalised
+-- states via discrete Cauchy-Schwarz. (E[N])² ≤ E[N²] · ⟨ψ,ψ⟩ = E[N²]
+-- for normalised ψ, hence Var(N) ≥ 0. Substrate-side input to
+-- Heisenberg uncertainty for physical states. Headline:
+-- multimode_wave_function_variance_nonneg_report.
+import OmegaTheory.Foundations.MultimodeWaveFunctionVarianceNonneg
 -- Lion's-Pride Phase 7.22 (dynamic /loop iteration 86, 2026-05-06):
 -- multi-mode QM-observable META-CAPSTONE composing one identity from
 -- EACH of 7.18 (expectation, basis, vacuum), 7.19 (second moment,

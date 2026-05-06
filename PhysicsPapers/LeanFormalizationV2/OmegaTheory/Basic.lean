@@ -5672,6 +5672,18 @@ import OmegaTheory.Predictions.SubstrateMachineryLOCAccountingMeta
 -- iterations, ALL successful). Headline:
 -- substrate_machinery_doctrine_snapshot (4-conjunct).
 import OmegaTheory.Predictions.SubstrateMachineryDoctrineMeta
+-- Lion's-Pride Phase 6.16 — SUBSTRATE MACHINERY THREE-META META
+-- (dynamic /loop iteration 154, 2026-05-06): top-level META composing
+-- the three preceding top-level Substrate Machinery META capstones —
+-- 6.13 SUMMARY + 6.14 LOC ACCOUNTING + 6.15 DOCTRINE — into a single
+-- 3-conjunct decide-only umbrella declaring simultaneous frozen-Nat
+-- structural-integrity of ALL three top-level facets. Frozen-Nat
+-- snapshot: 3 META + 17 ledger items + 0 axioms = 20. Plus
+-- cross-META consistency (paper-grade thresholds), iter-count
+-- consistency (DOCTRINE iter - LOC iter = 1), and informal grand
+-- sum. Headline:
+-- substrate_machinery_three_meta_snapshot (4-conjunct).
+import OmegaTheory.Predictions.SubstrateMachineryThreeMetaMeta
 -- Lion's-Pride Phase 9.54 — 9-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 147, 2026-05-06): substrate running-coupling 9-LOOP GRAND-
 -- LOOP META extending Phase 9.52 (16-conjunct) with new Phase 9.53

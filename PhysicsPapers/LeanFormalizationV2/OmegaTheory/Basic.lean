@@ -5331,6 +5331,18 @@ import OmegaTheory.QuantumGravity.SubstrateKinematicThreshold
 -- substrate_sm_physics_capstone (9-conjunct). Plus Frozen-Nat
 -- snapshot `substrateSMPhysics_phase_count = 10` (axiom-free).
 import OmegaTheory.Predictions.SubstrateSMPhysicsCapstone
+-- Lion's-Pride Phase 7.9 (dynamic /loop iteration 65, 2026-05-06):
+-- multi-mode wave function — coherent superposition layer over the
+-- multi-mode basis-state structure. `WaveFunction k N := MultimodeFockState
+-- k N → ℝ` (real amplitudes), `basisStateAsWaveFunction state` (Kronecker
+-- δ at state), `innerProduct ψ φ := Σ_s ψ(s)·φ(s)`. Theorems: basis state
+-- self-overlap = 1; distinct basis states orthogonal (= 0); inner product
+-- symmetric (real-valued); inner product linear in left argument.
+-- Headline: multimode_wave_function_report (4-conjunct). Honest scope:
+-- real (not complex) amplitudes; normalisation/probability constraint
+-- deferred; complex extension to Hilbert space deferred to multi-month
+-- future.
+import OmegaTheory.Foundations.MultimodeWaveFunction
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

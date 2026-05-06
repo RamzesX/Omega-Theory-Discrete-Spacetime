@@ -41,8 +41,12 @@ const GHCapstones = `${GH}/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheo
               <strong>Discrete-substrate quantum-gravity core.</strong>
               8 sectors (<code>Variational/</code>, <code>HealingFlow/</code>, <code>Geometry/</code>, <code>Conservation/</code>, <code>Spacetime/</code>, <code>Tensor/</code>, <code>Torsion/</code>, <code>Defects/</code>) · ≈&nbsp;25&nbsp;500&nbsp;LOC of Mathlib-grade proof · 0 axioms in these sectors. Healing-flow PDE&nbsp;∂g/∂τ&nbsp;=&nbsp;-δF/δg with proven Lyapunov dissipation dF/dτ&nbsp;=&nbsp;-‖∇F‖²&nbsp;≤&nbsp;0.
             </li>
+            <li>
+              <strong>Signature-match bridging framework</strong> (2026-05-06, in progress).
+              Each SM particle / force has a specific informational signature in the substrate, derivable two ways: (i) from substrate <code>informationStressEnergyTensor</code> + <code>gaugeInformation</code>, (ii) from standard physics textbook formulas. The <em>match theorem</em> is the bridge proof. First match shipped: the <strong>photon</strong> — substrate <code>(1/2)·Σ&nbsp;F²</code> matches textbook <em>(1/2)(|E|² + |B|²)</em> up to the natural factor of 2.
+            </li>
           </ol>
-          <p class="scope-foot">Submission targets: <em>Physical Review Letters</em> (2026-06), <em>Foundations of Physics</em> (2026-10).</p>
+          <p class="scope-foot">Submission targets: <em>Physical Review Letters</em> (2026-06), <em>Foundations of Physics</em> (2026-10). The signature-match dictionary is the project's central organizing contribution.</p>
         </div>
         <div class="scope-card scope-tier2">
           <div class="scope-eyebrow scope-eyebrow-2">Tier&nbsp;2 · research-grade exploratory</div>
@@ -294,11 +298,11 @@ const GHCapstones = `${GH}/blob/main/PhysicsPapers/LeanFormalizationV2/OmegaTheo
         </a>
       </li>
       <li>
-        <a href={`${baseUrl}papers/complete-omega-theory-unified-framework/`} class="reading-step">
+        <a href={`${baseUrl}papers/completeomegatheory/`} class="reading-step">
           <span class="step-number">03</span>
           <div class="step-content">
-            <strong>Complete framework</strong>
-            <span>Full technical treatment with all equations</span>
+            <strong>Formal paper (Tier 1 / Tier 2 split)</strong>
+            <span>Honest scope: π transcendence + substrate uncertainty proven; SM derivations conjectured</span>
           </div>
         </a>
       </li>

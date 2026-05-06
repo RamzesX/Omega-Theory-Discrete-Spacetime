@@ -1,0 +1,48 @@
+# OmegaTheory — local Docker orchestration
+#
+# Services:
+#   site-build : one-shot Astro build, writes ./site/dist on host
+#   site       : nginx serving the pre-built site at http://localhost:8080
+#   site-dev   : Astro dev server with HMR at http://localhost:4321
+#
+# Typical workflow:
+#   docker compose run --rm site-build       # produce ./site/dist
+#   docker compose up site                    # serve dist on :8080
+#   docker compose run --rm site-dev          # interactive dev :4321
+#
+# All services bind-mount the repo so STATUS.md, cycle-index.json, and
+# grothendieck-predictions.json are read live from PhysicsPapers/ at build time.
+
+services:
+
+  site-build:
+    build:
+      context: ./site
+      dockerfile: Dockerfile
+    image: omega-site:latest
+    volumes:
+      # Bind-mount the entire repo at /repo so the Astro prebuild scripts
+      # can read PhysicsPapers/* (the relative paths in
+      # site/scripts/copy-cycle-index.mjs and similar resolve to ../PhysicsPapers/)
+      - .:/repo
+      # The site lives at /repo/site; Astro runs from there so paths line up
+    working_dir: /repo/site
+    command: ["sh", "-c", "npm ci --no-audit --no-fund && npm run build"]
+
+  site:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./site/dist:/usr/share/nginx/html:ro
+    depends_on:
+      - site-build
+
+  site-dev:
+    image: node:22-bookworm-slim
+    working_dir: /repo/site
+    volumes:
+      - .:/repo
+    ports:
+      - "4321:4321"
+    command: ["sh", "-c", "npm ci --no-audit --no-fund && npm run dev -- --host 0.0.0.0"]

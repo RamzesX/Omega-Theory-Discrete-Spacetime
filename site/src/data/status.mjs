@@ -20,19 +20,19 @@ const STATUS_PATH = join(
 );
 
 // Fallbacks kept static — only used if the STATUS.md parse fails.
-// Refreshed 2026-05-04 (cycle 65 close — narrowed-scope sync).
+// Refreshed 2026-05-06 (post Lion's-Pride trash purge + Phase B + Phase C step 1+2).
 const FALLBACK = {
-  buildJobs: 4926,
+  buildJobs: 4620,
   sorryCount: 0,
-  physicalAxioms: 6,        // 4 sealed Hermite-Padé + 2 citation; 0 in T-x cone
-  researchAxioms: 6,
-  totalAxioms: 6,
-  ownTheorems: 8996,
-  ownDefinitions: 4465,
+  physicalAxioms: 5,        // 4 sealed Hermite-Padé + 1 transcendence; 0 for physical constants (opaque-bundle)
+  researchAxioms: 4,
+  totalAxioms: 5,
+  ownTheorems: 9200,        // approx post-trash-purge
+  ownDefinitions: 4200,
   mathlibTheorems: 175137,
-  grandTotalTheorems: 184133,
-  leanFiles: 1100,
-  cyclesShipped: 64,        // cycles 2..65 inclusive = 64 numbered cycles
+  grandTotalTheorems: 184337,
+  leanFiles: 1560,          // approx post Phase C step 2
+  cyclesShipped: 64,        // cycles 2..65 inclusive = 64 numbered cycles + Lion's-Pride continuous wave
   firstCycle: 2,
   lastCycle: 65,
   graphFindings: 88,

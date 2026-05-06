@@ -5684,6 +5684,16 @@ import OmegaTheory.Predictions.SubstrateMachineryDoctrineMeta
 -- sum. Headline:
 -- substrate_machinery_three_meta_snapshot (4-conjunct).
 import OmegaTheory.Predictions.SubstrateMachineryThreeMetaMeta
+-- Lion's-Pride Phase 6.17 — SUBSTRATE MACHINERY HISTORICAL-COMPLETION
+-- META (dynamic /loop iteration 155, 2026-05-06): top-level
+-- historical-completion ledger marking milestone state at iter 154
+-- (the iter where THREE-META META 6.16 consolidated the top-level
+-- hierarchy). Ledger: 154 iter + 4 tracks + 25 META + 7 rules
+-- + 4726 jobs + 0 axioms = 4916 frozen-Nat sum. Plus structural-
+-- integrity inequalities + build-density check (4726/25 ≥ 189
+-- build jobs per META, heavy substrate ratio). Headline:
+-- substrate_machinery_historical_completion_snapshot (7-conjunct).
+import OmegaTheory.Predictions.SubstrateMachineryHistoricalCompletionMeta
 -- Lion's-Pride Phase 9.54 — 9-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 147, 2026-05-06): substrate running-coupling 9-LOOP GRAND-
 -- LOOP META extending Phase 9.52 (16-conjunct) with new Phase 9.53

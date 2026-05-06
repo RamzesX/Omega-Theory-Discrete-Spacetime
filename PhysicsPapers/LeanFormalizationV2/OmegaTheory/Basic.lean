@@ -5675,6 +5675,19 @@ import OmegaTheory.Foundations.FiniteAFAlgebraIsUnitaryProductClosure
 -- snapshot: 4 phases + 17 atomic + 0 axioms = 21. Headline:
 -- finite_AF_algebra_gauge_group_meta (5-conjunct).
 import OmegaTheory.Predictions.FiniteAFAlgebraGaugeGroupMeta
+-- Lion's-Pride Phase 6.5v — ADJOINT-SMUL INTERACTION + LIE-ℝ-MODULE
+-- (dynamic /loop iteration 131, 2026-05-06): finite Chamseddine-Connes
+-- A_F adj-smul interaction at c_part — proves adjoint is ℝ-linear at
+-- c_part `(adj (r • a)).c_part = (r • adj a).c_part` (the ℝ-linearity
+-- of complex conjugation, ported through ℝ × ℝ ≅ ℂ representation),
+-- and uses it to derive the Lie-ℝ-submodule closure of self-adjoint
+-- elements: cPartIsSelfAdjoint a → cPartIsSelfAdjoint (r • a). Plus
+-- squared-norm negation invariance ‖-a‖² = ‖a‖² and unitary negation
+-- closure cPartIsUnitary u → cPartIsUnitary (-u). Combined with Phase
+-- 6.5p add-closure + 6.5r neg-closure, completes the ℝ-Lie-submodule
+-- structure of self-adjoint elements at c_part. Headline:
+-- finite_AF_algebra_adj_smul_report (4-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraAdjSMul
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

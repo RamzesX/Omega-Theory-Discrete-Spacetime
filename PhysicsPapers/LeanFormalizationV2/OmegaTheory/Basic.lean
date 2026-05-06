@@ -5480,6 +5480,15 @@ import OmegaTheory.Predictions.FiniteAFAlgebraMetaCapstone
 -- line snapshot: 9 phases, 3 pairs, 0 axioms, sum = 12. Headline:
 -- substrate_pi_hunch_all_pairs_meta (3-conjunct).
 import OmegaTheory.Predictions.SubstratePiHunchAllPairsMeta
+-- Lion's-Pride Phase 6.5h (dynamic /loop iteration 110, 2026-05-06):
+-- finite Chamseddine-Connes A_F ℝ-SCALAR MULTIPLICATION structure
+-- (SMul ℝ FiniteAFAlgebra) — eighth step of multi-iteration Phase 6.5.
+-- Component-wise scalar action r • (c_part, h_part, m3_part) =
+-- (r·c_part, r·h_part, r·m3_part). Module-compatibility laws: zero
+-- absorbs, one identity, distrib over + (in A_F and in ℝ), and
+-- multiplicative associativity (rs)•a = r•(s•a) — all at c_part.
+-- Headline: finite_AF_algebra_smul_report (5-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraSMul
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

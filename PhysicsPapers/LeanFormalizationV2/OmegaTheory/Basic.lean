@@ -4928,6 +4928,19 @@ import OmegaTheory.Foundations.HealingFlowConnesBridge
 -- Λ²=4/ℓ_P² recovers the Higgs mass-squared scaling m_H² ∝ Σy²/Λ².
 -- Headline: yukawa_heat_kernel_expansion_report (4-conjunct).
 import OmegaTheory.Foundations.YukawaHeatKernelExpansion
+-- Lion's-Pride Phase 6.5i (2026-05-06): SubstrateUVSpectralAction.
+-- Specialise the Yukawa heat-kernel expansion to substrate UV cutoff
+-- Λ_substrate² := 4/ℓ_P² (from IRUVDecomposition::latticeDispersion_UV_ceiling).
+-- Heat-kernel parameter t_substrate := ℓ_P²/4 satisfies
+-- t_substrate · Λ_substrate² = 1. At this scale:
+--    truncHeatTrace(yukawaSpectralTriple, 1, t_substrate)
+--      = n − (ℓ_P²/4)·(Σ y_i²)
+--    truncHeatTrace(yukawaSpectralTriple, 2, t_substrate)
+--      = n − (ℓ_P²/4)·(Σ y_i²) + (ℓ_P²/4)²/2·(Σ y_i⁴)
+-- Connecting Yukawa-square sum directly to Planck-length-scaled Higgs-
+-- mass-squared in the spectral action — the substrate's natural UV
+-- regularisation. Headline: substrate_uv_spectral_action_report.
+import OmegaTheory.Foundations.SubstrateUVSpectralAction
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

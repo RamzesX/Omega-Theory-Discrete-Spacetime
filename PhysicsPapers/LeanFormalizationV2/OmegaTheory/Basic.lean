@@ -5156,6 +5156,17 @@ import OmegaTheory.Foundations.HiggsGoldstoneIdentification
 -- audited 2026-05-06 — promotes implicit real-valued scalar typing
 -- to explicit theorem. Headline: higgs_lorentz_scalar_report (5-conjunct).
 import OmegaTheory.Foundations.HiggsLorentzScalar
+-- Phase C step 1 (FULL-mode plan REVISED 2026-05-06): GaugeInformationDensity.
+-- The FIRST gauge-field contribution to the substrate's information
+-- bookkeeping: gaugeInformation gc p := (1/2)·∑ F²(gc, p), the
+-- discrete energy density of a U(1) gauge field. Non-negative, vanishes
+-- at zero potential, positive when curvature is non-zero. Returns
+-- type InformationDensity (= ScalarField), the natural input to
+-- Conservation/InformationStressEnergyConstructor.lean. First step
+-- toward extending the existing T_μν^I bridge to include massless-
+-- particle effects on spacetime via the healing flow PDE
+-- μΔg − λD − γ(I−Ī). Headline: gauge_information_density_report.
+import OmegaTheory.Emergence.GaugeInformationDensity
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

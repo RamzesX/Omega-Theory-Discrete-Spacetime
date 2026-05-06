@@ -5733,6 +5733,17 @@ import OmegaTheory.Predictions.FiniteAFAlgebraUnitarySubgroupMeta
 -- 6 phases + 21 atomic + 0 axioms = 29. Headline:
 -- finite_AF_algebra_gauge_lie_pair_grand_meta (6-conjunct).
 import OmegaTheory.Predictions.FiniteAFAlgebraGaugeLiePairGrandMeta
+-- Lion's-Pride Phase 6.5z — A_F ALGEBRA META (dynamic /loop iteration
+-- 136, 2026-05-06): finite Chamseddine-Connes A_F ALGEBRA META
+-- composing the 4 ℝ-bilinearity identities of multiplication at c_part
+-- — 6.5b/c left-additivity + 6.5d right-additivity + 6.5x left + right
+-- ℝ-linearity — into a single 4-conjunct umbrella declaring the full
+-- ℝ-bilinearity of A_F multiplication at c_part. Exact content needed
+-- to upgrade FiniteAFAlgebra to a Mathlib Algebra ℝ (modulo missing
+-- Ring instance at h_part + m3_part). Frozen-Nat snapshot: 3 phases
+-- + 4 atomic + 0 axioms = 7. Headline:
+-- finite_AF_algebra_algebra_meta (4-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraAlgebraMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

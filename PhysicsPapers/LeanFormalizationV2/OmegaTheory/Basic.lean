@@ -5618,6 +5618,17 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling8Loop
 -- + 0 axioms = 26. Headline:
 -- substrate_running_coupling_8loop_grand_meta (16-conjunct).
 import OmegaTheory.Predictions.SubstrateRunningCoupling8LoopGrandMeta
+-- Lion's-Pride Phase 6.9 — HAMILTON QUATERNION ASSOCIATIVITY at h_part
+-- (dynamic /loop iteration 144, 2026-05-06): finite Chamseddine-Connes
+-- A_F Hamilton quaternion associativity at h_part — proves the famous
+-- 1843 result that the quaternion product is associative:
+-- ((a * b) * c).h_part i = (a * (b * c)).h_part i for every component
+-- index i : Fin 4. Proof: fin_cases i + simp [quaternionMulFn] + ring,
+-- closing the polynomial identity in 12 variables (a₀..a₃, b₀..b₃,
+-- c₀..c₃) at each of the 4 quaternion components. Companion to
+-- Phase 6.5d c_part associativity. Headline:
+-- finite_AF_algebra_mul_assoc_h_part_report.
+import OmegaTheory.Foundations.FiniteAFAlgebraMulAssocHPart
 -- Lion's-Pride Phase 9.50 — 7-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 138, 2026-05-06): substrate running-coupling 7-LOOP GRAND-
 -- LOOP META extending Phase 9.48 (12-conjunct) with new Phase 9.49

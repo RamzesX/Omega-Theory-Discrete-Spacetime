@@ -5526,6 +5526,15 @@ import OmegaTheory.Foundations.FiniteAFAlgebraSMulM3Part
 -- = 15 atomic identities, 0 axioms. Headline:
 -- finite_AF_algebra_smul_all_components_meta (6-conjunct).
 import OmegaTheory.Predictions.FiniteAFAlgebraSMulAllComponentsMeta
+-- Lion's-Pride Phase 9.42 (dynamic /loop iteration 115, 2026-05-06):
+-- substrate four-loop running coupling — extends Phase 9.7 (3-loop)
+-- with quartic correction g_4(N) := g_0·(1 + α·δ + β·δ² + γ·δ³ + ε·δ⁴).
+-- Beta-function in factored form via difference-of-fourth-powers
+-- a⁴-b⁴ = (a-b)(a³+a²b+ab²+b³). Beta-non-positivity at non-neg params
+-- (4-loop preserves IR-monotone-flow). Reductions: ε=0 → 3-loop,
+-- γ=ε=0 → 2-loop, β=γ=ε=0 → 1-loop. Headline:
+-- substrate_running_coupling_4loop_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateRunningCoupling4Loop
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

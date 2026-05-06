@@ -5427,6 +5427,15 @@ import OmegaTheory.Predictions.SubstrateMassFullUniversalMeta
 -- group identities (zero left/right at c_part + add-neg-self at
 -- c_part). Headline: finite_AF_algebra_group_report (3-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebra
+-- Lion's-Pride Phase 6.5b (dynamic /loop iteration 104, 2026-05-06):
+-- finite Chamseddine-Connes A_F MULTIPLICATION structure — second
+-- step of multi-iteration Phase 6.5. Component-wise multiplication:
+-- ℂ-mul on ℝ × ℝ pair (a,b)·(c,d) = (a·c-b·d, a·d+b·c), Hamilton
+-- 1843 quaternion mul on Fin 4 → ℝ, 3×3 matrix mul over ℂ pairs.
+-- Multiplicative identity (1, 0) ⊕ (1,0,0,0) ⊕ I₃. Headline:
+-- finite_AF_algebra_mul_report (4-conjunct: one left/right at c_part,
+-- zero absorbs at c_part, left-distributivity at c_part).
+import OmegaTheory.Foundations.FiniteAFAlgebraMul
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

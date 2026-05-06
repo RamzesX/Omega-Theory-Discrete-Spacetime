@@ -4963,6 +4963,15 @@ import OmegaTheory.Foundations.ContinuumHeatKernelYukawa
 -- neg_smul + pow_mul + Matrix.trace_smul. ~150 lines, no multi-
 -- month deferral. Headline: heat_kernel_taylor_convergence_report.
 import OmegaTheory.Foundations.HeatKernelTaylorConvergence
+-- Lion's-Pride Phase 6.5l (2026-05-06): TruncatedToContinuumLimit.
+-- Convergence theorem: truncatedHeatTrace T N t → Tr(e^{-t·D²}) as N → ∞.
+-- Composes Phase 6.4 (truncated formal Taylor) + Phase 6.5k (convergent
+-- tsum identity) + Mathlib `HasSum.tendsto_sum_nat` + Nat.succ atTop
+-- composition. Closes the formal-vs-analytic loop for finite-dim
+-- spectral triples — the truncated heat trace IS the (N+1)-th partial
+-- sum of the convergent series, hence converges to the analytic heat
+-- trace as N → ∞. Headline: truncated_to_continuum_limit_report.
+import OmegaTheory.Foundations.TruncatedToContinuumLimit
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

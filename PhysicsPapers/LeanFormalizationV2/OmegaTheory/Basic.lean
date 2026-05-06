@@ -5001,6 +5001,13 @@ import OmegaTheory.Foundations.SubstratePropagator
 -- Z[S=c] = n · exp(-c). Phase 7 substrate-QFT 5/6 sub-phases.
 -- Headline: path_integral_lattice_report (4-conjunct).
 import OmegaTheory.Foundations.PathIntegralLattice
+-- Lion's-Pride Phase 7.2 (dynamic /loop iteration 40, 2026-05-06):
+-- Multi-mode truncated Fock space (k modes × N+1 levels per mode).
+-- MultimodeFockState k N := Fin k → Fin (N+1). totalNumberEigenvalue
+-- := Σ_i state(i).val. Vacuum has eigenvalue 0; bounded by k·N.
+-- Phase 7 substrate-QFT 6/6 sub-phases COMPLETE. Headline:
+-- multimode_fock_space_report (3-conjunct).
+import OmegaTheory.Foundations.MultimodeFockSpace
 -- Lion's-Pride Phase 8.1 (dynamic /loop iteration 28, 2026-05-06):
 -- Tree-level graviton scattering amplitude scaffold composing the
 -- cubic + quartic vertices from Phase 5.3 + 5.4. Identifies

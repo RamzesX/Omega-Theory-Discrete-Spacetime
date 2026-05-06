@@ -5323,6 +5323,14 @@ import OmegaTheory.QuantumGravity.SubstrateDecayRateRunning
 -- predicts 2-particle reaction THRESHOLDS shift DOWN as truncation
 -- depth N → ∞ — falsifiable signature for threshold collider experiments.
 import OmegaTheory.QuantumGravity.SubstrateKinematicThreshold
+-- Lion's-Pride Phase 9.20 (dynamic /loop iteration 64, 2026-05-06):
+-- SUBSTRATE SM-PHYSICS META-CAPSTONE — composes one substantive
+-- identity from EACH of Phases 9.11-9.19 + Phase 8.9 into a 9-conjunct
+-- theorem. Each conjunct is a CONCRETE COMPUTATIONAL identity from
+-- the substrate-physics SM-coverage tower. Headline:
+-- substrate_sm_physics_capstone (9-conjunct). Plus Frozen-Nat
+-- snapshot `substrateSMPhysics_phase_count = 10` (axiom-free).
+import OmegaTheory.Predictions.SubstrateSMPhysicsCapstone
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

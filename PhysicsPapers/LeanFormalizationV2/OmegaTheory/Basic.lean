@@ -5411,6 +5411,13 @@ import OmegaTheory.Predictions.MultimodeHilbertCompleteMetaCapstone
 -- d²(ψ,φ) = ⟨ψ,ψ⟩ - 2⟨ψ,φ⟩ + ⟨φ,φ⟩. Headline:
 -- multimode_wave_function_distance_report (5-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionDistance
+-- Lion's-Pride Phase 7.18 (dynamic /loop iteration 83, 2026-05-06):
+-- multi-mode wave-function QM expectation-value scaffolding.
+-- ⟨ψ|N̂|ψ⟩ := Σ_state ψ(state)² · totalNumberEigenvalue state.
+-- Non-negativity, basis-state evaluation = totalN(state), zero on
+-- zero, vacuum-state expectation = 0. Plus vacuumState definition.
+-- Headline: multimode_wave_function_expectation_report (3-conjunct).
+import OmegaTheory.Foundations.MultimodeWaveFunctionExpectation
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

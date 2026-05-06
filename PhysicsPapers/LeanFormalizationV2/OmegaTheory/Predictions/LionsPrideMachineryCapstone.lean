@@ -173,22 +173,29 @@ theorem lions_pride_machinery_capstone
 
 /-! ## Frozen-Nat machinery snapshot -/
 
-/-- **30+-iteration substrate-machinery file count snapshot**. -/
-def lionsPride_substrate_files_count : ℕ := 30
+/-- **40+-iteration substrate-machinery file count snapshot**.
+
+    Updated 2026-05-06 iteration 41 from 30 to 34 (Phase 7.6
+    `PathIntegralLattice` + Phase 7.2 `MultimodeFockSpace` +
+    Phase 9.4 `SubstrateBetaFunction` + Phase 9.3 `SubstrateRGFlow`
+    landed since iteration 37). -/
+def lionsPride_substrate_files_count : ℕ := 34
 
 /-- **Phases shipped (out of 9)** — at least one substrate-machinery
     file per phase. -/
 def lionsPride_phases_landed : ℕ := 9
 
-/-- **Phases COMPLETE (3 of 9)**: Phase 5 (G-G classical), Phase 6
-    (Connes NCG), Phase 8 (substrate QG scattering). -/
-def lionsPride_phases_complete : ℕ := 3
+/-- **Phases COMPLETE (5 of 9)**: Phase 5 (G-G classical, 4/4),
+    Phase 6 (Connes NCG foundations, 5/5), Phase 7 (Substrate QFT
+    framework, 6/6), Phase 8 (Substrate QG scattering, 3/3),
+    Phase 9 (Substrate UV regularisation + RG, 4/4). -/
+def lionsPride_phases_complete : ℕ := 5
 
 /-- **Frozen-Nat machinery snapshot — verifiable via `decide`**. -/
 theorem lions_pride_machinery_snapshot :
-    lionsPride_substrate_files_count = 30 ∧
+    lionsPride_substrate_files_count = 34 ∧
     lionsPride_phases_landed = 9 ∧
-    lionsPride_phases_complete = 3 ∧
+    lionsPride_phases_complete = 5 ∧
     lionsPride_phases_complete ≤ lionsPride_phases_landed := by
   refine ⟨rfl, rfl, rfl, ?_⟩
   decide

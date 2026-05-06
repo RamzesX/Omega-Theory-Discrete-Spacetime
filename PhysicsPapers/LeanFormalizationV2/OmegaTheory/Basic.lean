@@ -5131,6 +5131,22 @@ import OmegaTheory.Foundations.HiggsDoubletStructure
 -- After EW SSB, H⁰ becomes physical h (Q=0); H⁺ + Im(H⁰) eaten as
 -- 3 Goldstones (Phase B step 4 deferred). Headline: higgs_GMN_report.
 import OmegaTheory.Foundations.HiggsGellMannNishijima
+-- Phase B step 5 (FULL-mode plan 2026-05-06): HiggsDoubletBridge.
+-- Back-compat link: H_substrate_vacuum N := (0, higgs_vev N) and
+-- HiggsRadial H := (H 1).re; bridge theorem
+-- higgs_vev_eq_HiggsDoublet_radial: higgs_vev N = HiggsRadial(H_sub_vac N).
+-- After this bridge every existing Yukawa/mass theorem (m_f = y_f · v)
+-- automatically inherits the doublet structure. Headline:
+-- higgs_doublet_bridge_report (4-conjunct).
+import OmegaTheory.Foundations.HiggsDoubletBridge
+-- Phase B step 4 (FULL-mode plan 2026-05-06): HiggsGoldstoneIdentification.
+-- Explicit 4-real-DOF decomposition of HiggsDoublet: 3 Goldstones
+-- (φ₁=Re H⁺, φ₂=Im H⁺, φ₄=Im H⁰) + 1 physical (φ₃=Re H⁰).
+-- At broken vacuum: 3 Goldstones vanish, physical Higgs equals
+-- substrate higgs_vev N. Upgrades electroweak_GoldstoneCount=3
+-- (Lie-algebra dim count) to explicit field decomposition.
+-- Headline: higgs_goldstone_identification_report (5-conjunct).
+import OmegaTheory.Foundations.HiggsGoldstoneIdentification
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

@@ -5147,6 +5147,15 @@ import OmegaTheory.Foundations.HiggsDoubletBridge
 -- (Lie-algebra dim count) to explicit field decomposition.
 -- Headline: higgs_goldstone_identification_report (5-conjunct).
 import OmegaTheory.Foundations.HiggsGoldstoneIdentification
+-- Phase B step 2 (FULL-mode plan 2026-05-06): HiggsLorentzScalar.
+-- First Lorentz-representation typing in OV2: define minimal
+-- LorentzRep inductive (scalar, leftWeyl, rightWeyl, vector, sym2)
+-- with dim + spin functions. HiggsLorentzRep := LorentzRep.scalar
+-- gives spin J = 0, dimension 1, distinct from fermion/vector/graviton
+-- representations. Closes the "Higgs spin = 0 not formalized" gap
+-- audited 2026-05-06 — promotes implicit real-valued scalar typing
+-- to explicit theorem. Headline: higgs_lorentz_scalar_report (5-conjunct).
+import OmegaTheory.Foundations.HiggsLorentzScalar
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

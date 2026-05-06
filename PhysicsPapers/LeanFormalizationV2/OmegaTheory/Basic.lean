@@ -5454,6 +5454,13 @@ import OmegaTheory.Predictions.MultimodeQMObservableMetaCapstone
 -- snapshot (17 phases, 4 META capstones, sum 21). Headline:
 -- multimode_hilbert_grand_ultimate_meta_meta.
 import OmegaTheory.Predictions.MultimodeHilbertGrandUltimateMetaCapstone
+-- Lion's-Pride Phase 9.30 (dynamic /loop iteration 89, 2026-05-06):
+-- substrate QM probability density layer connecting multi-mode Hilbert
+-- (7.7-7.23) to QM probability interpretation. p(ψ, state) := ψ(state)²,
+-- non-negativity, Σ p = ⟨ψ,ψ⟩, normalised iff total = 1, basis-state
+-- spike (1 at state, 0 elsewhere). Headline:
+-- substrate_qm_probability_report (4-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateQMProbability
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

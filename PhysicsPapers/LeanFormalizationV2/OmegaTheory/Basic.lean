@@ -5359,6 +5359,13 @@ import OmegaTheory.Predictions.SubstrateGrandMetaCapstone
 -- (sum of squares); zero wave function not normalised.
 -- Headline: multimode_wave_function_normalised_report (3-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionNormalised
+-- Lion's-Pride Phase 7.11 (dynamic /loop iteration 73, 2026-05-06):
+-- multi-mode wave-function Cauchy-Schwarz inequality (squared form).
+-- ⟨ψ, φ⟩² ≤ ⟨ψ, ψ⟩ · ⟨φ, φ⟩ for any pair of wave functions, via
+-- Mathlib's Finset.sum_mul_sq_le_sq_mul_sq. Plus normalised consequence
+-- ⟨ψ, φ⟩² ≤ 1 and basis-state corollary. Headline:
+-- multimode_wave_function_cauchy_schwarz_report (3-conjunct).
+import OmegaTheory.Foundations.MultimodeWaveFunctionCauchySchwarz
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

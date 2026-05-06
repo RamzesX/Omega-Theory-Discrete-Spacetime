@@ -5283,6 +5283,15 @@ import OmegaTheory.QuantumGravity.SubstrateMassRatioInvariance
 -- Headline: substrate_non_uniform_alpha_report (3-conjunct). Connects
 -- to Pi-Hunch hypothesis (3 generations ↔ √2/e/π → different α per gen).
 import OmegaTheory.QuantumGravity.SubstrateNonUniformAlpha
+-- Lion's-Pride Phase 9.17 (dynamic /loop iteration 60, 2026-05-06):
+-- SUBSTRATE-RUNNING TOWER META-CAPSTONE — composes one substantive
+-- identity from EACH of Phases 9.5-9.16 into a 12-conjunct theorem.
+-- Each conjunct is a CONCRETE COMPUTATIONAL identity (not Yoneda
+-- paper-bundle): constant-coupling reductions, zero-parameter cases,
+-- empty sums, mass-ratio invariance, cross-difference identity.
+-- Headline: substrate_running_tower_capstone (12-conjunct). Plus
+-- Frozen-Nat snapshot `substrateRunningTower_phase_count = 12`.
+import OmegaTheory.Predictions.SubstrateRunningTowerCapstone
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

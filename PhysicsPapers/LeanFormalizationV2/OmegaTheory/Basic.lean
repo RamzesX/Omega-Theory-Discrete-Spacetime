@@ -5343,6 +5343,15 @@ import OmegaTheory.Predictions.SubstrateSMPhysicsCapstone
 -- deferred; complex extension to Hilbert space deferred to multi-month
 -- future.
 import OmegaTheory.Foundations.MultimodeWaveFunction
+-- Lion's-Pride Phase 9.21 (dynamic /loop iteration 66, 2026-05-06):
+-- GRAND SUBSTRATE META-META-CAPSTONE — composes 3 representative
+-- conjuncts from Phase 9.17 (substrate-running tower) and 3 from
+-- Phase 9.20 (substrate-physics SM coverage) into a single 6-conjunct
+-- theorem. Each conjunct cites a real theorem from the substrate
+-- machinery built across iterations 38-66. Plus Frozen-Nat GRAND
+-- snapshot: 58 substrate files / 65 iterations / 17 meta-capstones.
+-- Headline: substrate_grand_meta_capstone (6-conjunct).
+import OmegaTheory.Predictions.SubstrateGrandMetaCapstone
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

@@ -5134,6 +5134,17 @@ import OmegaTheory.QuantumGravity.FourMomentum
 -- b_1, etc.) deferred to multi-month future work. Headline:
 -- substrate_running_coupling_2loop_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRunningCoupling2Loop
+-- Lion's-Pride Phase 8.7 (dynamic /loop iteration 47, 2026-05-06):
+-- on-shell predicate `IsOnShell p m_sq := ⟨p, p⟩ = m_sq` and the
+-- on-shell expansion of Mandelstam invariants in terms of physical
+-- masses + cross-terms: s = m₁²+m₂² + 2 p₁·p₂; t = m₁²+m₃² - 2 p₁·p₃;
+-- u = m₁²+m₄² - 2 p₁·p₄. Direct algebraic consequences of bilinearity
+-- + on-shell hypothesis. Bridge to Phase 8.5 scalar form:
+-- mandelstamS_scalar matches the on-shell expansion. Headline:
+-- on_shell_mandelstam_report (3-conjunct). Honest scope: algebraic
+-- expansions only; threshold bound s ≥ (m₁+m₂)² requires reverse
+-- Cauchy-Schwarz for time-like 4-vectors, deferred to Phase 8.8.
+import OmegaTheory.QuantumGravity.OnShellMandelstam
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

@@ -4972,6 +4972,18 @@ import OmegaTheory.Foundations.HeatKernelTaylorConvergence
 -- sum of the convergent series, hence converges to the analytic heat
 -- trace as N → ∞. Headline: truncated_to_continuum_limit_report.
 import OmegaTheory.Foundations.TruncatedToContinuumLimit
+-- Lion's-Pride Phase 6.5m (2026-05-06): SubstrateSeeleyDeWittA2.
+-- Define the substrate-side Seeley-DeWitt a_2 coefficient using
+-- the EXISTING `OmegaTheory.Geometry.Curvature.scalarCurvature` —
+-- closing the "we don't have a_2 = -R/6" deferral. Composes with
+-- Phase 6b heat-kernel coefficients framework. The user pushed back:
+-- we already have Christoffel + Riemann + Ricci + scalar-curvature
+-- infrastructure on DiscreteMetric (Geometry/Curvature.lean line 183).
+-- a_2_substrate g p := -scalarCurvature g p / 6, vanishes for flat
+-- metric, sign-characterised. Bochner-Lichnerowicz proof D² = Δ + R/4
+-- on substrate is the next sub-phase (separate file).
+-- Headline: substrate_seeley_de_witt_a2_report (4-conjunct).
+import OmegaTheory.Foundations.SubstrateSeeleyDeWittA2
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

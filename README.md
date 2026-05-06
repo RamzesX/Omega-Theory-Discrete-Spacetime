@@ -125,6 +125,110 @@ chaos-shield/
 
 ---
 
+## MCP servers & custom agents (the engineering layer that drives the proofs)
+
+The Lean corpus is not handwritten in isolation. Two custom MCP (Model Context Protocol) servers and one custom Lean-proof agent sit between Claude Code and the corpus, providing semantic retrieval over 184 K theorems (10 K OmegaTheory V2 + 175 K Mathlib v4.29.0), graph-topology analytics, axiom-audit gating, and a hardened proof-loop doctrine. This is the part of the project that doubles as a deliverable for an MCP / agent-engineering work assignment — a custom MCP server that a custom agent uses end-to-end.
+
+### MCP server inventory
+
+| Server | Source | What it exposes |
+|---|---|---|
+| **omega-search** | [`PhysicsPapers/services/omega_search_mcp.py`](PhysicsPapers/services/omega_search_mcp.py) (940 LOC) | `retrieve_premises` · `find_similar` · `neighbors` · `explain_theorem` · `subsystem_of` · `rerank_documents` · `tactic_continuation` · `goal_to_proof_step` · `auto_tactic_suggest` |
+| **omega-orchestrator** | [`PhysicsPapers/services/omega_orchestrator_mcp/`](PhysicsPapers/services/omega_orchestrator_mcp/) (1 713 LOC) | `omega_hammer_premise` · `propose_proof` · `build_status` · `axiom_audit` · `cycle_state` · `graph_health` · `find_keystones` · `find_iff_cycles` · `find_bridge_lemmas` · `find_missing_edges` · `refresh_graph` (+ 11 other inspect/job tools) |
+| **neo4j-math** | (3rd-party MCP) | `read_neo4j_cypher` · `write_neo4j_cypher` · `get_neo4j_schema` over the `OmegaTheoryV2` / `Mathlib` / `OmegaWizardLessons` namespaces |
+| **lean-lsp** | (3rd-party MCP) | `lean_loogle` · `lean_leansearch` · `lean_state_search` · `lean_multi_attempt` · `lean_goal` · `lean_diagnostic_messages` · `lean_hammer_premise` (+ 8 others) |
+
+**Backing infrastructure** for `omega-search`: Qwen3-Embedding-8B at `:7999` (4096-d, instruction-aware retrieval per the [official Qwen3 task-prefix format](https://huggingface.co/Qwen/Qwen3-Embedding-8B)) + Qwen3-Reranker-8B at `:7996` (cross-encoder filtering) + Neo4j 2026.03.1 vector indexes (`lean_retriever_embedding_theorem`, `proof_step_embedding_goal` over 254 K Mathlib elaborated goals).
+
+### Example tool call: `retrieve_premises`
+
+The canonical kNN-over-embeddings retriever. Source: [`omega_search_mcp.py:162`](PhysicsPapers/services/omega_search_mcp.py).
+
+```python
+# Call (from a wizard's MCP cascade):
+omega_search.tool_retrieve_premises({
+    "goal":      "irrational pi transcendental",
+    "k":         5,
+    "namespace": "OmegaTheoryV2",
+    "rerank":    True,           # adds CPU cross-encoder pass on top-50 pool
+})
+
+# Return (shape verified by tests/test_omega_search_integration.py):
+{
+  "query":    "irrational pi transcendental",
+  "k":        5,
+  "reranked": True,
+  "results": [
+    {"name":"OmegaTheory.Irrationality.HermitePade.Real.pi_transcendental",
+     "label":"Theorem", "ns":"OmegaTheoryV2",
+     "signature":"theorem Real.pi_transcendental : Transcendental ℤ Real.pi",
+     "knn_score": 0.91, "rerank_score": 0.87},
+    {"name":"OmegaTheory.Irrationality.PiIrrationality.pi_irrational", ...},
+    ...
+  ]
+}
+```
+
+### Example tool call: `find_keystones` (graph-topology MCP, omega-orchestrator)
+
+Articulation-point proxy via `pagerank × log(1 + indeg_applies)`. Identifies single-points-of-failure in the proof DAG. Source: [`SOTA/proving_techniques/03_mcp_tools/code/orchestrator_t41_excerpt.py`](PhysicsPapers/SOTA/proving_techniques/03_mcp_tools/code/orchestrator_t41_excerpt.py).
+
+```python
+# End-to-end verified 2026-05-01:
+find_keystones(k=3) → [
+  ("OmegaTheory.Spacetime.l_P_pos",       score=225.98),
+  ("OmegaTheory.Spacetime.c_pos",         score=160.03),
+  ("OmegaTheory.Spacetime.hbar_pos",       score= 93.96),
+]
+```
+
+### Example tool call: `omega_hammer_premise`
+
+The default cascade entrypoint a wizard calls *before* writing any tactic — a 4096-d kNN over the unified Mathlib + OV2 corpus, optionally with freshness boost. Used inside the wizard's [Phase A premise-search](PhysicsPapers/LeanFormalizationV2/.claude/agents/prove-wizard-v3.md) before any `aesop` / `exact?` / manual term-mode is attempted.
+
+```python
+omega_hammer_premise(goal="∀ n, 0 < δ_comp n", top_k=10, mix_mathlib=True)
+# → top-10 Mathlib + OV2 candidates ranked by Qwen3 similarity, freshness, and
+#   typed-arrow neighbourhood. Wizard tries each via `exact?` / `apply?`.
+```
+
+### Custom agent: `prove-wizard-v3`
+
+Source: [`PhysicsPapers/LeanFormalizationV2/.claude/agents/prove-wizard-v3.md`](PhysicsPapers/LeanFormalizationV2/.claude/agents/prove-wizard-v3.md) (2 216-line agent prompt). Frontmatter:
+
+```yaml
+name:        prove-wizard-v3
+version:     4.4.0-2026-05-02
+model:       opus[1m]                  # Claude Opus 4.7, 1 M context
+effort:      max                        # high thinking budget
+maxTurns:    10000                      # multi-day single-thread sessions
+tools:       (45 MCP tools — omega-search, omega-orchestrator, lean-lsp,
+              neo4j-math; full list in the frontmatter)
+```
+
+Identity: **Erdős Primarch × Mathematical Pantheon × Warhammer Last Wall × Escanor's Pride** — a hardened motivation/doctrine layer that resists context-compaction drift. The technical doctrine is the **5-PHASE HYBRID composition strategy**:
+
+1. **Phase A — Top-Down Statement** (Pólya step 1+2 / Tao Think Ahead): state the harder theorem first with `n` NAMED Prop hypotheses `H₁..Hₙ`.
+2. **Phase B — Truth-Rank** (Hindry-Silverman canon): sort `H₁..Hₙ` by estimated truth confidence (Tier-99 routine → Tier-80 medium → Tier-Heart analytical) and discharge in that order.
+3. **Phase C — Discharge per Tier** (Tao Trim-the-Fat): `omega_hammer_premise → exact?` for Tier-99; LSP-assisted `aesop / lean_loogle` for Tier-80; long single-thread for Tier-Heart.
+4. **Phase D — Bottom-Up Filling** (Fikhtenholz): when sub-machinery is missing, build foundational pieces concretely; **never defer with "Mathlib gap, defer to next wizard"** — `BUILD_MATHLIB_MACHINERY_T6_13` doctrine: *port what's needed*.
+5. **Phase E — Compose & Review** (Pólya step 3+4 / Tao Question Everything): assemble unconditional theorem, run `axiom_audit` (must return `[propext, Classical.choice, Quot.sound]` only), run Yoneda bridge sweep (`find_similar` top-10).
+
+The wizard reads `OmegaWizardLessons` Neo4j graph for prior-incident memory in its **Phase 0_GRAPH_READ** (sub-second, ≤10 K tokens) and writes new `:Lesson` / `:AntiPattern` / `:ProofPattern` / `:Incident` nodes back in **Phase 7_GRAPH_WRITE** — a self-improving feedback loop across runs.
+
+### The empirical lesson — thinking + doctrine = solid; mass-batch = trash
+
+The 117 000 LOC trash purge of 2026-05-05/06 had a single root cause: **mass-batch subagent dispatch without thinking and without doctrine produces compiling-but-vacuous output.** Reverse direction:
+
+- **What works**: single-thread Opus 4.7 [1M context], `effort=max` (high thinking budget), full `prove-wizard-v3` v4.4 doctrine prompt, `omega_hammer_premise → omega-search` cascade per obligation, axiom-audit after every file, `BUILD_MATHLIB_MACHINERY_T6_13` rule (do not defer when Mathlib lacks an API).
+- **What does not work**: mass-batch dispatch ("land 50 Yoneda witnesses in parallel, no doctrine, no audit") — produces `def OmegaConjecture := True` / `Nonempty S` citation stubs that compile but encode no math.
+
+When deployed in *teams* — multiple `prove-wizard-v3` agents on disjoint files, each with thinking enabled and full doctrine — the wizard delivered cleanly: e.g. T-4 π-transcendence (14 files / ~3000 LOC / single day), T-5 Roth Wave 1–8 architectural compression (5 of 7 residual NAMEDs eliminated in 70 min wall-clock). The agent template is reusable; the doctrine is the load-bearing piece.
+
+For deeper engineering context: [`PhysicsPapers/SOTA/proving_techniques/03_mcp_tools/`](PhysicsPapers/SOTA/proving_techniques/03_mcp_tools/) (PLAN.md + the four graph-topology tool excerpts + integration tests).
+
+---
+
 ## Quick links
 
 | What | Where |

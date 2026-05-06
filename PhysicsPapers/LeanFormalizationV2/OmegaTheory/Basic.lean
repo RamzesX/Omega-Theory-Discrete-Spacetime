@@ -5650,6 +5650,18 @@ import OmegaTheory.Predictions.FiniteAFAlgebraGaugeComponentMeta
 -- the AddSubgroup closure structure of self-adjoint elements at c_part.
 -- Headline: finite_AF_algebra_is_self_adjoint_neg_closure_report (4-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraIsSelfAdjointNegClosure
+-- Lion's-Pride Phase 6.5s — IS-UNITARY PRODUCT CLOSURE (dynamic /loop
+-- iteration 129, 2026-05-06): finite Chamseddine-Connes A_F IsUnitary
+-- product-closure at c_part — proves modulus-multiplicativity
+-- ‖u·v‖² = ‖u‖² · ‖v‖² (the standard |zw|² = |z|²|w|² identity for
+-- complex numbers, ported through ℝ × ℝ ≅ ℂ), and uses it to derive
+-- the multiplicative closure of the unitary group: cPartIsUnitary u →
+-- cPartIsUnitary v → cPartIsUnitary (u * v). Plus squaring closure
+-- cPartIsUnitary u → cPartIsUnitary (u * u). Foundation step toward
+-- the unitary group U(A_F)|c whose modulo-center quotient gives the
+-- gauge group of the spectral triple. Headline:
+-- finite_AF_algebra_is_unitary_product_closure_report (3-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraIsUnitaryProductClosure
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

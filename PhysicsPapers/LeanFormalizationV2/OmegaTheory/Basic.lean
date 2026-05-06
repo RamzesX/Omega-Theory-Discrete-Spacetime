@@ -5382,6 +5382,12 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionBilinear
 -- snapshot (7 phases, 8 properties, sum 15). Headline:
 -- multimode_wave_function_meta_capstone (6-conjunct).
 import OmegaTheory.Predictions.MultimodeWaveFunctionMetaCapstone
+-- Lion's-Pride Phase 7.14 (dynamic /loop iteration 76, 2026-05-06):
+-- multi-mode wave-function norm-squared identities. Scalar
+-- homogeneity ‖c·ψ‖² = c²·‖ψ‖² (via 7.12 left + right smul),
+-- negation invariance ‖-ψ‖² = ‖ψ‖², zero/unit scalar corollaries.
+-- Headline: multimode_wave_function_normSq_report (4-conjunct).
+import OmegaTheory.Foundations.MultimodeWaveFunctionNormSq
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

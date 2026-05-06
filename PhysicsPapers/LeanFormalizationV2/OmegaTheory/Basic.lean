@@ -5498,6 +5498,15 @@ import OmegaTheory.Foundations.FiniteAFAlgebraSMul
 -- Frozen-Nat snapshot: 7 phases, 26 substantive theorems, 0 new axioms,
 -- sum = 33. Headline: finite_AF_algebra_grand_meta_capstone (6-conjunct).
 import OmegaTheory.Predictions.FiniteAFAlgebraGrandMetaCapstone
+-- Lion's-Pride Phase 6.5j (dynamic /loop iteration 112, 2026-05-06):
+-- finite Chamseddine-Connes A_F ℝ-SMul module-compatibility laws
+-- extended to h_part (the quaternion ℍ ≅ Fin 4 → ℝ component).
+-- Pointwise (i : Fin 4) versions of the 5 Phase-6.5h c_part laws:
+-- zero absorbs, one identity, distrib over + (in A_F + in ℝ), and
+-- mul-associativity (rs)•a = r•(s•a). Demonstrates uniform ℝ-module
+-- structure across A_F components. Headline:
+-- finite_AF_algebra_smul_h_part_report (5-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraSMulHPart
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

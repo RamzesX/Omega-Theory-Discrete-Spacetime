@@ -5386,6 +5386,13 @@ import OmegaTheory.QuantumGravity.SubstratePiHunchCrossDifference
 -- Plus Frozen-Nat Pi-Hunch line snapshot (3 phases). Headline:
 -- substrate_pi_hunch_capstone (4-conjunct).
 import OmegaTheory.Predictions.SubstratePiHunchCapstone
+-- Lion's-Pride Phase 9.25 (dynamic /loop iteration 71, 2026-05-06):
+-- substrate Pi-Hunch transitive cross-difference at (g₁=0, g₂=2) —
+-- completes the cross-difference triple (Phase 9.23 shipped (0,1)
+-- and (1,2); this ships (0,2) via αs 0 < αs 2 transitivity from
+-- Phase 9.22). Plus a 3-conjunct COMPLETE TRIPLE composite headline.
+-- Headline: substrate_pi_hunch_complete_triple_cross_difference.
+import OmegaTheory.QuantumGravity.SubstratePiHunchTransitiveCrossDifference
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

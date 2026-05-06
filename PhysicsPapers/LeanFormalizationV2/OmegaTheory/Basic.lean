@@ -5481,6 +5481,13 @@ import OmegaTheory.Predictions.SubstrateQMBridgeMetaCapstone
 -- Concrete numerical bound on QM observable. Headline:
 -- substrate_expectation_bound_report (2-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateExpectationBound
+-- Lion's-Pride Phase 9.33 (dynamic /loop iteration 93, 2026-05-06):
+-- substrate uncertainty bounded form. ⟨ψ|N̂²|ψ⟩ ≤ (k·N)² for normalised
+-- (via per-state n(s) ≤ k·N + Finset.sum_le_sum). Var ≤ ⟨N̂²⟩ (always).
+-- Combined: 0 ≤ Var(N̂)(ψ) ≤ (k·N)² for normalised. Substrate-side
+-- Heisenberg upper bound — finite and concrete. Headline:
+-- substrate_uncertainty_bound_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateUncertaintyBound
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

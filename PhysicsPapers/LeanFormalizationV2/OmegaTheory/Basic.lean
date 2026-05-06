@@ -5178,6 +5178,19 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCouplingNLoop
 -- eigenvalue-level structure only; commutation `[N̂_i, N̂_j] = 0`
 -- requires actual operator-on-tensor-space machinery deferred.
 import OmegaTheory.Foundations.MultimodeNumberOperators
+-- Lion's-Pride Phase 9.9 (dynamic /loop iteration 51, 2026-05-06):
+-- substrate vacuum energy density — finite zero-point sum
+-- `ρ_vac^subst(ω, N_max) := Σ_{n=0}^{N_max-1} ω_n / 2` over a
+-- truncated set of modes regulated by the substrate UV cutoff
+-- (Phase 9.1). Theorems: non-negativity for non-neg ω; monotone
+-- increasing in N_max; upper bound `N_max · ω_max / 2` for
+-- ω-bounded sequences. Headline: substrate_vacuum_energy_density_report
+-- (3-conjunct). Honest scope: ships finite-vacuum-energy structural
+-- prediction (the substrate UV cutoff makes ρ_vac mathematically
+-- rigorous, no Λ_UV → ∞ pathology). Specific cosmological-constant
+-- value (Λ_obs ≈ 10^{-122} · Λ_Planck) requires substrate RG flow
+-- on vacuum modes, multi-month future work.
+import OmegaTheory.QuantumGravity.SubstrateVacuumEnergy
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

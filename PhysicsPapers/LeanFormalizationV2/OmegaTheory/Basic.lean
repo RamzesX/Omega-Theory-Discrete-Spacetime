@@ -5700,6 +5700,16 @@ import OmegaTheory.Foundations.FiniteAFAlgebraAdjSMul
 -- atomic + 0 axioms = 15. Headline:
 -- finite_AF_algebra_lie_submodule_meta (3-conjunct).
 import OmegaTheory.Predictions.FiniteAFAlgebraLieSubmoduleMeta
+-- Lion's-Pride Phase 6.5x — SMUL-MUL INTERACTION (dynamic /loop
+-- iteration 133, 2026-05-06): finite Chamseddine-Connes A_F SMul-Mul
+-- interaction at c_part — proves the ℝ-bilinearity of the algebra
+-- multiplication w.r.t. ℝ-scalar multiplication: ((r • a) * b).c_part
+-- = (r • (a * b)).c_part (left), (a * (r • b)).c_part = (r • (a*b))
+-- .c_part (right), and joint ((r • a) * (s • b)).c_part = ((r*s) •
+-- (a * b)).c_part. Foundation step toward declaring `FiniteAFAlgebra`
+-- an ℝ-algebra (downstream — needs Ring instance too). Headline:
+-- finite_AF_algebra_smul_mul_report (3-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraSMulMul
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

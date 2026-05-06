@@ -5031,6 +5031,14 @@ import OmegaTheory.QuantumGravity.SubstrateUVRegularisation
 -- construction. Phase 9 substrate-renorm 2/4 sub-phases. Headline:
 -- substrate_loop_finiteness_report (4-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateLoopFiniteness
+-- Lion's-Pride Phase 9.3 (dynamic /loop iteration 36, 2026-05-06):
+-- Substrate truncation N→∞ as IR-RG flow. substrateRGScale N
+-- := computationalUncertainty N is monotone-decreasing in N (each
+-- step N→N+1 shrinks the substrate residual). Foundation for
+-- substrate-RG-flow trajectories of running couplings (Phase 9.4).
+-- Phase 9 substrate-renorm 3/4 sub-phases. Headline:
+-- substrate_rg_flow_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateRGFlow
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

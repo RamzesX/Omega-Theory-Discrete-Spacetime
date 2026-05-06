@@ -5191,6 +5191,17 @@ import OmegaTheory.Foundations.MultimodeNumberOperators
 -- value (Λ_obs ≈ 10^{-122} · Λ_Planck) requires substrate RG flow
 -- on vacuum modes, multi-month future work.
 import OmegaTheory.QuantumGravity.SubstrateVacuumEnergy
+-- Lion's-Pride Phase 7.8 (dynamic /loop iteration 52, 2026-05-06):
+-- multi-mode number-operator commutation at eigenvalue level —
+-- ships `doubleModeExcitation i j n m` (excite mode i to n + mode j
+-- to m), commutativity `doubleModeExcitation i j n m = doubleModeExcitation
+-- j i m n` for `i ≠ j`, per-mode eigenvalues at both excited modes,
+-- and `totalNumberEigenvalue (doubleModeExcitation i j n m) = n.val + m.val`.
+-- The eigenvalue-level statement of `[N̂_i, N̂_j] = 0`. Headline:
+-- multimode_commutation_report (4-conjunct). Honest scope: eigenvalue
+-- only; operator-on-tensor-space commutator vanishes requires Mathlib
+-- TensorProduct Hilbert-space machinery (multi-month deferred).
+import OmegaTheory.Foundations.MultimodeCommutation
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

@@ -5072,6 +5072,18 @@ import OmegaTheory.Predictions.LionsPrideMachineryCapstone
 -- substrate-renorm 4/4 sub-phases COMPLETE (9.1+9.2+9.3+9.4).
 -- Headline: substrate_beta_function_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateBetaFunction
+-- Lion's-Pride Phase 8.4 (dynamic /loop iteration 42, 2026-05-06):
+-- cross-section physical observable scaffold — squared amplitude
+-- |M|² of Phase 8.3 fullScattering4pt. Defines `amplitudeSquared M := M^2`
+-- (positivity, vanishing-on-zero), `crossSection4pt := |M_full|²` (non-
+-- neg + zero on zero first leg), and the 4-term INTERFERENCE
+-- decomposition `(a+b+c+d)² = a²+b²+c²+d² + 2·(6 cross-terms)` (genuine
+-- quantum content of scattering — incoherent classical sum vs coherent
+-- interference). Honest scope: ships |M|² envelope (the cross-section
+-- modulo the kinematic flux factor 1/(64π²s) and dΩ integration which
+-- would need Lorentz-invariant phase-space machinery). Headline:
+-- cross_section_scaffold_report (4-conjunct).
+import OmegaTheory.QuantumGravity.CrossSectionScaffold
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

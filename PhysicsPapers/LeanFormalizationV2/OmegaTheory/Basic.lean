@@ -5535,6 +5535,15 @@ import OmegaTheory.Predictions.FiniteAFAlgebraSMulAllComponentsMeta
 -- γ=ε=0 → 2-loop, β=γ=ε=0 → 1-loop. Headline:
 -- substrate_running_coupling_4loop_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRunningCoupling4Loop
+-- Lion's-Pride Phase 6.5m — TOTAL ASSEMBLY META (dynamic /loop iteration
+-- 116, 2026-05-06): finite Chamseddine-Connes A_F TOTAL ASSEMBLY META
+-- composing ONE substantive identity from EACH of the 8 atomic sub-phases
+-- of the multi-iteration Phase 6.5 build (6.5a, b, c, d, e, h, j, k) into
+-- a single 8-conjunct umbrella declaring full *-algebra + ℝ-module status
+-- across all 3 components. Frozen-Nat snapshot: 11 phases + 36 atomic
+-- theorems + 3 META + 0 axioms = 50. Headline:
+-- finite_AF_algebra_total_assembly_meta (8-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraTotalAssemblyMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

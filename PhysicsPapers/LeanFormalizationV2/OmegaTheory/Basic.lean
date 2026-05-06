@@ -5065,6 +5065,17 @@ import OmegaTheory.Foundations.YukawaMassBirthEvent
 -- Non-breaking enhancement; original twoQ retained for backward compat.
 -- Headline: fermion_electric_charge_rework_report (4-conjunct).
 import OmegaTheory.Foundations.FermionElectricChargeRework
+-- Lion's-Pride Phase 6.5v (2026-05-06): GellMannNishijimaRelation.
+-- Q = T_3 + Y verified algebraically for all 8 SM fermion species
+-- using existing FermionHypercharge values. Verifies the universal
+-- compatibility relation between U(1)_Y and SU(2)_L gauge structures
+-- that produces the physical electric charge after EW symmetry
+-- breaking. 8 per-fermion + 4 left-right consistency theorems —
+-- all rfl/norm_num pure rational arithmetic. Closes the audit gap
+-- in Emergence/FermionHypercharge.lean (file shipped Y values but
+-- no GMN verification). Headline: gellmann_nishijima_relation_report
+-- (12-conjunct).
+import OmegaTheory.Foundations.GellMannNishijimaRelation
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

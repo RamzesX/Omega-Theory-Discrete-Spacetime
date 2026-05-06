@@ -5366,6 +5366,14 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionNormalised
 -- ⟨ψ, φ⟩² ≤ 1 and basis-state corollary. Headline:
 -- multimode_wave_function_cauchy_schwarz_report (3-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionCauchySchwarz
+-- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
+-- multi-mode wave-function bilinearity + parallelogram + polarisation.
+-- Linearity in right argument, scalar homogeneity (left + right),
+-- inner-product binomial expansion, parallelogram identity
+-- ⟨ψ+φ,ψ+φ⟩ + ⟨ψ-φ,ψ-φ⟩ = 2⟨ψ,ψ⟩ + 2⟨φ,φ⟩, real polarisation
+-- identity 4⟨ψ,φ⟩ = ⟨ψ+φ,ψ+φ⟩ - ⟨ψ-φ,ψ-φ⟩. Headline:
+-- multimode_wave_function_bilinear_report (4-conjunct).
+import OmegaTheory.Foundations.MultimodeWaveFunctionBilinear
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

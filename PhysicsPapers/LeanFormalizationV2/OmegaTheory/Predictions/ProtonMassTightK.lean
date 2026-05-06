@@ -44,7 +44,7 @@
   No sorry, no new axioms.
 -/
 
-import OmegaTheory.Predictions.PrecisionPhysicsAbsoluteWaveP2
+import OmegaTheory.Predictions.ProtonMassFromLambdaQCD
 import OmegaTheory.Emergence.LambdaQCDFromSubstrate
 import OmegaTheory.Irrationality.Uncertainty
 import OmegaTheory.Spacetime.Constants

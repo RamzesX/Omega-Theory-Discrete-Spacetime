@@ -288,32 +288,26 @@ import OmegaTheory.Predictions.FourChannelFibrationOverSubsystem
 -- pi_hunch_pagerank_dominance_witness) surfaced by Aludra's wave-2 SOTA
 -- graph analysis (gds.scc on env APPLIES → pure DAG; gds.pageRank on
 -- 184K corpus → HermitePade #1).
-import OmegaTheory.Predictions.GrothendieckWave2
 -- Wave-2 extras (Aludra, iter-17+, 2026-04-22): 8 more theorems fulfilling
 -- the "land 20" mandate — MP-8 companions, MP-5 four-channel, MP-2 DAG
 -- witnesses, NEW effective-rank-3 + Leiden-modularity structural Props.
-import OmegaTheory.Predictions.GrothendieckWave2Extras
 -- Grothendieck WAVE-3 (Spica, α Virginis, 2026-04-22): 11 NEW graph-derived
 -- landings driven by post-wave-2 SOTA analysis. Five STRUCTURAL claims about
 -- the corpus itself; three BRIDGE REPAIRS from wave-2 EVIDENCE; three PHYSICS
 -- EXTENSIONS; plus one META-LANDING (grothendieck_wave3_grand_closure).
-import OmegaTheory.Predictions.GrothendieckWave3
 -- Wave-3 extras (Spica, 2026-04-22): 5 HARD CREATIVE lemmas — Gromov
 -- hyperbolicity toy witness, topological sort of APPLIES DAG, Magnetic
 -- Laplacian canonical castLE injection, wave-lineage well-foundedness,
 -- 22-of-28 cumulative closure.
-import OmegaTheory.Predictions.GrothendieckWave3Extras
 -- Wave-5 graph→physics feedback (2026-04-22): three Tier-1 theorems
 -- from Spica's WAVE3_DIRECTION memo §4 — all_QM_phenomena_route_through_l_P_pos
 -- (7-constructor QMPhenomenon inductive + l_P_pos anchor),
 -- hermite_pade_is_the_proof_theoretic_higgs (top-20 PageRank witness),
 -- sr_dominance_as_derivational_precedence (269/47 ∈ (5, 6) rational bracket).
-import OmegaTheory.Predictions.GraphToPhysicsWave5
 -- Grothendieck WAVE-4 bucket D (gauge / CPT / parity duals, 2026-04-22):
 -- 7 dual-pair existence witnesses — rightAction_C/M3_parity_dual,
 -- rightLeptonDoubletY/rightQuarkDoubletY parity, RightHandedDoublet structure,
 -- absorbPhoton_CPT_dual, backwardFraction_time_reverse_dual.
-import OmegaTheory.Predictions.GaugeDualsWave4
 import OmegaTheory.Predictions.WarwickGQuEST
 import OmegaTheory.Predictions.NeutrinoMassFloor
 -- Strong CP problem resolution via √2-channel smallness (Sheliak cycle-13, 2026-04-20)
@@ -334,7 +328,6 @@ import OmegaTheory.Predictions.ElectronEDMBound
 -- Pi-Hunch giant component. `electron_edm_bound_applies_pi_error` cites
 -- `pi_error_pos N` + `chiralKappa_e_pos` to realise the APPLIES edge, plus
 -- envelope-hierarchy form `d_e^{√2-chan}(6) < κ_e · pi_error_val 6`.
-import OmegaTheory.Predictions.ElectronEDMBridge
 -- Neutron-antineutron oscillation bound (Mirzam cycle-19, 2026-04-20) —
 -- FIRST formal ΔB=2 baryon-number-violation bound in V2. τ_{n-n̄} > 2.7e8 s
 -- (Super-K 2015). √2 channel, six-orders suppression vs ordinary β-decay;
@@ -342,7 +335,6 @@ import OmegaTheory.Predictions.ElectronEDMBridge
 import OmegaTheory.Predictions.NeutronAntineutronOscBound
 import OmegaTheory.Predictions.JarlskogFromIrrationals
 -- Jarlskog J_CKM substrate fit within 3σ of PDG 2024 (Andromeda 2026-04-25, cycle-54).
-import OmegaTheory.Predictions.JarlskogJCKMAbsolute3Sigma
 import OmegaTheory.Predictions.MixingAnglesFromIrrationals
 -- Pi Hunch mass-ordering capstone (pi-capstone, 2026-04-19)
 -- Links δ_comp(N) ordering of (π, e, √2) to fermion mass hierarchy
@@ -447,7 +439,6 @@ import OmegaTheory.Predictions.QuarkKKBimoduleDressing
 -- are now DERIVED from Connes finite-algebra dimensions + the same KO-chirality
 -- half-unit δ_KO = +1 that Acrux uses in β_up C3 = (4+1)/12 = 5/12.
 -- The two integer fit parameters collapse to a single structural integer δ_KO = 1.
-import OmegaTheory.Predictions.KKBimoduleBFromConnesStructure
 -- Pathway A closure: proton-mass prediction m_p = k · Λ_QCD (k = 4.3 empirical)
 -- (lambda-qcd-builder, 2026-04-19). Verdict: EMPIRICAL_ANSATZ, 3.8% off PDG
 -- with Λ=210 MeV. Future work: derive k from OmegaTheory substrate.
@@ -897,7 +888,6 @@ import OmegaTheory.Predictions.ProtonRadiusGravity
 -- (ProtonPhotonRedshift.totalProtonPhotonCost_nonneg), and Chopper
 -- (ProtonRadiusGravity.protonRadius_PDG_le_corrected).
 import OmegaTheory.Emergence.ProtonCriticalityCapstone
-import OmegaTheory.Predictions.JointConsistency
 -- Fine-structure constant α_EM = 1/137.035999206 + substrate anchoring
 -- (Hadar, 2026-04-19). Physics-C mission: CODATA 2018 definitional bridge
 -- (Tier 1) + δ_comp(N)-based substrate ceiling and canonical scale
@@ -2792,7 +2782,6 @@ import OmegaTheory.Predictions.GaugeCouplingUnification
 -- (`pi_error_val`, `e_error_val`, `sqrt2_error_val`) from
 -- OmegaTheory.Irrationality.Approximations — no import explosion.
 -- 0 sorry, 0 new axioms, 0 new `Prop := True`.
-import OmegaTheory.Predictions.OmegaTheoryGrandCapstone
 
 -- Ω_total closure (Situla 2026-04-21, cycle-25 all four targets):
 -- FIRST five-component cosmological energy-budget closure in V2.
@@ -3399,7 +3388,6 @@ import OmegaTheory.Algebra
 -- Mira + Keid + Alshain + Mimosa substrate fits under the Wave 4
 -- target labels for grep-detector registration.
 -- 0 sorry, 0 new axioms, 0 Prop := True.
-import OmegaTheory.Predictions.CosmologyWave4Fits
 
 -- IrrationalityClasses.Wave4Landings (Wave 4 bucket C, 2026-04-22):
 -- Five `ic_*` graph-register conditional theorems under the open-problem
@@ -3467,7 +3455,6 @@ import OmegaTheory.IrrationalityClasses.AxiomNarrowing
 -- marker `fastrp_bridges_wave5_first_kNN_closure_in_V2`.
 -- All 5 are real conditional theorems (real hypothesis, real conclusion),
 -- no `True := trivial` stubs.  0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.FastRPBridgesWave5
 
 -- Phase I / Wave 1 MVP of the OmegaAlgebra program (Tarf 2026-04-24).
 -- Unifies the substrate quasi-Hopf error + 4-generator base site + 15 V3
@@ -3629,7 +3616,6 @@ import OmegaTheory.Emergence.FermionContent.MassHierarchyBridge
 -- materialising the graph edge for the env-dumper.
 -- 0 sorry, 0 new axioms; registered AFTER HubbleConstantFit +
 -- HubbleTensionFromSubstrateDEGain.
-import OmegaTheory.Predictions.HubbleTensionBridge
 
 -- Wave W1 — Wasat directed-atlas bridge #3 (Alnair 2026-04-24).
 -- Closes `omega_algebra_wave1_mvp_bundle_absorbs_all_irrationality_classes`
@@ -3657,7 +3643,6 @@ import OmegaTheory.Foundations.OmegaAlgebraIrrationalityAbsorption
 -- note explaining why the candidate signature was arithmetically wrong
 -- (Homam/Scheat pattern: narrower true theorem > false dressed-up claim).
 -- 0 sorry, 0 new axioms (9 paper axioms unchanged), 0 new `Prop := True`.
-import OmegaTheory.Predictions.Top20LeverageMenkib
 
 -- Wave 6 / Phase V filtration + SIGNATURE-REVISION repair (Cursa 2026-04-24).
 -- Two files:
@@ -3697,7 +3682,6 @@ import OmegaTheory.IrrationalityClasses.OmegaAlgebraFiltration
 -- Schur-lemma extension to the unified `𝒜_Ω` carrier via existing
 -- Tureis / Menkib / Unukalhai lemmas.  Routing-not-new-math pattern.
 -- 0 sorry, 0 new axioms (9 paper axioms unchanged).
-import OmegaTheory.Foundations.WasatTailSadr
 
 -- Wave F-ext / Kitalpha-remainder directed-atlas bridges (Chort 2026-04-24).
 -- Closes 9 `:TheoremCandidate` in batch
@@ -3736,7 +3720,6 @@ import OmegaTheory.Geometry.PoincareShiftHolonomyBridge
 -- Pattern: thin APPLIES-routing bridges that expose the graph edges
 -- the env-dumper needs.  Routing-not-new-math.
 -- 0 sorry, 0 new axioms (9 paper axioms unchanged).
-import OmegaTheory.Predictions.GienahWaveT2Bridges
 
 -- Phase IV / Cocycle witness theorems (Alniyat 2026-04-24).
 -- Six `:TheoremCandidate` in batch `phase_IV_cocycle_witnesses_2026-04-24`
@@ -3752,7 +3735,6 @@ import OmegaTheory.Predictions.GienahWaveT2Bridges
 --   four_irrationals_index_four_cohomology_classes        (4-channel map)
 -- Plus joint paper bundle `phase_IV_cocycle_witnesses_joint_bundle`.
 -- 0 sorry, 0 new axioms (9 paper axioms unchanged), 0 `Prop := True`.
-import OmegaTheory.Foundations.OmegaAlgebraCohomologyWitnesses
 -- Lesath Phase IV extension (cycle 44, 2026-04-24):
 --   `OmegaTheory/Foundations/OmegaAlgebraCohomologyWitnessesLesath.lean`
 -- Extends Alniyat's Phase IV cohomology witnesses with four additional
@@ -3764,7 +3746,6 @@ import OmegaTheory.Foundations.OmegaAlgebraCohomologyWitnesses
 -- Plus paper bundles `phase_IV_cocycle_witnesses_lesath_extension_bundle`
 -- and `phase_IV_combined_alniyat_lesath_paper_bundle` (ten-conjunct flat).
 -- 0 sorry, 0 new axioms, 0 `Prop := True`.
-import OmegaTheory.Foundations.OmegaAlgebraCohomologyWitnessesLesath
 -- Cycle-49 — CP-violation phase as H¹ cocycle of 𝒜_Ω (lepton sector).
 --   `OmegaTheory/Foundations/CPViolationPhaseH1CocycleOfOmegaAlgebra.lean`
 -- Closes Nashira's Atlas candidate `cp_violation_phase_as_H1_cocycle_of_omega_algebra`
@@ -3782,7 +3763,6 @@ import OmegaTheory.Foundations.OmegaAlgebraCohomologyWitnessesLesath
 -- bundle `cp_violation_phase_as_H1_cocycle_paper_bundle`.
 -- 0 sorry, 0 new axioms; `#print axioms` on all 4 theorems = Lean core only
 -- (propext, Classical.choice, Quot.sound).
-import OmegaTheory.Foundations.CPViolationPhaseH1CocycleOfOmegaAlgebra
 -- 2026-04-24 term-mode Mathlib bridges (fix for Sadachbia Atlas v6 finding
 -- that `have _cite := @X` pattern produces ZERO APPLIES edges because Lean
 -- elaborator erases unused `have` bindings). This file uses term-mode
@@ -3811,7 +3791,6 @@ import OmegaTheory.Emergence.FermionContent.MassRatioPrecisionBridge
 --   * proton_mass_gravity_drift_absolute_kg_within_PDG
 --   * hubble_tension_bridge_paper_bundle_numerical_closure
 -- 0 sorry, 0 new physical axioms (calibrations are ℝ ratios, not axioms).
-import OmegaTheory.Predictions.PrecisionPhysicsAbsoluteWaveP2
 
 -- Wave P3c — Cycle-44 Complete-Physics Meta-Capstone (Adhafera ζ Leonis,
 -- 2026-04-24).  Weaves eight cycle-44 headline bundles into ONE conjunction:
@@ -4660,24 +4639,16 @@ import OmegaTheory.Conservation.CorrespondenceOrphansCapstone
 -- ═══════════════════════════════════════════════════════════════════════
 
 -- W1 paper-headlines + axiom retire
-import OmegaTheory.Predictions.OmegaSubstrateYonedaFullCapstone
-import OmegaTheory.Foundations.CosmologicalConstantH1Bridge
 import OmegaTheory.Foundations.DiracOperatorFDoubleWitness
-import OmegaTheory.Predictions.LatticePointUniversalBaseSiteDominance
-import OmegaTheory.Predictions.FermionGenerationCompositeBaseSiteWitness
 
 -- W2 Yoneda + L4 double-witnesses
-import OmegaTheory.Predictions.LandauerConservationBridge
 import OmegaTheory.Foundations.ErrorBoundYonedaWitness
 import OmegaTheory.Foundations.ErrorBoundedSmoothMetricDoubleWitness
-import OmegaTheory.Predictions.SubstrateIrrationalsDualityFromBoundaryBreakers
-import OmegaTheory.Predictions.CocycleNucleiIndegreeHierarchy
 import OmegaTheory.Emergence.EinsteinEmergenceResultYonedaWitness
 import OmegaTheory.Foundations.BlackHoleYonedaDoubleWitness
 
 -- W3 namespace-isolation breakers
 import OmegaTheory.Emergence.FermionContentIsolationBreak
-import OmegaTheory.Predictions.GravitonEnsembleBoundLIGOIsolationBreak
 import OmegaTheory.HealingFlow.HealingFlowBHIsolationBreak
 import OmegaTheory.Foundations.ErrorGaugeSU2IsolationBreak
 
@@ -4687,30 +4658,18 @@ import OmegaTheory.Emergence.DarkEnergyToBabyUniverseInbound
 import OmegaTheory.Conservation.CorrespondenceBridgeFirstLandingInbound
 
 -- W5 FOA cohomology
-import OmegaTheory.Foundations.FourIrrationalsIndexFourCohomologyInbound
 import OmegaTheory.Foundations.OmegaAlgebraAbsorbsIrrationalityClassesInbound
-import OmegaTheory.Foundations.PhaseIVCocycleWitnessesInbound
-import OmegaTheory.Foundations.CPViolationPhaseH1CocycleInbound
-import OmegaTheory.Foundations.JarlskogInvariantH2AnomalyInbound
 import OmegaTheory.Foundations.OmegaAlgebraPhaseIFirstLandingInbound
-import OmegaTheory.Predictions.RequiredIterationsPiInbound
 
 -- W6 + W6-extension L4 follow-ups
 import OmegaTheory.Foundations.BandlimitedFieldYonedaDoubleWitness
 import OmegaTheory.Foundations.CKMAnglesYonedaDoubleWitness
-import OmegaTheory.Predictions.PiErrorGtSqrt2ErrorIndegreeWitness
 import OmegaTheory.Foundations.ConformalSmoothMetricYonedaDoubleWitness
 import OmegaTheory.Foundations.DynamicalSnapshotSequenceYonedaDoubleWitness
-import OmegaTheory.Predictions.BerryPullbackPathAsymmetry
-import OmegaTheory.Predictions.CocycleNuclei3LevelNavigationAlignment
-import OmegaTheory.Foundations.HeatKernelSeeleyDeWittBridge
 import OmegaTheory.HealingFlow.HealingFlowToSmoothMetric
 import OmegaTheory.Predictions.CosmologicalHorizonOmegaUnfold
 
 -- W7 OA + W7-tail
-import OmegaTheory.Predictions.MagneticLaplacianSubstrateEigenvalueBridge
-import OmegaTheory.Predictions.StrongCPH0InboundBridge
-import OmegaTheory.Predictions.OmegaAlgebraLaplacianHermiticityInbound
 import OmegaTheory.Spacetime.CoordinationNumberInbound
 import OmegaTheory.Emergence.PropagatorCompositionPropInbound
 import OmegaTheory.Emergence.RightHandedDoubletCPDualInbound
@@ -4724,10 +4683,7 @@ import OmegaTheory.Foundations.AFIrreducibilityFirstAlgebraModuleBridgeInbound
 -- W3-overflow + W5-overflow + W-tail
 import OmegaTheory.Foundations.ErrorFormsIsolationBreak
 import OmegaTheory.Emergence.BlackHoleFormationIsolationBreak
-import OmegaTheory.Predictions.NeutrinoLessDoubleBetaBoundIsolationBreak
-import OmegaTheory.Foundations.CechCocycleConstantsIrrationalsCompatibility
 import OmegaTheory.HealingFlow.IsHealingFlowYonedaWitness
-import OmegaTheory.Predictions.DiracFromLatticeDataOrphanDefBridge
 
 -- W9 GRAND SUPER-CAPSTONE — composes all 74 prior cycle-61 closures
 
@@ -5050,7 +5006,6 @@ import OmegaTheory.QuantumGravity.SubstrateRGFlow
 -- / 3 phases COMPLETE (5, 6, 8). Headlines:
 -- lions_pride_machinery_capstone (9-conjunct) + lions_pride_machinery_snapshot
 -- (4-conjunct).
-import OmegaTheory.Predictions.LionsPrideMachineryCapstone
 -- Lion's-Pride Phase 9.4 (dynamic /loop iteration 38, 2026-05-06):
 -- Substrate discrete beta function β(g, N) := g(N+1) - g(N).
 -- Trivial fixed point (constant g ⟹ β=0). Telescoping identity
@@ -5337,7 +5292,6 @@ import OmegaTheory.Foundations.MultimodeWaveFunction
 -- machinery built across iterations 38-66. Plus Frozen-Nat GRAND
 -- snapshot: 58 substrate files / 65 iterations / 17 meta-capstones.
 -- Headline: substrate_grand_meta_capstone (6-conjunct).
-import OmegaTheory.Predictions.SubstrateGrandMetaCapstone
 -- Lion's-Pride Phase 7.10 (dynamic /loop iteration 67, 2026-05-06):
 -- multi-mode wave function normalisation predicate
 -- `IsNormalised ψ := ⟨ψ, ψ⟩ = 1`. Theorems: basis state wave
@@ -5456,7 +5410,6 @@ import OmegaTheory.Foundations.FiniteAFAlgebraAdjAntiMul
 -- 5-conjunct umbrella theorem. Frozen-Nat snapshot: 5 phases, 21
 -- substantive theorems, 0 new axioms. Headline:
 -- finite_AF_algebra_meta_capstone (5-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraMetaCapstone
 -- Lion's-Pride Phase 9.41 (dynamic /loop iteration 109, 2026-05-06):
 -- substrate Pi-Hunch ALL-PAIRS META — composing the 3 pair-wise
 -- cross-difference non-negativity theorems at (0, 1), (1, 2), and the
@@ -5465,7 +5418,6 @@ import OmegaTheory.Predictions.FiniteAFAlgebraMetaCapstone
 -- corollary applying the META to αs = (1, 2, 3). Plus frozen-Nat Pi-Hunch
 -- line snapshot: 9 phases, 3 pairs, 0 axioms, sum = 12. Headline:
 -- substrate_pi_hunch_all_pairs_meta (3-conjunct).
-import OmegaTheory.Predictions.SubstratePiHunchAllPairsMeta
 -- Lion's-Pride Phase 6.5h (dynamic /loop iteration 110, 2026-05-06):
 -- finite Chamseddine-Connes A_F ℝ-SCALAR MULTIPLICATION structure
 -- (SMul ℝ FiniteAFAlgebra) — eighth step of multi-iteration Phase 6.5.
@@ -5483,7 +5435,6 @@ import OmegaTheory.Foundations.FiniteAFAlgebraSMul
 -- 5-conjunct META to include the new ℝ-module action structure.
 -- Frozen-Nat snapshot: 7 phases, 26 substantive theorems, 0 new axioms,
 -- sum = 33. Headline: finite_AF_algebra_grand_meta_capstone (6-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraGrandMetaCapstone
 -- Lion's-Pride Phase 6.5j (dynamic /loop iteration 112, 2026-05-06):
 -- finite Chamseddine-Connes A_F ℝ-SMul module-compatibility laws
 -- extended to h_part (the quaternion ℍ ≅ Fin 4 → ℝ component).
@@ -5511,7 +5462,6 @@ import OmegaTheory.Foundations.FiniteAFAlgebraSMulM3Part
 -- across A_F = ℂ ⊕ ℍ ⊕ M_3(ℂ). Frozen-Nat snapshot: 3 phases × 5 laws
 -- = 15 atomic identities, 0 axioms. Headline:
 -- finite_AF_algebra_smul_all_components_meta (6-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraSMulAllComponentsMeta
 -- Lion's-Pride Phase 9.42 (dynamic /loop iteration 115, 2026-05-06):
 -- substrate four-loop running coupling — extends Phase 9.7 (3-loop)
 -- with quartic correction g_4(N) := g_0·(1 + α·δ + β·δ² + γ·δ³ + ε·δ⁴).
@@ -5529,7 +5479,6 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling4Loop
 -- across all 3 components. Frozen-Nat snapshot: 11 phases + 36 atomic
 -- theorems + 3 META + 0 axioms = 50. Headline:
 -- finite_AF_algebra_total_assembly_meta (8-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraTotalAssemblyMeta
 -- Lion's-Pride Phase 9.43 (dynamic /loop iteration 117, 2026-05-06):
 -- substrate five-loop running coupling — extends Phase 9.42 (4-loop)
 -- with quintic correction g_5(N) := g_0·(1+α·δ+β·δ²+γ·δ³+ε·δ⁴+ζ·δ⁵).
@@ -5696,7 +5645,6 @@ import OmegaTheory.Foundations.FiniteAFAlgebraMulAssocM3Part
 -- associativity downstream (matrix Finset.sum manipulation deferred).
 -- Frozen-Nat snapshot: 2 phases + 2 atomic + 0 axioms = 4. Headline:
 -- finite_AF_algebra_grand_associativity_meta (2-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraGrandAssociativityMeta
 -- Lion's-Pride Phase 9.50 — 7-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 138, 2026-05-06): substrate running-coupling 7-LOOP GRAND-
 -- LOOP META extending Phase 9.48 (12-conjunct) with new Phase 9.49
@@ -5737,7 +5685,6 @@ import OmegaTheory.Foundations.FiniteAFAlgebraSMulMulM3Part
 -- FiniteAFAlgebra an Algebra ℝ in Mathlib (modulo Ring instance).
 -- Frozen-Nat snapshot: 3 phases + 6 atomic + 0 axioms = 9. Headline:
 -- finite_AF_algebra_all_components_bilinearity_meta (6-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraAllComponentsBilinearityMeta
 -- Lion's-Pride Phase 9.48 — EXTENDED GRAND-LOOP META (dynamic /loop
 -- iteration 122, 2026-05-06): substrate running-coupling EXTENDED
 -- GRAND-LOOP META extending Phase-9.46 10-conjunct GRAND-LOOP with
@@ -5789,7 +5736,6 @@ import OmegaTheory.Foundations.FiniteAFAlgebraIsSelfAdjoint
 -- the full c_part-level gauge-prerequisite structure. Frozen-Nat
 -- snapshot: 4 phases + 17 atomic + 0 axioms = 21. Headline:
 -- finite_AF_algebra_gauge_component_meta (4-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraGaugeComponentMeta
 -- Lion's-Pride Phase 6.5r — IS-SELF-ADJOINT NEGATION CLOSURE (dynamic /loop
 -- iteration 128, 2026-05-06): finite Chamseddine-Connes A_F IsSelfAdjoint
 -- negation-closure at c_part — proves cPartIsSelfAdjoint a → cPartIsSelfAdjoint
@@ -5823,7 +5769,6 @@ import OmegaTheory.Foundations.FiniteAFAlgebraIsUnitaryProductClosure
 -- the Chamseddine-Connes Standard Model derivation. Frozen-Nat
 -- snapshot: 4 phases + 17 atomic + 0 axioms = 21. Headline:
 -- finite_AF_algebra_gauge_group_meta (5-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraGaugeGroupMeta
 -- Lion's-Pride Phase 6.5v — ADJOINT-SMUL INTERACTION + LIE-ℝ-MODULE
 -- (dynamic /loop iteration 131, 2026-05-06): finite Chamseddine-Connes
 -- A_F adj-smul interaction at c_part — proves adjoint is ℝ-linear at
@@ -5848,7 +5793,6 @@ import OmegaTheory.Foundations.FiniteAFAlgebraAdjSMul
 -- the unitary group U(A_F). Frozen-Nat snapshot: 3 phases + 12
 -- atomic + 0 axioms = 15. Headline:
 -- finite_AF_algebra_lie_submodule_meta (3-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraLieSubmoduleMeta
 -- Lion's-Pride Phase 6.5x — SMUL-MUL INTERACTION (dynamic /loop
 -- iteration 133, 2026-05-06): finite Chamseddine-Connes A_F SMul-Mul
 -- interaction at c_part — proves the ℝ-bilinearity of the algebra
@@ -5869,7 +5813,6 @@ import OmegaTheory.Foundations.FiniteAFAlgebraSMulMul
 -- a closed-under-{1, ·, -} subset of A_F. Frozen-Nat snapshot: 3
 -- phases + 9 atomic + 0 axioms = 12. Headline:
 -- finite_AF_algebra_unitary_subgroup_meta (3-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraUnitarySubgroupMeta
 -- Lion's-Pride Phase 6.6 — GRAND GAUGE-LIE PAIR META (dynamic /loop
 -- iteration 135, 2026-05-06): finite Chamseddine-Connes A_F GRAND
 -- GAUGE-LIE PAIR META composing the 6.5w LIE-ℝ-SUBMODULE META and the
@@ -5881,7 +5824,6 @@ import OmegaTheory.Predictions.FiniteAFAlgebraUnitarySubgroupMeta
 -- Connes Standard Model derivation. Frozen-Nat snapshot: 2 metas +
 -- 6 phases + 21 atomic + 0 axioms = 29. Headline:
 -- finite_AF_algebra_gauge_lie_pair_grand_meta (6-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraGaugeLiePairGrandMeta
 -- Lion's-Pride Phase 6.5z — A_F ALGEBRA META (dynamic /loop iteration
 -- 136, 2026-05-06): finite Chamseddine-Connes A_F ALGEBRA META
 -- composing the 4 ℝ-bilinearity identities of multiplication at c_part
@@ -5892,7 +5834,6 @@ import OmegaTheory.Predictions.FiniteAFAlgebraGaugeLiePairGrandMeta
 -- Ring instance at h_part + m3_part). Frozen-Nat snapshot: 3 phases
 -- + 4 atomic + 0 axioms = 7. Headline:
 -- finite_AF_algebra_algebra_meta (4-conjunct).
-import OmegaTheory.Predictions.FiniteAFAlgebraAlgebraMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),
@@ -5908,7 +5849,6 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionBilinear
 -- 7.12 (parallelogram) into a 6-conjunct theorem. Plus Frozen-Nat
 -- snapshot (7 phases, 8 properties, sum 15). Headline:
 -- multimode_wave_function_meta_capstone (6-conjunct).
-import OmegaTheory.Predictions.MultimodeWaveFunctionMetaCapstone
 -- Lion's-Pride Phase 7.14 (dynamic /loop iteration 76, 2026-05-06):
 -- multi-mode wave-function norm-squared identities. Scalar
 -- homogeneity ‖c·ψ‖² = c²·‖ψ‖² (via 7.12 left + right smul),
@@ -5930,7 +5870,6 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionPositiveDef
 -- + parallelogram) into a single 6-conjunct theorem. Plus Frozen-Nat
 -- snapshot (10 phases, 6 axioms+inequalities, sum 16). Headline:
 -- multimode_hilbert_complete_meta_capstone.
-import OmegaTheory.Predictions.MultimodeHilbertCompleteMetaCapstone
 -- Lion's-Pride Phase 7.17 (dynamic /loop iteration 82, 2026-05-06):
 -- multi-mode wave-function squared distance metric d²(ψ,φ) := ⟨ψ-φ,ψ-φ⟩.
 -- Non-negativity, symmetry, reflexivity (d²(ψ,ψ)=0), zero-iff-equal
@@ -5972,7 +5911,6 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionVarianceNonneg
 -- basis), 7.20 (variance basis = 0) into a 6-conjunct theorem.
 -- Plus Frozen-Nat snapshot (4 phases, 7 properties, sum 11).
 -- Headline: multimode_qm_observable_meta_capstone (6-conjunct).
-import OmegaTheory.Predictions.MultimodeQMObservableMetaCapstone
 -- Lion's-Pride Phase 7.23 (dynamic /loop iteration 88, 2026-05-06):
 -- multi-mode Hilbert GRAND-ULTIMATE META-META composing 7.13 + 7.16 +
 -- 7.21 + 7.22 into a 4-conjunct META-META theorem. Captures the
@@ -5980,7 +5918,6 @@ import OmegaTheory.Predictions.MultimodeQMObservableMetaCapstone
 -- function scaffold on MultimodeFockState k N. Plus Frozen-Nat
 -- snapshot (17 phases, 4 META capstones, sum 21). Headline:
 -- multimode_hilbert_grand_ultimate_meta_meta.
-import OmegaTheory.Predictions.MultimodeHilbertGrandUltimateMetaCapstone
 -- Lion's-Pride Phase 9.30 (dynamic /loop iteration 89, 2026-05-06):
 -- substrate QM probability density layer connecting multi-mode Hilbert
 -- (7.7-7.23) to QM probability interpretation. p(ψ, state) := ψ(state)²,
@@ -6029,7 +5966,6 @@ import OmegaTheory.Predictions.SubstratePhysicalBoundsMetaCapstone
 -- META-META-META theorem at the highest abstraction level. Plus
 -- Frozen-Nat snapshot (4 META capstones, 7 layers, sum 11). Headline:
 -- multimode_super_grand_meta_meta_meta.
-import OmegaTheory.Predictions.MultimodeSuperGrandMetaMetaMeta
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.
@@ -6056,7 +5992,6 @@ import OmegaTheory.QuantumGravity.SubstratePiHunchCrossDifference
 -- difference sign at (0,1) and (1,2)) into a 4-conjunct theorem.
 -- Plus Frozen-Nat Pi-Hunch line snapshot (3 phases). Headline:
 -- substrate_pi_hunch_capstone (4-conjunct).
-import OmegaTheory.Predictions.SubstratePiHunchCapstone
 -- Lion's-Pride Phase 9.25 (dynamic /loop iteration 71, 2026-05-06):
 -- substrate Pi-Hunch transitive cross-difference at (g₁=0, g₂=2) —
 -- completes the cross-difference triple (Phase 9.23 shipped (0,1)
@@ -6070,7 +6005,6 @@ import OmegaTheory.QuantumGravity.SubstratePiHunchTransitiveCrossDifference
 -- Upgrades 9.24 with the transitive (0,2) cross-difference.
 -- Plus Frozen-Nat snapshot (5 phases, 3 triple, sum 8).
 -- Headline: substrate_pi_hunch_complete_capstone (5-conjunct).
-import OmegaTheory.Predictions.SubstratePiHunchCompleteCapstone
 -- Lion's-Pride Phase 9.27 (dynamic /loop iteration 78, 2026-05-06):
 -- substrate Pi-Hunch GENERAL cross-difference theorem — universal
 -- sign theorem for ANY pair (g₁, g₂) with αs g₁ < αs g₂. Generalises
@@ -6104,11 +6038,6 @@ import OmegaTheory.Predictions.SubstratePiHunchUniversalCapstone
 import OmegaTheory.Predictions.MassDerivationStatus
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
 import OmegaTheory.Tensor.ErrorTensorIsolationBreak
-import OmegaTheory.Predictions.MassDependentDecoherenceBridge
-import OmegaTheory.Predictions.SubstrateIrrationalsDualityCompleteness
-import OmegaTheory.Predictions.PhaseVCohomologyClosure
-import OmegaTheory.Predictions.MathlibBridgesAtlas
-import OmegaTheory.Predictions.HermitePadeFamilyClosure
 
 -- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
 -- Wave T4b session 12 — `LindemannPremiseRatProofPowerSumIntComplete.lean`.
@@ -6435,7 +6364,6 @@ import OmegaTheory.Capstones.PiTranscendenceAxiomRetirementFinal
 -- Session 61 — Yoneda bridges from pi_transcendental_unconditional to
 -- 5 nearby OV2 paper-headline theorems. Per workflow rule LOCKED
 -- 2026-04-27 ("Yoneda bridges via find_similar"). Lean core only.
-import OmegaTheory.Capstones.PiTranscendenceYonedaBridges
 
 -- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
 -- Session 62 — concrete consequences of π transcendental: π^n

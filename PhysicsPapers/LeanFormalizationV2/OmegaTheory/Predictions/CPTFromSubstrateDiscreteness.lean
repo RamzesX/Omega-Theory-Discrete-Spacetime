@@ -65,8 +65,8 @@
   No `sorry`, no `Prop := True`, no `:= trivial` stubs.
 -/
 
-import OmegaTheory.Irrationality.Uncertainty
 import OmegaTheory.Predictions.GaugeDualsWave4
+import OmegaTheory.Irrationality.Uncertainty
 import Mathlib.Tactic
 
 namespace OmegaTheory.Predictions.CPTFromSubstrateDiscreteness

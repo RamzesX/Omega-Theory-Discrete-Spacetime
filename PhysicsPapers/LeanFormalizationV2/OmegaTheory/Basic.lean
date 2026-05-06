@@ -5167,6 +5167,18 @@ import OmegaTheory.Foundations.HiggsLorentzScalar
 -- particle effects on spacetime via the healing flow PDE
 -- μΔg − λD − γ(I−Ī). Headline: gauge_information_density_report.
 import OmegaTheory.Emergence.GaugeInformationDensity
+-- Phase C step 2 (FULL-mode plan REVISED 2026-05-06):
+-- PhotonInformationSignature. The FIRST particle-signature-match
+-- theorem of the bridging program. User directive 2026-05-06: each
+-- SM particle/force has a SPECIFIC INFORMATIONAL SIGNATURE in the
+-- substrate, derivable two ways: (i) substrate gauge-information
+-- density (Phase C step 1), (ii) standard physics textbook
+-- formula. The match IS the bridge proof. For the photon:
+-- substrate (1/2)·∑ F² = |E|² + |B|² = 2 · (1/2)(|E|²+|B|²)
+-- = 2 · u_EM_textbook. Decompose F into 3 electric + 3 magnetic
+-- components via antisymmetry. Headline:
+-- photon_information_signature_match (5-conjunct).
+import OmegaTheory.Foundations.PhotonInformationSignature
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

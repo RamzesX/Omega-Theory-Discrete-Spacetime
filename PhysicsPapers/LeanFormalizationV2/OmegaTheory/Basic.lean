@@ -5379,6 +5379,13 @@ import OmegaTheory.QuantumGravity.SubstratePiHunchOrdering
 -- with substrate truncation N. Falsifiable substrate-QG prediction.
 -- Headline: substrate_pi_hunch_cross_difference_report (2-conjunct).
 import OmegaTheory.QuantumGravity.SubstratePiHunchCrossDifference
+-- Lion's-Pride Phase 9.24 (dynamic /loop iteration 70, 2026-05-06):
+-- substrate Pi-Hunch META-CAPSTONE composing 9.22 (Pi-Hunch ordering
+-- predicate + witness + distinctness) with 9.23 (Pi-Hunch cross-
+-- difference sign at (0,1) and (1,2)) into a 4-conjunct theorem.
+-- Plus Frozen-Nat Pi-Hunch line snapshot (3 phases). Headline:
+-- substrate_pi_hunch_capstone (4-conjunct).
+import OmegaTheory.Predictions.SubstratePiHunchCapstone
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

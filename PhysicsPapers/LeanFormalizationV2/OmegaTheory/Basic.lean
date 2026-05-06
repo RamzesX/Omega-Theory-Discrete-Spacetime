@@ -3511,7 +3511,6 @@ import OmegaTheory.Emergence.ZSterileYieldCatalanKernel
 -- both are valid leading-order values in different physical setups.
 -- Makes Alkalurops' Dixmier-trace placeholder axiom (iii) non-trivially
 -- consumable.  0 sorry, 0 new axioms.
-import OmegaTheory.Foundations.SeeleyDeWittA4Substrate
 
 -- Wave D+E — numerical m_e/m_μ PDG bracket at N = 4
 -- (Diphda 2026-04-24).  Ships existential witness
@@ -3630,7 +3629,6 @@ import OmegaTheory.Emergence.FermionContent.MassHierarchyBridge
 -- `truncOriginOf_*` tagging lemmas, materialising the graph edge for
 -- the env-dumper.  Does NOT touch Tarf's `OmegaAlgebra.lean` (read-only).
 -- 0 sorry, 0 new axioms; registered AFTER OmegaAlgebra + IrrationalityClasses.
-import OmegaTheory.Foundations.OmegaAlgebraIrrationalityAbsorption
 
 -- TOP-20 leverage wave remainder (Menkib 2026-04-24).
 -- Cycle-44/45 closing pass over Kornephoros's `top20_leverage_2026-04-22`
@@ -3656,7 +3654,6 @@ import OmegaTheory.Foundations.OmegaAlgebraIrrationalityAbsorption
 -- signatures referenced non-existent fields on Tarf's `OmegaAlgebra`
 -- carrier.  Revised signatures use only real fields + external functions.
 -- 0 sorry, 0 new axioms (9 paper axioms unchanged), 0 new `Prop := True`.
-import OmegaTheory.Foundations.OmegaAlgebraHopfBridges
 import OmegaTheory.IrrationalityClasses.OmegaAlgebraFiltration
 
 -- Phase VI capstones as representations of 𝒜_Ω (Alrakis 2026-04-24).
@@ -4639,18 +4636,12 @@ import OmegaTheory.Conservation.CorrespondenceOrphansCapstone
 -- ═══════════════════════════════════════════════════════════════════════
 
 -- W1 paper-headlines + axiom retire
-import OmegaTheory.Foundations.DiracOperatorFDoubleWitness
 
 -- W2 Yoneda + L4 double-witnesses
-import OmegaTheory.Foundations.ErrorBoundYonedaWitness
-import OmegaTheory.Foundations.ErrorBoundedSmoothMetricDoubleWitness
 import OmegaTheory.Emergence.EinsteinEmergenceResultYonedaWitness
-import OmegaTheory.Foundations.BlackHoleYonedaDoubleWitness
 
 -- W3 namespace-isolation breakers
 import OmegaTheory.Emergence.FermionContentIsolationBreak
-import OmegaTheory.HealingFlow.HealingFlowBHIsolationBreak
-import OmegaTheory.Foundations.ErrorGaugeSU2IsolationBreak
 
 -- W4 sector closures
 import OmegaTheory.Conservation.NoetherInformationTorsionInbound
@@ -4658,14 +4649,8 @@ import OmegaTheory.Emergence.DarkEnergyToBabyUniverseInbound
 import OmegaTheory.Conservation.CorrespondenceBridgeFirstLandingInbound
 
 -- W5 FOA cohomology
-import OmegaTheory.Foundations.OmegaAlgebraAbsorbsIrrationalityClassesInbound
-import OmegaTheory.Foundations.OmegaAlgebraPhaseIFirstLandingInbound
 
 -- W6 + W6-extension L4 follow-ups
-import OmegaTheory.Foundations.BandlimitedFieldYonedaDoubleWitness
-import OmegaTheory.Foundations.CKMAnglesYonedaDoubleWitness
-import OmegaTheory.Foundations.ConformalSmoothMetricYonedaDoubleWitness
-import OmegaTheory.Foundations.DynamicalSnapshotSequenceYonedaDoubleWitness
 import OmegaTheory.HealingFlow.HealingFlowToSmoothMetric
 import OmegaTheory.Predictions.CosmologicalHorizonOmegaUnfold
 
@@ -4678,11 +4663,8 @@ import OmegaTheory.Emergence.RightHandedDoubletCPDualInbound
 import OmegaTheory.Emergence.QCDAsymptoticFreedomCapstoneInbound
 import OmegaTheory.Emergence.CyclicCosmologyPaperBundleInbound
 import OmegaTheory.Emergence.QuarkMassHierarchyFirstLandingInbound
-import OmegaTheory.Foundations.AFIrreducibilityFirstAlgebraModuleBridgeInbound
 
 -- W3-overflow + W5-overflow + W-tail
-import OmegaTheory.Foundations.ErrorFormsIsolationBreak
-import OmegaTheory.Emergence.BlackHoleFormationIsolationBreak
 import OmegaTheory.HealingFlow.IsHealingFlowYonedaWitness
 
 -- W9 GRAND SUPER-CAPSTONE — composes all 74 prior cycle-61 closures

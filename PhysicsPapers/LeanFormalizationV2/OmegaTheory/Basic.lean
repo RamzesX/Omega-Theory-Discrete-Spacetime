@@ -5444,6 +5444,13 @@ import OmegaTheory.Predictions.SubstratePiHunchCompleteCapstone
 -- prediction. Plus all-pairs corollary under strict ordering.
 -- Headline: substrate_pi_hunch_general_cross_difference_report (2-conjunct).
 import OmegaTheory.QuantumGravity.SubstratePiHunchGeneralCrossDifference
+-- Lion's-Pride Phase 9.28 (dynamic /loop iteration 79, 2026-05-06):
+-- substrate Pi-Hunch CONCRETE WITNESS application of 9.27 at the
+-- specific witness αs = (1, 2, 3) (g.val + 1). Three computational
+-- cross-difference sign theorems at (0,1), (1,2), (0,2). Concrete
+-- numerical instances of the general theorem. Headline:
+-- substrate_pi_hunch_concrete_witness_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstratePiHunchConcreteWitness
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

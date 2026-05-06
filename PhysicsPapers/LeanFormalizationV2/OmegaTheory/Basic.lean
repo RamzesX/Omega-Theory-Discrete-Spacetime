@@ -5388,6 +5388,14 @@ import OmegaTheory.QuantumGravity.SubstrateFermionMassIRFloor
 -- y_g·v ≤ m_g(N) ≤ y_g·(1+α_g·δ_0)·v — the FINITE substrate-running
 -- window. Headline: substrate_fermion_mass_uv_ceiling_report (2-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateFermionMassUVCeiling
+-- Lion's-Pride Phase 9.37 (dynamic /loop iteration 99, 2026-05-06):
+-- substrate-running fermion mass FINITE WINDOW META-CAPSTONE composing
+-- 9.35 (IR-floor) + 9.36 (UV-ceiling) into a 3-conjunct theorem with
+-- combined sandwich y_g·v ≤ m_g(N) ≤ y_g·(1+α_g·δ_0)·v plus window
+-- width bound m_g(N) - y_g·v ≤ y_g·α_g·δ_0·v. Plus Frozen-Nat snapshot
+-- (5 phases). Headline:
+-- substrate_fermion_mass_finite_window_report (3-conjunct).
+import OmegaTheory.Predictions.SubstrateFermionMassFiniteWindowCapstone
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

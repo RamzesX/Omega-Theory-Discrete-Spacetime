@@ -5688,6 +5688,18 @@ import OmegaTheory.Predictions.FiniteAFAlgebraGaugeGroupMeta
 -- structure of self-adjoint elements at c_part. Headline:
 -- finite_AF_algebra_adj_smul_report (4-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraAdjSMul
+-- Lion's-Pride Phase 6.5w — LIE-ℝ-SUBMODULE META (dynamic /loop
+-- iteration 132, 2026-05-06): finite Chamseddine-Connes A_F LIE-ℝ-
+-- SUBMODULE META composing the 3 atomic closure properties of self-
+-- adjoint elements at c_part — 6.5p add closure + 6.5r neg closure
+-- + 6.5v ℝ-scalar-multiplication closure — into a single 3-conjunct
+-- umbrella declaring the full ℝ-Lie-submodule structure of self-
+-- adjoint elements at c_part. Substrate analog of the (anti-)
+-- Hermitian Lie subalgebra `i · u(A_F)` whose exponential generates
+-- the unitary group U(A_F). Frozen-Nat snapshot: 3 phases + 12
+-- atomic + 0 axioms = 15. Headline:
+-- finite_AF_algebra_lie_submodule_meta (3-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraLieSubmoduleMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

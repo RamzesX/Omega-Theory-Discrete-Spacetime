@@ -5273,6 +5273,16 @@ import OmegaTheory.QuantumGravity.SubstrateThreeGenerationRunning
 -- — distinct prediction from continuum SM running where ratios change
 -- due to per-generation anomalous dimensions.
 import OmegaTheory.QuantumGravity.SubstrateMassRatioInvariance
+-- Lion's-Pride Phase 9.16 (dynamic /loop iteration 59, 2026-05-06):
+-- substrate non-uniform α mass-ratio shift — complement to Phase 9.15.
+-- When α_g differs across generations, mass ratios SHIFT with N
+-- according to the cross-difference identity:
+-- `m_g₁(N+1)·m_g₂(N) - m_g₁(N)·m_g₂(N+1) = y_g₁,IR·y_g₂,IR·v²·
+-- (α_g₁ - α_g₂)·(δ_{N+1} - δ_N)`. Sign analysis: under α_g₂ ≤ α_g₁
+-- and y_g ≥ 0, cross-difference ≤ 0 (ratio m_g₁/m_g₂ decreases with N).
+-- Headline: substrate_non_uniform_alpha_report (3-conjunct). Connects
+-- to Pi-Hunch hypothesis (3 generations ↔ √2/e/π → different α per gen).
+import OmegaTheory.QuantumGravity.SubstrateNonUniformAlpha
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

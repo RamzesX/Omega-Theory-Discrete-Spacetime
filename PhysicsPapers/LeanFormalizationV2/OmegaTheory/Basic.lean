@@ -5396,6 +5396,14 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionNormSq
 -- Plus strict positivity ψ ≠ 0 ⟹ 0 < ⟨ψ, ψ⟩. Headline:
 -- multimode_wave_function_positive_def_report (3-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionPositiveDef
+-- Lion's-Pride Phase 7.16 (dynamic /loop iteration 81, 2026-05-06):
+-- multi-mode Hilbert COMPLETE META-CAPSTONE composing all FOUR
+-- inner-product-space axioms (symmetry + linearity + positive-def +
+-- norm-squared homogeneity) plus TWO key inequalities (Cauchy-Schwarz
+-- + parallelogram) into a single 6-conjunct theorem. Plus Frozen-Nat
+-- snapshot (10 phases, 6 axioms+inequalities, sum 16). Headline:
+-- multimode_hilbert_complete_meta_capstone.
+import OmegaTheory.Predictions.MultimodeHilbertCompleteMetaCapstone
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

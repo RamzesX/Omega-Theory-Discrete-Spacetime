@@ -5215,6 +5215,17 @@ import OmegaTheory.Foundations.MultimodeCommutation
 -- as IR-flow asymptote of substrate-running quantity that vanishes
 -- as N → ∞.
 import OmegaTheory.QuantumGravity.SubstrateDarkEnergyRunning
+-- Lion's-Pride Phase 9.11 (dynamic /loop iteration 54, 2026-05-06):
+-- substrate Higgs self-coupling running — applies the Phase 9.5
+-- one-loop running-coupling pattern to SM Higgs sector:
+-- `higgsSelfCouplingRunning lamIR α N := lamIR · (1 + α · δ_comp(N))`
+-- and `higgsSquaredMassRunning lamIR α v N := 2 · lamH(N) · v²` via
+-- tree-level `m_H² = 2λv²`. Theorems: constant case at α=0; non-neg
+-- for non-neg params; monotone decreasing in N (substrate IR flow);
+-- squared-mass non-negative. Headline: substrate_higgs_running_report
+-- (4-conjunct). Honest scope: structural shape only; PDG
+-- calibration of (lamIR, α) and top-Yukawa-loop corrections deferred.
+import OmegaTheory.QuantumGravity.SubstrateHiggsRunning
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

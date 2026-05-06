@@ -5436,6 +5436,15 @@ import OmegaTheory.Foundations.FiniteAFAlgebra
 -- finite_AF_algebra_mul_report (4-conjunct: one left/right at c_part,
 -- zero absorbs at c_part, left-distributivity at c_part).
 import OmegaTheory.Foundations.FiniteAFAlgebraMul
+-- Lion's-Pride Phase 6.5c (dynamic /loop iteration 105, 2026-05-06):
+-- finite Chamseddine-Connes A_F ADJOINT involution structure — third
+-- step of multi-iteration Phase 6.5. Component-wise adjoint: ℂ-conj
+-- (a,b)* = (a,-b) on ℝ × ℝ pair, Hamilton 1843 quaternion conj
+-- (h₀,h₁,h₂,h₃)* = (h₀,-h₁,-h₂,-h₃) on Fin 4 → ℝ, conjugate-transpose
+-- on M_3(ℂ). Headline: finite_AF_algebra_adjoint_report (4-conjunct:
+-- involution at c_part, one + zero self-adjoint at c_part, adjoint
+-- additivity at c_part).
+import OmegaTheory.Foundations.FiniteAFAlgebraAdjoint
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

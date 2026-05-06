@@ -5076,6 +5076,17 @@ import OmegaTheory.Foundations.FermionElectricChargeRework
 -- no GMN verification). Headline: gellmann_nishijima_relation_report
 -- (12-conjunct).
 import OmegaTheory.Foundations.GellMannNishijimaRelation
+-- Lion's-Pride Phase 6.5w (2026-05-06): CKMRowOneUnitarity. Closes
+-- the "Conditional unitarity: hypothesis" gap in Emergence/CKMMatrix.lean
+-- (lines 148-151). Proves first-row + third-column unitarity of the
+-- standard CKM parametrization unconditionally — namely
+-- |V_ud|² + |V_us|² + |V_ub|² = 1 and |V_ub|² + |V_cb|² + |V_tb|² = 1.
+-- Pure trig: cos² + sin² = 1, plus |e^{iθ}| = 1 via Mathlib
+-- Complex.norm_exp_I_mul_ofReal. 2 of 6 unitarity equations
+-- closed; rows 2,3 + cols 1,2 + 6 off-diagonals require 4-term
+-- phase-mixing expansion (Phase 6.5w-cont).
+-- Headline: ckm_row1_col3_unitarity_grand.
+import OmegaTheory.Foundations.CKMRowOneUnitarity
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

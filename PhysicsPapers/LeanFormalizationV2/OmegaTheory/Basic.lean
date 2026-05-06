@@ -5396,6 +5396,14 @@ import OmegaTheory.QuantumGravity.SubstrateFermionMassUVCeiling
 -- (5 phases). Headline:
 -- substrate_fermion_mass_finite_window_report (3-conjunct).
 import OmegaTheory.Predictions.SubstrateFermionMassFiniteWindowCapstone
+-- Lion's-Pride Phase 9.38 (dynamic /loop iteration 100 — CENTENARY
+-- MILESTONE, 2026-05-06): substrate-running mass UNIVERSAL CENTENARY
+-- META composing 9.14 (Yukawa non-neg) + 9.16 (cross-difference
+-- identity) + 9.35 (IR-floor) + 9.36 (UV-ceiling) into a 4-conjunct
+-- celebration theorem. Plus Frozen-Nat CENTENARY snapshot (100 iters,
+-- 92 files, ~17K LOC, sum 209). Headline:
+-- substrate_centenary_mass_meta + substrate_centenary_milestone_snapshot.
+import OmegaTheory.Predictions.SubstrateCentenaryMassMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

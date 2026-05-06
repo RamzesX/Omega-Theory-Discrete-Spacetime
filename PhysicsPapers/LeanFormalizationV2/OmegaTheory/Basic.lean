@@ -4992,6 +4992,15 @@ import OmegaTheory.Foundations.NumberOpEqualsAdaggerA
 -- amplitudes (V₃ · G(k²) · V₃ s/t/u). Phase 7 substrate-QFT 4/6
 -- sub-phases. Headline: substrate_propagator_report (3-conjunct).
 import OmegaTheory.Foundations.SubstratePropagator
+-- Lion's-Pride Phase 7.6 (dynamic /loop iteration 39, 2026-05-06):
+-- Rigorous finite-lattice Euclidean path integral
+-- Z_E[S] := Σ exp(-S(i)) over Fin n. Continuum QFT path integrals
+-- are non-rigorous (no measure on infinite-dim space); substrate
+-- replaces with FINITE-DIM SUM = rigorous Lebesgue. Properties:
+-- Z > 0 (sum of positive exp), Z[S=0] = n (config count),
+-- Z[S=c] = n · exp(-c). Phase 7 substrate-QFT 5/6 sub-phases.
+-- Headline: path_integral_lattice_report (4-conjunct).
+import OmegaTheory.Foundations.PathIntegralLattice
 -- Lion's-Pride Phase 8.1 (dynamic /loop iteration 28, 2026-05-06):
 -- Tree-level graviton scattering amplitude scaffold composing the
 -- cubic + quartic vertices from Phase 5.3 + 5.4. Identifies

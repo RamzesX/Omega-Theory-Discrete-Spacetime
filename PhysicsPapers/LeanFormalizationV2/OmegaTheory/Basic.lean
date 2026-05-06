@@ -5607,6 +5607,14 @@ import OmegaTheory.Predictions.SubstrateRunningCouplingExtendedGrandLoopMeta
 -- (r·s)•1). Establishes ℝ ↪ Z(A_F)|c_part. Headline:
 -- finite_AF_algebra_scalar_center_report (4-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraScalarCenter
+-- Lion's-Pride Phase 6.5n (dynamic /loop iteration 124, 2026-05-06):
+-- finite Chamseddine-Connes A_F SQUARED-NORM at c_part — defines
+-- ‖a‖²|c := a.c_part.1² + a.c_part.2² (ℂ-modulus squared on
+-- ℂ-component) with non-negativity, ‖0‖²=0, ‖1‖²=1, scalar-quadratic
+-- homogeneity ‖r•a‖² = r²·‖a‖², and adjoint invariance ‖adj a‖² = ‖a‖².
+-- Foundation step toward IsUnitary (a*·a = 1) for gauge-group extraction.
+-- Headline: finite_AF_algebra_squared_norm_report (5-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraSquaredNorm
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

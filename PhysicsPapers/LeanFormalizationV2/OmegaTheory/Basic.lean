@@ -5145,6 +5145,17 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling2Loop
 -- expansions only; threshold bound s ≥ (m₁+m₂)² requires reverse
 -- Cauchy-Schwarz for time-like 4-vectors, deferred to Phase 8.8.
 import OmegaTheory.QuantumGravity.OnShellMandelstam
+-- Lion's-Pride Phase 9.7 (dynamic /loop iteration 48, 2026-05-06):
+-- three-loop substrate-derived running coupling — extends Phase 9.6
+-- with cubic correction `runningCoupling3Loop g₀ α β γ N := g₀·
+-- (1 + α·δ + β·δ² + γ·δ³)`. Theorems: (i) reduces to Phase 9.6 at
+-- γ = 0, Phase 9.5 at β=γ=0; (ii) factored beta-function via
+-- difference-of-cubes `a³-b³ = (a-b)(a²+ab+b²)`:
+-- `β(g, N) = g₀·(δ_{N+1}-δ_N)·(α + β·(δ_{N+1}+δ_N) +
+--   γ·(δ²_{N+1} + δ_{N+1}·δ_N + δ²_N))`; (iii) `β ≤ 0` for
+-- `g₀, α, β, γ ≥ 0` (substrate three-loop preserves monotone IR
+-- flow). Headline: substrate_running_coupling_3loop_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateRunningCoupling3Loop
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

@@ -5084,6 +5084,19 @@ import OmegaTheory.QuantumGravity.SubstrateBetaFunction
 -- would need Lorentz-invariant phase-space machinery). Headline:
 -- cross_section_scaffold_report (4-conjunct).
 import OmegaTheory.QuantumGravity.CrossSectionScaffold
+-- Lion's-Pride Phase 9.5 (dynamic /loop iteration 43, 2026-05-06):
+-- concrete substrate-derived running coupling — connects Phase 9.3
+-- substrate RG scale to Phase 9.4 substrate beta function via the
+-- parametric family `runningCoupling g₀ α N := g₀·(1 + α·δ_comp(N))`.
+-- Theorems: (i) `runningCoupling g₀ 0 N = g₀` (constant case);
+-- (ii) `β(runningCoupling g₀ α, N) = g₀·α·(δ_comp(N+1) - δ_comp(N))`
+-- (explicit beta-function shape); (iii) for `g₀, α ≥ 0`, `β ≤ 0`
+-- (asymptotic-freedom-like — coupling flows toward g₀ as N → ∞).
+-- Honest scope: structural connection only; specific (g₀, α) for SM
+-- couplings (g_s, α_em, λ_H) requires PDG calibration / Connes spectral
+-- action and is multi-month future work. Headline:
+-- substrate_running_coupling_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateRunningCoupling
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

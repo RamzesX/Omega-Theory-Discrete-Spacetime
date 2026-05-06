@@ -5404,6 +5404,13 @@ import OmegaTheory.Predictions.SubstrateFermionMassFiniteWindowCapstone
 -- 92 files, ~17K LOC, sum 209). Headline:
 -- substrate_centenary_mass_meta + substrate_centenary_milestone_snapshot.
 import OmegaTheory.Predictions.SubstrateCentenaryMassMeta
+-- Lion's-Pride Phase 9.39 (dynamic /loop iteration 101, 2026-05-06):
+-- substrate-running fermion mass EXCESS-above-floor: exact formula
+-- m_g(N) - y_g·v = y_g·α_g·δ_N·v, plus non-negativity (non-neg
+-- parameters), plus monotone-decreasing (excess(N+1) ≤ excess(N))
+-- via substrateRGScale_decreasing + mul_le_mul_of_nonneg chain.
+-- Headline: substrate_fermion_mass_excess_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateFermionMassExcess
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

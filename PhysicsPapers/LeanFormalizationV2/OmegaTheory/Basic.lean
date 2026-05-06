@@ -5704,6 +5704,19 @@ import OmegaTheory.Predictions.SubstrateMachineryHistoricalCompletionMeta
 -- inequalities + running-coupling dominance check. Headline:
 -- substrate_machinery_extension_roadmap_snapshot (7-conjunct).
 import OmegaTheory.Predictions.SubstrateMachineryExtensionRoadmapMeta
+-- Lion's-Pride Phase 6.19 — SUBSTRATE MACHINERY SIX-META META (dynamic
+-- /loop iteration 157, 2026-05-06): top-level META composing ALL SIX
+-- preceding top-level META capstones — 6.13 SUMMARY + 6.14 LOC +
+-- 6.15 DOCTRINE + 6.16 THREE-META + 6.17 HISTORICAL COMPLETION +
+-- 6.18 EXTENSION ROADMAP — into a single 6-conjunct decide-only
+-- umbrella declaring simultaneous frozen-Nat structural-integrity
+-- of the FULL substrate machinery's TOP-LEVEL META hierarchy.
+-- Frozen-Nat snapshot: 6 META + 0 axioms = 6. Plus cross-consistency
+-- (each META reports paper-grade values), structural-integrity
+-- thresholds, and AXIOM COMPLETENESS (all 6 META axiom-Lean-core
+-- only). Headline:
+-- substrate_machinery_six_meta_snapshot (3-conjunct).
+import OmegaTheory.Predictions.SubstrateMachinerySixMetaMeta
 -- Lion's-Pride Phase 9.54 — 9-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 147, 2026-05-06): substrate running-coupling 9-LOOP GRAND-
 -- LOOP META extending Phase 9.52 (16-conjunct) with new Phase 9.53

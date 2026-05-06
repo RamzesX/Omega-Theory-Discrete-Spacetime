@@ -5202,6 +5202,19 @@ import OmegaTheory.QuantumGravity.SubstrateVacuumEnergy
 -- only; operator-on-tensor-space commutator vanishes requires Mathlib
 -- TensorProduct Hilbert-space machinery (multi-month deferred).
 import OmegaTheory.Foundations.MultimodeCommutation
+-- Lion's-Pride Phase 9.10 (dynamic /loop iteration 53, 2026-05-06):
+-- substrate dark-energy density running with truncation depth N —
+-- candidate parametric form `Λ_subst(N) := ρ₀ · δ_comp(N)^p` (Phase
+-- 9.5 running-coupling pattern composed with Phase 9.9 vacuum-energy
+-- structure). Theorems: non-negativity for `ρ₀ ≥ 0`; monotone
+-- decreasing in N for `ρ₀ ≥ 0` (substrate IR flow remnant);
+-- zero-coupling case ρ₀ = 0 ⟹ Λ_subst = 0. Headline:
+-- substrate_dark_energy_running_report (3-conjunct). Honest scope:
+-- one parametric candidate. Connects substrate-QG to the
+-- cosmological-constant problem: observed Λ_obs ≈ 10^{-122}·Λ_Planck
+-- as IR-flow asymptote of substrate-running quantity that vanishes
+-- as N → ∞.
+import OmegaTheory.QuantumGravity.SubstrateDarkEnergyRunning
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

@@ -5226,6 +5226,18 @@ import OmegaTheory.QuantumGravity.SubstrateDarkEnergyRunning
 -- (4-conjunct). Honest scope: structural shape only; PDG
 -- calibration of (lamIR, α) and top-Yukawa-loop corrections deferred.
 import OmegaTheory.QuantumGravity.SubstrateHiggsRunning
+-- Lion's-Pride Phase 9.12 (dynamic /loop iteration 55, 2026-05-06):
+-- substrate gauge coupling sum — sum of n substrate-running couplings
+-- (one per gauge factor in U(1)×SU(2)×SU(3) for SM):
+-- `couplingSum {n} lams alphas N := Σ_{i ∈ Fin n} runningCoupling
+-- (lams i) (alphas i) N`. Theorems: non-negative for non-neg components;
+-- monotone decreasing in N; constant at α = 0 ∀ i. Headline:
+-- substrate_gauge_coupling_sum_report (3-conjunct). Honest scope:
+-- generic n-coupling sum shape; SM 3-coupling case as specialisation.
+-- The substrate prediction differs from standard GUT: each coupling
+-- independently flows to its IR-asymptote (no unification scale
+-- required since substrate UV cutoff is 1/ℓ_P, not GUT energy).
+import OmegaTheory.QuantumGravity.SubstrateGaugeCouplingSum
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

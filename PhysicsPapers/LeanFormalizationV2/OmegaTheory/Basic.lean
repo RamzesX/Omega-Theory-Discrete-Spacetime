@@ -5388,6 +5388,14 @@ import OmegaTheory.Predictions.MultimodeWaveFunctionMetaCapstone
 -- negation invariance ‖-ψ‖² = ‖ψ‖², zero/unit scalar corollaries.
 -- Headline: multimode_wave_function_normSq_report (4-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionNormSq
+-- Lion's-Pride Phase 7.15 (dynamic /loop iteration 77, 2026-05-06):
+-- multi-mode wave-function POSITIVE-DEFINITENESS:
+-- ⟨ψ, ψ⟩ = 0 ⟺ ψ = 0. Third inner-product-space axiom (after
+-- bilinearity 7.12 + symmetry 7.9). Sum-of-squares forward via
+-- Finset.sum_eq_zero_iff_of_nonneg + mul_self_eq_zero + funext.
+-- Plus strict positivity ψ ≠ 0 ⟹ 0 < ⟨ψ, ψ⟩. Headline:
+-- multimode_wave_function_positive_def_report (3-conjunct).
+import OmegaTheory.Foundations.MultimodeWaveFunctionPositiveDef
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

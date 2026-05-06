@@ -440,6 +440,27 @@ REWIRE: `Spacetime/CoordinationNumberInbound.lean` (219 LOC) — KEEP §1-3 subs
 
 ## Plan calibration impact
 
-If this purge proceeds, the Phase 1 trash purge (post-graviton-cluster, 2026-05-05) extends into a Phase 1.B "Round 2" multi-day cleanup. The downstream phase numbering (Phase 2 honest status markers → Phase 6 genuine Connes spectral action) is **unchanged**. The new TODO tasks #65-#73 from iter 160 remain valid.
+This purge has been formally added to `~/.claude/plans/b-5-eager-piglet.md` as **Phase 1B — Round 2 trash purge** (2026-05-06 commit). The plan now has **10 phases** (Phase 1 round-1 DONE, Phase 1B round-2 QUEUED, Phases 2-5 DONE, Phase 6 IN PROGRESS, Phases 7-9 SCAFFOLDED).
+
+| Phase | Status | LOC |
+|---|---|---:|
+| 1 — Trash purge round 1 | ✅ DONE 2026-05-05 (commits 7b95d35 → a1a9e2d) | ~50K deleted |
+| **1B — Trash purge round 2** | 🚧 **QUEUED 5 batches #74-#78 (this audit)** | **~80K to delete** |
+| 2 — Honest status markers | ✅ DONE (`MassDerivationStatus.lean`) | ~150 |
+| 3 — Real Higgs SSB | ✅ DONE (Phase 3.x HealingFlow/Higgs* files) | ~1000 |
+| 4 — G-SM coupling | ✅ DONE (Phase 4.x Geometry/Emergence files) | ~2000 |
+| 5 — G-G self-interaction | ✅ DONE (Phase 5.x Variational/Geometry files) | ~2500 |
+| 6 — Connes NCG + spectral action | 🚧 IN PROGRESS (A_F structure 33 phases done, 6a-6e queued #66-#70) | ~6000 |
+| 7 — Substrate QFT framework | scaffolding | ~8000 |
+| 8 — Quantum gravity scattering | scaffolding | ~4000 |
+| 9 — One-loop renormalisation | scaffolding | ~5000 |
+
+The **downstream phase numbering remains unchanged**. The new TODO tasks #65-#73 from iter 160 (Phase 6.13 GRAND ASSOCIATIVITY META v2 + Phase 6a-6e Connes + Phase 9.59 12-loop + Phase 6.20 roadmap-V2 META) and the 5 batched purge tasks #74-#78 form the active backlog.
+
+**Build job trajectory after Phase 1B**:
+- Pre-Phase 1B: 4732 GREEN
+- Post-Phase 1B (5 batches): ~3500-3700 GREEN (repo ~95% paper-grade substrate-spine)
+- Post-Phase 6 completion: build climbs back as real Connes machinery lands
+- Post-Phase 9 completion: ~30,000+ GREEN with full substrate QFT + 1-loop machinery
 
 **End of audit report.**

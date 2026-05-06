@@ -5496,6 +5496,13 @@ import OmegaTheory.QuantumGravity.SubstrateUncertaintyBound
 -- properties, sum 13). Headline:
 -- substrate_physical_bounds_meta_capstone (7-conjunct).
 import OmegaTheory.Predictions.SubstratePhysicalBoundsMetaCapstone
+-- Lion's-Pride Phase 7.25 (dynamic /loop iteration 95, 2026-05-06):
+-- multi-mode SUPER-GRAND META-META-META composing 7.23 (Hilbert) +
+-- 7.24 (QM-bridge) + 9.34 (physical-bounds) into a 3-conjunct
+-- META-META-META theorem at the highest abstraction level. Plus
+-- Frozen-Nat snapshot (4 META capstones, 7 layers, sum 11). Headline:
+-- multimode_super_grand_meta_meta_meta.
+import OmegaTheory.Predictions.MultimodeSuperGrandMetaMetaMeta
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

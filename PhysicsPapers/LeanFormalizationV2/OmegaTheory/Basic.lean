@@ -5609,6 +5609,15 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling7Loop
 -- properties + 14 atomic + 0 axioms = 23. Headline:
 -- substrate_running_coupling_7loop_grand_meta (14-conjunct).
 import OmegaTheory.Predictions.SubstrateRunningCoupling7LoopGrandMeta
+-- Lion's-Pride Phase 6.7 — SMUL-MUL INTERACTION at h_part (dynamic
+-- /loop iteration 139, 2026-05-06): finite Chamseddine-Connes A_F
+-- SMul-Mul interaction at h_part (quaternionic ℍ ≅ ℝ⁴ middle factor)
+-- — proves the ℝ-bilinearity of Hamilton's quaternion product:
+-- ((r • a) * b).h_part i = (r • (a*b)).h_part i (left), (a * (r • b))
+-- .h_part i = (r • (a*b)).h_part i (right), at every component
+-- index i : Fin 4. Companion to Phase 6.5x (c_part bilinearity).
+-- Headline: finite_AF_algebra_smul_mul_h_part_report (2-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraSMulMulHPart
 -- Lion's-Pride Phase 9.48 — EXTENDED GRAND-LOOP META (dynamic /loop
 -- iteration 122, 2026-05-06): substrate running-coupling EXTENDED
 -- GRAND-LOOP META extending Phase-9.46 10-conjunct GRAND-LOOP with

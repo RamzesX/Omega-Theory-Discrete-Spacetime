@@ -5710,6 +5710,17 @@ import OmegaTheory.Predictions.FiniteAFAlgebraLieSubmoduleMeta
 -- an ℝ-algebra (downstream — needs Ring instance too). Headline:
 -- finite_AF_algebra_smul_mul_report (3-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraSMulMul
+-- Lion's-Pride Phase 6.5y — UNITARY-SUBGROUP META (dynamic /loop
+-- iteration 134, 2026-05-06): finite Chamseddine-Connes A_F UNITARY-
+-- SUBGROUP META composing the 3 atomic closure properties of unitary
+-- elements at c_part — 6.5o identity-membership + 6.5s product-
+-- closure + 6.5v negation-closure — into a single 3-conjunct umbrella
+-- declaring the multiplicative subgroup-with-symmetry structure of
+-- U(A_F)|c. Substrate analog of the unitary group U(1)|c viewed as
+-- a closed-under-{1, ·, -} subset of A_F. Frozen-Nat snapshot: 3
+-- phases + 9 atomic + 0 axioms = 12. Headline:
+-- finite_AF_algebra_unitary_subgroup_meta (3-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraUnitarySubgroupMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

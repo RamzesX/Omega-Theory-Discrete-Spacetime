@@ -5374,6 +5374,14 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionCauchySchwarz
 -- identity 4⟨ψ,φ⟩ = ⟨ψ+φ,ψ+φ⟩ - ⟨ψ-φ,ψ-φ⟩. Headline:
 -- multimode_wave_function_bilinear_report (4-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionBilinear
+-- Lion's-Pride Phase 7.13 (dynamic /loop iteration 75, 2026-05-06):
+-- multi-mode wave-function META-CAPSTONE composing one identity from
+-- EACH of 7.7 (per-mode N̂_i), 7.8 (total at single-mode), 7.9 (basis-
+-- state self-orth), 7.10 (basis normalised), 7.11 (Cauchy-Schwarz),
+-- 7.12 (parallelogram) into a 6-conjunct theorem. Plus Frozen-Nat
+-- snapshot (7 phases, 8 properties, sum 15). Headline:
+-- multimode_wave_function_meta_capstone (6-conjunct).
+import OmegaTheory.Predictions.MultimodeWaveFunctionMetaCapstone
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

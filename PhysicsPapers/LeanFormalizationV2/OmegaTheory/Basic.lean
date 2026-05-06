@@ -5662,6 +5662,19 @@ import OmegaTheory.Foundations.FiniteAFAlgebraIsSelfAdjointNegClosure
 -- gauge group of the spectral triple. Headline:
 -- finite_AF_algebra_is_unitary_product_closure_report (3-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraIsUnitaryProductClosure
+-- Lion's-Pride Phase 6.5t — GAUGE-GROUP META (dynamic /loop iteration
+-- 130, 2026-05-06): finite Chamseddine-Connes A_F GAUGE-GROUP META
+-- composing the 5 essential Lie-group + Lie-algebra structural
+-- identities for U(A_F)|c into a single 5-conjunct umbrella:
+-- (1) GROUP — identity unitary, (2) GROUP — product closure,
+-- (3) LIE ALGEBRA — additive closure, (4) LIE ALGEBRA — negation
+-- closure, (5) LIE ALGEBRA — real-scalar one-parameter family.
+-- This is the substrate-level analog of the U(1)|c gauge group
+-- whose modulo-center quotient gives the abelian gauge factor of
+-- the Chamseddine-Connes Standard Model derivation. Frozen-Nat
+-- snapshot: 4 phases + 17 atomic + 0 axioms = 21. Headline:
+-- finite_AF_algebra_gauge_group_meta (5-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraGaugeGroupMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

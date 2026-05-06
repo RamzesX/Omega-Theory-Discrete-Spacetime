@@ -5446,6 +5446,14 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionVarianceNonneg
 -- Plus Frozen-Nat snapshot (4 phases, 7 properties, sum 11).
 -- Headline: multimode_qm_observable_meta_capstone (6-conjunct).
 import OmegaTheory.Predictions.MultimodeQMObservableMetaCapstone
+-- Lion's-Pride Phase 7.23 (dynamic /loop iteration 88, 2026-05-06):
+-- multi-mode Hilbert GRAND-ULTIMATE META-META composing 7.13 + 7.16 +
+-- 7.21 + 7.22 into a 4-conjunct META-META theorem. Captures the
+-- FULL Hilbert + QM structural content of the multi-mode wave
+-- function scaffold on MultimodeFockState k N. Plus Frozen-Nat
+-- snapshot (17 phases, 4 META capstones, sum 21). Headline:
+-- multimode_hilbert_grand_ultimate_meta_meta.
+import OmegaTheory.Predictions.MultimodeHilbertGrandUltimateMetaCapstone
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

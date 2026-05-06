@@ -5313,6 +5313,16 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCrossSection
 -- substrate predicts particle lifetimes (= 1/Γ) INCREASE as
 -- truncation depth N → ∞.
 import OmegaTheory.QuantumGravity.SubstrateDecayRateRunning
+-- Lion's-Pride Phase 9.19 (dynamic /loop iteration 63, 2026-05-06):
+-- substrate kinematic threshold running — combines Phase 8.5 Mandelstam
+-- structure with Phase 9.13 mass running: `s_thresh(N) = (m_1(N) +
+-- m_2(N))²` with substrate-running masses. Theorems: non-negativity
+-- (squared); constant case at α=0 gives (m_1,IR + m_2,IR)²; monotone-
+-- decreasing in N under uniform α + non-neg masses (substrate IR flow).
+-- Headline: substrate_kinematic_threshold_report (3-conjunct). Substrate
+-- predicts 2-particle reaction THRESHOLDS shift DOWN as truncation
+-- depth N → ∞ — falsifiable signature for threshold collider experiments.
+import OmegaTheory.QuantumGravity.SubstrateKinematicThreshold
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

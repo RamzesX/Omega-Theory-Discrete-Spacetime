@@ -4916,6 +4916,18 @@ import OmegaTheory.Foundations.InnerFluctuationCommutator
 -- t²·m_H²_substrate(N). The two formalisms agree at substrate scale.
 -- Headline: healingFlow_connes_bridge_report (4-conjunct).
 import OmegaTheory.Foundations.HealingFlowConnesBridge
+-- Lion's-Pride Phase 6.5h (2026-05-06): YukawaHeatKernelExpansion.
+-- Specialise the Phase 6.4 truncatedHeatTrace to the Yukawa spectral
+-- triple, giving the explicit Yukawa-power-moment expansion:
+--    truncHeatTrace(yukawaSpectralTriple, N=0, t) = n
+--    truncHeatTrace(yukawaSpectralTriple, N=1, t) = n − t·(Σ y_i²)
+--    truncHeatTrace(yukawaSpectralTriple, N=2, t) = n − t·(Σ y²) + t²/2·(Σ y⁴)
+--    truncHeatTrace(yukawaSpectralTriple, N, t) = Σ_{k=0..N} (-t)^k/k!·(Σ y^(2k))
+-- This is the FINITE-DIM version of the Chamseddine-Connes spectral-
+-- action heat-kernel asymptotic. Setting t := 1/Λ² with substrate
+-- Λ²=4/ℓ_P² recovers the Higgs mass-squared scaling m_H² ∝ Σy²/Λ².
+-- Headline: yukawa_heat_kernel_expansion_report (4-conjunct).
+import OmegaTheory.Foundations.YukawaHeatKernelExpansion
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

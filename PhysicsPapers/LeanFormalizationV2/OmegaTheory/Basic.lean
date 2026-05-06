@@ -5632,6 +5632,15 @@ import OmegaTheory.Foundations.FiniteAFAlgebraIsUnitary
 -- whose exponentials generate U(A_F). Headline:
 -- finite_AF_algebra_is_self_adjoint_report (4-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraIsSelfAdjoint
+-- Lion's-Pride Phase 6.5q — GAUGE-COMPONENT META (dynamic /loop iteration
+-- 127, 2026-05-06): finite Chamseddine-Connes A_F GAUGE-COMPONENT META
+-- composing one substantive identity from EACH of the 4 c_part-level
+-- predicate phases (6.5g real-scalar center + 6.5n squared-norm + 6.5o
+-- IsUnitary + 6.5p IsSelfAdjoint) into a 4-conjunct umbrella declaring
+-- the full c_part-level gauge-prerequisite structure. Frozen-Nat
+-- snapshot: 4 phases + 17 atomic + 0 axioms = 21. Headline:
+-- finite_AF_algebra_gauge_component_meta (4-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraGaugeComponentMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

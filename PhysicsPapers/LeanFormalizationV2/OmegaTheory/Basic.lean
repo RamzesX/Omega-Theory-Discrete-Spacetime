@@ -5562,6 +5562,15 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling5Loop
 -- → 1-loop → α=0 → const). Frozen-Nat snapshot: 5+5+0=10. Headline:
 -- substrate_running_coupling_loop_hierarchy_meta (5-conjunct).
 import OmegaTheory.Predictions.SubstrateRunningCouplingLoopHierarchyMeta
+-- Lion's-Pride Phase 9.45 — BETA-NON-POSITIVITY UNIFORM META (dynamic
+-- /loop iteration 119, 2026-05-06): substrate running-coupling BETA-
+-- NON-POSITIVITY UNIFORM META composing the 5 IR-monotone-flow
+-- theorems runningCoupling_n_beta_nonpos_of_nonneg_params from each
+-- of the 5 loop orders into a single 5-conjunct umbrella declaring
+-- UNIVERSAL IR-monotone-flow at all 5 loop orders. Frozen-Nat
+-- snapshot: 5+5+0=10. Headline:
+-- substrate_running_coupling_beta_nonpos_uniform_meta (5-conjunct).
+import OmegaTheory.Predictions.SubstrateRunningCouplingBetaNonposUniformMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

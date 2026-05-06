@@ -5301,6 +5301,18 @@ import OmegaTheory.Predictions.SubstrateRunningTowerCapstone
 -- in N for `M_IR, α ≥ 0` (substrate IR flow). Headline:
 -- substrate_running_cross_section_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRunningCrossSection
+-- Lion's-Pride Phase 9.18 (dynamic /loop iteration 62, 2026-05-06):
+-- substrate decay-rate running from mass power — applies the
+-- substrate-running pattern to particle decay rates with tree-level
+-- Fermi-style `Γ ∼ k · m^p` (e.g., muon decay p=5, β-decay p=5).
+-- `decayRateFromMass k m_IR α p N := k · (runningCoupling m_IR α N)^p`.
+-- Theorems: non-negativity for non-neg params; constant case at α=0
+-- gives k·m_IR^p; monotone-decreasing in N (substrate IR flow lifted
+-- to power p — STRONGER decline than coupling itself for p > 1).
+-- Headline: substrate_decay_rate_running_report (3-conjunct). The
+-- substrate predicts particle lifetimes (= 1/Γ) INCREASE as
+-- truncation depth N → ∞.
+import OmegaTheory.QuantumGravity.SubstrateDecayRateRunning
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

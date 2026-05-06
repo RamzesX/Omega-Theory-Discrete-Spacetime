@@ -5261,6 +5261,18 @@ import OmegaTheory.QuantumGravity.SubstrateYukawaRunning
 -- Connects to Pi-Hunch hypothesis: 3 generations ↔ 3 irrationals
 -- √2/e/π with descending convergence rates ↔ ascending masses.
 import OmegaTheory.QuantumGravity.SubstrateThreeGenerationRunning
+-- Lion's-Pride Phase 9.15 (dynamic /loop iteration 58, 2026-05-06):
+-- substrate fermion-mass-ratio invariance under uniform α — three-gen
+-- Yukawa ratios are PRESERVED at every truncation depth N when all
+-- three generations share the same substrate sensitivity α. Theorems:
+-- `threeGenYukawa_ratio_uniform_alpha`: y_i^subst(N) = (y_i,IR/y_j,IR)
+-- · y_j^subst(N) (common factor (1+α·δ)·v cancels);
+-- `threeGenFermionMass_ratio_uniform_alpha`: same for fermion masses.
+-- Headline: substrate_mass_ratio_invariance_report (2-conjunct). The
+-- substrate predicts mass ratios are SCALE-INVARIANT under uniform α
+-- — distinct prediction from continuum SM running where ratios change
+-- due to per-generation anomalous dimensions.
+import OmegaTheory.QuantumGravity.SubstrateMassRatioInvariance
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

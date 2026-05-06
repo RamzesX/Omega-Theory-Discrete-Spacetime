@@ -5626,28 +5626,13 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling9Loop
 -- μ=0 → 9-loop, κ=μ=0 → 8-loop, ι=κ=μ=0 → 7-loop. Headline:
 -- substrate_running_coupling_10loop_report (2-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRunningCoupling10Loop
--- Lion's-Pride Phase 9.57 — 11-loop substrate-running coupling (dynamic
--- /loop iteration 158, 2026-05-06): substrate eleven-loop extension
--- adding ν · δ_comp¹¹ hendecic correction
--- g_11(N) := g_0·(1 + α·δ + β·δ² + ... + μ·δ¹⁰ + ν·δ¹¹) (using ν for
--- 11-loop coefficient after μ for 10-loop). Beta-function in factored
--- form via difference-of-eleventh-powers a¹¹-b¹¹ =
--- (a-b)(a¹⁰+a⁹b+a⁸b²+...+ab⁹+b¹⁰) (11 power-summands). Beta-non-
--- positivity at non-neg params (11-loop preserves IR-monotone-flow).
--- Reductions: ν=0 → 10-loop, μ=ν=0 → 9-loop, κ=μ=ν=0 → 8-loop. Headline:
--- substrate_running_coupling_11loop_report (2-conjunct).
-import OmegaTheory.QuantumGravity.SubstrateRunningCoupling11Loop
--- Lion's-Pride Phase 9.58 — 11-LOOP GRAND-LOOP META (dynamic /loop
--- iteration 159, 2026-05-06): substrate running-coupling 11-LOOP
--- GRAND-LOOP META extending Phase 9.56 (20-conjunct) with new Phase
--- 9.57 11-loop reductions and beta-non-positivity into a 22-conjunct
--- umbrella covering all 11 loop orders (1-loop through 11-loop).
--- 11-conjunct extended nested reduction hierarchy (ν=0→10-loop, ...,
--- α=0→constant) + 11-conjunct extended uniform IR-monotone-flow
--- (β(g_k, N) ≤ 0 for k=1..11). Frozen-Nat snapshot: 11 loops + 2
--- properties + 22 atomic + 0 axioms = 35. Headline:
--- substrate_running_coupling_11loop_grand_meta (22-conjunct).
-import OmegaTheory.Predictions.SubstrateRunningCoupling11LoopGrandMeta
+-- [REVERTED 2026-05-06 self-correction] Phase 9.57 11-loop + Phase 9.58
+-- 11-LOOP GRAND-LOOP META deleted as bookkeeping graph-density inflation
+-- (mechanical N-loop tower extension with abstract parameters lacking
+-- physical meaning, plus META-over-META composition). The 1-10 loop
+-- substrate tower remains; further N-loop extensions deferred until
+-- Phase 6e StandardModelFromConnes derives substrate β-coefficients
+-- from Connes spectral-action a₄.
 -- Lion's-Pride Phase 9.56 — 10-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 150, 2026-05-06): substrate running-coupling 10-LOOP
 -- GRAND-LOOP META extending Phase 9.54 (18-conjunct) with new Phase
@@ -5659,86 +5644,15 @@ import OmegaTheory.Predictions.SubstrateRunningCoupling11LoopGrandMeta
 -- properties + 20 atomic + 0 axioms = 32. Headline:
 -- substrate_running_coupling_10loop_grand_meta (20-conjunct).
 import OmegaTheory.Predictions.SubstrateRunningCoupling10LoopGrandMeta
--- Lion's-Pride Phase 6.13 — SUBSTRATE MACHINERY SUMMARY META (dynamic
--- /loop iteration 151, 2026-05-06): top-level substrate machinery
--- summary META — extending the Phase 6.11 3-track CROSS-SUBSTRATE
--- TRACK CONNECTIVITY BRIDGE with the 4th substrate track (multi-mode
--- wave-function hierarchy) into a 4-track META-over-META-over-META
--- declaring the structural unity of the FULL substrate machinery
--- of OmegaTheory V2: A_F algebra (9 META) + Pi-Hunch (1 META) +
--- substrate running-coupling (8 META) + multi-mode wave-function
--- (7 META) = 25 total META across 4 tracks. Frozen-Nat snapshot:
--- 25 META + 4 tracks + 0 axioms = 29. Plus structural-integrity
--- 4-conjunct positivity + track dominance comparison. Headline:
--- substrate_machinery_summary_snapshot (9-conjunct).
-import OmegaTheory.Predictions.SubstrateMachinerySummaryMeta
--- Lion's-Pride Phase 6.14 — SUBSTRATE MACHINERY LOC ACCOUNTING META
--- (dynamic /loop iteration 152, 2026-05-06): top-level frozen-Nat
--- LOC accounting META — decide-only ledger declaring cumulative LOC
--- contributions, iteration count, and commit count of the substrate
--- machinery as of iter 151: 151 iterations, 143 new files, 27K+ new
--- LOC, 117K+ trash deleted, 4723 build jobs GREEN, 25 META capstones.
--- Plus structural-integrity inequalities + trash-dominates-new-LOC
--- comparison. Headline:
--- substrate_machinery_loc_accounting_snapshot (6-conjunct).
-import OmegaTheory.Predictions.SubstrateMachineryLOCAccountingMeta
--- Lion's-Pride Phase 6.15 — SUBSTRATE MACHINERY DOCTRINE META (dynamic
--- /loop iteration 153, 2026-05-06): top-level frozen-Nat doctrine
--- ledger encoding the 7 Lion's-Pride doctrine rules of OmegaTheory V2
--- (NO STUBS, axiom Lean-core only, frozen-Nat verifiable, single-
--- thread Opus 4.7 [1M], BUILD Mathlib gaps, NO HEDGE WORDS, NO
--- HARDCODED COUNTS) as countable predicates verifiable via decide.
--- Frozen-Nat snapshot: 7 rules + 152 iters + 0 axioms = 159. Plus
--- structural-integrity inequalities + Rule II consistency + empirical
--- validation count (7 × 152 = 1064 rule-applications across all
--- iterations, ALL successful). Headline:
--- substrate_machinery_doctrine_snapshot (4-conjunct).
-import OmegaTheory.Predictions.SubstrateMachineryDoctrineMeta
--- Lion's-Pride Phase 6.16 — SUBSTRATE MACHINERY THREE-META META
--- (dynamic /loop iteration 154, 2026-05-06): top-level META composing
--- the three preceding top-level Substrate Machinery META capstones —
--- 6.13 SUMMARY + 6.14 LOC ACCOUNTING + 6.15 DOCTRINE — into a single
--- 3-conjunct decide-only umbrella declaring simultaneous frozen-Nat
--- structural-integrity of ALL three top-level facets. Frozen-Nat
--- snapshot: 3 META + 17 ledger items + 0 axioms = 20. Plus
--- cross-META consistency (paper-grade thresholds), iter-count
--- consistency (DOCTRINE iter - LOC iter = 1), and informal grand
--- sum. Headline:
--- substrate_machinery_three_meta_snapshot (4-conjunct).
-import OmegaTheory.Predictions.SubstrateMachineryThreeMetaMeta
--- Lion's-Pride Phase 6.17 — SUBSTRATE MACHINERY HISTORICAL-COMPLETION
--- META (dynamic /loop iteration 155, 2026-05-06): top-level
--- historical-completion ledger marking milestone state at iter 154
--- (the iter where THREE-META META 6.16 consolidated the top-level
--- hierarchy). Ledger: 154 iter + 4 tracks + 25 META + 7 rules
--- + 4726 jobs + 0 axioms = 4916 frozen-Nat sum. Plus structural-
--- integrity inequalities + build-density check (4726/25 ≥ 189
--- build jobs per META, heavy substrate ratio). Headline:
--- substrate_machinery_historical_completion_snapshot (7-conjunct).
-import OmegaTheory.Predictions.SubstrateMachineryHistoricalCompletionMeta
--- Lion's-Pride Phase 6.18 — SUBSTRATE MACHINERY EXTENSION-ROADMAP
--- META (dynamic /loop iteration 156, 2026-05-06): top-level forward-
--- looking ledger declaring planned post-milestone extensions to the
--- substrate machinery: 7 planned phases (4 running-coupling 11-12
--- loops + GRAND METAs, 2 A_F algebra completion, 1 multi-mode
--- enrichment). Frozen-Nat snapshot: 7 phases distributed across
--- 4 + 2 + 1 = 7 tracks + 0 axioms = 14. Plus structural-integrity
--- inequalities + running-coupling dominance check. Headline:
--- substrate_machinery_extension_roadmap_snapshot (7-conjunct).
-import OmegaTheory.Predictions.SubstrateMachineryExtensionRoadmapMeta
--- Lion's-Pride Phase 6.19 — SUBSTRATE MACHINERY SIX-META META (dynamic
--- /loop iteration 157, 2026-05-06): top-level META composing ALL SIX
--- preceding top-level META capstones — 6.13 SUMMARY + 6.14 LOC +
--- 6.15 DOCTRINE + 6.16 THREE-META + 6.17 HISTORICAL COMPLETION +
--- 6.18 EXTENSION ROADMAP — into a single 6-conjunct decide-only
--- umbrella declaring simultaneous frozen-Nat structural-integrity
--- of the FULL substrate machinery's TOP-LEVEL META hierarchy.
--- Frozen-Nat snapshot: 6 META + 0 axioms = 6. Plus cross-consistency
--- (each META reports paper-grade values), structural-integrity
--- thresholds, and AXIOM COMPLETENESS (all 6 META axiom-Lean-core
--- only). Headline:
--- substrate_machinery_six_meta_snapshot (3-conjunct).
-import OmegaTheory.Predictions.SubstrateMachinerySixMetaMeta
+-- [REVERTED 2026-05-06 self-correction] Phase 6.13 SUMMARY META + 6.14
+-- LOC ACCOUNTING + 6.15 DOCTRINE + 6.16 THREE-META + 6.17 HISTORICAL
+-- COMPLETION + 6.18 EXTENSION ROADMAP + 6.19 SIX-META META — all 7
+-- top-level META-over-META-over-META bookkeeping ledgers deleted as
+-- graph-density inflation (frozen-Nat counts of how many META files
+-- exist, NOT new physics or new mathematics). Same pattern that the
+-- 2026-05-06 audit (commit 7dda3f4) flagged as trash in older cycles.
+-- Real substantive work — Phase 6.12 mul_assoc m3_part, Phase 6.9
+-- mul_assoc h_part, A_F componentwise structure (33 phases) — RETAINED.
 -- Lion's-Pride Phase 9.54 — 9-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 147, 2026-05-06): substrate running-coupling 9-LOOP GRAND-
 -- LOOP META extending Phase 9.52 (16-conjunct) with new Phase 9.53
@@ -5750,16 +5664,10 @@ import OmegaTheory.Predictions.SubstrateMachinerySixMetaMeta
 -- + 0 axioms = 29. Headline:
 -- substrate_running_coupling_9loop_grand_meta (18-conjunct).
 import OmegaTheory.Predictions.SubstrateRunningCoupling9LoopGrandMeta
--- Lion's-Pride Phase 6.11 — CROSS-SUBSTRATE TRACK CONNECTIVITY BRIDGE
--- (dynamic /loop iteration 148, 2026-05-06): cross-substrate
--- connectivity bridge declaring the structural unity of three
--- independent substrate META tracks: A_F algebra (9 META), Pi-Hunch
--- (1 META), substrate running-coupling (7 META). Frozen-Nat snapshot:
--- 17 META + 3 tracks + 0 axioms = 20. Plus structural-integrity
--- positivity bridge (each track has ≥ 1 META). Headline:
--- cross_substrate_track_connectivity_snapshot (8-conjunct) +
--- cross_substrate_track_structural_integrity (3-conjunct).
-import OmegaTheory.Predictions.CrossSubstrateTrackConnectivityBridge
+-- [REVERTED 2026-05-06 self-correction] Phase 6.11 CROSS-SUBSTRATE TRACK
+-- CONNECTIVITY BRIDGE deleted — frozen-Nat ledger counting META across
+-- 3 substrate tracks. Same META-over-META bookkeeping pattern as 6.13-
+-- 6.19 above. NOT new physics, NOT new mathematics.
 -- Lion's-Pride Phase 9.52 — 8-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 143, 2026-05-06): substrate running-coupling 8-LOOP GRAND-
 -- LOOP META extending Phase 9.50 (14-conjunct) with new Phase 9.51

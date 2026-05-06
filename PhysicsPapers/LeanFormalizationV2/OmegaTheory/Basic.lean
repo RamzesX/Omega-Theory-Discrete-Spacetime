@@ -5451,6 +5451,14 @@ import OmegaTheory.QuantumGravity.SubstratePiHunchGeneralCrossDifference
 -- numerical instances of the general theorem. Headline:
 -- substrate_pi_hunch_concrete_witness_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstratePiHunchConcreteWitness
+-- Lion's-Pride Phase 9.29 (dynamic /loop iteration 80, 2026-05-06):
+-- substrate Pi-Hunch UNIVERSAL META-CAPSTONE composing one identity
+-- from EACH of 9.22 (ordering+witness), 9.27 (universal sign theorem
+-- + all-pairs corollary), 9.28 (concrete witness αs=(1,2,3) at pairs
+-- (0,1) and (1,2)) into a 5-conjunct theorem. Plus Frozen-Nat
+-- snapshot (8 phases, 7 theorems, sum 15). Headline:
+-- substrate_pi_hunch_universal_capstone (5-conjunct).
+import OmegaTheory.Predictions.SubstratePiHunchUniversalCapstone
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

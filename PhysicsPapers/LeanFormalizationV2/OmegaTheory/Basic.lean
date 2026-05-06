@@ -5049,6 +5049,13 @@ import OmegaTheory.QuantumGravity.SubstrateRGFlow
 -- lions_pride_machinery_capstone (9-conjunct) + lions_pride_machinery_snapshot
 -- (4-conjunct).
 import OmegaTheory.Predictions.LionsPrideMachineryCapstone
+-- Lion's-Pride Phase 9.4 (dynamic /loop iteration 38, 2026-05-06):
+-- Substrate discrete beta function β(g, N) := g(N+1) - g(N).
+-- Trivial fixed point (constant g ⟹ β=0). Telescoping identity
+-- Σ β(g, k) = g(N) - g(0) (discrete RG-flow integration). Phase 9
+-- substrate-renorm 4/4 sub-phases COMPLETE (9.1+9.2+9.3+9.4).
+-- Headline: substrate_beta_function_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateBetaFunction
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

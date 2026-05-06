@@ -5115,6 +5115,22 @@ import OmegaTheory.Foundations.JarlskogNonVanishing
 -- electroweak_GoldstoneCount with new su3Dim and u1yDim.
 -- Headline: sm_gauge_boson_count_report (4-conjunct).
 import OmegaTheory.Foundations.SMGaugeBosonCount
+-- Phase B step 1 (FULL-mode plan 2026-05-06): HiggsDoubletStructure.
+-- Type the Higgs as SU(2)_L × U(1)_Y representation: HiggsDoublet :=
+-- Fin 2 → ℂ with HiggsRep := SU2Rep.Doublet (T = 1/2),
+-- HiggsT3 : Fin 2 → WeakIsospin (upper +1/2, lower -1/2),
+-- higgsHypercharge := 1/2 (THE missing assignment from
+-- FermionHypercharge.lean), HiggsColor := none (color singlet).
+-- Closes the Phase B representation-theory gap audited 2026-05-06.
+-- Headline: higgs_is_SU2_doublet_color_singlet_Y_half.
+import OmegaTheory.Foundations.HiggsDoubletStructure
+-- Phase B step 3 (FULL-mode plan 2026-05-06): HiggsGellMannNishijima.
+-- Extends GMN Q = T_3 + Y to Higgs components H⁺ and H⁰:
+-- Q(H⁺) = +1/2 + 1/2 = +1 (charged), Q(H⁰) = -1/2 + 1/2 = 0 (neutral).
+-- Pure rational arithmetic via norm_num; reuses Phase B step 1.
+-- After EW SSB, H⁰ becomes physical h (Q=0); H⁺ + Im(H⁰) eaten as
+-- 3 Goldstones (Phase B step 4 deferred). Headline: higgs_GMN_report.
+import OmegaTheory.Foundations.HiggsGellMannNishijima
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

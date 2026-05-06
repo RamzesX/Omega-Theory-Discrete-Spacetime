@@ -5156,6 +5156,16 @@ import OmegaTheory.QuantumGravity.OnShellMandelstam
 -- `g₀, α, β, γ ≥ 0` (substrate three-loop preserves monotone IR
 -- flow). Headline: substrate_running_coupling_3loop_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRunningCoupling3Loop
+-- Lion's-Pride Phase 9.8 (dynamic /loop iteration 49, 2026-05-06):
+-- generic n-loop substrate-derived running coupling — UNIFIES Phase
+-- 9.5/9.6/9.7 into `runningCouplingNLoop n g₀ coefs N := g₀·
+-- (1 + Σ_{k=0}^{n-1} coefs(k) · δ_comp(N)^{k+1})`. Universal substrate-
+-- QG prediction: at EVERY finite loop order `n`, with non-negative
+-- `g₀ ≥ 0 ∧ ∀ k < n, 0 ≤ coefs(k)`, the substrate beta-function is
+-- non-positive (monotone IR flow). Helper theorem
+-- `substrateRGScale_pow_le_pow`: δ_{N+1}^k ≤ δ_N^k for every k.
+-- Headline: substrate_running_coupling_nloop_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateRunningCouplingNLoop
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

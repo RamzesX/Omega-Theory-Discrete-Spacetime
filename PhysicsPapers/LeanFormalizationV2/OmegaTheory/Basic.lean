@@ -5461,6 +5461,13 @@ import OmegaTheory.Predictions.MultimodeHilbertGrandUltimateMetaCapstone
 -- spike (1 at state, 0 elsewhere). Headline:
 -- substrate_qm_probability_report (4-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateQMProbability
+-- Lion's-Pride Phase 9.31 (dynamic /loop iteration 90, 2026-05-06):
+-- substrate Born rule formalisation. P(state | ψ) := ψ(state)² for
+-- normalised ψ. Non-negativity (always), upper bound P ≤ 1 (normalised),
+-- total sum = 1 (normalised), basis-state spike. First QM-postulate
+-- statement on multi-mode wave functions. Headline:
+-- substrate_born_rule_report (4-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateBornRule
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

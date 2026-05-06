@@ -5352,6 +5352,13 @@ import OmegaTheory.Foundations.MultimodeWaveFunction
 -- snapshot: 58 substrate files / 65 iterations / 17 meta-capstones.
 -- Headline: substrate_grand_meta_capstone (6-conjunct).
 import OmegaTheory.Predictions.SubstrateGrandMetaCapstone
+-- Lion's-Pride Phase 7.10 (dynamic /loop iteration 67, 2026-05-06):
+-- multi-mode wave function normalisation predicate
+-- `IsNormalised ψ := ⟨ψ, ψ⟩ = 1`. Theorems: basis state wave
+-- functions are normalised; inner product self non-negative
+-- (sum of squares); zero wave function not normalised.
+-- Headline: multimode_wave_function_normalised_report (3-conjunct).
+import OmegaTheory.Foundations.MultimodeWaveFunctionNormalised
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

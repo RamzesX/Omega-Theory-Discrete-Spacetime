@@ -5641,6 +5641,15 @@ import OmegaTheory.Foundations.FiniteAFAlgebraIsSelfAdjoint
 -- snapshot: 4 phases + 17 atomic + 0 axioms = 21. Headline:
 -- finite_AF_algebra_gauge_component_meta (4-conjunct).
 import OmegaTheory.Predictions.FiniteAFAlgebraGaugeComponentMeta
+-- Lion's-Pride Phase 6.5r — IS-SELF-ADJOINT NEGATION CLOSURE (dynamic /loop
+-- iteration 128, 2026-05-06): finite Chamseddine-Connes A_F IsSelfAdjoint
+-- negation-closure at c_part — proves cPartIsSelfAdjoint a → cPartIsSelfAdjoint
+-- (-a) and the related identities (adj (-a)).c_part = -((adj a).c_part) and
+-- (-a).c_part = -(a.c_part). Composes Phase 6.5p add-closure with new neg-
+-- closure to give subtraction closure cPartIsSelfAdjoint (a + (-b)). Completes
+-- the AddSubgroup closure structure of self-adjoint elements at c_part.
+-- Headline: finite_AF_algebra_is_self_adjoint_neg_closure_report (4-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraIsSelfAdjointNegClosure
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

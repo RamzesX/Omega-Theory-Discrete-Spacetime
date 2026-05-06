@@ -4894,6 +4894,16 @@ import OmegaTheory.Foundations.HiggsMassPositivity
 -- finite-dim Chamseddine-Connes Higgs derivation. Headline:
 -- standardModel_from_connes_report (4-conjunct).
 import OmegaTheory.Foundations.StandardModelFromConnes
+-- Lion's-Pride Phase 6.5f (2026-05-06): InnerFluctuationCommutator.
+-- Algebraic backbone of Connes' inner fluctuation D ↦ D + π(A) + ε J A J⁻¹.
+-- For Hermitian D, A: commutator [D,A] = D·A − A·D is anti-Hermitian
+-- (Mᴴ = -M); hence i·[D,A] is Hermitian (the gauge-invariant "1-form").
+-- Sum-of-i-commutators preserves Hermiticity → inner-fluctuated Dirac
+-- D + Σₖ i·[D, Aₖ] is Hermitian for Hermitian Dirac and 1-form generators.
+-- This is the rigorous statement that inner fluctuations preserve self-
+-- adjointness — the foundation of Connes' gauge-field construction.
+-- Headline: inner_fluctuation_commutator_report (3-conjunct).
+import OmegaTheory.Foundations.InnerFluctuationCommutator
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

@@ -5607,6 +5607,15 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling7Loop
 -- ι=0 → 7-loop, θ=ι=0 → 6-loop, η=θ=ι=0 → 5-loop. Headline:
 -- substrate_running_coupling_8loop_report (2-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRunningCoupling8Loop
+-- Lion's-Pride Phase 9.53 (dynamic /loop iteration 146, 2026-05-06):
+-- substrate nine-loop running coupling — extends Phase 9.51 (8-loop)
+-- with nonic correction g_9(N) := g_0·(1+α·δ+...+ι·δ⁸+κ·δ⁹).
+-- Beta-function in factored form via difference-of-ninth-powers
+-- a⁹-b⁹ = (a-b)(a⁸+a⁷b+a⁶b²+a⁵b³+a⁴b⁴+a³b⁵+a²b⁶+ab⁷+b⁸). Beta-non-positivity
+-- at non-neg params (9-loop preserves IR-monotone-flow). Reductions:
+-- κ=0 → 8-loop, ι=κ=0 → 7-loop, θ=ι=κ=0 → 6-loop. Headline:
+-- substrate_running_coupling_9loop_report (2-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateRunningCoupling9Loop
 -- Lion's-Pride Phase 9.52 — 8-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 143, 2026-05-06): substrate running-coupling 8-LOOP GRAND-
 -- LOOP META extending Phase 9.50 (14-conjunct) with new Phase 9.51

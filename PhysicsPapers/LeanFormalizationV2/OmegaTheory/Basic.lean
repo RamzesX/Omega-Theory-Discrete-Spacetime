@@ -5425,6 +5425,13 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionExpectation
 -- Foundation for variance (ΔN̂)² and Heisenberg uncertainty.
 -- Headline: multimode_wave_function_second_moment_report (4-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionSecondMoment
+-- Lion's-Pride Phase 7.20 (dynamic /loop iteration 85, 2026-05-06):
+-- multi-mode wave-function VARIANCE of total number operator.
+-- (ΔN̂)²(ψ) := ⟨ψ|N̂²|ψ⟩ - ⟨ψ|N̂|ψ⟩². Basis-state variance = 0
+-- (eigenstate property: n² - n² = 0), vacuum variance = 0, zero wave
+-- function variance = 0. Substrate-side input to Heisenberg uncertainty.
+-- Headline: multimode_wave_function_variance_report (3-conjunct).
+import OmegaTheory.Foundations.MultimodeWaveFunctionVariance
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

@@ -5008,6 +5008,13 @@ import OmegaTheory.QuantumGravity.GravitonScatteringTreeLevel
 -- Phase 8 substrate-QG 2/3 sub-phases. Headline:
 -- channel_exchange_amplitude_report (3-conjunct).
 import OmegaTheory.QuantumGravity.ChannelExchangeAmplitude
+-- Lion's-Pride Phase 8.3 (dynamic /loop iteration 35, 2026-05-06):
+-- Full 2 → 2 graviton scattering amplitude composing Phase 5.4 V₄
+-- direct + Phase 8.2 channel-exchange in 3 channels (s/t/u). Sum
+-- decomposition: M = V₄ + s + t + u. Vanishes when first leg = 0
+-- (each contribution vanishes). Phase 8 substrate-QG 3/3 sub-phases
+-- COMPLETE. Headline: full_two_to_two_amplitude_report (3-conjunct).
+import OmegaTheory.QuantumGravity.FullTwoToTwoAmplitude
 -- Lion's-Pride Phase 9.1 (dynamic /loop iteration 29, 2026-05-06):
 -- Substrate UV regularisation: substrateUVCutoff = 1/ℓ_P > 0 (Kempf
 -- bandlimit identification). The substrate's intrinsic lattice scale

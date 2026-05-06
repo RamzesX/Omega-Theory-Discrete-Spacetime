@@ -3840,7 +3840,6 @@ import OmegaTheory.Predictions.PrecisionPhysicsAbsoluteWaveP2
 --   * Z_boson_mass_91188_MeV_substrate_fit_absolute_paper_bundle (5-conj)
 --   * electroweak_gauge_boson_mass_absolute_paper_joint_bundle (6-conj)
 -- 0 sorry, 0 new axioms; #print axioms on all headlines: Lean core only.
-import OmegaTheory.Predictions.ZBosonMassAbsoluteP3b
 
 -- Wave P3a (Nekkar β Boötis, 2026-04-24) — W boson absolute mass
 -- certification in the Albali P2 calibration-anchor pattern.  Closes
@@ -3858,7 +3857,6 @@ import OmegaTheory.Predictions.ZBosonMassAbsoluteP3b
 -- Sibling to Wave P3b (Z boson, Almaaz) — together completing the
 -- electroweak absolute-mass pair.
 -- 0 sorry, 0 new axioms; #print axioms on all 7 main theorems: Lean core only.
-import OmegaTheory.Predictions.WBosonMassAbsoluteP3a
 
 -- Wave P3d (2026-04-24, hand-written by session lead) — neutrino mass-squared
 -- splittings (solar Δm²₂₁ = 7.39e-5 eV², atmospheric Δm²₃₂ = 2.51e-3 eV²)
@@ -3867,7 +3865,6 @@ import OmegaTheory.Predictions.WBosonMassAbsoluteP3a
 -- Closes candidate
 --   `neutrino_delta_m_sq_atmospheric_2_5e_minus_3_eV2_substrate_paper_bundle`
 -- 0 sorry, 0 new axioms; #print axioms on all theorems: Lean core only.
-import OmegaTheory.Predictions.NeutrinoDeltaMSquaredAbsoluteP3d
 
 -- Wave P3e (2026-04-24, hand-written by session lead) — muon g-2 BNL/FNAL
 -- absolute-value certification closing Menkent Atlas v7 top HIGH candidate
@@ -3875,7 +3872,6 @@ import OmegaTheory.Predictions.NeutrinoDeltaMSquaredAbsoluteP3d
 -- (55 downstream_unblocks). Thin wrapper around Megrez's
 -- MuonGminus2SubstrateFit.lean; adds 5-conjunct paper bundle.
 -- 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.MuonGminus2AbsoluteP3e
 
 -- Wave P3f (2026-04-24, hand-written by session lead) — Hubble constant
 -- absolute-value certification closing Menkent Atlas v7 HIGH candidate
@@ -3883,7 +3879,6 @@ import OmegaTheory.Predictions.MuonGminus2AbsoluteP3e
 -- Thin wrapper: H0_Planck_substrate = H0_Planck_PDG = 67.4 exactly,
 -- with falsifiable structure substrate strictly below SH0ES 73.0.
 -- 0 sorry, 0 new axioms.
-import OmegaTheory.Predictions.HubbleConstantAbsoluteP3f
 
 -- Cycle-57 (Virgo) W2 (2026-04-25, Triangulum) — Hubble constant
 -- substrate-derivation wrapper closing Cygnus-X1 batch HIGH Track-1
@@ -3899,7 +3894,6 @@ import OmegaTheory.Predictions.HubbleConstantAbsolute
 -- Wave P3g (2026-04-24, hand-written) — DESI Y10 evolving-w dark energy
 -- absolute substrate-prediction certification closing Menkent v7 MED
 -- candidate (25 unblocks). Thin wrapper over DESISubstrateSignature.
-import OmegaTheory.Predictions.DESIY10AbsoluteP3g
 
 -- Wave W11 (cycle-53, 2026-04-25, Almach) — DESI Y10 evolving-w dark
 -- energy ANCHOR-FORM POSITIVE prediction at z ∈ {0.5, 1.0, 1.5, 2.0}
@@ -3912,7 +3906,6 @@ import OmegaTheory.Predictions.DESIY10EvolvingW
 -- Wave P3j (2026-04-24, hand-written) — vacuum birefringence magnetar
 -- absolute substrate-predicted index-shift value. Closes Menkent v7 MED
 -- candidate (12 unblocks). Magnetar ≥ 10·B_Schwinger → 100× noise floor.
-import OmegaTheory.Predictions.VacuumBirefringenceAbsoluteP3j
 
 -- Wave P3l (cycle-49, 2026-04-24, hand-written) — muon absolute-mass
 -- certification in MeV units via calibration-anchor template (B3 of
@@ -3924,7 +3917,6 @@ import OmegaTheory.Predictions.VacuumBirefringenceAbsoluteP3j
 -- flagged as positive (axiom-free Track-A honesty, no l_P magnitude
 -- axiom needed). 0 sorry, 0 new axioms; #print axioms on headline:
 -- Lean core only (propext, Classical.choice, Quot.sound).
-import OmegaTheory.Predictions.MuonMassAbsoluteP3l
 
 -- Cycle-57 (Virgo) — Iapetus W1 — tau lepton mass absolute (PDG 1.77686 ± 0.00012):
 -- `tau_lepton_mass_absolute_PDG_substrate_anchored`. Completes gen1/gen2/gen3
@@ -3954,7 +3946,6 @@ import OmegaTheory.Spacetime.OperatorsCapstoneIndex
 -- gen2 → gen1 (factor-of-2 becomes factor-of-1). 0 sorry, 0 new axioms;
 -- #print axioms on headline: Lean core only (propext, Classical.choice,
 -- Quot.sound).
-import OmegaTheory.Predictions.ElectronMassAbsoluteP3a
 
 -- Wave P3c (cycle-49, 2026-04-24, hand-written) — down-quark absolute-mass
 -- certification in MeV units via calibration-anchor template (B3 of
@@ -3967,7 +3958,6 @@ import OmegaTheory.Predictions.ElectronMassAbsoluteP3a
 -- axiom needed). Clone of Tania-Borealis's MuonMassAbsoluteP3l template.
 -- 0 sorry, 0 new axioms; #print axioms on headline: Lean core only
 -- (propext, Classical.choice, Quot.sound).
-import OmegaTheory.Predictions.DownQuarkMassAbsoluteP3c
 
 -- Wave P3d (cycle-49, 2026-04-24, hand-written by Adhil thread) — strange-quark
 -- absolute-mass certification in MeV units via calibration-anchor template
@@ -3981,7 +3971,6 @@ import OmegaTheory.Predictions.DownQuarkMassAbsoluteP3c
 -- with yukawaElectron gen2 → yukawaDownQuark gen2 and muon → strange (both
 -- Yukawas equal 2 at gen2). 0 sorry, 0 new axioms; #print axioms on headline:
 -- Lean core only (propext, Classical.choice, Quot.sound).
-import OmegaTheory.Predictions.StrangeQuarkMassAbsoluteP3d
 
 -- Wave P3b (cycle-49, 2026-04-24, hand-written) — up-quark absolute-mass
 -- certification in MeV units via calibration-anchor template (B3 of
@@ -3996,7 +3985,6 @@ import OmegaTheory.Predictions.StrangeQuarkMassAbsoluteP3d
 -- yukawaUpQuark gen1 (both Yukawas dimensional placeholders; y_μ/y_e=2,
 -- y_u/y_e=1). 0 sorry, 0 new axioms; #print axioms on headline: Lean
 -- core only (propext, Classical.choice, Quot.sound).
-import OmegaTheory.Predictions.UpQuarkMassAbsoluteP3b
 
 -- Mission W9 (cycle-50, 2026-04-24) — AXIOM NARROWING — degree-1
 -- companion to `PiStratum`.  Offers a strictly-weaker-dependency option
@@ -4269,7 +4257,6 @@ import OmegaTheory.Spacetime.OperatorsCapstoneResidual
 -- existential composition of Iapetus c57 (TauLeptonMassAbsolute, 1.77686 GeV
 -- exact at N=0) + KoideRelation + LeptonMassFromIrrationals (π heavy-gen
 -- channel). 4 thms, Lean core only. Paper-citation point for tau mass.
-import OmegaTheory.Predictions.TauLeptonMassPaperBundle
 
 -- Sirius (α CMa, brightest night-sky star) — cycle-59 W4:
 -- `hubble_constant_67_4_paper_bundle_within_PDG`. 5-conjunct paper bundle
@@ -4493,7 +4480,6 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPowerSumInt
 -- paper-bundle re-export of Albali c5 CMBAnisotropyFromSubstrate.lean into
 -- 3-conjunct citable headline + frontier marker (mirrors Sirius c59
 -- HubbleConstantPaperBundle pattern). 13 thm + 3 noncomputable defs, Lean core.
-import OmegaTheory.Predictions.CMBAnisotropyPaperBundle
 
 -- Mimas (Saturn II icy moon, Herschel crater ~130km — silently landed,
 -- never sent deliverable message — file verified on disk) — cycle-60 W2:

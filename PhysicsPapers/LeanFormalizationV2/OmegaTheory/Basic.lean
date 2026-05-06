@@ -5471,6 +5471,15 @@ import OmegaTheory.Foundations.FiniteAFAlgebraAdjAntiMul
 -- substantive theorems, 0 new axioms. Headline:
 -- finite_AF_algebra_meta_capstone (5-conjunct).
 import OmegaTheory.Predictions.FiniteAFAlgebraMetaCapstone
+-- Lion's-Pride Phase 9.41 (dynamic /loop iteration 109, 2026-05-06):
+-- substrate Pi-Hunch ALL-PAIRS META — composing the 3 pair-wise
+-- cross-difference non-negativity theorems at (0, 1), (1, 2), and the
+-- transitive (0, 2) closure into a single 3-conjunct umbrella under the
+-- unifying premise IsStrictlyOrderedAlpha. Plus concrete-witness
+-- corollary applying the META to αs = (1, 2, 3). Plus frozen-Nat Pi-Hunch
+-- line snapshot: 9 phases, 3 pairs, 0 axioms, sum = 12. Headline:
+-- substrate_pi_hunch_all_pairs_meta (3-conjunct).
+import OmegaTheory.Predictions.SubstratePiHunchAllPairsMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

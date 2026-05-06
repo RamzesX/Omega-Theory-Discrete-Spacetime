@@ -4952,6 +4952,17 @@ import OmegaTheory.Foundations.SubstrateUVSpectralAction
 -- dominates (heat-kernel ground-state limit).
 -- Headline: continuum_heat_kernel_yukawa_report (4-conjunct).
 import OmegaTheory.Foundations.ContinuumHeatKernelYukawa
+-- Lion's-Pride Phase 6.5k (2026-05-06): HeatKernelTaylorConvergence.
+-- Convergent Taylor identity for ANY finite spectral triple T:
+--    Tr(e^{-t·D²}) = Σ' k, (k!⁻¹ : ℂ) · (-t)^k · a_k(T)   (genuine tsum)
+-- BUILDS Mathlib machinery we lacked: Matrix.traceCLM (continuous
+-- linear map upgrade of Matrix.traceLinearMap via finite-dim auto-
+-- continuity) + activates Matrix.linftyOpNormedRing local instance.
+-- Then ContinuousLinearMap.map_tsum swaps trace and tsum; each
+-- summand identified via NormedSpace.exp_eq_tsum + smul_pow +
+-- neg_smul + pow_mul + Matrix.trace_smul. ~150 lines, no multi-
+-- month deferral. Headline: heat_kernel_taylor_convergence_report.
+import OmegaTheory.Foundations.HeatKernelTaylorConvergence
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

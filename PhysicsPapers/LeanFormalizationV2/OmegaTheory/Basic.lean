@@ -5437,6 +5437,13 @@ import OmegaTheory.QuantumGravity.SubstratePiHunchTransitiveCrossDifference
 -- Plus Frozen-Nat snapshot (5 phases, 3 triple, sum 8).
 -- Headline: substrate_pi_hunch_complete_capstone (5-conjunct).
 import OmegaTheory.Predictions.SubstratePiHunchCompleteCapstone
+-- Lion's-Pride Phase 9.27 (dynamic /loop iteration 78, 2026-05-06):
+-- substrate Pi-Hunch GENERAL cross-difference theorem — universal
+-- sign theorem for ANY pair (g₁, g₂) with αs g₁ < αs g₂. Generalises
+-- 9.23 + 9.25 specific pairs into one universal substrate-QG sign
+-- prediction. Plus all-pairs corollary under strict ordering.
+-- Headline: substrate_pi_hunch_general_cross_difference_report (2-conjunct).
+import OmegaTheory.QuantumGravity.SubstratePiHunchGeneralCrossDifference
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

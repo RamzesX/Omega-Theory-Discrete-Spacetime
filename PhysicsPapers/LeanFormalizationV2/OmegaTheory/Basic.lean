@@ -5628,6 +5628,17 @@ import OmegaTheory.Foundations.FiniteAFAlgebraSMulMulHPart
 -- Phase 6.7 (h_part / quaternionic). Headline:
 -- finite_AF_algebra_smul_mul_m3_part_report (2-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraSMulMulM3Part
+-- Lion's-Pride Phase 6.8 — ALL-COMPONENTS BILINEARITY META (dynamic
+-- /loop iteration 141, 2026-05-06): finite Chamseddine-Connes A_F
+-- ALL-COMPONENTS BILINEARITY META composing the 6.5x (c_part), 6.7
+-- (h_part / quaternion), and 6.7b (m3_part / matrix) ℝ-bilinearity
+-- pieces into a single 6-conjunct umbrella declaring the FULL
+-- ℝ-bilinearity of A_F multiplication across all three component
+-- fields A_F = ℂ ⊕ ℍ ⊕ M_3(ℂ). Foundation primitive for declaring
+-- FiniteAFAlgebra an Algebra ℝ in Mathlib (modulo Ring instance).
+-- Frozen-Nat snapshot: 3 phases + 6 atomic + 0 axioms = 9. Headline:
+-- finite_AF_algebra_all_components_bilinearity_meta (6-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraAllComponentsBilinearityMeta
 -- Lion's-Pride Phase 9.48 — EXTENDED GRAND-LOOP META (dynamic /loop
 -- iteration 122, 2026-05-06): substrate running-coupling EXTENDED
 -- GRAND-LOOP META extending Phase-9.46 10-conjunct GRAND-LOOP with

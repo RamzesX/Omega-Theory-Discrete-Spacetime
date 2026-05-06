@@ -5110,6 +5110,18 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling
 -- bilinear scalar form only; full 4-vector concrete model with
 -- Minkowski signature `Fin 4 → ℝ` deferred to follow-up file.
 import OmegaTheory.QuantumGravity.MandelstamInvariants
+-- Lion's-Pride Phase 8.6 (dynamic /loop iteration 45, 2026-05-06):
+-- concrete 4-vector model — closes the Phase 8.5 scalar-bilinear
+-- scaffold by deriving the conservation hypothesis from actual
+-- 4-momentum conservation `p₁+p₂ = p₃+p₄`. Defines `FourMomentum :=
+-- Fin 4 → ℝ` + `minkowskiInner p q := p⁰q⁰ - p¹q¹ - p²q² - p³q³`
+-- (η = (+,−,−,−) signature). Proves bilinearity (linearity left/
+-- right, sub-linearity right) + symmetry. Bridge theorem:
+-- `momentum_conservation_implies_scalar_constraint` derives Phase
+-- 8.5 hypothesis from concrete `p₁+p₂ = p₃+p₄`. Composed corollary
+-- `mandelstam_sum_from_concrete_conservation` closes the chain
+-- end-to-end. Headline: four_momentum_report (3-conjunct).
+import OmegaTheory.QuantumGravity.FourMomentum
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

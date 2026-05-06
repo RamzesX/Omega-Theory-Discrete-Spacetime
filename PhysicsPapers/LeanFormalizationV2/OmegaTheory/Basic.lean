@@ -5721,6 +5721,18 @@ import OmegaTheory.Foundations.FiniteAFAlgebraSMulMul
 -- phases + 9 atomic + 0 axioms = 12. Headline:
 -- finite_AF_algebra_unitary_subgroup_meta (3-conjunct).
 import OmegaTheory.Predictions.FiniteAFAlgebraUnitarySubgroupMeta
+-- Lion's-Pride Phase 6.6 — GRAND GAUGE-LIE PAIR META (dynamic /loop
+-- iteration 135, 2026-05-06): finite Chamseddine-Connes A_F GRAND
+-- GAUGE-LIE PAIR META composing the 6.5w LIE-ℝ-SUBMODULE META and the
+-- 6.5y UNITARY-SUBGROUP META into a single 6-conjunct GRAND umbrella
+-- declaring the FULL substrate gauge-group + Lie-algebra pair
+-- structure (U(A_F)|c, iu(A_F)|c) at the c_part field level. Substrate
+-- analog of the canonical (G, 𝔤) "Lie group + Lie algebra" pair from
+-- differential geometry — the mathematical backbone of the Chamseddine-
+-- Connes Standard Model derivation. Frozen-Nat snapshot: 2 metas +
+-- 6 phases + 21 atomic + 0 axioms = 29. Headline:
+-- finite_AF_algebra_gauge_lie_pair_grand_meta (6-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraGaugeLiePairGrandMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

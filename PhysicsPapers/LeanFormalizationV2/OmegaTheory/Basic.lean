@@ -4904,6 +4904,18 @@ import OmegaTheory.Foundations.StandardModelFromConnes
 -- adjointness — the foundation of Connes' gauge-field construction.
 -- Headline: inner_fluctuation_commutator_report (3-conjunct).
 import OmegaTheory.Foundations.InnerFluctuationCommutator
+-- Lion's-Pride Phase 6.5g (2026-05-06): HealingFlowConnesBridge.
+-- Bridge theorem connecting two independent derivations of the Higgs
+-- mass-squared in V2: the healing-flow Mexican-hat Hessian
+-- m_H²_substrate(N) = 8·δ_comp(N)² (from Hessian at substrate equilibrium)
+-- and the Connes spectral-action quadratic ‖H‖_F² (from t²-coefficient).
+-- Concrete construction: substrate-scaled 2×2 Hermitian off-diagonal
+-- Higgs perturbation H_sub(N) := [[0, 2δ], [2δ, 0]] satisfies
+-- ‖H_sub(N)‖_F² = 8·δ_comp(N)² = m_H²_substrate(N). Hence Connes
+-- capstone Re(Tr((yukawaDirac y + (t:ℂ)·H_sub(N))²)) = Σᵢ y_i² +
+-- t²·m_H²_substrate(N). The two formalisms agree at substrate scale.
+-- Headline: healingFlow_connes_bridge_report (4-conjunct).
+import OmegaTheory.Foundations.HealingFlowConnesBridge
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

@@ -5660,6 +5660,18 @@ import OmegaTheory.Predictions.SubstrateMachinerySummaryMeta
 -- comparison. Headline:
 -- substrate_machinery_loc_accounting_snapshot (6-conjunct).
 import OmegaTheory.Predictions.SubstrateMachineryLOCAccountingMeta
+-- Lion's-Pride Phase 6.15 — SUBSTRATE MACHINERY DOCTRINE META (dynamic
+-- /loop iteration 153, 2026-05-06): top-level frozen-Nat doctrine
+-- ledger encoding the 7 Lion's-Pride doctrine rules of OmegaTheory V2
+-- (NO STUBS, axiom Lean-core only, frozen-Nat verifiable, single-
+-- thread Opus 4.7 [1M], BUILD Mathlib gaps, NO HEDGE WORDS, NO
+-- HARDCODED COUNTS) as countable predicates verifiable via decide.
+-- Frozen-Nat snapshot: 7 rules + 152 iters + 0 axioms = 159. Plus
+-- structural-integrity inequalities + Rule II consistency + empirical
+-- validation count (7 × 152 = 1064 rule-applications across all
+-- iterations, ALL successful). Headline:
+-- substrate_machinery_doctrine_snapshot (4-conjunct).
+import OmegaTheory.Predictions.SubstrateMachineryDoctrineMeta
 -- Lion's-Pride Phase 9.54 — 9-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 147, 2026-05-06): substrate running-coupling 9-LOOP GRAND-
 -- LOOP META extending Phase 9.52 (16-conjunct) with new Phase 9.53

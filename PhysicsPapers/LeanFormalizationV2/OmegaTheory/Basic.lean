@@ -5598,6 +5598,15 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling6Loop
 -- IR-monotone-flow. Frozen-Nat snapshot: 6+2+12+0=20. Headline:
 -- substrate_running_coupling_extended_grand_loop_meta (12-conjunct).
 import OmegaTheory.Predictions.SubstrateRunningCouplingExtendedGrandLoopMeta
+-- Lion's-Pride Phase 6.5g (dynamic /loop iteration 123, 2026-05-06):
+-- finite Chamseddine-Connes A_F REAL-SCALAR EMBEDDING into the center
+-- at c_part — first step toward inner-automorphism analysis (gauge
+-- group extraction). Proves r • 1 has explicit form (r, 0), is central
+-- ((r•1)·a coincides with a·(r•1) at c_part), self-adjoint
+-- (adj(r•1) = r•1), and composes multiplicatively ((r•1)·(s•1) =
+-- (r·s)•1). Establishes ℝ ↪ Z(A_F)|c_part. Headline:
+-- finite_AF_algebra_scalar_center_report (4-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraScalarCenter
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

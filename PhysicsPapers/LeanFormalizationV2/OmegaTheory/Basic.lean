@@ -5366,6 +5366,13 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionNormalised
 -- ⟨ψ, φ⟩² ≤ 1 and basis-state corollary. Headline:
 -- multimode_wave_function_cauchy_schwarz_report (3-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionCauchySchwarz
+-- Lion's-Pride Phase 8.8 (dynamic /loop iteration 96, 2026-05-06):
+-- multi-mode wave-function REVERSE Cauchy-Schwarz threshold lower bound.
+-- 0 ≤ c, c ≤ |⟨ψ, φ⟩| ⟹ c² ≤ ⟨ψ, ψ⟩ · ⟨φ, φ⟩. Threshold lower bound
+-- complementing 7.11's squared CS upper bound. Useful for Heisenberg-
+-- type uncertainty bounds where commutator expectation is known.
+-- Headline: multimode_wave_function_reverse_cs_report (2-conjunct).
+import OmegaTheory.Foundations.MultimodeWaveFunctionReverseCS
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

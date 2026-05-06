@@ -5419,6 +5419,14 @@ import OmegaTheory.QuantumGravity.SubstrateFermionMassExcess
 -- snapshot (12 phases, 6 identities, sum 18). Headline:
 -- substrate_mass_full_universal_meta.
 import OmegaTheory.Predictions.SubstrateMassFullUniversalMeta
+-- Lion's-Pride Phase 6.5a (dynamic /loop iteration 103, 2026-05-06):
+-- finite Chamseddine-Connes A_F = ℂ ⊕ ℍ ⊕ M_3(ℂ) algebra structure.
+-- FIRST step of multi-iteration Phase 6.5 building toward Connes
+-- spectral action. Real direct-sum structure (24 real-dim total) +
+-- additive group instances (Zero, Add, Neg) + 3-conjunct field-level
+-- group identities (zero left/right at c_part + add-neg-self at
+-- c_part). Headline: finite_AF_algebra_group_report (3-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebra
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

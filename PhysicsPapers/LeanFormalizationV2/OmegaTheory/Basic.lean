@@ -5637,6 +5637,19 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling10Loop
 -- properties + 20 atomic + 0 axioms = 32. Headline:
 -- substrate_running_coupling_10loop_grand_meta (20-conjunct).
 import OmegaTheory.Predictions.SubstrateRunningCoupling10LoopGrandMeta
+-- Lion's-Pride Phase 6.13 — SUBSTRATE MACHINERY SUMMARY META (dynamic
+-- /loop iteration 151, 2026-05-06): top-level substrate machinery
+-- summary META — extending the Phase 6.11 3-track CROSS-SUBSTRATE
+-- TRACK CONNECTIVITY BRIDGE with the 4th substrate track (multi-mode
+-- wave-function hierarchy) into a 4-track META-over-META-over-META
+-- declaring the structural unity of the FULL substrate machinery
+-- of OmegaTheory V2: A_F algebra (9 META) + Pi-Hunch (1 META) +
+-- substrate running-coupling (8 META) + multi-mode wave-function
+-- (7 META) = 25 total META across 4 tracks. Frozen-Nat snapshot:
+-- 25 META + 4 tracks + 0 axioms = 29. Plus structural-integrity
+-- 4-conjunct positivity + track dominance comparison. Headline:
+-- substrate_machinery_summary_snapshot (9-conjunct).
+import OmegaTheory.Predictions.SubstrateMachinerySummaryMeta
 -- Lion's-Pride Phase 9.54 — 9-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 147, 2026-05-06): substrate running-coupling 9-LOOP GRAND-
 -- LOOP META extending Phase 9.52 (16-conjunct) with new Phase 9.53

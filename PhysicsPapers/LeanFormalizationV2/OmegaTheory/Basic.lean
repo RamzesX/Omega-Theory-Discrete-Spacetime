@@ -5238,6 +5238,18 @@ import OmegaTheory.QuantumGravity.SubstrateHiggsRunning
 -- independently flows to its IR-asymptote (no unification scale
 -- required since substrate UV cutoff is 1/ℓ_P, not GUT energy).
 import OmegaTheory.QuantumGravity.SubstrateGaugeCouplingSum
+-- Lion's-Pride Phase 9.13 (dynamic /loop iteration 56, 2026-05-06):
+-- substrate Yukawa coupling running — applies Phase 9.5 to fermion
+-- Yukawa: `yukawaRunning yIR α N := yIR · (1 + α · δ_comp(N))` with
+-- corresponding fermion mass `fermionMassRunning yIR α v N :=
+-- yukawaRunning · v` (tree-level m = y·v_eff, the √2 absorbed in v).
+-- Theorems: constant case at α=0; non-negativity; monotone decreasing
+-- in N for both Yukawa and mass (substrate IR flow). Headline:
+-- substrate_yukawa_running_report (4-conjunct). Honest scope:
+-- structural shape only; PDG calibration of (yIR, α) for individual
+-- fermions deferred to multi-month future work (would couple to
+-- generation hierarchy via 3 irrationals √2/e/π).
+import OmegaTheory.QuantumGravity.SubstrateYukawaRunning
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

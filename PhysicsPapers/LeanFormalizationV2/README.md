@@ -46,6 +46,34 @@ Machine-verified formalization of Omega-Theory / Chaos Shield discrete quantum g
 See [`PROJECT.md`](./PROJECT.md) for the full architecture, axiom inventory,
 flagship theorems, V1 vs V2 comparison, and optional porting work.
 
+## Lion's-Pride 2026-05 roadmap — honest derivation chain (post graviton-cluster purge)
+
+After the 2026-05-05 graviton-cluster + mass-batch trash audit, V2 entered a multi-month
+honest-rebuild arc: delete the citation-tautology debris (~117K LOC), then derive the
+remaining physics from first principles, using real classical-field-theory + heat-kernel
+machinery rather than `def OmegaConjecture` placeholders. Build job count grew from 4400
+post-purge to **4 732 GREEN** (2026-05-06, iter 160 m3_part associativity).
+
+**What is actually proven vs honest non-derivation markers:**
+
+| Phase | Status | What it ships | What is NOT yet derived |
+|---|---|---|---|
+| 1 — Trash purge | ✅ done | ~117K LOC deleted: 189 `*CategoricalYonedaWitness.lean`, 32 `T1_*PDG*` anchors, 28 Higgs frontier tautologies, 8 MetaYoneda Capstones, 10 tautological coupling/RG fits, 156 cascade-deleted paper-bundle files, 19 Higgs/EW/CLFV tautologies | — |
+| 2 — Honest status | ✅ done | `Predictions/MassDerivationStatus.lean` — explicit theorem-level statement of what is and is not derived in V2 for mass / Higgs / Yukawa / Connes spectral action | — |
+| 3 — Higgs SSB | ✅ done | Real Mexican-hat `V(φ) = -μ²|φ|² + λ|φ|⁴`, real SSB minimisation (minima at ±√(μ²/(2λ)), V_min = -μ⁴/(4λ)). `HiggsSubstrateBridge` chooses `μ²_substrate(N) := 2·δ_comp(N)²`, `λ_H := 1` so the SSB minimum lands at substrate VEV. `HiggsMassFromCurvature::higgs_mass_sq_substrate N = 8·δ_comp(N)²` | μ², λ_H **NOT** derived from healing-flow weights γ, λ_D, μ_g — they are a CHOICE; genuine derivation deferred to Phase 6 |
+| 4 — G-SM coupling | ✅ done | Linearised Einstein equation `□ h_μν = -16π G · T_μν` SOURCED by `informationStressEnergyTensor`; spin connection; curved-spacetime Dirac; classical Yukawa `L_Y = -y ψ̄ φ ψ` | Quantum-graviton + quantum-fermion scattering not in scope here |
+| 5 — G-G self-interaction | ✅ done | Einstein-Hilbert action `S_EH = ∫ √(-g) R / (16π G)`, perturbative expansion of R in `h_μν` to fourth order, cubic + quartic graviton vertices, metric determinant expansion | Quantum scattering amplitudes deferred to Phase 8 |
+| **6 — Connes NCG + spectral action** | 🚧 **in progress** (multi-month) | **A_F algebra structure shipped (32 phases, iters 128-160)**: `c_part × h_part × m3_part = ℂ × ℍ × M_3(ℂ)` componentwise, ℝ-bilinearity of multiplication on each component, IsUnitary product closure, IsSelfAdjoint negation closure, gauge-group structure, scalar-center, Hamilton 1843 `mul_assoc_h_part` (4-case `fin_cases + ring`), Phase 6.12 `mul_assoc_m3_part` (3×3 matrix Finset.sum + ring) — all axiom Lean-core only | **Genuine spectral action `S = Tr(f(D/Λ))` NOT YET formalised**: heat-kernel asymptotic expansion (Vassilevich port, ~1500 LOC), Seeley-DeWitt coefficients a₀/a₂/a₄ (Bochner-Weitzenböck, ~800 LOC), spectral-action stationarity (~1000 LOC), `StandardModelFromConnes` deriving λ_H from a₄ + μ² from stationarity (~2000 LOC). This is the work that closes the Stage-1 healing-flow→Mexican-hat derivation gap. |
+| 7 — Substrate QFT framework | 🚧 scaffolding | Symmetric/antisymmetric Fock space, creation/annihilation operators, canonical commutators, Wick's theorem, lattice path integral on the substrate's intrinsic UV cutoff `Λ² = 4/ℓ_P²` | Paper-grade computational chains for Higgs production, fermion mass derivations not yet wired |
+| 8 — Quantum gravity scattering | 🚧 scaffolding | Feynman rules from cubic + quartic graviton vertices, tree-level 2→2 scattering, substrate UV regularisation theorem | Loop corrections, paper-grade phenomenology |
+| 9 — One-loop + finite renormalisation | 🚧 scaffolding | 1-loop graviton self-energy, 1-loop matter contribution, substrate RG flow as `μ → 0` | Quantitative match to SM perturbative QFT |
+| **Substrate running-coupling tower** | ✅ 11 loops | 1-loop through 11-loop substrate-running coupling extensions with proven IR-monotone-flow at non-negative parameters (β ≤ 0) and explicit factored beta-function via difference-of-Nᵗʰ-powers `aᴺ - bᴺ = (a-b)·Σᵢ aⁱbᴺ⁻¹⁻ⁱ`. 9 GRAND-LOOP META capstones uniformly composing the tower | Connection to physical RG (αₛ, αEM running) deferred until Phase 6 a₄ delivers the substrate β-coefficients |
+| **Cross-substrate META hierarchy** | ✅ 6-layer | SUMMARY + LOC ACCOUNTING + DOCTRINE + THREE-META + HISTORICAL COMPLETION + EXTENSION ROADMAP + SIX-META META composing all top-level META capstones into a single decide-only umbrella | — |
+
+**Honest non-derivation statement (`MassDerivationStatus.lean`)**: V2 does NOT currently derive `m_e ≈ 0.51 MeV` or `m_H ≈ 125 GeV` from substrate axioms. End-to-end mass derivation is a research frontier (open since Connes 1996). What Phase 6 closes: the `μ², λ_H ← spectral-action a₄ + stationarity` chain; what Phase 6 does NOT close: the absolute mass scale (still requires the Connes-Chamseddine fit of D_F eigenvalues to PDG anchors).
+
+**Plan**: `~/.claude/plans/b-5-eager-piglet.md` — 9 phases, 12-24 months. Single-thread Opus 4.7 [1M context] dynamic /loop, NO mass wizards, NO STUBS, axiom-audit Lean-core only on every paper-headline. Doctrine BUILD_MATHLIB_MACHINERY_T6_13: when Mathlib lacks an API, we BUILD it (Vassilevich heat-kernel port, lattice QFT, etc.), NOT defer.
+
 ## Build
 
 ```bash

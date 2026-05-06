@@ -5782,6 +5782,17 @@ import OmegaTheory.Predictions.SubstrateRunningCoupling8LoopGrandMeta
 -- Phase 6.5d c_part associativity. Headline:
 -- finite_AF_algebra_mul_assoc_h_part_report.
 import OmegaTheory.Foundations.FiniteAFAlgebraMulAssocHPart
+-- Lion's-Pride Phase 6.12 — A_F m3_part associativity (dynamic /loop
+-- iteration 160, 2026-05-06): finite Chamseddine-Connes A_F 3×3 matrix
+-- associativity at m3_part — proves ((a * b) * c).m3_part i j =
+-- (a * (b * c)).m3_part i j for every i j : Fin 3. Proof: helper
+-- complexMulPair_assoc (ℂ-mul associativity, direct ring), then expand
+-- 3-element Finset.sums via Fin.sum_univ_three, simp [complexMulPair,
+-- Prod.mk_add_mk], ext + ring closes each component (polynomial identity
+-- in 18 ℝ variables). Together with 6.9 mul_assoc_h_part, completes the
+-- per-component associativity ledger for A_F's non-commutative pieces.
+-- Headline: finite_AF_algebra_mul_assoc_m3_part_report.
+import OmegaTheory.Foundations.FiniteAFAlgebraMulAssocM3Part
 -- Lion's-Pride Phase 6.10 — GRAND ASSOCIATIVITY META (dynamic /loop
 -- iteration 145, 2026-05-06): finite Chamseddine-Connes A_F GRAND
 -- ASSOCIATIVITY META composing the 6.5d c_part associativity (complex

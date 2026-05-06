@@ -25,8 +25,8 @@
   Per project HARD RULES — 0 sorry, 0 new axioms, GREEN build, NO STUBS.
 -/
 
-import OmegaTheory.Capstones.PiTranscendenceAlgebraicConsequences
 import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
+import OmegaTheory.Capstones.PiTranscendenceAxiomRetirementFinal
 
 namespace OmegaTheory.Capstones.PiSqrt2LinearIndependence
 

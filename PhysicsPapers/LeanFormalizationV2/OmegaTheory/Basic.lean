@@ -3906,7 +3906,6 @@ import OmegaTheory.Predictions.FineStructureAlphaZero
 -- `operators_full_zoo_paper_bundle`. 5 thematic capstones (lattice primitives,
 -- differential linearity, algebra commutativity, finset sums, substrate anchor)
 -- + paper bundle. 45/48 source decls re-exported. 7 declarations, Lean core only.
-import OmegaTheory.Spacetime.OperatorsCapstoneIndex
 -- ElectronMassAbsoluteP3a (Wave P3a, cycle-49, batch WAVE_POST_P3T)
 -- closes Marfik's candidate
 -- `electron_mass_MeV_absolute_within_1pct_PDG` (PDG central 0.5110 MeV).
@@ -4216,7 +4215,6 @@ import OmegaTheory.Irrationality.HermitePade.PiTranscendentalLayerCD
 -- W16-spacetime-ops — cycle-59 (Scorpius) Wave 1: Spacetime/Operators 151
 -- isolated theorems compose-into-capstone (residual after Spica² c57 wired
 -- 45/48). NEW capstone, target ≥50/151 orphans wired. 9 declarations, Lean core.
-import OmegaTheory.Spacetime.OperatorsCapstoneResidual
 
 -- ═══════════════════════════════════════════════════════════════════════
 -- Cycle-59 (Scorpius) Phase B Wave 2 batch — 7 wizards landed
@@ -4588,7 +4586,6 @@ import OmegaTheory.IrrationalityClasses.ICFourConstantsAxiomNarrowedExtension
 -- (symmetric Leibniz product, sub/neg linearity zoo, gradient zoo,
 -- divergence zoo, triple shift round-trip ZIGZAG/ZAGZIG, double Laplacian
 -- const zero). 10 thm + 1 marker, Lean core only.
-import OmegaTheory.Spacetime.OperatorsCapstoneResidualWave3
 
 -- Io (Jupiter I Galilean, most volcanically active body, Laplace resonance
 -- with Europa+Ganymede — fresh name) — cycle-60 W21:
@@ -4639,7 +4636,6 @@ import OmegaTheory.Conservation.CorrespondenceBridgeFirstLandingInbound
 -- W5 FOA cohomology
 
 -- W6 + W6-extension L4 follow-ups
-import OmegaTheory.HealingFlow.HealingFlowToSmoothMetric
 import OmegaTheory.Predictions.CosmologicalHorizonOmegaUnfold
 
 -- W7 OA + W7-tail
@@ -4648,7 +4644,6 @@ import OmegaTheory.Spacetime.CoordinationNumberInbound
 -- W8 meta
 
 -- W3-overflow + W5-overflow + W-tail
-import OmegaTheory.HealingFlow.IsHealingFlowYonedaWitness
 
 -- W9 GRAND SUPER-CAPSTONE — composes all 74 prior cycle-61 closures
 
@@ -4656,11 +4651,7 @@ import OmegaTheory.HealingFlow.IsHealingFlowYonedaWitness
 -- CYCLE 62 hand-authored paper-grade categorical Yoneda witnesses
 -- (post-Aquarius single-thread quality > quantity attack, 2026-04-26)
 -- ═══════════════════════════════════════════════════════════════════════
-import OmegaTheory.Geometry.ErrorBoundedSmoothMetricCategoricalYonedaWitness
-import OmegaTheory.Geometry.ErrorBoundedSmoothMetricRealCategoricalYonedaWitness
-import OmegaTheory.Defects.SemiSmoothMetricCategoricalYonedaWitness
 import OmegaTheory.Predictions.InformationSecondLawBundle
-import OmegaTheory.Geometry.WeylGeneralIsolationBreak
 -- Lion's-Pride Phase 2.1 (2026-05-05): substrate d'Alembertian operator,
 -- sign-correct Lorentzian wave operator on the lattice. Closes inventory
 -- gap E.2; foundation for Phase-3 graviton wave equation.
@@ -6002,7 +5993,6 @@ import OmegaTheory.Predictions.SubstratePiHunchUniversalCapstone
 -- batches 1-7 (~107K LOC trash deleted across ~570 files).
 import OmegaTheory.Predictions.MassDerivationStatus
 import OmegaTheory.Emergence.RelativisticSchrodingerLimitBundle
-import OmegaTheory.Tensor.ErrorTensorIsolationBreak
 
 -- (cycle 62 Pisces — single-thread hand-authored T-4 closure plan, 2026-04-27)
 -- Wave T4b session 12 — `LindemannPremiseRatProofPowerSumIntComplete.lean`.
@@ -6104,7 +6094,6 @@ import OmegaTheory.Irrationality.HermitePade.PiTranscendentalUnconditional
 -- bridge → π trans, linear unconditional, L-W chain → False, irrational
 -- consequence. Pending T4c.2 axiom flip awaits cycle-64 bridge discharge.
 -- 3 thm + 1 paper bundle. Lean core only. ZERO stubs.
-import OmegaTheory.Capstones.PiTranscendenceAxiomRetirement
 
 -- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
 -- Wave T4b session 23 — `LindemannPremiseRatProofBridgeReduction.lean`.
@@ -6200,7 +6189,6 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPiTransUnder
 -- 20+ sessions of progress: bridge → π trans, linear case, L-W chain → False,
 -- π trans under π² ∈ ℚ, esymm rational, sum rational, subsetSumPoly_C aroots
 -- integral. 1 thm + paper bundle. Lean core only. ZERO stubs.
-import OmegaTheory.Capstones.PiTranscendenceAxiomRetirementCycle63Final
 
 -- (cycle 63 Pisces, plan v2 — single-thread hand-authored, 2026-04-27)
 -- Wave T4b session 34 — `LindemannPremiseRatProofSubsetSumsSumExplicit.lean`.
@@ -6334,7 +6322,6 @@ import OmegaTheory.Capstones.PiTranscendenceAxiomRetirementFinal
 -- Session 62 — concrete consequences of π transcendental: π^n
 -- transcendental/irrational/∉ℚ for any n ≥ 1. Specializations to π², π³.
 -- Demonstrates immediate power of the cycle-64 keystone. Lean core only.
-import OmegaTheory.Capstones.PiTranscendenceConsequences
 
 -- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
 -- Session 63 — Pi-Hunch UNCONDITIONAL capstone. The OmegaTheory thesis
@@ -6345,7 +6332,6 @@ import OmegaTheory.Capstones.PiTranscendenceConsequences
 -- Session 64 — Algebraic consequences of π transcendental:
 -- π+α, π-α, π·α (α≠0) all transcendental for any algebraic α.
 -- Specializations to ℚ. Negation of π. Lean core only.
-import OmegaTheory.Capstones.PiTranscendenceAlgebraicConsequences
 
 -- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
 -- Session 65 — π and √2 are ℚ-linearly independent. Foundational fact
@@ -6355,7 +6341,6 @@ import OmegaTheory.Capstones.PiSqrt2LinearIndependence
 -- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
 -- Session 66 — Uniform π-transcendence forms (re-exports). ℚ[X] root,
 -- ℤ[X] root, ¬ IsAlgebraic — all equivalent forms. Lean core only.
-import OmegaTheory.Capstones.PiTranscendenceUniformConsequences
 
 -- (cycle 64 Pisces — single-thread hand-authored, 2026-04-27)
 -- Session 67 — 🏆 CYCLE 64 MASTER CAPSTONE 🏆 — single 12-conjunct

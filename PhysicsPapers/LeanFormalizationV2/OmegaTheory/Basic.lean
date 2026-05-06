@@ -5598,6 +5598,17 @@ import OmegaTheory.QuantumGravity.SubstrateRunningCoupling6Loop
 -- θ=0 → 6-loop, η=θ=0 → 5-loop, ζ=η=θ=0 → 4-loop. Headline:
 -- substrate_running_coupling_7loop_report (2-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRunningCoupling7Loop
+-- Lion's-Pride Phase 9.50 — 7-LOOP GRAND-LOOP META (dynamic /loop
+-- iteration 138, 2026-05-06): substrate running-coupling 7-LOOP GRAND-
+-- LOOP META extending Phase 9.48 (12-conjunct) with new Phase 9.49
+-- 7-loop reductions and beta-non-positivity into a 14-conjunct umbrella
+-- covering all 7 loop orders (1-loop through 7-loop). 7-conjunct
+-- extended nested reduction hierarchy (θ=0→6-loop, η=0→5-loop, ...,
+-- α=0→constant) + 7-conjunct extended uniform IR-monotone-flow
+-- (β(g_k, N) ≤ 0 for k=1..7). Frozen-Nat snapshot: 7 loops + 2
+-- properties + 14 atomic + 0 axioms = 23. Headline:
+-- substrate_running_coupling_7loop_grand_meta (14-conjunct).
+import OmegaTheory.Predictions.SubstrateRunningCoupling7LoopGrandMeta
 -- Lion's-Pride Phase 9.48 — EXTENDED GRAND-LOOP META (dynamic /loop
 -- iteration 122, 2026-05-06): substrate running-coupling EXTENDED
 -- GRAND-LOOP META extending Phase-9.46 10-conjunct GRAND-LOOP with

@@ -5615,6 +5615,14 @@ import OmegaTheory.Foundations.FiniteAFAlgebraScalarCenter
 -- Foundation step toward IsUnitary (a*·a = 1) for gauge-group extraction.
 -- Headline: finite_AF_algebra_squared_norm_report (5-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraSquaredNorm
+-- Lion's-Pride Phase 6.5o (dynamic /loop iteration 125, 2026-05-06):
+-- finite Chamseddine-Connes A_F IsUnitary predicate at c_part —
+-- defines cPartIsUnitary u := ‖u‖²|c = 1 (standard u*·u=1 condition
+-- via squared-norm). Proves: 1 unitary, -1 unitary, adj preserves
+-- unitary (‖adj u‖² = ‖u‖²), real-scalar unit (r•1) unitary iff r²=1.
+-- Foundation toward U(A_F) gauge group. Headline:
+-- finite_AF_algebra_is_unitary_report (4-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraIsUnitary
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

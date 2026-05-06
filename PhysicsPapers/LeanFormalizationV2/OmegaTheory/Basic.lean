@@ -5001,6 +5001,13 @@ import OmegaTheory.Foundations.SubstratePropagator
 -- quantum-gravity scattering 1/3 sub-phases. Headline:
 -- graviton_scattering_tree_report (5-conjunct).
 import OmegaTheory.QuantumGravity.GravitonScatteringTreeLevel
+-- Lion's-Pride Phase 8.2 (dynamic /loop iteration 34, 2026-05-06):
+-- s-channel exchange amplitude composing Phase 5.3 cubic vertex
+-- with Phase 7.5 substrate-regulated propagator: M_s := V₃·G(k²)·V₃.
+-- Vanishes on zero leg. Positive when V₃, G(k²) all positive.
+-- Phase 8 substrate-QG 2/3 sub-phases. Headline:
+-- channel_exchange_amplitude_report (3-conjunct).
+import OmegaTheory.QuantumGravity.ChannelExchangeAmplitude
 -- Lion's-Pride Phase 9.1 (dynamic /loop iteration 29, 2026-05-06):
 -- Substrate UV regularisation: substrateUVCutoff = 1/ℓ_P > 0 (Kempf
 -- bandlimit identification). The substrate's intrinsic lattice scale

@@ -5507,6 +5507,15 @@ import OmegaTheory.Predictions.FiniteAFAlgebraGrandMetaCapstone
 -- structure across A_F components. Headline:
 -- finite_AF_algebra_smul_h_part_report (5-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraSMulHPart
+-- Lion's-Pride Phase 6.5k (dynamic /loop iteration 113, 2026-05-06):
+-- finite Chamseddine-Connes A_F ℝ-SMul module-compatibility laws
+-- extended to m3_part (the M_3(ℂ) ≅ Matrix (Fin 3) (Fin 3) (ℝ × ℝ)
+-- component). Pointwise (i j : Fin 3) versions of the 5 module-compat
+-- laws — zero absorbs, one identity, distrib over + (in A_F + in ℝ),
+-- mul-associativity. Completes ℝ-module compatibility coverage across
+-- ALL 3 components of A_F = ℂ ⊕ ℍ ⊕ M_3(ℂ). Headline:
+-- finite_AF_algebra_smul_m3_part_report (5-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraSMulM3Part
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

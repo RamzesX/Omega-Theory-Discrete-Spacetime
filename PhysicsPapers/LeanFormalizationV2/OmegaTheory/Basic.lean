@@ -5432,6 +5432,13 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionSecondMoment
 -- function variance = 0. Substrate-side input to Heisenberg uncertainty.
 -- Headline: multimode_wave_function_variance_report (3-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionVariance
+-- Lion's-Pride Phase 7.22 (dynamic /loop iteration 86, 2026-05-06):
+-- multi-mode QM-observable META-CAPSTONE composing one identity from
+-- EACH of 7.18 (expectation, basis, vacuum), 7.19 (second moment,
+-- basis), 7.20 (variance basis = 0) into a 6-conjunct theorem.
+-- Plus Frozen-Nat snapshot (4 phases, 7 properties, sum 11).
+-- Headline: multimode_qm_observable_meta_capstone (6-conjunct).
+import OmegaTheory.Predictions.MultimodeQMObservableMetaCapstone
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

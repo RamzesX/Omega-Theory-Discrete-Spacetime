@@ -5250,6 +5250,17 @@ import OmegaTheory.QuantumGravity.SubstrateGaugeCouplingSum
 -- fermions deferred to multi-month future work (would couple to
 -- generation hierarchy via 3 irrationals √2/e/π).
 import OmegaTheory.QuantumGravity.SubstrateYukawaRunning
+-- Lion's-Pride Phase 9.14 (dynamic /loop iteration 57, 2026-05-06):
+-- substrate three-generation Yukawa running — three independent
+-- Yukawa values + corresponding fermion masses for SM's three
+-- generations. `threeGenYukawa yIRs αs N g := yukawaRunning (yIRs g)
+-- (αs g) N` for `g : Fin 3`. Theorems: per-gen non-negativity,
+-- per-gen monotone decreasing in N, mass ordering preserved under
+-- uniform α (yIRs g1 ≤ yIRs g2 ⟹ threeGen(N, g1) ≤ threeGen(N, g2)).
+-- Headline: substrate_three_generation_running_report (3-conjunct).
+-- Connects to Pi-Hunch hypothesis: 3 generations ↔ 3 irrationals
+-- √2/e/π with descending convergence rates ↔ ascending masses.
+import OmegaTheory.QuantumGravity.SubstrateThreeGenerationRunning
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

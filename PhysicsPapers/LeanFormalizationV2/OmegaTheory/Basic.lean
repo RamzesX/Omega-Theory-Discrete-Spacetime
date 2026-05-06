@@ -5381,6 +5381,13 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionReverseCS
 -- trajectory cannot fall. Headline:
 -- substrate_fermion_mass_ir_floor_report (2-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateFermionMassIRFloor
+-- Lion's-Pride Phase 9.36 (dynamic /loop iteration 98, 2026-05-06):
+-- substrate-running fermion mass UV-ceiling: m_g(N) ≤ y_g·(1+α_g·δ_0)·v
+-- for non-neg parameters. Uses substrateRGScale_le_zero (induction over N
+-- with substrateRGScale_decreasing). Combined with 9.35's IR-floor:
+-- y_g·v ≤ m_g(N) ≤ y_g·(1+α_g·δ_0)·v — the FINITE substrate-running
+-- window. Headline: substrate_fermion_mass_uv_ceiling_report (2-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateFermionMassUVCeiling
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

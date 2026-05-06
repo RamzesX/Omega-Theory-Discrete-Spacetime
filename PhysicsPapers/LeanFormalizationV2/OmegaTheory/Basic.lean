@@ -5411,6 +5411,14 @@ import OmegaTheory.Predictions.SubstrateCentenaryMassMeta
 -- via substrateRGScale_decreasing + mul_le_mul_of_nonneg chain.
 -- Headline: substrate_fermion_mass_excess_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateFermionMassExcess
+-- Lion's-Pride Phase 9.40 (dynamic /loop iteration 102, 2026-05-06):
+-- substrate-running mass FULL UNIVERSAL META composing 9.14
+-- (Yukawa non-neg) + 9.16 (cross-difference identity) + 9.27 (Pi-Hunch
+-- general sign) + 9.35 (IR-floor) + 9.36 (UV-ceiling) + 9.39 (excess
+-- exact formula) into a 6-conjunct super-meta. Plus Frozen-Nat
+-- snapshot (12 phases, 6 identities, sum 18). Headline:
+-- substrate_mass_full_universal_meta.
+import OmegaTheory.Predictions.SubstrateMassFullUniversalMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

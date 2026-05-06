@@ -5373,6 +5373,14 @@ import OmegaTheory.Foundations.MultimodeWaveFunctionCauchySchwarz
 -- type uncertainty bounds where commutator expectation is known.
 -- Headline: multimode_wave_function_reverse_cs_report (2-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionReverseCS
+-- Lion's-Pride Phase 9.35 (dynamic /loop iteration 97, 2026-05-06):
+-- substrate-running fermion mass IR-floor: under non-negative IR-Yukawa,
+-- non-negative substrate sensitivity α, non-negative Higgs VEV,
+-- m_g(N) = y_g · (1 + α_g · δ_N) · v ≥ y_g · v. Plus non-negativity
+-- 0 ≤ m_g(N). Substrate-running deep-IR floor below which the
+-- trajectory cannot fall. Headline:
+-- substrate_fermion_mass_ir_floor_report (2-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateFermionMassIRFloor
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

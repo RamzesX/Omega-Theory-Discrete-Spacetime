@@ -5623,6 +5623,15 @@ import OmegaTheory.Foundations.FiniteAFAlgebraSquaredNorm
 -- Foundation toward U(A_F) gauge group. Headline:
 -- finite_AF_algebra_is_unitary_report (4-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraIsUnitary
+-- Lion's-Pride Phase 6.5p (dynamic /loop iteration 126, 2026-05-06):
+-- finite Chamseddine-Connes A_F IsSelfAdjoint predicate at c_part —
+-- defines cPartIsSelfAdjoint a := (adj a).c_part = a.c_part (equivalent
+-- to a.c_part.2 = 0, i.e., a|c ∈ ℝ ⊂ ℂ). Proves: 0, 1, real-scalar
+-- unit (r•1) self-adjoint, additive closure (a+b self-adjoint when a, b
+-- are). Foundation step for the Lie algebra of self-adjoint elements
+-- whose exponentials generate U(A_F). Headline:
+-- finite_AF_algebra_is_self_adjoint_report (4-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraIsSelfAdjoint
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

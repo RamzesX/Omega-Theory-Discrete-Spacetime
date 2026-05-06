@@ -5106,6 +5106,15 @@ import OmegaTheory.Foundations.RhoParameterCustodial
 -- contrapositive of vanishing theorems via mul_ne_zero chain.
 -- Headline: jarlskog_nonvanishing_report (4-conjunct).
 import OmegaTheory.Foundations.JarlskogNonVanishing
+-- Lion's-Pride Phase 6.5z (2026-05-06): SMGaugeBosonCount.
+-- SM gauge group dimension counting + post-SSB distribution:
+-- dim(U(1)_Y × SU(2)_L × SU(3)_C) = 1 + 3 + 8 = 12 generators.
+-- After EW SSB: 9 massless (γ + 8 gluons) + 3 massive (W±, Z) = 12.
+-- SSB redistributes massless ↔ massive but preserves total. Pure
+-- Nat arithmetic by decide. Composes existing su2Dim, u1emDim,
+-- electroweak_GoldstoneCount with new su3Dim and u1yDim.
+-- Headline: sm_gauge_boson_count_report (4-conjunct).
+import OmegaTheory.Foundations.SMGaugeBosonCount
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

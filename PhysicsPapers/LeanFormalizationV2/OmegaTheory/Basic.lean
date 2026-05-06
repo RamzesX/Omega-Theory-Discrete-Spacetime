@@ -5097,6 +5097,15 @@ import OmegaTheory.Foundations.CKMRowOneUnitarity
 -- Weinberg form.
 -- Headline: rho_parameter_custodial_report (4-conjunct).
 import OmegaTheory.Foundations.RhoParameterCustodial
+-- Lion's-Pride Phase 6.5y (2026-05-06): JarlskogNonVanishing.
+-- Closes converse direction of jarlskog_vanishes_* theorems in
+-- Emergence/CKMMatrix.lean. CP violation in SM (J ≠ 0) requires
+-- ALL three quark mixing angles nonzero AND nonzero CP phase
+-- (Kobayashi-Maskawa). Bidirectional iff: J ≠ 0 ↔ all 7 factors
+-- (s12, c12, s23, c23, s13, c13, sin δ) nonzero. Pure
+-- contrapositive of vanishing theorems via mul_ne_zero chain.
+-- Headline: jarlskog_nonvanishing_report (4-conjunct).
+import OmegaTheory.Foundations.JarlskogNonVanishing
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

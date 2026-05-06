@@ -5629,6 +5629,16 @@ import OmegaTheory.Predictions.SubstrateRunningCoupling8LoopGrandMeta
 -- Phase 6.5d c_part associativity. Headline:
 -- finite_AF_algebra_mul_assoc_h_part_report.
 import OmegaTheory.Foundations.FiniteAFAlgebraMulAssocHPart
+-- Lion's-Pride Phase 6.10 — GRAND ASSOCIATIVITY META (dynamic /loop
+-- iteration 145, 2026-05-06): finite Chamseddine-Connes A_F GRAND
+-- ASSOCIATIVITY META composing the 6.5d c_part associativity (complex
+-- mul, ring) and 6.9 h_part associativity (Hamilton quaternion,
+-- fin_cases+ring) into a 2-conjunct umbrella declaring associativity
+-- of A_F multiplication at both non-matrix component fields. m3_part
+-- associativity downstream (matrix Finset.sum manipulation deferred).
+-- Frozen-Nat snapshot: 2 phases + 2 atomic + 0 axioms = 4. Headline:
+-- finite_AF_algebra_grand_associativity_meta (2-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraGrandAssociativityMeta
 -- Lion's-Pride Phase 9.50 — 7-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 138, 2026-05-06): substrate running-coupling 7-LOOP GRAND-
 -- LOOP META extending Phase 9.48 (12-conjunct) with new Phase 9.49

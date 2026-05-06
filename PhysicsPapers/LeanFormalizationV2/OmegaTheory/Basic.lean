@@ -5359,6 +5359,17 @@ import OmegaTheory.Predictions.SubstrateGrandMetaCapstone
 -- (sum of squares); zero wave function not normalised.
 -- Headline: multimode_wave_function_normalised_report (3-conjunct).
 import OmegaTheory.Foundations.MultimodeWaveFunctionNormalised
+-- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
+-- substrate Pi-Hunch ordering predicate — formalises the
+-- 3-generation ↔ 3-irrational substrate hypothesis structurally.
+-- `IsStrictlyOrderedAlpha αs := αs 0 < αs 1 ∧ αs 1 < αs 2`.
+-- Theorems: Pi-Hunch witness `αs = (1,2,3)` satisfies the predicate;
+-- strict ordering implies α_0 < α_2 (transitivity); strict ordering
+-- implies pairwise distinct. Headline:
+-- substrate_pi_hunch_ordering_report (3-conjunct). Honest scope:
+-- structural ordering only; specific (α_g₁, α_g₂, α_g₃) values from
+-- substrate axioms multi-month future work via Connes spectral-action.
+import OmegaTheory.QuantumGravity.SubstratePiHunchOrdering
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

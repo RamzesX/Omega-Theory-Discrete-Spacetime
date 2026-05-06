@@ -5618,6 +5618,16 @@ import OmegaTheory.Predictions.SubstrateRunningCoupling7LoopGrandMeta
 -- index i : Fin 4. Companion to Phase 6.5x (c_part bilinearity).
 -- Headline: finite_AF_algebra_smul_mul_h_part_report (2-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraSMulMulHPart
+-- Lion's-Pride Phase 6.7b — SMUL-MUL INTERACTION at m3_part (dynamic
+-- /loop iteration 140, 2026-05-06): finite Chamseddine-Connes A_F
+-- SMul-Mul interaction at m3_part (M_3(ℂ) matrix middle factor) —
+-- proves the ℝ-bilinearity of the matrix product over Finset.sum_univ_three:
+-- ((r • a) * b).m3_part i j = (r • (a*b)).m3_part i j (left), (a *
+-- (r • b)).m3_part i j = (r • (a*b)).m3_part i j (right), at every
+-- (i, j) : Fin 3 × Fin 3. Companion to Phase 6.5x (c_part) and
+-- Phase 6.7 (h_part / quaternionic). Headline:
+-- finite_AF_algebra_smul_mul_m3_part_report (2-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraSMulMulM3Part
 -- Lion's-Pride Phase 9.48 — EXTENDED GRAND-LOOP META (dynamic /loop
 -- iteration 122, 2026-05-06): substrate running-coupling EXTENDED
 -- GRAND-LOOP META extending Phase-9.46 10-conjunct GRAND-LOOP with

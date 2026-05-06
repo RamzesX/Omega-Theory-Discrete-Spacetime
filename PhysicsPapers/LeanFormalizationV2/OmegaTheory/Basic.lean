@@ -4984,6 +4984,20 @@ import OmegaTheory.Foundations.TruncatedToContinuumLimit
 -- on substrate is the next sub-phase (separate file).
 -- Headline: substrate_seeley_de_witt_a2_report (4-conjunct).
 import OmegaTheory.Foundations.SubstrateSeeleyDeWittA2
+-- Lion's-Pride Phase 6.5n (2026-05-06): HealingFlowSemiSmoothLimit.
+-- The substrate's manifolds are NOT flat — they are SEMI-SMOOTH with
+-- ε-bounded defects (Defects/DefectTensor.lean::SemiSmoothMetric),
+-- aligned with the tensor-error algebra (Tensor/ErrorTensor.lean::
+-- ValuedTensorField + Tensor/ValuedGeometry.lean::christoffelError).
+-- This file ships the bridge: under healing flow toward equilibrium,
+-- defects vanish (Convergence.healingFunctional_zero_implies_all_vanish),
+-- driving the SemiSmoothMetric toward the smooth-manifold limit (g = g_exact).
+-- IsSmoothLimit g g_exact ↔ ∀ p μ ν, g p μ ν = g_exact p μ ν.
+-- Equilibrium with zero defectTensor → IsSmoothLimit. The substrate's
+-- continuum limit is NOT taken via lattice spacing → 0; it's the
+-- limit defectMagnitude → 0 along the healing-flow trajectory.
+-- Headline: healing_flow_semismooth_limit_report (4-conjunct).
+import OmegaTheory.Foundations.HealingFlowSemiSmoothLimit
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

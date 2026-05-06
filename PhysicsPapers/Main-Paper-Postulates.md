@@ -6,6 +6,18 @@
 
 ---
 
+> ## ⚠ Reframed 2026-05-06 — read [`README.md`](README.md) first
+>
+> This paper presents the postulational setup of OmegaTheory V2 in its **conceptual** form. The project's actual machine-verified contributions, organized around the **signature-match bridging framework**, are now described in [`README.md`](README.md). In particular:
+>
+> - The Lean witness theorem references in this paper's anchor table reflect the **2026-04-21 cycle-43 corpus**. After the 2026-05-05/06 trash purge (~117 K LOC of mass-batch Yoneda witnesses + PDG calibration tautologies + paper-bundle citation files removed), some of those file paths and theorem names have been moved or deleted. The substrate spine (π transcendence, healing-flow Lyapunov, Higgs Mexican-hat, gauge-information density, photon signature match) is intact and machine-checked at **build job 4 620 GREEN, axiom Lean-core only**.
+> - The "central thesis" framing (mass as geometry-reshaping cost; Standard Model generates geometry; spacetime and SM as dual projections) is **conceptual / philosophical** — it organizes the substrate's ambition, but is NOT a derived theorem in Lean. The honest derived results are: (i) π is transcendental, (ii) δ_comp(N) > 0 produces extended Heisenberg uncertainty, (iii) the healing-flow functional has Lyapunov dissipation, (iv) Higgs Mexican-hat SSB algebra, (v) the photon's gauge-information signature matches textbook EM energy density.
+> - **Tier 2 conjectures** (mass hierarchy, three-generation matching from {π, e, √2}, dark sector budget) remain research-grade conjectures with explicit Lean scaffolding, not peer-reviewed unified physics. See `CompleteOmegaTheory.md §0 Honest Scope` and `README.md#honest-scope` for the Tier 1 / Tier 2 split.
+>
+> **For the precise organizing principle, particle-by-particle dictionary, and current shipping status, read [`README.md`](README.md).** This paper retains its conceptual setup as historical context.
+
+---
+
 ## Abstract
 
 > ### 🔐 Lean-Verified Postulate → Theorem Index

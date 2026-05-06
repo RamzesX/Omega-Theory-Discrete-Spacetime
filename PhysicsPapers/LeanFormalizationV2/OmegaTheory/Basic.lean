@@ -5462,6 +5462,15 @@ import OmegaTheory.Foundations.FiniteAFAlgebraMulProperties
 -- zero-product (0 · a)*, one-product (1 · a)*. Headline:
 -- finite_AF_algebra_adj_anti_mul_report (4-conjunct).
 import OmegaTheory.Foundations.FiniteAFAlgebraAdjAntiMul
+-- Lion's-Pride Phase 6.5f — META-CAPSTONE (dynamic /loop iteration 108,
+-- 2026-05-06): finite Chamseddine-Connes A_F ALGEBRA META-CAPSTONE
+-- composing one substantive identity from EACH of Phase 6.5a (additive
+-- group), 6.5b (multiplication), 6.5c (adjoint involution), 6.5d (mul
+-- properties), and 6.5e (adjoint anti-multiplicativity) into a single
+-- 5-conjunct umbrella theorem. Frozen-Nat snapshot: 5 phases, 21
+-- substantive theorems, 0 new axioms. Headline:
+-- finite_AF_algebra_meta_capstone (5-conjunct).
+import OmegaTheory.Predictions.FiniteAFAlgebraMetaCapstone
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

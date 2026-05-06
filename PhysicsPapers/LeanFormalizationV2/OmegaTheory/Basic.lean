@@ -5054,6 +5054,17 @@ import OmegaTheory.Foundations.HiggsBosonAsFockExcitation
 -- → fermion mass-acquisition.
 -- Headline: yukawa_mass_birth_event_report.
 import OmegaTheory.Foundations.YukawaMassBirthEvent
+-- Lion's-Pride Phase 6.5u (2026-05-06): FermionElectricChargeRework.
+-- Honest electric-charge encoding for Standard Model fermion content.
+-- Audit of Emergence/FermionContent.lean §RightHandedSinglet found
+-- twoQ : ℤ uses 0 as placeholder for up/down quarks (Q = +2/3, -1/3
+-- not integer when doubled). Replacement: sixQ : ℤ encoding 6×
+-- electric charge — leptons -6/0, quarks +4/-2 — all integers, exact.
+-- Closure: sixQ_total_fermion_per_gen_eq_zero ((-6)+0+3·4+3·(-2)=0)
+-- IS the SM anomaly-cancellation requirement per generation.
+-- Non-breaking enhancement; original twoQ retained for backward compat.
+-- Headline: fermion_electric_charge_rework_report (4-conjunct).
+import OmegaTheory.Foundations.FermionElectricChargeRework
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

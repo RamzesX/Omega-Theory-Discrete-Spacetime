@@ -4998,6 +4998,17 @@ import OmegaTheory.Foundations.SubstrateSeeleyDeWittA2
 -- limit defectMagnitude → 0 along the healing-flow trajectory.
 -- Headline: healing_flow_semismooth_limit_report (4-conjunct).
 import OmegaTheory.Foundations.HealingFlowSemiSmoothLimit
+-- Lion's-Pride Phase 6.5o (2026-05-06): HealingFlowTopologyEvolution.
+-- Algebraic-topology evolution under healing flow: the substrate's
+-- LatticeComplex2D K and its Gauss-Bonnet topological invariant
+-- χ(K) are DECOUPLED from the DiscreteMetric g that the flow evolves.
+-- Hence χ is τ-invariant for any healing-flow path. Curvature
+-- distribution evolves toward the smooth limit (g = g_exact),
+-- but the topological integral ∫ K dvol = 2π·χ(K) is conserved.
+-- Combines Geometry/GaussBonnet.discrete_gauss_bonnet (Σ vertex
+-- curvature = 2π χ) with Phase 6.5n IsSmoothLimit framework.
+-- Headline: healing_flow_topology_evolution_report (4-conjunct).
+import OmegaTheory.Foundations.HealingFlowTopologyEvolution
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

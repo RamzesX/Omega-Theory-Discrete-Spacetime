@@ -5122,6 +5122,18 @@ import OmegaTheory.QuantumGravity.MandelstamInvariants
 -- `mandelstam_sum_from_concrete_conservation` closes the chain
 -- end-to-end. Headline: four_momentum_report (3-conjunct).
 import OmegaTheory.QuantumGravity.FourMomentum
+-- Lion's-Pride Phase 9.6 (dynamic /loop iteration 46, 2026-05-06):
+-- two-loop substrate-derived running coupling — extends Phase 9.5
+-- with quadratic correction `runningCoupling2Loop g₀ α β N := g₀·
+-- (1 + α·δ(N) + β·δ(N)²)`. Theorems: (i) reduces to Phase 9.5 at
+-- β = 0; (ii) factored beta-function `β(g, N) = g₀·(δ_{N+1}-δ_N)·
+-- (α + β·(δ_{N+1}+δ_N))` (difference-of-squares factoring);
+-- (iii) `β ≤ 0` for `g₀, α, β ≥ 0` (substrate two-loop preserves
+-- monotone IR flow). Honest scope: structural extension only;
+-- specific (g₀, α, β) calibration to SM two-loop coefficients (b_0,
+-- b_1, etc.) deferred to multi-month future work. Headline:
+-- substrate_running_coupling_2loop_report (3-conjunct).
+import OmegaTheory.QuantumGravity.SubstrateRunningCoupling2Loop
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

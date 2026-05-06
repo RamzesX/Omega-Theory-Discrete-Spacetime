@@ -5097,6 +5097,19 @@ import OmegaTheory.QuantumGravity.CrossSectionScaffold
 -- action and is multi-month future work. Headline:
 -- substrate_running_coupling_report (3-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateRunningCoupling
+-- Lion's-Pride Phase 8.5 (dynamic /loop iteration 44, 2026-05-06):
+-- Mandelstam invariants `s, t, u` for 2 → 2 scattering and the
+-- kinematic conservation identity `s + t + u = m₁²+m₂²+m₃²+m₄²`.
+-- Scalar-bilinear scaffold form: takes Lorentz-invariant scalar
+-- products as inputs + 4-momentum conservation as a scalar
+-- hypothesis (`p₁·p₂ = p₁·p₃ + p₁·p₄ - p₁²` derived from
+-- p₁+p₂ = p₃+p₄ by dotting with p₁). Theorems: (i) sum identity;
+-- (ii) massless special case `s+t+u = 0`; (iii) determined-fourth
+-- corollary `u = total - s - t`. Headline:
+-- mandelstam_invariants_report (3-conjunct). Honest scope:
+-- bilinear scalar form only; full 4-vector concrete model with
+-- Minkowski signature `Fin 4 → ℝ` deferred to follow-up file.
+import OmegaTheory.QuantumGravity.MandelstamInvariants
 -- Lion's-Pride Phase 2 (dynamic /loop iteration 2, 2026-05-05): honest
 -- non-derivation status markers for the SM mass / Higgs / Yukawa /
 -- spectral-action chain. Companion to GravitonDetectionImpossibility.

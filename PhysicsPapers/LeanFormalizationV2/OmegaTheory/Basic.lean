@@ -5571,6 +5571,15 @@ import OmegaTheory.Predictions.SubstrateRunningCouplingLoopHierarchyMeta
 -- snapshot: 5+5+0=10. Headline:
 -- substrate_running_coupling_beta_nonpos_uniform_meta (5-conjunct).
 import OmegaTheory.Predictions.SubstrateRunningCouplingBetaNonposUniformMeta
+-- Lion's-Pride Phase 9.46 — GRAND-LOOP META (dynamic /loop iteration
+-- 120, 2026-05-06): substrate running-coupling GRAND-LOOP META
+-- combining Phase-9.44 LOOP-HIERARCHY (5 nested reductions) with
+-- Phase-9.45 BETA-NON-POSITIVITY UNIFORM (5 IR-monotone-flow) into a
+-- single 10-conjunct umbrella declaring the FULL structural state of
+-- the substrate running-coupling tower. Frozen-Nat snapshot: 5 loops
+-- + 2 properties + 10 atomic + 0 axioms = 17. Headline:
+-- substrate_running_coupling_grand_loop_meta (10-conjunct).
+import OmegaTheory.Predictions.SubstrateRunningCouplingGrandLoopMeta
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

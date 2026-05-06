@@ -5087,6 +5087,16 @@ import OmegaTheory.Foundations.GellMannNishijimaRelation
 -- phase-mixing expansion (Phase 6.5w-cont).
 -- Headline: ckm_row1_col3_unitarity_grand.
 import OmegaTheory.Foundations.CKMRowOneUnitarity
+-- Lion's-Pride Phase 6.5x (2026-05-06): RhoParameterCustodial.
+-- Veltman ρ-parameter ρ := M_W²/(M_Z²·cos²θ_W) = 1 at tree level.
+-- The custodial-symmetry consequence of cos θ_W := M_W/M_Z. Closed
+-- algebraically from existing mW_eq_mZ_times_cosThetaW_substrate
+-- in Predictions/ZBosonMassFit.lean. All ρ ≠ 1 deviations are
+-- 1-loop Δρ corrections (m_t² - m_b² Veltman formula), not in this
+-- tree-level computation. Plus M_W² = M_Z²(1-sin²θ_W) classical
+-- Weinberg form.
+-- Headline: rho_parameter_custodial_report (4-conjunct).
+import OmegaTheory.Foundations.RhoParameterCustodial
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via

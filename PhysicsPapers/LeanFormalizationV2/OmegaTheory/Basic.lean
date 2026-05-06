@@ -5468,6 +5468,13 @@ import OmegaTheory.QuantumGravity.SubstrateQMProbability
 -- statement on multi-mode wave functions. Headline:
 -- substrate_born_rule_report (4-conjunct).
 import OmegaTheory.QuantumGravity.SubstrateBornRule
+-- Lion's-Pride Phase 7.24 (dynamic /loop iteration 91, 2026-05-06):
+-- substrate QM-bridge META-CAPSTONE composing 9.30 (probDensity:
+-- non-neg, total = ⟨ψ,ψ⟩) + 9.31 (Born rule: P≤1, total=1, basis-spike)
+-- + 7.21 (Heisenberg variance non-neg) into a 6-conjunct theorem.
+-- Plus Frozen-Nat snapshot (4 phases, 8 properties, sum 12).
+-- Headline: substrate_qm_bridge_meta_capstone (6-conjunct).
+import OmegaTheory.Predictions.SubstrateQMBridgeMetaCapstone
 -- Lion's-Pride Phase 9.22 (dynamic /loop iteration 68, 2026-05-06):
 -- substrate Pi-Hunch ordering predicate — formalises the
 -- 3-generation ↔ 3-irrational substrate hypothesis structurally.

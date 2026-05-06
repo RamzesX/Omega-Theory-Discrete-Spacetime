@@ -627,7 +627,6 @@ import OmegaTheory.Emergence.DarkEnergySpatialLocality
 -- six observables. Paper-level significance: substrate commits to a
 -- *finite* positive spatial scale (Planck cell) for every ledger
 -- entry — no global transport, no ad-hoc radius parameter.
-import OmegaTheory.Emergence.DarkEnergyLocalityAtRedshiftEvent
 
 -- Photon regime as zero-ρ / max-N limit (Achernar 2026-04-19,
 -- hunter-TC-A2): `particleActionDensity ρ N := ρ · c² + δ_comp(N)`
@@ -887,7 +886,6 @@ import OmegaTheory.Predictions.ProtonRadiusGravity
 -- Atria (AsymptoticFreedom.strongCouplingFromSubstrate_pos), Bellatrix
 -- (ProtonPhotonRedshift.totalProtonPhotonCost_nonneg), and Chopper
 -- (ProtonRadiusGravity.protonRadius_PDG_le_corrected).
-import OmegaTheory.Emergence.ProtonCriticalityCapstone
 -- Fine-structure constant α_EM = 1/137.035999206 + substrate anchoring
 -- (Hadar, 2026-04-19). Physics-C mission: CODATA 2018 definitional bridge
 -- (Tier 1) + δ_comp(N)-based substrate ceiling and canonical scale
@@ -3269,7 +3267,6 @@ import OmegaTheory.Emergence.SecondLawAndHolography
 -- + SterileNeutrinoFromFourthIrrational (Zosma
 -- sterile_window_upper + sterile_neutrino_mass_from_fourth_irrational).
 -- 0 sorry, 0 new axioms, 0 new `Prop := True`.
-import OmegaTheory.Emergence.CrossCorpusTests
 
 -- Cycle 41 + 42 combined (Ruchbah, 2026-04-21): Matter-antimatter
 -- asymmetry CP-phase bound + no-new-physics KATRIN-scale exclusion
@@ -3484,7 +3481,6 @@ import OmegaTheory.Foundations.OmegaAlgebra
 -- AND to `fermionMassFromDFSpectrum`, closing the last structural defect
 -- in the c18 × c22 community separation flagged by Alphecca's audit.
 -- 0 sorry, 0 new axioms; registered AFTER YukawaSpectralActionBridge.
-import OmegaTheory.Emergence.FibrationConnectivity
 
 -- Wave D+E bridge (Diphda 2026-04-24). Substrate-derived Z-sterile yield
 -- factorisation via Homam's Wave-A Nashira Catalan kernel.  Defines
@@ -4201,7 +4197,6 @@ import OmegaTheory.Irrationality.HermitePade.NesterenkoSubLemmas
 
 -- W1-yukawa — cycle-59 (Scorpius) Wave 1: YukawaMatrix orphan compose into
 -- precision bridge (Connes D_F → m_e/m_μ absolute). 4 declarations, Lean core.
-import OmegaTheory.Emergence.YukawaMatrixPrecisionBundleCapstone
 
 -- W2-quarkbeta — cycle-59 (Scorpius) Wave 1: quark β-decay compose-into-capstone
 -- via Connes D_F orphan wiring. 4 declarations, Lean core only.
@@ -4487,7 +4482,6 @@ import OmegaTheory.Irrationality.CustomMath.LindemannPremiseRatProofPowerSumInt
 -- **Hit-rate: 33/41 = 80.5%** orphans wired (target ≥30%, exceeds Whirlpool
 -- c58 33% + Spica² c57 94%). Spans T1-T8 + Capstone of QM-bridge paper.
 -- 32 thm + 1 frontier marker, Lean core only.
-import OmegaTheory.Emergence.QmBridgePaperCapstone
 
 -- ═══════════════════════════════════════════════════════════════════════
 -- Cycle-60 (Sagittarius) Phase B Wave 2a batch — 8 wizards landed
@@ -4570,7 +4564,6 @@ import OmegaTheory.IrrationalityClasses.ICFourConstantsAxiomNarrowedExtension
 -- HpwBianchiI specialised instances (anisotropic (2,3,5) + isotropic (7,7,7)
 -- FRW recovery + generic bundle extractors). 33% hit-rate (10/30 decls).
 -- 12 decls, Lean core only.
-import OmegaTheory.Emergence.HpwBianchiIOrphansCapstone
 
 -- Antares-A (Antares aA, M1.5Iab supergiant, "rival of Mars" — naming
 -- collision with c59 sage Antares + c59 Antares² noted) — cycle-60 W18:
@@ -4602,7 +4595,6 @@ import OmegaTheory.Spacetime.OperatorsCapstoneResidualWave3
 -- `redshift_orphans_compose_into_capstone`. 7-conjunct headline + 7
 -- "insurance witness" theorems generating real APPLIES edges. **67% hit-rate**
 -- (14/21 declarations wired). 9 thm + 4 priv defs, Lean core only.
-import OmegaTheory.Emergence.RedshiftOrphansCapstone
 
 -- Bellerophon (HD 209458 b, first transiting exoplanet ever observed; Greek
 -- hero who tamed Pegasus + slew Chimera — fresh name, fitting "taming
@@ -4610,7 +4602,6 @@ import OmegaTheory.Emergence.RedshiftOrphansCapstone
 -- 7-conjunct calc-side capstone wiring 7 YukawaMatrix orphans **disjoint
 -- from W1 c59 Carina's 8 precision-side orphans**. **100% hit-rate**
 -- (7/7 cited orphans had 0 downstream citations pre-W22). 3 thm, Lean core only.
-import OmegaTheory.Emergence.YukawaOrphanCalculationCapstone
 
 -- Lovejoy (Comet C/2014 Q2 Lovejoy, naked-eye Jan 2015, ~8000 yr period
 -- — fresh name) — cycle-60 W23:
@@ -4638,14 +4629,11 @@ import OmegaTheory.Conservation.CorrespondenceOrphansCapstone
 -- W1 paper-headlines + axiom retire
 
 -- W2 Yoneda + L4 double-witnesses
-import OmegaTheory.Emergence.EinsteinEmergenceResultYonedaWitness
 
 -- W3 namespace-isolation breakers
-import OmegaTheory.Emergence.FermionContentIsolationBreak
 
 -- W4 sector closures
 import OmegaTheory.Conservation.NoetherInformationTorsionInbound
-import OmegaTheory.Emergence.DarkEnergyToBabyUniverseInbound
 import OmegaTheory.Conservation.CorrespondenceBridgeFirstLandingInbound
 
 -- W5 FOA cohomology
@@ -4656,13 +4644,8 @@ import OmegaTheory.Predictions.CosmologicalHorizonOmegaUnfold
 
 -- W7 OA + W7-tail
 import OmegaTheory.Spacetime.CoordinationNumberInbound
-import OmegaTheory.Emergence.PropagatorCompositionPropInbound
-import OmegaTheory.Emergence.RightHandedDoubletCPDualInbound
 
 -- W8 meta
-import OmegaTheory.Emergence.QCDAsymptoticFreedomCapstoneInbound
-import OmegaTheory.Emergence.CyclicCosmologyPaperBundleInbound
-import OmegaTheory.Emergence.QuarkMassHierarchyFirstLandingInbound
 
 -- W3-overflow + W5-overflow + W-tail
 import OmegaTheory.HealingFlow.IsHealingFlowYonedaWitness

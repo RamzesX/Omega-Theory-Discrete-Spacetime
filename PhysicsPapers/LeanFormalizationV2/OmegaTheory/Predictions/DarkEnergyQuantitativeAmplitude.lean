@@ -28,8 +28,6 @@
   Witness:  `A(r) := 1/(1+r)`, Coulomb-regularised at `r = 0`.
 -/
 
-import OmegaTheory.Emergence.DarkEnergyLocalityEvent
-import OmegaTheory.Emergence.DarkEnergySpatialLocality
 import OmegaTheory.Emergence.RedshiftEnergyToDarkEnergy
 import OmegaTheory.Predictions.KBCVoidDarkEnergy
 import OmegaTheory.Irrationality.Uncertainty

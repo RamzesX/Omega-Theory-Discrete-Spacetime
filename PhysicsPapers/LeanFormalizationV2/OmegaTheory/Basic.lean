@@ -5445,6 +5445,15 @@ import OmegaTheory.Foundations.FiniteAFAlgebraMul
 -- involution at c_part, one + zero self-adjoint at c_part, adjoint
 -- additivity at c_part).
 import OmegaTheory.Foundations.FiniteAFAlgebraAdjoint
+-- Lion's-Pride Phase 6.5d (dynamic /loop iteration 106, 2026-05-06):
+-- finite Chamseddine-Connes A_F MULTIPLICATIVE PROPERTIES at c_part —
+-- fourth step of multi-iteration Phase 6.5. Proves commutativity at
+-- c_part (the ℂ component is commutative, A_F is not globally),
+-- associativity at c_part, right-distributivity at c_part, and the
+-- (1+1)·a = a+a corollary by composing iter 104 left-distributivity
+-- with iter 104 one-mul. Headline: finite_AF_algebra_mul_properties_report
+-- (4-conjunct).
+import OmegaTheory.Foundations.FiniteAFAlgebraMulProperties
 -- Lion's-Pride Phase 7.12 (dynamic /loop iteration 74, 2026-05-06):
 -- multi-mode wave-function bilinearity + parallelogram + polarisation.
 -- Linearity in right argument, scalar homogeneity (left + right),

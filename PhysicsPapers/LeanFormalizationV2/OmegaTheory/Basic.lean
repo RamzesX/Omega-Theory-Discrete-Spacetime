@@ -5694,6 +5694,16 @@ import OmegaTheory.Predictions.SubstrateMachineryThreeMetaMeta
 -- build jobs per META, heavy substrate ratio). Headline:
 -- substrate_machinery_historical_completion_snapshot (7-conjunct).
 import OmegaTheory.Predictions.SubstrateMachineryHistoricalCompletionMeta
+-- Lion's-Pride Phase 6.18 — SUBSTRATE MACHINERY EXTENSION-ROADMAP
+-- META (dynamic /loop iteration 156, 2026-05-06): top-level forward-
+-- looking ledger declaring planned post-milestone extensions to the
+-- substrate machinery: 7 planned phases (4 running-coupling 11-12
+-- loops + GRAND METAs, 2 A_F algebra completion, 1 multi-mode
+-- enrichment). Frozen-Nat snapshot: 7 phases distributed across
+-- 4 + 2 + 1 = 7 tracks + 0 axioms = 14. Plus structural-integrity
+-- inequalities + running-coupling dominance check. Headline:
+-- substrate_machinery_extension_roadmap_snapshot (7-conjunct).
+import OmegaTheory.Predictions.SubstrateMachineryExtensionRoadmapMeta
 -- Lion's-Pride Phase 9.54 — 9-LOOP GRAND-LOOP META (dynamic /loop
 -- iteration 147, 2026-05-06): substrate running-coupling 9-LOOP GRAND-
 -- LOOP META extending Phase 9.52 (16-conjunct) with new Phase 9.53

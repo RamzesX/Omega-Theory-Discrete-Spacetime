@@ -5009,6 +5009,18 @@ import OmegaTheory.Foundations.HealingFlowSemiSmoothLimit
 -- curvature = 2π χ) with Phase 6.5n IsSmoothLimit framework.
 -- Headline: healing_flow_topology_evolution_report (4-conjunct).
 import OmegaTheory.Foundations.HealingFlowTopologyEvolution
+-- Lion's-Pride Phase 6.5p (2026-05-06): HiggsCreationEventScale.
+-- Substrate-anchored scales of the Higgs creation event:
+--   • E_H(N) = √(m_H²)·c² = √8·δ_comp(N)·c²  (rest energy)
+--   • λ_H(N) = ℏ/(m_H·c)                       (Compton wavelength)
+--   • E_H · λ_H = ℏ·c                            (de Broglie/Compton bridge)
+-- Higgs creation event: localized substrate metric perturbation δh
+-- around g_exact carrying energy ≥ E_H(N), exciting the Higgs
+-- eigenmode of the healing-flow Hessian. Below threshold, perturbation
+-- decays back via Lyapunov flow. Closed-form via Phase 3.4 substrate
+-- Higgs mass m_H² = 8·δ_comp(N)² + Spacetime/Constants ℏ, c.
+-- Headline: higgs_creation_event_scale_report (4-conjunct).
+import OmegaTheory.Foundations.HiggsCreationEventScale
 -- Lion's-Pride Phase 7.1 (dynamic /loop iteration 26, 2026-05-06):
 -- Truncated single-mode Fock space. numberOperatorTruncated N is
 -- the (N+1)×(N+1) diagonal matrix diag(0..N). Hermitian via
